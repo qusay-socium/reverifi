@@ -16,7 +16,6 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1;
     margin: 0;
     padding: 0;
-    overflow: hidden;
   }
 
   img {
