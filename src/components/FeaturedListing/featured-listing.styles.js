@@ -68,16 +68,33 @@ export const ListingCardImage = styled.img`
 
 export const ListingCardBody = styled.div`
   background-color: blue;
-  padding-left: 1rem;
-  padding-right: 1rem;
+
+  & h4 {
+    margin: 0;
+  }
+  & h3 {
+    margin: 0;
+  }
+  & p {
+    margin: 0;
+  }
 `;
 
 export const ListingTitleDistance = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem;
 `;
 
 export const ListingCardFooter = styled.div`
   border-top: 2px solid ${colors.gray};
   background-color: green;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+  text-align: center;
+  padding: 0.3rem 0rem 0.3rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  & p {
+    margin: 0;
+  }
 `;

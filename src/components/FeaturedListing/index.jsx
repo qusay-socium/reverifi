@@ -54,6 +54,7 @@ function FeaturedListing({
           </ListingCardBody>
           <ListingCardFooter>
             <p>{price}</p>
+            <div>Like Share</div>
           </ListingCardFooter>
         </ListingCard>
       </ListingContainer>
@@ -81,7 +82,7 @@ FeaturedListing.defaultProps = {
   icons: 'N/A',
   imgSource: '',
   location: 'Bronx, NY 12846',
-  price: '999/Month',
+  price: '$ 999 /Month',
   title: 'Apartment #1',
   transactionType: 'Sale',
 };
