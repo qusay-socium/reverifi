@@ -1,0 +1,46 @@
+{
+  "name": "reverifi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^24.7.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "env": { "browser": true, "jest/globals": true },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": ["babel", "jest", "import", "prettier", "react-hooks"],
+  "root": true,
+  "settings": {
+    "import/resolver": {
+      "node": { "extensions": [".js", ".jsx"], "paths": ["src"] }
+    }
+  },
+  "rules": {
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "function-declaration" }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.spec.js",
+          "**/*.test.jsx",
+          "**/*.spec.jsx"
+        ]
+      }
+    ],
+    "jest/no-large-snapshots": ["warn", { "maxSize": 150 }],
+    "prettier/prettier": "error",
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "no-param-reassign": ["error", { "props": false }],
+    "jsx-a11y/label-has-associated-control": "error",
+    "jsx-a11y/anchor-is-valid": "error",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "sort-keys": ["warn", "asc"]
+  },
+  "overrides": [
+    {
+      "files": ["*.styles.js"],
+      "rules": {
+        "import/prefer-default-export": "off"
+      }
+    }
+  ]
+}
