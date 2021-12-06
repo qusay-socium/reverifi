@@ -1,6 +1,6 @@
 import ClaimAddress from 'components/ClaimAddress ';
 import Events from 'components/Events';
-import ExploreListings from 'components/ExploreListings';
+import ExploreListing from 'components/ExploreListing';
 import FeaturedListing from 'components/FeaturedListing';
 import Footer from 'components/Footer';
 import ReverifiPlus from 'components/ReverifiPlus';
@@ -19,7 +19,7 @@ function Home() {
       <FeaturedListing />
       <Events />
       <ReverifiPlus />
-      <ExploreListings />
+      <ExploreListing />
       <ClaimAddress />
       <Footer />
     </div>
