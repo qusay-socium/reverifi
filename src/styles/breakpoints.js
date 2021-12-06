@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 // Breakpoints
 const breakpoints = {
   // 360px
