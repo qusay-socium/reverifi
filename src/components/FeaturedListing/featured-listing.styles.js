@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
 import colors from 'styles/colors';
+// import mq from 'styles/media-query';
 
-const Title = styled.h3``;
+const Title = styled.h3`
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  margin: 0;
+`;
 
 export const Flex = styled.div`
   display: flex;
@@ -42,7 +49,8 @@ export const CardFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #d8d8d8;
+  border-top: 1px solid #d8d8d8;
+  padding: 11.5px 16px;
 `;
 
 export const TagContainer = styled.div`
@@ -83,6 +91,36 @@ export const Span = styled.span`
   line-height: 15px;
   color: ${colors.grey};
   padding-right: 4px;
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 6px rgba(34, 34, 34, 0.163762);
+  background-color: ${colors.lightgrey};
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: ${colors.lightgreen};
+    cursor: pointer;
+  }
+
+  &:hover path {
+    stroke: ${({ iconName }) =>
+      iconName === 'heart' ? 'white !important' : ''};
+    fill: ${({ iconName }) => (iconName === 'share' ? 'white !important' : '')};
+    opacity: 1 !important;
+  }
+`;
+
+export const CardsFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export default Title;

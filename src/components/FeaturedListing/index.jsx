@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from './Card';
 import data from './data';
-import Title, { Flex } from './featured-listing.styles';
+import Title, { CardsFlex } from './featured-listing.styles';
 
 /**
  * Home page featured listing section.
@@ -12,12 +12,12 @@ import Title, { Flex } from './featured-listing.styles';
 function FeaturedListing() {
   return (
     <div>
-      <Title>TODO: implement featured listing.</Title>
-      <Flex>
+      <Title>Our Featured Listing</Title>
+      <CardsFlex>
         <Card data={data[0]} />
-        {/* <Card data={data[1]} />
-        <Card data={data[2]} /> */}
-      </Flex>
+        <Card data={data[1]} />
+        <Card data={data[2]} />
+      </CardsFlex>
     </div>
   );
 }

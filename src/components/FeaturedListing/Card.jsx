@@ -15,6 +15,7 @@ import {
   PersonImg,
   Text,
   Span,
+  IconContainer,
 } from './featured-listing.styles';
 import { ReactComponent as BedroomIcon } from '../../assets/icons/bedroom.svg';
 import { ReactComponent as WifiIcon } from '../../assets/icons/wifi.svg';
@@ -22,6 +23,8 @@ import { ReactComponent as BathtubIcon } from '../../assets/icons/bathtub.svg';
 import { ReactComponent as AirConditionerIcon } from '../../assets/icons/air-conditioner.svg';
 import { ReactComponent as BenchIcon } from '../../assets/icons/bench.svg';
 import { ReactComponent as PinIcon } from '../../assets/icons/location-pin.svg';
+import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
+import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
 
 function Card({ data: info }) {
   return (
@@ -82,8 +85,18 @@ function Card({ data: info }) {
       </CardBody>
 
       <CardFooter>
-        <div>{data.price}</div>
-        <div>icons</div>
+        <Text size="18px" weight="600" color={colors.black} lineHeight="22px">
+          {info.price}
+        </Text>
+
+        <Flex gap="7px">
+          <IconContainer iconName="heart">
+            <HeartIcon />
+          </IconContainer>
+          <IconContainer iconName="share">
+            <ShareIcon />
+          </IconContainer>
+        </Flex>
       </CardFooter>
     </CardContainer>
   );
