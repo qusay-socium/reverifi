@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ClaimAddress /> renders <ClaimAddress /> 1`] = `ShallowWrapper {}`;

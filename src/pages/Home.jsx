@@ -1,8 +1,8 @@
-import ClaimAddress from 'components/ClaimAddress ';
+import ClaimAddress from 'components/ClaimAddress';
 import Events from 'components/Events';
 import ExploreListing from 'components/ExploreListing';
 import FeaturedListing from 'components/FeaturedListing';
-import Footer from 'components/Footer';
+import Footer from 'components/shared/Footer';
 import ReverifiPlus from 'components/ReverifiPlus';
 import Storyboard from 'components/Storyboard';
 import React from 'react';
