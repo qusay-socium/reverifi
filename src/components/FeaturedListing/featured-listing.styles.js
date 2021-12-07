@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import colors from 'styles/colors';
-// import mq from 'styles/media-query';
+import mq from 'styles/media-query';
 
 const Title = styled.h3`
   font-weight: 600;
@@ -18,14 +18,6 @@ export const Flex = styled.div`
   flex-direction: ${({ direction }) => direction || 'row'};
   align-self: ${({ alignSelf }) => alignSelf || ''};
   gap: ${({ gap }) => gap || 0};
-`;
-
-export const CardContainer = styled.div`
-  background: #ffffff;
-  box-shadow: 0px 1px 9px rgba(34, 34, 34, 0.16);
-  border-radius: 6px;
-  margin: 32px;
-  overflow: hidden;
 `;
 
 export const CardImageContainer = styled.div`
@@ -116,11 +108,55 @@ export const IconContainer = styled.div`
   }
 `;
 
-export const CardsFlex = styled.div`
+export const CardContainer = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 1px 9px rgba(34, 34, 34, 0.16);
+  border-radius: 6px;
+  margin: 32px;
+  overflow: hidden;
+`;
+
+export const ScrollGrid = styled.div`
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  /*chrome, safari, opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${mq.tablet`
+        grid-auto-columns: 50%;
+    `}
+
+  ${mq.desktop`
+        grid-auto-columns: ${({ count }) => `calc(100% / ${count})`};
+    `}
+`;
+
+export const Dots = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 10px;
+`;
+
+export const Dot = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: ${({ active }) => (active ? 'white' : colors.midgrey)};
+  border: ${({ active }) =>
+    active ? `2px solid ${colors.lightgreen};` : 'inherit'};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Title;

@@ -2,7 +2,8 @@ import React from 'react';
 
 import Card from './Card';
 import data from './data';
-import Title, { CardsFlex } from './featured-listing.styles';
+import Title from './featured-listing.styles';
+import Scrollable from './Scrollable';
 
 /**
  * Home page featured listing section.
@@ -13,11 +14,11 @@ function FeaturedListing() {
   return (
     <div>
       <Title>Our Featured Listing</Title>
-      <CardsFlex>
-        <Card data={data[0]} />
-        <Card data={data[1]} />
-        <Card data={data[2]} />
-      </CardsFlex>
+      <Scrollable initialCount={3} cardsNum={data.length}>
+        {data.map((item) => (
+          <Card data={item} key={item.title} />
+        ))}
+      </Scrollable>
     </div>
   );
 }
