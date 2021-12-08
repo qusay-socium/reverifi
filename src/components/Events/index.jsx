@@ -21,7 +21,6 @@ function Events() {
       <button type="button" onClick={() => setFilter('Past')}>
         Past
       </button>
-
       <EventCardContainer filter={filter} />
     </EventsSection>
   );
