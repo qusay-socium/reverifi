@@ -1,0 +1,74 @@
+[
+  {
+    "eventId": 78367,
+    "id": 1,
+    "title": "Alien Hunt",
+    "date": "20 Apr",
+    "startTime": "16:20",
+    "endTime": "08:00",
+    "location": "Area 51",
+    "attendees": "122",
+    "imageUrl": "https://images.unsplash.com/photo-1598482327649-e8831e1505be",
+    "eventType": "Personal"
+  },
+  {
+    "eventId": 55463,
+    "id": 2,
+    "title": "Witch Hunt",
+    "date": "12 Dec",
+    "startTime": "17:30",
+    "endTime": "22:00",
+    "location": "Coven",
+    "attendees": "82",
+    "imageUrl": "https://images.unsplash.com/photo-1508931133503-b1944a4ecdd5",
+    "eventType": "Personal"
+  },
+  {
+    "eventId": 66472,
+    "id": 3,
+    "title": "Employee Training",
+    "date": "23 Dec",
+    "startTime": "9:00",
+    "endTime": "12:00",
+    "location": "Zoom Meeting",
+    "attendees": "233",
+    "imageUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    "eventType": "Webinar"
+  },
+  {
+    "eventId": 86353,
+    "id": 4,
+    "title": "Hosam",
+    "date": "Hos am",
+    "startTime": "Hosam",
+    "endTime": "Hosam",
+    "location": "Hosam",
+    "attendees": "Hosam",
+    "imageUrl": "https://media-exp1.licdn.com/dms/image/C5603AQE6SFKAsU7ChQ/profile-displayphoto-shrink_200_200/0/1540932884250?e=1641427200&v=beta&t=GfDJsBb6GfgZMdNDbkzxfDnDtXPZ-bUpzYoyi3Q4fGY",
+    "eventType": "Hosam"
+  },
+  {
+    "eventId": 99830,
+    "id": 5,
+    "title": "Employee Training",
+    "date": "11 May",
+    "startTime": "9:00",
+    "endTime": "12:00",
+    "location": "Zoom Meeting",
+    "attendees": "233",
+    "imageUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    "eventType": "Webinar"
+  },
+  {
+    "eventId": 74463,
+    "id": 6,
+    "title": "Company Street Fight",
+    "date": "01 Jan",
+    "startTime": "17:00",
+    "endTime": "19:00",
+    "location": "Street",
+    "attendees": "183",
+    "imageUrl": "https://images.unsplash.com/photo-1529630218527-7df22fc2d4ee",
+    "eventType": "Personal"
+  }
+]

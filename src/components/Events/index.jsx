@@ -1,5 +1,6 @@
-import React from 'react';
-import { Title } from './events.styles';
+import React, { useState } from 'react';
+import EventCardContainer from 'components/common/EventCardContainer/EventCardContainer';
+import { EventsSection, SectionTitle } from './events.styles';
 
 /**
  * Home page events section.
@@ -7,10 +8,22 @@ import { Title } from './events.styles';
  * @return {JSX.Element}
  */
 function Events() {
+  const [filter, setFilter] = useState('');
   return (
-    <div>
-      <Title>TODO: implement events.</Title>
-    </div>
+    <EventsSection>
+      <SectionTitle>Events</SectionTitle>
+      <button type="button" onClick={() => setFilter('All')}>
+        All
+      </button>
+      <button type="button" onClick={() => setFilter('Upcoming')}>
+        Upcoming
+      </button>
+      <button type="button" onClick={() => setFilter('Past')}>
+        Past
+      </button>
+
+      <EventCardContainer filter={filter} />
+    </EventsSection>
   );
 }
 
