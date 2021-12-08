@@ -5,16 +5,38 @@ import { ScrollGrid, Dot, Dots } from './featured-listing.styles';
 function Scrollable({ children, initialCount, cardsNum }) {
   const numberOfDots = Math.ceil(cardsNum / initialCount);
 
-  const [dots, setDots] = useState(Array(numberOfDots).fill(false));
-
   const scrollContainer = useRef(null);
 
+  const [dots, setDots] = useState(Array(numberOfDots));
+  const [mouseIn, setMouseIn] = useState(false);
+
   useEffect(() => {
+    // active first dot at start
     setDots([true, ...dots]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const scrollHandler = () => {
+    const scrollRef = scrollContainer.current;
+
+    const scrollAmount = (scrollRef.scrollLeft / scrollRef.scrollWidth).toFixed(
+      1
+    );
+
+    if (mouseIn) {
+      const copy = Array(numberOfDots);
+      const index = Math.round(numberOfDots * scrollAmount);
+      copy[index] = true;
+      setDots(copy);
+    }
+  };
+
   const activateDot = (index) => {
-    const copy = Array(numberOfDots).fill(false);
+    // set mouseIn to prevent update dots from scroll function
+    setMouseIn(false);
+
+    // reset it cuz the first element is true from the (useEffect)
+    const copy = Array(numberOfDots);
     copy[index] = true;
     setDots(copy);
 
@@ -29,7 +51,6 @@ function Scrollable({ children, initialCount, cardsNum }) {
     }
 
     scrollContainer.current?.children[childrenIndex]?.scrollIntoView({
-      behavior: 'smooth',
       block: 'center',
       inline: 'center',
     });
@@ -37,7 +58,13 @@ function Scrollable({ children, initialCount, cardsNum }) {
 
   return (
     <>
-      <ScrollGrid count={initialCount} ref={scrollContainer}>
+      <ScrollGrid
+        count={initialCount}
+        ref={scrollContainer}
+        onScroll={scrollHandler}
+        onClick={() => setMouseIn(true)}
+        onTouchStart={() => setMouseIn(true)}
+      >
         {children}
       </ScrollGrid>
       <Dots>

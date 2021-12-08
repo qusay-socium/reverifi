@@ -118,10 +118,11 @@ export const CardContainer = styled.div`
 
 export const ScrollGrid = styled.div`
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%;
+  transition: all 1s ease;
+  scroll-behavior: smooth;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -156,6 +157,51 @@ export const Dot = styled.div`
 
   &:hover {
     cursor: pointer;
+  }
+`;
+
+export const StyledSlide = styled.div`
+  // dots styles
+  .slideDots {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      display: inline;
+      margin: 0 5px;
+      > button {
+        // to hide the content
+        font-size: 0 !important;
+        width: 12px;
+        height: 12px;
+        border: none;
+        background-color: #d8d8d8;
+        border-radius: 50%;
+        padding: 0;
+      }
+    }
+  }
+  // active dot style
+  .slideDots li.slick-active button {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    outline: 2px solid #b2d235;
+  }
+  // arrow styles
+  .slick-prev {
+    left: 1rem !important;
+    z-index: 1;
+    width: 32px !important;
+    height: 32px !important ;
+  }
+  .slick-next {
+    right: 1rem !important;
+    z-index: 1;
+    width: 32px !important;
+    height: 32px !important ;
   }
 `;
 
