@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types/prop-types';
 
 import colors from 'styles/colors';
-import data from './data';
 import {
   CardBody,
   CardContainer,
@@ -48,12 +47,17 @@ function Card({ data: info }) {
 
       <CardBody>
         <Flex direction="column" align="flex-start">
-          <Text size="18px" weight="600" margin="0 0 3px 0" lineHeight="22px">
+          <Text
+            size="1.125rem"
+            weight="600"
+            margin="0 0 3px 0"
+            lineHeight="22px"
+          >
             {info.title}
           </Text>
 
           <Text
-            size="14px"
+            size="0.875rem"
             margin="0 0 13px 0"
             lineHeight="17px"
             color={colors.grey}
@@ -78,14 +82,19 @@ function Card({ data: info }) {
 
         <Flex gap="8px">
           <PinIcon />
-          <Text size="12px" lineHeight="15px" color={colors.grey}>
+          <Text size="0.75rem" lineHeight="15px" color={colors.grey}>
             {info.distance}
           </Text>
         </Flex>
       </CardBody>
 
       <CardFooter>
-        <Text size="18px" weight="600" color={colors.black} lineHeight="22px">
+        <Text
+          size="1.125rem"
+          weight="600"
+          color={colors.black}
+          lineHeight="22px"
+        >
           {info.price}
         </Text>
 
@@ -103,7 +112,19 @@ function Card({ data: info }) {
 }
 
 Card.propTypes = {
-  data: PropTypes.objectOf(data).isRequired,
+  data: PropTypes.shape({
+    distance: PropTypes.string,
+    img: PropTypes.string,
+    location: PropTypes.string,
+    personImg: PropTypes.string,
+    price: PropTypes.string,
+    services: PropTypes.shape({
+      bathroom: PropTypes.number,
+      bedroom: PropTypes.number,
+    }),
+    tags: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 export default Card;

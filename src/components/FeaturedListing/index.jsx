@@ -3,11 +3,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
-import { ReactComponent as ArrowL } from 'assets/icons/arrowL.svg';
-import { ReactComponent as ArrowR } from 'assets/icons/arrowR.svg';
 import Card from './Card';
 import data from './data';
-import Title, { StyledSlide } from './featured-listing.styles';
+import SectionContainer, {
+  StyledSlide,
+  Title,
+} from './featured-listing.styles';
 // import Scrollable from './Scrollable';
 
 /**
@@ -25,7 +26,7 @@ function FeaturedListing() {
       },
     },
     {
-      breakpoint: 980,
+      breakpoint: 1180,
       settings: {
         slidesToScroll: 2,
         slidesToShow: 2,
@@ -33,7 +34,7 @@ function FeaturedListing() {
     },
   ];
   return (
-    <>
+    <SectionContainer>
       <Title>Our Featured Listing</Title>
       {/* custom sliders */}
       {/* <Scrollable initialCount={3} cardsNum={data.length}>
@@ -49,19 +50,18 @@ function FeaturedListing() {
           speed={500}
           slidesToShow={3}
           slidesToScroll={3}
-          nextArrow={<ArrowR />}
-          prevArrow={<ArrowL />}
           responsive={slideBreakPoints}
           dotsClass="slideDots"
-          centerPadding="50px"
           lazyLoad="ondemand"
+          arrows={false}
+          easing="ease-in-out"
         >
           {data.map((item) => (
             <Card data={item} key={item.title} />
           ))}
         </Slider>
       </StyledSlide>
-    </>
+    </SectionContainer>
   );
 }
 

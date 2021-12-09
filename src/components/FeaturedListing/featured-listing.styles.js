@@ -3,12 +3,24 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
-const Title = styled.h3`
+const SectionContainer = styled.div`
+  margin: 10px 0;
+
+  ${mq.desktop`
+      margin: 10px 120px;
+  `}
+`;
+
+export const Title = styled.h3`
   font-weight: 600;
-  font-size: 32px;
+  font-size: 1.375rem;
   line-height: 39px;
   text-align: center;
   margin: 0;
+
+  ${mq.mobileWide`
+      font-size: 32px;
+  `}
 `;
 
 export const Flex = styled.div`
@@ -79,7 +91,7 @@ export const Text = styled.p`
 `;
 
 export const Span = styled.span`
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 15px;
   color: ${colors.grey};
   padding-right: 4px;
@@ -112,7 +124,7 @@ export const CardContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 1px 9px rgba(34, 34, 34, 0.16);
   border-radius: 6px;
-  margin: 32px;
+  margin: 32px 16px;
   overflow: hidden;
 `;
 
@@ -205,4 +217,4 @@ export const StyledSlide = styled.div`
   }
 `;
 
-export default Title;
+export default SectionContainer;

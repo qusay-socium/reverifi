@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types/prop-types';
+
 import { ScrollGrid, Dot, Dots } from './featured-listing.styles';
 
 function Scrollable({ children, initialCount, cardsNum }) {
