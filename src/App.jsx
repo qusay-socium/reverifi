@@ -3,7 +3,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'routes';
 import GlobalStyles from 'styles/global-styles';
-
+// import '~slick-carousel/slick/slick.css';
+// import '~slick-carousel/slick/slick-theme.css';
 /**
  * App entry point component.
  *
