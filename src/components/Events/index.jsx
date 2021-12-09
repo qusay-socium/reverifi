@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EventCardContainer from 'components/common/EventCardContainer/EventCardContainer';
+// import EventCardContainer from 'components/common/EventCardContainer/EventCardContainer';
 import EventSlideShow from 'components/ReactSlick/EventSlideShow';
 import {
   EventsSection,
@@ -18,7 +18,13 @@ export default function Events() {
   const [activeFilter, setActiveFilter] = useState('All');
   return (
     <>
-      <EventsSection>
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <SectionTitle>Events</SectionTitle>
         <FilterButtonsContainer>
           <FilterButton
@@ -43,9 +49,11 @@ export default function Events() {
             Past
           </FilterButton>
         </FilterButtonsContainer>
+      </div>
 
+      {/* <EventsSection>
         <EventCardContainer filter={activeFilter} />
-      </EventsSection>
+      </EventsSection> */}
 
       <EventsSection>
         <EventSlideShow filter={activeFilter} />

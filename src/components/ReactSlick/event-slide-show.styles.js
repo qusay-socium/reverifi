@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledSlide = styled.div`
-  background-color: pink;
   max-height: 25rem;
   @media (min-width: 22.5rem) {
     // 360px mobile: '22.5rem',

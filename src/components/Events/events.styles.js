@@ -29,6 +29,7 @@ export const FilterButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  width: fit-content;
 `;
 export const FilterButton = styled.button`
   font-size: 1rem;

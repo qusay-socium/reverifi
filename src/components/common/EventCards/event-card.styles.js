@@ -6,10 +6,10 @@ export const Card = styled.div`
   max-width: 20rem;
   min-width: 20rem;
   overflow: hidden;
-  margin: 0;
+  margin: 1rem 0rem;
   border-radius: 0.4375rem;
   position: relative;
-  box-shadow: 0px 1px 8px rgba(51, 119, 255, 0.12);
+  box-shadow: 0.5rem 0.3125rem 0.5rem rgba(51, 119, 255, 0.12);
 `;
 export const CardHeader = styled.div``;
 
