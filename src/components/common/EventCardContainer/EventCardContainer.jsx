@@ -1,14 +1,30 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ReactComponent as RButton } from 'assets/Icons/arrow.svg';
 import { ReactComponent as LButton } from 'assets/Icons/larrow.svg';
 import Event from 'Mock/events.json';
+import PropTypes from 'prop-types';
 import EventCard from '../EventCards/EventCard';
 import { Container, GridContainer } from './event-card-container.styles';
 import { ScrollButtonsContainer } from '../ScrollButtons/scroll-button.styles';
 
-export default function EventCardContainer() {
+export default function EventCardContainer({ filter }) {
   const data = Event;
   const ecc = useRef();
+  const [newArr, setNewArr] = useState(data);
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   function ScrollLeft() {
     ecc.current.scrollLeft -= 340;
@@ -16,6 +32,20 @@ export default function EventCardContainer() {
   function ScrollRight() {
     ecc.current.scrollLeft += 340;
   }
+  useEffect(() => {
+    function reduceArray() {
+      const today = new Date();
+      if (filter === 'Upcoming') {
+        setNewArr(data.filter((obj) => new Date(obj.date) > today));
+      } else if (filter === 'Past')
+        setNewArr(data.filter((obj) => new Date(obj.date) < today));
+      else if (filter === 'All') {
+        setNewArr(data);
+      }
+    }
+    reduceArray();
+  }, [data, filter]);
+
   return (
     <GridContainer>
       <ScrollButtonsContainer>
@@ -24,10 +54,12 @@ export default function EventCardContainer() {
       </ScrollButtonsContainer>
 
       <Container columns={data.length} ref={ecc}>
-        {data.map((event) => (
+        {newArr.map((event) => (
           <EventCard
             key={event.id}
-            date={event.date}
+            date={`${new Date(event.date).getDate()} ${
+              months[new Date(event.date).getMonth()]
+            }`}
             title={event.title}
             startTime={event.startTime}
             endTime={event.endTime}
@@ -41,3 +73,7 @@ export default function EventCardContainer() {
     </GridContainer>
   );
 }
+
+EventCardContainer.propTypes = {
+  filter: PropTypes.string.isRequired,
+};

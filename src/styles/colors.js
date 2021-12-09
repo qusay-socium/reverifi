@@ -5,6 +5,7 @@ const colors = {
   red: '#FE5D26',
   sectionBackground: '#FAFAFA',
   textBlack: '#222222',
+  textGray: '#222222',
   white: '#FFFFFF',
 };
 

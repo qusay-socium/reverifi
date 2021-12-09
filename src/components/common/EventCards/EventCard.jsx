@@ -10,6 +10,8 @@ import {
   CardFooter,
   EventImage,
   EventDate,
+  Title,
+  EventInfo,
   FooterTop,
   FooterBottom,
   Attendees,
@@ -41,10 +43,10 @@ export default function EventCard({
       <CardFooter>
         <FooterTop>
           <div>
-            <p>{title}</p>
-            <p>
+            <Title>{title}</Title>
+            <EventInfo>
               {startTime}-{endTime} @{location}
-            </p>
+            </EventInfo>
           </div>
           <div>
             <Add />

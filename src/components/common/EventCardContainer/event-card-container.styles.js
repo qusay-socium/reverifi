@@ -8,7 +8,7 @@ export const Container = styled.div`
   grid-template-columns: 20rem;
   grid-auto-flow: column;
   overflow-x: scroll;
-  padding: 0rem 0rem;
+  padding: 1rem 0rem;
   align-items: center;
   justify-items: center;
   position: relative;

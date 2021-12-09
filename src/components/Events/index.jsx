@@ -1,29 +1,55 @@
 import React, { useState } from 'react';
 import EventCardContainer from 'components/common/EventCardContainer/EventCardContainer';
-import { EventsSection, SectionTitle } from './events.styles';
+import EventSlideShow from 'components/ReactSlick/EventSlideShow';
+import {
+  EventsSection,
+  FilterButton,
+  FilterButtonsContainer,
+  SectionTitle,
+} from './events.styles';
 
 /**
  * Home page events section.
  *
  * @return {JSX.Element}
  */
-function Events() {
-  const [filter, setFilter] = useState('');
+
+export default function Events() {
+  const [activeFilter, setActiveFilter] = useState('All');
   return (
-    <EventsSection>
-      <SectionTitle>Events</SectionTitle>
-      <button type="button" onClick={() => setFilter('All')}>
-        All
-      </button>
-      <button type="button" onClick={() => setFilter('Upcoming')}>
-        Upcoming
-      </button>
-      <button type="button" onClick={() => setFilter('Past')}>
-        Past
-      </button>
-      <EventCardContainer filter={filter} />
-    </EventsSection>
+    <>
+      <EventsSection>
+        <SectionTitle>Events</SectionTitle>
+        <FilterButtonsContainer>
+          <FilterButton
+            active={!(activeFilter === 'All')}
+            type="button"
+            onClick={() => setActiveFilter('All')}
+          >
+            All
+          </FilterButton>
+          <FilterButton
+            active={!(activeFilter === 'Upcoming')}
+            type="button"
+            onClick={() => setActiveFilter('Upcoming')}
+          >
+            Upcoming
+          </FilterButton>
+          <FilterButton
+            active={!(activeFilter === 'Past')}
+            type="button"
+            onClick={() => setActiveFilter('Past')}
+          >
+            Past
+          </FilterButton>
+        </FilterButtonsContainer>
+
+        <EventCardContainer filter={activeFilter} />
+      </EventsSection>
+
+      <EventsSection>
+        <EventSlideShow filter={activeFilter} />
+      </EventsSection>
+    </>
   );
 }
-
-export default Events;

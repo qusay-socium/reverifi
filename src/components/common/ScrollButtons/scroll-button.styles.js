@@ -7,7 +7,7 @@ export const ScrollButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0;
-  padding: 0rem;
+  padding: 0rem -2rem;
   position: absolute;
   top: 40%;
   width: 100%;

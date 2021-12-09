@@ -86,7 +86,6 @@ export const FooterBottom = styled.div`
   margin-right: 0.5rem;
   font: 0.75rem;
   & p {
-    margin-top: -0.2rem;
   }
   & svg {
     margin-right: 0.2rem;
@@ -98,4 +97,11 @@ export const Attendees = styled.div`
   display: flex;
   flex-direction: row;
   color: ${colors.mainGreen};
+`;
+export const Title = styled.p`
+  margin-top: -0.2rem;
+  font-size: 1rem;
+`;
+export const EventInfo = styled.p`
+  font-size: 0.75rem;
 `;
