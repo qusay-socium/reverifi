@@ -128,50 +128,6 @@ export const CardContainer = styled.div`
   overflow: hidden;
 `;
 
-export const ScrollGrid = styled.div`
-  overflow-x: auto;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  transition: all 1s ease;
-  scroll-behavior: smooth;
-
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  /*chrome, safari, opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  ${mq.tablet`
-        grid-auto-columns: 50%;
-    `}
-
-  ${mq.desktop`
-        grid-auto-columns: ${({ count }) => `calc(100% / ${count})`};
-    `}
-`;
-
-export const Dots = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px 10px;
-`;
-
-export const Dot = styled.div`
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: ${({ active }) => (active ? 'white' : colors.midgrey)};
-  border: ${({ active }) =>
-    active ? `2px solid ${colors.lightgreen};` : 'inherit'};
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 export const StyledSlide = styled.div`
   // dots styles
   .slideDots {
@@ -216,5 +172,49 @@ export const StyledSlide = styled.div`
     height: 32px !important ;
   }
 `;
+// custom slider (scrollable) styles
+// export const ScrollGrid = styled.div`
+//   overflow-x: auto;
+//   display: grid;
+//   grid-auto-flow: column;
+//   grid-auto-columns: 100%;
+//   transition: all 1s ease;
+//   scroll-behavior: smooth;
+
+//   -ms-overflow-style: none; /* IE and Edge */
+//   scrollbar-width: none; /* Firefox */
+//   /*chrome, safari, opera */
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+
+//   ${mq.tablet`
+//         grid-auto-columns: 50%;
+//     `}
+
+//   ${mq.desktop`
+//         grid-auto-columns: ${({ count }) => `calc(100% / ${count})`};
+//     `}
+// `;
+
+// export const Dots = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 18px 10px;
+// `;
+
+// export const Dot = styled.div`
+//   width: 15px;
+//   height: 15px;
+//   border-radius: 50%;
+//   background-color: ${({ active }) => (active ? 'white' : colors.midgrey)};
+//   border: ${({ active }) =>
+//     active ? `2px solid ${colors.lightgreen};` : 'inherit'};
+
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
 export default SectionContainer;
