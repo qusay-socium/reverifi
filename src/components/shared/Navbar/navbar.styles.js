@@ -15,7 +15,7 @@ export const BroadNavContainer = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 1000;
 
   ${mq.tablet`
     align-items: stretch;
@@ -106,7 +106,6 @@ export const NavControlSection = styled.div`
 
 export const UserControlSectionWrapper = styled(NavControlSection)`
   cursor: pointer;
-  position: relative;
 `;
 
 export const Logo = styled(RawLogo)`
