@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types/prop-types';
 
 import colors from 'styles/colors';
-import {
+import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
+import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
+import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
+import { ReactComponent as AirConditionerIcon } from 'assets/icons/air-conditioner.svg';
+import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
+import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
+import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
+import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
+import CardContainer, {
   CardBody,
-  CardContainer,
   Flex,
   Image,
   CardFooter,
@@ -15,15 +22,7 @@ import {
   Text,
   Span,
   IconContainer,
-} from './featured-listing.styles';
-import { ReactComponent as BedroomIcon } from '../../assets/icons/bedroom.svg';
-import { ReactComponent as WifiIcon } from '../../assets/icons/wifi.svg';
-import { ReactComponent as BathtubIcon } from '../../assets/icons/bathtub.svg';
-import { ReactComponent as AirConditionerIcon } from '../../assets/icons/air-conditioner.svg';
-import { ReactComponent as BenchIcon } from '../../assets/icons/bench.svg';
-import { ReactComponent as PinIcon } from '../../assets/icons/location-pin.svg';
-import { ReactComponent as ShareIcon } from '../../assets/icons/share.svg';
-import { ReactComponent as HeartIcon } from '../../assets/icons/heart.svg';
+} from './card.styles';
 
 function Card({ data: info }) {
   return (

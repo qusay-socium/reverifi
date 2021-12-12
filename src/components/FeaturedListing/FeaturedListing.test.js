@@ -4,9 +4,10 @@ import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
 import colors from 'styles/colors';
-import { Title, StyledSlide, Tag, Text } from './featured-listing.styles';
+import { Title, StyledSlide } from './featured-listing.styles';
+import { Tag, Text } from './Card/card.styles';
 import FeaturedListing from './index';
-import Card from './Card';
+import Card from './Card/Card';
 import data from './data';
 
 describe('rendering components', () => {
