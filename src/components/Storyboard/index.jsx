@@ -1,6 +1,18 @@
 import React from 'react';
-import { Search } from 'react-feather';
-import { Title } from './storyboard.styles';
+import { ReactComponent as StoryBoardImage } from 'assets/images/storyBoardImage.svg';
+
+import {
+  LocationPin,
+  SearchIcon,
+  SearchInputGroupWrapper,
+  SearchListingsHeader,
+  SearchListingsItem,
+  SearchListingsWrapper,
+  StoryBoardContainer,
+  StoryBoardSection,
+  StyledInput,
+  StyledInputGroup,
+} from './storyboard.styles';
 
 /**
  * Home page storyboard section.
@@ -9,10 +21,34 @@ import { Title } from './storyboard.styles';
  */
 function Storyboard() {
   return (
-    <div>
-      <Title>TODO: implement storyboard.</Title>
-      <Search />
-    </div>
+    <StoryBoardContainer>
+      <StoryBoardSection>
+        <SearchListingsWrapper>
+          <SearchListingsItem>
+            <SearchListingsHeader>
+              Search our listings for your next purchase
+            </SearchListingsHeader>
+          </SearchListingsItem>
+
+          <SearchListingsItem>
+            <SearchInputGroupWrapper>
+              <StyledInputGroup>
+                <LocationPin />
+                <StyledInput
+                  type="text"
+                  placeholder="Enter City, neighborhood, ZIP, or address"
+                />
+                <SearchIcon />
+              </StyledInputGroup>
+            </SearchInputGroupWrapper>
+          </SearchListingsItem>
+        </SearchListingsWrapper>
+      </StoryBoardSection>
+
+      <StoryBoardSection>
+        <StoryBoardImage />
+      </StoryBoardSection>
+    </StoryBoardContainer>
   );
 }
 
