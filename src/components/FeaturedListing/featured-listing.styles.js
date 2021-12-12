@@ -4,22 +4,22 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 const SectionContainer = styled.div`
-  margin: 10px 0;
+  margin: 0.625rem 0;
 
   ${mq.desktop`
-      margin: 10px 120px;
+      margin: 0.625rem 7.5rem;
   `}
 `;
 
 export const Title = styled.h3`
   font-weight: 600;
   font-size: 1.375rem;
-  line-height: 39px;
+  line-height: 2.4375rem;
   text-align: center;
   margin: 0;
 
   ${mq.mobileWide`
-      font-size: 32px;
+      font-size: 2rem;
   `}
 `;
 
@@ -34,7 +34,7 @@ export const Flex = styled.div`
 
 export const CardImageContainer = styled.div`
   position: relative;
-  height: 252px;
+  height: 15.75rem;
 `;
 
 export const Image = styled.img`
@@ -46,7 +46,7 @@ export const CardBody = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 16px;
+  padding: 1rem;
 `;
 
 export const CardFooter = styled.div`
@@ -54,30 +54,30 @@ export const CardFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #d8d8d8;
-  padding: 11.5px 16px;
+  padding: 0.75rem 1rem;
 `;
 
 export const TagContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 1rem;
+  left: 1rem;
 `;
 
 export const Tag = styled.div`
   background-color: ${({ color }) => color || colors.lightgreen};
   color: white;
   font-size: 0.625rem;
-  padding: 4px 19px;
-  border-radius: 4px;
-  margin-right: 7px;
-  line-height: 12px;
+  padding: 0.25rem 1.1875rem;
+  border-radius: 0.25rem;
+  margin-right: 0.4375rem;
+  line-height: 0.75rem;
 `;
 
 export const PersonImg = styled.img`
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  right: 1rem;
+  bottom: 1rem;
   border-radius: 50%;
 `;
 
@@ -92,19 +92,19 @@ export const Text = styled.p`
 
 export const Span = styled.span`
   font-size: 0.75rem;
-  line-height: 15px;
+  line-height: 0.9375rem;
   color: ${colors.grey};
-  padding-right: 4px;
+  padding-right: 0.25rem;
 `;
 
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 1px 6px rgba(34, 34, 34, 0.163762);
+  box-shadow: 0rem 0.0625rem 0.375rem rgba(34, 34, 34, 0.163762);
   background-color: ${colors.lightgrey};
-  width: 25px;
-  height: 25px;
+  width: 1.5625rem;
+  height: 1.5625rem;
   border-radius: 50%;
 
   &:hover {
@@ -122,9 +122,9 @@ export const IconContainer = styled.div`
 
 export const CardContainer = styled.div`
   background: #ffffff;
-  box-shadow: 0px 1px 9px rgba(34, 34, 34, 0.16);
-  border-radius: 6px;
-  margin: 32px 16px;
+  box-shadow: 0rem 0.0625rem 0.5625rem rgba(34, 34, 34, 0.16);
+  border-radius: 0.375rem;
+  margin: 2rem 1rem;
   overflow: hidden;
 `;
 
@@ -138,12 +138,12 @@ export const StyledSlide = styled.div`
 
     > li {
       display: inline;
-      margin: 0 5px;
+      margin: 0 0.3125rem;
       > button {
         // to hide the content
         font-size: 0 !important;
-        width: 12px;
-        height: 12px;
+        width: 0.75rem;
+        height: 0.75rem;
         border: none;
         background-color: #d8d8d8;
         border-radius: 50%;
@@ -153,8 +153,8 @@ export const StyledSlide = styled.div`
   }
   // active dot style
   .slideDots li.slick-active button {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     background-color: #fff;
     outline: 2px solid #b2d235;
   }
@@ -162,59 +162,15 @@ export const StyledSlide = styled.div`
   .slick-prev {
     left: 1rem !important;
     z-index: 1;
-    width: 32px !important;
-    height: 32px !important ;
+    width: 2rem !important;
+    height: 2rem !important ;
   }
   .slick-next {
     right: 1rem !important;
     z-index: 1;
-    width: 32px !important;
-    height: 32px !important ;
+    width: 2rem !important;
+    height: 2rem !important ;
   }
 `;
-// custom slider (scrollable) styles
-// export const ScrollGrid = styled.div`
-//   overflow-x: auto;
-//   display: grid;
-//   grid-auto-flow: column;
-//   grid-auto-columns: 100%;
-//   transition: all 1s ease;
-//   scroll-behavior: smooth;
-
-//   -ms-overflow-style: none; /* IE and Edge */
-//   scrollbar-width: none; /* Firefox */
-//   /*chrome, safari, opera */
-//   &::-webkit-scrollbar {
-//     display: none;
-//   }
-
-//   ${mq.tablet`
-//         grid-auto-columns: 50%;
-//     `}
-
-//   ${mq.desktop`
-//         grid-auto-columns: ${({ count }) => `calc(100% / ${count})`};
-//     `}
-// `;
-
-// export const Dots = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 18px 10px;
-// `;
-
-// export const Dot = styled.div`
-//   width: 15px;
-//   height: 15px;
-//   border-radius: 50%;
-//   background-color: ${({ active }) => (active ? 'white' : colors.midgrey)};
-//   border: ${({ active }) =>
-//     active ? `2px solid ${colors.lightgreen};` : 'inherit'};
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-// `;
 
 export default SectionContainer;

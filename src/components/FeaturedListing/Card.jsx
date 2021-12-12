@@ -50,22 +50,22 @@ function Card({ data: info }) {
           <Text
             size="1.125rem"
             weight="600"
-            margin="0 0 3px 0"
-            lineHeight="22px"
+            margin="0 0 0.1875rem 0"
+            lineHeight="1.375rem"
           >
             {info.title}
           </Text>
 
           <Text
             size="0.875rem"
-            margin="0 0 13px 0"
-            lineHeight="17px"
+            margin="0 0 0.8125rem 0"
+            lineHeight="1.0625rem"
             color={colors.grey}
           >
             {info.location}
           </Text>
 
-          <Flex justify="space-between" gap="16px">
+          <Flex justify="space-between" gap="1rem">
             <Flex>
               <Span>{info.services.bedroom}</Span>
               <BedroomIcon />
@@ -80,9 +80,9 @@ function Card({ data: info }) {
           </Flex>
         </Flex>
 
-        <Flex gap="8px">
+        <Flex gap="0.5rem">
           <PinIcon />
-          <Text size="0.75rem" lineHeight="15px" color={colors.grey}>
+          <Text size="0.75rem" lineHeight="0.9375rem" color={colors.grey}>
             {info.distance}
           </Text>
         </Flex>
@@ -93,12 +93,12 @@ function Card({ data: info }) {
           size="1.125rem"
           weight="600"
           color={colors.black}
-          lineHeight="22px"
+          lineHeight="1.375rem"
         >
           {info.price}
         </Text>
 
-        <Flex gap="7px">
+        <Flex gap="0.4375rem">
           <IconContainer iconName="heart">
             <HeartIcon />
           </IconContainer>
