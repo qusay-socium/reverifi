@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
-export const Title = styled.h3``;
-
 export const SectionContainer = styled.div`
   align-items: center;
   display: flex;
@@ -24,6 +22,7 @@ export const EventsSection = styled.div`
   font-family: Montserrat;
   margin: 2rem 0rem;
 `;
+
 export const SectionTitle = styled.h1`
   color: ${colors.textBlack};
   font-size: 2rem;
@@ -32,12 +31,14 @@ export const SectionTitle = styled.h1`
     font-size: 22px;
   `}
 `;
+
 export const FilterButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: fit-content;
 `;
+
 export const FilterButton = styled.button`
   font-size: 1rem;
   margin: 0.5rem;

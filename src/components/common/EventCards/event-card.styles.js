@@ -11,11 +11,10 @@ export const Card = styled.div`
   position: relative;
   box-shadow: 0.5rem 0.3125rem 0.5rem rgba(51, 119, 255, 0.12);
 `;
+
 export const CardHeader = styled.div``;
 
 export const ListingProperties = styled.div`
-  /*   background-color: lightgreen;
- */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -39,6 +38,7 @@ export const EventImage = styled.img`
   height: 14.375rem;
   object-fit: stretch;
 `;
+
 export const EventDate = styled.div`
   height: 3.5625rem;
   width: 3.9375rem;
@@ -52,18 +52,18 @@ export const EventDate = styled.div`
   font-size: 20px;
   text-align: center;
   padding: 0.375rem 0.75rem 0.3125rem 0.75rem;
+
   & p {
     margin: 0;
     justify-self: center;
   }
 `;
 
-export const CardBody = styled.div``;
-
 export const CardFooter = styled.div`
   min-height: 4.8125rem;
   padding-top: 0.4rem;
 `;
+
 export const FooterTop = styled.div`
   display: flex;
   flex-direction: row;
@@ -71,13 +71,16 @@ export const FooterTop = styled.div`
   padding: 0rem 1rem 0rem 1rem;
   margin: 0;
   text-align: left;
+
   & p {
     margin: 0;
   }
+
   & svg {
     margin: 0.5rem 0.1rem 0rem 0.1rem;
   }
 `;
+
 export const FooterBottom = styled.div`
   display: flex;
   flex-direction: row;
@@ -85,8 +88,10 @@ export const FooterBottom = styled.div`
   padding: 0.2rem 0.5rem 0rem 0.3rem;
   margin-right: 0.5rem;
   font: 0.75rem;
+
   & p {
   }
+
   & svg {
     margin-right: 0.2rem;
     margin-bottom: 0.2rem;
@@ -98,10 +103,12 @@ export const Attendees = styled.div`
   flex-direction: row;
   color: ${colors.mainGreen};
 `;
+
 export const Title = styled.p`
   margin-top: -0.2rem;
   font-size: 1rem;
 `;
+
 export const EventInfo = styled.p`
   font-size: 0.75rem;
 `;

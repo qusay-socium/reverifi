@@ -3,6 +3,7 @@ import mq from 'styles/media-query';
 
 export const StyledSlide = styled.div`
   max-height: 25rem;
+
   ${mq.mobile`
     width: 21.25rem;
   `}
@@ -47,16 +48,19 @@ export const StyledSlide = styled.div`
     width: 32px !important;
     height: 32px !important ;
   }
+
   .slick-next {
     right: 0 !important;
     z-index: 1;
     width: 32px !important;
     height: 32px !important ;
   }
+
   .slick-list {
     grid-gap: 1.25rem;
     margin-left: 0;
   }
+
   .slick-slide > div {
     display: grid;
     place-items: center;
