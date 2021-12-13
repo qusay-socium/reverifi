@@ -14,8 +14,8 @@ describe('test styled components that have props', () => {
   });
 
   it('should apply props styles to Tag component', () => {
-    const tree = renderer.create(<Tag color="red" />).toJSON();
+    const tree = renderer.create(<Tag isNew />).toJSON();
 
-    expect(tree).toHaveStyleRule('background-color', 'red');
+    expect(tree).toHaveStyleRule('background-color', colors.orange);
   });
 });

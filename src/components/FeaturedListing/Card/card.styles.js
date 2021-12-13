@@ -1,22 +1,31 @@
 import styled from 'styled-components';
-
 import colors from 'styles/colors';
 
-const CardContainer = styled.div`
-  background: #ffffff;
-  box-shadow: 0rem 0.0625rem 0.5625rem rgba(34, 34, 34, 0.16);
+export const CardContainer = styled.div`
+  background: ${colors.white};
+  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.darkshadow};
   border-radius: 0.375rem;
   margin: 2rem 1rem;
   overflow: hidden;
 `;
 
-export const Flex = styled.div`
+export const Container = styled.div`
   display: flex;
-  align-items: ${({ align }) => align || 'center'};
-  justify-content: ${({ justify }) => justify || 'center'};
-  flex-direction: ${({ direction }) => direction || 'row'};
-  align-self: ${({ alignSelf }) => alignSelf || ''};
-  gap: ${({ gap }) => gap || 0};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const InfoContainer = styled(Container)`
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const BodyIconsContainer = styled(Container)`
+  gap: 1rem;
+`;
+
+export const IconsContainer = styled(Container)`
+  gap: 0.5rem;
 `;
 
 export const CardImageContainer = styled.div`
@@ -39,7 +48,7 @@ export const CardFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid ${colors.midgrey};
   padding: 0.75rem 1rem;
 `;
 
@@ -51,10 +60,11 @@ export const TagContainer = styled.div`
 `;
 
 export const Tag = styled.div`
-  background-color: ${({ color }) => color || colors.lightgreen};
-  color: white;
+  background-color: ${({ isNew }) =>
+    isNew ? colors.orange : colors.lightgreen};
+  color: ${colors.white};
   font-size: 0.625rem;
-  padding: 5px 1.1875rem;
+  padding: 0.3125rem 1.1875rem;
   border-radius: 0.25rem;
   margin-right: 0.4375rem;
 `;
@@ -95,7 +105,7 @@ export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0rem 0.0625rem 0.375rem rgba(34, 34, 34, 0.163762);
+  box-shadow: 0 0.0625rem 0.375rem ${colors.darkshadow};
   background-color: ${colors.lightgrey};
   width: 1.5625rem;
   height: 1.5625rem;
@@ -104,14 +114,11 @@ export const IconContainer = styled.div`
   &:hover {
     background-color: ${colors.lightgreen};
     cursor: pointer;
-  }
 
-  &:hover path {
-    stroke: ${({ iconName }) =>
-      iconName === 'heart' ? 'white !important' : ''};
-    fill: ${({ iconName }) => (iconName === 'share' ? 'white !important' : '')};
-    opacity: 1 !important;
+    svg path {
+      fill: ${({ fill }) => fill && '#fff'};
+      stroke: ${({ stroke }) => stroke && '#fff'};
+      opacity: 1;
+    }
   }
 `;
-
-export default CardContainer;

@@ -3,7 +3,8 @@ import Slider from 'react-slick';
 
 import Card from './Card/Card';
 import data from './data';
-import SectionContainer, {
+import {
+  SectionContainer,
   StyledSlide,
   Title,
 } from './featured-listing.styles';
@@ -30,7 +31,6 @@ const slideBreakPoints = [
  *
  * @return {JSX.Element}
  */
-
 function FeaturedListing() {
   return (
     <SectionContainer>

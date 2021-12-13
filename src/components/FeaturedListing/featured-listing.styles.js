@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 import mq from 'styles/media-query';
 
-const SectionContainer = styled.div`
+export const SectionContainer = styled.div`
   margin: 0.625rem 0;
 
   ${mq.desktop`
@@ -38,7 +39,7 @@ export const StyledSlide = styled.div`
         width: 0.75rem;
         height: 0.75rem;
         border: none;
-        background-color: #d8d8d8;
+        background-color: ${colors.midgrey};
         border-radius: 50%;
         padding: 0;
       }
@@ -48,8 +49,8 @@ export const StyledSlide = styled.div`
   .slide-dots li.slick-active button {
     width: 0.625rem;
     height: 0.625rem;
-    background-color: #fff;
-    outline: 2px solid #b2d235;
+    background-color: ${colors.white};
+    outline: 2px solid ${colors.lightgreen};
   }
   // arrow styles
   .slick-prev {
@@ -65,5 +66,3 @@ export const StyledSlide = styled.div`
     height: 2rem !important ;
   }
 `;
-
-export default SectionContainer;

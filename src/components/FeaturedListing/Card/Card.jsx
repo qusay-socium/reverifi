@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types/prop-types';
 
-import colors from 'styles/colors';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
 import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
@@ -10,9 +9,10 @@ import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
-import CardContainer, {
+import {
+  CardContainer,
   CardBody,
-  Flex,
+  Container,
   Image,
   CardFooter,
   CardImageContainer,
@@ -24,6 +24,9 @@ import CardContainer, {
   Span,
   IconContainer,
   TextSm,
+  InfoContainer,
+  BodyIconsContainer,
+  IconsContainer,
 } from './card.styles';
 
 function Card({ data: info }) {
@@ -33,10 +36,7 @@ function Card({ data: info }) {
         <Image src={info.img} />
         <TagContainer>
           {info?.tags?.map((text) => (
-            <Tag
-              color={text === 'New' ? colors.orange : colors.lightgreen}
-              key={text}
-            >
+            <Tag isNew={text === 'New'} key={text}>
               {text}
             </Tag>
           ))}
@@ -45,43 +45,43 @@ function Card({ data: info }) {
       </CardImageContainer>
 
       <CardBody>
-        <Flex direction="column" align="flex-start">
+        <InfoContainer>
           <TextLg>{info.title}</TextLg>
 
           <TextMd>{info.location}</TextMd>
 
-          <Flex justify="space-between" gap="1rem">
-            <Flex>
+          <BodyIconsContainer>
+            <Container>
               <Span>{info.services.bedroom}</Span>
               <BedroomIcon />
-            </Flex>
+            </Container>
             <WifiIcon />
-            <Flex>
+            <Container>
               <Span>{info?.services?.bathroom}</Span>
               <BathtubIcon />
-            </Flex>
+            </Container>
             <AirConditionerIcon />
             <BenchIcon />
-          </Flex>
-        </Flex>
+          </BodyIconsContainer>
+        </InfoContainer>
 
-        <Flex gap="0.5rem">
+        <IconsContainer>
           <PinIcon />
           <TextSm>{info.distance}</TextSm>
-        </Flex>
+        </IconsContainer>
       </CardBody>
 
       <CardFooter>
         <TextLg>{info.price}</TextLg>
 
-        <Flex gap="0.4375rem">
-          <IconContainer iconName="heart">
+        <IconsContainer>
+          <IconContainer stroke="true">
             <HeartIcon />
           </IconContainer>
-          <IconContainer iconName="share">
+          <IconContainer fill="true">
             <ShareIcon />
           </IconContainer>
-        </Flex>
+        </IconsContainer>
       </CardFooter>
     </CardContainer>
   );
