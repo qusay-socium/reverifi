@@ -1,12 +1,13 @@
-import styled from 'styled-components';
-import mq from 'styles/media-query';
 import colors from 'styles/colors';
+import mq from 'styles/media-query';
+import styled from 'styled-components';
 
-export const ReverifiPlusDiv = styled.div`
+export const ReverifiPlusContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
   margin: 0 auto 0 auto;
+  padding: 2.25rem 1.375rem;
 
   ${mq.tablet`
     flex-direction: row;
@@ -14,18 +15,13 @@ export const ReverifiPlusDiv = styled.div`
   `}
 `;
 
-export const Title = styled.h3``;
-
 export const PlusUpperSection = styled.div`
   max-width: 34.125rem;
   width: 100%;
 `;
 
 export const Header = styled.h3`
-  font-family: Montserrat;
   font-size: 1.375rem;
-  font-weight: 600;
-  line-height: 1.676rem;
   margin: 0 0 1.125rem 0;
 
   & span {
@@ -34,22 +30,17 @@ export const Header = styled.h3`
 
   ${mq.tablet`
     font-size: 2rem;
-    line-height: 2.4375rem;
   `}
 `;
 
 export const Paragraph = styled.p`
   color: ${colors.mineShaft};
-  font-family: Montserrat;
   font-size: 1rem;
-  line-height: 1.2188rem;
   margin: 0 0 0.938rem 0;
   opacity: 0.5;
 
   ${mq.tablet`
-    font-family: Montserrat;
     font-size: 1.125rem;
-    line-height: 1.375rem;
   `}
 `;
 
@@ -58,7 +49,7 @@ export const Button = styled.button`
   border-radius: 1.25rem;
   border: none;
   color: ${colors.white};
-  font-family: Montserrat;
+  font-family: montserrat;
   font-size: 1rem;
   font-weight: 600;
   height: 2.5rem;
@@ -103,14 +94,11 @@ export const ItemIcon = styled.div`
 `;
 
 export const ItemHeader = styled.h4`
-  font-family: Montserrat;
   font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.0625rem;
+  font-weight: 400;
   margin: 0.634rem 0 0 0;
 
   ${mq.tablet`
     font-size: 1.125rem;
-    line-height: 1.375rem;
   `}
 `;
