@@ -21,6 +21,10 @@ const breakpoints = {
   // 1200px
   desktopMax: '75rem',
 
+  // 1440px
+  // Size used in the reverifi figma design
+  desktop1440p: '90rem',
+
   // 1600px
   desktopExtraWide: '100rem',
 };

@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
-// import EventCardContainer from 'components/common/EventCardContainer/EventCardContainer';
-import EventSlideShow from 'components/ReactSlick/EventSlideShow';
+import EventSlideShow from 'components/common/Slider/EventSlideShow';
 import {
   EventsSection,
   FilterButton,
   FilterButtonsContainer,
+  SectionContainer,
   SectionTitle,
 } from './events.styles';
 
 /**
  * Home page events section.
- *
- * @return {JSX.Element}
+ * @constant   activeFilter    Value of which the array of events will be filtered by
+ * @return     {JSX.Element}
  */
 
 export default function Events() {
   const [activeFilter, setActiveFilter] = useState('All');
   return (
     <>
-      <div
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <SectionContainer>
         <SectionTitle>Events</SectionTitle>
         <FilterButtonsContainer>
           <FilterButton
@@ -49,11 +43,7 @@ export default function Events() {
             Past
           </FilterButton>
         </FilterButtonsContainer>
-      </div>
-
-      {/* <EventsSection>
-        <EventCardContainer filter={activeFilter} />
-      </EventsSection> */}
+      </SectionContainer>
 
       <EventsSection>
         <EventSlideShow filter={activeFilter} />

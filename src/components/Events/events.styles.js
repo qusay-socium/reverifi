@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import mq from 'styles/media-query';
 
 export const Title = styled.h3``;
+
+export const SectionContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const EventsSection = styled.div`
   /*   background-color: red;
@@ -20,10 +27,10 @@ export const EventsSection = styled.div`
 export const SectionTitle = styled.h1`
   color: ${colors.textBlack};
   font-size: 2rem;
-  @media (max-width: 22.5rem) {
-    // 360px mobile: '22.5rem',
+
+  ${mq.mobile`
     font-size: 22px;
-  }
+  `}
 `;
 export const FilterButtonsContainer = styled.div`
   display: flex;

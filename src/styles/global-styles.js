@@ -6,21 +6,16 @@ const GlobalStyles = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    /* max-width: 100%; */
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Montserrat", Helvetica, sans-serif;
     color: ${colors.black};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1;
-    max-width: 100%;
     margin: 0;
     padding: 0;
-    /* overflow-x: hidden; */
     box-sizing: border-box;
   }
 
@@ -29,9 +24,6 @@ const GlobalStyles = createGlobalStyle`
     display: block;
     max-width: 100%;
   }
-
-
-
 `;
 
 export default GlobalStyles;

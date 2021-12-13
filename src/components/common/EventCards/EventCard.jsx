@@ -3,7 +3,6 @@ import { ReactComponent as Add } from 'assets/Icons/add.svg';
 import { ReactComponent as Share } from 'assets/Icons/share.svg';
 import { ReactComponent as People } from 'assets/Icons/people.svg';
 import PropTypes from 'prop-types';
-
 import {
   Card,
   CardHeader,
@@ -18,6 +17,18 @@ import {
   ListingProperties,
   Property,
 } from './event-card.styles';
+
+/**
+ * @param   {string}  title     Event title at the bottom of the card component
+ * @param   {string}  date      Schedueled date for the event
+ * @param   {string}  startTime Time of day scheduled for the event to begin at
+ * @param   {string}  endTime   Time of day scheduled for the event to end at
+ * @param   {string}  location  Geographical location set for the event
+ * @param   {string}  attendees Number of people attending the event
+ * @param   {string}  imageUrl  link for the picture associated with the event
+ * @param   {string}  eventType Type of event personal or webinar
+ * @return {JSX.Element}
+ */
 
 export default function EventCard({
   title,

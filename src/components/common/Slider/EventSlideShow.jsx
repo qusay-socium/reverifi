@@ -9,6 +9,14 @@ import PropTypes from 'prop-types';
 import EventCard from 'components/common/EventCards/EventCard';
 import { StyledSlide } from './event-slide-show.styles';
 
+/**
+ * @module     Events        A mock Representation of an array of event objects
+ * @param      filter        Filters Events Based on date
+ * @constant   months        array of months
+ * @method     reduceArray() uses filter and months to filter to recreate the data array
+ * @returns    {JSX.Element}
+ */
+
 export default function EventSlideShow({ filter }) {
   const data = Events;
   const [newArr, setNewArr] = useState(data);
@@ -40,14 +48,15 @@ export default function EventSlideShow({ filter }) {
     }
     reduceArray();
   }, [data, filter]);
+
   return (
     <StyledSlide>
       <Slider
         nextArrow={<RButton />}
         prevArrow={<LButton />}
         speed={500}
-        slidesToScroll={4}
-        slidesToShow={4}
+        slidesToScroll={Math.min(4, newArr.length)}
+        slidesToShow={Math.min(4, newArr.length)}
         infinite
         swipeToSlide
         responsive={[
@@ -76,8 +85,8 @@ export default function EventSlideShow({ filter }) {
             breakpoint: 1179,
             settings: {
               infinite: true,
-              slidesToScroll: 2,
-              slidesToShow: 2,
+              slidesToScroll: Math.min(2, newArr.length),
+              slidesToShow: Math.min(2, newArr.length),
             },
           },
 
@@ -86,8 +95,8 @@ export default function EventSlideShow({ filter }) {
             breakpoint: 1439,
             settings: {
               infinite: true,
-              slidesToScroll: 3,
-              slidesToShow: 3,
+              slidesToScroll: Math.min(3, newArr.length),
+              slidesToShow: Math.min(3, newArr.length),
             },
           },
 
@@ -96,8 +105,8 @@ export default function EventSlideShow({ filter }) {
             breakpoint: 1919,
             settings: {
               infinite: true,
-              slidesToScroll: 4,
-              slidesToShow: 4,
+              slidesToScroll: Math.min(4, newArr.length),
+              slidesToShow: Math.min(4, newArr.length),
             },
           },
         ]}
