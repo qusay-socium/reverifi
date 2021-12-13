@@ -19,9 +19,11 @@ import CardContainer, {
   Tag,
   TagContainer,
   PersonImg,
-  Text,
+  TextLg,
+  TextMd,
   Span,
   IconContainer,
+  TextSm,
 } from './card.styles';
 
 function Card({ data: info }) {
@@ -29,9 +31,8 @@ function Card({ data: info }) {
     <CardContainer>
       <CardImageContainer>
         <Image src={info.img} />
-
         <TagContainer>
-          {info.tags.map((text) => (
+          {info?.tags?.map((text) => (
             <Tag
               color={text === 'New' ? colors.orange : colors.lightgreen}
               key={text}
@@ -40,29 +41,14 @@ function Card({ data: info }) {
             </Tag>
           ))}
         </TagContainer>
-
         <PersonImg src={info.personImg} />
       </CardImageContainer>
 
       <CardBody>
         <Flex direction="column" align="flex-start">
-          <Text
-            size="1.125rem"
-            weight="600"
-            margin="0 0 0.1875rem 0"
-            lineHeight="1.375rem"
-          >
-            {info.title}
-          </Text>
+          <TextLg>{info.title}</TextLg>
 
-          <Text
-            size="0.875rem"
-            margin="0 0 0.8125rem 0"
-            lineHeight="1.0625rem"
-            color={colors.grey}
-          >
-            {info.location}
-          </Text>
+          <TextMd>{info.location}</TextMd>
 
           <Flex justify="space-between" gap="1rem">
             <Flex>
@@ -71,7 +57,7 @@ function Card({ data: info }) {
             </Flex>
             <WifiIcon />
             <Flex>
-              <Span>{info.services.bathroom}</Span>
+              <Span>{info?.services?.bathroom}</Span>
               <BathtubIcon />
             </Flex>
             <AirConditionerIcon />
@@ -81,21 +67,12 @@ function Card({ data: info }) {
 
         <Flex gap="0.5rem">
           <PinIcon />
-          <Text size="0.75rem" lineHeight="0.9375rem" color={colors.grey}>
-            {info.distance}
-          </Text>
+          <TextSm>{info.distance}</TextSm>
         </Flex>
       </CardBody>
 
       <CardFooter>
-        <Text
-          size="1.125rem"
-          weight="600"
-          color={colors.black}
-          lineHeight="1.375rem"
-        >
-          {info.price}
-        </Text>
+        <TextLg>{info.price}</TextLg>
 
         <Flex gap="0.4375rem">
           <IconContainer iconName="heart">

@@ -13,7 +13,6 @@ const SectionContainer = styled.div`
 export const Title = styled.h3`
   font-weight: 600;
   font-size: 1.375rem;
-  line-height: 2.4375rem;
   text-align: center;
   margin: 0;
 
@@ -24,7 +23,7 @@ export const Title = styled.h3`
 
 export const StyledSlide = styled.div`
   // dots styles
-  .slideDots {
+  .slide-dots {
     list-style-type: none;
     text-align: center;
     margin: 0;
@@ -46,7 +45,7 @@ export const StyledSlide = styled.div`
     }
   }
   // active dot style
-  .slideDots li.slick-active button {
+  .slide-dots li.slick-active button {
     width: 0.625rem;
     height: 0.625rem;
     background-color: #fff;

@@ -1,11 +1,4 @@
-/**
- * Home page featured listing section.
- *
- * @return {JSX.Element}
- */
 import React from 'react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 import Card from './Card/Card';
@@ -32,6 +25,12 @@ const slideBreakPoints = [
   },
 ];
 
+/**
+ * Home page featured listing section.
+ *
+ * @return {JSX.Element}
+ */
+
 function FeaturedListing() {
   return (
     <SectionContainer>
@@ -44,12 +43,12 @@ function FeaturedListing() {
           slidesToShow={3}
           slidesToScroll={3}
           responsive={slideBreakPoints}
-          dotsClass="slideDots"
+          dotsClass="slide-dots"
           lazyLoad="ondemand"
           arrows={false}
           easing="ease-in-out"
         >
-          {data.map((item) => (
+          {data?.map((item) => (
             <Card data={item} key={item.title} />
           ))}
         </Slider>

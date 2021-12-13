@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering components should render FeaturedListing component without crash 1`] = `ShallowWrapper {}`;
+
+exports[`rendering components should render Home component without crash 1`] = `ShallowWrapper {}`;

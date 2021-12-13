@@ -3,12 +3,11 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-import colors from 'styles/colors';
 import { Title, StyledSlide } from './featured-listing.styles';
-import { Tag, Text } from './Card/card.styles';
 import FeaturedListing from './index';
 import Card from './Card/Card';
 import data from './data';
+import Home from 'pages/Home';
 
 describe('rendering components', () => {
   let wrapper;
@@ -18,6 +17,11 @@ describe('rendering components', () => {
     // eslint-disable-next-line react/jsx-filename-extension
     wrapper = shallow(<FeaturedListing />);
     tree = renderer.create(<FeaturedListing />).toJSON();
+  });
+
+  it('should render Home component without crash', () => {
+    const wrapper2 = shallow(<Home />);
+    expect(wrapper2).toMatchSnapshot();
   });
 
   it('should render FeaturedListing component without crash', () => {
@@ -49,31 +53,5 @@ describe('rendering components', () => {
     expect(wrapper.find(Card).exists()).toBeTruthy();
     expect(wrapper.find(Card).first().dive().type().target).toBe('div');
     expect(wrapper.find(Card).length).toBe(data.length);
-  });
-});
-
-describe('test styled components that have props', () => {
-  it('should apply default styles to Tag component', () => {
-    const tree = renderer.create(<Tag />).toJSON();
-
-    expect(tree).toHaveStyleRule('background-color', colors.lightgreen);
-  });
-
-  it('should apply props styles to Tag component', () => {
-    const tree = renderer.create(<Tag color="red" />).toJSON();
-
-    expect(tree).toHaveStyleRule('background-color', 'red');
-  });
-
-  it('should apply default styles to Text component', () => {
-    const tree = renderer.create(<Text />).toJSON();
-
-    expect(tree).toHaveStyleRule('font-size', '1rem');
-  });
-
-  it('should apply props styles to Text component', () => {
-    const tree = renderer.create(<Text size="2rem" />).toJSON();
-
-    expect(tree).toHaveStyleRule('font-size', '2rem');
   });
 });

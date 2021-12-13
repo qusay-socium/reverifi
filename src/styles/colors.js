@@ -1,10 +1,10 @@
 const colors = {
   black: '#222222',
-  grey: 'rgba(34, 34, 34,0.5)',
-  lightgreen: '#B2D235',
-  lightgrey: '#F4F4F4',
-  midgrey: '#D8D8D8',
-  orange: '#FE5D26',
+  grey: '#2222227f',
+  lightgreen: '#b2d235',
+  lightgrey: '#f4f4f4',
+  midgrey: '#d8d8d8',
+  orange: '#fe5d26',
 };
 
 export default colors;
