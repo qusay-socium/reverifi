@@ -3,11 +3,11 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
+import Home from 'pages/Home';
 import { Title, StyledSlide } from './featured-listing.styles';
 import FeaturedListing from './index';
 import Card from './Card/Card';
 import data from './data';
-import Home from 'pages/Home';
 
 describe('rendering components', () => {
   let wrapper;
