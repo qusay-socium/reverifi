@@ -44,7 +44,6 @@ export const FilterButton = styled.button`
   margin: 0.5rem;
   color: ${(props) =>
     props.active === true ? colors.textGray : colors.mainGreen};
-
   text-decoration: ${(props) => (props.active === true ? 'none' : 'underline')};
   background: none !important;
   border: none;

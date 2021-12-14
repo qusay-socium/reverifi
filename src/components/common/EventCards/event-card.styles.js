@@ -90,6 +90,10 @@ export const FooterBottom = styled.div`
   font: 0.75rem;
 
   & p {
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0;
+    margin-left: 0.2rem;
   }
 
   & svg {

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Events Section Testing Renders Correctly 1`] = `ShallowWrapper {}`;
