@@ -7,7 +7,7 @@ export const ReverifiPlusContainer = styled.div`
   flex-direction: column;
   gap: 2.25rem;
   margin: 0 auto 0 auto;
-  padding: 2.25rem 1.375rem;
+  padding: 2.25rem 1.37rem;
 
   ${mq.tablet`
     flex-direction: row;
@@ -16,13 +16,12 @@ export const ReverifiPlusContainer = styled.div`
 `;
 
 export const PlusUpperSection = styled.div`
-  max-width: 34.125rem;
-  width: 100%;
+  max-width: 34.12rem;
 `;
 
 export const Header = styled.h3`
   font-size: 1.375rem;
-  margin: 0 0 1.125rem 0;
+  margin: 0 0 1.1rem 0;
 
   & span {
     color: ${colors.atlantis};
@@ -34,13 +33,13 @@ export const Header = styled.h3`
 `;
 
 export const Paragraph = styled.p`
-  color: ${colors.mineShaft};
+  color: ${colors.mineshaft};
   font-size: 1rem;
-  margin: 0 0 0.938rem 0;
+  margin: 0 0 0.94rem 0;
   opacity: 0.5;
 
   ${mq.tablet`
-    font-size: 1.125rem;
+    font-size: 1.1rem;
   `}
 `;
 
@@ -53,7 +52,7 @@ export const Button = styled.button`
   font-size: 1rem;
   font-weight: 600;
   height: 2.5rem;
-  width: 7.313rem;
+  width: 7.3rem;
 
   &:hover {
     cursor: pointer;
@@ -64,7 +63,6 @@ export const PlusBottomSection = styled.div`
   display: grid;
   gap: 2.5rem;
   grid-template-columns: repeat(2, 1fr);
-  max-width: 34.3125rem;
 
   ${mq.mobile`
     grid-template-columns: repeat(3, 1fr);
@@ -80,11 +78,6 @@ export const Item = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 100%;
-
-  ${mq.tablet`
-    max-width: 10.875rem;
-  `}
 `;
 
 export const ItemIcon = styled.div`
@@ -94,11 +87,11 @@ export const ItemIcon = styled.div`
 `;
 
 export const ItemHeader = styled.h4`
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   font-weight: 400;
-  margin: 0.634rem 0 0 0;
+  margin: 0.63rem 0 0 0;
 
   ${mq.tablet`
-    font-size: 1.125rem;
+    font-size: 1.1rem;
   `}
 `;
