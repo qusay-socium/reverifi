@@ -34,9 +34,9 @@ export const Header = styled.h3`
 `;
 
 export const Paragraph = styled.p`
-  color: ${colors.mineShaft};
+  color: ${colors.mineshaft};
   font-size: 1rem;
-  margin: 0 0 0.938rem 0;
+  margin: 0 0 0.94rem 0;
   opacity: 0.5;
 
   ${mq.tablet`
@@ -53,7 +53,7 @@ export const Button = styled.button`
   font-size: 1rem;
   font-weight: 600;
   height: 2.5rem;
-  width: 7.313rem;
+  width: 7.3rem;
 
   &:hover {
     cursor: pointer;
@@ -64,7 +64,7 @@ export const PlusBottomSection = styled.div`
   display: grid;
   gap: 2.5rem;
   grid-template-columns: repeat(2, 1fr);
-  max-width: 34.3125rem;
+  max-width: 34.3rem;
 
   ${mq.mobile`
     grid-template-columns: repeat(3, 1fr);
@@ -96,7 +96,7 @@ export const ItemIcon = styled.div`
 export const ItemHeader = styled.h4`
   font-size: 0.875rem;
   font-weight: 400;
-  margin: 0.634rem 0 0 0;
+  margin: 0.63rem 0 0 0;
 
   ${mq.tablet`
     font-size: 1.125rem;

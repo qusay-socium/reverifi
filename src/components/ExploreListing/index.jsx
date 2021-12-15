@@ -3,15 +3,15 @@ import Slider from 'react-slick';
 import data from './data';
 import {
   ExploreListingContainer,
-  MainHeader,
-  SliderContainer,
-  ItemsContainer,
   ImgContainer,
-  Overlay,
   ImgContent,
-  StyledImg,
   ImgHeader,
   ImgListings,
+  ItemsContainer,
+  MainHeader,
+  Overlay,
+  SliderContainer,
+  StyledImg,
 } from './explore-listing.styles';
 
 /**

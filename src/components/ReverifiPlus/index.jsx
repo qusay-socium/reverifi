@@ -1,19 +1,19 @@
 import React from 'react';
-import { ReactComponent as AttorneyLogo } from 'assets/Shape.svg';
-import { ReactComponent as PhotographerLogo } from 'assets/camera-svgrepo-com.svg';
 import { ReactComponent as AgentLogo } from 'assets/agent-svgrepo-com.svg';
+import { ReactComponent as AttorneyLogo } from 'assets/Shape.svg';
 import { ReactComponent as CleaningLogo } from 'assets/clean-svgrepo-com.svg';
 import { ReactComponent as HomeLogo } from 'assets/inspection-svgrepo-com.svg';
 import { ReactComponent as InsuranceLogo } from 'assets/insurance-svgrepo-com.svg';
+import { ReactComponent as PhotographerLogo } from 'assets/camera-svgrepo-com.svg';
 import {
   Button,
-  Paragraph,
-  PlusUpperSection,
   Header,
-  PlusBottomSection,
   Item,
   ItemHeader,
   ItemIcon,
+  Paragraph,
+  PlusBottomSection,
+  PlusUpperSection,
   ReverifiPlusContainer,
 } from './reverifi-plus.styles';
 

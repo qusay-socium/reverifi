@@ -3,7 +3,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const MainHeader = styled.h2`
-  color: ${colors.mineShaft};
+  color: ${colors.mineshaft};
   font-size: 1.375rem;
   margin: 0 auto 1.125rem auto;
   text-align: center;
@@ -122,7 +122,7 @@ export const ImgContainer = styled.div`
 
   ${mq.tablet`
     border-radius: 0.625rem;
-    border: 0.0625rem solid #979797;
+    border: 1px solid ${colors.dustygrey};
     overflow: hidden;
 
     &:first-child {
@@ -142,7 +142,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background: rgba(34, 34, 34, 0.6);
+  background: ${colors.mineshaftopacity};
   bottom: 0;
   left: 0;
   position: absolute;

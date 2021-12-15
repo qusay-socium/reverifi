@@ -1,15 +1,15 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import ReverifiPlus from './index';
+import ExploreListings from './index';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('rendering components', () => {
+describe('ExploreListings', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<ReverifiPlus />);
+    wrapper = shallow(<ExploreListings />);
   });
 
   it('should render all of the components', () => {
