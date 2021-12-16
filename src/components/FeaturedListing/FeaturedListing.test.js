@@ -35,18 +35,11 @@ describe('rendering components', () => {
     );
     expect(wrapper.find(Title).type().target).toBe('h3');
     expect(wrapper.find(Title).text()).toBe('Our Featured Listing');
-
-    // other way
-    // expect(tree.children[0]).toHaveProperty('type', 'h3');
-    // expect(tree.children[0].children[0]).toBe('Our Featured Listing');
   });
 
   it('should render slider component', () => {
     expect(wrapper.find(StyledSlide).exists()).toBeTruthy();
     expect(wrapper.find(StyledSlide).type().target).toBe('div');
-
-    // other way
-    // expect(tree.children[1]).toHaveProperty('type', 'div');
   });
 
   it('should render card component', () => {
