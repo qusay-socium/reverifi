@@ -12,10 +12,10 @@ export const SectionContainer = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-weight: 600;
   font-size: 1.375rem;
-  text-align: center;
+  font-weight: 600;
   margin: 0;
+  text-align: center;
 
   ${mq.mobileWide`
       font-size: 2rem;
@@ -26,43 +26,42 @@ export const StyledSlide = styled.div`
   // dots styles
   .slide-dots {
     list-style-type: none;
-    text-align: center;
     margin: 0;
     padding: 0;
+    text-align: center;
 
     > li {
       display: inline;
       margin: 0 0.3125rem;
       > button {
-        // to hide the content
-        font-size: 0 !important;
-        width: 0.75rem;
-        height: 0.75rem;
-        border: none;
         background-color: ${colors.midgrey};
         border-radius: 50%;
+        border: none;
+        font-size: 0 !important;
+        height: 0.75rem;
         padding: 0;
+        width: 0.75rem;
       }
     }
   }
   // active dot style
   .slide-dots li.slick-active button {
-    width: 0.625rem;
-    height: 0.625rem;
     background-color: ${colors.white};
+    height: 0.625rem;
     outline: 2px solid ${colors.lightgreen};
+    width: 0.625rem;
   }
   // arrow styles
   .slick-prev {
+    height: 2rem !important;
     left: 1rem !important;
-    z-index: 1;
     width: 2rem !important;
-    height: 2rem !important ;
+    z-index: 1;
   }
   .slick-next {
+    height: 2rem !important;
     right: 1rem !important;
-    z-index: 1;
     width: 2rem !important;
-    height: 2rem !important ;
+    z-index: 1;
   }
 `;

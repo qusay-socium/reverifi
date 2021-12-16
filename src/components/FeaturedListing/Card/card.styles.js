@@ -3,21 +3,21 @@ import colors from 'styles/colors';
 
 export const CardContainer = styled.div`
   background: ${colors.white};
-  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.darkshadow};
   border-radius: 0.375rem;
+  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.darkshadow};
   margin: 2rem 1rem;
   overflow: hidden;
 `;
 
 export const Container = styled.div`
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 export const InfoContainer = styled(Container)`
-  flex-direction: column;
   align-items: flex-start;
+  flex-direction: column;
 `;
 
 export const BodyIconsContainer = styled(Container)`
@@ -33,83 +33,83 @@ export const CardImageContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
   height: 100%;
+  width: 100%;
 `;
 
 export const CardBody = styled.div`
-  display: flex;
   align-items: flex-start;
+  display: flex;
   justify-content: space-between;
   padding: 1rem;
 `;
 
 export const CardFooter = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-between;
   border-top: 1px solid ${colors.midgrey};
+  display: flex;
+  justify-content: space-between;
   padding: 0.75rem 1rem;
 `;
 
 export const TagContainer = styled.div`
   display: flex;
+  left: 1rem;
   position: absolute;
   top: 1rem;
-  left: 1rem;
 `;
 
 export const Tag = styled.div`
   background-color: ${({ isNew }) =>
     isNew ? colors.orange : colors.lightgreen};
+  border-radius: 0.25rem;
   color: ${colors.white};
   font-size: 0.625rem;
-  padding: 0.3125rem 1.1875rem;
-  border-radius: 0.25rem;
   margin-right: 0.4375rem;
+  padding: 0.3125rem 1.1875rem;
 `;
 
 export const PersonImg = styled.img`
+  border-radius: 50%;
+  bottom: 1rem;
   position: absolute;
   right: 1rem;
-  bottom: 1rem;
-  border-radius: 50%;
 `;
 
 export const TextLg = styled.p`
-  margin: 0.1875rem 0;
+  color: ${colors.black};
   font-size: 1.125rem;
   font-weight: 600;
-  color: ${colors.black};
+  margin: 0.1875rem 0;
 `;
 
 export const TextMd = styled.p`
-  margin: 0.1875rem 0 0.9375rem 0;
-  font-size: 0.875rem;
   color: ${colors.grey};
+  font-size: 0.875rem;
+  margin: 0.1875rem 0 0.9375rem 0;
 `;
 
 export const TextSm = styled.p`
-  margin: 0.1875rem 0;
-  font-size: 0.75rem;
   color: ${colors.grey};
+  font-size: 0.75rem;
+  margin: 0.1875rem 0;
 `;
 
 export const Span = styled.span`
-  font-size: 0.75rem;
   color: ${colors.grey};
+  font-size: 0.75rem;
   padding-right: 0.25rem;
 `;
 
 export const IconContainer = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 0.0625rem 0.375rem ${colors.darkshadow};
   background-color: ${colors.lightgrey};
-  width: 1.5625rem;
-  height: 1.5625rem;
   border-radius: 50%;
+  box-shadow: 0 0.0625rem 0.375rem ${colors.darkshadow};
+  display: flex;
+  height: 1.5625rem;
+  justify-content: center;
+  width: 1.5625rem;
 
   &:hover {
     background-color: ${colors.lightgreen};
@@ -117,8 +117,8 @@ export const IconContainer = styled.div`
 
     svg path {
       fill: ${({ fill }) => fill && '#fff'};
-      stroke: ${({ stroke }) => stroke && '#fff'};
       opacity: 1;
+      stroke: ${({ stroke }) => stroke && '#fff'};
     }
   }
 `;
