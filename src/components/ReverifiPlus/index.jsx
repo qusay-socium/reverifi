@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as AgentLogo } from 'assets/agent-svgrepo-com.svg';
-import { ReactComponent as AttorneyLogo } from 'assets/Shape.svg';
+import { ReactComponent as AttorneyLogo } from 'assets/shape.svg';
 import { ReactComponent as CleaningLogo } from 'assets/clean-svgrepo-com.svg';
 import { ReactComponent as HomeLogo } from 'assets/inspection-svgrepo-com.svg';
 import { ReactComponent as InsuranceLogo } from 'assets/insurance-svgrepo-com.svg';
@@ -12,9 +12,9 @@ import {
   ItemHeader,
   ItemIcon,
   Paragraph,
-  PlusBottomSection,
-  PlusUpperSection,
-  ReverifiPlusContainer,
+  FirstSection,
+  SecondSection,
+  MainContainer,
 } from './reverifi-plus.styles';
 
 /**
@@ -24,8 +24,8 @@ import {
  */
 function ReverifiPlus() {
   return (
-    <ReverifiPlusContainer>
-      <PlusUpperSection>
+    <MainContainer>
+      <FirstSection>
         <Header>
           reverifi<span>+</span>
         </Header>
@@ -34,8 +34,8 @@ function ReverifiPlus() {
           process
         </Paragraph>
         <Button type="button">See More</Button>
-      </PlusUpperSection>
-      <PlusBottomSection>
+      </FirstSection>
+      <SecondSection>
         <Item>
           <ItemIcon>
             <AttorneyLogo />
@@ -72,8 +72,8 @@ function ReverifiPlus() {
           </ItemIcon>
           <ItemHeader>Insurance Provider</ItemHeader>
         </Item>
-      </PlusBottomSection>
-    </ReverifiPlusContainer>
+      </SecondSection>
+    </MainContainer>
   );
 }
 

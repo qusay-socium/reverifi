@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import data from './data';
 import {
-  ExploreListingContainer,
+  MainContainer,
   ImgContainer,
   ImgContent,
   ImgHeader,
@@ -36,7 +36,7 @@ function ExploreListing() {
     ));
 
   return (
-    <ExploreListingContainer>
+    <MainContainer>
       <MainHeader>Explore our Listings</MainHeader>
       <SliderContainer>
         <Slider
@@ -51,7 +51,7 @@ function ExploreListing() {
         </Slider>
       </SliderContainer>
       <ItemsContainer>{getItems()}</ItemsContainer>
-    </ExploreListingContainer>
+    </MainContainer>
   );
 }
 

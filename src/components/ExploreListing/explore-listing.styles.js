@@ -20,7 +20,7 @@ export const SliderContainer = styled.div`
 
   & .slick-dots {
     bottom: 0;
-    height: 36.8px;
+    height: 2.3rem;
   }
 
   & .slick-dots li {
@@ -61,7 +61,7 @@ export const ItemsContainer = styled.div`
   margin: 0 2rem;
 `;
 
-export const ExploreListingContainer = styled.div`
+export const MainContainer = styled.div`
   background: ${colors.alabaster};
   margin: 0 0 2.25rem 0;
   padding: 2.25rem 0 0 0;

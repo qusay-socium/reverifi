@@ -2,20 +2,24 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 import styled from 'styled-components';
 
-export const ReverifiPlusContainer = styled.div`
+export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   padding: 2.25rem 1.37rem;
 
   ${mq.tablet`
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+  `}
+
+  ${mq.desktop`
+    margin: 0 6.25rem;
   `}
 `;
 
-export const PlusUpperSection = styled.div`
+export const FirstSection = styled.div`
   max-width: 34.12rem;
 `;
 
@@ -59,7 +63,7 @@ export const Button = styled.button`
   }
 `;
 
-export const PlusBottomSection = styled.div`
+export const SecondSection = styled.div`
   display: grid;
   gap: 2.5rem;
   grid-template-columns: repeat(2, 1fr);
