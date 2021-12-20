@@ -24,6 +24,12 @@ const routes = [
     title: 'Login',
   },
   {
+    component: lazy(() => import('pages/SignUp')),
+    label: 'sign-up',
+    path: '/signUp',
+    title: 'SignUp',
+  },
+  {
     component: lazy(() => import('pages/NotFound')),
     label: 'not-found',
     path: '*',
