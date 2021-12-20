@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
-
 import mq from 'styles/media-query';
 
 export const SectionContainer = styled.div`
@@ -37,10 +36,11 @@ export const StyledSlide = styled.div`
         background-color: ${colors.midgrey};
         border-radius: 50%;
         border: none;
-        font-size: 0 !important;
+        font-size: 0;
         height: 0.75rem;
         padding: 0;
         width: 0.75rem;
+        cursor: pointer;
       }
     }
   }
@@ -53,15 +53,15 @@ export const StyledSlide = styled.div`
   }
   // arrow styles
   .slick-prev {
-    height: 2rem !important;
-    left: 1rem !important;
-    width: 2rem !important;
+    height: 2rem;
+    left: 1rem;
+    width: 2rem;
     z-index: 1;
   }
   .slick-next {
-    height: 2rem !important;
-    right: 1rem !important;
-    width: 2rem !important;
+    height: 2rem;
+    right: 1rem;
+    width: 2rem;
     z-index: 1;
   }
 `;

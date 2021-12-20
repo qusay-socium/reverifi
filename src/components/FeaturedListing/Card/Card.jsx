@@ -1,63 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types/prop-types';
-
-import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
-import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
-import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as AirConditionerIcon } from 'assets/icons/air-conditioner.svg';
+import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
+import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
 import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
+import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
-import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
+import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
+import PropTypes from 'prop-types/prop-types';
+import React from 'react';
 import {
-  CardContainer,
+  BodyIconsContainer,
   CardBody,
-  Container,
-  Image,
+  CardContainer,
   CardFooter,
   CardImageContainer,
+  Container,
+  IconContainer,
+  IconsContainer,
+  Image,
+  InfoContainer,
+  PersonImg,
+  ServiceQuantity,
   Tag,
   TagContainer,
-  PersonImg,
-  TextLg,
-  TextMd,
-  Span,
-  IconContainer,
-  TextSm,
-  InfoContainer,
-  BodyIconsContainer,
-  IconsContainer,
+  TextLarge,
+  TextMedium,
+  TextSmall,
 } from './card.styles';
 
-function Card({ data: info }) {
+function Card({ data }) {
+  const { img, tags, personImg, title, location, services, distance, price } =
+    data;
+
   return (
     <CardContainer>
       <CardImageContainer>
-        <Image src={info.img} />
+        <Image src={img} />
         <TagContainer>
-          {info?.tags?.map((text) => (
+          {tags?.map((text) => (
             <Tag isNew={text === 'New'} key={text}>
               {text}
             </Tag>
           ))}
         </TagContainer>
-        <PersonImg src={info.personImg} />
+        <PersonImg src={personImg} />
       </CardImageContainer>
 
       <CardBody>
         <InfoContainer>
-          <TextLg>{info.title}</TextLg>
+          <TextLarge>{title}</TextLarge>
 
-          <TextMd>{info.location}</TextMd>
+          <TextMedium>{location}</TextMedium>
 
           <BodyIconsContainer>
             <Container>
-              <Span>{info.services.bedroom}</Span>
+              <ServiceQuantity>{services.bedroom}</ServiceQuantity>
               <BedroomIcon />
             </Container>
             <WifiIcon />
             <Container>
-              <Span>{info?.services?.bathroom}</Span>
+              <ServiceQuantity>{services?.bathroom}</ServiceQuantity>
               <BathtubIcon />
             </Container>
             <AirConditionerIcon />
@@ -67,12 +69,12 @@ function Card({ data: info }) {
 
         <IconsContainer>
           <PinIcon />
-          <TextSm>{info.distance}</TextSm>
+          <TextSmall>{distance}</TextSmall>
         </IconsContainer>
       </CardBody>
 
       <CardFooter>
-        <TextLg>{info.price}</TextLg>
+        <TextLarge>{price}</TextLarge>
 
         <IconsContainer>
           <IconContainer stroke="true">

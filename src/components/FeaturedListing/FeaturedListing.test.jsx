@@ -1,22 +1,18 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
 import 'jest-styled-components';
-
 import Home from 'pages/Home';
-import { Title, StyledSlide } from './featured-listing.styles';
-import FeaturedListing from './index';
+import React from 'react';
 import Card from './Card/Card';
 import data from './data';
+import { StyledSlide, Title } from './featured-listing.styles';
+import FeaturedListing from './index';
 
 describe('rendering components', () => {
   let wrapper;
   let tree;
 
   beforeAll(() => {
-    // eslint-disable-next-line react/jsx-filename-extension
     wrapper = shallow(<FeaturedListing />);
-    tree = renderer.create(<FeaturedListing />).toJSON();
   });
 
   it('should render Home component without crash', () => {

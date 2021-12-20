@@ -76,26 +76,26 @@ export const PersonImg = styled.img`
   right: 1rem;
 `;
 
-export const TextLg = styled.p`
+export const TextLarge = styled.p`
   color: ${colors.black};
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0.1875rem 0;
 `;
 
-export const TextMd = styled.p`
+export const TextMedium = styled.p`
   color: ${colors.grey};
   font-size: 0.875rem;
   margin: 0.1875rem 0 0.9375rem 0;
 `;
 
-export const TextSm = styled.p`
+export const TextSmall = styled.p`
   color: ${colors.grey};
   font-size: 0.75rem;
   margin: 0.1875rem 0;
 `;
 
-export const Span = styled.span`
+export const ServiceQuantity = styled.span`
   color: ${colors.grey};
   font-size: 0.75rem;
   padding-right: 0.25rem;
@@ -111,14 +111,19 @@ export const IconContainer = styled.div`
   justify-content: center;
   width: 1.5625rem;
 
+  svg {
+    margin-top: ${({ stroke }) => stroke && '0.0938rem'};
+    margin-right: ${({ fill }) => fill && '0.0938rem'};
+  }
+
   &:hover {
     background-color: ${colors.lightgreen};
     cursor: pointer;
 
     svg path {
-      fill: ${({ fill }) => fill && '#fff'};
+      fill: ${({ fill }) => fill && colors.white};
       opacity: 1;
-      stroke: ${({ stroke }) => stroke && '#fff'};
+      stroke: ${({ stroke }) => stroke && colors.white};
     }
   }
 `;
