@@ -21,6 +21,8 @@ const colors = {
   orange: '#fe5d26',
   transblack: '#22222299',
   white: '#ffffff',
+  lightgrey3: '#e4e4e4',
+  lightgrey4: '#969696',
   white: '#ffffff',
   whiteSand: '#f5f5f5',
 };
