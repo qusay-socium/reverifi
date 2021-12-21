@@ -50,6 +50,12 @@ const routes = [
     path: '*',
     title: 'Not Found',
   },
+  {
+    component: lazy(() => import('pages/ListingPage')),
+    label: 'listing-page',
+    path: '/listing-page',
+    title: 'Listing Page',
+  },
 ];
 
 export default routes;
