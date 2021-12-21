@@ -47,10 +47,6 @@ export const FormContainer = styled.form`
   padding-right: 7.5rem;
 `;
 
-export const SocialLinksContainer = styled.div`
-  padding-right: 7.5rem;
-`;
-
 export const InputLabel = styled.label`
   padding-bottom: 0.625rem;
   font-size: 15px;
@@ -143,4 +139,35 @@ export const LinkText = styled.a`
   letter-spacing: -0.0063rem;
   font-size: 0.8125rem;
   cursor: pointer;
+`;
+
+export const SocialLinksContainer = styled.div`
+  padding-right: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
+export const Text = styled.p`
+  font-size: 15px;
+  color: ${colors.grey2};
+  margin: 15px 0 0 0;
+  padding: ${({ border }) => border && '1.5625rem'};
+  margin-top: ${({ border }) => border && '2.1875rem'};
+  border-top: ${({ border }) => border && `1px solid ${colors.lightgrey3}`};
+`;
+
+export const SocialButton = styled(SubmitButton)`
+  background-color: ${colors.white};
+  color: ${({ light }) => light && colors.black};
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.9375rem;
+
+  border: ${({ light }) => light && `1px solid ${colors.lightgrey3}`};
+
+  ${({ blue }) => blue && `background-color: ${colors.blue}; gap: 2.1875rem;`}
+  ${({ dark }) => dark && `background-color: ${colors.black}; gap: 3.75rem;`};
 `;

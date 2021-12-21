@@ -1,3 +1,6 @@
+import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
+import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
+import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import React, { useState } from 'react';
 import {
@@ -13,8 +16,10 @@ import {
   PhoneInputField,
   SignUpContainer,
   SignUpTerms,
+  SocialButton,
   SocialLinksContainer,
   SubmitButton,
+  Text,
   Title,
 } from './sign-up.styles';
 
@@ -104,7 +109,27 @@ function SignUp() {
           </SignUpTerms>
         </FormContainer>
 
-        <SocialLinksContainer>{/*  */}</SocialLinksContainer>
+        <SocialLinksContainer>
+          <Text>Or</Text>
+
+          <SocialButton blue>
+            <FacebookIcon />
+            Continue with Facebook
+          </SocialButton>
+          <SocialButton dark>
+            <AppleIcon />
+            Continue with Apple
+          </SocialButton>
+          <SocialButton light>
+            <GoogleIcon />
+            Continue with Google
+          </SocialButton>
+
+          <Text border>
+            Have an account?
+            <LinkText> Log In</LinkText>
+          </Text>
+        </SocialLinksContainer>
       </InfoContainer>
     </SignUpContainer>
   );
