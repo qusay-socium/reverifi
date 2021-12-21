@@ -29,6 +29,12 @@ const routes = [
     path: '*',
     title: 'Not Found',
   },
+  {
+    component: lazy(() => import('components/ComingSoon')),
+    label: 'Coming Soon',
+    path: '/comingsoon',
+    title: 'Coming Soon',
+  },
 ];
 
 export default routes;
