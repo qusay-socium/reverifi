@@ -18,13 +18,13 @@ const routes = [
     title: 'Home',
   },
   {
-    component: lazy(() => import('pages/Login')),
+    component: lazy(() => import('pages/Login/Login')),
     label: 'login',
     path: '/login',
     title: 'Login',
   },
   {
-    component: lazy(() => import('pages/SignUp')),
+    component: lazy(() => import('pages/SignUp/SignUp')),
     label: 'sign-up',
     path: '/signUp',
     title: 'SignUp',
