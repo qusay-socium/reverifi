@@ -13,7 +13,6 @@ const colors = {
   lightgrey2: '#fafafa',
   lightgrey3: '#969696',
   mercury: '#e4e4e4',
-  midGrey: '#d8d8d8',
   midgrey: '#d8d8d8',
   mineShaft: '#222222',
   orange: '#fe5d26',
