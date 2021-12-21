@@ -23,6 +23,7 @@ const colors = {
   white: '#ffffff',
   lightgrey3: '#e4e4e4',
   lightgrey4: '#969696',
+  red: '#f00',
   white: '#ffffff',
   whiteSand: '#f5f5f5',
 };
