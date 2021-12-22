@@ -23,8 +23,8 @@ import {
   SignUpTerms,
   SocialButton,
   SocialLinksContainer,
+  SocialLinksText,
   SubmitButton,
-  Text,
   Title,
 } from './sign-up.styles';
 
@@ -71,7 +71,7 @@ function SignUp() {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log('form data', data);
     reset();
   };
 
@@ -80,12 +80,10 @@ function SignUp() {
       <ImageContainer>
         <MainImg />
       </ImageContainer>
-
       <InfoContainer>
         <Title>Sign Up</Title>
 
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
-          {/* name */}
           <InputLabel htmlFor="name">Name</InputLabel>
           <InputField
             type="text"
@@ -95,7 +93,6 @@ function SignUp() {
           />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
-          {/* email */}
           <InputLabel htmlFor="email">E-mail</InputLabel>
           <InputField
             type="email"
@@ -105,7 +102,6 @@ function SignUp() {
           />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
-          {/* pass */}
           <InputLabel htmlFor="password">Password</InputLabel>
           <InputField
             type="password"
@@ -115,7 +111,6 @@ function SignUp() {
           />
           <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
-          {/* checkbox */}
           <CheckboxInputContainer>
             <CheckboxInputField
               type="checkbox"
@@ -125,7 +120,6 @@ function SignUp() {
             <InputLabel>I am an industry professional</InputLabel>
           </CheckboxInputContainer>
 
-          {/* phone number */}
           {showPhoneNum && (
             <PhoneInputContainer>
               <InputLabel htmlFor="phonePrefix">Phone Number</InputLabel>
@@ -135,7 +129,6 @@ function SignUp() {
                 id="phonePrefix"
                 placeholder="555"
               />
-
               <PhoneInputField
                 type="tel"
                 {...register('phoneNumber')}
@@ -147,10 +140,8 @@ function SignUp() {
             </PhoneInputContainer>
           )}
 
-          {/* button */}
           <SubmitButton type="submit">Continue</SubmitButton>
 
-          {/* info */}
           <SignUpTerms>
             By clicking the &apos;Sign Up&apos; button, you confirm that you
             accept our <br />
@@ -161,8 +152,7 @@ function SignUp() {
         </FormContainer>
 
         <SocialLinksContainer>
-          <Text>Or</Text>
-
+          <SocialLinksText>Or</SocialLinksText>
           <SocialButton blue>
             <FacebookIcon />
             Continue with Facebook
@@ -175,11 +165,10 @@ function SignUp() {
             <GoogleIcon />
             Continue with Google
           </SocialButton>
-
-          <Text border>
+          <SocialLinksText borderTop>
             Have an account?
             <LinkText> Log In</LinkText>
-          </Text>
+          </SocialLinksText>
         </SocialLinksContainer>
       </InfoContainer>
     </SignUpContainer>

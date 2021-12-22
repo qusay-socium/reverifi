@@ -4,17 +4,17 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const SignUpContainer = styled.div`
-  min-height: 100vh;
   display: flex;
-  justify-content: center;
   gap: 7.5rem;
+  justify-content: center;
+  min-height: 100vh;
 `;
 
 export const ImageContainer = styled.div`
-  flex: 1;
+  align-items: center;
   background-color: ${colors.lightgrey2};
   display: none;
-  align-items: center;
+  flex: 1;
   justify-content: center;
 
   ${mq.desktopWide`
@@ -24,8 +24,8 @@ export const ImageContainer = styled.div`
 
 export const InfoContainer = styled.div`
   flex: 1;
-  padding: 7.5rem;
   padding-right: 0;
+  padding: 7.5rem;
 
   ${mq.desktopWide`
     padding: 7.5rem 0;
@@ -34,8 +34,8 @@ export const InfoContainer = styled.div`
 
 export const Title = styled.h3`
   color: ${colors.black};
-  font-weight: bold;
   font-size: 1.375rem;
+  font-weight: bold;
   letter-spacing: -0.0229rem;
   margin: 0;
   padding-bottom: 1.25rem;
@@ -48,15 +48,15 @@ export const FormContainer = styled.form`
 `;
 
 export const InputLabel = styled.label`
-  padding-bottom: 0.625rem;
-  font-size: 0.9375rem;
   color: ${colors.grey2};
+  font-size: 0.9375rem;
+  padding-bottom: 0.625rem;
 `;
 
 export const InputField = styled.input`
-  padding: 0.625rem;
-  border: 1px solid ${colors.lightgrey3};
   border-radius: 1.1875rem;
+  border: 1px solid ${colors.lightgrey3};
+  padding: 0.625rem;
 
   ::placeholder {
     color: ${colors.lightgrey3};
@@ -68,10 +68,10 @@ export const InputField = styled.input`
 `;
 
 export const CheckboxInputContainer = styled.div`
-  margin-bottom: 1.25rem;
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 0.5rem;
+  margin-bottom: 1.25rem;
 
   label {
     padding: 0;
@@ -79,22 +79,22 @@ export const CheckboxInputContainer = styled.div`
 `;
 
 export const CheckboxInputField = styled.input`
-  height: 1.125rem;
-  width: 1.125rem;
-  -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
+  -webkit-appearance: none;
   appearance: none;
   border-radius: 4px;
-  outline: none;
   border: 2px solid ${colors.lightgrey3};
   cursor: pointer;
+  height: 1.125rem;
+  outline: none;
+  width: 1.125rem;
 
   &:checked {
-    border: none;
-    background: url(${checkbox});
-    background-size: contain;
     background-repeat: no-repeat;
+    background-size: contain;
+    background: url(${checkbox});
+    border: none;
   }
 `;
 
@@ -106,73 +106,76 @@ export const PhoneInputContainer = styled.div`
 
 export const PhoneInputField = styled(InputField)`
   border-radius: 0.375rem;
-  width: 6.25rem;
   margin-right: 1.5rem;
+  width: 6.25rem;
 `;
 
 export const SubmitButton = styled.button`
-  color: ${colors.white};
   background-color: ${colors.lightgreen};
   border-radius: 1.5rem;
-  text-align: center;
-  padding: 0.625rem;
   border: none;
+  color: ${colors.white};
+  cursor: pointer;
   font-weight: 600;
   letter-spacing: -0.0067rem;
-  cursor: pointer;
   margin-top: 0.625rem;
+  padding: 0.625rem;
+  text-align: center;
 `;
 
 export const SignUpTerms = styled.p`
-  margin-top: 1rem;
-  font-size: 0.8125rem;
   color: ${colors.lightgrey4};
+  font-size: 0.8125rem;
   letter-spacing: -0.0063rem;
-  text-align: center;
   line-height: 1.25rem;
+  margin-top: 1rem;
+  text-align: center;
 `;
 
 export const LinkText = styled.a`
   color: ${colors.blue};
-  text-decoration: underline;
-  letter-spacing: -0.0063rem;
-  font-size: 0.8125rem;
   cursor: pointer;
+  font-size: 0.8125rem;
+  letter-spacing: -0.0063rem;
+  text-decoration: underline;
 `;
 
 export const SocialLinksContainer = styled.div`
-  padding-right: 7.5rem;
   display: flex;
   flex-direction: column;
+  padding-right: 7.5rem;
   text-align: center;
 `;
 
-export const Text = styled.p`
-  font-size: 0.9375rem;
+export const SocialLinksText = styled.p`
+  border-top: ${({ borderTop }) =>
+    borderTop && `1px solid ${colors.lightgrey3}`};
   color: ${colors.grey2};
-  margin: 0.9375rem 0 0 0;
-  padding: ${({ border }) => border && '1.5625rem'};
-  margin-top: ${({ border }) => border && '2.1875rem'};
-  border-top: ${({ border }) => border && `1px solid ${colors.lightgrey3}`};
+  font-size: 0.9375rem;
+  margin: 0;
+  margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
+  padding: ${({ borderTop }) => borderTop && '1.5625rem'};
+
+  a {
+    font-size: 0.9375rem;
+  }
 `;
 
 export const SocialButton = styled(SubmitButton)`
-  background-color: ${colors.white};
-  color: ${({ light }) => light && colors.black};
-  font-weight: normal;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2.9375rem;
-
+  background-color: ${colors.white};
   border: ${({ light }) => light && `1px solid ${colors.lightgrey3}`};
-
+  color: ${({ light }) => light && colors.black};
+  display: flex;
+  font-weight: normal;
+  gap: 2.9375rem;
+  justify-content: center;
   ${({ blue }) => blue && `background-color: ${colors.blue}; gap: 2.1875rem;`}
   ${({ dark }) => dark && `background-color: ${colors.black}; gap: 3.75rem;`};
 `;
 
 export const ErrorMessage = styled.p`
-  margin: 0.3125rem 0 0.9375rem 0;
   color: ${colors.red};
   font-size: 0.75rem;
+  margin: 0.3125rem 0 0.9375rem 0;
 `;
