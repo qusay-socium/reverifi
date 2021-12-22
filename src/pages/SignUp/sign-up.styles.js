@@ -24,8 +24,7 @@ export const ImageContainer = styled.div`
 
 export const InfoContainer = styled.div`
   flex: 1;
-  padding-right: 0;
-  padding: 7.5rem;
+  padding: 7.5rem 0 7.5rem 7.5rem;
 
   ${mq.desktopWide`
     padding: 7.5rem 0;
