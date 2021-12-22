@@ -5,7 +5,7 @@ import mq from 'styles/media-query';
 
 export const LoginContainer = styled.div`
   display: flex;
-  gap: 180px;
+  gap: 11.875rem;
   justify-content: center;
   min-height: 100vh;
 `;
@@ -24,10 +24,10 @@ export const ImageContainer = styled.div`
 
 export const InfoContainer = styled.div`
   flex: 1;
-  padding: 75px 0 75px 180px;
+  padding: 4.6875rem 0 4.6875rem 11.875rem;
 
   ${mq.desktopWide`
-    padding: 75px 0;
+    padding: 4.6875rem 0;
   `}
 `;
 
@@ -43,7 +43,7 @@ export const Title = styled.h3`
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  padding-right: 180px;
+  padding-right: 11.875rem;
 `;
 
 export const InputLabel = styled.label`
@@ -66,10 +66,18 @@ export const InputField = styled.input`
   }
 `;
 
+export const LinkText = styled.a`
+  color: ${colors.blue};
+  cursor: pointer;
+  font-size: 0.8125rem;
+  letter-spacing: -0.0063rem;
+  text-decoration: underline;
+`;
+
 export const CheckboxInputContainer = styled.div`
   align-items: center;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3125rem;
   margin-bottom: 1.25rem;
 
   label {
@@ -91,7 +99,7 @@ export const CheckboxInputField = styled.input`
 
   &:checked {
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain !important;
     background: url(${checkbox});
     border: none;
   }
@@ -113,22 +121,14 @@ export const SubmitButton = styled.button`
 export const SocialLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 180px;
+  padding-right: 11.875rem;
   text-align: center;
 `;
 
 export const SocialLinksText = styled.p`
-  border-top: ${({ borderTop }) =>
-    borderTop && `1px solid ${colors.lightgrey3}`};
   color: ${colors.grey2};
   font-size: 0.9375rem;
-  margin: 0;
-  margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
-  padding: ${({ borderTop }) => borderTop && '1.5625rem'};
-
-  a {
-    font-size: 0.9375rem;
-  }
+  margin: 0.9375rem 0 0.3125rem 0;
 `;
 
 export const SocialButton = styled(SubmitButton)`
@@ -148,4 +148,9 @@ export const ErrorMessage = styled.p`
   color: ${colors.red};
   font-size: 0.75rem;
   margin: 0.3125rem 0 0.9375rem 0;
+`;
+
+export const PasswordTextContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

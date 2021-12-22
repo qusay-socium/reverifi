@@ -16,7 +16,9 @@ import {
   InfoContainer,
   InputField,
   InputLabel,
+  LinkText,
   LoginContainer,
+  PasswordTextContainer,
   SocialButton,
   SocialLinksContainer,
   SocialLinksText,
@@ -27,7 +29,6 @@ import {
 const schema = yup
   .object({
     email: yup.string().email().required(),
-    name: yup.string().required(),
     password: yup
       .number()
       .positive()
@@ -75,7 +76,10 @@ function Login() {
           />
           <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
-          <InputLabel htmlFor="password">Password</InputLabel>
+          <PasswordTextContainer>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <LinkText>Forgot Password</LinkText>
+          </PasswordTextContainer>
           <InputField
             type="password"
             {...register('password')}
