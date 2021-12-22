@@ -1,3 +1,4 @@
+import Header from 'components/Header';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'routes';
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      {/* <Header /> */}
+      <Header />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
           {routes.map(({ label, exact, path, component: Component }) => (
