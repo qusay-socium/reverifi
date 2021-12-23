@@ -1,0 +1,136 @@
+/* eslint-disable react/prop-types */
+import React, { forwardRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import Slider from 'react-slick';
+import {
+  DateButton,
+  DateCard,
+  DateSliderContainer,
+  MainContainer,
+  SubmitDateButton,
+  Title,
+} from './schedule-visit.styles';
+
+/**
+ * Listing page schedule-visit section.
+ *
+ * @returns {JSX.Element}
+ */
+function ScheduleVisit() {
+  const [startDate, setStartDate] = useState(new Date());
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <DateButton type="button" onClick={onClick} ref={ref}>
+      {value}
+    </DateButton>
+  ));
+
+  return (
+    <MainContainer>
+      <Title>Schedule Visit</Title>
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        customInput={<CustomInput />}
+      />
+      <DateSliderContainer>
+        <Slider
+          arrows
+          dots={false}
+          infinite={false}
+          slidesToScroll={7}
+          slidesToShow={7}
+          responsive={[
+            {
+              breakpoint: 750,
+              settings: {
+                slidesToScroll: 6,
+                slidesToShow: 6,
+              },
+            },
+            {
+              breakpoint: 660,
+              settings: {
+                slidesToScroll: 5,
+                slidesToShow: 5,
+              },
+            },
+            {
+              breakpoint: 580,
+              settings: {
+                slidesToScroll: 4,
+                slidesToShow: 4,
+              },
+            },
+            {
+              breakpoint: 450,
+              settings: {
+                slidesToScroll: 3,
+                slidesToShow: 3,
+              },
+            },
+            {
+              breakpoint: 360,
+              settings: {
+                slidesToScroll: 2,
+                slidesToShow: 2,
+              },
+            },
+          ]}
+        >
+          <DateCard>
+            <span>Mon</span>
+            16 JAN
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            17 FEB
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            18 MAR
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            19 APR
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            20 MAY
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            21 JUN
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            22 JUL
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            23 AUG
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            24 SEP
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            25 OCT
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            25 NOV
+          </DateCard>
+          <DateCard>
+            <span>Mon</span>
+            25 DEC
+          </DateCard>
+        </Slider>
+      </DateSliderContainer>
+      <SubmitDateButton type="submit">Request this time</SubmitDateButton>
+    </MainContainer>
+  );
+}
+
+export default ScheduleVisit;
