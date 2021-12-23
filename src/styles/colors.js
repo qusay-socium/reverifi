@@ -8,6 +8,7 @@ const colors = {
   lightgrey: '#f4f4f4',
   midgrey: '#d8d8d8',
   mineShaft: '#222222',
+  mineShaftShadow: '#22222229',
   orange: '#fe5d26',
   white: '#ffffff',
   whiteSand: '#f5f5f5',
