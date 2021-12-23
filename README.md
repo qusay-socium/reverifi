@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Run With Docker
+
+Before running the app with docker make sure you have [docker](https://docs.docker.com/engine/install/), [docker-compose](https://docs.docker.com/compose/install/) and [dinghy-http-proxy](https://github.com/codekitchen/dinghy-http-proxy), then follow these steps:
+
+1- From the app directory run the following command
+
+```bash
+ docker-compose up
+```
+
+2- Open <http://reverifi.docker/> to view the app in the browser.
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,0 +1,16 @@
+version: '2'
+services:
+  reverifi:
+    container_name: reverifi
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    environment:
+      - PORT=80
+      - VIRTUAL_HOST=reverifi.docker
+    volumes:
+      - ${PWD}:/app
+    ports:
+      - 80
+    command: ['/bin/boot.sh']
