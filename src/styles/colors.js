@@ -1,5 +1,6 @@
 const colors = {
   alabaster: '#fafafa',
+  azure: '#0084fc',
   blue: '#006aff',
   dustyGrey: '#979797',
   gray: '#6f7076',
