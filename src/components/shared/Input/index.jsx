@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyledInputGroup, StyledInput } from './input.style';
+import { StyledInput, StyledInputGroup } from './input.style';
 
-// eslint-disable-next-line react/function-component-definition
-const Input = ({ leftElement, rightElement, size, placeholder }) => (
-  <StyledInputGroup>
-    {leftElement}
-    <StyledInput size={size} placeholder={placeholder} />
-    {rightElement}
-  </StyledInputGroup>
-);
+function Input({ leftElement, rightElement, size, placeholder }) {
+  return (
+    <StyledInputGroup>
+      {leftElement}
+      <StyledInput size={size} placeholder={placeholder} />
+      {rightElement}
+    </StyledInputGroup>
+  );
+}
 
 Input.propTypes = {
   leftElement: PropTypes.element,

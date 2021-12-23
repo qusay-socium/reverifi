@@ -3,7 +3,6 @@ import { ReactComponent as Arrow } from 'assets/images/arrow.svg';
 import { ReactComponent as WhiteLogo } from 'assets/images/white-logo.svg';
 import Input from 'components/shared/Input/index';
 import React from 'react';
-// import colors from 'styles/colors';
 import {
   AddressInputWrapper,
   Button,
@@ -22,8 +21,7 @@ import {
  * @return {JSX.Element}
  */
 
-// eslint-disable-next-line react/function-component-definition
-const ClaimAddress = () => {
+function ClaimAddress() {
   return (
     <>
       <ClaimAddressContainer>
@@ -53,6 +51,6 @@ const ClaimAddress = () => {
       </JoinUs>
     </>
   );
-};
+}
 
 export default ClaimAddress;
