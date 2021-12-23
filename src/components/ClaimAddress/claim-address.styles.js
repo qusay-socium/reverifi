@@ -6,14 +6,6 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
-export const StyledButton = styled.button`
-  height: 3.0625rem;
-  width: 3.0625rem;
-  border-radius: 1.75rem;
-  padding: 0;
-  border: none;
-`;
-
 export const ClaimAddressContainer = styled.div`
   align-items: center;
   background: url(${ClaimAddressMobile});
@@ -84,7 +76,6 @@ export const JoinUs = styled.div`
   }
 
   ${mq.tablet`
-    background-color: ${colors.green};
     flex-direction:row;
     font-size: 1.375rem;
     justify-content:space-evenly;
@@ -100,15 +91,4 @@ export const JoinUsText = styled.div`
     filter: brightness(5);
     margin-left: 0.5625rem;
   }
-`;
-
-export const Button = styled.button`
-  padding: 0rem;
-  border: none;
-  cursor: pointer;
-  color: ${colors.mineShaft};
-  background-color: ${colors.white};
-  height: 2.375rem;
-  border-radius: 1.75rem;
-  padding: 0 2rem;
 `;

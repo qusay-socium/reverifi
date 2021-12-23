@@ -3,9 +3,10 @@ import { ReactComponent as Instagram } from 'assets/images/instagram.svg';
 import { ReactComponent as Linkedin } from 'assets/images/linkedin.svg';
 import { ReactComponent as Youtube } from 'assets/images/youtube.svg';
 import React from 'react';
+import Button from '../Button';
 import Input from '../Input';
+import SupportInfo from './SupportInfo';
 import {
-  Button,
   FooterWrapper,
   InfoGroup,
   InfoGroupHeader,
@@ -15,7 +16,6 @@ import {
   SubscribeInputWrapper,
   SubscribeWrapper,
 } from './footer.styles';
-import SupportInfo from './SupportInfo';
 
 /**
  * Home page footer section.
@@ -24,7 +24,7 @@ import SupportInfo from './SupportInfo';
  */
 function Footer() {
   return (
-    <div>
+    <>
       <SocialMediaIcons>
         <Facebook />
         <Instagram />
@@ -52,7 +52,11 @@ function Footer() {
             <Input
               size="sm"
               placeholder="Subscribe to our Newsletter"
-              rightElement={<Button>Subscribe</Button>}
+              rightElement={
+                <Button onClick={() => {}} ariaLabel="Subscribe">
+                  Subscribe
+                </Button>
+              }
             />
           </SubscribeInputWrapper>
         </SubscribeWrapper>
@@ -60,7 +64,7 @@ function Footer() {
       <FooterWrapper>
         <p>Copyright © 2021 Reverifi. All rights reserved</p>
       </FooterWrapper>
-    </div>
+    </>
   );
 }
 

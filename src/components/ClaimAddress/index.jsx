@@ -1,18 +1,17 @@
-/* eslint-disable arrow-body-style */
 import { ReactComponent as Arrow } from 'assets/images/arrow.svg';
 import { ReactComponent as WhiteLogo } from 'assets/images/white-logo.svg';
+import Button from 'components/shared/Button';
 import Input from 'components/shared/Input/index';
 import React from 'react';
+import colors from 'styles/colors';
 import {
   AddressInputWrapper,
-  Button,
   ClaimAddressContainer,
   ClaimAddressItems,
   JoinUs,
   JoinUsText,
   LocationPin,
   LocationPinStar,
-  StyledButton,
 } from './claim-address.styles';
 
 /**
@@ -20,7 +19,6 @@ import {
  *
  * @return {JSX.Element}
  */
-
 function ClaimAddress() {
   return (
     <>
@@ -34,9 +32,15 @@ function ClaimAddress() {
               size="md"
               placeholder="Enter Your Address"
               rightElement={
-                <StyledButton>
+                <Button
+                  ariaLabel="Search"
+                  padding="0 0"
+                  backgroundColor={colors.white}
+                  height="3.0625rem"
+                  onClick={() => {}}
+                >
                   <Arrow />
-                </StyledButton>
+                </Button>
               }
             />
           </AddressInputWrapper>
@@ -47,7 +51,14 @@ function ClaimAddress() {
           <p>Start Your real estate journey with </p>
           <WhiteLogo />
         </JoinUsText>
-        <Button>Join Us</Button>
+        <Button
+          ariaLabel="Join"
+          color={colors.mineShaft}
+          backgroundColor={colors.white}
+          onClick={() => {}}
+        >
+          Join Us
+        </Button>
       </JoinUs>
     </>
   );

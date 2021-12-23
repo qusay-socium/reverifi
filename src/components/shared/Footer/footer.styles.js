@@ -89,14 +89,3 @@ export const FooterWrapper = styled.div`
     font-size: 0.75rem;
   }
 `;
-
-export const Button = styled.button`
-  padding: 0rem;
-  border: none;
-  cursor: pointer;
-  color: ${colors.white};
-  background-color: ${colors.green};
-  height: 2.375rem;
-  border-radius: 1.75rem;
-  padding: 0 2rem;
-`;
