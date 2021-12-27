@@ -41,56 +41,59 @@ export const FilterList = styled.ul`
   `}
 `;
 
-export const ListItem = styled.li``;
-
 export const ClickableItem = styled.button`
   background: none;
   border: none;
   color: ${(props) =>
     props.activeFilter ? colors.lightgreen : colors.mineShaft};
   font-family: Montserrat;
-  font-size 1rem;
+  font-size: 1rem;
   font-weight: 600;
   opacity: ${(props) => (props.activeFilter ? '1' : '0.5')};
   padding: 0 0 0.25rem 0;
   position: relative;
 
   :hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   :after {
-      content: ${(props) => (props.activeFilter ? `url(${bottomBorder})` : '')};
-      position: absolute;
-      right: 0;
-      left: 0;
-      top: 0.62rem;
+    content: ${(props) => (props.activeFilter ? `url(${bottomBorder})` : '')};
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0.62rem;
   }
 `;
 
 export const CardsContainer = styled.div`
-  .slick-slider {
-    overflow: visible;
-
   .slick-slide {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
 
-      > div{
-          flex:1;
-          margin: 0 0.5rem;
-      }
+    > div {
+      flex: 1;
+      margin: 0 0.5rem;
+    }
   }
 
   .slick-arrow {
+    background: ${colors.lightgreen};
+    border-radius: 50%;
+    color: ${colors.white};
+    min-height: 2rem;
+    min-width: 2rem;
+    z-index: 2;
+
+    :hover {
       background: ${colors.lightgreen};
-      border-radius: 50%;
-      color: ${colors.white};
-      min-height: 2rem;
-      min-width: 2rem;
-      z-index: 2;
+    }
+
+    :focus {
+      background: ${colors.lightgreen};
+    }
   }
-  
+
   .slick-prev {
     left: -0.5rem;
   }
@@ -105,7 +108,7 @@ export const CardsContainer = styled.div`
 
   .slick-next:before {
     content: url(${ArrowRight});
-}
+  }
 `;
 
 export const Card = styled.div`

@@ -20,7 +20,6 @@ import {
   EventType,
   FilterList,
   LeftContent,
-  ListItem,
   MainContainer,
   RightContent,
   ShareButton,
@@ -52,30 +51,30 @@ function Events() {
     <MainContainer>
       <Title>Events</Title>
       <FilterList>
-        <ListItem>
+        <li>
           <ClickableItem
             onClick={changeActive}
             activeFilter={activeFilter === 'all'}
           >
             All
           </ClickableItem>
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           <ClickableItem
             onClick={changeActive}
             activeFilter={activeFilter === 'upcoming'}
           >
             Upcoming
           </ClickableItem>
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           <ClickableItem
             onClick={changeActive}
             activeFilter={activeFilter === 'past'}
           >
             Past
           </ClickableItem>
-        </ListItem>
+        </li>
       </FilterList>
       <CardsContainer>
         <Slider
