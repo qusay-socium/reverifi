@@ -62,6 +62,12 @@ const routes = [
     path: '/agent-list',
     title: 'Agent List',
   },
+  {
+    component: lazy(() => import('pages/MyRoles/MyRoles')),
+    label: 'my-roles',
+    path: '/my-roles',
+    title: 'My Roles',
+  },
 ];
 
 export default routes;
