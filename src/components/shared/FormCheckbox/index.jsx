@@ -6,11 +6,11 @@ import { Container, Input, Label } from './form-checkbox.style';
 /**
  * Render form checkbox.
  *
- * @param {Object} props The component props.
- * @param {string} [props.id=null] Input ID.
- * @param {string} [props.label=null] Label text.
- * @param {string} props.name Input name.
- * @param {Function} [props.onChange] The on change event.
+ * @param {Object} props                   The component props.
+ * @param {string} [props.id=null]         Input ID.
+ * @param {string} [props.label=null]      Label text.
+ * @param {string} props.name              Input name.
+ * @param {Function} [props.onChange]      The on change event.
  * @param {Function} [props.register=null] The react-hook-form register function.
  *
  * @return {JSX.Element}
@@ -24,7 +24,7 @@ function FormCheckbox({ id, label, name, onChange, register }) {
         onChange={onChange}
         type="checkbox"
       />
-      {label && <Label>{label}</Label>}
+      {label && <Label htmlFor={id || name}>{label}</Label>}
     </Container>
   );
 }
@@ -51,4 +51,5 @@ FormCheckbox.defaultProps = {
   rounded: true,
   type: 'text',
 };
+
 export default FormCheckbox;

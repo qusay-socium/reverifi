@@ -45,13 +45,19 @@ const routes = [
     title: 'Test Sidebar',
   },
   {
+    component: lazy(() => import('pages/Listings/CreateListing')),
+    label: 'create-listing',
+    path: '/listings/create',
+    title: 'Create Listing',
+  },
+  {
     component: lazy(() => import('pages/NotFound')),
     label: 'not-found',
     path: '*',
     title: 'Not Found',
   },
   {
-    component: lazy(() => import('pages/ListingPage')),
+    component: lazy(() => import('pages/Listings/ListingPage')),
     label: 'listing-page',
     path: '/listing-page',
     title: 'Listing Page',

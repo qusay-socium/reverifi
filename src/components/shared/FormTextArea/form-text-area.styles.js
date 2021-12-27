@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
-export const Container = styled.div`
+export const Labels = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
 `;
 
-export const Label = styled.label`
-  color: ${colors.mineShaft}7f;
-  font-size: 0.9375rem;
-  padding-bottom: 0.625rem;
+export const LimitMessage = styled.span`
+  color: ${({ color }) => color || colors.midGrey};
+  font-size: 0.75rem;
 `;
 
-export const Input = styled.input`
+export const Input = styled.textarea`
+  background-color: white;
   border: 0.0625rem solid ${colors.mercury};
   border-radius: ${({ rounded }) => (rounded ? '1.1875rem' : '0.375rem')};
+  height: ${({ height }) => height || '10rem'};
   padding: 0.625rem;
   width: 100%;
 
@@ -25,10 +26,4 @@ export const Input = styled.input`
   &:focus {
     outline: 0.0625rem solid ${colors.green};
   }
-`;
-
-export const Error = styled.p`
-  color: ${colors.red};
-  font-size: 0.75rem;
-  margin: 0.3125rem 0 0.9375rem 0;
 `;

@@ -48,7 +48,7 @@ export const StyledSlide = styled.div`
   .slide-dots li.slick-active button {
     background-color: ${colors.white};
     height: 0.9375rem;
-    border: 2px solid ${colors.green};
+    border: 0.125rem solid ${colors.green};
     width: 0.9375rem;
   }
   // arrow styles
