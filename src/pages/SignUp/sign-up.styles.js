@@ -7,15 +7,15 @@ export const SignUpContainer = styled.div`
   display: flex;
   gap: 7.5rem;
   justify-content: center;
-  min-height: 100vh;
+  max-height: 100vh;
 `;
 
 export const ImageContainer = styled.div`
-  align-items: center;
   background-color: ${colors.lightgrey2};
   display: none;
   flex: 1;
   justify-content: center;
+  padding-top: 15.625rem;
 
   ${mq.desktopWide`
     display: flex;

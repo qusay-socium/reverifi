@@ -6,7 +6,6 @@ import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import {
   CheckboxInputContainer,
   CheckboxInputField,
@@ -27,36 +26,7 @@ import {
   SubmitButton,
   Title,
 } from './sign-up.styles';
-
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    name: yup.string().required(),
-    password: yup
-      .number()
-      .positive()
-      .integer()
-      .required()
-      .typeError('password must be a number'),
-    phoneCheckbox: yup.boolean(),
-    phoneNumber: yup
-      .number()
-      .positive()
-      .integer()
-      .when('phoneCheckbox', {
-        is: true,
-        then: yup.number().required().typeError('phoneNumber must be a number'),
-      }),
-    phonePrefix: yup
-      .number()
-      .positive()
-      .integer()
-      .when('phoneCheckbox', {
-        is: true,
-        then: yup.number().required().typeError('phonePrefix must be a number'),
-      }),
-  })
-  .required();
+import signUpSchema from './SignUpSchema';
 
 function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
@@ -67,11 +37,10 @@ function SignUp() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log('form data', data);
+  const onSubmit = () => {
     reset();
   };
 
