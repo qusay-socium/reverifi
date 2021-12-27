@@ -6,7 +6,7 @@ import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
-import PropTypes from 'prop-types/prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   BodyIconsContainer,

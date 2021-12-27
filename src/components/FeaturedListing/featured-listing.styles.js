@@ -33,7 +33,7 @@ export const StyledSlide = styled.div`
       display: inline;
       margin: 0 0.3125rem;
       > button {
-        background-color: ${colors.midgrey};
+        background-color: ${colors.midGrey};
         border-radius: 50%;
         border: none;
         font-size: 0;
@@ -48,7 +48,7 @@ export const StyledSlide = styled.div`
   .slide-dots li.slick-active button {
     background-color: ${colors.white};
     height: 0.9375rem;
-    border: 2px solid ${colors.lightgreen};
+    border: 2px solid ${colors.green};
     width: 0.9375rem;
   }
   // arrow styles

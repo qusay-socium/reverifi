@@ -1,3 +1,5 @@
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Enzyme from 'enzyme';
 import '../setup-jest';
 
 window.matchMedia =
@@ -9,3 +11,5 @@ window.matchMedia =
       removeListener: () => {},
     };
   };
+
+Enzyme.configure({ adapter: new Adapter() });
