@@ -4,23 +4,22 @@ import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
+import FormCheckbox from 'components/shared/FormCheckbox';
+import FormInput from 'components/shared/FormInput';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import {
-  CheckboxInputContainer,
-  CheckboxInputField,
-  ErrorMessage,
+  AppleButton,
+  FacebookButton,
   FormContainer,
+  GoogleButton,
   ImageContainer,
   InfoContainer,
-  InputField,
-  InputLabel,
+  InputWrapper,
   LinkText,
   LoginContainer,
-  PasswordTextContainer,
-  SocialButton,
+  OrText,
   SocialLinksContainer,
-  SocialLinksText,
   SubmitButton,
   Title,
 } from './login.styles';
@@ -50,53 +49,61 @@ function Login() {
       <ImageContainer>
         <MainImg />
       </ImageContainer>
+
       <InfoContainer>
         <Title>Log In</Title>
 
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
-          <InputLabel htmlFor="email">E-mail</InputLabel>
-          <InputField
-            type="email"
-            {...register('email')}
-            id="email"
-            placeholder="eg: Jhon@domain.com"
-          />
-          <ErrorMessage>{errors.email?.message}</ErrorMessage>
+          <InputWrapper>
+            <FormInput
+              error={errors.email?.message}
+              label="E-mail"
+              name="email"
+              placeholder="eg: Jhon@domain.com"
+              register={register}
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+              name="password"
+              error={errors.password?.message}
+              label="Password"
+              register={register}
+              type="password"
+            />
+          </InputWrapper>
 
-          <PasswordTextContainer>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <LinkText>Forgot Password</LinkText>
-          </PasswordTextContainer>
-          <InputField
-            type="password"
-            {...register('password')}
-            id="password"
-            placeholder="password"
+          <FormCheckbox
+            name="rememberMe"
+            label="Remember me"
+            register={register}
           />
-          <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
-          <CheckboxInputContainer>
-            <CheckboxInputField type="checkbox" {...register('rememberMe')} />
-            <InputLabel>Remember me</InputLabel>
-          </CheckboxInputContainer>
+          <LinkText>Forgot Password</LinkText>
 
           <SubmitButton type="submit">Log In</SubmitButton>
         </FormContainer>
 
         <SocialLinksContainer>
-          <SocialLinksText>Or</SocialLinksText>
-          <SocialButton blue>
-            <FacebookIcon />
-            Continue with Facebook
-          </SocialButton>
-          <SocialButton dark>
-            <AppleIcon />
-            Continue with Apple
-          </SocialButton>
-          <SocialButton light>
-            <GoogleIcon />
-            Continue with Google
-          </SocialButton>
+          <OrText>Or</OrText>
+          <FacebookButton blue>
+            <div>
+              <FacebookIcon />
+              <span> Continue with Facebook</span>
+            </div>
+          </FacebookButton>
+          <AppleButton dark>
+            <div>
+              <AppleIcon />
+              <span> Continue with Apple</span>
+            </div>
+          </AppleButton>
+          <GoogleButton light>
+            <div>
+              <GoogleIcon />
+              <span>Continue with Google</span>
+            </div>
+          </GoogleButton>
         </SocialLinksContainer>
       </InfoContainer>
     </LoginContainer>
