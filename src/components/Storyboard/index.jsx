@@ -1,5 +1,6 @@
 import { ReactComponent as StoryBoardImage } from 'assets/images/story-board-image.svg';
-import React from 'react';
+import Input from 'components/shared/Input';
+import React, { useState } from 'react';
 import {
   LocationPin,
   SearchIcon,
@@ -9,8 +10,6 @@ import {
   SearchListingsWrapper,
   StoryBoardContainer,
   StoryBoardSection,
-  StyledInput,
-  StyledInputGroup,
 } from './storyboard.styles';
 
 /**
@@ -19,6 +18,8 @@ import {
  * @return {JSX.Element}
  */
 function Storyboard() {
+  const [searchInput, setSearchInput] = useState('');
+
   return (
     <StoryBoardContainer>
       <StoryBoardSection>
@@ -31,14 +32,15 @@ function Storyboard() {
 
           <SearchListingsItem>
             <SearchInputGroupWrapper>
-              <StyledInputGroup>
-                <LocationPin />
-                <StyledInput
-                  type="text"
-                  placeholder="Enter City, neighborhood, ZIP, or address"
-                />
-                <SearchIcon />
-              </StyledInputGroup>
+              <Input
+                leftElement={<LocationPin />}
+                rightElement={<SearchIcon />}
+                type="text"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.currentTarget.value)}
+                label="Search"
+                placeholder="Enter City, neighborhood, ZIP, or address"
+              />
             </SearchInputGroupWrapper>
           </SearchListingsItem>
         </SearchListingsWrapper>

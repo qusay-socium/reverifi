@@ -1,28 +1,59 @@
-/* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledInput, StyledInputGroup } from './input.style';
 
-function Input({ leftElement, rightElement, size, placeholder }) {
+function Input({
+  label,
+  leftElement,
+  name,
+  onChange,
+  placeholder,
+  rightElement,
+  shape,
+  size,
+  type,
+  value,
+}) {
   return (
-    <StyledInputGroup>
+    <StyledInputGroup shape={shape}>
       {leftElement}
-      <StyledInput size={size} placeholder={placeholder} />
+      {label && <label htmlFor="input-field">{label}</label>}
+      <StyledInput
+        type={type}
+        value={value}
+        name={name}
+        size={size}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
       {rightElement}
     </StyledInputGroup>
   );
 }
 
 Input.propTypes = {
+  label: PropTypes.string,
   leftElement: PropTypes.element,
-  placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   rightElement: PropTypes.element,
-  size: PropTypes.string.isRequired,
+  shape: PropTypes.oneOf(['pill', 'line', 'square']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  type: PropTypes.oneOf(['text', 'number', 'password']),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 Input.defaultProps = {
+  label: null,
   leftElement: null,
+  name: null,
+  onChange: () => {},
+  placeholder: '',
   rightElement: null,
+  shape: 'pill',
+  size: 'md',
+  type: 'text',
 };
 
 export default Input;
