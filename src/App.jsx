@@ -1,5 +1,4 @@
-import Navbar from 'components/Navbar';
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'routes';
 import GlobalStyles from 'styles/global-styles';
@@ -15,7 +14,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Navbar user={user} setUser={setUser} />
+      {/* <Header /> */}
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
           {routes.map(({ label, exact, path, component: Component }) => (
