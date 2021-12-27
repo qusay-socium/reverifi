@@ -4,30 +4,35 @@ import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
+import FormCheckbox from 'components/shared/FormCheckbox';
+import FormInput from 'components/shared/FormInput';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import signUpSchema from './sign-up-schema';
 import {
-  CheckboxInputContainer,
-  CheckboxInputField,
-  ErrorMessage,
-  FormContainer,
+  AppleButton,
+  FacebookButton,
+  Form,
+  GoogleButton,
   ImageContainer,
   InfoContainer,
-  InputField,
-  InputLabel,
+  InputWrapper,
+  Label,
   LinkText,
+  OrText,
   PhoneInputContainer,
-  PhoneInputField,
   SignUpContainer,
   SignUpTerms,
-  SocialButton,
-  SocialLinksContainer,
   SocialLinksText,
   SubmitButton,
   Title,
 } from './sign-up.styles';
-import signUpSchema from './SignUpSchema';
 
+/**
+ * Render sign up page.
+ *
+ * @return {JSX.Element}
+ */
 function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
 
@@ -40,7 +45,10 @@ function SignUp() {
     resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = () => {
+  /**
+   * Handle form submit
+   */
+  const submit = () => {
     reset();
   };
 
@@ -49,97 +57,105 @@ function SignUp() {
       <ImageContainer>
         <MainImg />
       </ImageContainer>
-      <InfoContainer>
-        <Title>Sign Up</Title>
+      <div>
+        <InfoContainer>
+          <Title>Sign Up</Title>
+          <Form onSubmit={handleSubmit(submit)}>
+            <InputWrapper>
+              <FormInput
+                error={errors.name?.message}
+                label="Name"
+                name="name"
+                placeholder="eg: Jhon Doe"
+                register={register}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <FormInput
+                error={errors.email?.message}
+                label="E-mail"
+                name="email"
+                placeholder="eg: Jhon@domain.com"
+                register={register}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <FormInput
+                name="password"
+                error={errors.password?.message}
+                label="Password"
+                register={register}
+                type="password"
+              />
+            </InputWrapper>
 
-        <FormContainer onSubmit={handleSubmit(onSubmit)}>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <InputField
-            type="text"
-            {...register('name')}
-            id="name"
-            placeholder="eg: Jhon Doe"
-          />
-          <ErrorMessage>{errors.name?.message}</ErrorMessage>
-
-          <InputLabel htmlFor="email">E-mail</InputLabel>
-          <InputField
-            type="email"
-            {...register('email')}
-            id="email"
-            placeholder="eg: Jhon@domain.com"
-          />
-          <ErrorMessage>{errors.email?.message}</ErrorMessage>
-
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <InputField
-            type="password"
-            {...register('password')}
-            id="password"
-            placeholder="password"
-          />
-          <ErrorMessage>{errors.password?.message}</ErrorMessage>
-
-          <CheckboxInputContainer>
-            <CheckboxInputField
-              type="checkbox"
-              {...register('phoneCheckbox')}
-              onClick={() => setShowPhoneNum(!showPhoneNum)}
+            <FormCheckbox
+              name="industryProfessional"
+              label="I am an industry professional"
+              register={register}
+              onChange={({ target: { checked } }) => setShowPhoneNum(checked)}
             />
-            <InputLabel>I am an industry professional</InputLabel>
-          </CheckboxInputContainer>
 
-          {showPhoneNum && (
-            <PhoneInputContainer>
-              <InputLabel htmlFor="phonePrefix">Phone Number</InputLabel>
-              <PhoneInputField
-                type="tel"
-                {...register('phonePrefix')}
-                id="phonePrefix"
-                placeholder="555"
-              />
-              <PhoneInputField
-                type="tel"
-                {...register('phoneNumber')}
-                id="phoneNumber"
-                placeholder="555"
-              />
-              <ErrorMessage>{errors.phonePrefix?.message}</ErrorMessage>
-              <ErrorMessage>{errors.phoneNumber?.message}</ErrorMessage>
-            </PhoneInputContainer>
-          )}
+            {showPhoneNum && (
+              <>
+                <Label htmlFor="phonePrefix">Phone Number</Label>
+                <PhoneInputContainer>
+                  <FormInput
+                    error={errors.phonePrefix?.message}
+                    name="phonePrefix"
+                    placeholder="555"
+                    register={register}
+                    rounded={false}
+                  />
+                  <FormInput
+                    name="phoneNumber"
+                    placeholder="555"
+                    register={register}
+                    error={errors.phoneNumber?.message}
+                    rounded={false}
+                  />
+                </PhoneInputContainer>
+              </>
+            )}
 
-          <SubmitButton type="submit">Continue</SubmitButton>
+            <SubmitButton type="submit">Continue</SubmitButton>
 
-          <SignUpTerms>
-            By clicking the &apos;Sign Up&apos; button, you confirm that you
-            accept our <br />
-            <LinkText>Terms of Use </LinkText>
-            and
-            <LinkText> Privacy Policy</LinkText>
-          </SignUpTerms>
-        </FormContainer>
+            <SignUpTerms>
+              By clicking the &apos;Sign Up&apos; button, you confirm that you
+              accept our <br />
+              <LinkText>Terms of Use </LinkText>
+              and
+              <LinkText> Privacy Policy</LinkText>
+            </SignUpTerms>
+          </Form>
 
-        <SocialLinksContainer>
-          <SocialLinksText>Or</SocialLinksText>
-          <SocialButton blue>
-            <FacebookIcon />
-            Continue with Facebook
-          </SocialButton>
-          <SocialButton dark>
-            <AppleIcon />
-            Continue with Apple
-          </SocialButton>
-          <SocialButton light>
-            <GoogleIcon />
-            Continue with Google
-          </SocialButton>
-          <SocialLinksText borderTop>
-            Have an account?
-            <LinkText> Log In</LinkText>
-          </SocialLinksText>
-        </SocialLinksContainer>
-      </InfoContainer>
+          <div>
+            <OrText>Or</OrText>
+            <FacebookButton blue>
+              <div>
+                <FacebookIcon />
+                <span> Continue with Facebook</span>
+              </div>
+            </FacebookButton>
+            <AppleButton dark>
+              <div>
+                <AppleIcon />
+                <span> Continue with Apple</span>
+              </div>
+            </AppleButton>
+            <GoogleButton light>
+              <div>
+                <GoogleIcon />
+                <span>Continue with Google</span>
+              </div>
+            </GoogleButton>
+            <SocialLinksText borderTop>
+              Have an account?
+              <LinkText> Log In</LinkText>
+            </SocialLinksText>
+          </div>
+        </InfoContainer>
+      </div>
     </SignUpContainer>
   );
 }

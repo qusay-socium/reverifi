@@ -9,11 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
     "@hookform/resolvers": "^2.8.5",
-    "enzyme": "^3.11.0",
-    "jest-enzyme": "^7.1.2",
-    "jest-styled-components": "^7.0.8",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,12 +17,10 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
-    "react-test-renderer": "^17.0.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",
     "react-hook-form": "^7.22.2",
-    "yup": "^0.32.11",
-    "@hookform/resolvers": "^2.8.5"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.0",
@@ -36,7 +30,6 @@
     "enzyme": "^3.11.0",
     "jest-enzyme": "^7.1.2",
     "jest-styled-components": "^7.0.8",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-webpack": "^0.13.2",

@@ -37,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Montserrat", Helvetica, sans-serif;
-    color: ${colors.black};
+    color: ${colors.mineShaft};
     font-size: 1rem;
     font-weight: 400;
     line-height: 1;

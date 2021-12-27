@@ -98,7 +98,7 @@ export const SearchIcon = styled(rawSearchIcon)`
 export const StyledInputGroup = styled.div`
   align-items: center;
   border-radius: 2.1875rem;
-  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mineShaftShadow};
+  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mineShaft}29;
   display: flex;
   gap: 1rem;
   height: 100%;
