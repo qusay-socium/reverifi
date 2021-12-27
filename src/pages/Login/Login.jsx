@@ -6,7 +6,6 @@ import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import {
   CheckboxInputContainer,
   CheckboxInputField,
@@ -25,18 +24,7 @@ import {
   SubmitButton,
   Title,
 } from './login.styles';
-
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup
-      .number()
-      .positive()
-      .integer()
-      .required()
-      .typeError('password must be a number'),
-  })
-  .required();
+import loginSchema from './LoginSchema';
 
 /**
  * Login page component.
@@ -50,11 +38,10 @@ function Login() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log('form data', data);
+  const onSubmit = () => {
     reset();
   };
 
