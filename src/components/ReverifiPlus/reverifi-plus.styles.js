@@ -28,7 +28,7 @@ export const Header = styled.h3`
   margin: 0 0 1.1rem 0;
 
   span {
-    color: ${colors.lightgreen};
+    color: ${colors.green};
   }
 
   ${mq.tablet`
@@ -37,7 +37,7 @@ export const Header = styled.h3`
 `;
 
 export const Paragraph = styled.p`
-  color: ${colors.black};
+  color: ${colors.mineShaft};
   font-size: 1rem;
   margin: 0 0 0.94rem 0;
   opacity: 0.5;
@@ -48,7 +48,7 @@ export const Paragraph = styled.p`
 `;
 
 export const Button = styled.button`
-  background: ${colors.lightgreen};
+  background: ${colors.green};
   border-radius: 1.25rem;
   border: none;
   color: ${colors.white};

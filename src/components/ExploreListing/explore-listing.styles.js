@@ -3,7 +3,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const MainHeader = styled.h2`
-  color: ${colors.black};
+  color: ${colors.mineShaft};
   font-size: 1.37rem;
   margin: 0 auto 1.1rem auto;
   text-align: center;
@@ -32,9 +32,9 @@ export const SliderContainer = styled.div`
 
   .slick-dots .slick-active {
     background: transparent !important;
-    border: 0.06rem ${colors.lightgreen} solid;
+    border: 0.06rem ${colors.green} solid;
     height: 0.8rem !important;
-    outline: 0.06rem ${colors.lightgreen} solid;
+    outline: 0.06rem ${colors.green} solid;
     width: 0.8rem !important;
   }
 
@@ -102,7 +102,7 @@ export const ImgListings = styled.h5`
   margin: 0 0 2rem 0;
 
   span {
-    color: ${colors.lightgreen};
+    color: ${colors.green};
     font-weight: 600;
   }
 
@@ -117,7 +117,7 @@ export const ImgContainer = styled.div`
 
   ${mq.tablet`
   border-radius: 0.6rem;
-  border: 0.06rem solid ${colors.dustygrey};
+  border: 0.06rem solid ${colors.dustyGrey};
   overflow: hidden;
 
   :first-child {
@@ -137,7 +137,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background: ${colors.transblack};
+  background: ${colors.mineShaft}99;
   bottom: 0;
   left: 0;
   position: absolute;

@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
-import colors from 'styles/colors';
 import styled, { css } from 'styled-components';
+import colors from 'styles/colors';
 
 const inputSizes = {
   sm: css`
@@ -26,18 +26,15 @@ export const StyledInputGroup = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  color: ${colors.mineshaft};
-  border: none;
-  flex: 1;
   background-color: transparent;
-  outline: none;
+  border: none;
   border-radius: 1.75rem;
+  color: ${colors.mineshaft};
+  flex: 1;
   font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 1.75rem;
   font-weight: 400;
+  outline: none;
   padding: 0 1rem;
-  font-size: 0.75rem;
   ${({ size }) => inputSizes[size]}
 
   ::placeholder {

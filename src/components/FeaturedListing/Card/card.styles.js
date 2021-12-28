@@ -4,7 +4,7 @@ import colors from 'styles/colors';
 export const CardContainer = styled.div`
   background: ${colors.white};
   border-radius: 0.375rem;
-  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.darkshadow};
+  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.mineShaft}29;
   margin: 2rem 1rem;
   overflow: hidden;
 `;
@@ -46,7 +46,7 @@ export const CardBody = styled.div`
 
 export const CardFooter = styled.div`
   align-items: center;
-  border-top: 1px solid ${colors.midgrey};
+  border-top: 1px solid ${colors.midGrey};
   display: flex;
   justify-content: space-between;
   padding: 0.75rem 1rem;
@@ -60,8 +60,7 @@ export const TagContainer = styled.div`
 `;
 
 export const Tag = styled.div`
-  background-color: ${({ isNew }) =>
-    isNew ? colors.orange : colors.lightgreen};
+  background-color: ${({ isNew }) => (isNew ? colors.orange : colors.green)};
   border-radius: 0.25rem;
   color: ${colors.white};
   font-size: 0.625rem;
@@ -77,35 +76,35 @@ export const PersonImg = styled.img`
 `;
 
 export const TextLarge = styled.p`
-  color: ${colors.black};
+  color: ${colors.mineShaft};
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0.1875rem 0;
 `;
 
 export const TextMedium = styled.p`
-  color: ${colors.grey};
+  color: ${colors.mineShaft}7f;
   font-size: 0.875rem;
   margin: 0.1875rem 0 0.9375rem 0;
 `;
 
 export const TextSmall = styled.p`
-  color: ${colors.grey};
+  color: ${colors.mineShaft}7f;
   font-size: 0.75rem;
   margin: 0.1875rem 0;
 `;
 
 export const ServiceQuantity = styled.span`
-  color: ${colors.grey};
+  color: ${colors.mineShaft}7f;
   font-size: 0.75rem;
   padding-right: 0.25rem;
 `;
 
 export const IconContainer = styled.div`
   align-items: center;
-  background-color: ${colors.lightgrey};
+  background-color: ${colors.wildSand};
   border-radius: 50%;
-  box-shadow: 0 0.0625rem 0.375rem ${colors.darkshadow};
+  box-shadow: 0 0.0625rem 0.375rem ${colors.mineShaft}29;
   display: flex;
   height: 1.5625rem;
   justify-content: center;
@@ -117,7 +116,7 @@ export const IconContainer = styled.div`
   }
 
   &:hover {
-    background-color: ${colors.lightgreen};
+    background-color: ${colors.green};
     cursor: pointer;
 
     svg path {
