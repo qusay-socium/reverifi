@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${colors.mineShaft}7f;
+  color: ${colors.grey};
   font-size: 0.9375rem;
   padding-bottom: 0.625rem;
 `;

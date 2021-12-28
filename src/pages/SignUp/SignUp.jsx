@@ -131,19 +131,19 @@ function SignUp() {
 
           <div>
             <OrText>Or</OrText>
-            <FacebookButton>
+            <FacebookButton blue>
               <div>
                 <FacebookIcon />
                 <span> Continue with Facebook</span>
               </div>
             </FacebookButton>
-            <AppleButton>
+            <AppleButton dark>
               <div>
                 <AppleIcon />
                 <span> Continue with Apple</span>
               </div>
             </AppleButton>
-            <GoogleButton>
+            <GoogleButton light>
               <div>
                 <GoogleIcon />
                 <span>Continue with Google</span>
