@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'routes';
 import GlobalStyles from 'styles/global-styles';
-
+import UserContext from 'context/user';
 /**
  * App entry point component.
  *
@@ -13,7 +13,7 @@ function App() {
   const [user, setUser] = useState(false);
 
   return (
-    <>
+    <UserContext>
       <GlobalStyles />
       <Navbar user={user} setUser={setUser} />
       <React.Suspense fallback={<span>Loading...</span>}>
@@ -28,7 +28,7 @@ function App() {
           ))}
         </Routes>
       </React.Suspense>
-    </>
+    </UserContext>
   );
 }
 
