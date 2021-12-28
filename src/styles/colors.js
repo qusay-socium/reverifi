@@ -4,7 +4,6 @@ const colors = {
   dustyGrey: '#979797',
   gray: '#6f7076',
   green: '#b2d235',
-  grey: '#2222227f',
   mercury: '#e4e4e4',
   midGrey: '#d8d8d8',
   mineShaft: '#222222',

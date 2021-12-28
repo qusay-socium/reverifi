@@ -12,7 +12,7 @@ import loginSchema from './login-schema';
 import {
   AppleButton,
   FacebookButton,
-  FormContainer,
+  Form,
   GoogleButton,
   ImageContainer,
   InfoContainer,
@@ -43,7 +43,7 @@ function Login() {
   /**
    * Handle form submit
    */
-  const onSubmit = () => {
+  const submit = () => {
     reset();
   };
 
@@ -56,7 +56,7 @@ function Login() {
       <InfoContainer>
         <Title>Log In</Title>
 
-        <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(submit)}>
           <InputWrapper>
             <FormInput
               error={errors.email?.message}
@@ -85,23 +85,23 @@ function Login() {
           <LinkText>Forgot Password</LinkText>
 
           <SubmitButton type="submit">Log In</SubmitButton>
-        </FormContainer>
+        </Form>
 
         <SocialLinksContainer>
           <OrText>Or</OrText>
-          <FacebookButton blue>
+          <FacebookButton>
             <div>
               <FacebookIcon />
               <span> Continue with Facebook</span>
             </div>
           </FacebookButton>
-          <AppleButton dark>
+          <AppleButton>
             <div>
               <AppleIcon />
               <span> Continue with Apple</span>
             </div>
           </AppleButton>
-          <GoogleButton light>
+          <GoogleButton>
             <div>
               <GoogleIcon />
               <span>Continue with Google</span>
