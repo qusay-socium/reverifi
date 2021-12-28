@@ -6,26 +6,29 @@ import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
+import { useUserContext } from 'context/user';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { loginService, signUpService } from 'services/auth';
+import { useNavigate } from 'react-router-dom';
 import signUpSchema from './sign-up-schema';
 import {
-  AppleButton,
-  FacebookButton,
   Form,
-  GoogleButton,
-  ImageContainer,
-  InfoContainer,
-  InputWrapper,
   Label,
-  LinkText,
-  OrText,
-  PhoneInputContainer,
-  SignUpContainer,
-  SignUpTerms,
-  SocialLinksText,
-  SubmitButton,
   Title,
+  OrText,
+  LinkText,
+  AppleButton,
+  SignUpTerms,
+  GoogleButton,
+  InputWrapper,
+  SubmitButton,
+  InfoContainer,
+  FacebookButton,
+  ImageContainer,
+  SignUpContainer,
+  SocialLinksText,
+  PhoneInputContainer,
 } from './sign-up.styles';
 
 /**
@@ -35,6 +38,8 @@ import {
  */
 function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
+  const { setUser } = useUserContext();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -48,8 +53,17 @@ function SignUp() {
   /**
    * Handle form submit
    */
-  const submit = () => {
-    reset();
+  const submit = async (formData) => {
+    try {
+      await signUpService(formData);
+      const { email, password } = formData;
+      const loginData = await loginService({ email, password });
+      localStorage.setItem('auth', loginData.token);
+      setUser();
+      navigate('/');
+    } catch (e) {
+      reset();
+    }
   };
 
   return (
@@ -90,7 +104,7 @@ function SignUp() {
             </InputWrapper>
 
             <FormCheckbox
-              name="industryProfessional"
+              name="isVerified"
               label="I am an industry professional"
               register={register}
               onChange={({ target: { checked } }) => setShowPhoneNum(checked)}

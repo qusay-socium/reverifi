@@ -7,7 +7,7 @@ import { post } from 'utilities/axios';
  *
  * @return {Promise<Object>}  Id, email, name, phone & isVerified.
  */
-export const signup = (values) => {
+export const signUpService = (values) => {
   const data = post(values, '/api/auth/signup');
 
   return data;
@@ -20,7 +20,7 @@ export const signup = (values) => {
  *
  * @return {Promise<Object>}  Id, email, name, phone, isVerified, user-info & token.
  */
-export const login = (values) => {
+export const loginService = (values) => {
   const data = post(values, '/api/auth/login');
 
   return data;

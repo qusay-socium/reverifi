@@ -16,7 +16,7 @@ export const post = async (values, path) => {
     url: `${API}${path}`,
     data: values,
     headers: {
-      Authorization: `token ${token}`,
+      Authorization: `token ${token()}`,
     },
   });
   return res.data.data;
@@ -34,7 +34,7 @@ export const get = async (path) => {
     method: 'Get',
     url: `${API}${path}`,
     headers: {
-      Authorization: `token ${token}`,
+      Authorization: `token ${token()}`,
     },
   });
 
@@ -55,7 +55,7 @@ export const patch = async (values, path) => {
     url: `${API}${path}`,
     data: values,
     headers: {
-      Authorization: `token ${token}`,
+      Authorization: `token ${token()}`,
     },
   });
   return res.data.data;

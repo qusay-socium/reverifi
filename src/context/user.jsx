@@ -23,7 +23,7 @@ export default function UserContext({ children }) {
    * @return {Object} -Id, email,  & email.
    */
   function setUserHandler() {
-    if (token) setUser(decodeToken(token));
+    if (token()) setUser(decodeToken(token()));
   }
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
