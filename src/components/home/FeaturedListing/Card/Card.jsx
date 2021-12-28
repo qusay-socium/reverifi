@@ -6,6 +6,7 @@ import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
+import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -31,6 +32,8 @@ import {
 function Card({ data }) {
   const { img, tags, personImg, title, location, services, distance, price } =
     data;
+
+  const { setShowModal } = useShowModal();
 
   return (
     <CardContainer>
@@ -80,7 +83,7 @@ function Card({ data }) {
           <IconContainer stroke="true">
             <HeartIcon />
           </IconContainer>
-          <IconContainer fill="true">
+          <IconContainer fill="true" onClick={() => setShowModal(true)}>
             <ShareIcon />
           </IconContainer>
         </IconsContainer>

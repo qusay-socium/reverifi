@@ -44,7 +44,7 @@ Button.propTypes = {
   /**
    * Event get fired when button clicked.
    */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   /**
    * Button type (can be 'button' or 'submit').
    */
@@ -54,6 +54,7 @@ Button.propTypes = {
 Button.defaultProps = {
   ariaLabel: 'Button',
   disabled: false,
+  onClick: null,
   type: 'button',
 };
 
