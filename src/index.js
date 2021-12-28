@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import App from './App';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 ReactDOM.render(
   // eslint-disable-next-line react/jsx-filename-extension
