@@ -20,7 +20,7 @@ export default function UserContext({ children }) {
    *
    * @param token
    *
-   * @return {Object} -Id, email,  & email.
+   * @return {Object}
    */
   function setUserHandler() {
     if (token()) setUser(decodeToken(token()));
