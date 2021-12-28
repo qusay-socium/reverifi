@@ -36,6 +36,12 @@ const routes = [
     title: 'Verify Phone',
   },
   {
+    component: lazy(() => import('components/LeftMenu/')),
+    label: 'left-menu-test',
+    path: '/left-menu-test',
+    title: 'left-menu-test',
+  },
+  {
     component: lazy(() => import('pages/NotFound')),
     label: 'not-found',
     path: '*',
