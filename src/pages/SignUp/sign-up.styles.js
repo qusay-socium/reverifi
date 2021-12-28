@@ -13,7 +13,7 @@ export const SignUpContainer = styled.div`
 export const ImageContainer = styled.div`
   display: none;
 
-  ${mq.desktopWide`
+  ${mq.mobile`
     background-color: ${colors.alabaster};
     display: flex;
     justify-content: center;
@@ -25,7 +25,7 @@ export const InfoContainer = styled.div`
   flex: 1;
   padding: 1rem;
 
-  ${mq.desktopWide`
+  ${mq.mobile`
     padding: 6.9375rem 7.625rem 0;
   `}
 `;

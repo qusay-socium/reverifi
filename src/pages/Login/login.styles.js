@@ -16,7 +16,7 @@ export const ImageContainer = styled.div`
   flex: 1;
   justify-content: center;
 
-  ${mq.desktopWide`
+  ${mq.mobile`
     display: flex;
   `}
 `;
@@ -25,7 +25,7 @@ export const InfoContainer = styled.div`
   flex: 1;
   padding: 4.6875rem 0 4.6875rem 11.875rem;
 
-  ${mq.desktopWide`
+  ${mq.mobile`
     padding: 4.6875rem 0;
   `}
 `;
