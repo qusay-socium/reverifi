@@ -4,6 +4,7 @@ import mq from 'styles/media-query';
 
 export const SignUpContainer = styled.div`
   display: flex;
+
   > div {
     flex: 1;
   }
@@ -11,6 +12,7 @@ export const SignUpContainer = styled.div`
 
 export const ImageContainer = styled.div`
   display: none;
+
   ${mq.desktopWide`
     background-color: ${colors.alabaster};
     display: flex;
@@ -22,6 +24,7 @@ export const ImageContainer = styled.div`
 export const InfoContainer = styled.div`
   flex: 1;
   padding: 1rem;
+
   ${mq.desktopWide`
     padding: 6.9375rem 7.625rem 0;
   `}
@@ -90,6 +93,7 @@ export const SocialButton = styled(SubmitButton)`
   justify-content: center;
   display: flex;
   width: 100%;
+
   > div {
     display: flex;
     span {
@@ -121,6 +125,7 @@ export const SocialLinksText = styled.p`
   margin: 0;
   margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
   padding: ${({ borderTop }) => borderTop && '1.5625rem'};
+
   a {
     font-size: 0.9375rem;
   }

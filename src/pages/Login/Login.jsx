@@ -8,6 +8,7 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import loginSchema from './login-schema';
 import {
   AppleButton,
   FacebookButton,
@@ -23,7 +24,6 @@ import {
   SubmitButton,
   Title,
 } from './login.styles';
-import loginSchema from './LoginSchema';
 
 /**
  * Login page component.
@@ -40,6 +40,9 @@ function Login() {
     resolver: yupResolver(loginSchema),
   });
 
+  /**
+   * Handle form submit
+   */
   const onSubmit = () => {
     reset();
   };

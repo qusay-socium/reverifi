@@ -26,7 +26,7 @@ const routes = [
   {
     component: lazy(() => import('pages/SignUp/SignUp')),
     label: 'sign-up',
-    path: '/signUp',
+    path: '/sign-up',
     title: 'SignUp',
   },
   {

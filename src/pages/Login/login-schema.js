@@ -2,11 +2,10 @@ import * as yup from 'yup';
 
 const loginSchema = yup
   .object({
-    email: yup.string().email().required(),
+    email: yup.string().label('E-mail').email().required(),
     password: yup
-      .number()
-      .positive()
-      .integer()
+      .string()
+      .label('Password')
       .required()
       .typeError('password must be a number'),
   })
