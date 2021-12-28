@@ -3,14 +3,14 @@ import { googleMapApiKey } from 'config/config';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { GoogleMapContainer } from './map.styles';
+import GoogleMapContainer from './map.styles';
 
 const mapDefaults = {
   center: {
     lat: 39.84,
     lng: -74.85,
   },
-  zoom: 15,
+  zoom: 6,
 };
 
 /**
