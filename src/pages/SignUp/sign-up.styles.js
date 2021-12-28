@@ -13,11 +13,20 @@ export const SignUpContainer = styled.div`
 export const ImageContainer = styled.div`
   display: none;
 
-  ${mq.desktopWide`
+  ${mq.tabletWide`
     background-color: ${colors.alabaster};
     display: flex;
     justify-content: center;
-    padding-top: 15.625rem;
+
+    svg {
+      width: 100%;
+    } 
+  `}
+
+  ${mq.desktop`
+    svg {
+      margin: auto;
+    }
   `}
 `;
 
@@ -25,7 +34,7 @@ export const InfoContainer = styled.div`
   flex: 1;
   padding: 1rem;
 
-  ${mq.desktopWide`
+  ${mq.tabletWide`
     padding: 6.9375rem 7.625rem 0;
   `}
 `;
@@ -46,7 +55,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${colors.grey};
+  color: ${colors.mineShaft}7f;
   font-size: 0.9375rem;
   padding-bottom: 0.625rem;
 `;
@@ -93,6 +102,7 @@ export const SocialButton = styled(SubmitButton)`
   justify-content: center;
   display: flex;
   width: 100%;
+
   > div {
     display: flex;
 
@@ -120,7 +130,7 @@ export const GoogleButton = styled(SocialButton)`
 
 export const SocialLinksText = styled.p`
   border-top: ${({ borderTop }) => borderTop && `1px solid ${colors.mercury}`};
-  color: ${colors.grey};
+  color: ${colors.mineShaft}7f;
   font-size: 0.9375rem;
   margin: 0;
   margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
