@@ -6,8 +6,10 @@ import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
+import { useUser } from 'contexts/UserContext';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import loginSchema from './login-schema';
 import {
   AppleButton,
@@ -31,20 +33,29 @@ import {
  * @return {JSX.Element}
  */
 function Login() {
+  const navigate = useNavigate();
+  const { login } = useUser();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
   /**
-   * Handle form submit
+   * Handle form submit.
+   *
+   * @param {Object} data Form data.
    */
-  const submit = () => {
-    reset();
+  const submit = async ({ email, password }) => {
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (error) {
+      // TODO: show error to the user
+    }
   };
 
   return (

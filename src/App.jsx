@@ -1,5 +1,6 @@
 import Navbar from 'components/Navbar';
-import React, { useState } from 'react';
+import { UserProvider } from 'contexts/UserContext';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from 'routes';
 import GlobalStyles from 'styles/global-styles';
@@ -10,12 +11,10 @@ import GlobalStyles from 'styles/global-styles';
  * @return {JSX.Element}
  */
 function App() {
-  const [user, setUser] = useState(false);
-
   return (
-    <>
+    <UserProvider>
       <GlobalStyles />
-      <Navbar user={user} setUser={setUser} />
+      <Navbar />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
           {routes.map(({ label, exact, path, component: Component }) => (
@@ -28,7 +27,7 @@ function App() {
           ))}
         </Routes>
       </React.Suspense>
-    </>
+    </UserProvider>
   );
 }
 

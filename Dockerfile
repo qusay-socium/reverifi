@@ -3,6 +3,7 @@ FROM node:16.13-alpine
 ARG NODE_ENV
 
 ENV NODE_ENV=$NODE_ENV
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 RUN apk --no-cache add bash nginx
 
