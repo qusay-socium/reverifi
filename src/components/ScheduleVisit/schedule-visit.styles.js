@@ -6,13 +6,13 @@ import colors from 'styles/colors';
 
 export const MainContainer = styled.div`
   border-radius: 0.5rem;
-  border: 0.06rem solid ${colors.midgrey};
+  border: 0.06rem solid ${colors.midGrey};
   padding: 1.75rem 1.5rem;
 
   .react-datepicker-wrapper {
     margin: 0 0 2rem 0;
     padding: 0.5rem 1.12rem 0.37rem 1.12rem;
-    border: 0.06rem solid ${colors.midgrey};
+    border: 0.06rem solid ${colors.midGrey};
   }
 `;
 
@@ -78,7 +78,7 @@ export const DateSliderContainer = styled.div`
 
 export const DateCard = styled.div`
   border-radius: 0.62rem;
-  border: 0.06rem solid ${colors.midgrey};
+  border: 0.06rem solid ${colors.midGrey};
   color: ${colors.black};
   font-size: 1rem;
   max-height: 5rem;
@@ -93,7 +93,7 @@ export const DateCard = styled.div`
 `;
 
 export const SubmitDateButton = styled.button`
-  background: ${colors.lightgreen};
+  background: ${colors.green};
   border-radius: 1.25rem;
   border: none;
   color: ${colors.white};

@@ -5,7 +5,7 @@ import mq from 'styles/media-query';
 export const MainContainer = styled.div`
   background: ${colors.white};
   border-radius: 0.56rem;
-  box-shadow: 0rem 0.06rem 0.37rem ${colors.darkshadow};
+  box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGrey};
   padding: 1.5rem 2.37rem;
 `;
 
@@ -21,7 +21,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserImg = styled.img`
-  background: ${colors.midgrey};
+  background: ${colors.midGrey};
   border-radius: 50%;
   margin: 0 1.5rem 0 0;
   max-height: 5.31rem;
@@ -45,7 +45,7 @@ export const UserName = styled.h3`
 
 export const DialButton = styled.button`
   align-items: center;
-  background: ${colors.lightgreen};
+  background: ${colors.green};
   border-radius: 1.75rem;
   border: none;
   color: ${colors.white};
@@ -71,14 +71,14 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  border-bottom: 0.06rem solid ${colors.midgrey};
+  border-bottom: 0.06rem solid ${colors.midGrey};
   border: none;
   margin: 2.75rem 0 0 0;
   min-width: 100%;
   outline: none;
 
   ::placeholder {
-    color: ${colors.grey};
+    color: ${colors.gray};
   }
 
   :first-of-type {
@@ -87,7 +87,7 @@ export const Input = styled.input`
 `;
 
 export const Message = styled.textarea`
-  border: 0.06rem solid ${colors.midgrey};
+  border: 0.06rem solid ${colors.midGrey};
   margin: 0 0 0 0;
   min-height: 7rem;
   min-width: 100%;
@@ -97,7 +97,7 @@ export const Message = styled.textarea`
 
 export const MessageLabel = styled.label`
   align-items: center;
-  color: ${colors.grey};
+  color: ${colors.gray};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
