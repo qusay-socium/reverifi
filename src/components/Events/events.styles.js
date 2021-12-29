@@ -44,8 +44,7 @@ export const FilterList = styled.ul`
 export const ClickableItem = styled.button`
   background: none;
   border: none;
-  color: ${(props) =>
-    props.activeFilter ? colors.lightgreen : colors.mineShaft};
+  color: ${(props) => (props.activeFilter ? colors.green : colors.mineShaft)};
   font-family: Montserrat;
   font-size: 1rem;
   font-weight: 600;
@@ -78,7 +77,7 @@ export const CardsContainer = styled.div`
   }
 
   .slick-arrow {
-    background: ${colors.lightgreen};
+    background: ${colors.green};
     border-radius: 50%;
     color: ${colors.white};
     min-height: 2rem;
@@ -86,11 +85,11 @@ export const CardsContainer = styled.div`
     z-index: 2;
 
     :hover {
-      background: ${colors.lightgreen};
+      background: ${colors.green};
     }
 
     :focus {
-      background: ${colors.lightgreen};
+      background: ${colors.green};
     }
   }
 
@@ -141,11 +140,9 @@ export const CardImg = styled.img`
 `;
 
 export const EventType = styled.div`
-  background: ${(props) =>
-    props.isPersonal ? colors.orange : colors.lightgreen};
+  background: ${(props) => (props.isPersonal ? colors.orange : colors.green)};
   border: 0.06rem solid ${colors.orange};
-  border-color: ${(props) =>
-    props.isPersonal ? colors.orange : colors.lightgreen};
+  border-color: ${(props) => (props.isPersonal ? colors.orange : colors.green)};
   border-radius: 0.25rem;
   color: ${colors.white};
   display: none;
@@ -161,7 +158,7 @@ export const EventType = styled.div`
 `;
 
 export const EventDate = styled.h3`
-  background: ${colors.lightgreen};
+  background: ${colors.green};
   border-radius: 0.18rem;
   color: ${colors.white};
   font-size: 1.37rem;
@@ -210,7 +207,7 @@ export const AddButton = styled.button`
   align-items: center;
   background: ${colors.white};
   border-radius: 50%;
-  border: 0.0625rem solid ${colors.lightgreen};
+  border: 0.0625rem solid ${colors.green};
   cursor: pointer;
   display: flex;
   min-height: 1.5rem;
@@ -219,7 +216,7 @@ export const AddButton = styled.button`
   min-width: 1.5rem;
 
   :hover {
-    background: ${colors.lightgreen};
+    background: ${colors.green};
 
     svg {
       path {
@@ -233,11 +230,10 @@ export const AddButton = styled.button`
 export const ShareButton = styled(AddButton)`
   background: ${colors.alabaster};
   border: 0.06rem solid ${colors.alabaster};
-  color: ${colors.transblack};
 `;
 
 export const Attendees = styled.h4`
-  color: ${colors.lightgreen};
+  color: ${colors.green};
   font-size: 0.75rem;
   font-weight: 400;
   margin: 1.12rem 0 0 0;
@@ -251,7 +247,7 @@ export const Attendees = styled.h4`
   :hover {
     svg {
       path {
-        fill: ${colors.lightgreen};
+        fill: ${colors.green};
       }
     }
   }
