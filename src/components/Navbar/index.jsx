@@ -1,7 +1,10 @@
+import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
+import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as JoinNow } from 'assets/images/join-now.svg';
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
-import PropTypes from 'prop-types';
+import { useUser } from 'contexts/UserContext';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   BroadNavContainer,
   Logo,
@@ -14,22 +17,26 @@ import {
   StyledInput,
   StyledInputGroup,
   TransparentButton,
+  UserControlSectionWrapper,
   UserNavControlContainer,
   UserNavRegContainer,
 } from './navbar.styles';
-import UserControlSection from './UserControlSection';
 
 /**
  * Home page header section.
  *
  * @return {JSX.Element}
  */
-function Navbar({ user, setUser }) {
-  const NavContainer = user ? BroadNavContainer : NarrowNavContainer;
+function Navbar() {
+  const navigate = useNavigate();
+  const { userInfo: { name } = {}, isLoggedIn } = useUser();
+
+  const NavContainer = isLoggedIn ? BroadNavContainer : NarrowNavContainer;
+
   return (
-    <NavContainer user={user}>
+    <NavContainer>
       <MenuIcon />
-      <Logo />
+      <Logo onClick={() => navigate('/')} />
 
       <NavItemsContainer>
         <NavLinksContainer>
@@ -38,7 +45,7 @@ function Navbar({ user, setUser }) {
           <span>Knowledge Center</span>
         </NavLinksContainer>
 
-        {user ? (
+        {isLoggedIn ? (
           <UserNavControlContainer>
             <NavControlSection>
               <StyledInputGroup>
@@ -49,28 +56,23 @@ function Navbar({ user, setUser }) {
             <NavControlSection>
               <NotificationBell />
             </NavControlSection>
-            <UserControlSection setUser={setUser} />
+            <UserControlSectionWrapper>
+              <Avatar />
+              {name}
+              <ChevronDown />
+            </UserControlSectionWrapper>
           </UserNavControlContainer>
         ) : (
           <UserNavRegContainer>
-            <TransparentButton type="button" onClick={() => setUser(true)}>
+            <TransparentButton type="button" onClick={() => navigate('login')}>
               Sign In
             </TransparentButton>
-            <JoinNow />
+            <JoinNow onClick={() => navigate('sign-up')} />
           </UserNavRegContainer>
         )}
       </NavItemsContainer>
     </NavContainer>
   );
 }
-
-Navbar.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  user: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  user: false,
-};
 
 export default Navbar;
