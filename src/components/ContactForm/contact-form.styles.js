@@ -71,8 +71,8 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  border-bottom: 0.06rem solid ${colors.midGrey};
   border: none;
+  border-bottom: 0.06rem solid ${colors.midGrey};
   margin: 2.75rem 0 0 0;
   min-width: 100%;
   outline: none;
