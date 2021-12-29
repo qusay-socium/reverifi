@@ -64,10 +64,10 @@ function Navbar() {
           </UserNavControlContainer>
         ) : (
           <UserNavRegContainer>
-            <TransparentButton type="button" onClick={() => navigate('login')}>
+            <TransparentButton type="button" onClick={() => navigate('/login')}>
               Sign In
             </TransparentButton>
-            <JoinNow onClick={() => navigate('sign-up')} />
+            <JoinNow onClick={() => navigate('/sign-up')} />
           </UserNavRegContainer>
         )}
       </NavItemsContainer>
