@@ -1,43 +1,63 @@
-import styled from 'styled-components';
-// import mq from 'styles/media-query';
+import { NavLink } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
 
-export const Div = styled.div`
+const fadeIn = keyframes`
+from {
+    max-width: 22rem;
+  }
+  to {
+    display: flex;
+    justify-content: flex-start;  
+    max-width: 5rem;
+    text-align: center;
+  }
+  `;
+
+const fadeOut = keyframes`
+  from {
+    max-width: 5rem;
+  }
+  to {  
+    max-width: 22rem;
+  }
+  `;
+
+export const MenuItemsContainer = styled.div`
+  animation: ${({ animationType }) => {
+    if (animationType === 'fadeIn') return fadeIn;
+    if (animationType === 'fadeOut') return fadeOut;
+    return '';
+  }} ease-in-out forwards;
+  animation-duration: 0.5s;
   background-color: ${colors.mineShaft};
-  max-width: 240px;
-  max-height: 773px;
-  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 22rem;
+  max-height: 40rem;
+  padding: 1rem 0;
+  text-align: center;
+}
 `;
 
-export const Ul = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+export const MenuAnchor = styled(NavLink)`
   align-items: center;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-`;
-
-export const Li = styled.li`
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-radius: 0.7rem;
-  margin: 1rem;
-`;
-
-export const MenuAnchor = styled.a`
-  text-decoration: none;
   color: ${colors.white};
-  font-size: 1.2rem;
+  display: flex;
+  justify-content: start;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  width: 100%;
+  &.active {
+    background-color: ${colors.green};
+  }
 `;
 
-// styled(ggffr)`
-// path{
+export const LinkTitle = styled.p`
+  margin-left: 2rem;
+`;
 
-// }
-// ` this if I wanted to edit the svg color or style with the hover.
+export const MenuItemInnerContainer = styled.div`
+  padding: 0.1rem 0 0.5rem 0.2rem;
+`;
 
-// TODO : for tablet and mobile the menu gonna be above other elements = z-index=1;
+export const IconContainer = styled.span``;

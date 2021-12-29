@@ -1,67 +1,92 @@
-import React from 'react';
-import { ReactComponent as Home } from 'assets/icons/home.svg';
+import { ReactComponent as Dashboard } from 'assets/icons/dashboard.svg';
 import { ReactComponent as List } from 'assets/icons/list.svg';
 import { ReactComponent as Logout } from 'assets/icons/logout.svg';
-import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
+import { ReactComponent as Menu } from 'assets/icons/menu.svg';
 import { ReactComponent as Saved } from 'assets/icons/saved.svg';
 import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 import { ReactComponent as Transaction } from 'assets/icons/transaction.svg';
-import { ReactComponent as UserRoles } from 'assets/icons/user-roles.svg';
-import { Div, Ul, Li, MenuAnchor } from './leftMenu.styles';
+import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
+import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
+import React, { useState } from 'react';
+import {
+  MenuItemsContainer,
+  MenuAnchor,
+  LinkTitle,
+  IconContainer,
+  MenuItemInnerContainer,
+} from './leftMenu.styles';
 
-export default function index() {
+/**
+ * Left side menu.
+ *
+ * @return {JSX.Element}
+ */
+function LeftMenu() {
+  const [animationType, setAnimationType] = useState('');
+
   return (
-    <Div>
-      <Ul>
-        <Li>
-          <span>
-            <Home />
-          </span>
-          <MenuAnchor href="/"> Dashboard </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <UserRoles />
-          </span>
-          <MenuAnchor href="/"> My Roles </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <List />
-          </span>
-          <MenuAnchor href="/"> List Properties </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <Transaction />
-          </span>
-          <MenuAnchor href="/"> Transaction </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <Saved />
-          </span>
-          <MenuAnchor href="/"> Saved </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <UserProfile />
-          </span>
-          <MenuAnchor href="/"> My Profile</MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <Settings />
-          </span>
-          <MenuAnchor href="/"> Settings </MenuAnchor>
-        </Li>
-        <Li>
-          <span>
-            <Logout />
-          </span>
-          <MenuAnchor href="/"> Log Out </MenuAnchor>
-        </Li>
-      </Ul>
-    </Div>
+    <MenuItemsContainer animationType={animationType}>
+      <IconContainer>
+        <MenuItemInnerContainer>
+          <Menu
+            onClick={() =>
+              animationType === 'fadeOut' || animationType === ''
+                ? setAnimationType('fadeIn')
+                : setAnimationType('fadeOut')
+            }
+          />
+        </MenuItemInnerContainer>
+      </IconContainer>
+      <MenuAnchor to="/left-menu-test">
+        <IconContainer>
+          <Dashboard />
+        </IconContainer>
+        <LinkTitle>Dashboard</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <List />
+        </IconContainer>
+        <LinkTitle>List</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <Transaction />
+        </IconContainer>
+        <LinkTitle>Transaction</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <Saved />
+        </IconContainer>
+        <LinkTitle>Saved</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <UserProfile />
+        </IconContainer>
+        <LinkTitle>My Profile</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <UserRole />
+        </IconContainer>
+        <LinkTitle>My Profile</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <Settings />
+        </IconContainer>
+        <LinkTitle>Settings</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/lgrgrgeft-menu-test">
+        <IconContainer>
+          <Logout />
+        </IconContainer>
+        <LinkTitle>Log Out</LinkTitle>
+      </MenuAnchor>
+    </MenuItemsContainer>
   );
 }
+
+export default LeftMenu;
