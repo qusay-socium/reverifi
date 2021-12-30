@@ -36,26 +36,17 @@ export const UserName = styled.h3`
   `}
 `;
 
-export const DialButton = styled.button`
+export const DialButtonContent = styled.div`
   align-items: center;
-  background: ${colors.green};
-  border-radius: 28px;
-  border: none;
-  color: ${colors.white};
   display: flex;
-  font-family: Montserrat;
+  font-weight: 400;
   gap: 0.62rem;
-  max-width: 8.5rem;
-  outline: none;
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-  margin: 0 auto;
 `;
 
-export const SubmitButton = styled(DialButton)`
-  font-weight: 600;
-  margin: 1.37rem auto 0 auto;
-  padding: 0.75rem 2.18rem;
+export const SubmitSection = styled.div`
+  margin: 1.37rem 0 0 0;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Input = styled.input`

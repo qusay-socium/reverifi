@@ -2,17 +2,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as DialLogo } from 'assets/dial-logo.svg';
 import userImage from 'assets/images/user-photo.jpg';
+import Button from 'components/shared/Button';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import {
-  DialButton,
+  DialButtonContent,
   ErrorMessage,
   Input,
   MainContainer,
   Message,
   MessageLabel,
-  SubmitButton,
+  SubmitSection,
   UserImg,
   UserInfo,
   UserName,
@@ -49,10 +50,12 @@ function ContactForm() {
         <UserImg src={userImage} />
         <div>
           <UserName>John Doe</UserName>
-          <DialButton type="button">
-            <DialLogo />
-            222-222-222
-          </DialButton>
+          <Button type="button" padding="0.75rem 1rem">
+            <DialButtonContent>
+              <DialLogo />
+              222-222-222
+            </DialButtonContent>
+          </Button>
         </div>
       </UserInfo>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -67,7 +70,9 @@ function ContactForm() {
         </MessageLabel>
         <Message {...register('message')} maxLength={140} />
         <ErrorMessage>{errors.message?.message}</ErrorMessage>
-        <SubmitButton>Contact</SubmitButton>
+        <SubmitSection>
+          <Button type="submit">Contact</Button>
+        </SubmitSection>
       </form>
     </MainContainer>
   );

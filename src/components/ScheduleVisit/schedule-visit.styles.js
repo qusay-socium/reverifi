@@ -86,18 +86,8 @@ export const DateCard = styled.div`
   }
 `;
 
-export const SubmitDateButton = styled.button`
-  background: ${colors.green};
-  border-radius: 20px;
-  border: none;
-  color: ${colors.white};
-  font-size: 1rem;
-  font-weight: 600;
-  min-width: 100%;
-  padding: 0.68rem 0.43rem 0.56rem 0.43rem;
-  outline: none;
-
-  :hover {
-    cursor: pointer;
-  }
+export const SubmitDateSection = styled.div`
+  display: flex;
+  gap: 0.62rem;
+  justify-content: center;
 `;

@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import Button from 'components/shared/Button';
 import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -9,7 +10,7 @@ import {
   DateCard,
   DateSliderContainer,
   MainContainer,
-  SubmitDateButton,
+  SubmitDateSection,
   Title,
 } from './schedule-visit.styles';
 
@@ -87,7 +88,9 @@ function ScheduleVisit() {
           ))}
         </Slider>
       </DateSliderContainer>
-      <SubmitDateButton type="submit">Request this time</SubmitDateButton>
+      <SubmitDateSection>
+        <Button type="button">Request this time</Button>
+      </SubmitDateSection>
     </MainContainer>
   );
 }
