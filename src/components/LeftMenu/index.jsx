@@ -9,11 +9,7 @@ import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
 import React, { useState } from 'react';
 import {
-  MenuItemsContainer,
-  MenuAnchor,
-  LinkTitle,
-  IconContainer,
-  MenuItemInnerContainer,
+  IconContainer, LinkTitle, MenuAnchor, MenuItemInnerContainer, MenuItemsContainer
 } from './leftMenu.styles';
 
 /**
