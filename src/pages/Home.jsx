@@ -17,6 +17,8 @@ import React from 'react';
 function Home() {
   return (
     <div>
+      <ContactForm />
+      <ScheduleVisit />
       <Storyboard />
       <ShowModalProvider>
         <FeaturedListing />

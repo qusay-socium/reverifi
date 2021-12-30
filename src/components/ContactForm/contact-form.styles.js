@@ -3,8 +3,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const MainContainer = styled.div`
-  background: ${colors.white};
-  border-radius: 0.56rem;
+  border-radius: 9px;
   box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGrey};
   padding: 1.5rem 2.37rem;
 `;
@@ -21,16 +20,10 @@ export const UserInfo = styled.div`
 `;
 
 export const UserImg = styled.img`
-  background: ${colors.midGrey};
   border-radius: 50%;
   margin: 0 1.5rem 0 0;
   max-height: 5.31rem;
   max-width: 5.31rem;
-`;
-
-export const NameContainer = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export const UserName = styled.h3`
@@ -46,7 +39,7 @@ export const UserName = styled.h3`
 export const DialButton = styled.button`
   align-items: center;
   background: ${colors.green};
-  border-radius: 1.75rem;
+  border-radius: 28px;
   border: none;
   color: ${colors.white};
   display: flex;
@@ -56,18 +49,13 @@ export const DialButton = styled.button`
   outline: none;
   padding: 0.75rem 1rem;
   cursor: pointer;
+  margin: 0 auto;
 `;
 
 export const SubmitButton = styled(DialButton)`
   font-weight: 600;
   margin: 1.37rem auto 0 auto;
   padding: 0.75rem 2.18rem;
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 export const Input = styled.input`
@@ -77,18 +65,13 @@ export const Input = styled.input`
   min-width: 100%;
   outline: none;
 
-  ::placeholder {
-    color: ${colors.gray};
-  }
-
   :first-of-type {
     margin: 0;
   }
 `;
 
 export const Message = styled.textarea`
-  border: 0.06rem solid ${colors.midGrey};
-  margin: 0 0 0 0;
+  border: 1px solid ${colors.midGrey};
   min-height: 7rem;
   min-width: 100%;
   outline: none;
@@ -99,10 +82,8 @@ export const MessageLabel = styled.label`
   align-items: center;
   color: ${colors.gray};
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   margin: 2.75rem 0 0.62rem 0;
-  min-width: 100%;
 
   span {
     font-size: 0.75rem;

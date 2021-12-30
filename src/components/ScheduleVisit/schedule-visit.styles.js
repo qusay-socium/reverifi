@@ -5,14 +5,14 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const MainContainer = styled.div`
-  border-radius: 0.5rem;
-  border: 0.06rem solid ${colors.midGrey};
+  border-radius: 8px;
+  border: 1px solid ${colors.midGrey};
   padding: 1.75rem 1.5rem;
 
   .react-datepicker-wrapper {
     margin: 0 0 2rem 0;
     padding: 0.5rem 1.12rem 0.37rem 1.12rem;
-    border: 0.06rem solid ${colors.midGrey};
+    border: 1px solid ${colors.midGrey};
   }
 `;
 
@@ -53,15 +53,10 @@ export const DateSliderContainer = styled.div`
     margin: 0 0.31rem;
   }
 
-  .slick-arrow {
-    background: ${colors.white};
-  }
-
   .slick-prev {
     left: -1.37rem;
 
     :before {
-      background: ${colors.white};
       content: url(${LeftArrow});
     }
   }
@@ -70,15 +65,14 @@ export const DateSliderContainer = styled.div`
     right: -1.37rem;
 
     :before {
-      background: ${colors.white};
       content: url(${RightArrow});
     }
   }
 `;
 
 export const DateCard = styled.div`
-  border-radius: 0.62rem;
-  border: 0.06rem solid ${colors.midGrey};
+  border-radius: 10px;
+  border: 1px solid ${colors.midGrey};
   color: ${colors.black};
   font-size: 1rem;
   max-height: 5rem;
@@ -94,7 +88,7 @@ export const DateCard = styled.div`
 
 export const SubmitDateButton = styled.button`
   background: ${colors.green};
-  border-radius: 1.25rem;
+  border-radius: 20px;
   border: none;
   color: ${colors.white};
   font-size: 1rem;

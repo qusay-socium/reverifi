@@ -3,6 +3,7 @@ import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Slider from 'react-slick';
+import data from './data';
 import {
   DateButton,
   DateCard,
@@ -78,54 +79,12 @@ function ScheduleVisit() {
             },
           ]}
         >
-          <DateCard>
-            <span>Mon</span>
-            16 JAN
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            17 FEB
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            18 MAR
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            19 APR
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            20 MAY
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            21 JUN
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            22 JUL
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            23 AUG
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            24 SEP
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            25 OCT
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            25 NOV
-          </DateCard>
-          <DateCard>
-            <span>Mon</span>
-            25 DEC
-          </DateCard>
+          {data.map((item) => (
+            <DateCard key={item.date}>
+              <span>{item.day}</span>
+              {item.date}
+            </DateCard>
+          ))}
         </Slider>
       </DateSliderContainer>
       <SubmitDateButton type="submit">Request this time</SubmitDateButton>

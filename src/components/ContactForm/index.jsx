@@ -8,12 +8,10 @@ import * as yup from 'yup';
 import {
   DialButton,
   ErrorMessage,
-  Form,
   Input,
   MainContainer,
   Message,
   MessageLabel,
-  NameContainer,
   SubmitButton,
   UserImg,
   UserInfo,
@@ -29,6 +27,11 @@ const schema = yup
   })
   .required();
 
+/**
+ * Listing page contact-form section.
+ *
+ * @returns {JSX.Element}
+ */
 function ContactForm() {
   const {
     register,
@@ -44,15 +47,15 @@ function ContactForm() {
     <MainContainer>
       <UserInfo>
         <UserImg src={userImage} />
-        <NameContainer>
+        <div>
           <UserName>John Doe</UserName>
           <DialButton type="button">
             <DialLogo />
             222-222-222
           </DialButton>
-        </NameContainer>
+        </div>
       </UserInfo>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input {...register('name')} placeholder="Name" />
         <ErrorMessage>{errors.name?.message}</ErrorMessage>
         <Input {...register('phoneNumber')} placeholder="Phone Number" />
@@ -65,7 +68,7 @@ function ContactForm() {
         <Message {...register('message')} maxLength={140} />
         <ErrorMessage>{errors.message?.message}</ErrorMessage>
         <SubmitButton>Contact</SubmitButton>
-      </Form>
+      </form>
     </MainContainer>
   );
 }
