@@ -1,6 +1,6 @@
-import colors from 'styles/colors';
 import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import colors from 'styles/colors';
 
 const fadeIn = keyframes`
 from {
@@ -34,15 +34,23 @@ export const MenuItemsContainer = styled.div`
   border-radius: 1rem;
   max-width: 22rem;
   max-height: 40rem;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   text-align: center;
+  ${({ animationType }) => {
+    if (animationType === 'fadeIn')
+      return 'a {padding: 0; justify-content: center;} p { display: none;}';
+    return '';
+  }}
 }
 `;
 
 export const MenuAnchor = styled(NavLink)`
   align-items: center;
+  border-radius: 0.375rem;
   color: ${colors.white};
   display: flex;
+  font-weight: 500;
+  height: 3.063rem;
   justify-content: start;
   padding: 0.5rem 2rem;
   text-decoration: none;
@@ -54,6 +62,7 @@ export const MenuAnchor = styled(NavLink)`
 
 export const LinkTitle = styled.p`
   margin-left: 2rem;
+  text-overflow: hidden;
 `;
 
 export const MenuItemInnerContainer = styled.div`
