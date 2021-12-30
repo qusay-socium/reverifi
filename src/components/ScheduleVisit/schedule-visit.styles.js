@@ -1,4 +1,3 @@
-import datePicker from 'assets/date-picker.svg';
 import LeftArrow from 'assets/visit-left-arrow.svg';
 import RightArrow from 'assets/visit-right-arrow.svg';
 import styled from 'styled-components';
@@ -22,26 +21,16 @@ export const Title = styled.h3`
   margin: 0 0 1.37rem 0;
 `;
 
-export const DateButton = styled.button`
-  background: ${colors.white};
-  border: none;
-  color: ${colors.black};
-  cursor: pointer;
-  font-family: Montserrat;
-  min-width: 100%;
-  outline: none;
-  padding: 0 0 0 1.5rem;
-  position: relative;
-  text-align: left;
+export const DateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
 
-  :before {
-    content: url(${datePicker});
-    left: 0;
-    min-height: 1rem;
+  svg {
     min-width: 1rem;
+    min-height: 1rem;
     opacity: 0.5;
-    position: absolute;
-    top: 0;
   }
 `;
 

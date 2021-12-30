@@ -5,7 +5,7 @@ import userImage from 'assets/images/user-photo.jpg';
 import Button from 'components/shared/Button';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { number, object, string } from 'yup';
 import {
   DialButtonContent,
   ErrorMessage,
@@ -19,14 +19,12 @@ import {
   UserName,
 } from './contact-form.styles';
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    message: yup.string().required(),
-    name: yup.string().required(),
-    phoneNumber: yup.number().required(),
-  })
-  .required();
+const schema = object({
+  email: string().email().required(),
+  message: string().required(),
+  name: string().required(),
+  phoneNumber: number().required(),
+}).required();
 
 /**
  * Listing page contact-form section.
@@ -61,7 +59,11 @@ function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input {...register('name')} placeholder="Name" />
         <ErrorMessage>{errors.name?.message}</ErrorMessage>
-        <Input {...register('phoneNumber')} placeholder="Phone Number" />
+        <Input
+          type="number"
+          {...register('phoneNumber')}
+          placeholder="Phone Number"
+        />
         <ErrorMessage>{errors.phoneNumber?.message}</ErrorMessage>
         <Input {...register('email')} placeholder="Email" />
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
