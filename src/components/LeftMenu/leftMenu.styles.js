@@ -4,7 +4,7 @@ import colors from 'styles/colors';
 
 const fadeIn = keyframes`
 from {
-    max-width: 22rem;
+    max-width: 15rem;
   }
   to {
     display: flex;
@@ -19,7 +19,7 @@ const fadeOut = keyframes`
     max-width: 5rem;
   }
   to {  
-    max-width: 22rem;
+    max-width: 15rem;
   }
   `;
 
@@ -31,10 +31,8 @@ export const MenuItemsContainer = styled.div`
   }} ease-in-out forwards;
   animation-duration: 0.5s;
   background-color: ${colors.mineShaft};
-  border-radius: 1rem;
-  max-width: 22rem;
-  max-height: 40rem;
-  padding: 1rem 1rem;
+  max-width: 15rem;
+  padding: 1rem;
   text-align: center;
   ${({ animationType }) => {
     if (animationType === 'fadeIn')
@@ -52,8 +50,9 @@ export const MenuAnchor = styled(NavLink)`
   font-weight: 500;
   height: 3.063rem;
   justify-content: start;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+  white-space: nowrap;
   width: 100%;
   &.active {
     background-color: ${colors.green};
@@ -62,11 +61,8 @@ export const MenuAnchor = styled(NavLink)`
 
 export const LinkTitle = styled.p`
   margin-left: 2rem;
-  text-overflow: hidden;
 `;
 
 export const MenuItemInnerContainer = styled.div`
-  padding: 0.1rem 0 0.5rem 0.2rem;
+  padding-bottom: 0.5rem;
 `;
-
-export const IconContainer = styled.span``;

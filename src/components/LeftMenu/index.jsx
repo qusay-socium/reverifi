@@ -9,7 +9,6 @@ import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
 import React, { useState } from 'react';
 import {
-  IconContainer,
   LinkTitle,
   MenuAnchor,
   MenuItemInnerContainer,
@@ -26,7 +25,7 @@ function LeftMenu() {
 
   return (
     <MenuItemsContainer animationType={animationType}>
-      <IconContainer>
+      <span>
         <MenuItemInnerContainer>
           <Menu
             onClick={() =>
@@ -36,53 +35,53 @@ function LeftMenu() {
             }
           />
         </MenuItemInnerContainer>
-      </IconContainer>
+      </span>
       <MenuAnchor to="/left-menu-test">
-        <IconContainer>
+        <span>
           <Dashboard />
-        </IconContainer>
+        </span>
         <LinkTitle>Dashboard</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
-          <List />
-        </IconContainer>
-        <LinkTitle>List</LinkTitle>
+      <MenuAnchor to="/left-menu-test/My-Roles">
+        <span>
+          <UserRole />
+        </span>
+        <LinkTitle>My Roles</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
+      <MenuAnchor to="/left-menu-test/List-Properties<">
+        <span>
+          <List />
+        </span>
+        <LinkTitle>List Properties</LinkTitle>
+      </MenuAnchor>
+      <MenuAnchor to="/left-menu-test/Transaction">
+        <span>
           <Transaction />
-        </IconContainer>
+        </span>
         <LinkTitle>Transaction</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
+      <MenuAnchor to="/left-menu-test/Saved">
+        <span>
           <Saved />
-        </IconContainer>
+        </span>
         <LinkTitle>Saved</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
+      <MenuAnchor to="/left-menu-test/My-Profile">
+        <span>
           <UserProfile />
-        </IconContainer>
+        </span>
         <LinkTitle>My Profile</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
-          <UserRole />
-        </IconContainer>
-        <LinkTitle>My Profile</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
+      <MenuAnchor to="/left-menu-test/Settings">
+        <span>
           <Settings />
-        </IconContainer>
+        </span>
         <LinkTitle>Settings</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/lgrgrgeft-menu-test">
-        <IconContainer>
+      <MenuAnchor to="/left-menu-test/logout">
+        <span>
           <Logout />
-        </IconContainer>
+        </span>
         <LinkTitle>Log Out</LinkTitle>
       </MenuAnchor>
     </MenuItemsContainer>
