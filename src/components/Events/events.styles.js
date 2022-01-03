@@ -179,11 +179,8 @@ export const Description = styled.div`
   padding: 0.81rem 0.87rem 0.43rem 0.43rem;
 `;
 
-export const LeftContent = styled.div`
-  color: ${colors.mineShaft};
-`;
-
 export const EventHeader = styled.h4`
+  color: ${colors.mineShaft};
   font-size: 1rem;
   font-weight: 400;
   margin: 0.12rem 0 0.31rem 0;
@@ -195,8 +192,6 @@ export const EventTimePlace = styled.h5`
   margin: 0;
   opacity: 0.5;
 `;
-
-export const RightContent = styled.div``;
 
 export const Buttons = styled.div`
   display: flex;

@@ -19,9 +19,7 @@ import {
   EventTimePlace,
   EventType,
   FilterList,
-  LeftContent,
   MainContainer,
-  RightContent,
   ShareButton,
   Title,
 } from './events.styles';
@@ -34,11 +32,21 @@ import {
 function Events() {
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const changeActive = (e) => {
-    const theActiveFilter = e.target.textContent.toLowerCase();
+  /**
+   * Changes the state of the feature component (can be either active or inactive).
+   *
+   * @param {event} event The event triggered by the click.
+   */
+  const changeActive = (event) => {
+    const theActiveFilter = event.target.textContent.toLowerCase();
     setActiveFilter(theActiveFilter);
   };
 
+  /**
+   * Filters events data depending on if it was already established or not (can be either all, past or upcoming).
+   *
+   * @return {Array} Filtered array.
+   */
   const filterData = () =>
     data.filter(
       (item) => activeFilter === 'all' || item.establish === activeFilter
@@ -122,13 +130,13 @@ function Events() {
                   {day} <br /> {month}
                 </EventDate>
                 <Description>
-                  <LeftContent>
+                  <div>
                     <EventHeader>{item.title}</EventHeader>
                     <EventTimePlace>
                       {item.time} @{item.place}
                     </EventTimePlace>
-                  </LeftContent>
-                  <RightContent>
+                  </div>
+                  <div>
                     <Buttons>
                       <AddButton type="button">
                         <AddSVG />
@@ -141,7 +149,7 @@ function Events() {
                       <PeopleSVG />
                       {item.attendees}
                     </Attendees>
-                  </RightContent>
+                  </div>
                 </Description>
               </Card>
             );
