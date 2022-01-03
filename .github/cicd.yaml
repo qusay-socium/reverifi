@@ -1,0 +1,35 @@
+ on:
+  push:
+    branches:
+      - devOpsCI
+
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: reverifi-frontend
+        key: ${{ secrets.FRONT_END_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          export REACT_APP_API_URL=https://reverifi.sociumtech.com
+          echo $REACT_APP_API_URL
+          cd /home/reverifi-frontend/reverifi && git pull origin main
+          cd /home/reverifi-frontend/reverifi
+          /usr/bin/npm install
+          /usr/bin/npm ci
+          /usr/bin/npm cache clean --force;
+          /usr/bin/npm cache verify
+          /usr/bin/npm run build
+
+
+
+
+
