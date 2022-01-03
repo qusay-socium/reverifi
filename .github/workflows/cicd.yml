@@ -19,7 +19,6 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           export REACT_APP_API_URL=https://reverifi.sociumtech.com
-          echo $REACT_APP_API_URL
           cd /home/reverifi-frontend/reverifi && git pull origin main
           cd /home/reverifi-frontend/reverifi
           /usr/bin/npm install
