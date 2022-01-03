@@ -3,7 +3,6 @@
     branches:
       - devOpsCI
 
-
 jobs:
   build:
     name: Build
