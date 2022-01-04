@@ -1,6 +1,6 @@
+import Card from 'components/home/FeaturedListingCard';
 import React from 'react';
 import Slider from 'react-slick';
-import Card from './Card/Card';
 import data from './data';
 import {
   SectionContainer,
