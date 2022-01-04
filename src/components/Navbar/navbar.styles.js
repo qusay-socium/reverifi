@@ -13,7 +13,6 @@ export const BroadNavContainer = styled.div`
   font-size: 0.875rem;
   height: 5rem;
   justify-content: center;
-  margin-bottom: 2rem;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -158,6 +157,7 @@ export const StyledInput = styled.input`
 
   ${mq.desktopMax`
     font-size: 1.2rem;
+    
     ::placeholder {
       font-size: 1.2rem;
     }

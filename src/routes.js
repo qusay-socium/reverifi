@@ -3,11 +3,12 @@ import { lazy } from 'react';
 /**
  * Objects of routes to determine correct component to load based on URL.
  *
+ * @property {boolean} adminLayout Wrap the page with admin layout.
  * @property {JSX.Element} component React component to render.
- * @property {boolean}     exact     When true, will only match if the path matches the location.pathname exactly.
- * @property {string}      label     A name used for react `key` prop.
- * @property {string}      path      Any valid URL path.
- * @property {string}      title     Page title.
+ * @property {boolean} exact When true, will only match if the path matches the location.pathname exactly.
+ * @property {string} label A name used for react `key` prop.
+ * @property {string} path Any valid URL path.
+ * @property {string} title Page title.
  */
 const routes = [
   {
@@ -34,6 +35,14 @@ const routes = [
     label: 'verify-phone',
     path: '/verify-phone',
     title: 'Verify Phone',
+  },
+  {
+    // this is only for testing purposes
+    adminLayout: true,
+    component: lazy(() => import('pages/TestSideBar')),
+    label: 'test-side-bar',
+    path: '/test-side-bar',
+    title: 'Test Sidebar',
   },
   {
     component: lazy(() => import('pages/NotFound')),
