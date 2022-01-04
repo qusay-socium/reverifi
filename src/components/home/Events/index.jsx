@@ -1,6 +1,6 @@
+import Card from 'components/home/Card';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import Card from '../Card';
 import data from './data';
 import {
   CardsContainer,
@@ -9,6 +9,33 @@ import {
   MainContainer,
   Title,
 } from './events.styles';
+
+/**
+ * Slider responsive config
+ */
+const responsiveConfig = [
+  {
+    breakpoint: 650,
+    settings: {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+    },
+  },
+  {
+    breakpoint: 980,
+    settings: {
+      slidesToScroll: 2,
+      slidesToShow: 2,
+    },
+  },
+  {
+    breakpoint: 1200,
+    settings: {
+      slidesToScroll: 3,
+      slidesToShow: 3,
+    },
+  },
+];
 
 /**
  * Home page events section.
@@ -36,30 +63,6 @@ function Events() {
     data.filter(
       ({ establish }) => isActive === 'all' || establish === isActive
     );
-
-  const responsive = [
-    {
-      breakpoint: 650,
-      settings: {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-      },
-    },
-    {
-      breakpoint: 980,
-      settings: {
-        slidesToScroll: 2,
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToScroll: 3,
-        slidesToShow: 3,
-      },
-    },
-  ];
 
   return (
     <MainContainer>
@@ -91,16 +94,11 @@ function Events() {
           slidesToShow={4}
           slidesToScroll={4}
           arrows
-          responsive={responsive}
+          responsive={responsiveConfig}
         >
-          {filterData().map(
-            ({ attendees, date, id, img, place, time, title, type }) => (
-              <Card
-                key={id}
-                data={{ attendees, date, img, place, time, title, type }}
-              />
-            )
-          )}
+          {filterData().map(({ id, ...itemData }) => (
+            <Card key={id} data={itemData} />
+          ))}
         </Slider>
       </CardsContainer>
     </MainContainer>

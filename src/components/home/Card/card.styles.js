@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import { spacing } from '../Events/events.styles';
 
 export const CardContainer = styled.div`
   border-radius: 0.5rem;
-  box-shadow: 0 0.06rem ${spacing.s} ${colors.cornflowerBlue}1f;
+  box-shadow: 0 0.06rem 0.5rem ${colors.cornflowerBlue}1f;
   cursor: pointer;
   outline: none;
   overflow: hidden;
@@ -57,9 +56,9 @@ export const Attendees = styled.h4`
   }
 `;
 
-export const Buttons = styled.div`
+export const ButtonsWrapper = styled.div`
   display: flex;
-  gap: ${spacing.s};
+  gap: 0.5rem;
 `;
 
 export const CardImg = styled.img`

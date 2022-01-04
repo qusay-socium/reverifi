@@ -6,7 +6,7 @@ import React from 'react';
 import {
   AddButton,
   Attendees,
-  Buttons,
+  ButtonsWrapper,
   CardContainer,
   CardImg,
   Description,
@@ -43,14 +43,14 @@ function Card({ data }) {
           </EventTimePlace>
         </div>
         <div>
-          <Buttons>
+          <ButtonsWrapper>
             <AddButton type="button">
               <AddSVG />
             </AddButton>
             <ShareButton type="button">
               <ShareSVG />
             </ShareButton>
-          </Buttons>
+          </ButtonsWrapper>
           <Attendees>
             <PeopleSVG />
             {attendees}

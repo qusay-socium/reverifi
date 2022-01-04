@@ -4,18 +4,12 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
-export const spacing = {
-  md: '2rem',
-  s: '0.5rem',
-  xs: '0.25rem',
-};
-
 export const MainContainer = styled.div`
   background: ${colors.alabaster};
   padding: 2.25rem 0.75rem;
 
   ${mq.desktop`
-    padding: ${spacing.md} 1.75rem;
+    padding: 2rem 1.75rem;
   `}
 `;
 
@@ -25,8 +19,8 @@ export const Title = styled.h3`
   text-align: center;
 
   ${mq.desktop`
-    font-size: ${spacing.md};
-    margin: 0 0 ${spacing.md} 0;
+    font-size: 2rem;
+    margin: 0 0 2rem 0;
   `}
 `;
 
@@ -37,7 +31,7 @@ export const FilterList = styled.div`
   margin: 0 0 1.12rem 0;
 
   ${mq.desktop`
-    margin: 0 0 ${spacing.md} 0;
+    margin: 0 0 2rem 0;
   `}
 `;
 
@@ -51,17 +45,17 @@ export const FilterButton = styled.button`
   font-weight: bold;
   opacity: ${({ isActive }) => (isActive ? '1' : '0.5')};
   outline: none;
-  padding: 0 0 ${spacing.xs} 0;
+  padding: 0 0 0.25rem 0;
   position: relative;
 
   ${({ isActive }) =>
     isActive &&
     `
       :after {
-        border-top-left-radius: ${spacing.xs};
+        border-top-left-radius: 0.25rem;
         border-top: 3px solid ${colors.green};
-        border-top-right-radius: ${spacing.xs};
-        bottom: -${spacing.xs};
+        border-top-right-radius: 0.25rem;
+        bottom: -0.25rem;
         content: '';
         left: 0.125rem;
         position: absolute;
@@ -77,15 +71,15 @@ export const CardsContainer = styled.div`
 
     > div {
       flex: 1;
-      margin: 0 ${spacing.s};
+      margin: 0 0.5rem;
     }
   }
 
   .slick-arrow {
     background: ${colors.green};
     border-radius: 50%;
-    min-height: ${spacing.md};
-    min-width: ${spacing.md};
+    min-height: 2rem;
+    min-width: 2rem;
     z-index: 2;
 
     :hover {
@@ -98,7 +92,7 @@ export const CardsContainer = styled.div`
   }
 
   .slick-prev {
-    left: -${spacing.s};
+    left: -0.5rem;
   }
 
   .slick-prev:before {
@@ -106,7 +100,7 @@ export const CardsContainer = styled.div`
   }
 
   .slick-next {
-    right: -${spacing.s};
+    right: -0.5rem;
   }
 
   .slick-next:before {

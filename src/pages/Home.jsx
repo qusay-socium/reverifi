@@ -1,10 +1,10 @@
-import ClaimAddress from 'components/ClaimAddress';
-import Events from 'components/events/Events';
-import ExploreListing from 'components/ExploreListing';
-import FeaturedListing from 'components/FeaturedListing';
-import ReverifiPlus from 'components/ReverifiPlus';
+import ClaimAddress from 'components/home/ClaimAddress';
+import Events from 'components/home/Events';
+import ExploreListing from 'components/home/ExploreListing';
+import FeaturedListing from 'components/home/FeaturedListing';
+import ReverifiPlus from 'components/home/ReverifiPlus';
+import Storyboard from 'components/home/Storyboard';
 import Footer from 'components/shared/Footer';
-import Storyboard from 'components/Storyboard';
 import React from 'react';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';

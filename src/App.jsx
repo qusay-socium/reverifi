@@ -1,5 +1,5 @@
-import AdminPanelLayout from 'components/AdminPanelLayout';
-import Navbar from 'components/Navbar';
+import AdminPanelLayout from 'components/shared/AdminPanelLayout';
+import Navbar from 'components/shared/Navbar';
 import { UserProvider } from 'contexts/UserContext';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';

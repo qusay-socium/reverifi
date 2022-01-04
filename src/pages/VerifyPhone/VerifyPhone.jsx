@@ -1,5 +1,5 @@
+import VerifyPhoneForm from 'components/verify-phone/VerifyPhoneForm';
 import React from 'react';
-import VerifyPhoneForm from '../../components/VerifyPhoneForm';
 import {
   BottomImage,
   InfoContainer,
