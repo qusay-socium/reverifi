@@ -17,7 +17,7 @@ import {
 } from './SideBar.styles';
 
 /**
- * Left side menu.
+ * Side menu.
  *
  * @return {JSX.Element}
  */
@@ -30,49 +30,49 @@ function SideBar() {
           <Menu />
         </MenuItemInnerContainer>
       </MenuButton>
-      <MenuAnchor to="/left-menu-test">
+      <MenuAnchor to="/test-side-bar">
         <MenuButton type="button">
           <Dashboard />
         </MenuButton>
         <LinkTitle>Dashboard</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/My-Roles">
+      <MenuAnchor to="/test-side-bar/My-Roles">
         <MenuButton type="button">
           <UserRole />
         </MenuButton>
         <LinkTitle>My Roles</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/List-Properties<">
+      <MenuAnchor to="/test-side-bar/List-Properties<">
         <MenuButton type="button">
           <List />
         </MenuButton>
         <LinkTitle>List Properties</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/Transaction">
+      <MenuAnchor to="/test-side-bar/Transaction">
         <MenuButton type="button">
           <Transaction />
         </MenuButton>
         <LinkTitle>Transaction</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/Saved">
+      <MenuAnchor to="/test-side-bar/Saved">
         <MenuButton type="button">
           <Saved />
         </MenuButton>
         <LinkTitle>Saved</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/My-Profile">
+      <MenuAnchor to="/test-side-bar/My-Profile">
         <MenuButton type="button">
           <UserProfile />
         </MenuButton>
         <LinkTitle>My Profile</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/Settings">
+      <MenuAnchor to="/test-side-bar/Settings">
         <MenuButton type="button">
           <Settings />
         </MenuButton>
         <LinkTitle>Settings</LinkTitle>
       </MenuAnchor>
-      <MenuAnchor to="/left-menu-test/logout">
+      <MenuAnchor to="/test-side-bar/logout">
         <MenuButton type="button">
           <Logout />
         </MenuButton>

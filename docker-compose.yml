@@ -11,7 +11,7 @@ services:
       - VIRTUAL_HOST=reverifi.docker
       - REACT_APP_API_URL=http://reverifi-api.docker
     volumes:
-      - /home/mohammad/work/reverifi/reverifi:/app
+      - ${PWD}:/app
     ports:
       - 80
     command: ['/bin/boot.sh']

@@ -36,11 +36,12 @@ const routes = [
     title: 'Verify Phone',
   },
   {
+    // this is only for testing purposes
     adminLayout: true,
     component: lazy(() => import('pages/TestSideBar')),
-    label: 'left-menu-test',
-    path: '/left-menu-test',
-    title: 'left-menu-test',
+    label: 'test-side-bar',
+    path: '/test-side-bar',
+    title: 'test-side-bar',
   },
   {
     component: lazy(() => import('pages/NotFound')),
