@@ -27,7 +27,7 @@ import {
   TextLarge,
   TextMedium,
   TextSmall,
-} from './card.styles';
+} from './featured-listing-card.styles';
 
 function Card({ data }) {
   const { img, tags, personImg, title, location, services, distance, price } =
