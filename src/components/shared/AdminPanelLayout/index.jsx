@@ -1,4 +1,4 @@
-import Sidebar from 'components/Sidebar';
+import Sidebar from 'components/shared/Sidebar';
 import PropTypes from 'prop-types';
 import React from 'react';
 import LayoutContainer from './admin-panel-layout.styles';

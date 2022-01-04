@@ -2,6 +2,7 @@ const colors = {
   alabaster: '#fafafa',
   azure: '#0084fc',
   blue: '#006aff',
+  cornflowerBlue: '#3377ff',
   dustyGrey: '#979797',
   gray: '#6f7076',
   green: '#b2d235',
