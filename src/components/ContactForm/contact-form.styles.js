@@ -39,7 +39,7 @@ export const UserName = styled.h3`
 export const DialButtonContent = styled.div`
   align-items: center;
   display: flex;
-  font-weight: 400;
+  font-weight: normal;
   gap: 0.62rem;
 `;
 

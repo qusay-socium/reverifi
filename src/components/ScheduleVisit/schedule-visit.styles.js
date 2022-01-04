@@ -25,7 +25,7 @@ export const DateContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 400;
+  font-weight: normal;
 
   svg {
     min-width: 1rem;
