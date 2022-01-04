@@ -11,81 +11,75 @@ import React, { useState } from 'react';
 import {
   LinkTitle,
   MenuAnchor,
+  MenuButton,
   MenuItemInnerContainer,
   MenuItemsContainer,
-} from './leftMenu.styles';
+} from './SideBar.styles';
 
 /**
  * Left side menu.
  *
  * @return {JSX.Element}
  */
-function LeftMenu() {
-  const [animationType, setAnimationType] = useState('');
-
+function SideBar() {
+  const [isCollapsed, setIsCollapsed] = useState(' ');
   return (
-    <MenuItemsContainer animationType={animationType}>
-      <span>
+    <MenuItemsContainer isCollapsed={isCollapsed}>
+      <MenuButton type="button" onClick={() => setIsCollapsed(!isCollapsed)}>
         <MenuItemInnerContainer>
-          <Menu
-            onClick={() =>
-              animationType === 'fadeOut' || animationType === ''
-                ? setAnimationType('fadeIn')
-                : setAnimationType('fadeOut')
-            }
-          />
+          <Menu />
         </MenuItemInnerContainer>
-      </span>
+      </MenuButton>
       <MenuAnchor to="/left-menu-test">
-        <span>
+        <MenuButton type="button">
           <Dashboard />
-        </span>
+        </MenuButton>
         <LinkTitle>Dashboard</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/My-Roles">
-        <span>
+        <MenuButton type="button">
           <UserRole />
-        </span>
+        </MenuButton>
         <LinkTitle>My Roles</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/List-Properties<">
-        <span>
+        <MenuButton type="button">
           <List />
-        </span>
+        </MenuButton>
         <LinkTitle>List Properties</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/Transaction">
-        <span>
+        <MenuButton type="button">
           <Transaction />
-        </span>
+        </MenuButton>
         <LinkTitle>Transaction</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/Saved">
-        <span>
+        <MenuButton type="button">
           <Saved />
-        </span>
+        </MenuButton>
         <LinkTitle>Saved</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/My-Profile">
-        <span>
+        <MenuButton type="button">
           <UserProfile />
-        </span>
+        </MenuButton>
         <LinkTitle>My Profile</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/Settings">
-        <span>
+        <MenuButton type="button">
           <Settings />
-        </span>
+        </MenuButton>
         <LinkTitle>Settings</LinkTitle>
       </MenuAnchor>
       <MenuAnchor to="/left-menu-test/logout">
-        <span>
+        <MenuButton type="button">
           <Logout />
-        </span>
+        </MenuButton>
         <LinkTitle>Log Out</LinkTitle>
       </MenuAnchor>
     </MenuItemsContainer>
   );
 }
 
-export default LeftMenu;
+export default SideBar;
