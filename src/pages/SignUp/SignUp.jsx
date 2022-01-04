@@ -4,6 +4,7 @@ import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
+import Button from 'components/shared/Button';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { useUser } from 'contexts/UserContext';
@@ -26,7 +27,6 @@ import {
   SignUpContainer,
   SignUpTerms,
   SocialLinksText,
-  SubmitButton,
   Title,
 } from './sign-up.styles';
 
@@ -129,7 +129,7 @@ function SignUp() {
               </>
             )}
 
-            <SubmitButton type="submit">Continue</SubmitButton>
+            <Button type="submit">Continue</Button>
 
             <SignUpTerms>
               By clicking the &apos;Sign Up&apos; button, you confirm that you

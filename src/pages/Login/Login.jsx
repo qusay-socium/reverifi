@@ -4,6 +4,7 @@ import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
+import Button from 'components/shared/Button';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { useUser } from 'contexts/UserContext';
@@ -23,7 +24,6 @@ import {
   LoginContainer,
   OrText,
   SocialLinksContainer,
-  SubmitButton,
   Title,
 } from './login.styles';
 
@@ -95,7 +95,7 @@ function Login() {
 
           <LinkText>Forgot Password</LinkText>
 
-          <SubmitButton type="submit">Log In</SubmitButton>
+          <Button type="submit">Log In</Button>
         </Form>
 
         <SocialLinksContainer>

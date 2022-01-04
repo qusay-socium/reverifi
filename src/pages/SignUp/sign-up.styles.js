@@ -66,18 +66,6 @@ export const PhoneInputContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const SubmitButton = styled.button`
-  background-color: ${colors.green};
-  border-radius: 1.5rem;
-  border: none;
-  color: ${colors.white};
-  cursor: pointer;
-  font-weight: 600;
-  margin-top: 0.625rem;
-  padding: 0.625rem;
-  text-align: center;
-`;
-
 export const SignUpTerms = styled.p`
   color: ${colors.dustyGrey};
   font-size: 0.8125rem;
@@ -97,10 +85,17 @@ export const OrText = styled.div`
   text-align: center;
 `;
 
-export const SocialButton = styled(SubmitButton)`
-  font-weight: normal;
-  justify-content: center;
+export const SocialButton = styled.button`
+  background-color: ${colors.green};
+  border-radius: 1.5rem;
+  border: none;
+  color: ${colors.white};
+  cursor: pointer;
   display: flex;
+  justify-content: center;
+  margin-top: 0.625rem;
+  padding: 0.625rem;
+  text-align: center;
   width: 100%;
 
   > div {

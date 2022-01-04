@@ -1,6 +1,12 @@
 import useEffectOnce from 'hooks/use-effect-once';
 import PropTypes from 'prop-types';
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import auth from 'services/auth';
 import tokenUtil from 'utils/token';
 
@@ -58,28 +64,31 @@ export function UserProvider({ children }) {
   /**
    * Logout user.
    */
-  const logout = () => {
+  const logout = useCallback(() => {
     tokenUtil.removeToken();
     setIsLoggedIn(false);
     setUserInfo(undefined);
-  };
+  }, []);
 
   /**
    * Update the state based on user token.
    *
    * @param {string} token User token.
    */
-  const setTokenData = (token) => {
-    const { email, name } = tokenUtil.decodeToken(token) || {};
-    // if token not decoded correctly consider the token is invalid and logout the user
-    if (!(email && name)) {
-      logout();
-      return;
-    }
-    tokenUtil.setToken(token);
-    setUserInfo({ email, name });
-    setIsLoggedIn(true);
-  };
+  const setTokenData = useCallback(
+    (token) => {
+      const { email, name } = tokenUtil.decodeToken(token) || {};
+      // if token not decoded correctly consider the token is invalid and logout the user
+      if (!(email && name)) {
+        logout();
+        return;
+      }
+      tokenUtil.setToken(token);
+      setUserInfo({ email, name });
+      setIsLoggedIn(true);
+    },
+    [logout]
+  );
 
   /**
    * Login user.
@@ -87,10 +96,13 @@ export function UserProvider({ children }) {
    * @param {string} email User email.
    * @param {string} password User password.
    */
-  const login = async (email, password) => {
-    const { token } = await auth.login(email, password);
-    setTokenData(token);
-  };
+  const login = useCallback(
+    async (email, password) => {
+      const { token } = await auth.login(email, password);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
 
   /**
    * Sign up new user.
@@ -99,10 +111,13 @@ export function UserProvider({ children }) {
    * @param {string} email User email.
    * @param {string} password User password.
    */
-  const signUp = async (name, email, password) => {
-    const { token } = await auth.signUp(name, email, password);
-    setTokenData(token);
-  };
+  const signUp = useCallback(
+    async (name, email, password) => {
+      const { token } = await auth.signUp(name, email, password);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
 
   useEffectOnce(() => {
     const token = tokenUtil.getToken();
@@ -114,7 +129,7 @@ export function UserProvider({ children }) {
 
   const value = useMemo(
     () => ({ isLoggedIn, login, logout, signUp, userInfo }),
-    [isLoggedIn, userInfo]
+    [isLoggedIn, userInfo, login, logout, signUp]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
