@@ -1,5 +1,5 @@
 import ClaimAddress from 'components/ClaimAddress';
-import Events from 'components/Events';
+import Events from 'components/events/Events';
 import ExploreListing from 'components/ExploreListing';
 import FeaturedListing from 'components/FeaturedListing';
 import ReverifiPlus from 'components/ReverifiPlus';
