@@ -50,7 +50,7 @@ function Card({ data }) {
         <InfoContainer>
           <TextLarge>{title}</TextLarge>
 
-          <TextMedium>{location.location}</TextMedium>
+          <TextMedium>{location}</TextMedium>
 
           <BodyIconsContainer>
             <Container>

@@ -1,18 +1,17 @@
+import pinImg from 'assets/icons/Group-red.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import pinImg from '../../../assets/icons/Group-red.svg';
 
 /**
- * Map component.
+ * Marker component.
  *
- * @param {Object} data data needed for the rendered component
- * @param {lat} number latitude to specifiy where the element has to be shown on the map
- * @param {lng} number longitude to specifiy where the element has to be shown on the map
- * @param {Function} onMouseOverHandler hover event handler
+ * @param {Function} onMouseOverHandler  Hover event handler.
+ * @param {Object}   data                Data needed for the rendered component.
+ * @param {Number}   lat                 Latitude to specifiy where the element has to be shown on the map.
+ * @param {Number}   lng                 Longitude to specifiy where the element has to be shown on the map.
  *
  * @return {JSX.Element}
  */
-
 function Marker({ data, lat, lng, onMouseOverHandler }) {
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -33,7 +32,7 @@ Marker.propTypes = {
   }),
   lat: PropTypes.number,
   lng: PropTypes.number,
-  onMouseOverHandler: PropTypes.func,
+  onMouseOverHandler: PropTypes.func.isRequired,
 };
 
 Marker.defaultProps = {
@@ -42,7 +41,6 @@ Marker.defaultProps = {
   },
   lat: 0,
   lng: 0,
-  onMouseOverHandler: () => {},
 };
 
 export default Marker;

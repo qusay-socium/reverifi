@@ -2,45 +2,64 @@
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import defaultProps from './map-constants';
+import Marker from '../Marker';
+import defaultMapData from './map-constants';
 import { GoogleMapContainer } from './map.styles';
-import Marker from './Marker';
 
 /**
  * Map component.
  *
- * @param {React.Component} ComponentOnMap component that will appear on the map when hovering over marker , this component must accept lng , lat , data as props
- * @param {boolean} isMarkerShown specifiy map to be with or without markers
- * @param {Array} listings data needed for the Marker
+ * @param {React.Component} ComponentOnMap  Component that will appear on the map when hovering over the marker , this component must accept lng , lat , data as props.
+ * @param {boolean}         isMarkerShown   Wheather map markers or not.
+ * @param {Array}           listings        Data needed for the Marker.
  *
  * @return {JSX.Element}
  */
-
 function Map({ ComponentOnMap, isMarkerShown, listings }) {
   const [center, setCenter] = useState();
   const [data, setData] = useState([]);
   const [isMarkerHovered, setIsMarkerHovered] = useState(false);
   const [listingonMap, setListingonMap] = useState({});
+  const { center: defaultCenter, zoom, apiKey } = defaultMapData;
 
+  /**
+   * Show listing on the map.
+   *
+   * @param {Object}  listingData  Listing Data to be shown for each marker , recieves from the marker component when hovering.
+   *
+   */
   const showListingOnMap = (listingData) => {
     setIsMarkerHovered(true);
     setListingonMap(listingData);
   };
 
-  function getAverageCoordinate(coordsList, direction) {
+  /**
+   * get Average Coordinates.
+   *
+   * @param {Array}   coordsList  List of longitude or latitude.
+   * @param {string}  direction   lng or lat
+   *
+   * @return {Number}
+   */
+  const getAverageCoordinate = (coordsList, direction) => {
     const total = coordsList.reduce((acc, current) => acc + current);
     const coordCenter = total
       ? total / coordsList.length
-      : defaultProps.center[direction];
+      : defaultCenter[direction];
     return coordCenter;
-  }
+  };
 
+  /**
+   * get Map Center.
+   *
+   * @return {Object} Center Object with lat & lng properties.
+   */
   const getCenter = () => {
     const tempData = [...listings];
     const latDataList = tempData?.map((item) => item.location.lat);
     const lngDataList = tempData?.map((item) => item.location.lng);
 
-    if (!latDataList || !lngDataList) return defaultProps.center;
+    if (!latDataList || !lngDataList) return defaultCenter;
 
     const avgLngCenter = getAverageCoordinate(lngDataList, 'lng');
     const avgLatCenter = getAverageCoordinate(latDataList, 'lat');
@@ -60,10 +79,10 @@ function Map({ ComponentOnMap, isMarkerShown, listings }) {
   return (
     <GoogleMapContainer>
       <GoogleMapReact
-        bootstrapURLKeys={defaultProps.apiKey}
+        bootstrapURLKeys={apiKey}
         center={center}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={defaultCenter}
+        defaultZoom={zoom}
         onChildMouseLeave={() => setIsMarkerHovered(false)}
         onClick={() => setIsMarkerHovered(false)}
       >

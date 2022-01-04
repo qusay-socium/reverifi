@@ -1,4 +1,4 @@
-const defaultProps = {
+const defaultMapData = {
   apiKey: `${process.env.REACT_APP_API_KEY}`,
   center: {
     lat: 39.84,
@@ -7,4 +7,4 @@ const defaultProps = {
   zoom: 15,
 };
 
-export default defaultProps;
+export default defaultMapData;
