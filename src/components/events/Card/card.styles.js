@@ -4,7 +4,7 @@ import mq from 'styles/media-query';
 import { spacing } from '../Events/events.styles';
 
 export const CardContainer = styled.div`
-  border-radius: 7px;
+  border-radius: 0.5rem;
   box-shadow: 0 0.06rem ${spacing.s} ${colors.cornflowerBlue}1f;
   cursor: pointer;
   outline: none;
@@ -79,7 +79,7 @@ export const Description = styled.div`
 
 export const EventDate = styled.h3`
   background: ${colors.green};
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: ${colors.white};
   font-size: 1.37rem;
   font-weight: normal;
@@ -112,7 +112,7 @@ export const ShareButton = styled(AddButton)`
 export const EventType = styled.div`
   background: ${({ isPersonal }) =>
     isPersonal ? colors.orange : colors.green};
-  border-radius: 4px;
+  border-radius: 0.25rem;
   color: ${colors.white};
   display: none;
   font-size: 0.62rem;
