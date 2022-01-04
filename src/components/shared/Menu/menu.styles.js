@@ -14,8 +14,8 @@ export const StyledMenu = styled.div`
   cursor: initial;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   position: absolute;
-  right: ${({ right }) => right};
-  top: ${({ top }) => top};
+  right: calc(100vw - ${({ right }) => right}px);
+  top: ${({ top }) => top}px;
   transform-origin: top;
   transform: ${({ isOpen }) => (isOpen ? 'scaleY(1)' : 'scaleY(0)')};
   transition: opacity 125ms, transform 125ms;

@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useLayoutEffect, useState } from 'react';
+import debounce from 'utils/debounce';
+import { getScrollbarWidth } from 'utils/window';
 import { OverLay, StyledMenu } from './menu.styles';
-import { debounce, getScrollbarWidth } from './util';
 
 /**
- * Renders Anchored Menu.
+ * Renders anchored Menu.
  *
- * @param {Object}   anchorRef        Anchor element reference.
- * @param {boolean}  isOpen           State of the menu.
- * @param {children} children         JSX.Element.
- * @param {Function} onClose          OnClose handler.
- * @param {boolean}  [isSticky=false] Is anchor sticky.
+ * @param {Object} anchorRef Anchor element reference.
+ * @param {boolean} isOpen State of the menu.
+ * @param {JSX.Element} children Children element.
+ * @param {Function} onClose On close handler.
+ * @param {boolean} [isSticky=false] Is anchor sticky.
  *
  * @return {JSX.Element}
  */
@@ -34,17 +35,16 @@ function Menu({ anchorRef, isOpen, children, onClose, isSticky }) {
     return () => resizeObserver.disconnect();
   }, [isOpen, anchorRef]);
 
-  const getRight = () =>
-    `calc(100vw - (${anchorCoords.right}px + ${getScrollbarWidth()}px))`;
-
-  const getTop = () =>
-    `${
-      anchorCoords.bottom + (isSticky ? 0 : document.documentElement.scrollTop)
-    }px`;
-
   return (
     <>
-      <StyledMenu right={getRight()} top={getTop()} isOpen={isOpen}>
+      <StyledMenu
+        right={anchorCoords.right + getScrollbarWidth()}
+        top={
+          anchorCoords.bottom +
+          (isSticky ? 0 : document.documentElement.scrollTop)
+        }
+        isOpen={isOpen}
+      >
         {children}
       </StyledMenu>
       <OverLay isOpen={isOpen} onClick={onClose} />

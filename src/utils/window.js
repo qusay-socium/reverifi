@@ -1,13 +1,16 @@
 /**
- * used to get the actual scrollbar width if exists.
+ * Get the scrollbar width if it exists.
  *
- * @return {int} actual scrollbar width
+ * @return {number} Scrollbar width.;
  */
 export const getScrollbarWidth = () => {
+  // TODO: find a better implementation
   const scrollBarVisible =
     window.innerHeight !== document.documentElement.scrollHeight;
 
-  if (!scrollBarVisible) return 0;
+  if (!scrollBarVisible) {
+    return 0;
+  }
 
   const outer = document.createElement('div');
   outer.style.visibility = 'hidden';
@@ -25,21 +28,6 @@ export const getScrollbarWidth = () => {
   return scrollbarWidth;
 };
 
-/**
- * debounces a function.
- *
- * @param {Function}  fn anchor element reference.
- * @param {int}       ms state of the menu.
- *
- * @return {Function}
- */
-export const debounce = (fn, ms) => {
-  let timer;
-  return (...rest) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      timer = null;
-      fn(...rest);
-    }, ms);
-  };
+export default {
+  getScrollbarWidth,
 };
