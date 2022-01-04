@@ -96,8 +96,12 @@ function VerifyPhoneForm() {
       </CodeContainer>
 
       <ButtonsContainer>
-        <VerifyButton type="submit">Verify</VerifyButton>
-        <CancelButton type="button">Cancel</CancelButton>
+        <VerifyButton type="submit" onClick={() => {}}>
+          Verify
+        </VerifyButton>
+        <CancelButton type="button" onClick={() => {}}>
+          Cancel
+        </CancelButton>
       </ButtonsContainer>
     </FormContainer>
   );
