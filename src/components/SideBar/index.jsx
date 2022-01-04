@@ -7,79 +7,83 @@ import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 import { ReactComponent as Transaction } from 'assets/icons/transaction.svg';
 import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
+import { useUser } from 'contexts/UserContext';
 import React, { useState } from 'react';
 import {
   LinkTitle,
-  MenuAnchor,
-  MenuButton,
-  MenuItemInnerContainer,
+  MenuIconContainer,
+  MenuItem,
   MenuItemsContainer,
-} from './SideBar.styles';
+  MenuLink,
+} from './sidebar.styles';
 
 /**
  * Side menu.
  *
  * @return {JSX.Element}
  */
-function SideBar() {
-  const [isCollapsed, setIsCollapsed] = useState(' ');
+function Sidebar() {
+  const { isLoggedIn } = useUser();
+
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <MenuItemsContainer isCollapsed={isCollapsed}>
-      <MenuButton type="button" onClick={() => setIsCollapsed(!isCollapsed)}>
-        <MenuItemInnerContainer>
+    <MenuItemsContainer isCollapsed={isCollapsed} isLoggedIn={isLoggedIn}>
+      <MenuItem onClick={() => setIsCollapsed(!isCollapsed)}>
+        <MenuIconContainer>
           <Menu />
-        </MenuItemInnerContainer>
-      </MenuButton>
-      <MenuAnchor to="/test-side-bar">
-        <MenuButton type="button">
+        </MenuIconContainer>
+      </MenuItem>
+      <MenuLink to="/test-side-bar">
+        <MenuItem type="button">
           <Dashboard />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>Dashboard</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/My-Roles">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/My-Roles">
+        <MenuItem type="button">
           <UserRole />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>My Roles</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/List-Properties<">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/List-Properties<">
+        <MenuItem type="button">
           <List />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>List Properties</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/Transaction">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/Transaction">
+        <MenuItem type="button">
           <Transaction />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>Transaction</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/Saved">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/Saved">
+        <MenuItem type="button">
           <Saved />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>Saved</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/My-Profile">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/My-Profile">
+        <MenuItem type="button">
           <UserProfile />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/Settings">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/Settings">
+        <MenuItem type="button">
           <Settings />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>Settings</LinkTitle>
-      </MenuAnchor>
-      <MenuAnchor to="/test-side-bar/logout">
-        <MenuButton type="button">
+      </MenuLink>
+      <MenuLink to="/test-side-bar/logout">
+        <MenuItem type="button">
           <Logout />
-        </MenuButton>
+        </MenuItem>
         <LinkTitle>Log Out</LinkTitle>
-      </MenuAnchor>
+      </MenuLink>
     </MenuItemsContainer>
   );
 }
 
-export default SideBar;
+export default Sidebar;

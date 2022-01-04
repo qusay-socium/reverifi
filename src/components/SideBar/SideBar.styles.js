@@ -1,51 +1,55 @@
+/* eslint-disable prettier/prettier */
 import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
+// TODO: move these values to shared place
+const NAVAR_HEIGHT = '5rem';
+const NAVAR_HEIGHT_NON_LOGGED_IN = '4.375rem';
+
 const fadeIn = keyframes`
-from {
+  from {
     max-width: 15rem;
   }
+  
   to {
-    dipslay:flex;
-    justify-content: start;
     max-width: 5rem;
-    position:static;
-    text-align: center;
   }
-  `;
+`;
 
 const fadeOut = keyframes`
   from {
     max-width: 5rem;
   }
+  
   to {  
     max-width: 15rem;
   }
-  `;
+`;
 
 export const MenuItemsContainer = styled.div`
-  animation: ${({ isCollapsed }) => {
-    if (isCollapsed === true) return fadeOut;
-    if (isCollapsed === false) return fadeIn;
-    return '';
-  }} ease-in-out forwards;
+  animation: ${({ isCollapsed }) => (isCollapsed ? fadeOut : fadeIn)}
+    ease-in-out forwards;
   animation-duration: 0.4s;
   background-color: ${colors.mineShaft};
-  height: calc(100vh - 4.375rem);
+  height: calc(100vh - ${NAVAR_HEIGHT});
+  display: flex;
+  flex-direction: column;
   max-width: 15rem;
   padding: 0 1rem;
   position: fixed;
   text-align: center;
   width: 100%;
+
   ${mq.tablet`
-    position:static;
+    height: calc(100vh - ${({ isLoggedIn }) =>
+      isLoggedIn ? NAVAR_HEIGHT : NAVAR_HEIGHT_NON_LOGGED_IN});
+    position: static;
   `}
-}
 `;
 
-export const MenuAnchor = styled(NavLink)`
+export const MenuLink = styled(NavLink)`
   align-items: center;
   border-radius: 6px;
   color: ${colors.white};
@@ -57,6 +61,7 @@ export const MenuAnchor = styled(NavLink)`
   text-decoration: none;
   white-space: nowrap;
   width: 100%;
+
   &.active {
     background-color: ${colors.green};
   }
@@ -67,13 +72,18 @@ export const LinkTitle = styled.p`
   overflow: hidden;
 `;
 
-export const MenuButton = styled.button`
+export const MenuItem = styled.span`
   background-color: inherit;
   padding: 0;
   border: none;
   outline: none;
 `;
 
-export const MenuItemInnerContainer = styled.div`
+export const MenuIconContainer = styled.div`
   padding: 1rem 0rem;
+  display: flex;
+
+  > svg {
+    margin: 0 auto 0 0.75rem;
+  }
 `;

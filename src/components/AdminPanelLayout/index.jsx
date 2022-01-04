@@ -1,19 +1,20 @@
-import SideBar from 'components/SideBar';
+import Sidebar from 'components/Sidebar';
 import PropTypes from 'prop-types';
 import React from 'react';
-import LayoutContainer from './AdminPanelLayout.styles';
+import LayoutContainer from './admin-panel-layout.styles';
 
 /**
- * Higher Order Component take the componenet and wrap it with the side menu.
+ * HOC to wrap component with the side menu.
  *
- * @param {JSX.Element} children A component to wrap.
+ * @param {Object} props The component props.
+ * @param {JSX.Element} props.children The child component to wrap.
  *
  * @return {JSX.Element}
  */
 function AdminPanelLayout({ children }) {
   return (
     <LayoutContainer>
-      <SideBar />
+      <Sidebar />
       {children}
     </LayoutContainer>
   );
@@ -22,4 +23,5 @@ function AdminPanelLayout({ children }) {
 AdminPanelLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 export default AdminPanelLayout;
