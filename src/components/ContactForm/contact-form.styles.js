@@ -84,5 +84,4 @@ export const MessageLabel = styled.label`
 export const ErrorMessage = styled.p`
   color: ${colors.red};
   font-size: 0.75rem;
-  margin: 0 0 0.31rem 0;
 `;
