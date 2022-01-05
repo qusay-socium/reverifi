@@ -50,14 +50,12 @@ function PrevArrow({ onClick }) {
 /**
  * Listing page slider section.
  *
- * @param {Object} props      The component props.
- * @param {Object} props.data The component data.
+ * @param {Object} props        The component props.
+ * @param {Object} props.images The component data.
  *
  * @return {JSX.Element}
  */
-function ListingPageSlider({ data }) {
-  const { images } = data;
-
+function ListingPageSlider({ images }) {
   const [imageIndex, setImageIndex] = useState(0);
 
   const settings = {
@@ -110,14 +108,12 @@ function ListingPageSlider({ data }) {
 }
 
 ListingPageSlider.propTypes = {
-  data: PropTypes.shape({
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        alt: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      alt: PropTypes.string.isRequired,
+      src: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default ListingPageSlider;

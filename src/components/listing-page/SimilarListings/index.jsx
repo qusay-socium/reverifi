@@ -1,4 +1,4 @@
-import Card from 'components/FeaturedListing/Card/Card';
+import Card from 'components/home/FeaturedListingCard';
 import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,14 +25,12 @@ const slideBreakPoints = [
 /**
  * Home page featured listing section.
  *
- * @param {Object} props      The component props.
- * @param {Object} props.data The component data.
+ * @param {Object} props                 The component props.
+ * @param {Object} props.similarListings The component data.
  *
  * @return {JSX.Element}
  */
-function SimilarListings({ data }) {
-  const { similarListings } = data;
-
+function SimilarListings({ similarListings }) {
   return (
     <Container>
       <Title>Similar Listings</Title>
@@ -78,23 +76,21 @@ function SimilarListings({ data }) {
 }
 
 SimilarListings.propTypes = {
-  data: PropTypes.shape({
-    similarListings: PropTypes.arrayOf(
-      PropTypes.shape({
-        distance: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired,
-        location: PropTypes.string.isRequired,
-        personImg: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        services: PropTypes.shape({
-          bathroom: PropTypes.number.isRequired,
-          bedroom: PropTypes.number.isRequired,
-        }).isRequired,
-        tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-        title: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }).isRequired,
+  similarListings: PropTypes.arrayOf(
+    PropTypes.shape({
+      distance: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      personImg: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      services: PropTypes.shape({
+        bathroom: PropTypes.number.isRequired,
+        bedroom: PropTypes.number.isRequired,
+      }).isRequired,
+      tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default SimilarListings;

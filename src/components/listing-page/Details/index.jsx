@@ -12,14 +12,12 @@ import {
 /**
  * Listing page details section.
  *
- * @param {Object} props      The component props.
- * @param {Object} props.data The component data.
+ * @param {Object} props         The component props.
+ * @param {Object} props.details The component data.
  *
  * @return {JSX.Element}
  */
-function Details({ data }) {
-  const { details } = data;
-
+function Details({ details }) {
   return (
     <Container>
       <Title> Details </Title>
@@ -36,18 +34,16 @@ function Details({ data }) {
 }
 
 Details.propTypes = {
-  data: PropTypes.shape({
-    details: PropTypes.shape({
-      Baths: PropTypes.string.isRequired,
-      Beds: PropTypes.string.isRequired,
-      Garages: PropTypes.string.isRequired,
-      'Home Area': PropTypes.string.isRequired,
-      'Lot Dimensions': PropTypes.string.isRequired,
-      'Lot area': PropTypes.string.isRequired,
-      Rooms: PropTypes.string.isRequired,
-      Status: PropTypes.string.isRequired,
-      'Year Built': PropTypes.string.isRequired,
-    }).isRequired,
+  details: PropTypes.shape({
+    Baths: PropTypes.string.isRequired,
+    Beds: PropTypes.string.isRequired,
+    Garages: PropTypes.string.isRequired,
+    'Home Area': PropTypes.string.isRequired,
+    'Lot Dimensions': PropTypes.string.isRequired,
+    'Lot area': PropTypes.string.isRequired,
+    Rooms: PropTypes.string.isRequired,
+    Status: PropTypes.string.isRequired,
+    'Year Built': PropTypes.string.isRequired,
   }).isRequired,
 };
 

@@ -14,6 +14,7 @@ import {
   SubmitButton,
   SubmitOffer,
 } from 'components/listing-page/OfferDetails/offer-details.styles';
+import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -27,6 +28,8 @@ import React from 'react';
  */
 function OfferDetails({ data }) {
   const { price, location } = data;
+
+  const { setShowModal } = useShowModal();
 
   return (
     <Container>
@@ -66,11 +69,7 @@ function OfferDetails({ data }) {
         >
           <HeartIcon />
         </LogoButton>
-        <LogoButton
-          onClick={() => {
-            /* Todo */
-          }}
-        >
+        <LogoButton onClick={() => setShowModal(true)}>
           <ShareIcon />
         </LogoButton>
         <MoreIcon />
