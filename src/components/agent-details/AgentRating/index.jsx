@@ -18,7 +18,6 @@ import {
   StyledImg,
   StyledSlide,
   TextArea,
-  Title,
 } from './agent-rating.style';
 
 /**
@@ -49,7 +48,7 @@ function AgentRating() {
   return (
     <RatingContainer>
       <RatingForm>
-        <Title>Rating And Reviews</Title>
+        <h1>Rating And Reviews</h1>
         <RatingBoxContainer>
           {Object.entries(likes).map(([name, value]) => (
             <RatingBox key={name} onClick={() => onLike(name)}>
@@ -84,8 +83,10 @@ function AgentRating() {
               <StyledImg src={AgentPhoto} />
               <CommentSection>
                 <CommentText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et
+                  </p>
                   <span>8 days ago</span>
                 </CommentText>
                 <CommentLike>
@@ -102,8 +103,10 @@ function AgentRating() {
           <Comment key={index}>
             <StyledImg src={AgentPhoto} />
             <CommentText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna
+              </p>
               <span>8 days ago</span>
             </CommentText>
             <CommentLike>

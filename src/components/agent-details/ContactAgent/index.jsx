@@ -14,7 +14,7 @@ function ContactAgent() {
         e.preventDefault();
       }}
     >
-      <p>Contact John Doe</p>
+      <h2>Contact John Doe</h2>
       <InputField type="text" id="name" name="name" placeholder="Name" />
       <InputField
         type="text"

@@ -3,11 +3,6 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 import styled from 'styled-components';
 
-export const Title = styled.span`
-  font-weight: 600;
-  font-size: 2rem;
-`;
-
 export const RatingContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,6 +24,10 @@ export const RatingForm = styled.form`
   flex-direction: column;
   flex: 1;
   gap: 2.8125rem;
+
+  h1 {
+    margin: 0;
+  }
 `;
 
 export const TextArea = styled.textarea`
@@ -37,7 +36,6 @@ export const TextArea = styled.textarea`
   border: 0.0823rem solid ${colors.mercury};
   height: 12.375rem;
   outline: none;
-  overflow: hidden;
   padding: 1.5rem 1.5rem;
   resize: none;
   width: 100%;
@@ -74,6 +72,10 @@ export const CommentText = styled.div`
   display: inline;
   line-height: 1.1875rem;
 
+  p {
+    margin: 0;
+  }
+
   span {
     color: ${colors.dustyGrey};
     float: right;
@@ -97,8 +99,6 @@ export const CommentsWrapper = styled.div`
 `;
 
 export const StyledSlide = styled.div`
-  display: flex;
-
   ${mq.desktop`
     display:none
   `}
@@ -159,7 +159,6 @@ export const RatingBox = styled.div`
   display: flex;
   flex: 50%;
   font-size: 1.25rem;
-  font-weight: 500;
 `;
 
 export const CommentSection = styled.div`

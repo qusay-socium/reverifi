@@ -47,8 +47,10 @@ export const StyledImg = styled.img`
   width: 100%;
 `;
 
-export const AgentBasicInformation = styled.div`
+export const AgentBasicInformation = styled.ul`
   flex: 3;
+  margin: 0;
+  padding: 0;
 `;
 
 export const AgentName = styled.div`
@@ -56,9 +58,8 @@ export const AgentName = styled.div`
   display: flex;
   gap: 0.875rem;
 
-  span {
-    font-size: 2rem;
-    font-weight: 600;
+  h2 {
+    margin: 0;
   }
 `;
 
@@ -68,11 +69,11 @@ export const ContactInfo = styled.div`
   gap: 1.4rem;
 `;
 
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.li`
   display: flex;
 
   ${mq.tablet`
-    font-size:0.9375rem
+    font-size:0.875rem
   `};
 
   ${mq.tabletWide`
@@ -87,40 +88,37 @@ export const InfoKey = styled.div`
   gap: 0.5rem;
 `;
 
-export const InfoValue = styled.div`
+export const InfoValue = styled.h4`
   flex: 3;
-  font-weight: 600;
+  margin: 0;
   width: max-content;
-
-  span {
-    word-break: break-all;
-  }
+  word-break: break-all;
 `;
 
 export const SocialMediaIcons = styled.div`
-  display: flex;
   align-items: center;
-  padding: 1rem;
+  display: flex;
   gap: 0.5rem;
+  padding: 1rem;
 
   path:first-child {
     fill: ${colors.green};
   }
 `;
 
-export const CompanyInformation = styled.div`
+export const CompanyInformation = styled.ul`
   background-color: ${colors.white};
   border-radius: 0.625rem;
   flex: 2;
+  margin: 0;
   padding: 0rem 0 1rem 1rem;
 
-  p {
-    font-size: 1.25rem;
-    font-weight: 600;
+  h2 {
+    margin-bottom: 0;
   }
 `;
 
 export const AboutAgent = styled.div`
-  line-height: 1.25rem;
   flex: 3;
+  line-height: 1.25rem;
 `;

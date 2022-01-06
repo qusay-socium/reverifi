@@ -10,11 +10,6 @@ export const ListingsContainer = styled.div`
   `};
 `;
 
-export const Title = styled.p`
-  font-size: 2rem;
-  font-weight: 600;
-`;
-
 export const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,10 +35,8 @@ export const Image = styled.img`
 export const CornerItems = styled.div`
   display: flex;
   position: absolute;
-  bottom: ${(props) => (props.bottom ? '1rem' : null)};
-  left: ${(props) => (props.left ? '1rem' : null)};
-  right: ${(props) => (props.right ? '1rem' : null)};
-  top: ${(props) => (props.top ? '1rem' : null)};
+  ${({ isBottom }) => (isBottom ? `bottom: 1rem;` : `top: 1rem;`)}
+  ${({ isRight }) => (isRight ? `right: 1rem;` : `left: 1rem;`)}
 `;
 
 export const Tag = styled.div`
@@ -55,8 +48,8 @@ export const Tag = styled.div`
 `;
 
 export const LocationTagContainer = styled.div`
-  display: flex;
   color: ${colors.white};
+  display: flex;
   font-size: 0.875rem;
   gap: 0.5rem;
 `;
@@ -69,7 +62,7 @@ export const PhotosNumberContainer = styled.div`
   gap: 0.5rem;
 `;
 
-export const CardInformation = styled.div`
+export const CardInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -82,21 +75,17 @@ export const CardHeader = styled.div`
 `;
 
 export const CardPrice = styled.div`
+  color: ${colors.green};
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 
-  p {
-    color: ${colors.green};
-    font-size: 1.375rem;
-    font-weight: 600;
+  h3 {
     margin: 0;
   }
 
   span {
     color: ${colors.dustyGrey};
-    font-size: 0.875rem;
-    font-weight: 500;
   }
 `;
 
@@ -108,13 +97,9 @@ export const HeaderIcons = styled.div`
 
 export const IconGroup = styled.div`
   align-items: center;
+  color: ${colors.dustyGrey};
   display: flex;
   gap: 0.5rem;
-`;
-
-export const ServiceQuantity = styled.span`
-  color: ${colors.dustyGrey};
-  font-size: 1.125rem;
 `;
 
 export const CardBody = styled.div`
@@ -124,7 +109,6 @@ export const CardBody = styled.div`
 
   p {
     font-size: 1.3125rem;
-    font-weight: 400;
     margin: 0rem;
   }
 `;
@@ -134,8 +118,8 @@ export const BodyContainers = styled.div`
   justify-content: space-between;
 
   svg {
-    height: 1.75rem !important;
-    width: 1.75rem !important;
+    height: 1.75rem;
+    width: 1.75rem;
   }
 `;
 

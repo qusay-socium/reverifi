@@ -8,27 +8,27 @@ import { ReactComponent as Website } from 'assets/website.svg';
 
 export const agentData = [
   {
-    icon: Phone,
+    Icon: Phone,
     key: 'Phone',
     value: '222-222-222',
   },
   {
-    icon: Email,
+    Icon: Email,
     key: 'Email',
     value: 'john.dow@gmail.com',
   },
   {
-    icon: Address,
+    Icon: Address,
     key: 'Address',
     value: '@somewhere',
   },
   {
-    icon: Language,
+    Icon: Language,
     key: 'Language',
     value: 'spanish, English',
   },
   {
-    icon: ServiceArea,
+    Icon: ServiceArea,
     key: 'Service Area',
     value: 'New York, Alaska',
   },
@@ -39,17 +39,17 @@ export const aboutText =
 
 export const companyData = [
   {
-    icon: Company,
+    Icon: Company,
     key: 'Company',
     value: 'Company Name',
   },
   {
-    icon: Email,
+    Icon: Email,
     key: 'Email',
     value: 'john.doe@gmail.com',
   },
   {
-    icon: Website,
+    Icon: Website,
     key: 'Website',
     value: 'website.com',
   },

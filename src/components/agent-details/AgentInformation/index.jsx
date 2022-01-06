@@ -29,13 +29,13 @@ import {
  *
  * @return {JSX.Element}
  */
-function AgentDetails() {
+function AgentInformation() {
   return (
     <AgentInformationContainer>
       <AgentItemsContainer>
         <AgentSection>
           <ImageContainer>
-            <StyledImg src={AgentPhoto} width="300" />
+            <StyledImg src={AgentPhoto} />
             <SocialMediaIcons>
               <Facebook />
               <Instagram />
@@ -46,18 +46,16 @@ function AgentDetails() {
           <AgentBasicInformation>
             <ContactInfo>
               <AgentName>
-                <span>John Doe</span>
+                <h2>John Doe</h2>
                 <Like />
               </AgentName>
-              {agentData.map((info) => (
-                <InfoWrapper key={info.key}>
+              {agentData.map(({ key, value, Icon }) => (
+                <InfoWrapper key={key}>
                   <InfoKey>
-                    <info.icon />
-                    <span>{info.key}</span>
+                    <Icon />
+                    <span>{key}</span>
                   </InfoKey>
-                  <InfoValue>
-                    <span>{info.value}</span>
-                  </InfoValue>
+                  <InfoValue>{value}</InfoValue>
                 </InfoWrapper>
               ))}
             </ContactInfo>
@@ -67,16 +65,14 @@ function AgentDetails() {
         <AgentSection>
           <CompanyInformation>
             <ContactInfo>
-              <p>Company Information</p>
-              {companyData.map((info) => (
-                <InfoWrapper key={info.key}>
+              <h2>Company Information</h2>
+              {companyData.map(({ key, value, Icon }) => (
+                <InfoWrapper key={key}>
                   <InfoKey>
-                    <info.icon />
-                    <span>{info.key}</span>
+                    <Icon />
+                    <span>{key}</span>
                   </InfoKey>
-                  <InfoValue>
-                    <span>{info.value}</span>
-                  </InfoValue>
+                  <InfoValue>{value}</InfoValue>
                 </InfoWrapper>
               ))}
             </ContactInfo>
@@ -92,4 +88,4 @@ function AgentDetails() {
   );
 }
 
-export default AgentDetails;
+export default AgentInformation;

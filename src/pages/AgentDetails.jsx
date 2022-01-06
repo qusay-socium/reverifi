@@ -1,7 +1,7 @@
 import React from 'react';
-import AgentInformation from 'components/AgentDetails/AgentInformation';
-import AgentListings from 'components/AgentDetails/AgentListings';
-import AgentRating from 'components/AgentDetails/AgentRating';
+import AgentInformation from 'components/agent-details/AgentInformation';
+import AgentListings from 'components/agent-details/AgentListings';
+import AgentRating from 'components/agent-details/AgentRating';
 
 /**
  * Agent Details page component.
@@ -10,11 +10,11 @@ import AgentRating from 'components/AgentDetails/AgentRating';
  */
 function AgentDetails() {
   return (
-    <div>
+    <>
       <AgentInformation />
       <AgentListings />
       <AgentRating />
-    </div>
+    </>
   );
 }
 
