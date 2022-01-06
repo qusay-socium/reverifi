@@ -7,7 +7,8 @@ const StyledButton = styled.button`
   border: none;
   color: ${({ color }) => color || colors.white};
   cursor: pointer;
-  font-size: ${({ fontSize }) => fontSize || '0.75rem'};
+  font-family: Montserrat;
+  font-size: 0.75rem;
   font-weight: 600;
   height: ${({ height }) => height || '2.5rem'};
   outline: none;

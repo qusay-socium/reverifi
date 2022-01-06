@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -47,20 +48,9 @@ export const Paragraph = styled.p`
   `}
 `;
 
-export const Button = styled.button`
-  background: ${colors.green};
+export const MoreButton = styled(Button)`
   border-radius: 1.25rem;
-  border: none;
-  color: ${colors.white};
-  font-family: montserrat;
   font-size: 1rem;
-  font-weight: 600;
-  height: 2.5rem;
-  width: 7.3rem;
-
-  :hover {
-    cursor: pointer;
-  }
 `;
 
 export const SecondSection = styled.div`

@@ -2,6 +2,7 @@ import ClaimAddressDesktop from 'assets/images/claim-address-desktop.svg';
 import ClaimAddressMobile from 'assets/images/claim-address-mobile.svg';
 import { ReactComponent as RawLocationPinStar } from 'assets/images/location-pin-star.svg';
 import { ReactComponent as RawLocationPin } from 'assets/images/location-pin.svg';
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -49,6 +50,12 @@ export const AddressInputWrapper = styled.div`
   `}
 `;
 
+export const AddressButton = styled(Button)`
+  background-color: ${colors.white};
+  height: 3.06rem;
+  padding: 0 0;
+`;
+
 export const LocationPinStar = styled(RawLocationPinStar)`
   margin-top: 3.75rem;
   ${mq.tablet`
@@ -81,6 +88,11 @@ export const JoinUs = styled.div`
     justify-content:space-evenly;
     height:4.5625rem
   `}
+`;
+
+export const JoinUsButton = styled(Button)`
+  color: ${colors.mineShaft};
+  background-color: ${colors.white};
 `;
 
 export const JoinUsText = styled.div`
