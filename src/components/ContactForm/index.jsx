@@ -7,6 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 import {
+  DialButton,
   DialButtonContent,
   ErrorMessage,
   Input,
@@ -58,12 +59,12 @@ function ContactForm() {
         <UserImg src={userImage} />
         <div>
           <UserName>John Doe</UserName>
-          <Button type="button" padding="0.75rem 1rem">
+          <DialButton type="button">
             <DialButtonContent>
               <DialLogo />
               222-222-222
             </DialButtonContent>
-          </Button>
+          </DialButton>
         </div>
       </UserInfo>
       <form onSubmit={handleSubmit(onSubmit)}>

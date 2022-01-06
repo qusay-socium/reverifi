@@ -1,5 +1,6 @@
 import LeftArrow from 'assets/visit-left-arrow.svg';
 import RightArrow from 'assets/visit-right-arrow.svg';
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -19,6 +20,12 @@ export const Title = styled.h3`
   color: ${colors.black};
   font-size: 1.37rem;
   margin: 0 0 1.37rem 0;
+`;
+
+export const DateButton = styled(Button)`
+  background-color: ${colors.white};
+  color: black;
+  padding: 0;
 `;
 
 export const DateContainer = styled.div`
@@ -75,8 +82,7 @@ export const DateCard = styled.div`
   }
 `;
 
-export const SubmitDateSection = styled.div`
-  display: flex;
-  gap: 0.62rem;
-  justify-content: center;
+export const SubmitButton = styled(Button)`
+  font-size: 1rem;
+  min-width: 100%;
 `;

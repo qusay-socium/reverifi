@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -34,6 +35,10 @@ export const UserName = styled.h3`
   ${mq.mobile`
     text-align: left;
   `}
+`;
+
+export const DialButton = styled(Button)`
+  padding: 0.75rem 1rem;
 `;
 
 export const DialButtonContent = styled.div`

@@ -1,35 +1,27 @@
 /* eslint-disable react/prop-types */
 import { ReactComponent as DateIcon } from 'assets/date-picker.svg';
-import Button from 'components/shared/Button';
 import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Slider from 'react-slick';
-import colors from 'styles/colors';
 import data from './data';
 import {
+  DateButton,
   DateCard,
   DateContainer,
   DateSliderContainer,
   MainContainer,
-  SubmitDateSection,
+  SubmitButton,
   Title,
 } from './schedule-visit.styles';
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
-  <Button
-    type="button"
-    onClick={onClick}
-    forwardedRef={ref}
-    backgroundColor={colors.white}
-    color="black"
-    padding="0"
-  >
+  <DateButton type="button" onClick={onClick} forwardedRef={ref}>
     <DateContainer>
       <DateIcon />
       {value}
     </DateContainer>
-  </Button>
+  </DateButton>
 ));
 
 const responsive = [
@@ -103,9 +95,7 @@ function ScheduleVisit() {
           ))}
         </Slider>
       </DateSliderContainer>
-      <SubmitDateSection>
-        <Button type="button">Request this time</Button>
-      </SubmitDateSection>
+      <SubmitButton type="button">Request this time</SubmitButton>
     </MainContainer>
   );
 }
