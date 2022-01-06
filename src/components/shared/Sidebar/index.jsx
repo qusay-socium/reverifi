@@ -25,7 +25,7 @@ import {
 function Sidebar() {
   const { isLoggedIn } = useUser();
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(' ');
 
   return (
     <MenuItemsContainer isCollapsed={isCollapsed} isLoggedIn={isLoggedIn}>

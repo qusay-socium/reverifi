@@ -31,7 +31,7 @@ const routes = [
     title: 'SignUp',
   },
   {
-    component: lazy(() => import('pages/VerifyPhone/VerifyPhone')),
+    component: lazy(() => import('pages/VerifyPhone')),
     label: 'verify-phone',
     path: '/verify-phone',
     title: 'Verify Phone',

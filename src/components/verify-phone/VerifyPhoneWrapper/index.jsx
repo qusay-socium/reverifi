@@ -1,19 +1,19 @@
-import VerifyPhoneForm from 'components/verify-phone/VerifyPhoneForm';
 import React from 'react';
+import VerifyPhoneForm from '../VerifyPhoneForm';
 import {
   BottomImage,
   InfoContainer,
   Subtitle,
   Title,
   VerifyPhoneContainer,
-} from './verify-phone.styles';
+} from './verify-phone-wrapper.styles';
 
 /**
- * Verify phone component.
+ * Verify phone wrapper component.
  *
  * @return {JSX.Element}
  */
-function VerifyPhone() {
+function VerifyPhoneWrapper() {
   return (
     <VerifyPhoneContainer>
       <InfoContainer>
@@ -29,4 +29,4 @@ function VerifyPhone() {
   );
 }
 
-export default VerifyPhone;
+export default VerifyPhoneWrapper;
