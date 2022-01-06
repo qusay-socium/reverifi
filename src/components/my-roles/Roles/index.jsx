@@ -1,19 +1,14 @@
 import RoleCardsContainer from 'components/my-roles/RoleCardsContainer';
 import RolesTable from 'components/my-roles/RolesTable';
 import React, { useState } from 'react';
-import {
-  Container,
-  Header,
-  PageContainer,
-  StyledButton,
-} from './my-roles.styles';
+import { Container, Header, PageContainer, StyledButton } from './roles.styles';
 
 /**
- * My Roles page component.
+ * Component holding myRoles page components.
  *
- * @return {JSX.Element}
+ * @returns Container aligning myRoles page components.
  */
-function MyRoles() {
+function Roles() {
   // eslint-disable-next-line no-unused-vars
   const [selectedRoles, setSelectedRoles] = useState(() => new Set());
 
@@ -36,4 +31,5 @@ function MyRoles() {
     </PageContainer>
   );
 }
-export default MyRoles;
+
+export default Roles;

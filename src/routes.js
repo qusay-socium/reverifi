@@ -63,7 +63,7 @@ const routes = [
     title: 'Agent List',
   },
   {
-    component: lazy(() => import('pages/MyRoles/MyRoles')),
+    component: lazy(() => import('pages/MyRoles')),
     label: 'my-roles',
     path: '/my-roles',
     title: 'My Roles',

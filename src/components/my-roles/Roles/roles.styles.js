@@ -27,7 +27,7 @@ export const Container = styled.div`
 export const Header = styled.h1`
   font-size: 2rem;
   font-weight: 600;
-  line-height: 2.4375rem;
+  line-height: 2.5rem;
 `;
 
 export const StyledButton = styled(Button)`

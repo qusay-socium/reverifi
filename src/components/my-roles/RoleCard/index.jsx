@@ -12,8 +12,8 @@ import {
 /**
  * Role Card.
  *
- * @param {Object} props Props passed to RoleCard.
- * @param {Object} props.data Role card data.
+ * @param {Object} props                 Props passed to RoleCard.
+ * @param {Object} props.data            Role card data.
  * @param {func}   props.setSelectedRole Sets selected role.
  *
  * @returns {JSX.Element} Role Card holding role details.

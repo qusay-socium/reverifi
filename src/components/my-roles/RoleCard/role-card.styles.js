@@ -6,10 +6,10 @@ import mq from 'styles/media-query';
 export const Card = styled.div`
   border-radius: 0.625rem;
   border: 0.0625rem solid;
-  color: ${({ clicked }) =>
-    clicked ? `${colors.green}` : `${colors.dustyGrey}`};
-  border-color: ${({ clicked }) =>
-    clicked ? `${colors.green}` : `${colors.mercury}`};
+  color: ${({ isSelected }) =>
+    isSelected ? `${colors.green}` : `${colors.dustyGrey}`};
+  border-color: ${({ isSelected }) =>
+    isSelected ? `${colors.green}` : `${colors.mercury}`};
   cursor: pointer;
   margin: 0.625rem;
   min-height: 9.375rem;

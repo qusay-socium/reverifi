@@ -7,8 +7,8 @@ import { CardsContainer } from './role-cards-container.styles';
 /**
  * Component holding role cards, it maps roles to their cards.
  *
- * @param {Object} props Props passed to RoleCardsContainer.
- * @param {func} props.setSelectedRoles Sets selected roles.
+ * @param {Object} props                  Props passed to RoleCardsContainer.
+ * @param {func}   props.setSelectedRoles Sets selected roles.
  *
  * @return {JSX.Element} Container holding role cards.
  */
