@@ -95,10 +95,10 @@ function ScheduleVisit() {
           slidesToShow={7}
           responsive={responsive}
         >
-          {data.map((item) => (
-            <DateCard key={item.date}>
-              <span>{item.day}</span>
-              {item.date}
+          {data.map(({ date, day }) => (
+            <DateCard key={date}>
+              <span>{day}</span>
+              {date}
             </DateCard>
           ))}
         </Slider>
