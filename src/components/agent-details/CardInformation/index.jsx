@@ -1,16 +1,12 @@
 import React from 'react';
-import { ReactComponent as AirConditionerIcon } from 'assets/icons/air-conditioner.svg';
-import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
-import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
-import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
 import { ReactComponent as Comment } from 'assets/comment.svg';
 import { ReactComponent as FilledHeart } from 'assets/filled-heart.svg';
 import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
-import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
+import Button from 'components/shared/Button';
+import AvailableServices from '../AvailableServices';
 import data from './data';
 import {
-  BodyContainers,
   CardBody,
   CardFooter,
   CardHeader,
@@ -18,8 +14,13 @@ import {
   CardPrice,
   HeaderIcons,
   IconGroup,
-} from './agent-listings.style';
+} from './card-information.style';
 
+/**
+ * Listing details section.
+ *
+ * @return {JSX.Element}
+ */
 function CardInformation() {
   const { price, time, description, likes, comments } = data;
   return (
@@ -37,24 +38,7 @@ function CardInformation() {
       <CardBody>
         <p>{description}</p>
       </CardBody>
-      <BodyContainers>
-        <IconGroup>
-          <span>2</span>
-          <BedroomIcon />
-        </IconGroup>
-
-        <WifiIcon />
-
-        <IconGroup>
-          <span>1</span>
-          <BathtubIcon />
-        </IconGroup>
-
-        <AirConditionerIcon />
-
-        <BenchIcon />
-      </BodyContainers>
-
+      <AvailableServices />
       <CardFooter>
         <IconGroup>
           <FilledHeart />
@@ -65,6 +49,7 @@ function CardInformation() {
           <Comment />
           <span>{comments}</span>
         </IconGroup>
+        <Button ariaLabel="View Listing">View Listing</Button>
       </CardFooter>
     </CardInformationContainer>
   );

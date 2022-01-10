@@ -54,3 +54,5 @@ export const companyData = [
     value: 'website.com',
   },
 ];
+
+export const agentName = 'John Doe';

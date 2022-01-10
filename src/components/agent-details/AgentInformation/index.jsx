@@ -5,7 +5,7 @@ import { ReactComponent as Instagram } from 'assets/images/instagram.svg';
 import { ReactComponent as Like } from 'assets/like.svg';
 import { ReactComponent as Linkedin } from 'assets/images/linkedin.svg';
 import { ReactComponent as Youtube } from 'assets/images/youtube.svg';
-import { agentData, companyData, aboutText } from './data';
+import { agentData, companyData, aboutText, agentName } from './data';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -46,7 +46,7 @@ function AgentInformation() {
           <AgentBasicInformation>
             <ContactInfo>
               <AgentName>
-                <h2>John Doe</h2>
+                <h2>{agentName}</h2>
                 <Like />
               </AgentName>
               {agentData.map(({ key, value, Icon }) => (
