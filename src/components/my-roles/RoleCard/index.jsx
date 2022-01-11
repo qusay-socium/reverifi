@@ -20,25 +20,27 @@ import {
  */
 function RoleCard({ data, setSelectedRole }) {
   const { Icon, overview, role } = data;
-  const [isClicked, setIsClicked] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
 
   /**
    * Adds/removes selected card to/from selected roles object on click on card.
    */
   const handleCardSelect = () => {
     setSelectedRole((prev) => new Set(prev).add(role));
-    if (isClicked)
+    if (isSelected)
       setSelectedRole((prev) => {
         const next = new Set(prev);
         next.delete(role);
         return next;
       });
-    setIsClicked(!isClicked);
+    setIsSelected(!isSelected);
   };
 
   return (
-    <Card onClick={handleCardSelect} isSelected={isClicked}>
-      <Rectangle isSelected={isClicked}>{isClicked && <CheckIcon />}</Rectangle>
+    <Card onClick={handleCardSelect} isSelected={isSelected}>
+      <Rectangle isSelected={isSelected}>
+        {isSelected && <CheckIcon />}
+      </Rectangle>
       <IconContainer>
         <Icon />
       </IconContainer>
