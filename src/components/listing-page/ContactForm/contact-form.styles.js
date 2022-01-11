@@ -4,7 +4,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const MainContainer = styled.div`
-  border-radius: 9px;
+  border-radius: 0.56rem;
   box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGrey};
   margin-top: 1rem;
   max-height: 100%;
@@ -36,7 +36,6 @@ export const UserImg = styled.img`
 `;
 
 export const UserName = styled.h3`
-  color: ${colors.black};
   margin: 0.68rem 0 0.62rem 0;
   text-align: center;
 
@@ -59,9 +58,9 @@ export const DialButtonContent = styled.div`
 `;
 
 export const SubmitSection = styled.div`
-  margin: 1.37rem 0 0 0;
   display: flex;
   justify-content: center;
+  margin: 1.37rem 0 0 0;
 `;
 
 export const Input = styled.input`
@@ -77,7 +76,7 @@ export const Input = styled.input`
 `;
 
 export const Message = styled.textarea`
-  border: 1px solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGrey};
   min-height: 7rem;
   min-width: 100%;
   outline: none;

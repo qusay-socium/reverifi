@@ -5,19 +5,18 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const MainContainer = styled.div`
-  border-radius: 8px;
-  border: 1px solid ${colors.midGrey};
+  border-radius: 0.5rem;
+  border: 0.06rem solid ${colors.midGrey};
   padding: 1.75rem 1.5rem;
 
   .react-datepicker-wrapper {
+    border: 0.06rem solid ${colors.midGrey};
     margin: 0 0 2rem 0;
     padding: 0.5rem 1.12rem 0.37rem 1.12rem;
-    border: 1px solid ${colors.midGrey};
   }
 `;
 
 export const Title = styled.h3`
-  color: ${colors.black};
   font-size: 1.37rem;
   margin: 0 0 1.37rem 0;
 `;
@@ -29,10 +28,10 @@ export const DateButton = styled(Button)`
 `;
 
 export const DateContainer = styled.div`
-  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  display: flex;
   font-weight: normal;
+  gap: 0.5rem;
 
   svg {
     min-width: 1rem;
@@ -67,9 +66,8 @@ export const DateSliderContainer = styled.div`
 `;
 
 export const DateCard = styled.div`
-  border-radius: 10px;
-  border: 1px solid ${colors.midGrey};
-  color: ${colors.black};
+  border-radius: 0.62rem;
+  border: 0.06rem solid ${colors.midGrey};
   font-size: 1rem;
   max-height: 5rem;
   max-width: 5rem;
