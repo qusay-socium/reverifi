@@ -66,7 +66,6 @@ function VerifyPhoneForm() {
               maxLength="1"
               autoComplete="off"
               key={num}
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...register(`d${index}`)}
               onInput={handleInput}
             />

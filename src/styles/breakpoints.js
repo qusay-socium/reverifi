@@ -19,6 +19,9 @@ const breakpoints = {
   // 1180px
   desktopWide: '73.75rem',
 
+  // 1440px
+  desktopExtraMax: '90rem',
+
   // 1200px
   desktopMax: '75rem',
 

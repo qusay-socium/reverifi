@@ -45,7 +45,8 @@
     "jsx-a11y/label-has-associated-control": "error",
     "jsx-a11y/anchor-is-valid": "error",
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-    "sort-keys": ["warn", "asc"]
+    "sort-keys": ["warn", "asc"],
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
