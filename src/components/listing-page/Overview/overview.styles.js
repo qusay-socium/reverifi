@@ -22,21 +22,15 @@ export const Wrapper = styled.div`
   gap: 1rem;
 
   ${mq.desktop`
+  gap: 2rem;
+  margin-right: 2rem;
+  max-width: calc(100% - 22rem);
+`};
+
+  ${mq.desktopWide`
     gap: 2rem;
-    margin-right: 6rem;
-    width: 45.625rem;
-  `};
-`;
-
-export const FormContainer = styled.div`
-  border: 0.0625rem solid ${colors.midGrey};
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  margin: 1rem 0 0;
-
-  ${mq.desktop`
-    height: 35.8125rem;
-    width: 25rem;
+    margin-right: 4rem;
+    max-width: calc(100% - 25rem);
   `};
 `;
 
@@ -92,11 +86,11 @@ export const ClaimHeading = styled.h2`
 export const ClaimParagraph = styled.p`
   color: ${colors.gray};
   margin: 0.5rem auto 0;
-  width: 15rem;
+  max-width: 15rem;
 
   ${mq.desktopWide`
       margin: 0;
-      width: fit-content;
+      max-width: fit-content;
    `}
 `;
 
@@ -110,21 +104,6 @@ export const ClaimButton = styled(Button)`
   ${mq.desktopWide`
       margin: 0;
    `}
-`;
-
-export const ScheduleVisit = styled.div`
-  border: 0.0625rem solid ${colors.midGrey};
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-
-  h2 {
-    color: ${colors.mineShaft};
-    font-size: 1.375rem;
-  }
-
-  p {
-    color: ${colors.gray};
-  }
 `;
 
 export const Partition = styled.span`

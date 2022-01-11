@@ -6,7 +6,15 @@ import mq from 'styles/media-query';
 export const MainContainer = styled.div`
   border-radius: 9px;
   box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGrey};
+  margin-top: 1rem;
+  max-height: 100%;
   padding: 1.5rem 2.37rem;
+
+  ${mq.desktop`
+    margin-top: 0;
+    max-height: 36rem;
+    min-width: 25rem;
+  `};
 `;
 
 export const UserInfo = styled.div`
@@ -38,6 +46,8 @@ export const UserName = styled.h3`
 `;
 
 export const DialButton = styled(Button)`
+  align-items: center;
+  display: flex;
   padding: 0.75rem 1rem;
 `;
 
