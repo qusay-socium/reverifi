@@ -8,8 +8,6 @@ import ListingShareModal from 'components/ListingShareModal';
 import Footer from 'components/shared/Footer';
 import ShowModalProvider from 'contexts/ShowModalContext';
 import React from 'react';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
 
 /**
  * Home page component.
