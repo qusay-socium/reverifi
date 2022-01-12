@@ -136,8 +136,12 @@ function ScheduleVisit() {
 }
 
 CustomInput.propTypes = {
-  onClick: PropTypes.function.isRequired,
-  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  value: PropTypes.string,
+};
+CustomInput.defaultProps = {
+  onClick: null,
+  value: '',
 };
 
 export default ScheduleVisit;
