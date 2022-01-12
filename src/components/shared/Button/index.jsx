@@ -41,16 +41,10 @@ Button.propTypes = {
   ariaLabel: PropTypes.string,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
-  /**
-   * Forwarded ref from a parent component.
-   */
   forwardedRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.elementType }),
   ]),
-  /**
-   * Event get fired when button clicked.
-   */
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit']),
 };
