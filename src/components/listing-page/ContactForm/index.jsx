@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as DialLogo } from 'assets/dial-logo.svg';
 import userImage from 'assets/images/user-photo.jpg';
@@ -21,6 +20,7 @@ import {
 } from './contact-form.styles';
 
 // The regex expression was taken from this source (https://www.sitepoint.com/community/t/phone-number-regular-expression-validation/2204).
+// You can find all information needed about the phone expression in the link above.
 const phoneExpression =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 

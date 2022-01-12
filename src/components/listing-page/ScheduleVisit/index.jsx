@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { ReactComponent as DateIcon } from 'assets/date-picker.svg';
+import PropTypes from 'prop-types';
 import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -134,5 +134,10 @@ function ScheduleVisit() {
     </MainContainer>
   );
 }
+
+CustomInput.propTypes = {
+  onClick: PropTypes.function.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default ScheduleVisit;
