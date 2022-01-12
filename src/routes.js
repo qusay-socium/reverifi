@@ -99,6 +99,12 @@ const routes = [
     title: 'Agent Details',
   },
   {
+    component: lazy(() => import('pages/EditListingSchedule')),
+    label: 'edit-listing-schedule',
+    path: '/listing-schedule/edit',
+    title: 'Edit Listing Schedule',
+  },
+  {
     component: lazy(() => import('pages/NotFound')),
     label: 'not-found',
     path: '*',
