@@ -4,6 +4,7 @@ import { Menu } from 'react-feather';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
+import Button from '../Button';
 
 export const BroadNavContainer = styled.div`
   align-items: center;
@@ -68,7 +69,7 @@ export const UserNavRegContainer = styled.div`
   ${mq.tablet`
     align-items: center;
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem;
     width: 15.625rem;
   `}
 `;
@@ -119,13 +120,8 @@ export const Logo = styled(RawLogo)`
   `}
 `;
 
-export const TransparentButton = styled.button`
-  background: transparent;
-  border: none;
-  color: ${colors.white};
-  cursor: pointer;
-  font-family: Montserrat;
-  font-weight: 600;
+export const SignInButton = styled(Button)`
+  background-color: transparent;
 `;
 
 export const NotificationBell = styled(RawNotificationBell)`

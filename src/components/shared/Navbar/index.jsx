@@ -1,10 +1,10 @@
 import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
-import { ReactComponent as JoinNow } from 'assets/images/join-now.svg';
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
 import { useUser } from 'contexts/UserContext';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button';
 import {
   BroadNavContainer,
   Logo,
@@ -14,9 +14,9 @@ import {
   NavItemsContainer,
   NavLinksContainer,
   NotificationBell,
+  SignInButton,
   StyledInput,
   StyledInputGroup,
-  TransparentButton,
   UserControlSectionWrapper,
   UserNavControlContainer,
   UserNavRegContainer,
@@ -64,10 +64,10 @@ function Navbar() {
           </UserNavControlContainer>
         ) : (
           <UserNavRegContainer>
-            <TransparentButton type="button" onClick={() => navigate('login')}>
+            <SignInButton type="button" onClick={() => navigate('login')}>
               Sign In
-            </TransparentButton>
-            <JoinNow onClick={() => navigate('sign-up')} />
+            </SignInButton>
+            <Button onClick={() => navigate('sign-up')}>Join Now</Button>
           </UserNavRegContainer>
         )}
       </NavItemsContainer>

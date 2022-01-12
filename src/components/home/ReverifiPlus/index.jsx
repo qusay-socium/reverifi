@@ -6,7 +6,6 @@ import { ReactComponent as HomeLogo } from 'assets/inspection.svg';
 import { ReactComponent as InsuranceLogo } from 'assets/insurance.svg';
 import React from 'react';
 import {
-  Button,
   FirstSection,
   Header,
   Item,
@@ -15,6 +14,7 @@ import {
   MainContainer,
   Paragraph,
   SecondSection,
+  SeeMoreButton,
 } from './reverifi-plus.styles';
 
 /**
@@ -33,7 +33,7 @@ function ReverifiPlus() {
           Search our network and find your supporting team to complete the
           process
         </Paragraph>
-        <Button type="button">See More</Button>
+        <SeeMoreButton type="button">See More </SeeMoreButton>
       </FirstSection>
       <SecondSection>
         <Item>
