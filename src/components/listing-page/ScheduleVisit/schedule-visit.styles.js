@@ -49,16 +49,12 @@ export const DateSliderContainer = styled.div`
   }
 
   .slick-prev {
-    left: -1.37rem;
-
     :before {
       content: url(${LeftArrow});
     }
   }
 
   .slick-next {
-    right: -1.37rem;
-
     :before {
       content: url(${RightArrow});
     }
