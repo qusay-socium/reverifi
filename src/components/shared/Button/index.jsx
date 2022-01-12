@@ -28,25 +28,10 @@ function Button({ ariaLabel, children, disabled, onClick, type, ...props }) {
 }
 
 Button.propTypes = {
-  /**
-   * Aria label for button.
-   */
   ariaLabel: PropTypes.string,
-  /**
-   * Child nodes to render.
-   */
   children: PropTypes.node.isRequired,
-  /**
-   * Whether button disabled
-   */
   disabled: PropTypes.bool,
-  /**
-   * Event get fired when button clicked.
-   */
   onClick: PropTypes.func,
-  /**
-   * Button type (can be 'button' or 'submit').
-   */
   type: PropTypes.oneOf(['button', 'submit']),
 };
 
