@@ -14,6 +14,7 @@ const fadeIn = keyframes`
   
   to {
     max-width: 5rem;
+    position: static;
   }
 `;
 
@@ -28,7 +29,11 @@ const fadeOut = keyframes`
 `;
 
 export const MenuItemsContainer = styled.div`
-  animation: ${({ isCollapsed }) => (isCollapsed ? fadeOut : fadeIn)}
+  animation: ${({ isCollapsed }) => {
+      if (isCollapsed === true) return fadeOut;
+      if (isCollapsed === false) return fadeIn;
+      return '';
+    }}
     ease-in-out forwards;
   animation-duration: 0.4s;
   background-color: ${colors.mineShaft};

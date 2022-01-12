@@ -7,6 +7,7 @@ export const VerifyPhoneContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.875rem;
+  margin-top: 1.25rem;
 `;
 
 export const InfoContainer = styled.div`
