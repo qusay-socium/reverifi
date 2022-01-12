@@ -48,7 +48,7 @@ export const Paragraph = styled.p`
   `}
 `;
 
-export const MoreButton = styled(Button)`
+export const SeeMoreButton = styled(Button)`
   border-radius: 1.25rem;
   font-size: 1rem;
 `;

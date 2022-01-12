@@ -12,9 +12,9 @@ import {
   ItemHeader,
   ItemIcon,
   MainContainer,
-  MoreButton,
   Paragraph,
   SecondSection,
+  SeeMoreButton,
 } from './reverifi-plus.styles';
 
 /**
@@ -33,7 +33,7 @@ function ReverifiPlus() {
           Search our network and find your supporting team to complete the
           process
         </Paragraph>
-        <MoreButton type="button">See More </MoreButton>
+        <SeeMoreButton type="button">See More </SeeMoreButton>
       </FirstSection>
       <SecondSection>
         <Item>
