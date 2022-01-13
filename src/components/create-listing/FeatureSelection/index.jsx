@@ -13,8 +13,9 @@ import {
 /**
  * Feature Selection section of Create Listing page.
  *
- * @param {Set} featureIds Set of selected feature id's.
- * @param {Function} handleFeatureClick feature click handler function.
+ * @param  {Set}      featureIds         Set of selected feature id's.
+ * @param  {Function} handleFeatureClick feature click handler function.
+ *
  * @return {JSX.Element}
  */
 function FeatureSelection({ featureIds, handleFeatureClick }) {
@@ -38,18 +39,12 @@ function FeatureSelection({ featureIds, handleFeatureClick }) {
 }
 
 FeatureSelection.propTypes = {
-  /**
-   * Set of selected feature id's.
-   */
   featureIds: PropTypes.objectOf(PropTypes.number),
-  /**
-   * feature click handler function.
-   */
   handleFeatureClick: PropTypes.func,
 };
 
 FeatureSelection.defaultProps = {
-  featureIds: [],
+  featureIds: {},
   handleFeatureClick: null,
 };
 
