@@ -5,16 +5,17 @@ import { Container, Error, Input, Label } from './form-input.styles';
 /**
  * Render form input.
  *
- * @param {Object} props                    The component props.
- * @param {string} [props.error=null]       Error message.
- * @param {string} [props.id=null]          Input ID.
- * @param {string} [props.label=null]       Label text.
- * @param {string} props.name               Input name.
- * @param {Function} [props.onChange]       The on change event.
- * @param {string} [props.placeholder=null] Input placeholder.
- * @param {Function} [props.register=null]  The react-hook-form register function.
- * @param {boolean} [props.rounded=true]    Is input borderers rounded.
- * @param {string} [props.type='text']      Input type.
+ * @param {Object}   props                         The component props.
+ * @param {string}   [props.error=null]            Error message.
+ * @param {string}   [props.id=null]               Input ID.
+ * @param {string}   [props.label=null]            Label text.
+ * @param {node}     [props.labelIconElement=null] Label Icon.
+ * @param {string}   props.name                    Input name.
+ * @param {Function} [props.onChange = null]       The on change event.
+ * @param {string}   [props.placeholder='']        Input placeholder.
+ * @param {Function} [props.register=null]         The react-hook-form register function.
+ * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
+ * @param {string}   [props.type='text']           Input type.
  *
  * @return {JSX.Element}
  */
@@ -31,10 +32,16 @@ function FormInput({
   min,
   max,
   step,
+  labelIconElement,
 }) {
   return (
     <Container>
-      {label && <Label htmlFor={id || name}>{label}</Label>}
+      {label && (
+        <Label htmlFor={id || name}>
+          {labelIconElement}
+          {label}
+        </Label>
+      )}
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
@@ -55,6 +62,7 @@ FormInput.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  labelIconElement: PropTypes.node,
   max: PropTypes.string,
   min: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -70,10 +78,11 @@ FormInput.defaultProps = {
   error: null,
   id: null,
   label: null,
+  labelIconElement: null,
   max: null,
   min: null,
-  onChange: () => {},
-  placeholder: null,
+  onChange: null,
+  placeholder: '',
   register: null,
   rounded: true,
   step: null,

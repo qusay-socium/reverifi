@@ -58,25 +58,6 @@ export const DetailsInputsContainer = styled.div`
   `}
 `;
 
-export const InputWrapper = styled.div`
-  position: relative;
-
-  svg {
-    position: absolute;
-  }
-
-  label {
-    position: relative;
-    left: 1.875rem;
-    width: fit-content;
-  }
-
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    opacity: 1;
-  }
-`;
-
 export const TextInputContainer = styled.div`
   display: flex;
   flex-direction: column;

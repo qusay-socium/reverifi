@@ -7,8 +7,11 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
+  align-items: center;
   color: ${colors.mineShaft}7f;
+  display: flex;
   font-size: 0.9375rem;
+  gap: 0.5rem;
   padding-bottom: 0.625rem;
 `;
 
@@ -24,6 +27,11 @@ export const Input = styled.input`
 
   &:focus {
     outline: 0.0625rem solid ${colors.green};
+  }
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    opacity: 1;
   }
 `;
 

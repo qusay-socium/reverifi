@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import {
   Container,
   Error,
@@ -11,16 +10,17 @@ import { Input } from './select.styles';
 /**
  * Render form select input.
  *
- * @param {Object} props                    The component props.
- * @param {string} [props.error=null]       Error message.
- * @param {string} [props.id=null]          Input ID.
- * @param {string} [props.label=null]       Label text.
- * @param {string} props.name               Input name.
- * @param {Function} [props.onChange]       The on change event.
- * @param {string} [props.placeholder=null] Input placeholder.
- * @param {Function} [props.register=null]  The react-hook-form register function.
- * @param {boolean} [props.rounded=true]    Is input borderers rounded.
- * @param {String[]} props.options          The select menu options.
+ * @param {Object}   props                         The component props.
+ * @param {string}   [props.error=null]            Error message.
+ * @param {string}   [props.id=null]               Input ID.
+ * @param {string}   [props.label=null]            Label text.
+ * @param {node}     [props.labelIconElement=null] Label Icon.
+ * @param {string}   props.name                    Input name.
+ * @param {Function} [props.onChange=null]         The on change event.
+ * @param {string}   [props.placeholder='']        Input placeholder.
+ * @param {Function} [props.register=null]         The react-hook-form register function.
+ * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
+ * @param {String[]} props.options                 The select menu options.
  *
  * @return {JSX.Element}
  */
@@ -34,10 +34,16 @@ function SelectInput({
   register,
   rounded,
   options,
+  labelIconElement,
 }) {
   return (
     <Container>
-      {label && <Label htmlFor={id || name}>{label}</Label>}
+      {label && (
+        <Label htmlFor={id || name}>
+          {labelIconElement}
+          {label}
+        </Label>
+      )}
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
@@ -60,6 +66,7 @@ SelectInput.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  labelIconElement: PropTypes.node,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -72,8 +79,9 @@ SelectInput.defaultProps = {
   error: null,
   id: null,
   label: null,
+  labelIconElement: null,
   onChange: null,
-  placeholder: null,
+  placeholder: '',
   register: null,
   rounded: true,
 };

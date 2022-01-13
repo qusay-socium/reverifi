@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import {
   Container,
   Error,
@@ -11,15 +10,17 @@ import { Input, Labels, LimitMessage } from './form-text-area.styles';
 /**
  * Render form text-area input.
  *
- * @param {Object} props                    The component props.
- * @param {string} [props.error=null]       Error message.
- * @param {string} [props.id=null]          Input ID.
- * @param {string} [props.label=null]       Label text.
- * @param {string} props.name               Input name.
- * @param {Function} [props.onChange]       The on change event.
- * @param {string} [props.placeholder=null] Input placeholder.
- * @param {Function} [props.register=null]  The react-hook-form register function.
- * @param {boolean} [props.rounded=true]    Is input borderers rounded.
+ * @param {Object}   props                         The component props.
+ * @param {string}   [props.error=null]            Error message.
+ * @param {string}   [props.id=null]               Input ID.
+ * @param {string}   [props.label=null]            Label text.
+ * @param {node}     [props.labelIconElement=null] Label icon element.
+ * @param {string}   props.name                    Input name.
+ * @param {Function} [props.onChange=null]         The on change event.
+ * @param {string}   [props.placeholder='']        Input placeholder.
+ * @param {Function} [props.register=null]         The react-hook-form register function.
+ * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
+ * @param {string}   [props.value='']              Textarea input value.
  *
  * @return {JSX.Element}
  */
@@ -34,11 +35,17 @@ function TextAreaInput({
   rounded,
   limit,
   value,
+  labelIconElement,
 }) {
   return (
     <Container>
       <Labels>
-        {label && <Label htmlFor={id || name}>{label}</Label>}
+        {label && (
+          <Label htmlFor={id || name}>
+            {labelIconElement}
+            {label}
+          </Label>
+        )}
         <LimitMessage color={limit <= 10 ? 'red' : null}>
           ({limit} chars left)
         </LimitMessage>
@@ -61,6 +68,7 @@ TextAreaInput.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  labelIconElement: PropTypes.node,
   limit: PropTypes.number,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
@@ -74,9 +82,10 @@ TextAreaInput.defaultProps = {
   error: null,
   id: null,
   label: null,
+  labelIconElement: null,
   limit: null,
   onChange: null,
-  placeholder: null,
+  placeholder: '',
   register: null,
   rounded: true,
   value: '',

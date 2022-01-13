@@ -1,11 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingFormMap from 'components/create-listing/ListingFormMap';
+import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import FeatureSelection from '../FeatureSelection';
-import ListingImageInput from '../ListingImageInput';
 import listingFormSchema from './create-listing-form-schema';
 import { SubmitSection, Wrapper } from './create-listing-form.styles';
 
@@ -17,9 +17,7 @@ import { SubmitSection, Wrapper } from './create-listing-form.styles';
 function CreateListingForm() {
   const [images, setImages] = useState([]);
   const [overviewText, setOverviewText] = useState('');
-  const [selectedIdentifiers, setSelectedIdentifiers] = useState(
-    () => new Set()
-  );
+  const [selectedIdentifiers, setSelectedIdentifiers] = useState(new Set());
   const [featureIds, setFeatureIds] = useState(new Set());
 
   const {
@@ -48,7 +46,6 @@ function CreateListingForm() {
    * Handle clicking on identifier buttons.
    *
    * @param {String} value The text of the clicked button.
-   *
    */
   const handleIdentifierClick = (value) => {
     if (!selectedIdentifiers.has(value)) {
