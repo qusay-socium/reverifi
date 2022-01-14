@@ -18,11 +18,12 @@ function RoleCardsContainer({ setSelectedRoles }) {
   /**
    * Fetches roles data from API and sets it to roles state.
    */
+  const fetchRoles = async () => {
+    const data = await getRoles();
+    setRoles(data);
+  };
+
   useEffect(() => {
-    const fetchRoles = async () => {
-      const data = await getRoles();
-      setRoles(data);
-    };
     fetchRoles();
   });
 

@@ -1,7 +1,7 @@
 import RoleCardsContainer from 'components/my-roles/RoleCardsContainer';
 import RolesTable from 'components/my-roles/RolesTable';
 import React, { useState } from 'react';
-import { Container, Header, PageContainer, StyledButton } from './roles.styles';
+import { Wrapper, Header, PageContainer, StyledButton } from './roles.styles';
 
 /**
  * Component holding myRoles page components.
@@ -14,9 +14,9 @@ function Roles() {
 
   return (
     <PageContainer>
-      <Container>
+      <Wrapper>
         <Header>What am I:</Header>
-      </Container>
+      </Wrapper>
       <RoleCardsContainer setSelectedRoles={setSelectedRoles} />
       <StyledButton
         onClick={() => {
@@ -25,9 +25,9 @@ function Roles() {
       >
         Start New Selling/Buying Process
       </StyledButton>
-      <Container>
+      <Wrapper>
         <RolesTable />
-      </Container>
+      </Wrapper>
     </PageContainer>
   );
 }

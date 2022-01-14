@@ -13,11 +13,11 @@ export const Card = styled.div`
   cursor: pointer;
   margin: 0.625rem;
   min-height: 9.375rem;
-  padding: 1.5625rem;
+  padding: 1.5rem;
   position: relative;
 
   ${mq.mobileWide`
-    min-height: 12.5rem;
+    min-height: 12rem;
   `};
 
   ${mq.desktop`
@@ -27,6 +27,10 @@ export const Card = styled.div`
   svg {
     fill: ${({ isSelected }) =>
       isSelected ? `${colors.green}` : `${colors.dustyGrey}`};
+  }
+
+  :hover {
+    border-color: ${colors.green};
   }
 `;
 
@@ -39,13 +43,8 @@ export const Rectangle = styled.div`
   height: 1.25rem;
   position: absolute;
   right: 1.25rem;
-  top: 0.9375rem;
+  top: 1.5rem;
   width: 1.25rem;
-`;
-
-export const IconContainer = styled.div`
-  height: 3.125rem;
-  width: 3.125rem;
 `;
 
 export const CheckIcon = styled(checkIcon)`
@@ -53,15 +52,9 @@ export const CheckIcon = styled(checkIcon)`
   width: 100%;
 `;
 
-export const RoleText = styled.p`
-  font-weight: bold;
-`;
-
 export const Overview = styled.p`
-  margin: 0;
-
   ${mq.desktop`
-     max-width: 18.75rem; 
+     max-width: 20rem; 
   `};
 `;
 

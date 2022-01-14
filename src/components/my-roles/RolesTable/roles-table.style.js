@@ -22,24 +22,25 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  font-size: 0.8125rem;
-  padding: 1.6875rem 0.625rem;
+  padding: 1.7rem 0.625rem;
 
   ${mq.tablet`
-    padding: 1.6875rem;
+    padding: 1.7rem;
   `}
 `;
 
 export const TableHead = styled.th`
   background-color: ${colors.mercury};
   color: ${colors.dustyGrey};
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 1.6875rem;
+  padding: 1.7rem;
 `;
 
 export const IconContainer = styled.button`
   background: none;
-  border: none;
+  border: 0.05rem solid ${colors.white};
   cursor: pointer;
+
+  :hover {
+    border-color: ${colors.green};
+  }
 `;

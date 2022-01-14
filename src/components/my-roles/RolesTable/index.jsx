@@ -1,5 +1,6 @@
 import editIcon from 'assets/icons/edit.svg';
-import React, { useEffect, useState } from 'react';
+import useEffectOnce from 'hooks/use-effect-once';
+import React, { useState } from 'react';
 import getTableData from './data';
 import {
   IconContainer,
@@ -18,15 +19,8 @@ import {
 function RolesTable() {
   const [tableData, setTableData] = useState([]);
 
-  /**
-   * Fetches table data from API and sets it to tableData state.
-   */
-  useEffect(() => {
-    const fetchTableData = async () => {
-      const data = await getTableData();
-      setTableData(data);
-    };
-    fetchTableData();
+  useEffectOnce(() => {
+    setTableData(getTableData());
   });
 
   return (
