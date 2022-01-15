@@ -33,7 +33,7 @@ export const StyledSlide = styled.div`
       display: inline;
       margin: 0 0.3125rem;
       > button {
-        background-color: ${colors.midGrey};
+        background-color: ${colors.midGray};
         border-radius: 50%;
         border: none;
         font-size: 0;

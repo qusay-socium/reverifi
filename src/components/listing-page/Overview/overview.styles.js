@@ -62,7 +62,7 @@ export const OverviewParagraph = styled.p`
 `;
 
 export const Claim = styled.div`
-  border: 0.0625rem solid ${colors.midGrey};
+  border: 0.0625rem solid ${colors.midGray};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -107,6 +107,6 @@ export const ClaimButton = styled(Button)`
 `;
 
 export const Partition = styled.span`
-  border-right: 0.0625rem solid ${colors.midGrey};
+  border-right: 0.0625rem solid ${colors.midGray};
   margin: 0 1rem;
 `;

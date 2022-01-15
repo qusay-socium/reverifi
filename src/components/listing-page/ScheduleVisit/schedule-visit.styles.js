@@ -6,11 +6,11 @@ import colors from 'styles/colors';
 
 export const MainContainer = styled.div`
   border-radius: 0.5rem;
-  border: 0.06rem solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGray};
   padding: 1.75rem 1.5rem;
 
   .react-datepicker-wrapper {
-    border: 0.06rem solid ${colors.midGrey};
+    border: 0.06rem solid ${colors.midGray};
     margin: 0 0 2rem 0;
     padding: 0.5rem 1.12rem 0.37rem 1.12rem;
   }
@@ -63,7 +63,7 @@ export const DateSliderContainer = styled.div`
 
 export const DateCard = styled.div`
   border-radius: 0.62rem;
-  border: 0.06rem solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGray};
   font-size: 1rem;
   max-height: 5rem;
   max-width: 5rem;

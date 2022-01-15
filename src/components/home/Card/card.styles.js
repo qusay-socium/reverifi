@@ -6,7 +6,6 @@ export const CardContainer = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 0.06rem 0.5rem ${colors.cornflowerBlue}1f;
   cursor: pointer;
-  outline: none;
   overflow: hidden;
   position: relative;
 `;

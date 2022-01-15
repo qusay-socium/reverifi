@@ -80,7 +80,6 @@ export const MenuItem = styled.span`
   background-color: inherit;
   padding: 0;
   border: none;
-  outline: none;
 `;
 
 export const MenuIconContainer = styled.div`

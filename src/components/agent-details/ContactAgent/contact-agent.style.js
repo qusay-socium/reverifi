@@ -1,5 +1,5 @@
-import colors from 'styles/colors';
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const Form = styled.form`
   background-color: ${colors.white};
@@ -20,14 +20,12 @@ export const InputField = styled.input`
   border: none;
   border-bottom: 0.0823rem solid ${colors.mercury};
   font-size: 1.125rem;
-  outline: none;
 `;
 
 export const TextArea = styled.textarea`
   border: 0.0823rem solid ${colors.mercury};
   height: 7rem;
   margin-top: 0.3125rem;
-  outline: none;
   resize: none;
   width: 100%;
 

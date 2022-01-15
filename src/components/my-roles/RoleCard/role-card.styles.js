@@ -7,7 +7,7 @@ export const Card = styled.div`
   border-radius: 0.625rem;
   border: 0.0625rem solid;
   color: ${({ isSelected }) =>
-    isSelected ? `${colors.green}` : `${colors.dustyGrey}`};
+    isSelected ? `${colors.green}` : `${colors.dustyGray}`};
   border-color: ${({ isSelected }) =>
     isSelected ? `${colors.green}` : `${colors.mercury}`};
   cursor: pointer;
@@ -26,7 +26,7 @@ export const Card = styled.div`
 
   svg {
     fill: ${({ isSelected }) =>
-      isSelected ? `${colors.green}` : `${colors.dustyGrey}`};
+      isSelected ? `${colors.green}` : `${colors.dustyGray}`};
   }
 
   :hover {
@@ -38,7 +38,7 @@ export const Rectangle = styled.div`
   background-color: ${({ isSelected }) =>
     isSelected ? `${colors.green}` : `${colors.white}`};
   border: ${({ isSelected }) =>
-    isSelected ? `none` : `0.125rem solid ${colors.dustyGrey}`};
+    isSelected ? `none` : `0.125rem solid ${colors.dustyGray}`};
   color: ${colors.white};
   height: 1.25rem;
   position: absolute;

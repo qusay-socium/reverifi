@@ -33,7 +33,6 @@ export const StyledInput = styled.input`
   flex: 1;
   font-size: 0.75rem;
   font-weight: 400;
-  outline: none;
   padding: 0 1rem;
   ${({ size }) => inputSizes[size]}
 

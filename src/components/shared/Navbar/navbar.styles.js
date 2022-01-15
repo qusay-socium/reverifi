@@ -144,7 +144,6 @@ export const StyledInput = styled.input`
   flex: 1;
   font-size: 0.9rem;
   height: 2.5rem;
-  outline: none;
 
   ::placeholder {
     font-size: 0.9rem;
