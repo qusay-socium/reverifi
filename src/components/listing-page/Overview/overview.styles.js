@@ -58,7 +58,8 @@ export const Value = styled.span`
 `;
 
 export const OverviewParagraph = styled.p`
-  margin: 0;
+  margin: 0 0 1.89rem;
+  line-height: 1.25rem;
 `;
 
 export const Claim = styled.div`
@@ -79,18 +80,21 @@ export const Claim = styled.div`
 `;
 
 export const ClaimHeading = styled.h2`
-  font-size: 1.375rem;
+  font-size: 1.38rem;
+  font-weight: 600;
+  line-height: 1.69rem;
   margin: 0 0 0.5rem;
 `;
 
 export const ClaimParagraph = styled.p`
   color: ${colors.gray};
+  line-height: 1.25rem;
   margin: 0.5rem auto 0;
   max-width: 15rem;
 
   ${mq.desktopWide`
       margin: 0;
-      max-width: fit-content;
+      max-width: 20.6rem;
    `}
 `;
 

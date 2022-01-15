@@ -20,7 +20,7 @@ import {
  * Listing page overview section.
  *
  * @param {Object} props      The component props.
- * @param {Object} props.data The component data.
+ * @param {Object} props.data Overview component data.
  *
  * @return {JSX.Element}
  */

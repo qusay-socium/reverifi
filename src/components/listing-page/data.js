@@ -146,11 +146,13 @@ const data = {
       title: 'Apartment#6',
     },
   ],
+  // statistics should be rendered in this order.
   statistics: {
-    Saves: '10',
-    Shared: '12',
     'Time on Reverifi': '8 days',
     Views: '30',
+    // eslint-disable-next-line sort-keys
+    Saves: '10',
+    Shared: '12',
   },
 };
 

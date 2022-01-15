@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import { ReactComponent as ChevronLeft } from 'assets/images/left-arrow.svg';
 import { ReactComponent as ChevronRight } from 'assets/images/right-arrow.svg';
@@ -20,7 +21,6 @@ import {
  *
  * @return {JSX.Element} Next arrow.
  */
-// eslint-disable-next-line react/prop-types
 function NextArrow({ onClick }) {
   return (
     <SliderArrow
@@ -38,7 +38,6 @@ function NextArrow({ onClick }) {
  *
  * @return {JSX.Element} Previous arrow.
  */
-// eslint-disable-next-line react/prop-types
 function PrevArrow({ onClick }) {
   return (
     <SliderArrow onClick={onClick} left="0%">
@@ -51,7 +50,7 @@ function PrevArrow({ onClick }) {
  * Listing page slider section.
  *
  * @param {Object} props        The component props.
- * @param {Object} props.images The component data.
+ * @param {Object} props.images Listing page slider images.
  *
  * @return {JSX.Element}
  */

@@ -68,7 +68,7 @@ function SimilarListings({ similarListings }) {
             /* To Do */
           }}
         >
-          See more
+          See More
         </Button>
       </SeeMore>
     </Container>

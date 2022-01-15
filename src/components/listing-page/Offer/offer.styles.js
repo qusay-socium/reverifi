@@ -15,7 +15,7 @@ export const Container = styled.div`
   `}
 `;
 
-export const Details = styled.div`
+export const OfferDetails = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -25,10 +25,10 @@ export const Details = styled.div`
   `}
 `;
 
-export const Price = styled.div`
+export const Price = styled.p`
   font-size: 2rem;
-  font-weight: bold;
-  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  margin: 0 0 0.32rem;
 `;
 
 export const Location = styled.div`
@@ -43,15 +43,14 @@ export const Pin = styled(LocationPin)`
 
 export const LocationText = styled.span`
   color: ${colors.gray};
-  font-size: 0.875rem;
-  font-weight: bold;
+  font-size: 0.94rem;
 `;
 
 export const SubmitOffer = styled.div`
-  margin: 1rem 0 0;
+  margin-top: 1rem;
 
   ${mq.desktop`
-    margin: 0 0 0 2rem;
+    margin-left: 2rem;
   `}
 `;
 
@@ -60,7 +59,7 @@ export const SubmitButton = styled(Button)`
   border-radius: 1.25rem;
   display: flex;
   font-size: 1rem;
-  padding: 1rem 2rem;
+  padding: 0.63rem 1.8rem;
 `;
 
 export const ButtonsSection = styled.div`
@@ -79,7 +78,6 @@ export const ButtonsSection = styled.div`
 
 export const LogoButton = styled(Button)`
   background-color: ${colors.white};
-  border-radius: 50%;
   box-shadow: 0rem 0.0625rem 0.375rem rgba(34, 34, 34, 0.163762);
   height: 2rem;
   margin-right: 0.5rem;

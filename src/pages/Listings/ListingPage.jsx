@@ -2,7 +2,7 @@ import data from 'components/listing-page/data';
 import Details from 'components/listing-page/Details';
 import Features from 'components/listing-page/Features';
 import Location from 'components/listing-page/Location';
-import OfferDetails from 'components/listing-page/OfferDetails';
+import Offer from 'components/listing-page/Offer';
 import Overview from 'components/listing-page/Overview';
 import SimilarListings from 'components/listing-page/SimilarListings';
 import ListingPageSlider from 'components/listing-page/Slider';
@@ -32,7 +32,7 @@ function ListingPage() {
   return (
     <>
       <ShowModalProvider>
-        <OfferDetails data={{ location, price }} />
+        <Offer data={{ location, price }} />
         <ListingPageSlider images={images} />
         <Overview data={{ overview, statistics }} />
         <Details details={details} />

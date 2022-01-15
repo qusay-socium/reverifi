@@ -7,12 +7,11 @@ export const MainContainer = styled.div`
   border-radius: 0.56rem;
   box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGray};
   margin-top: 1rem;
-  max-height: 100%;
+  height: 100%;
   padding: 1.5rem 2.37rem;
 
   ${mq.desktop`
     margin-top: 0;
-    max-height: 36rem;
     min-width: 25rem;
   `};
 `;
@@ -21,7 +20,7 @@ export const UserInfo = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0 0 1.68rem 0;
+  margin-bottom: 1.68rem;
 
   ${mq.mobile`
     flex-direction: row;
