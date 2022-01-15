@@ -1,6 +1,6 @@
-import { ReactComponent as heart } from 'assets/icons/agent-heart.svg';
-import { ReactComponent as share } from 'assets/icons/agent-share.svg';
-import { ReactComponent as like } from 'assets/icons/like.svg';
+import { ReactComponent as Heart } from 'assets/icons/agent-heart.svg';
+import { ReactComponent as Share } from 'assets/icons/agent-share.svg';
+import { ReactComponent as Like } from 'assets/icons/like.svg';
 import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -9,11 +9,10 @@ import mq from 'styles/media-query';
 export const Card = styled.div`
   background-color: ${colors.white};
   border-radius: 0.5rem;
-  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGrey};
+  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGray};
   display: flex;
   flex-direction: column;
-  margin: 0 0 1.5625rem;
-  overflow: hidden;
+  margin: 0 0 1.5rem;
 
   ${mq.desktop`
     flex-direction: row;
@@ -36,11 +35,12 @@ export const ImgContainer = styled.div`
 `;
 
 export const AgentPicture = styled.img`
+  border-radius: 0.5rem 0 0 0.5rem;
   object-fit: cover;
   width: 100%;
 
   ${mq.desktop`
-    height:100%;
+    height: 100%;
   `};
 `;
 
@@ -64,7 +64,7 @@ export const Username = styled.p`
 `;
 
 export const CompanyName = styled.p`
-  color: ${colors.osloGrey};
+  color: ${colors.osloGray};
   font-size: 0.875rem;
   margin: 0 0 0.625rem 0;
 `;
@@ -76,11 +76,8 @@ export const ButtonsContainer = styled.div`
   width: 3.75rem;
 `;
 
-export const FooterButtonsContainer = styled.div`
+export const FooterButtonsContainer = styled(ButtonsContainer)`
   align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 3.75rem;
 `;
 
 export const ContactInfoContainer = styled.div`
@@ -88,7 +85,6 @@ export const ContactInfoContainer = styled.div`
   flex-direction: column;
   height: 8.75rem;
   margin: 0 1rem;
-  overflow: hidden;
 `;
 
 export const ContactField = styled.div`
@@ -110,7 +106,7 @@ export const PropertyIconContainer = styled.div`
 `;
 
 export const PropertyText = styled.p`
-  color: ${colors.osloGrey};
+  color: ${colors.osloGray};
   font-weight: 500;
   line-height: 1.25rem;
   margin: 0 0 0 0.5rem;
@@ -122,11 +118,10 @@ export const ContactText = styled.p`
   line-height: 1.25rem;
 `;
 
-export const ContactEmail = styled.p`
+export const ContactEmail = styled.a`
   color: ${colors.blue};
   font-weight: 600;
   line-height: 1.25rem;
-  text-decoration: underline;
 `;
 
 export const Line = styled.hr`
@@ -134,24 +129,26 @@ export const Line = styled.hr`
   margin: 0;
 `;
 
-export const HeartIcon = styled(heart)`
+export const HeartIcon = styled(Heart)`
   width: 1.125rem;
   height: 1.125rem;
 `;
 
-export const LikeIcon = styled(like)`
+export const LikeIcon = styled(Like)`
   width: 1rem;
 `;
 
-export const ShareIcon = styled(share)`
+export const ShareIcon = styled(Share)`
   width: 1rem;
 `;
-
 export const RoundedButton = styled(Button)`
+  background-color: ${colors.white};
   border-radius: 50%;
   box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mercury};
-  color: ${colors.dustyGrey};
+  color: ${colors.dustyGray};
+  height: 1.875rem;
   margin: 0.125rem;
+  padding: 0 0.375rem;
 
   :hover {
     background-color: ${colors.green};
@@ -159,24 +156,16 @@ export const RoundedButton = styled(Button)`
   }
 `;
 
-export const HeartButton = styled(Button)`
-  border-radius: 50%;
-  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mercury};
-  color: ${colors.dustyGrey};
+export const HeartButton = styled(RoundedButton)`
   left: 0.625rem;
   position: absolute;
   top: 0.625rem;
-
-  :hover {
-    background-color: ${colors.green};
-    color: ${colors.white};
-  }
 `;
 
 export const CardFooter = styled.div`
   align-items: center;
   display: flex;
-  height: 3.89rem;
+  height: 3.9rem;
   justify-content: space-between;
   margin: 0 1rem;
 `;

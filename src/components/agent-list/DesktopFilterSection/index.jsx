@@ -7,7 +7,7 @@ import {
   SelectType,
 } from 'components/agent-list/AgentsListBanner/agents-list-banner.styles';
 import React from 'react';
-import { FilterSection } from './desktop-filter-section.styles';
+import { FilterSectionDesktop } from './desktop-filter-section.styles';
 
 /**
  * Filter component displayed in tablet and desktop.
@@ -16,7 +16,7 @@ import { FilterSection } from './desktop-filter-section.styles';
  */
 function DesktopFilterSection() {
   return (
-    <FilterSection>
+    <FilterSectionDesktop>
       <FilterSearchContainer>
         <SelectType>
           <option value="">Select Type</option>
@@ -27,7 +27,7 @@ function DesktopFilterSection() {
       <SearchButton>
         <SearchIcon />
       </SearchButton>
-    </FilterSection>
+    </FilterSectionDesktop>
   );
 }
 

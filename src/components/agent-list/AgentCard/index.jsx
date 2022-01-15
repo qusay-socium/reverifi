@@ -4,7 +4,6 @@ import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
 import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
-import colors from 'styles/colors';
 import {
   AgentPicture,
   ButtonsContainer,
@@ -43,7 +42,7 @@ import {
  * @param {string} props.email       Agent's email.
  * @param {number} props.phoneNumber Agent's contact number.
  *
- * @return {JSX.Element}             The agent card holding all of the agent's information.
+ * @return {JSX.Element} The agent card holding all of the agent's information.
  */
 function AgentCard({
   address,
@@ -57,13 +56,7 @@ function AgentCard({
     <Card>
       <ImgContainer>
         <AgentPicture src={agentImg} />
-        <HeartButton
-          ariaLabel="Heart"
-          backgroundColor={colors.white}
-          height="1.875rem"
-          onClick={() => {}}
-          padding="0 0.375rem"
-        >
+        <HeartButton ariaLabel="Favorite" onClick={() => {}}>
           <HeartIcon />
         </HeartButton>
       </ImgContainer>
@@ -74,22 +67,10 @@ function AgentCard({
             <CompanyName>{companyName}</CompanyName>
           </div>
           <ButtonsContainer>
-            <RoundedButton
-              ariaLabel="Like"
-              backgroundColor={colors.white}
-              height="1.875rem"
-              onClick={() => {}}
-              padding="0 0.375rem"
-            >
+            <RoundedButton ariaLabel="Like" onClick={() => {}}>
               <LikeIcon />
             </RoundedButton>
-            <RoundedButton
-              ariaLabel="Share"
-              backgroundColor={colors.white}
-              height="1.875rem"
-              onClick={() => {}}
-              padding="0 0.375rem"
-            >
+            <RoundedButton ariaLabel="Share" onClick={() => {}}>
               <ShareIcon />
             </RoundedButton>
           </ButtonsContainer>
@@ -111,7 +92,7 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Email</PropertyText>
             </ContactProperty>
-            <ContactEmail>{email}</ContactEmail>
+            <ContactEmail href={`mailto:${email}`}>{email}</ContactEmail>
           </ContactField>
           <ContactField>
             <ContactProperty>
@@ -125,13 +106,13 @@ function AgentCard({
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <Button height="2rem" onClick={() => {}}>
-            Contact
-          </Button>
+          <Button onClick={() => {}}>Contact</Button>
           <FooterButtonsContainer>
-            <IconContainer>
-              <MailIcon />
-            </IconContainer>
+            <ContactEmail href={`mailto:${email}`}>
+              <IconContainer>
+                <MailIcon />
+              </IconContainer>
+            </ContactEmail>
             <IconContainer>
               <PhoneIcon />
             </IconContainer>
