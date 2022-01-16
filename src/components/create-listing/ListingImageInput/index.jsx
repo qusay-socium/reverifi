@@ -10,6 +10,15 @@ import {
   UploadIcon,
 } from './listingImageInput.styles';
 
+/**
+ * Renders a form listing images input selector with image list
+ *
+ * @param  {boolean}     images        A list of selected images to display.
+ * @param  {Function}    onAddImages   Add images handler.
+ * @param  {JSX.Element} onDeleteImage Delete image handler.
+ *
+ * @return {JSX.Element}
+ */
 function ListingImageInput({ images, onAddImages, onDeleteImage }) {
   return (
     <Container>
