@@ -29,7 +29,6 @@ function ClaimAddress() {
           <AddressInputWrapper>
             <Input
               leftElement={<LocationPin />}
-              size="md"
               placeholder="Enter Your Address"
               rightElement={
                 <AddressButton ariaLabel="Search" onClick={() => {}}>

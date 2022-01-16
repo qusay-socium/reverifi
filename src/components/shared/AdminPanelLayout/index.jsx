@@ -1,3 +1,5 @@
+import Footer from 'components/shared/Footer';
+import Navbar from 'components/shared/Navbar';
 import Sidebar from 'components/shared/Sidebar';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,10 +15,14 @@ import LayoutContainer from './admin-panel-layout.styles';
  */
 function AdminPanelLayout({ children }) {
   return (
-    <LayoutContainer>
-      <Sidebar />
-      {children}
-    </LayoutContainer>
+    <>
+      <Navbar />
+      <LayoutContainer>
+        <Sidebar />
+        {children}
+      </LayoutContainer>
+      <Footer />
+    </>
   );
 }
 

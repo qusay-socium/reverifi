@@ -44,6 +44,9 @@ export const ClaimAddressItems = styled.div`
 export const AddressInputWrapper = styled.div`
   height: 3.75rem;
   min-width: 21.4375rem;
+  input {
+    font-size: 1rem;
+  }
 
   ${mq.tablet`
     min-width:25rem
@@ -53,7 +56,7 @@ export const AddressInputWrapper = styled.div`
 export const AddressButton = styled(Button)`
   background-color: ${colors.white};
   height: 3.06rem;
-  padding: 0 0;
+  padding: 0 0.5rem;
 `;
 
 export const LocationPinStar = styled(RawLocationPinStar)`
@@ -67,6 +70,8 @@ export const LocationPinStar = styled(RawLocationPinStar)`
 
 export const LocationPin = styled(RawLocationPin)`
   margin-left: 1rem;
+  width: 1rem;
+  height: 1.375rem;
 `;
 
 export const JoinUs = styled.div`
@@ -91,8 +96,10 @@ export const JoinUs = styled.div`
 `;
 
 export const JoinUsButton = styled(Button)`
-  color: ${colors.mineShaft};
   background-color: ${colors.white};
+  color: ${colors.mineShaft};
+  font-size: 1rem;
+  height: 2.5rem;
 `;
 
 export const JoinUsText = styled.div`

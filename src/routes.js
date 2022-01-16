@@ -5,10 +5,11 @@ import { lazy } from 'react';
  *
  * @property {boolean} adminLayout Wrap the page with admin layout.
  * @property {JSX.Element} component React component to render.
+ * @property {bool} disableFooter Whether footer disabled.
+ * @property {bool} disableNavBar Whether navbar disabled.
  * @property {boolean} exact When true, will only match if the path matches the location.pathname exactly.
  * @property {string} label A name used for react `key` prop.
  * @property {string} path Any valid URL path.
- * @property {string} title Page title.
  */
 const routes = [
   {
@@ -20,18 +21,23 @@ const routes = [
   },
   {
     component: lazy(() => import('pages/Login/Login')),
+    disableFooter: true,
+    disableNavbar: true,
     label: 'login',
     path: '/login',
     title: 'Login',
   },
   {
     component: lazy(() => import('pages/SignUp/SignUp')),
+    disableFooter: true,
+    disableNavbar: true,
     label: 'sign-up',
     path: '/sign-up',
     title: 'SignUp',
   },
   {
     component: lazy(() => import('pages/VerifyPhone')),
+    disableFooter: true,
     label: 'verify-phone',
     path: '/verify-phone',
     title: 'Verify Phone',

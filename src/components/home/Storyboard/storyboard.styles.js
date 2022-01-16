@@ -10,7 +10,8 @@ export const StoryBoardContainer = styled.div`
   flex-direction: column;
   font-weight: 600;
   gap: 2rem;
-  padding-bottom: 1.5rem;
+  margin-top: 1.875rem;
+  padding-bottom: 2.8125rem;
 
   ${mq.tablet`
     align-items: center;

@@ -35,7 +35,7 @@ export const InfoContainer = styled.div`
   padding: 1rem;
 
   ${mq.tabletWide`
-    padding: 6.9375rem 7.625rem 0;
+    padding: 7rem 7.625rem 0;
   `}
 `;
 
@@ -131,7 +131,7 @@ export const SocialLinksText = styled.p`
   margin: 0;
   margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
   padding: ${({ borderTop }) => borderTop && '1.5625rem'};
-
+  text-align: center;
   a {
     font-size: 0.9375rem;
   }

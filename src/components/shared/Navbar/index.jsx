@@ -4,7 +4,6 @@ import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
 import { useUser } from 'contexts/UserContext';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../Button';
 import {
   BroadNavContainer,
   Logo,
@@ -15,6 +14,7 @@ import {
   NavLinksContainer,
   NotificationBell,
   SignInButton,
+  SignUpButton,
   StyledInput,
   StyledInputGroup,
   UserControlSectionWrapper,
@@ -64,10 +64,12 @@ function Navbar() {
           </UserNavControlContainer>
         ) : (
           <UserNavRegContainer>
-            <SignInButton type="button" onClick={() => navigate('login')}>
+            <SignInButton onClick={() => navigate('login')}>
               Sign In
             </SignInButton>
-            <Button onClick={() => navigate('sign-up')}>Join Now</Button>
+            <SignUpButton onClick={() => navigate('sign-up')}>
+              Join Now
+            </SignUpButton>
           </UserNavRegContainer>
         )}
       </NavItemsContainer>

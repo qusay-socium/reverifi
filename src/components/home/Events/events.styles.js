@@ -52,7 +52,7 @@ export const FilterButton = styled.button`
     `
       :after {
         border-top-left-radius: 0.25rem;
-        border-top: 3px solid ${colors.green};
+        border-top: 0.1875rem solid ${colors.green};
         border-top-right-radius: 0.25rem;
         bottom: -0.25rem;
         content: '';

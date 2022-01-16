@@ -8,7 +8,7 @@ export const MainContainer = styled.div`
   flex-direction: column;
   gap: 2.25rem;
   margin: 0 auto;
-  padding: 2.25rem 1.37rem;
+  padding: 3.25rem 1.37rem;
 
   ${mq.tablet`
     flex-direction: row;
@@ -33,7 +33,7 @@ export const Header = styled.h3`
   }
 
   ${mq.tablet`
-    font-size: 2rem;
+    font-size: 2.4rem;
   `}
 `;
 
@@ -44,13 +44,14 @@ export const Paragraph = styled.p`
   opacity: 0.5;
 
   ${mq.tablet`
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   `}
 `;
 
 export const SeeMoreButton = styled(Button)`
-  border-radius: 1.25rem;
-  font-size: 1rem;
+  height: 3rem;
+  border-radius: 1.75rem;
+  font-size: 1.125rem;
 `;
 
 export const SecondSection = styled.div`
@@ -72,6 +73,10 @@ export const Item = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  svg {
+    width: 2.5rem;
+    height: 2.75rem;
+  }
 `;
 
 export const ItemIcon = styled.div`

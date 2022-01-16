@@ -57,14 +57,14 @@ export const InputsContainer = styled.div`
 
 export const DigitInput = styled.input`
   background-color: ${colors.grey};
-  border: 3px solid ${colors.midGray};
+  border: 0.1875rem solid ${colors.midGray};
   font-size: 1.875rem;
   max-width: 4.375rem;
   min-height: 5.625rem;
   text-align: center;
 
   &:focus {
-    border: 3px solid ${colors.green};
+    border: 0.1875rem solid ${colors.green};
   }
 `;
 

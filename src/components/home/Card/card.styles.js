@@ -6,6 +6,7 @@ export const CardContainer = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 0.06rem 0.5rem ${colors.cornflowerBlue}1f;
   cursor: pointer;
+  margin-bottom: 0.1rem;
   overflow: hidden;
   position: relative;
 `;
@@ -14,13 +15,13 @@ export const AddButton = styled.button`
   align-items: center;
   background: ${colors.white};
   border-radius: 50%;
-  border: 1px solid ${colors.green};
+  border: 0.0625rem solid ${colors.green};
   cursor: pointer;
   display: flex;
-  min-height: 1.5rem;
   justify-content: center;
-  padding: 0;
+  min-height: 1.5rem;
   min-width: 1.5rem;
+  padding: 0;
 
   :hover {
     background: ${colors.green};
@@ -91,12 +92,13 @@ export const EventDate = styled.h3`
 `;
 
 export const EventHeader = styled.h4`
-  font-weight: normal;
+  font-size: 1.125rem;
+  font-weight: 600;
   margin: 0.12rem 0 0.31rem 0;
 `;
 
 export const EventTimePlace = styled.h5`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: normal;
   margin: 0;
   opacity: 0.5;
@@ -104,7 +106,7 @@ export const EventTimePlace = styled.h5`
 
 export const ShareButton = styled(AddButton)`
   background: ${colors.alabaster};
-  border: 1px solid ${colors.alabaster};
+  border: 0.0625rem solid ${colors.alabaster};
 `;
 
 export const EventType = styled.div`
