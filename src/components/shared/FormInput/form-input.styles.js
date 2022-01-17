@@ -7,13 +7,16 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
+  align-items: center;
   color: ${colors.mineShaft}7f;
+  display: flex;
   font-size: 0.9375rem;
+  gap: 0.5rem;
   padding-bottom: 0.625rem;
 `;
 
 export const Input = styled.input`
-  border: 1px solid ${colors.mercury};
+  border: 0.0625rem solid ${colors.mercury};
   border-radius: ${({ rounded }) => (rounded ? '1.1875rem' : '0.375rem')};
   padding: 0.625rem;
   width: 100%;
@@ -23,7 +26,12 @@ export const Input = styled.input`
   }
 
   &:focus {
-    outline: 1px solid ${colors.green};
+    outline: 0.0625rem solid ${colors.green};
+  }
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    opacity: 1;
   }
 `;
 

@@ -119,12 +119,13 @@ export const AppleButton = styled(SocialButton)`
 
 export const GoogleButton = styled(SocialButton)`
   background-color: ${colors.white};
-  border: 1px solid ${colors.mercury};
+  border: 0.0625rem solid ${colors.mercury};
   color: ${colors.mineShaft};
 `;
 
 export const SocialLinksText = styled.p`
-  border-top: ${({ borderTop }) => borderTop && `1px solid ${colors.mercury}`};
+  border-top: ${({ borderTop }) =>
+    borderTop && `0.0625rem solid ${colors.mercury}`};
   color: ${colors.mineShaft}7f;
   font-size: 0.9375rem;
   margin: 0;

@@ -55,7 +55,7 @@ export const MenuItemsContainer = styled.div`
 
 export const MenuLink = styled(NavLink)`
   align-items: center;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   color: ${colors.white};
   display: flex;
   font-weight: 500;

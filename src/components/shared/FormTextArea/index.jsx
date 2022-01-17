@@ -1,25 +1,30 @@
+import {
+  Container,
+  Error,
+  Label,
+} from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container, Error, Input, Label } from './form-input.styles';
+import { Input, Labels, LimitMessage } from './form-text-area.styles';
 
 /**
- * Render form input.
+ * Render form text-area input.
  *
  * @param {Object}   props                         The component props.
  * @param {string}   [props.error=null]            Error message.
  * @param {string}   [props.id=null]               Input ID.
  * @param {string}   [props.label=null]            Label text.
- * @param {node}     [props.labelIconElement=null] Label Icon.
+ * @param {node}     [props.labelIconElement=null] Label icon element.
  * @param {string}   props.name                    Input name.
- * @param {Function} [props.onChange = null]       The on change event.
+ * @param {Function} [props.onChange=null]         The on change event.
  * @param {string}   [props.placeholder='']        Input placeholder.
  * @param {Function} [props.register=null]         The react-hook-form register function.
  * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
- * @param {string}   [props.type='text']           Input type.
+ * @param {string}   [props.value='']              Textarea input value.
  *
  * @return {JSX.Element}
  */
-function FormInput({
+function TextAreaInput({
   error,
   id,
   label,
@@ -28,65 +33,62 @@ function FormInput({
   placeholder,
   register,
   rounded,
-  type,
-  min,
-  max,
-  step,
+  limit,
+  value,
   labelIconElement,
 }) {
   return (
     <Container>
-      {label && (
-        <Label htmlFor={id || name}>
-          {labelIconElement}
-          {label}
-        </Label>
-      )}
+      <Labels>
+        {label && (
+          <Label htmlFor={id || name}>
+            {labelIconElement}
+            {label}
+          </Label>
+        )}
+        <LimitMessage color={limit <= 10 ? 'red' : null}>
+          ({limit} chars left)
+        </LimitMessage>
+      </Labels>
+
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
-        type={type}
         placeholder={placeholder}
         onChange={onChange}
         rounded={rounded}
-        min={min}
-        max={max}
-        step={step}
+        value={value}
       />
       {error && <Error>{error}</Error>}
     </Container>
   );
 }
 
-FormInput.propTypes = {
+TextAreaInput.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
   labelIconElement: PropTypes.node,
-  max: PropTypes.string,
-  min: PropTypes.string,
+  limit: PropTypes.number,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   rounded: PropTypes.bool,
-  step: PropTypes.string,
-  type: PropTypes.string,
+  value: PropTypes.string,
 };
 
-FormInput.defaultProps = {
+TextAreaInput.defaultProps = {
   error: null,
   id: null,
   label: null,
   labelIconElement: null,
-  max: null,
-  min: null,
+  limit: null,
   onChange: null,
   placeholder: '',
   register: null,
   rounded: true,
-  step: null,
-  type: 'text',
+  value: '',
 };
 
-export default FormInput;
+export default TextAreaInput;

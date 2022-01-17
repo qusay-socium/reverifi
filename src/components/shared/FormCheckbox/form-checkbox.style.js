@@ -16,7 +16,7 @@ export const Container = styled.div`
 export const Input = styled.input`
   appearance: none;
   border-radius: 0.25rem;
-  border: 2px solid ${colors.mercury};
+  border: 0.125rem solid ${colors.mercury};
   cursor: pointer;
   height: 1.125rem;
   outline: none;

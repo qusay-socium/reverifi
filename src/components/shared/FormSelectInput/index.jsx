@@ -1,9 +1,14 @@
+import {
+  Container,
+  Error,
+  Label,
+} from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container, Error, Input, Label } from './form-input.styles';
+import { Input } from './select.styles';
 
 /**
- * Render form input.
+ * Render form select input.
  *
  * @param {Object}   props                         The component props.
  * @param {string}   [props.error=null]            Error message.
@@ -11,15 +16,15 @@ import { Container, Error, Input, Label } from './form-input.styles';
  * @param {string}   [props.label=null]            Label text.
  * @param {node}     [props.labelIconElement=null] Label Icon.
  * @param {string}   props.name                    Input name.
- * @param {Function} [props.onChange = null]       The on change event.
+ * @param {Function} [props.onChange=null]         The on change event.
  * @param {string}   [props.placeholder='']        Input placeholder.
  * @param {Function} [props.register=null]         The react-hook-form register function.
  * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
- * @param {string}   [props.type='text']           Input type.
+ * @param {String[]} props.options                 The select menu options.
  *
  * @return {JSX.Element}
  */
-function FormInput({
+function SelectInput({
   error,
   id,
   label,
@@ -28,10 +33,7 @@ function FormInput({
   placeholder,
   register,
   rounded,
-  type,
-  min,
-  max,
-  step,
+  options,
   labelIconElement,
 }) {
   return (
@@ -45,48 +47,43 @@ function FormInput({
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
-        type={type}
         placeholder={placeholder}
         onChange={onChange}
         rounded={rounded}
-        min={min}
-        max={max}
-        step={step}
-      />
+      >
+        {options.map((option) => (
+          <option value={option} key={option}>
+            {option}
+          </option>
+        ))}
+      </Input>
       {error && <Error>{error}</Error>}
     </Container>
   );
 }
 
-FormInput.propTypes = {
+SelectInput.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
   labelIconElement: PropTypes.node,
-  max: PropTypes.string,
-  min: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   rounded: PropTypes.bool,
-  step: PropTypes.string,
-  type: PropTypes.string,
 };
 
-FormInput.defaultProps = {
+SelectInput.defaultProps = {
   error: null,
   id: null,
   label: null,
   labelIconElement: null,
-  max: null,
-  min: null,
   onChange: null,
   placeholder: '',
   register: null,
   rounded: true,
-  step: null,
-  type: 'text',
 };
 
-export default FormInput;
+export default SelectInput;

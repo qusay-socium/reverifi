@@ -22,14 +22,14 @@ export const ButtonsContainer = styled.div`
 export const VerifyButton = styled(Button)`
   &:hover {
     background-color: ${colors.white};
-    outline: 1px solid ${colors.green};
+    outline: 0.0625rem solid ${colors.green};
     color: ${colors.green};
   }
 `;
 
 export const CancelButton = styled(Button)`
   background-color: ${colors.white};
-  border: 1px solid ${colors.gray};
+  border: 0.0625rem solid ${colors.gray};
   color: ${colors.gray};
 
   &:hover {
@@ -57,14 +57,14 @@ export const InputsContainer = styled.div`
 
 export const DigitInput = styled.input`
   background-color: ${colors.grey};
-  border: 3px solid ${colors.midGrey};
+  border: 0.1875rem solid ${colors.midGrey};
   font-size: 1.875rem;
   max-width: 4.375rem;
   min-height: 5.625rem;
   text-align: center;
 
   &:focus {
-    border: 3px solid ${colors.green};
+    border: 0.1875rem solid ${colors.green};
     outline: none;
   }
 `;

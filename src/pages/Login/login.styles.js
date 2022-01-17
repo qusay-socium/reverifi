@@ -108,6 +108,6 @@ export const AppleButton = styled(SocialButton)`
 
 export const GoogleButton = styled(SocialButton)`
   background-color: ${colors.white};
-  border: 1px solid ${colors.mercury};
+  border: 0.0625rem solid ${colors.mercury};
   color: ${colors.mineShaft};
 `;
