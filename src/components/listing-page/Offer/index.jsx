@@ -1,15 +1,15 @@
 import { ReactComponent as BellIcon } from 'assets/images/bell.svg';
 import { ReactComponent as HeartIcon } from 'assets/images/heart.svg';
-import { ReactComponent as MoreIcon } from 'assets/images/more-horizontal.svg';
+import { ReactComponent as MoreOptionsIcon } from 'assets/images/more-horizontal.svg';
 import { ReactComponent as ShareIcon } from 'assets/images/share.svg';
+import { ReactComponent as LocationPinIcon } from 'assets/images/location-pin.svg';
 import {
-  ButtonsSection,
+  SideButtonsContainer,
   Container,
   OfferDetails,
   Location,
   LocationText,
   LogoButton,
-  Pin,
   Price,
   SubmitButton,
   SubmitOffer,
@@ -37,7 +37,7 @@ function Offer({ data }) {
         <div>
           <Price> {price} </Price>
           <Location>
-            <Pin />
+            <LocationPinIcon />
             <LocationText> {location}</LocationText>
           </Location>
         </div>
@@ -54,7 +54,7 @@ function Offer({ data }) {
         </SubmitOffer>
       </OfferDetails>
 
-      <ButtonsSection>
+      <SideButtonsContainer>
         <LogoButton
           onClick={() => {
             /* Todo */
@@ -72,8 +72,10 @@ function Offer({ data }) {
         <LogoButton onClick={() => setShowModal(true)}>
           <ShareIcon />
         </LogoButton>
-        <MoreIcon />
-      </ButtonsSection>
+        <LogoButton onClick={() => setShowModal(true)}>
+          <MoreOptionsIcon />
+        </LogoButton>
+      </SideButtonsContainer>
     </Container>
   );
 }

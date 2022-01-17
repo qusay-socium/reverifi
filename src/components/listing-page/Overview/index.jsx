@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Button from 'components/shared/Button';
+import { Title } from 'components/listing-page/Details/details.styles';
 import ContactForm from '../ContactForm';
 import ScheduleVisit from '../ScheduleVisit';
 import {
-  Claim,
-  ClaimButton,
-  ClaimHeading,
-  ClaimParagraph,
   Container,
-  OverviewParagraph,
+  Claim,
+  Paragraph,
   Partition,
   Statistics,
-  Title,
   Value,
   Wrapper,
 } from './overview.styles';
@@ -34,33 +32,30 @@ function Overview({ data }) {
           <Title>Overview</Title>
           <Statistics>
             {Object.keys(statistics).map((key, index, array) => (
-              <span key={key}>
-                <span>
-                  {key}: <Value> {statistics[key]}</Value>
-                </span>
+              // eslint-disable-next-line jsx-a11y/label-has-associated-control
+              <label key={key}>
+                {key}: <Value>{statistics[key]}</Value>
                 {index !== array.length - 1 && <Partition />}
-              </span>
+              </label>
             ))}
           </Statistics>
 
-          <OverviewParagraph>{overview}</OverviewParagraph>
+          <Paragraph>{overview}</Paragraph>
         </div>
         <Claim>
           <div>
-            <ClaimHeading> Do you own this property? </ClaimHeading>
-            <ClaimParagraph>
-              Claim this property and verifiy it’s details
-            </ClaimParagraph>
+            <Title> Do you own this property? </Title>
+            <Paragraph>Claim this property and verifiy it’s details</Paragraph>
           </div>
-          <ClaimButton
+          <Button
             aria-label="Claim this property"
             type="button"
             onClick={() => {
               /* Todo */
             }}
           >
-            Claim this property
-          </ClaimButton>
+            Claim property
+          </Button>
         </Claim>
         <ScheduleVisit />
       </Wrapper>

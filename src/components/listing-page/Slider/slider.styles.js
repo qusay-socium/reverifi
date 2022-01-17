@@ -4,12 +4,11 @@ import mq from 'styles/media-query';
 
 export const Container = styled.div`
   background-color: ${colors.alabaster};
-  overflow: hidden;
 `;
 
 export const Wrapper = styled.div`
   margin: 0 auto;
-  max-width: 93.75rem;
+  max-width: 100rem;
 
   .slick-dots {
     display: none !important;
@@ -22,8 +21,8 @@ export const Wrapper = styled.div`
       width: 9.375rem;
 
       img {
-        height: 6.25rem;
-        width: 9.375rem;
+        height: 6rem;
+        width: 9rem;
       }
     }
 
@@ -72,10 +71,10 @@ export const InActiveImageWrapper = styled.div`
 `;
 
 export const InActiveImage = styled.img`
-  filter: brightness(40%);
-  height: 24.8438rem;
+  filter: brightness(50%);
+  height: 25rem;
   margin: 0 auto;
-  width: 44.6875rem;
+  width: 45rem;
 `;
 
 export const SliderArrow = styled.div`
@@ -83,7 +82,7 @@ export const SliderArrow = styled.div`
   border-radius: 50%;
   cursor: pointer;
   height: 1.875rem;
-  opacity: 0.6;
+  opacity: 0.8;
   position: absolute;
   right: ${({ right }) => right};
   left: ${({ left }) => left};

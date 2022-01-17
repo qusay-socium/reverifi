@@ -117,7 +117,7 @@ const data = {
         bedroom: 2,
       },
       tags: ['New', 'Sale'],
-      title: 'Apartment4',
+      title: 'Apartment#4',
     },
     {
       distance: '1.1km away',
@@ -148,11 +148,10 @@ const data = {
   ],
   // statistics should be rendered in this order.
   statistics: {
-    'Time on Reverifi': '8 days',
-    Views: '30',
-    // eslint-disable-next-line sort-keys
     Saves: '10',
     Shared: '12',
+    'Time on Reverifi': '8 days',
+    Views: '30',
   },
 };
 

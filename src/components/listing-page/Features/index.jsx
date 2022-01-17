@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Title } from 'components/listing-page/Details/details.styles';
 import {
   Container,
   FeaturesItem,
   Image,
   Label,
-  Title,
   Wrapper,
 } from './features.styles';
 

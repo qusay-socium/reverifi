@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Slider from 'react-slick';
 import {
+  Title,
   Container,
+} from 'components/listing-page/Details/details.styles';
+import {
   SeeMore,
   SimilarItemsList,
   StyledSlide,
-  Title,
   Wrapper,
 } from './similar-listings.styles';
 

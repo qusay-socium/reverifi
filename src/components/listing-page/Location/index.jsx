@@ -1,6 +1,10 @@
 import locationImg from 'assets/images/location.svg';
 import React from 'react';
-import { Container, Image, Title } from './location.styles';
+import {
+  Title,
+  Container,
+} from 'components/listing-page/Details/details.styles';
+import { Image } from './location.styles';
 
 /**
  * Listing page location section.

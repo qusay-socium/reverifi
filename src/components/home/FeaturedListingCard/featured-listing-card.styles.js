@@ -7,6 +7,7 @@ export const CardContainer = styled.div`
   box-shadow: 0rem 0.0625rem 0.5625rem ${colors.mineShaft}29;
   margin: 2rem 1rem;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`

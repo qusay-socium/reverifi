@@ -9,34 +9,18 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  margin: 2rem 0;
+  border-top: 0.06rem solid ${colors.midGrey};
+  padding: 2.5rem 0.5rem;
 
   ${mq.desktop`
-    margin: 2rem 6.5625rem;
-  `}
-`;
-
-export const Title = styled.h2`
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 0;
-  text-align: center;
-
-  ${mq.mobileWide`
-    font-size: 2rem;
-  `}
-
-  ${mq.desktop`
-    text-align: left;
-  `}
+    margin: 2rem 7rem 0;
+  `};
 `;
 
 export const StyledSlide = styled.div`
   // dots styles
   .slide-dots {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     text-align: center;
 
     > li {

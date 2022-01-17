@@ -23,11 +23,7 @@ import {
  */
 function NextArrow({ onClick }) {
   return (
-    <SliderArrow
-      onClick={onClick}
-      right="0%"
-      transform="scale(0.5) translate(-50%, -50%)"
-    >
+    <SliderArrow onClick={onClick} right="0%">
       <ChevronRight />
     </SliderArrow>
   );
@@ -69,7 +65,7 @@ function ListingPageSlider({ images }) {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 986,
+        breakpoint: 980,
         settings: {
           centerPadding: '0%',
           slidesToShow: 1,
@@ -84,7 +80,6 @@ function ListingPageSlider({ images }) {
   return (
     <Container>
       <Wrapper>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Slider {...settings}>
           {images.map((img, idx) =>
             idx === imageIndex ? (
