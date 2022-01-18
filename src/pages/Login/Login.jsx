@@ -62,63 +62,64 @@ function Login() {
       <ImageContainer>
         <MainImg />
       </ImageContainer>
+      <div>
+        <InfoContainer>
+          <Title>Log In</Title>
 
-      <InfoContainer>
-        <Title>Log In</Title>
+          <Form onSubmit={handleSubmit(submit)}>
+            <InputWrapper>
+              <FormInput
+                error={errors.email?.message}
+                label="E-mail"
+                name="email"
+                placeholder="eg: Jhon@domain.com"
+                register={register}
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <FormInput
+                name="password"
+                error={errors.password?.message}
+                label="Password"
+                register={register}
+                type="password"
+              />
+            </InputWrapper>
 
-        <Form onSubmit={handleSubmit(submit)}>
-          <InputWrapper>
-            <FormInput
-              error={errors.email?.message}
-              label="E-mail"
-              name="email"
-              placeholder="eg: Jhon@domain.com"
+            <FormCheckbox
+              name="rememberMe"
+              label="Remember me"
               register={register}
             />
-          </InputWrapper>
-          <InputWrapper>
-            <FormInput
-              name="password"
-              error={errors.password?.message}
-              label="Password"
-              register={register}
-              type="password"
-            />
-          </InputWrapper>
 
-          <FormCheckbox
-            name="rememberMe"
-            label="Remember me"
-            register={register}
-          />
+            <LinkText>Forgot Password</LinkText>
 
-          <LinkText>Forgot Password</LinkText>
+            <Button type="submit">Log In</Button>
+          </Form>
 
-          <Button type="submit">Log In</Button>
-        </Form>
-
-        <SocialLinksContainer>
-          <OrText>Or</OrText>
-          <FacebookButton>
-            <div>
-              <FacebookIcon />
-              <span> Continue with Facebook</span>
-            </div>
-          </FacebookButton>
-          <AppleButton>
-            <div>
-              <AppleIcon />
-              <span> Continue with Apple</span>
-            </div>
-          </AppleButton>
-          <GoogleButton>
-            <div>
-              <GoogleIcon />
-              <span>Continue with Google</span>
-            </div>
-          </GoogleButton>
-        </SocialLinksContainer>
-      </InfoContainer>
+          <SocialLinksContainer>
+            <OrText>Or</OrText>
+            <FacebookButton>
+              <div>
+                <FacebookIcon />
+                <span> Continue with Facebook</span>
+              </div>
+            </FacebookButton>
+            <AppleButton>
+              <div>
+                <AppleIcon />
+                <span> Continue with Apple</span>
+              </div>
+            </AppleButton>
+            <GoogleButton>
+              <div>
+                <GoogleIcon />
+                <span>Continue with Google</span>
+              </div>
+            </GoogleButton>
+          </SocialLinksContainer>
+        </InfoContainer>
+      </div>
     </LoginContainer>
   );
 }

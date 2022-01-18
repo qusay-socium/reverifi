@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const SocialMediaIcons = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: ${colors.whiteSand};
-  padding: 2.0625rem 0em 2.0625rem 1.0625rem;
+  padding: 2.25rem 1.6875rem;
 
   ${mq.tablet`
     flex-direction:row;
@@ -30,7 +30,7 @@ export const InfoWrapper = styled.div`
     justify-content: space-evenly;
     padding-bottom: 3.0625rem;
     column-gap: 0.625rem;
-  `}
+  `};
 `;
 
 export const ContactInfo = styled.div`
@@ -74,7 +74,10 @@ export const SubscribeWrapper = styled.div`
 
 export const SubscribeInputWrapper = styled.div`
   height: 2.375rem;
-  max-width: 21.25rem;
+
+  ${mq.desktop`
+     min-width: 20rem;
+  `}
 `;
 
 export const FooterWrapper = styled.div`

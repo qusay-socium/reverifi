@@ -34,6 +34,7 @@ export const ImageContainer = styled.div`
 export const InfoContainer = styled.div`
   flex: 1;
   padding: 1rem;
+  height: 100vh;
 
   ${mq.tabletWide`
     padding: 6.9375rem 7.625rem 0;

@@ -5,7 +5,6 @@ import { ReactComponent as Youtube } from 'assets/images/youtube.svg';
 import React from 'react';
 import Button from '../Button';
 import Input from '../Input';
-import SupportInfo from './SupportInfo';
 import {
   FooterWrapper,
   InfoGroup,
@@ -16,6 +15,7 @@ import {
   SubscribeInputWrapper,
   SubscribeWrapper,
 } from './footer.styles';
+import SupportInfo from './SupportInfo';
 
 /**
  * Home page footer section.
@@ -50,7 +50,6 @@ function Footer() {
           <InfoGroupHeader>Subscribe to our Newsletter</InfoGroupHeader>
           <SubscribeInputWrapper>
             <Input
-              size="sm"
               placeholder="Subscribe to our Newsletter"
               rightElement={
                 <Button onClick={() => {}} ariaLabel="Subscribe">

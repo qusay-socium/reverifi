@@ -17,12 +17,13 @@ Input.propTypes = {
   leftElement: PropTypes.element,
   placeholder: PropTypes.string.isRequired,
   rightElement: PropTypes.element,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
 };
 
 Input.defaultProps = {
   leftElement: null,
   rightElement: null,
+  size: 'md',
 };
 
 export default Input;

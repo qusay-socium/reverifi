@@ -26,7 +26,7 @@ export const BroadNavContainer = styled.div`
 
 export const NarrowNavContainer = styled(BroadNavContainer)`
   ${mq.tablet`
-    height: 4.375rem;
+    height: 5rem;
   `}
 `;
 
@@ -47,6 +47,7 @@ export const NavItemsContainer = styled.div`
 
 export const NavLinksContainer = styled.div`
   display: none;
+  font-size: 0.9rem;
 
   ${mq.desktopWide`
     align-items: center;
@@ -122,6 +123,10 @@ export const Logo = styled(RawLogo)`
 
 export const SignInButton = styled(Button)`
   background-color: transparent;
+  font-size: 0.9rem;
+`;
+export const SignUpButton = styled(Button)`
+  font-size: 0.9rem;
 `;
 
 export const NotificationBell = styled(RawNotificationBell)`

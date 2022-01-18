@@ -5,7 +5,6 @@ import FeaturedListing from 'components/home/FeaturedListing';
 import ReverifiPlus from 'components/home/ReverifiPlus';
 import Storyboard from 'components/home/Storyboard';
 import ListingShareModal from 'components/ListingShareModal';
-import Footer from 'components/shared/Footer';
 import ShowModalProvider from 'contexts/ShowModalContext';
 import React from 'react';
 
@@ -26,7 +25,6 @@ function Home() {
       <ReverifiPlus />
       <ExploreListing />
       <ClaimAddress />
-      <Footer />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export const CardBody = styled.div`
 
 export const CardFooter = styled.div`
   align-items: center;
-  border-top: 1px solid ${colors.midGray};
+  border-top: 0.0625rem solid ${colors.midGray};
   display: flex;
   justify-content: space-between;
   padding: 0.75rem 1rem;
@@ -105,6 +105,7 @@ export const IconContainer = styled.div`
   background-color: ${colors.wildSand};
   border-radius: 50%;
   box-shadow: 0 0.0625rem 0.375rem ${colors.mineShaft}29;
+  cursor: pointer;
   display: flex;
   height: 1.5625rem;
   justify-content: center;

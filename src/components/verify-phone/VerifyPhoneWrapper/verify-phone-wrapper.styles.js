@@ -31,8 +31,8 @@ export const Subtitle = styled.p`
 export const BottomImage = styled.div`
   background-image: url(${bottomImg});
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 30rem;
+  background-size: contain;
+  height: 21.25rem;
   overflow-x: hidden;
   width: 100%;
 `;

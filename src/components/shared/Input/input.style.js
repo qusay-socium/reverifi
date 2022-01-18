@@ -18,7 +18,6 @@ export const StyledInputGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  gap: 1rem;
   background-color: ${colors.white};
   height: 100%;
   border-radius: 2.1875rem;

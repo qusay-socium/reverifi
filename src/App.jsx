@@ -1,5 +1,5 @@
 import AdminPanelLayout from 'components/shared/AdminPanelLayout';
-import Navbar from 'components/shared/Navbar';
+import MainLayout from 'components/shared/MainLayout';
 import { UserProvider } from 'contexts/UserContext';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -15,18 +15,30 @@ function App() {
   return (
     <UserProvider>
       <GlobalStyles />
-      <Navbar />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
           {routes.map(
-            ({ label, exact, path, component: Component, adminLayout }) => (
+            ({
+              label,
+              exact,
+              path,
+              component: Component,
+              adminLayout,
+              disableNavbar,
+              disableFooter,
+            }) => (
               <Route
                 key={label}
                 path={path}
                 exact={exact}
                 element={
                   !adminLayout ? (
-                    <Component />
+                    <MainLayout
+                      disableNavbar={disableNavbar}
+                      disableFooter={disableFooter}
+                    >
+                      <Component />
+                    </MainLayout>
                   ) : (
                     <AdminPanelLayout>
                       <Component />

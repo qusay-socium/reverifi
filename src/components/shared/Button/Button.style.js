@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   font-size: 0.75rem;
   font-weight: 600;
   height: 2.5rem;
-  padding: 0 2rem;
+  padding: 0 1.6875rem;
 
   &[disabled] {
     cursor: not-allowed;
