@@ -1,13 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import {
-  Card,
-  CheckIcon,
-  IconContainer,
-  Overview,
-  Rectangle,
-  RoleText,
-} from './role-card.styles';
+import { Card, CheckIcon, Overview, Rectangle } from './role-card.styles';
 
 /**
  * Role Card.
@@ -41,10 +34,8 @@ function RoleCard({ data, setSelectedRole }) {
       <Rectangle isSelected={isSelected}>
         {isSelected && <CheckIcon />}
       </Rectangle>
-      <IconContainer>
-        <Icon />
-      </IconContainer>
-      <RoleText>{role}</RoleText>
+      <Icon />
+      <h3>{role}</h3>
       <Overview>{overview}</Overview>
     </Card>
   );
