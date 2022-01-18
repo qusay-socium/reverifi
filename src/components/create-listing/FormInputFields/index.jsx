@@ -31,55 +31,37 @@ import {
  * Render the form input fields.
  *
  * @param {Object}   props                               The component props.
- * @param {string}   props.overviewText                  Overview input value.
  * @param {Function} [props.register=null]               The react-hook-form register function.
  * @param {Object}   props.errors                        Error message/s.
- * @param {Function} [props.handleIdentifierClick =null] The function to handle on click event for buttons.
- * @param {Set}      props.selectedIdentifiers           The currently selected buttons.
- * @param {Function} props.setOverviewText               Update the value of the overviewText state.
+ * @param {Function} props.setValue                      Sets form values.
+ * @param {Object}   props.values                        Form values.
  *
  * @return {JSX.Element}
  */
-function FormInputFields({
-  overviewText,
-  register,
-  errors,
-  handleIdentifierClick,
-  selectedIdentifiers,
-  setOverviewText,
-}) {
+function FormInputFields({ register, errors, setValue, values }) {
   /**
    * @type {number} Maximum characters allowed for overview input.
    */
   const overviewCharsLimit = 140;
-
-  /**
-   * Updates overview input value.
-   *
-   * @param {React.ChangeEvent} event Object containing the new value for overview input.
-   */
-  const updateOverviewText = (event) => {
-    const newValue = event.target.value;
-
-    if (newValue.length <= overviewCharsLimit) {
-      setOverviewText(newValue);
-    }
-  };
 
   return (
     <>
       <ButtonsContainer>
         <IdentifierButton
           aria-label="I am the owner(s)"
-          onClick={() => handleIdentifierClick('I am the owner(s)')}
-          selected={selectedIdentifiers?.has('I am the owner(s)')}
+          onClick={() => {
+            setValue('isOwner', !values.isOwner);
+          }}
+          selected={values.isOwner}
         >
           <OwnerIcon />I am the owner(s)
         </IdentifierButton>
         <IdentifierButton
           aria-label="I am the Seller Agent"
-          onClick={() => handleIdentifierClick('I am the Seller Agent')}
-          selected={selectedIdentifiers?.has('I am the Seller Agent')}
+          onClick={() => {
+            setValue('isAgent', !values.isAgent);
+          }}
+          selected={values.isAgent}
         >
           <AgentIcon /> I am the Seller Agent
         </IdentifierButton>
@@ -103,6 +85,9 @@ function FormInputFields({
             'Special Use',
           ]}
           labelIconElement={<PropertyTypeIcon />}
+          onChange={(e) => {
+            setValue('propertyType', e.target.value);
+          }}
         />
 
         <SelectInput
@@ -120,6 +105,9 @@ function FormInputFields({
             'Limited-Service Listing Agreement',
           ]}
           labelIconElement={<ListingTypeIcon />}
+          onChange={(e) => {
+            setValue('listingType', e.target.value);
+          }}
         />
 
         <FormInput
@@ -134,6 +122,9 @@ function FormInputFields({
           step="1"
           placeholder="1995"
           labelIconElement={<YearBuiltIcon />}
+          onChange={(e) => {
+            setValue('yearBuilt', e.target.value);
+          }}
         />
 
         <FormInput
@@ -147,6 +138,9 @@ function FormInputFields({
           step="1"
           placeholder="1"
           labelIconElement={<BedroomsIcon />}
+          onChange={(e) => {
+            setValue('bedrooms', e.target.value);
+          }}
         />
 
         <FormInput
@@ -160,6 +154,9 @@ function FormInputFields({
           step="1"
           placeholder="1"
           labelIconElement={<FullBathroomsIcon />}
+          onChange={(e) => {
+            setValue('fullBathrooms', e.target.value);
+          }}
         />
 
         <FormInput
@@ -173,6 +170,9 @@ function FormInputFields({
           step="1"
           placeholder="1"
           labelIconElement={<PartialBathroomsIcon />}
+          onChange={(e) => {
+            setValue('partialBathrooms', e.target.value);
+          }}
         />
 
         <FormInput
@@ -182,6 +182,9 @@ function FormInputFields({
           name="homeArea"
           register={register}
           labelIconElement={<HomeAreaIcon />}
+          onChange={(e) => {
+            setValue('homeArea', e.target.value);
+          }}
         />
 
         <FormInput
@@ -191,6 +194,9 @@ function FormInputFields({
           name="lotArea"
           register={register}
           labelIconElement={<LotAreaIcon />}
+          onChange={(e) => {
+            setValue('lotArea', e.target.value);
+          }}
         />
 
         <FormInput
@@ -200,6 +206,9 @@ function FormInputFields({
           name="lotDimensions"
           register={register}
           labelIconElement={<LotDimensionsIcon />}
+          onChange={(e) => {
+            setValue('lotDimensions', e.target.value);
+          }}
         />
 
         <FormInput
@@ -213,6 +222,9 @@ function FormInputFields({
           step="1"
           placeholder="1"
           labelIconElement={<RoomsIcon />}
+          onChange={(e) => {
+            setValue('rooms', e.target.value);
+          }}
         />
 
         <FormInput
@@ -226,6 +238,9 @@ function FormInputFields({
           step="1"
           placeholder="1"
           labelIconElement={<GarageIcon />}
+          onChange={(e) => {
+            setValue('garage', e.target.value);
+          }}
         />
 
         <SelectInput
@@ -236,6 +251,9 @@ function FormInputFields({
           register={register}
           options={['G', 'H', 'I']}
           labelIconElement={<PropertyConditionIcon />}
+          onChange={(e) => {
+            setValue('propertyCondition', e.target.value);
+          }}
         />
 
         <FormInput
@@ -246,6 +264,9 @@ function FormInputFields({
           register={register}
           placeholder="$10000"
           labelIconElement={<PriceIcon />}
+          onChange={(e) => {
+            setValue('price', e.target.value);
+          }}
         />
       </DetailsInputsContainer>
 
@@ -256,9 +277,12 @@ function FormInputFields({
           label="Overview"
           name="overview"
           register={register}
-          limit={overviewCharsLimit - overviewText.length}
-          value={overviewText}
-          onChange={updateOverviewText}
+          value={values.overview}
+          limit={overviewCharsLimit - values.overview?.length}
+          onChange={(e) => {
+            if (e.target.value.length <= overviewCharsLimit)
+              setValue('overview', e.target.value);
+          }}
           labelIconElement={<OverviewIcon />}
         />
 
@@ -276,18 +300,23 @@ FormInputFields.propTypes = {
       type: PropTypes.string,
     })
   ),
-  handleIdentifierClick: PropTypes.func,
-  overviewText: PropTypes.string,
   register: PropTypes.func,
-  selectedIdentifiers: PropTypes.objectOf(PropTypes.string).isRequired,
-  setOverviewText: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  values: PropTypes.shape({
+    isAgent: PropTypes.bool,
+    isOwner: PropTypes.bool,
+    overview: PropTypes.string,
+  }),
 };
 
 FormInputFields.defaultProps = {
   errors: null,
-  handleIdentifierClick: null,
-  overviewText: '',
   register: null,
+  values: {
+    isAgent: false,
+    isOwner: false,
+    overview: '',
+  },
 };
 
 export default FormInputFields;

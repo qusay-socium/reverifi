@@ -30,7 +30,8 @@ const listingFormSchema = yup
     fullBathrooms: positiveIntegerValidator,
     garage: positiveIntegerValidator,
     homeArea: positiveFloatValidator,
-    identifier: yup.number(),
+    isAgent: yup.boolean(),
+    isOwner: yup.boolean(),
     listingType: stringValidator,
     lotArea: positiveFloatValidator,
     lotDimensions: positiveFloatValidator,
@@ -43,7 +44,7 @@ const listingFormSchema = yup
     yearBuilt: positiveIntegerValidator.max(new Date().getFullYear()),
   })
   .test('atLeastOneCheckBoxIsSelected', null, (obj) => {
-    if (obj.identifier > 0) {
+    if (obj.isAgent === true || obj.isOwner === true) {
       return true;
     }
 
