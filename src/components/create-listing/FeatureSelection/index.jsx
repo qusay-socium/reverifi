@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getFeatures } from 'services/listing-create-service';
 import data from './data';
 import {
   Feature,
@@ -19,17 +20,27 @@ import {
  * @return {JSX.Element}
  */
 function FeatureSelection({ featureIds, handleFeatureClick }) {
+  const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setFeatures(await getFeatures());
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <MainContainer>
       <Title>Features</Title>
       <FeaturesContainer>
-        {data.map(({ id, title, icon }) => (
+        {features.map(({ id, feature }, index) => (
           <Feature key={id} onClick={() => handleFeatureClick(id)}>
             <FeatureTitle isActive={featureIds.has(id)}>
               <IconContainer isActive={featureIds.has(id)}>
-                <img src={icon} alt={title} />
+                <img src={data[index].icon} alt={feature} />
               </IconContainer>
-              <span>{title}</span>
+              <span>{feature}</span>
             </FeatureTitle>
           </Feature>
         ))}

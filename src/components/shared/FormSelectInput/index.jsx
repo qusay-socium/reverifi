@@ -51,9 +51,9 @@ function SelectInput({
         onChange={onChange}
         rounded={rounded}
       >
-        {options.map((option) => (
-          <option value={option} key={option}>
-            {option}
+        {options.map(({ type, id: typeId }) => (
+          <option value={typeId} key={typeId}>
+            {type}
           </option>
         ))}
       </Input>
@@ -69,7 +69,7 @@ SelectInput.propTypes = {
   labelIconElement: PropTypes.node,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   rounded: PropTypes.bool,

@@ -34,17 +34,7 @@ function Details({ details }) {
 }
 
 Details.propTypes = {
-  details: PropTypes.shape({
-    Baths: PropTypes.string.isRequired,
-    Beds: PropTypes.string.isRequired,
-    Garages: PropTypes.string.isRequired,
-    'Home Area': PropTypes.string.isRequired,
-    'Lot Dimensions': PropTypes.string.isRequired,
-    'Lot area': PropTypes.string.isRequired,
-    Rooms: PropTypes.string.isRequired,
-    Status: PropTypes.string.isRequired,
-    'Year Built': PropTypes.string.isRequired,
-  }).isRequired,
+  details: PropTypes.shape({}).isRequired,
 };
 
 export default Details;

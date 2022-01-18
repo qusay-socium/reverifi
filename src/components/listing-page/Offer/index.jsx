@@ -35,7 +35,7 @@ function Offer({ data }) {
     <Container>
       <OfferDetails>
         <div>
-          <Price> {price} </Price>
+          <Price> {`$${price}`} </Price>
           <Location>
             <LocationPinIcon />
             <LocationText> {location}</LocationText>
