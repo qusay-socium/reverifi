@@ -51,12 +51,6 @@ const routes = [
     title: 'Create Listing',
   },
   {
-    component: lazy(() => import('pages/NotFound')),
-    label: 'not-found',
-    path: '*',
-    title: 'Not Found',
-  },
-  {
     component: lazy(() => import('pages/Listings/ListingPage')),
     label: 'listing-page',
     path: '/listing-page',
@@ -79,6 +73,12 @@ const routes = [
     label: 'agent-details',
     path: '/agent-details',
     title: 'Agent Details',
+  },
+  {
+    component: lazy(() => import('pages/NotFound')),
+    label: 'not-found',
+    path: '*',
+    title: 'Not Found',
   },
 ];
 

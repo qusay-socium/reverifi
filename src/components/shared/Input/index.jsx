@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyledInput, StyledInputGroup } from './input.style';
 
+// TODO: Fix input outline when focused.
 function Input({ leftElement, rightElement, size, placeholder }) {
   return (
     <StyledInputGroup>

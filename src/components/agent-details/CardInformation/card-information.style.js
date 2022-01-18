@@ -1,5 +1,5 @@
-import colors from 'styles/colors';
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const CardBody = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const CardPrice = styled.div`
   }
 
   span {
-    color: ${colors.dustyGrey};
+    color: ${colors.dustyGray};
   }
 `;
 
@@ -53,7 +53,7 @@ export const HeaderIcons = styled.div`
 
 export const IconGroup = styled.div`
   align-items: center;
-  color: ${colors.dustyGrey};
+  color: ${colors.dustyGray};
   display: flex;
   gap: 0.5rem;
 `;

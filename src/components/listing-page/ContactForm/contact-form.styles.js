@@ -5,7 +5,7 @@ import mq from 'styles/media-query';
 
 export const MainContainer = styled.div`
   border-radius: 0.56rem;
-  box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGrey};
+  box-shadow: 0rem 0.06rem 0.37rem ${colors.dustyGray};
   margin-top: 1rem;
   max-height: 100%;
   padding: 1.5rem 2.37rem;
@@ -65,10 +65,9 @@ export const SubmitSection = styled.div`
 
 export const Input = styled.input`
   border: none;
-  border-bottom: 0.06rem solid ${colors.midGrey};
+  border-bottom: 0.06rem solid ${colors.midGray};
   margin: 2.75rem 0 0 0;
   min-width: 100%;
-  outline: none;
 
   :first-of-type {
     margin: 0;
@@ -76,10 +75,9 @@ export const Input = styled.input`
 `;
 
 export const Message = styled.textarea`
-  border: 0.06rem solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGray};
   min-height: 7rem;
   min-width: 100%;
-  outline: none;
   resize: none;
 `;
 

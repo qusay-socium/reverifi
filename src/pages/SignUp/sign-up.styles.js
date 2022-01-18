@@ -67,7 +67,7 @@ export const PhoneInputContainer = styled.div`
 `;
 
 export const SignUpTerms = styled.p`
-  color: ${colors.dustyGrey};
+  color: ${colors.dustyGray};
   font-size: 0.8125rem;
   line-height: 1.25rem;
   margin: 1rem 0 2rem 0;

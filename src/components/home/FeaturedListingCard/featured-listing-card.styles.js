@@ -46,7 +46,7 @@ export const CardBody = styled.div`
 
 export const CardFooter = styled.div`
   align-items: center;
-  border-top: 0.0625rem solid ${colors.midGrey};
+  border-top: 1px solid ${colors.midGray};
   display: flex;
   justify-content: space-between;
   padding: 0.75rem 1rem;

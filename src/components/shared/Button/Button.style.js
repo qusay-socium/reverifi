@@ -11,7 +11,6 @@ const StyledButton = styled.button`
   font-size: 0.75rem;
   font-weight: 600;
   height: 2.5rem;
-  outline: none;
   padding: 0 2rem;
 
   &[disabled] {

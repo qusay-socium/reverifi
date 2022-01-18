@@ -19,7 +19,6 @@ export const Input = styled.input`
   border: 0.125rem solid ${colors.mercury};
   cursor: pointer;
   height: 1.125rem;
-  outline: none;
   width: 1.125rem;
 
   &:checked {

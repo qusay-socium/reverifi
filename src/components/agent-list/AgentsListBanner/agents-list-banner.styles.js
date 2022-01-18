@@ -24,6 +24,16 @@ export const BannerContainer = styled.div`
   `}
 `;
 
+export const FilterSection = styled.div`
+  border-radius: 1.75rem;
+  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGray};
+  color: ${colors.gray};
+  display: flex;
+  justify-content: space-between;
+  margin: 0.125rem 0.3125rem;
+  padding: 0.3125rem;
+`;
+
 export const Heading = styled.p`
   font-size: 1.75rem;
   font-weight: 600;
@@ -63,7 +73,6 @@ export const SelectFilter = styled.select`
   cursor: pointer;
   font-size: 0.75rem;
   margin: 0 0 0.1875rem 0.625rem;
-  outline: none;
 
   option {
     background-color: ${colors.white};
@@ -81,36 +90,21 @@ export const SelectFilter = styled.select`
   `}
 `;
 
-export const SelectType = styled.select`
-  background-color: ${colors.white};
-  border: none;
-  color: ${colors.gray};
-  cursor: pointer;
+export const SelectType = styled(SelectFilter)`
   display: flex;
-  font-size: 0.75rem;
   margin: 0 0.625rem;
-  outline: none;
   width: 100%;
-
-  ${mq.mobileWide`
-    font-size: 0.9375rem;
-  `}
-
-  ${mq.tablet`
-    display: flex;
-  `}
 `;
 
 export const LocationSearch = styled.input`
   align-content: center;
   align-items: center;
   border: none;
-  border-left: 0.0625rem solid ${colors.midGrey};
-  cursor: pointer;
+  border-left: 0.0625rem solid ${colors.midGray};
+  cursor: text;
   font-size: 0.75rem;
   height: 100%;
   margin: 0 0.3125rem;
-  outline: none;
   padding: 0 1.5625rem;
   width: 100%;
 
@@ -120,19 +114,18 @@ export const LocationSearch = styled.input`
 
   ${mq.tablet`
     padding: 0.625rem;
-    text-align: center; 
+    text-align: left; 
     width: 100%;
   `};
 `;
 
 export const AgentSearch = styled.input`
   border: none;
-  border-left: 0.0625rem solid ${colors.midGrey};
-  cursor: pointer;
+  border-left: 0.0625rem solid ${colors.midGray};
+  cursor: text;
   font-size: 0.75rem;
   height: 100%;
   margin: 0 0.3125rem;
-  outline: none;
   padding: 0 0 0 1.5625rem;
   width: 100%;
 
@@ -143,7 +136,7 @@ export const AgentSearch = styled.input`
   ${mq.tablet`
     display: flex;
     padding: 0.625rem;
-    text-align: center; 
+    text-align: left; 
     width: 100%;
   `};
 `;
@@ -159,7 +152,7 @@ export const SearchButton = styled.button`
 
   :hover {
     background-color: ${colors.white};
-    color: ${colors.midGrey};
+    color: ${colors.midGray};
   }
 `;
 

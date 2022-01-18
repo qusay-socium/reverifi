@@ -117,7 +117,7 @@ export const ImgContainer = styled.div`
 
   ${mq.tablet`
   border-radius: 0.6rem;
-  border: 0.06rem solid ${colors.dustyGrey};
+  border: 0.06rem solid ${colors.dustyGray};
   overflow: hidden;
 
   :first-child {

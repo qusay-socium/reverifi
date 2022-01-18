@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import styled from 'styled-components';
 
 export const RatingContainer = styled.div`
   display: flex;
@@ -35,7 +35,6 @@ export const TextArea = styled.textarea`
   border-radius: 0.9375rem;
   border: 0.0823rem solid ${colors.mercury};
   height: 12.375rem;
-  outline: none;
   padding: 1.5rem 1.5rem;
   resize: none;
   width: 100%;
@@ -77,7 +76,7 @@ export const CommentText = styled.div`
   }
 
   span {
-    color: ${colors.dustyGrey};
+    color: ${colors.dustyGray};
     float: right;
     padding: 0.5rem;
   }
@@ -117,7 +116,7 @@ export const StyledSlide = styled.div`
       display: inline;
       margin: 0 0.3125rem;
       > button {
-        background-color: ${colors.midGrey};
+        background-color: ${colors.midGray};
         border-radius: 50%;
         border: none;
         cursor: pointer;

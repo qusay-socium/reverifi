@@ -11,7 +11,7 @@ import {
   SelectType,
 } from 'components/agent-list/AgentsListBanner/agents-list-banner.styles';
 import React, { useState } from 'react';
-import { FilterSection } from './mobile-filter-section.styles';
+import { FilterSectionMobile } from './mobile-filter-section.styles';
 
 /**
  * Filter component displayed in mobile.
@@ -30,7 +30,7 @@ function MobileFilterSection() {
     setFilterBy(event.target.value);
   };
   return (
-    <FilterSection>
+    <FilterSectionMobile>
       <FilterSearchContainer>
         <FilterProperty>
           <FilterIconContainer>
@@ -57,7 +57,7 @@ function MobileFilterSection() {
       <SearchButton>
         <SearchIcon />
       </SearchButton>
-    </FilterSection>
+    </FilterSectionMobile>
   );
 }
 
