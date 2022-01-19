@@ -21,7 +21,7 @@ function Marker({ data, lat, lng, onMouseOverHandler }) {
       src={pinImg}
       width={20}
       onMouseOver={() => onMouseOverHandler(data)}
-      alt={data.title}
+      alt={data?.title}
     />
   );
 }

@@ -57,6 +57,12 @@ const routes = [
     title: 'Create Listing',
   },
   {
+    component: lazy(() => import('pages/ListingSearch')),
+    label: 'listing-search',
+    path: '/listing-search',
+    title: 'Listing Search',
+  },
+  {
     component: lazy(() => import('pages/Listings/ListingPage')),
     label: 'listing',
     path: '/listing',

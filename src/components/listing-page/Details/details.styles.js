@@ -3,7 +3,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const Container = styled.div`
-  border-top: 0.06rem solid ${colors.midGrey};
+  border-top: 0.06rem solid ${colors.midGray};
   padding: 2.5rem 0.5rem;
 
   ${mq.desktop`
