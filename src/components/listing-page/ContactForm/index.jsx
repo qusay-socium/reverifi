@@ -6,10 +6,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import schema from './contact-form-schema';
 import {
+  Container,
   DialButtonContent,
   ErrorMessage,
   Input,
-  Container,
   Message,
   MessageLabel,
   SubmitSection,
