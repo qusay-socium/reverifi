@@ -1,19 +1,19 @@
 import { ReactComponent as BellIcon } from 'assets/images/bell.svg';
 import { ReactComponent as HeartIcon } from 'assets/images/heart.svg';
-import { ReactComponent as MoreIcon } from 'assets/images/more-horizontal.svg';
+import { ReactComponent as MoreOptionsIcon } from 'assets/images/more-horizontal.svg';
 import { ReactComponent as ShareIcon } from 'assets/images/share.svg';
+import { ReactComponent as LocationPinIcon } from 'assets/images/location-pin.svg';
 import {
-  ButtonsSection,
+  SideButtonsContainer,
   Container,
-  Details,
+  OfferDetails,
   Location,
   LocationText,
   LogoButton,
-  Pin,
   Price,
   SubmitButton,
   SubmitOffer,
-} from 'components/listing-page/OfferDetails/offer-details.styles';
+} from 'components/listing-page/Offer/offer.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -21,23 +21,23 @@ import React from 'react';
 /**
  * Offer details section.
  *
- * @param {Object} props      The component props.
- * @param {Object} props.data The component data.
+ * @param {Object} props      Offer Details component props.
+ * @param {Object} props.data Offer details data.
  *
  * @return {JSX.Element}
  */
-function OfferDetails({ data }) {
+function Offer({ data }) {
   const { price, location } = data;
 
   const { setShowModal } = useShowModal();
 
   return (
     <Container>
-      <Details>
+      <OfferDetails>
         <div>
           <Price> {price} </Price>
           <Location>
-            <Pin />
+            <LocationPinIcon />
             <LocationText> {location}</LocationText>
           </Location>
         </div>
@@ -52,9 +52,9 @@ function OfferDetails({ data }) {
             Submit an Offer
           </SubmitButton>
         </SubmitOffer>
-      </Details>
+      </OfferDetails>
 
-      <ButtonsSection>
+      <SideButtonsContainer>
         <LogoButton
           onClick={() => {
             /* Todo */
@@ -72,17 +72,19 @@ function OfferDetails({ data }) {
         <LogoButton onClick={() => setShowModal(true)}>
           <ShareIcon />
         </LogoButton>
-        <MoreIcon />
-      </ButtonsSection>
+        <LogoButton onClick={() => setShowModal(true)}>
+          <MoreOptionsIcon />
+        </LogoButton>
+      </SideButtonsContainer>
     </Container>
   );
 }
 
-OfferDetails.propTypes = {
+Offer.propTypes = {
   data: PropTypes.shape({
     location: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default OfferDetails;
+export default Offer;

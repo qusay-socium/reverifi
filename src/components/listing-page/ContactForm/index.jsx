@@ -6,17 +6,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import schema from './contact-form-schema';
 import {
-  DialButton,
+  Container,
   DialButtonContent,
   ErrorMessage,
   Input,
-  MainContainer,
   Message,
   MessageLabel,
   SubmitSection,
   UserImg,
   UserInfo,
-  UserName,
 } from './contact-form.styles';
 
 /**
@@ -36,17 +34,17 @@ function ContactForm() {
   const onSubmit = (data) => data;
 
   return (
-    <MainContainer>
+    <Container>
       <UserInfo>
         <UserImg src={userImage} />
         <div>
-          <UserName>John Doe</UserName>
-          <DialButton type="button">
+          <h3>John Doe</h3>
+          <Button type="button">
             <DialButtonContent>
               <DialLogo />
               222-222-222
             </DialButtonContent>
-          </DialButton>
+          </Button>
         </div>
       </UserInfo>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,7 +59,8 @@ function ContactForm() {
         <Input {...register('email')} placeholder="Email" />
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
         <MessageLabel htmlFor="message">
-          Message <span>(Max 140 chars)</span>
+          Message
+          <span>(Max 140 chars)</span>
         </MessageLabel>
         <Message {...register('message')} maxLength={140} />
         <ErrorMessage>{errors.message?.message}</ErrorMessage>
@@ -69,7 +68,7 @@ function ContactForm() {
           <Button type="submit">Contact</Button>
         </SubmitSection>
       </form>
-    </MainContainer>
+    </Container>
   );
 }
 

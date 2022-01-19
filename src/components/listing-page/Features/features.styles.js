@@ -3,15 +3,12 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const Container = styled.div`
-  padding: 2.375rem 0.5rem;
+  border-top: 0.06rem solid ${colors.midGrey};
+  padding: 2.5rem 0.5rem;
 
   ${mq.desktop`
-    margin: 0 6.5625rem 2rem;
+    margin: 2rem 7rem 0;
   `};
-`;
-
-export const Title = styled.h2`
-  margin: 0;
 `;
 
 export const Wrapper = styled.ul`
@@ -43,11 +40,11 @@ export const FeaturesItem = styled.li`
 
 export const Image = styled.img`
   height: 1rem;
-  margin-right: 0.6875rem;
-  width: 1.375rem;
+  margin-right: 0.69rem;
+  width: 1.38rem;
 `;
 
 export const Label = styled.span`
   color: ${colors.mineShaft};
-  font-weight: bold;
+  font-weight: 600;
 `;

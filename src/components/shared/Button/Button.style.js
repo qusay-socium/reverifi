@@ -6,7 +6,6 @@ const StyledButton = styled.button`
   border-radius: 1.75rem;
   border: none;
   color: ${colors.white};
-  cursor: pointer;
   font-family: Montserrat;
   font-size: 0.75rem;
   font-weight: 600;
@@ -15,6 +14,10 @@ const StyledButton = styled.button`
 
   &[disabled] {
     cursor: not-allowed;
+  }
+
+  :hover {
+    cursor: pointer;
   }
 `;
 

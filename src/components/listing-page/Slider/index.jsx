@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { ReactComponent as ChevronLeft } from 'assets/images/left-arrow.svg';
 import { ReactComponent as ChevronRight } from 'assets/images/right-arrow.svg';
 import PropTypes from 'prop-types';
@@ -20,14 +19,9 @@ import {
  *
  * @return {JSX.Element} Next arrow.
  */
-// eslint-disable-next-line react/prop-types
 function NextArrow({ onClick }) {
   return (
-    <SliderArrow
-      onClick={onClick}
-      right="0%"
-      transform="scale(0.5) translate(-50%, -50%)"
-    >
+    <SliderArrow onClick={onClick} right="0%">
       <ChevronRight />
     </SliderArrow>
   );
@@ -38,7 +32,6 @@ function NextArrow({ onClick }) {
  *
  * @return {JSX.Element} Previous arrow.
  */
-// eslint-disable-next-line react/prop-types
 function PrevArrow({ onClick }) {
   return (
     <SliderArrow onClick={onClick} left="0%">
@@ -48,10 +41,19 @@ function PrevArrow({ onClick }) {
 }
 
 /**
+ * Use Custom paging for react-slick slider.
+ *
+ * @return {JSX.Element} Custom paging.
+ */
+function customPaging(i, images) {
+  return <img src={images[i].src} alt={images[i].alt} />;
+}
+
+/**
  * Listing page slider section.
  *
  * @param {Object} props        The component props.
- * @param {Object} props.images The component data.
+ * @param {Object} props.images Listing page slider images.
  *
  * @return {JSX.Element}
  */
@@ -63,14 +65,14 @@ function ListingPageSlider({ images }) {
     centerMode: true,
     centerPadding: '25%',
     customPaging(i) {
-      return <img src={images[i].src} alt={images[i].alt} />;
+      return customPaging(i, images);
     },
     dots: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 986,
+        breakpoint: 980,
         settings: {
           centerPadding: '0%',
           slidesToShow: 1,
@@ -85,7 +87,6 @@ function ListingPageSlider({ images }) {
   return (
     <Container>
       <Wrapper>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Slider {...settings}>
           {images.map((img, idx) =>
             idx === imageIndex ? (
@@ -114,6 +115,22 @@ ListingPageSlider.propTypes = {
       src: PropTypes.string.isRequired,
     })
   ).isRequired,
+};
+
+NextArrow.propTypes = {
+  onClick: PropTypes.func,
+};
+
+PrevArrow.propTypes = {
+  onClick: PropTypes.func,
+};
+
+NextArrow.defaultProps = {
+  onClick: null,
+};
+
+PrevArrow.defaultProps = {
+  onClick: null,
 };
 
 export default ListingPageSlider;

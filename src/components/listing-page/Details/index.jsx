@@ -13,7 +13,7 @@ import {
  * Listing page details section.
  *
  * @param {Object} props         The component props.
- * @param {Object} props.details The component data.
+ * @param {Object} props.details Details section data.
  *
  * @return {JSX.Element}
  */

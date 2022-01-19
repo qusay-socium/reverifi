@@ -4,15 +4,15 @@ import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Slider from 'react-slick';
-import data from './data';
+import { Title } from 'components/listing-page/Details/details.styles';
+import { mockDates, breakPoints } from './data';
 import {
+  Container,
   DateButton,
   DateCard,
   DateContainer,
   DateSliderContainer,
-  MainContainer,
   SubmitButton,
-  Title,
 } from './schedule-visit.styles';
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -24,79 +24,6 @@ const CustomInput = forwardRef(({ value, onClick }, ref) => (
   </DateButton>
 ));
 
-const responsive = [
-  {
-    breakpoint: 1370,
-    settings: {
-      slidesToScroll: 6,
-      slidesToShow: 6,
-    },
-  },
-  {
-    breakpoint: 1250,
-    settings: {
-      slidesToScroll: 5,
-      slidesToShow: 5,
-    },
-  },
-  {
-    breakpoint: 1130,
-    settings: {
-      slidesToScroll: 4,
-      slidesToShow: 4,
-    },
-  },
-  {
-    breakpoint: 1030,
-    settings: {
-      slidesToScroll: 3,
-      slidesToShow: 3,
-    },
-  },
-  {
-    breakpoint: 980,
-    settings: {
-      slidesToScroll: 7,
-      slidesToShow: 7,
-    },
-  },
-  {
-    breakpoint: 740,
-    settings: {
-      slidesToScroll: 6,
-      slidesToShow: 6,
-    },
-  },
-  {
-    breakpoint: 650,
-    settings: {
-      slidesToScroll: 5,
-      slidesToShow: 5,
-    },
-  },
-  {
-    breakpoint: 560,
-    settings: {
-      slidesToScroll: 4,
-      slidesToShow: 4,
-    },
-  },
-  {
-    breakpoint: 470,
-    settings: {
-      slidesToScroll: 3,
-      slidesToShow: 3,
-    },
-  },
-  {
-    breakpoint: 385,
-    settings: {
-      slidesToScroll: 2,
-      slidesToShow: 2,
-    },
-  },
-];
-
 /**
  * Listing page schedule-visit section.
  *
@@ -106,7 +33,7 @@ function ScheduleVisit() {
   const [startDate, setStartDate] = useState(new Date());
 
   return (
-    <MainContainer>
+    <Container>
       <Title>Schedule Visit</Title>
       <DatePicker
         selected={startDate}
@@ -120,9 +47,9 @@ function ScheduleVisit() {
           infinite={false}
           slidesToScroll={7}
           slidesToShow={7}
-          responsive={responsive}
+          responsive={breakPoints}
         >
-          {data.map(({ date, day }) => (
+          {mockDates.map(({ date, day }) => (
             <DateCard key={date}>
               <span>{day}</span>
               {date}
@@ -131,7 +58,7 @@ function ScheduleVisit() {
         </Slider>
       </DateSliderContainer>
       <SubmitButton type="button">Request this time</SubmitButton>
-    </MainContainer>
+    </Container>
   );
 }
 

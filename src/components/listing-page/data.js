@@ -117,7 +117,7 @@ const data = {
         bedroom: 2,
       },
       tags: ['New', 'Sale'],
-      title: 'Apartment4',
+      title: 'Apartment#4',
     },
     {
       distance: '1.1km away',
@@ -146,6 +146,7 @@ const data = {
       title: 'Apartment#6',
     },
   ],
+  // statistics should be rendered in this order.
   statistics: {
     Saves: '10',
     Shared: '12',
