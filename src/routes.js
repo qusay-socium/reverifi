@@ -60,7 +60,7 @@ const routes = [
     component: lazy(() => import('pages/ListingSearch')),
     label: 'listing-search',
     path: '/listing-search',
-    title: 'Listing-search',
+    title: 'Listing Search',
   },
   {
     component: lazy(() => import('pages/Listings/ListingPage')),

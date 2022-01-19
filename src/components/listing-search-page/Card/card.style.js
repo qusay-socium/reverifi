@@ -4,7 +4,7 @@ import mq from 'styles/media-query';
 
 export const CardContainer = styled.div`
   border-radius: 0.5rem;
-  border: 0.0625rem solid ${colors.midGrey};
+  border: 0.0625rem solid ${colors.midGray};
   display: flex;
   flex-direction: column;
   margin: 2rem;

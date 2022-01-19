@@ -7,7 +7,7 @@ export const Labels = styled.div`
 `;
 
 export const LimitMessage = styled.span`
-  color: ${({ color }) => color || colors.midGrey};
+  color: ${({ color }) => color || colors.midGray};
   font-size: 0.75rem;
 `;
 

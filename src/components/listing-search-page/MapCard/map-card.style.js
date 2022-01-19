@@ -4,7 +4,7 @@ import colors from 'styles/colors';
 export const CardContainer = styled.div`
   background-color: ${colors.white};
   border-radius: 0.5rem;
-  border: 0.06rem solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGray};
   bottom: 0;
   display: flex;
   flex-direction: column;
