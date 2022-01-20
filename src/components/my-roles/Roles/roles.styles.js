@@ -1,6 +1,5 @@
 import Button from 'components/shared/Button';
 import styled from 'styled-components';
-import mq from 'styles/media-query';
 
 // TODO: move to global styles
 const fontStyles = {
@@ -15,6 +14,7 @@ export const PageContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin: auto;
 `;
 
 export const Wrapper = styled.div`
@@ -22,14 +22,6 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   min-width: 100%;
   padding: 0 1rem;
-
-  ${mq.desktop`
-    min-width: 50rem; 
-  `};
-
-  ${mq.desktopExtraMax`
-    min-width: 80rem; 
-  `}
 `;
 
 export const Header = styled.h2`

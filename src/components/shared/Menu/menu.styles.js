@@ -13,6 +13,7 @@ export const OverLay = styled.div`
 export const StyledMenu = styled.div`
   cursor: initial;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  padding: 0 0.5rem;
   position: absolute;
   right: calc(100vw - ${({ right }) => right}px);
   top: ${({ top }) => top}px;

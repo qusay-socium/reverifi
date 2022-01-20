@@ -43,27 +43,19 @@ const routes = [
     title: 'Verify Phone',
   },
   {
-    // this is only for testing purposes
-    adminLayout: true,
-    component: lazy(() => import('pages/TestSideBar')),
-    label: 'test-side-bar',
-    path: '/test-side-bar',
-    title: 'Test Sidebar',
-  },
-  {
-    component: lazy(() => import('pages/Listings/CreateListing')),
+    component: lazy(() => import('pages/Listing/Create')),
     label: 'create-listing',
-    path: '/listings/create',
+    path: '/listing/create',
     title: 'Create Listing',
   },
   {
-    component: lazy(() => import('pages/ListingSearch')),
+    component: lazy(() => import('pages/Listing/Search')),
     label: 'listing-search',
-    path: '/listing-search',
-    title: 'Listing Search',
+    path: '/listing/search',
+    title: 'Search Listing',
   },
   {
-    component: lazy(() => import('pages/Listings/ListingPage')),
+    component: lazy(() => import('pages/Listing/ListingPage')),
     label: 'listing',
     path: '/listing',
     title: 'Listing Page',
@@ -75,6 +67,7 @@ const routes = [
     title: 'Agent List',
   },
   {
+    adminLayout: true,
     component: lazy(() => import('pages/MyRoles')),
     label: 'my-roles',
     path: '/my-roles',

@@ -2,12 +2,12 @@ import ListingSearch from 'components/listing-search-page/ListingSearch';
 import React from 'react';
 
 /**
- * ListingSearch page.
+ * Search listing page component.
  *
  * @return {JSX.Element}
  */
-function ListingSearchPage() {
+function Search() {
   return <ListingSearch />;
 }
 
-export default ListingSearchPage;
+export default Search;

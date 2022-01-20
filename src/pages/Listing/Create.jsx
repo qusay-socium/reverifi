@@ -6,8 +6,8 @@ import React from 'react';
  *
  * @return {JSX.Element}
  */
-function CreateListing() {
+function Create() {
   return <CreateListingForm />;
 }
 
-export default CreateListing;
+export default Create;
