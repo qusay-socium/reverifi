@@ -5,7 +5,6 @@ import mq from 'styles/media-query';
 
 // TODO: move these values to shared place
 const NAVAR_HEIGHT = '5rem';
-const NAVAR_HEIGHT_NON_LOGGED_IN = '4.375rem';
 
 const fadeIn = keyframes`
   from {
@@ -45,10 +44,10 @@ export const MenuItemsContainer = styled.div`
   position: fixed;
   text-align: center;
   width: 100%;
+  z-index: 1;
 
   ${mq.tablet`
-    height: calc(100vh - ${({ isLoggedIn }) =>
-      isLoggedIn ? NAVAR_HEIGHT : NAVAR_HEIGHT_NON_LOGGED_IN});
+    height: auto;
     position: static;
   `}
 `;

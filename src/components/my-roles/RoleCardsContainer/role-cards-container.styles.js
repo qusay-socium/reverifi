@@ -10,10 +10,10 @@ export const CardsContainer = styled.div`
   ${mq.desktop`
     flex-direction: row;
     flex-wrap: wrap;
-    max-width: 52.5rem;
+    max-width: 48.75rem;
   `};
 
   ${mq.desktopExtraMax`
-    max-width: 78.75rem;
+    max-width: 73.5rem;
   `};
 `;

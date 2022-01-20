@@ -16,14 +16,6 @@ export const Card = styled.div`
   padding: 1.5rem;
   position: relative;
 
-  ${mq.mobileWide`
-    min-height: 12rem;
-  `};
-
-  ${mq.desktop`
-     min-width: 25rem; 
-  `};
-
   svg {
     fill: ${({ isSelected }) =>
       isSelected ? `${colors.green}` : `${colors.dustyGray}`};

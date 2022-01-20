@@ -1,4 +1,3 @@
-import { ReactComponent as RawNotificationBell } from 'assets/images/notification-bell.svg';
 import { ReactComponent as RawLogo } from 'assets/logo.svg';
 import { Menu } from 'react-feather';
 import styled from 'styled-components';
@@ -125,12 +124,9 @@ export const SignInButton = styled(Button)`
   background-color: transparent;
   font-size: 0.9rem;
 `;
+
 export const SignUpButton = styled(Button)`
   font-size: 0.9rem;
-`;
-
-export const NotificationBell = styled(RawNotificationBell)`
-  cursor: pointer;
 `;
 
 export const StyledInputGroup = styled.div`
@@ -161,4 +157,47 @@ export const StyledInput = styled.input`
       font-size: 1.2rem;
     }
   `}
+`;
+
+export const MenuWrapper = styled.div`
+  background: rgb(255, 255, 255);
+  border-radius: 0.375rem;
+  box-shadow: rgb(0 0 0 / 0%) 0px 8px 10px, rgb(0 0 0 / 12%) 0px 3px 14px;
+  color: black;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  opacity: 1;
+  padding: 0.5rem;
+  width: max-content;
+`;
+
+export const EmailWrapper = styled.div`
+  font-weight: bold;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SignedInWrapper = styled.div`
+  padding: 0.5rem;
+`;
+
+export const LogoutWrapper = styled.button`
+  align-items: center;
+  background: none;
+  border-radius: 0.25rem;
+  border: 0rem;
+  color: rgb(74, 74, 74);
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+  height: 3rem;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  width: 100%;
+
+  :hover {
+    background: rgb(237 237 237);
+  }
 `;
