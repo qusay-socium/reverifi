@@ -28,8 +28,9 @@ export const ImageContainer = styled.div`
     max-height: 15rem;
   `}
 
-  ${mq.tablet`
+  ${mq.tabletWide`
     max-height: 20rem;
+    width: 10rem;
   `}
 `;
 
@@ -80,7 +81,7 @@ export const IconsContainer = styled.div`
   font-size: 0.7rem;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-  max-width: 50%;
+  max-width: 60%;
 
   ${mq.mobileWide`
     max-width: 35%;

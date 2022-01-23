@@ -139,6 +139,7 @@ export const ImgContainer = styled.div`
 export const Overlay = styled.div`
   background: ${colors.mineShaft}99;
   bottom: 0;
+  cursor: pointer;
   left: 0;
   position: absolute;
   right: 0;

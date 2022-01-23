@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import data from './data';
 import {
@@ -20,11 +21,21 @@ import {
  * @return {JSX.Element}
  */
 function ExploreListing() {
+  const navigate = useNavigate();
+
+  const handleSearch = (searchKey) => {
+    navigate(`/listing/search?key=${searchKey}`);
+  };
+
   const getItems = () =>
     data.map((item) => (
       <ImgContainer key={item.city}>
         <StyledImg src={item.img} alt="Logo" />
-        <Overlay>
+        <Overlay
+          onClick={() => {
+            handleSearch(item.searchKey);
+          }}
+        >
           <ImgContent>
             <ImgHeader>{item.city}</ImgHeader>
             <ImgListings>

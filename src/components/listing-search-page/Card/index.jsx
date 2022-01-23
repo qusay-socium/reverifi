@@ -27,55 +27,53 @@ import {
  * @return {JSX.Element}
  */
 function Card({ data }) {
-  const { image, listingBy, price, location, services } = data;
-  return (
-    <CardContainer>
-      <ImageContainer>
-        <Badge>Sale</Badge>
-        <Image src={image} />
-      </ImageContainer>
+  const { images, price, address, fullBathrooms, bedrooms } = data;
 
-      <CardText>
-        <PriceText>{price}</PriceText>
+  if (data) {
+    return (
+      <CardContainer>
+        <ImageContainer>
+          <Badge>Sale</Badge>
+          <Image src={images[0]} />
+        </ImageContainer>
 
-        <LocationText>
-          <LocationIcon>
-            <PinIcon />
-          </LocationIcon>
-          <LocationIcon>{location}</LocationIcon>
-        </LocationText>
+        <CardText>
+          <PriceText>$ {price}</PriceText>
 
-        <p>Listing By: {listingBy}</p>
-        <IconsContainer>
-          <IconsNumber>
-            {services.bedroom}
-            <Bed />
-          </IconsNumber>
-          <WifiIcon />
-          <IconsNumber>
-            {services.bathroom}
-            <BathtubIcon />
-          </IconsNumber>
-          <AirConditionerIcon />
-          <BenchIcon />
-        </IconsContainer>
-      </CardText>
-    </CardContainer>
-  );
+          <LocationText>
+            <LocationIcon>
+              <PinIcon />
+            </LocationIcon>
+            <LocationIcon>{address}</LocationIcon>
+          </LocationText>
+          <p>Listing By: seller</p>
+          <IconsContainer>
+            <IconsNumber>
+              {bedrooms}
+              <Bed />
+            </IconsNumber>
+            <WifiIcon />
+            <IconsNumber>
+              {fullBathrooms}
+              <BathtubIcon />
+            </IconsNumber>
+            <AirConditionerIcon />
+            <BenchIcon />
+          </IconsContainer>
+        </CardText>
+      </CardContainer>
+    );
+  }
 }
 
 Card.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number,
-    image: PropTypes.string,
-    listingBy: PropTypes.string,
-    location: PropTypes.string,
-    pin: PropTypes.string,
-    price: PropTypes.string,
-    services: PropTypes.shape({
-      bathroom: PropTypes.number,
-      bedroom: PropTypes.number,
-    }),
+    address: PropTypes.string,
+    bedrooms: PropTypes.number,
+    fullBathrooms: PropTypes.number,
+    id: PropTypes.string,
+    images: PropTypes.arrayOfObject,
+    price: PropTypes.number,
   }).isRequired,
 };
 

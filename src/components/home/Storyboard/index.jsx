@@ -1,5 +1,6 @@
 import { ReactComponent as StoryBoardImage } from 'assets/images/story-board-image.svg';
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   LocationPin,
   SearchIcon,
@@ -19,6 +20,15 @@ import {
  * @return {JSX.Element}
  */
 function Storyboard() {
+  const [address, setAddress] = useState(null);
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (address) {
+      navigate(`/listing/search?key=${address}`);
+    }
+  };
+
   return (
     <StoryBoardContainer>
       <StoryBoardSection>
@@ -35,9 +45,10 @@ function Storyboard() {
                 <LocationPin />
                 <StyledInput
                   type="text"
-                  placeholder="Enter City, neighborhood, ZIP, or address"
+                  placeholder="Enter City"
+                  onChange={(e) => setAddress(e.target.value)}
                 />
-                <SearchIcon />
+                <SearchIcon onClick={handleSearch} />
               </StyledInputGroup>
             </SearchInputGroupWrapper>
           </SearchListingsItem>
