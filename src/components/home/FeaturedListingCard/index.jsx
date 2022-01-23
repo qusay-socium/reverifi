@@ -3,12 +3,12 @@ import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
 import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
 import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
-import { ReactComponent as PinIcon } from 'assets/icons/location-pin.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
+import getDatesDifference from 'utils/helpers';
 import {
   BodyIconsContainer,
   CardBody,
@@ -30,54 +30,61 @@ import {
 } from './featured-listing-card.styles';
 
 function Card({ data }) {
-  const { img, tags, personImg, title, location, services, distance, price } =
-    data;
+  const {
+    address,
+    agent: {
+      userInfo: { image },
+    },
+    bedrooms,
+    fullBathrooms,
+    images,
+    price,
+    propertyType,
+    listingType,
+    createdAt,
+  } = data;
 
   const { setShowModal } = useShowModal();
 
   return (
     <CardContainer>
       <CardImageContainer>
-        <Image src={img} />
+        <Image src={images[0]} />
         <TagContainer>
-          {tags?.map((text) => (
-            <Tag isNew={text === 'New'} key={text}>
-              {text}
-            </Tag>
-          ))}
+          {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
+          <Tag>{listingType}</Tag>
         </TagContainer>
-        <PersonImg src={personImg} />
+        {image && <PersonImg src={image} />}
       </CardImageContainer>
 
       <CardBody>
         <InfoContainer>
-          <TextLarge>{title}</TextLarge>
-
-          <TextMedium>{location}</TextMedium>
+          <TextMedium>{address}</TextMedium>
 
           <BodyIconsContainer>
-            <Container>
-              <ServiceQuantity>{services.bedroom}</ServiceQuantity>
-              <BedroomIcon />
-            </Container>
+            {bedrooms && (
+              <Container>
+                <ServiceQuantity>{bedrooms}</ServiceQuantity>
+                <BedroomIcon />
+              </Container>
+            )}
             <WifiIcon />
-            <Container>
-              <ServiceQuantity>{services?.bathroom}</ServiceQuantity>
-              <BathtubIcon />
-            </Container>
+            {fullBathrooms && (
+              <Container>
+                <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
+                <BathtubIcon />
+              </Container>
+            )}
             <AirConditionerIcon />
             <BenchIcon />
           </BodyIconsContainer>
         </InfoContainer>
 
-        <IconsContainer>
-          <PinIcon />
-          <TextSmall>{distance}</TextSmall>
-        </IconsContainer>
+        <TextSmall>{propertyType}</TextSmall>
       </CardBody>
 
       <CardFooter>
-        <TextLarge>{price}</TextLarge>
+        <TextLarge>${price.toLocaleString()}</TextLarge>
 
         <IconsContainer>
           <IconContainer stroke="true">
@@ -94,17 +101,19 @@ function Card({ data }) {
 
 Card.propTypes = {
   data: PropTypes.shape({
-    distance: PropTypes.string,
-    img: PropTypes.string,
-    location: PropTypes.string,
-    personImg: PropTypes.string,
-    price: PropTypes.string,
-    services: PropTypes.shape({
-      bathroom: PropTypes.number,
-      bedroom: PropTypes.number,
+    address: PropTypes.string,
+    agent: PropTypes.shape({
+      image: PropTypes.string,
+      userInfo: PropTypes.objectOf(PropTypes.string),
     }),
-    tags: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
+    bedrooms: PropTypes.number,
+    createdAt: PropTypes.string,
+    fullBathrooms: PropTypes.number,
+    images: PropTypes.arrayOf(PropTypes.string),
+    listingType: PropTypes.string,
+    overview: PropTypes.string,
+    price: PropTypes.number,
+    propertyType: PropTypes.string,
   }).isRequired,
 };
 
