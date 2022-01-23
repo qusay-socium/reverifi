@@ -7,6 +7,7 @@ export const ListingPage = styled.div`
 `;
 export const MapContainer = styled.div`
   display: none;
+  min-height: 45rem;
 
   ${mq.desktop`
     display: flex;

@@ -2,7 +2,7 @@ import Card from 'components/home/FeaturedListingCard';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import getFeaturedListings from 'services/listing';
+import { getFeaturedListings } from 'services/listing';
 import data from './data';
 import {
   SectionContainer,
