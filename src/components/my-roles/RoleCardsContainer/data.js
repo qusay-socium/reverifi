@@ -13,55 +13,39 @@ const rolesData = [
   {
     Icon: Icon(seller),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Seller',
   },
   {
     Icon: Icon(buyer),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Buyer',
   },
   {
     Icon: Icon(homeInspector),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Home Inspector',
   },
   {
     Icon: Icon(lender),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Lender',
   },
   {
     Icon: Icon(attorney),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Attorney',
   },
   {
     Icon: Icon(agent),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Agent',
   },
   {
     Icon: Icon(insuranceProvider),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Insurance Provider',
   },
   {
     Icon: Icon(transactionCoordinator),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'Transaction Coordinator',
   },
   {
     Icon: Icon(reverifiPlus),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    role: 'reverifi+',
   },
 ];
 
-/**
- * Service that gets all roles.
- *
- * @return {Object[]} Array of roles.
- */
-const getRoles = () => rolesData;
-
-export default getRoles;
+export default rolesData;

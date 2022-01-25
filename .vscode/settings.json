@@ -1,3 +1,8 @@
 {
-    "prettier.trailingComma": "all"
+  "prettier.trailingComma": "all",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#511345",
+    "titleBar.activeBackground": "#721A61",
+    "titleBar.activeForeground": "#FDF8FC"
+  }
 }

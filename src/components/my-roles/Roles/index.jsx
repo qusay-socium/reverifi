@@ -1,7 +1,8 @@
 import RoleCardsContainer from 'components/my-roles/RoleCardsContainer';
 import RolesTable from 'components/my-roles/RolesTable';
 import React, { useState } from 'react';
-import { Wrapper, Header, PageContainer, StyledButton } from './roles.styles';
+import { updateUserRoles } from 'services/user';
+import { Header, PageContainer, StyledButton, Wrapper } from './roles.styles';
 
 /**
  * Component holding myRoles page components.
@@ -9,8 +10,18 @@ import { Wrapper, Header, PageContainer, StyledButton } from './roles.styles';
  * @returns Container aligning myRoles page components.
  */
 function Roles() {
-  // eslint-disable-next-line no-unused-vars
   const [selectedRoles, setSelectedRoles] = useState(() => new Set());
+
+  /**
+   * handle start process button click
+   */
+  const startProcessHandler = async () => {
+    try {
+      await updateUserRoles(Array.from(selectedRoles));
+    } catch (err) {
+      // handel error here
+    }
+  };
 
   return (
     <PageContainer>
@@ -18,11 +29,7 @@ function Roles() {
         <Header>What am I:</Header>
       </Wrapper>
       <RoleCardsContainer setSelectedRoles={setSelectedRoles} />
-      <StyledButton
-        onClick={() => {
-          // TODO: Pass SelectedRoles.
-        }}
-      >
+      <StyledButton onClick={startProcessHandler}>
         Start New Selling/Buying Process
       </StyledButton>
       <Wrapper>

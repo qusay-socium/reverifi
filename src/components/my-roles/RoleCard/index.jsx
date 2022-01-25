@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CheckIcon, Overview, Rectangle } from './role-card.styles';
 
 /**
@@ -12,22 +12,32 @@ import { Card, CheckIcon, Overview, Rectangle } from './role-card.styles';
  * @returns {JSX.Element} Role Card holding role details.
  */
 function RoleCard({ data, setSelectedRole }) {
-  const { Icon, overview, role } = data;
+  const { Icon, overview, role, id, dbRoles } = data;
   const [isSelected, setIsSelected] = useState(false);
 
   /**
    * Adds/removes selected card to/from selected roles object on click on card.
    */
   const handleCardSelect = () => {
-    setSelectedRole((prev) => new Set(prev).add(role));
+    setSelectedRole((prev) => new Set(prev).add(id));
     if (isSelected)
       setSelectedRole((prev) => {
         const next = new Set(prev);
-        next.delete(role);
+        next.delete(id);
         return next;
       });
     setIsSelected(!isSelected);
   };
+
+  useEffect(() => {
+    dbRoles?.map(({ roleId }) => {
+      if (roleId === id) {
+        handleCardSelect();
+      }
+      return true;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dbRoles]);
 
   return (
     <Card onClick={handleCardSelect} isSelected={isSelected}>
@@ -44,6 +54,8 @@ function RoleCard({ data, setSelectedRole }) {
 RoleCard.propTypes = {
   data: PropTypes.shape({
     Icon: PropTypes.elementType.isRequired,
+    dbRoles: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+    id: PropTypes.string.isRequired,
     overview: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }).isRequired,

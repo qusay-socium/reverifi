@@ -1,7 +1,12 @@
 import RoleCard from 'components/my-roles/RoleCard';
+import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import getRoles from './data';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import getRoles from 'services/roles';
+import { getUserRoles } from 'services/user';
+import rolesData from './data';
 import { CardsContainer } from './role-cards-container.styles';
 
 /**
@@ -14,24 +19,34 @@ import { CardsContainer } from './role-cards-container.styles';
  */
 function RoleCardsContainer({ setSelectedRoles }) {
   const [roles, setRoles] = useState([]);
+  const [dbRoles, setDbRoles] = useState([]);
+
+  const navigate = useNavigate();
+  const { isLoggedIn } = useUser();
 
   /**
    * Fetches roles data from API and sets it to roles state.
    */
-  const fetchRoles = async () => {
-    const data = await getRoles();
-    setRoles(data);
+  const getAllRoles = async () => {
+    if (!isLoggedIn) {
+      navigate('/');
+    } else {
+      const data = await getRoles();
+      setRoles(data);
+
+      const userRoles = await getUserRoles();
+      console.log(userRoles);
+      if (userRoles) setDbRoles(userRoles);
+    }
   };
 
-  useEffect(() => {
-    fetchRoles();
-  });
+  useEffectOnce(getAllRoles);
 
   return (
     <CardsContainer>
-      {roles.map(({ Icon, overview, role }) => (
+      {roles?.map(({ id, role }, index) => (
         <RoleCard
-          data={{ Icon, overview, role }}
+          data={{ ...rolesData[index], dbRoles, id, role }}
           key={role}
           setSelectedRole={setSelectedRoles}
         />

@@ -34,49 +34,49 @@ function Sidebar() {
           <Menu />
         </MenuIconContainer>
       </MenuItem>
-      <MenuLink to="/test-side-bar">
+      <MenuLink to="/dashboard">
         <MenuItem type="button">
           <Dashboard />
         </MenuItem>
         <LinkTitle>Dashboard</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/My-Roles">
+      <MenuLink to="/my-roles">
         <MenuItem type="button">
           <UserRole />
         </MenuItem>
         <LinkTitle>My Roles</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/List-Properties<">
+      <MenuLink to="/list-properties<">
         <MenuItem type="button">
           <List />
         </MenuItem>
         <LinkTitle>List Properties</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/Transaction">
+      <MenuLink to="/transaction">
         <MenuItem type="button">
           <Transaction />
         </MenuItem>
         <LinkTitle>Transaction</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/Saved">
+      <MenuLink to="/saved">
         <MenuItem type="button">
           <Saved />
         </MenuItem>
         <LinkTitle>Saved</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/My-Profile">
+      <MenuLink to="/my-profile">
         <MenuItem type="button">
           <UserProfile />
         </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/Settings">
+      <MenuLink to="/settings">
         <MenuItem type="button">
           <Settings />
         </MenuItem>
         <LinkTitle>Settings</LinkTitle>
       </MenuLink>
-      <MenuLink to="/test-side-bar/logout">
+      <MenuLink to="/logout">
         <MenuItem type="button">
           <Logout />
         </MenuItem>
