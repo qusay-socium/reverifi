@@ -31,6 +31,27 @@ export const updateUserInfo = async (body) => {
   return data;
 };
 
+/*
+ * Service that get agent users
+ *
+ * @param {String} type agent type
+ * @param {String} location agent location
+ * @param {String} name agent name
+ * @param {number} [page=0]
+ *
+ * @return {Object[]} Array of agents.
+ */
+export const getUsersByType = async (type, location, name, page = 0) => {
+  const userType = type.charAt(0).toUpperCase() + type.slice(1);
+  const {
+    data: { data },
+  } = await http.get(
+    `${apiUrl}/users/roles/${userType}?page=${page}&location=${location}&name=${name}`
+  );
+
+  return data;
+};
+
 /**
  * Service that get user roles
  *

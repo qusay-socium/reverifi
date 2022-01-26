@@ -101,7 +101,9 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Address</PropertyText>
             </ContactProperty>
-            <ContactText>{address}</ContactText>
+            <ContactText>
+              {address?.zipCode} {address?.city}, {address?.country}
+            </ContactText>
           </ContactField>
         </ContactInfoContainer>
         <Line />
@@ -124,7 +126,7 @@ function AgentCard({
 }
 
 AgentCard.propTypes = {
-  address: PropTypes.string.isRequired,
+  address: PropTypes.objectOf(PropTypes.any).isRequired,
   agentImg: PropTypes.string.isRequired,
   agentName: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,
