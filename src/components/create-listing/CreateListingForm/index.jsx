@@ -86,12 +86,12 @@ function CreateListingForm() {
    * Handle form submit
    */
   const submit = async () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
+      navigate(`/sign-up`);
+    } else {
       values.featureIds = Array.from(values.featureIds);
       const { id } = await submitListingForm(values);
       navigate(`/listings/${id}`, { replace: true });
-    } else {
-      navigate(`/sign-up`);
     }
   };
 
