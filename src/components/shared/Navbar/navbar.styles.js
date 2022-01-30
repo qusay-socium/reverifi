@@ -48,6 +48,10 @@ export const NavLinksContainer = styled.div`
   display: none;
   font-size: 0.9rem;
 
+  span:hover {
+    color: ${colors.green};
+  }
+
   ${mq.desktopWide`
     align-items: center;
     display: flex;
@@ -127,6 +131,11 @@ export const SignInButton = styled(Button)`
 
 export const SignUpButton = styled(Button)`
   font-size: 0.9rem;
+  &:hover {
+    background-color: ${colors.mineShaft};
+    color: ${colors.green};
+    border: 0.06rem solid ${colors.green};
+  }
 `;
 
 export const StyledInputGroup = styled.div`
