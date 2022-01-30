@@ -16,6 +16,7 @@ import {
   IconsNumber,
   Image,
   ImageContainer,
+  Label,
   LocationIcon,
   LocationText,
   PriceText,
@@ -27,33 +28,35 @@ import {
  * @return {JSX.Element}
  */
 function Card({ data }) {
-  const { image, listingBy, price, location, services } = data;
+  // eslint-disable-next-line react/prop-types
+  if (data.length < 0) return null;
+
+  const { images, price, address, fullBathrooms, bedrooms } = data;
+
   return (
     <CardContainer>
       <ImageContainer>
         <Badge>Sale</Badge>
-        <Image src={image} />
+        <Image src={images[0]} />
       </ImageContainer>
 
       <CardText>
-        <PriceText>{price}</PriceText>
-
+        <PriceText>$ {price}</PriceText>
         <LocationText>
           <LocationIcon>
             <PinIcon />
           </LocationIcon>
-          <LocationIcon>{location}</LocationIcon>
+          <LocationIcon>{address}</LocationIcon>
         </LocationText>
-
-        <p>Listing By: {listingBy}</p>
+        <Label> Listing By:</Label>
         <IconsContainer>
           <IconsNumber>
-            {services.bedroom}
+            {bedrooms}
             <Bed />
           </IconsNumber>
           <WifiIcon />
           <IconsNumber>
-            {services.bathroom}
+            {fullBathrooms}
             <BathtubIcon />
           </IconsNumber>
           <AirConditionerIcon />
@@ -66,16 +69,12 @@ function Card({ data }) {
 
 Card.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number,
-    image: PropTypes.string,
-    listingBy: PropTypes.string,
-    location: PropTypes.string,
-    pin: PropTypes.string,
-    price: PropTypes.string,
-    services: PropTypes.shape({
-      bathroom: PropTypes.number,
-      bedroom: PropTypes.number,
-    }),
+    address: PropTypes.string,
+    bedrooms: PropTypes.number,
+    fullBathrooms: PropTypes.number,
+    id: PropTypes.string,
+    images: PropTypes.arrayOfObject,
+    price: PropTypes.number,
   }).isRequired,
 };
 

@@ -6,12 +6,21 @@ import http from 'utils/http';
  *
  * @return {Promise<Object>} The featured listings response.
  */
-const getFeaturedListings = async () => {
+export const getFeaturedListings = async () => {
   const {
     data: { data },
   } = await http.get(`${apiUrl}/listings/featured`);
-
   return data;
 };
 
-export default getFeaturedListings;
+/* @param {string} keyWord the word to search for .
+ *
+ * @return {Promise<Object>} listing data response.
+ */
+export const getListingsBySearchKey = async (keyWord) => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/listings/search?key=${keyWord}`);
+
+  return data;
+};
