@@ -102,6 +102,13 @@ const routes = [
     path: '*',
     title: 'Not Found',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/Dashboard')),
+    label: 'dashboard',
+    path: '/dashboard',
+    title: 'Dashboard',
+  },
 ];
 
 export default routes;
