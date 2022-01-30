@@ -1,6 +1,8 @@
 import Card from 'components/home/FeaturedListingCard';
-import React from 'react';
+import useEffectOnce from 'hooks/use-effect-once';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
+import getFeaturedListings from 'services/listing';
 import data from './data';
 import {
   SectionContainer,
@@ -31,6 +33,23 @@ const slideBreakPoints = [
  * @return {JSX.Element}
  */
 function FeaturedListing() {
+  const [featuredListings, setFeaturedListings] = useState([]);
+
+  /**
+   * get featured listings data function
+   */
+  const fetchFeaturedListingsData = async () => {
+    try {
+      const listingsData = await getFeaturedListings();
+      setFeaturedListings(listingsData);
+    } catch (err) {
+      setFeaturedListings(data);
+      console.log(err);
+    }
+  };
+
+  useEffectOnce(fetchFeaturedListingsData);
+
   return (
     <SectionContainer>
       <Title>Our Featured Listing</Title>
@@ -47,8 +66,8 @@ function FeaturedListing() {
           arrows={false}
           easing="ease-in-out"
         >
-          {data?.map((item) => (
-            <Card data={item} key={item.title} />
+          {featuredListings?.map((item) => (
+            <Card data={item} key={item.id} />
           ))}
         </Slider>
       </StyledSlide>

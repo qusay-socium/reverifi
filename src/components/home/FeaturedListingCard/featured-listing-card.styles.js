@@ -34,14 +34,16 @@ export const CardImageContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 100%;
+  height: 18rem;
   width: 100%;
 `;
 
 export const CardBody = styled.div`
   align-items: flex-start;
   display: flex;
+  gap: 0.5rem;
   justify-content: space-between;
+  min-height: 6rem;
   padding: 1rem;
 `;
 
@@ -72,8 +74,10 @@ export const Tag = styled.div`
 export const PersonImg = styled.img`
   border-radius: 50%;
   bottom: 1rem;
+  height: 2.5rem;
   position: absolute;
   right: 1rem;
+  width: 2.5rem;
 `;
 
 export const TextLarge = styled.p`
@@ -84,9 +88,11 @@ export const TextLarge = styled.p`
 `;
 
 export const TextMedium = styled.p`
-  color: ${colors.mineShaft}7f;
-  font-size: 0.875rem;
+  color: ${colors.mineShaft};
+  font-size: 1rem;
   margin: 0.1875rem 0 0.9375rem 0;
+  line-height: 1.2rem;
+  font-weight: 600;
 `;
 
 export const TextSmall = styled.p`
