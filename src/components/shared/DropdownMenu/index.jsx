@@ -21,14 +21,15 @@ import {
  * @return {JSX.Element}
  */
 function DropdownMenu({
-  children,
+  dark,
   label,
-  name,
   labelIcon: LabelIcon,
   leftIcon,
+  name,
+  placeholder,
   small,
   smallBorderRadius,
-  dark,
+  options,
 }) {
   return (
     <div>
@@ -52,7 +53,15 @@ function DropdownMenu({
           small={small}
           dark={dark}
         >
-          {children}
+          <option disabled selected>
+            {placeholder}
+          </option>
+
+          {options?.map((value, index) => (
+            <option value={value} key={index.toString()}>
+              {value}
+            </option>
+          ))}
         </StyledSelect>
       </SelectContainer>
     </div>
@@ -64,12 +73,12 @@ DropdownMenu.defaultProps = {
   label: null,
   labelIcon: null,
   leftIcon: null,
+  placeholder: '',
   small: false,
   smallBorderRadius: false,
 };
 
 DropdownMenu.propTypes = {
-  children: propTypes.node.isRequired,
   dark: propTypes.bool,
   label: propTypes.string,
   labelIcon: propTypes.oneOfType([
@@ -78,6 +87,8 @@ DropdownMenu.propTypes = {
   ]),
   leftIcon: propTypes.string,
   name: propTypes.string.isRequired,
+  options: propTypes.arrayOf(propTypes.any).isRequired,
+  placeholder: propTypes.string,
   small: propTypes.bool,
   smallBorderRadius: propTypes.bool,
 };

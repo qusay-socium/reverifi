@@ -14,9 +14,9 @@ export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  width: fit-content;
+  width: 100%;
   padding: 0 1rem;
-  border: 0.0625rem solid ${colors.midGrey};
+  border: 0.0625rem solid ${colors.midGray};
   border-radius: ${({ smallBorderRadius }) =>
     smallBorderRadius ? '0.4375rem' : '1.875rem'};
   background-color: ${({ dark }) => (dark ? colors.mineShaft : colors.white)};
@@ -37,6 +37,7 @@ export const StyledSelect = styled.select`
   color: ${({ dark }) => (dark ? colors.white : `${colors.mineShaft}95`)};
   font-weight: ${({ dark }) => dark && 600};
   font-size: 0.875rem;
+  width: 100%;
 
   -webkit-appearance: none;
   appearance: none;
@@ -51,5 +52,9 @@ export const StyledSelect = styled.select`
 
   option {
     color: ${colors.mineShaft}95;
+
+    &:first-child {
+      display: none;
+    }
   }
 `;
