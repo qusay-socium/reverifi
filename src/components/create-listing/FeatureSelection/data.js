@@ -12,59 +12,48 @@ import wifi from 'assets/wifi.svg';
 
 const data = [
   {
-    icon: airConditioner,
-    id: 0,
-    title: 'Available Conditioning',
-  },
-  {
-    icon: diningSpoon,
-    id: 1,
-    title: 'Dining Room',
-  },
-  {
-    icon: ringsGym,
-    id: 2,
-    title: 'GYM',
-  },
-  {
-    icon: mopWaterBucket,
-    id: 3,
-    title: 'Cleaning Service',
-  },
-  {
-    icon: hairDryer,
-    id: 4,
-    title: 'Dryer',
-  },
-  {
-    icon: bathtub,
-    id: 5,
-    title: 'Centeral Heating',
-  },
-  {
-    icon: wifi,
-    id: 6,
-    title: 'WIFI',
-  },
-  {
     icon: parking,
-    id: 7,
     title: 'Parking',
   },
   {
-    icon: swimmingPool,
-    id: 8,
-    title: 'Swimming Pool',
+    icon: tv,
+    title: 'TV Cable',
   },
   {
     icon: sauna,
-    id: 9,
     title: 'Sauna',
   },
   {
-    icon: tv,
-    id: 10,
-    title: 'TV Cable',
+    icon: diningSpoon,
+    title: 'Dining Room',
+  },
+  {
+    icon: airConditioner,
+    title: 'Available Conditioning',
+  },
+  {
+    icon: wifi,
+    title: 'WIFI',
+  },
+  {
+    icon: bathtub,
+    title: 'Central Heating',
+  },
+  {
+    icon: swimmingPool,
+    title: 'Swimming Pool',
+  },
+  {
+    icon: ringsGym,
+    title: 'GYM',
+  },
+  {
+    icon: hairDryer,
+    title: 'Dryer',
+  },
+  {
+    icon: mopWaterBucket,
+    title: 'Cleaning Service',
   },
 ];
 

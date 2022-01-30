@@ -58,6 +58,23 @@ const routes = [
     component: lazy(() => import('pages/Listing/ListingPage')),
     label: 'listing',
     path: '/listing',
+  },
+  {
+    component: lazy(() => import('pages/Listing/Create')),
+    label: 'create-listing',
+    path: '/listings/:id',
+    title: 'Create Listing',
+  },
+  {
+    component: lazy(() => import('pages/NotFound')),
+    label: 'not-found',
+    path: '*',
+    title: 'Not Found',
+  },
+  {
+    component: lazy(() => import('pages/Listing/ListingPage')),
+    label: 'listing-page',
+    path: '/listing-page/:id',
     title: 'Listing Page',
   },
   {
