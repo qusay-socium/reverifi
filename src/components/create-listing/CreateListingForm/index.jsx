@@ -11,6 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   getListingData,
   submitListingForm,
+  updateListingForm,
 } from 'services/listing-create-service';
 import listingFormSchema from './create-listing-form-schema';
 import { SubmitSection, Wrapper } from './create-listing-form.styles';
@@ -101,7 +102,6 @@ function CreateListingForm() {
       } else {
         updateListingForm(values, formId);
       }
-    }
     }
   };
 
