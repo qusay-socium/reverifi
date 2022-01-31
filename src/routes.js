@@ -62,7 +62,7 @@ const routes = [
   {
     component: lazy(() => import('pages/Listing/Create')),
     label: 'create-listing',
-    path: '/listings/:id',
+    path: '/listing/:id',
     title: 'Create Listing',
   },
   {
