@@ -8,11 +8,9 @@ import SimilarListings from 'components/listing-page/SimilarListings';
 import ListingPageSlider from 'components/listing-page/Slider';
 import ListingShareModal from 'components/ListingShareModal';
 import ShowModalProvider from 'contexts/ShowModalContext/index';
-import React, { useEffect } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useParams } from 'react-router';
-import { useState } from 'react/cjs/react.development';
+import React, { useEffect, useState } from 'react';
 import { getListingData } from 'services/listing-create-service';
+import { useParams } from 'react-router-dom';
 
 const {
   location,
@@ -38,7 +36,9 @@ function ListingPage() {
     homeArea: '',
     lotArea: '',
     lotDimensions: '',
+    overview: '',
     partialBathrooms: '',
+    price: '0',
     propertyCondition: '',
     rooms: '',
     yearBuilt: '',

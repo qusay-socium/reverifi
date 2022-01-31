@@ -34,6 +34,9 @@ function CreateListingForm() {
     watch,
     reset,
   } = useForm({
+    defaultValues: {
+      overview: '',
+    },
     resolver: yupResolver(listingFormSchema),
   });
 
@@ -42,6 +45,8 @@ function CreateListingForm() {
       const response = await getListingData(formId);
       response.isOwner = !!response.owner;
       response.isAgent = !!response.agent;
+      response.propertyType = response.propertyTypeId;
+      response.listingType = response.listingTypedId;
       reset(response);
     }
 
@@ -87,11 +92,16 @@ function CreateListingForm() {
    */
   const submit = async () => {
     if (!isLoggedIn) {
-      navigate(`/sign-up`);
+      navigate('/sign-up');
     } else {
       values.featureIds = Array.from(values.featureIds);
-      const { id } = await submitListingForm(values);
-      navigate(`/listings/${id}`, { replace: true });
+      if (!formId) {
+        const { id } = await submitListingForm(values);
+        navigate(`/listing/${id}`, { replace: true });
+      } else {
+        updateListingForm(values, formId);
+      }
+    }
     }
   };
 

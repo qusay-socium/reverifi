@@ -41,6 +41,26 @@ import {
  *
  * @return {JSX.Element}
  */
+
+/**
+ * @type {number} Maximum characters allowed for overview input.
+ */
+
+const overviewCharsLimit = 140;
+
+/**
+ * Returns the controlling number of maximum limit for a given text
+ *
+ * @param {text}     String                               Any given text.
+ * @param {limitBy}  Number               Given maximum limiter value;defaults to 100 characters
+ *
+ * @return {Number}
+ */
+const getLimitForText = (text, limitBy = 100) => {
+  if (!text?.length) return limitBy;
+  return limitBy - text;
+};
+
 function FormInputFields({ register, errors, setValue, values }) {
   const [propertyTypes, setPropertyTypes] = useState([]);
   const [listingTypes, setListingTypes] = useState([]);
@@ -53,11 +73,6 @@ function FormInputFields({ register, errors, setValue, values }) {
 
     fetchData();
   }, []);
-
-  /**
-   * @type {number} Maximum characters allowed for overview input.
-   */
-  const overviewCharsLimit = 140;
 
   return (
     <>
@@ -103,7 +118,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <SelectInput
           error={errors.listingType?.message}
           id="listingType"
-          label="Listing Type"
+          label="Listing type"
           name="listing_type_id"
           placeholder="please select listing type"
           register={register}
@@ -117,7 +132,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.yearBuilt?.message}
           id="yearBuilt"
-          label="Year Built"
+          label="Year built"
           name="yearBuilt"
           register={register}
           type="number"
@@ -194,7 +209,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.lotArea?.message}
           id="lotArea"
-          label="Lot Area (Sq. Ft.)"
+          label="Lot area (Sq. Ft.)"
           name="lotArea"
           register={register}
           labelIconElement={<LotAreaIcon />}
@@ -269,9 +284,9 @@ function FormInputFields({ register, errors, setValue, values }) {
           name="overview"
           register={register}
           value={values.overview}
-          limit={overviewCharsLimit - values.overview?.length}
+          limit={getLimitForText(values?.overview, overviewCharsLimit)}
           onChange={(e) => {
-            if (e.target.value.length <= overviewCharsLimit)
+            if (e.target.value?.length <= overviewCharsLimit)
               setValue('overview', e.target.value);
           }}
           labelIconElement={<OverviewIcon />}
