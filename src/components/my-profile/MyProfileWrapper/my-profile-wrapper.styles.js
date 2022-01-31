@@ -1,3 +1,5 @@
+import Button from 'components/shared/Button';
+import { Label } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -50,26 +52,75 @@ export const UserDescription = styled.p`
 `;
 
 export const FormContainer = styled.form`
-  //
+  .profile-select {
+    .profile__control {
+      padding: 0.08rem;
+      border: 0.06rem solid ${colors.mercury};
+      border-radius: 1.12rem;
+      box-shadow: 0;
+    }
+
+    .profile__multi-value {
+      font-size: 0.85rem;
+      padding: 0.2rem;
+      margin: 0 0.2rem;
+      background-color: ${colors.white};
+      box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
+      border-radius: 1.1rem;
+    }
+
+    .profile__option {
+      font-size: 0.875rem;
+
+      &:hover {
+        background-color: ${colors.midGray};
+      }
+    }
+    .profile__placeholder {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 export const FormSectionContainer = styled.div`
-  background-color: ${colors.whiteSand};
+  background-color: ${colors.whiteSand}99;
   padding: 2.2rem 3.75rem;
   margin: 2.2rem 0;
 `;
 
 export const FormSectionTitle = styled.h4`
-  margin-bottom: 1.6rem;
+  margin: 0 0 1.6rem 0;
 `;
 
 export const InputsContainer = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: flex-end; */
   gap: 2.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
 
   > div {
     flex: 1;
   }
+`;
+
+export const AddressInputsContainer = styled(InputsContainer)`
+  gap: 0.5rem;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  div:last-child {
+    flex: 2;
+  }
+`;
+
+export const SaveButton = styled(Button)`
+  padding: 0 2.5rem;
+  height: 2.1rem;
+  font-size: 0.95rem;
+`;
+
+export const InputLabel = styled(Label)`
+  width: 100%;
+  padding: ${({ noPadding }) => noPadding && 0};
 `;

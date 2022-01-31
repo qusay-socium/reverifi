@@ -29,12 +29,10 @@ function TextAreaInput({
   id,
   label,
   name,
-  onChange,
   placeholder,
   register,
   rounded,
   limit,
-  value,
   labelIconElement,
 }) {
   return (
@@ -47,7 +45,7 @@ function TextAreaInput({
           </Label>
         )}
         <LimitMessage color={limit <= 10 ? 'red' : null}>
-          ({limit} chars left)
+          ({limit} chars)
         </LimitMessage>
       </Labels>
 
@@ -55,9 +53,7 @@ function TextAreaInput({
         {...(register ? register(name) : {})}
         id={id || name}
         placeholder={placeholder}
-        onChange={onChange}
         rounded={rounded}
-        value={value}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -71,11 +67,9 @@ TextAreaInput.propTypes = {
   labelIconElement: PropTypes.node,
   limit: PropTypes.number,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   rounded: PropTypes.bool,
-  value: PropTypes.string,
 };
 
 TextAreaInput.defaultProps = {
@@ -84,11 +78,9 @@ TextAreaInput.defaultProps = {
   label: null,
   labelIconElement: null,
   limit: null,
-  onChange: null,
   placeholder: '',
   register: null,
   rounded: true,
-  value: '',
 };
 
 export default TextAreaInput;
