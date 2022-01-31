@@ -4,7 +4,7 @@ import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingFormMap from 'components/create-listing/ListingFormMap';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
-import { useUser } from 'contexts/UserContext';
+// import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,7 +24,7 @@ function CreateListingForm() {
   const { id: formId } = useParams();
   const [images, setImages] = useState([]);
   const [featureIds, setFeatureIds] = useState(new Set());
-  const { isLoggedIn } = useUser();
+  // const { isLoggedIn } = useUser();
 
   const {
     register,
@@ -86,13 +86,12 @@ function CreateListingForm() {
    * Handle form submit
    */
   const submit = async () => {
-    if (!isLoggedIn) {
-      navigate(`/sign-up`);
-    } else {
-      values.featureIds = Array.from(values.featureIds);
-      const { id } = await submitListingForm(values);
-      navigate(`/listings/${id}`, { replace: true });
-    }
+    // if (!isLoggedIn) {
+    // navigate('/sign-up');
+
+    values.featureIds = Array.from(values.featureIds);
+    const { id } = await submitListingForm(values);
+    navigate(`/listings/${id}`, { replace: true });
   };
 
   return (

@@ -57,7 +57,7 @@ const overviewCharsLimit = 140;
  * @return {Number}
  */
 const getLimitForText = (text, limitBy = 100) => {
-  if (!text.length) return limitBy;
+  if (!text?.length) return limitBy;
   return limitBy - text;
 };
 
@@ -118,7 +118,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <SelectInput
           error={errors.listingType?.message}
           id="listingType"
-          label="Listing Type"
+          label="Listing type"
           name="listing_type_id"
           placeholder="please select listing type"
           register={register}
@@ -132,7 +132,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.yearBuilt?.message}
           id="yearBuilt"
-          label="Year Built"
+          label="Year built"
           name="yearBuilt"
           register={register}
           type="number"
@@ -209,7 +209,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.lotArea?.message}
           id="lotArea"
-          label="Lot Area (Sq. Ft.)"
+          label="Lot area (Sq. Ft.)"
           name="lotArea"
           register={register}
           labelIconElement={<LotAreaIcon />}
@@ -286,7 +286,7 @@ function FormInputFields({ register, errors, setValue, values }) {
           value={values.overview}
           limit={getLimitForText(values?.overview, overviewCharsLimit)}
           onChange={(e) => {
-            if (e.target.value.length <= overviewCharsLimit)
+            if (e.target.value?.length <= overviewCharsLimit)
               setValue('overview', e.target.value);
           }}
           labelIconElement={<OverviewIcon />}
