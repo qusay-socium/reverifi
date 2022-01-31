@@ -1,6 +1,7 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import {
+  Error,
   SelectContainer,
   StyledLabel,
   StyledSelect,
@@ -30,6 +31,8 @@ function DropdownMenu({
   small,
   smallBorderRadius,
   options,
+  error,
+  register,
 }) {
   return (
     <div>
@@ -41,17 +44,18 @@ function DropdownMenu({
       )}
 
       <SelectContainer
+        dark={dark}
         leftIcon={leftIcon}
         small={small}
         smallBorderRadius={smallBorderRadius}
-        dark={dark}
       >
         <StyledSelect
-          name={name}
+          dark={dark}
           id={name}
           leftIcon={leftIcon}
+          name={name}
           small={small}
-          dark={dark}
+          {...(register ? register(name) : {})}
         >
           <option disabled selected>
             {placeholder}
@@ -63,6 +67,7 @@ function DropdownMenu({
             </option>
           ))}
         </StyledSelect>
+        {error && <Error>{error}</Error>}
       </SelectContainer>
     </div>
   );
@@ -70,16 +75,19 @@ function DropdownMenu({
 
 DropdownMenu.defaultProps = {
   dark: false,
+  error: null,
   label: null,
   labelIcon: null,
   leftIcon: null,
   placeholder: '',
+  register: null,
   small: false,
   smallBorderRadius: false,
 };
 
 DropdownMenu.propTypes = {
   dark: propTypes.bool,
+  error: propTypes.string,
   label: propTypes.string,
   labelIcon: propTypes.oneOfType([
     propTypes.func,
@@ -89,6 +97,7 @@ DropdownMenu.propTypes = {
   name: propTypes.string.isRequired,
   options: propTypes.arrayOf(propTypes.any).isRequired,
   placeholder: propTypes.string,
+  register: propTypes.func,
   small: propTypes.bool,
   smallBorderRadius: propTypes.bool,
 };

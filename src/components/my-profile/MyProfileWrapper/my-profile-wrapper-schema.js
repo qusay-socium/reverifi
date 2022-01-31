@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 const myProfileSchema = yup
   .object({
-    about: yup.string().label('About'),
+    aboutMe: yup.string().label('About'),
     address: yup.string(),
     city: yup.string().required(),
     companyEmail: yup.string().email(),

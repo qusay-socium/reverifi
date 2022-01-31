@@ -67,7 +67,43 @@ function MyProfileWrapper() {
   });
 
   const submit = (data) => {
-    console.log({ ...data, languages, serviceAreas });
+    const {
+      aboutMe,
+      address,
+      city,
+      companyEmail,
+      companyName,
+      companyWebsite,
+      country,
+      email,
+      facebook,
+      instagram,
+      linkedin,
+      name,
+      phone,
+      youtube,
+      zipCode,
+    } = data;
+
+    const finalShape = {
+      company: {
+        email: companyEmail,
+        name: companyName,
+        website: companyWebsite,
+      },
+      user: { email, name, phone },
+      userInfo: {
+        aboutMe,
+        address,
+        city,
+        country,
+        languages: languages?.map(({ value }) => value),
+        serviceAreas: serviceAreas?.map(({ value }) => value),
+        socials: { facebook, instagram, linkedin, youtube },
+        zipCode,
+      },
+    };
+    console.log(finalShape);
   };
 
   return (
@@ -168,7 +204,7 @@ function MyProfileWrapper() {
                 hideSelectedOptions={false}
                 isMulti
                 isSearchable={false}
-                name="languages"
+                {...register('languages')}
                 options={languagesOptions}
                 placeholder="select languages..."
                 theme={(theme) => ({
@@ -194,7 +230,7 @@ function MyProfileWrapper() {
                 defaultValue={serviceAreas}
                 hideSelectedOptions={false}
                 isMulti
-                name="serviceAreas"
+                {...register('serviceAreas')}
                 options={serviceAreasOptions}
                 placeholder="select areas..."
                 theme={(theme) => ({
@@ -210,7 +246,7 @@ function MyProfileWrapper() {
             </div>
           </InputsContainer>
           <TextAreaInput
-            name="about"
+            name="aboutMe"
             label="About"
             rounded={false}
             labelIconElement={<AboutIcon />}

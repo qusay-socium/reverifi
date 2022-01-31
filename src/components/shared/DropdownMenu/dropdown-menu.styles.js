@@ -58,3 +58,9 @@ export const StyledSelect = styled.select`
     }
   }
 `;
+
+export const Error = styled.p`
+  color: ${colors.red};
+  font-size: 0.75rem;
+  margin: 0.3125rem 0 0.9375rem 0;
+`;
