@@ -43,8 +43,9 @@ function FeaturedListing() {
       const listingsData = await getFeaturedListings();
       setFeaturedListings(listingsData);
     } catch (err) {
-      setFeaturedListings(data);
       console.log(err);
+      // render mock data
+      setFeaturedListings(data);
     }
   };
 
