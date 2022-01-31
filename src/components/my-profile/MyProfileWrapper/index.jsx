@@ -49,14 +49,23 @@ const serviceAreasOptions = [
   { label: 'New Jersey', value: 'NJ' },
 ];
 
+const customSelectTheme = (theme) => ({
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: colors.green,
+    primary25: colors.midGray,
+  },
+});
+
 /**
  * My Profile Wrapper component.
  *
  * @return {JSX.Element}
  */
 function MyProfileWrapper() {
-  const [languages, setLanguages] = useState([]);
-  const [serviceAreas, setServiceAreas] = useState([]);
+  const [languages, setLanguages] = useState([languagesOptions[1]]);
+  const [serviceAreas, setServiceAreas] = useState([serviceAreasOptions[0]]);
 
   const {
     register,
@@ -204,17 +213,10 @@ function MyProfileWrapper() {
                 hideSelectedOptions={false}
                 isMulti
                 isSearchable={false}
-                {...register('languages')}
+                name="languages"
                 options={languagesOptions}
                 placeholder="select languages..."
-                theme={(theme) => ({
-                  ...theme,
-                  colors: {
-                    ...theme.colors,
-                    primary: colors.green,
-                    primary25: colors.green,
-                  },
-                })}
+                theme={customSelectTheme}
                 onChange={(value) => setLanguages(value)}
               />
             </div>
@@ -230,17 +232,10 @@ function MyProfileWrapper() {
                 defaultValue={serviceAreas}
                 hideSelectedOptions={false}
                 isMulti
-                {...register('serviceAreas')}
+                name="serviceAreas"
                 options={serviceAreasOptions}
                 placeholder="select areas..."
-                theme={(theme) => ({
-                  ...theme,
-                  colors: {
-                    ...theme.colors,
-                    primary: colors.green,
-                    primary25: colors.green,
-                  },
-                })}
+                theme={customSelectTheme}
                 onChange={(value) => setServiceAreas(value)}
               />
             </div>

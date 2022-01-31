@@ -71,11 +71,8 @@ export const FormContainer = styled.form`
 
     .profile__option {
       font-size: 0.875rem;
-
-      &:hover {
-        background-color: ${colors.midGray};
-      }
     }
+
     .profile__placeholder {
       font-size: 0.8rem;
     }
