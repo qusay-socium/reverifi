@@ -1,12 +1,12 @@
+import { Title } from 'components/listing-page/Details/details.styles';
+import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from 'components/shared/Button';
-import { Title } from 'components/listing-page/Details/details.styles';
 import ContactForm from '../ContactForm';
 import ScheduleVisit from '../ScheduleVisit';
 import {
-  Container,
   Claim,
+  Container,
   Paragraph,
   Partition,
   Statistics,

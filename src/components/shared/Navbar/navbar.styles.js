@@ -89,7 +89,7 @@ export const UserNavControlContainer = styled.div`
 
 export const MenuIcon = styled(Menu)`
   color: white;
-  height: 2.125rem;
+  height: 2.12rem;
   left: 1.25rem;
   position: absolute;
   width: 3rem;
@@ -101,12 +101,12 @@ export const MenuIcon = styled(Menu)`
 
 export const NavControlSection = styled.div`
   align-items: center;
-  border-left: 0.0625rem solid;
+  border-left: 0.06rem solid;
   display: flex;
   font-weight: 600;
   gap: 0.2rem;
   max-width: 20rem;
-  padding: 0 1.4375rem;
+  padding: 0 1.43rem;
 `;
 
 export const UserControlSectionWrapper = styled(NavControlSection)`
@@ -130,7 +130,9 @@ export const SignInButton = styled(Button)`
 `;
 
 export const SignUpButton = styled(Button)`
+  border: 0.06rem solid ${colors.green};
   font-size: 0.9rem;
+
   &:hover {
     background-color: ${colors.mineShaft};
     color: ${colors.green};
@@ -141,7 +143,7 @@ export const SignUpButton = styled(Button)`
 export const StyledInputGroup = styled.div`
   align-items: center;
   border-radius: 2.1875rem;
-  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mineShaft}29;
+  box-shadow: 0rem 0.06rem 0.18rem ${colors.mineShaft}29;
   display: flex;
   gap: 1rem;
   height: 100%;
@@ -169,16 +171,19 @@ export const StyledInput = styled.input`
 `;
 
 export const MenuWrapper = styled.div`
-  background: rgb(255, 255, 255);
+  background: ${colors.white};
   border-radius: 0.375rem;
   box-shadow: rgb(0 0 0 / 0%) 0px 8px 10px, rgb(0 0 0 / 12%) 0px 3px 14px;
-  color: black;
+  color: ${colors.mineShaft};
   font-size: 0.875rem;
   line-height: 1.5;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   opacity: 1;
+  width: 15rem;
+`;
+
+export const MenuTopWrapper = styled.div`
   padding: 0.5rem;
-  width: max-content;
 `;
 
 export const EmailWrapper = styled.div`
@@ -188,25 +193,48 @@ export const EmailWrapper = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const SignedInWrapper = styled.div`
-  padding: 0.5rem;
+export const MenuItem = styled.div`
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  margin: 0.5rem 0;
+
+  svg {
+    margin: 0 0.5rem;
+    width: 1rem;
+  }
+
+  &:hover {
+    color: ${colors.green};
+  }
+`;
+
+export const MenuLine = styled.div`
+  background-color: ${colors.midGray};
+  height: 0.1rem;
 `;
 
 export const LogoutWrapper = styled.button`
   align-items: center;
+  align-items: center;
   background: none;
   border-radius: 0.25rem;
   border: 0rem;
-  color: rgb(74, 74, 74);
+  color: ${colors.liver};
   cursor: pointer;
   display: flex;
   font-size: 0.875rem;
   height: 3rem;
   justify-content: flex-start;
-  padding: 0.5rem;
+  padding: 1rem;
   width: 100%;
 
+  svg {
+    margin-right: 0.5rem;
+    width: 1rem;
+  }
+
   :hover {
-    background: rgb(237 237 237);
+    background: ${colors.alabaster};
   }
 `;

@@ -27,6 +27,12 @@ export const IdentifierButton = styled(Button)`
   margin: 1.25rem 0 0;
   padding: 0.75rem 1.5rem;
   width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${colors.green};
+    color: ${colors.white};
+  }
 
   svg {
     margin-right: 0.5rem;

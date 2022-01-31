@@ -7,6 +7,7 @@ export const MainHeader = styled.h2`
   font-size: 1.37rem;
   margin: 0 auto 1.1rem auto;
   text-align: center;
+
   ${mq.tablet`
     font-size: 2rem;
   `}
@@ -74,16 +75,18 @@ export const MainContainer = styled.div`
   }
 
   ${mq.tablet`
-  margin: 0;
-  padding: 2.25rem 0 2.25rem 0;
+    margin: 0;
+    padding: 2.25rem 0 2.25rem 0;
 
-  ${SliderContainer} {
-    display: none;
-  }
-  ${ItemsContainer} {
-    display: grid;
-  }
-`}
+    ${SliderContainer} {
+      display: none;
+    }
+
+    ${ItemsContainer} {
+      display: grid;
+    }
+    
+  `}
 `;
 
 export const ImgHeader = styled.h4`
@@ -91,9 +94,9 @@ export const ImgHeader = styled.h4`
   margin: 0.5625rem 0;
 
   ${mq.tablet`
-  font-size: min(2.3vw, 1.5rem);
-  margin: 0.37rem 0;
-`}
+    font-size: min(2.3vw, 1.5rem);
+    margin: 0.37rem 0;
+  `}
 `;
 
 export const ImgListings = styled.h5`
@@ -107,55 +110,68 @@ export const ImgListings = styled.h5`
   }
 
   ${mq.tablet`
-  font-size: min(1.5vw, 1rem);
-  margin: 0 0 0.93rem 0;
-`}
+      font-size: min(1.5vw, 1rem);
+      margin: 0 0 0.93rem 0;
+  `}
 `;
 
 export const ImgContainer = styled.div`
+  cursor: pointer;
   position: relative;
 
-  ${mq.tablet`
-  border-radius: 0.6rem;
-  border: 0.06rem solid ${colors.dustyGray};
-  overflow: hidden;
-
-  :first-child {
-    grid-row: 1 / span 2;
-
-    ${ImgHeader} {
-      font-size: 2rem;
-      margin: 0.56rem 0 0.56rem 1rem;
-    }
-
-    ${ImgListings} {
-      font-size: 1.1rem;
-      margin: 0 0 2rem 1rem;
-    }
+  &:hover img {
+    transform: scale(1.3);
   }
-`}
+
+  &:hover div {
+    top: 68%;
+  }
+
+  &:hover h4 {
+    color: ${colors.green};
+  }
+
+  ${mq.tablet`
+    border-radius: 0.6rem;
+    border: 0.06rem solid ${colors.dustyGray};
+    overflow: hidden;
+
+    :first-child {
+      grid-row: 1 / span 2;
+
+      ${ImgHeader} {
+        font-size: 2rem;
+        margin: 0.56rem 0 0.56rem 1rem;
+      }
+
+      ${ImgListings} {
+        font-size: 1.1rem;
+        margin: 0 0 2rem 1rem;
+      }
+    }
+  `}
 `;
 
 export const Overlay = styled.div`
   background: ${colors.mineShaft}99;
   bottom: 0;
-  cursor: pointer;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  transition: 1s;
 `;
 
 export const ImgContent = styled.div`
-  bottom: 1.56rem;
   color: ${colors.white};
   left: 2.18rem;
   position: absolute;
+  top: 68%;
 
   ${mq.tablet`
-  bottom: 0;
-  left: 1rem;
-`}
+      bottom: 0;
+      left: 1rem;
+  `};
 `;
 
 export const StyledImg = styled.img`
@@ -165,4 +181,5 @@ export const StyledImg = styled.img`
   object-position: center top;
   overflow: hidden;
   position: relative;
+  transition: 1s;
 `;

@@ -9,6 +9,7 @@ export const SocialMediaIcons = styled.div`
   padding: 0.9375rem 0rem 0rem 0.9375rem;
 
   svg {
+    cursor: pointer;
     margin: 1.438rem 0.625rem 0 0;
   }
 
@@ -60,6 +61,10 @@ export const InfoGroupItem = styled(Link)`
   color: ${colors.gray};
   text-decoration: none;
   width: max-content;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const EmailLink = styled.a`

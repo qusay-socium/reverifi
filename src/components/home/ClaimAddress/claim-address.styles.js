@@ -57,6 +57,10 @@ export const AddressButton = styled(Button)`
   background-color: ${colors.white};
   height: 3.06rem;
   padding: 0 0.5rem;
+
+  &:hover {
+    box-shadow: none;
+  }
 `;
 
 export const LocationPinStar = styled(RawLocationPinStar)`
