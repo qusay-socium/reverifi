@@ -2,6 +2,7 @@ import Button from 'components/shared/Button';
 import { Error, Label } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import mq from 'styles/media-query';
 
 export const ProfileContainer = styled.div`
   margin: 2.2rem 12.5rem 2.2rem 4.5rem;
@@ -91,24 +92,32 @@ export const FormSectionTitle = styled.h4`
 
 export const InputsContainer = styled.div`
   display: flex;
-  /* align-items: flex-end; */
+  flex-direction: column;
   gap: 2.2rem;
   margin-bottom: 1.4rem;
 
   > div {
     flex: 1;
   }
+
+  ${mq.desktopWide`
+    flex-direction: row;
+  `}
 `;
 
 export const AddressInputsContainer = styled(InputsContainer)`
-  gap: 0.5rem;
+  gap: 1rem;
   margin-bottom: 0;
   flex-wrap: wrap;
-  align-items: flex-start;
 
   div:last-child {
     flex: 2;
   }
+
+  ${mq.desktopWide`
+      align-items: flex-start;
+      gap: 0.5rem;
+  `}
 `;
 
 export const SaveButton = styled(Button)`
