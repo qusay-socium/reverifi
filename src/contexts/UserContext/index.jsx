@@ -77,14 +77,14 @@ export function UserProvider({ children }) {
    */
   const setTokenData = useCallback(
     (token) => {
-      const { email, name } = tokenUtil.decodeToken(token) || {};
+      const { email, name, phone } = tokenUtil.decodeToken(token) || {};
       // if token not decoded correctly consider the token is invalid and logout the user
       if (!(email && name)) {
         logout();
         return;
       }
       tokenUtil.setToken(token);
-      setUserInfo({ email, name });
+      setUserInfo({ email, name, phone });
       setIsLoggedIn(true);
     },
     [logout]

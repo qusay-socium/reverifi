@@ -4,11 +4,11 @@ const myProfileSchema = yup
   .object({
     aboutMe: yup.string().label('About'),
     address: yup.string(),
-    city: yup.string().required(),
+    city: yup.string().required('city is required'),
     companyEmail: yup.string().email(),
     companyName: yup.string().label('Company'),
     companyWebsite: yup.string().label('Website'),
-    country: yup.string().required(),
+    country: yup.string().required('country is required'),
     email: yup.string().label('E-mail').email().required(),
     facebook: yup.string().label('Facebook'),
     instagram: yup.string().label('Instagram'),
@@ -37,7 +37,7 @@ const myProfileSchema = yup
     youtube: yup.string().label('YouTube'),
     zipCode: yup
       .string()
-      .required()
+      .required('zipCode is required')
       .typeError('zipCode must be a number')
       .min(5, 'Must be 5 digits'),
   })

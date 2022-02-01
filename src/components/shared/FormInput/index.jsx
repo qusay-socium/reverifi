@@ -33,6 +33,7 @@ function FormInput({
   max,
   step,
   labelIconElement,
+  defaultValue,
 }) {
   return (
     <Container>
@@ -52,6 +53,7 @@ function FormInput({
         min={min}
         max={max}
         step={step}
+        defaultValue={defaultValue}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -59,6 +61,7 @@ function FormInput({
 }
 
 FormInput.propTypes = {
+  defaultValue: PropTypes.string,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
@@ -75,6 +78,7 @@ FormInput.propTypes = {
 };
 
 FormInput.defaultProps = {
+  defaultValue: null,
   error: null,
   id: null,
   label: null,

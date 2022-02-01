@@ -16,9 +16,13 @@ import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
 import avatar from 'assets/images/avatar.svg';
 import FormInput from 'components/shared/FormInput';
 import TextAreaInput from 'components/shared/FormTextArea';
+import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
+import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
@@ -67,17 +71,23 @@ const customSelectTheme = (theme) => ({
 function MyProfileWrapper() {
   const [languages, setLanguages] = useState([]);
   const [serviceAreas, setServiceAreas] = useState([]);
+  const [fetchedUserData, setFetchedUserData] = useState({});
+
+  const { userInfo, logout } = useUser();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
+    getValues,
+    setFocus,
   } = useForm({
     resolver: yupResolver(myProfileSchema),
   });
 
-  const submit = (data) => {
+  const submit = async (data) => {
     const {
       aboutMe,
       address,
@@ -96,9 +106,10 @@ function MyProfileWrapper() {
       zipCode,
     } = data;
 
-    const finalShape = {
+    const dataBody = {
       company: {
         email: companyEmail,
+        id: fetchedUserData.company?.id || null,
         name: companyName,
         website: companyWebsite,
       },
@@ -114,24 +125,58 @@ function MyProfileWrapper() {
         zipCode,
       },
     };
-    console.log(finalShape);
+
+    await updateUserInfo(dataBody);
+
+    // logout and redirect to the login page
+    logout();
+    navigate('/login');
   };
+
+  const fetchUserInfo = async () => {
+    const info = await getUserInfo();
+    setFetchedUserData(info);
+
+    // set languages and service areas
+    if (info.languages) {
+      const newLanguages = info.languages?.map((lang) => ({
+        label: lang,
+        value: lang,
+      }));
+      setLanguages(newLanguages);
+    }
+
+    if (info.serviceAreas) {
+      const newAreas = info.serviceAreas?.map((area) => ({
+        label: area,
+        value: area,
+      }));
+      setServiceAreas(newAreas);
+    }
+
+    // focus all input when load the page
+    Object.keys(getValues()).map(
+      (value) =>
+        value !== 'languages' && value !== 'serviceAreas' && setFocus(value)
+    );
+    setFocus('name');
+  };
+
+  useEffectOnce(fetchUserInfo);
 
   return (
     <ProfileContainer>
       <UserInfoContainer>
         <ImageContainer>
-          <UserImage src={avatar} alt="user-image" />
+          <UserImage src={fetchedUserData?.image || avatar} alt="user-image" />
           <EditIconContainer>
             <EditIcon />
           </EditIconContainer>
         </ImageContainer>
 
         <div>
-          <UserName>Lia Adams</UserName>
-          <UserDescription>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </UserDescription>
+          <UserName>{userInfo?.name}</UserName>
+          <UserDescription>{fetchedUserData.aboutMe}</UserDescription>
         </div>
       </UserInfoContainer>
 
@@ -146,6 +191,7 @@ function MyProfileWrapper() {
               labelIconElement={<NameIcon />}
               register={register}
               error={errors.name?.message}
+              defaultValue={userInfo?.name}
             />
             <FormInput
               type="number"
@@ -154,6 +200,7 @@ function MyProfileWrapper() {
               labelIconElement={<PhoneIcon />}
               register={register}
               error={errors.phone?.message}
+              defaultValue={userInfo?.phone}
             />
           </InputsContainer>
           <InputsContainer>
@@ -164,6 +211,7 @@ function MyProfileWrapper() {
               labelIconElement={<EmailIcon />}
               register={register}
               error={errors.email?.message}
+              defaultValue={userInfo?.email}
             />
 
             <AddressInputsContainer>
@@ -177,6 +225,7 @@ function MyProfileWrapper() {
                 placeholder="country"
                 register={register}
                 error={errors.country?.message}
+                defaultValue={fetchedUserData.country}
               />
               <FormInput
                 type="text"
@@ -184,6 +233,7 @@ function MyProfileWrapper() {
                 placeholder="city"
                 register={register}
                 error={errors.city?.message}
+                defaultValue={fetchedUserData.city}
               />
               <FormInput
                 type="number"
@@ -191,6 +241,7 @@ function MyProfileWrapper() {
                 placeholder="zipCode"
                 register={register}
                 error={errors.zipCode?.message}
+                defaultValue={fetchedUserData.zipCode}
               />
               <FormInput
                 type="text"
@@ -198,6 +249,7 @@ function MyProfileWrapper() {
                 placeholder="address"
                 register={register}
                 error={errors.address?.message}
+                defaultValue={fetchedUserData.address}
               />
             </AddressInputsContainer>
           </InputsContainer>
@@ -215,14 +267,13 @@ function MyProfileWrapper() {
                     className="profile-select"
                     classNamePrefix="profile"
                     closeMenuOnSelect={false}
-                    defaultValue={languages}
                     hideSelectedOptions={false}
                     isMulti
                     isSearchable={false}
                     options={languagesOptions}
                     placeholder="select languages..."
                     theme={customSelectTheme}
-                    value={value}
+                    value={languages.length === 0 ? value : languages}
                     onChange={(val) => {
                       setLanguages(val);
                       onChange(val);
@@ -248,13 +299,12 @@ function MyProfileWrapper() {
                     className="profile-select"
                     classNamePrefix="profile"
                     closeMenuOnSelect={false}
-                    defaultValue={serviceAreas}
                     hideSelectedOptions={false}
                     isMulti
                     options={serviceAreasOptions}
                     placeholder="select areas..."
                     theme={customSelectTheme}
-                    value={value}
+                    value={serviceAreas.length === 0 ? value : serviceAreas}
                     onChange={(val) => {
                       setServiceAreas(val);
                       onChange(val);
@@ -275,6 +325,7 @@ function MyProfileWrapper() {
             limit={100}
             register={register}
             error={errors.about?.message}
+            defaultValue={fetchedUserData.aboutMe}
           />
         </FormSectionContainer>
 
@@ -288,6 +339,7 @@ function MyProfileWrapper() {
               labelIconElement={<CompanyNameIcon />}
               register={register}
               error={errors.companyName?.message}
+              defaultValue={fetchedUserData.company?.name}
             />
             <FormInput
               type="email"
@@ -296,6 +348,7 @@ function MyProfileWrapper() {
               labelIconElement={<EmailIcon />}
               register={register}
               error={errors.companyEmail?.message}
+              defaultValue={fetchedUserData.company?.email}
             />
           </InputsContainer>
           <InputsContainer>
@@ -306,6 +359,7 @@ function MyProfileWrapper() {
               labelIconElement={<CompanyWebsiteIcon />}
               register={register}
               error={errors.companyWebsite?.message}
+              defaultValue={fetchedUserData.company?.website}
             />
             <div />
           </InputsContainer>
@@ -321,6 +375,7 @@ function MyProfileWrapper() {
               labelIconElement={<FacebookIcon />}
               register={register}
               error={errors.facebook?.message}
+              defaultValue={fetchedUserData.socials?.facebook}
             />
             <FormInput
               type="text"
@@ -329,6 +384,7 @@ function MyProfileWrapper() {
               labelIconElement={<InstaIcon />}
               register={register}
               error={errors.instagram?.message}
+              defaultValue={fetchedUserData.socials?.instagram}
             />
           </InputsContainer>
           <InputsContainer>
@@ -339,6 +395,7 @@ function MyProfileWrapper() {
               labelIconElement={<LinkedinIcon />}
               register={register}
               error={errors.linkedin?.message}
+              defaultValue={fetchedUserData.socials?.linkedin}
             />
             <FormInput
               type="text"
@@ -347,6 +404,7 @@ function MyProfileWrapper() {
               labelIconElement={<YoutubeIcon />}
               register={register}
               error={errors.youtube?.message}
+              defaultValue={fetchedUserData.socials?.youtube}
             />
           </InputsContainer>
         </FormSectionContainer>

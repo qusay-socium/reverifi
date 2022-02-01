@@ -34,6 +34,7 @@ function TextAreaInput({
   rounded,
   limit,
   labelIconElement,
+  defaultValue,
 }) {
   return (
     <Container>
@@ -54,6 +55,7 @@ function TextAreaInput({
         id={id || name}
         placeholder={placeholder}
         rounded={rounded}
+        defaultValue={defaultValue}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -61,6 +63,7 @@ function TextAreaInput({
 }
 
 TextAreaInput.propTypes = {
+  defaultValue: PropTypes.string,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
@@ -73,6 +76,7 @@ TextAreaInput.propTypes = {
 };
 
 TextAreaInput.defaultProps = {
+  defaultValue: null,
   error: null,
   id: null,
   label: null,

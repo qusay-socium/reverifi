@@ -20,8 +20,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const UserImage = styled.img`
-  min-width: 8rem;
-  min-height: 8rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
 `;
 
 export const EditIconContainer = styled.div`
