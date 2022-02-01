@@ -1,5 +1,5 @@
 import Button from 'components/shared/Button';
-import { Label } from 'components/shared/FormInput/form-input.styles';
+import { Error, Label } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -121,3 +121,5 @@ export const InputLabel = styled(Label)`
   width: 100%;
   padding: ${({ noPadding }) => noPadding && 0};
 `;
+
+export const InputError = styled(Error)``;

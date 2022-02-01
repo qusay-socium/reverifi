@@ -12,6 +12,13 @@ const myProfileSchema = yup
     email: yup.string().label('E-mail').email().required(),
     facebook: yup.string().label('Facebook'),
     instagram: yup.string().label('Instagram'),
+    languages: yup
+      .object()
+      .shape({
+        label: yup.string().required('language is required'),
+        value: yup.string(),
+      })
+      .nullable(),
     linkedin: yup.string().label('LinkedIn'),
     name: yup.string().label('Name').required(),
     phone: yup
@@ -20,6 +27,13 @@ const myProfileSchema = yup
       .required()
       .min(10, 'Must be 10 digits')
       .typeError('phone must be a number'),
+    serviceAreas: yup
+      .object()
+      .shape({
+        label: yup.string().required('area is required'),
+        value: yup.string(),
+      })
+      .nullable(),
     youtube: yup.string().label('YouTube'),
     zipCode: yup
       .string()

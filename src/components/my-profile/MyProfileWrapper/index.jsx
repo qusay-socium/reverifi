@@ -17,7 +17,7 @@ import avatar from 'assets/images/avatar.svg';
 import FormInput from 'components/shared/FormInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import colors from 'styles/colors';
 import myProfileSchema from './my-profile-wrapper-schema';
@@ -28,6 +28,7 @@ import {
   FormSectionContainer,
   FormSectionTitle,
   ImageContainer,
+  InputError,
   InputLabel,
   InputsContainer,
   ProfileContainer,
@@ -64,13 +65,14 @@ const customSelectTheme = (theme) => ({
  * @return {JSX.Element}
  */
 function MyProfileWrapper() {
-  const [languages, setLanguages] = useState([languagesOptions[1]]);
-  const [serviceAreas, setServiceAreas] = useState([serviceAreasOptions[0]]);
+  const [languages, setLanguages] = useState([]);
+  const [serviceAreas, setServiceAreas] = useState([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm({
     resolver: yupResolver(myProfileSchema),
   });
@@ -205,39 +207,64 @@ function MyProfileWrapper() {
                 <LanguagesIcon />
                 Languages
               </InputLabel>
-              <Select
-                className="profile-select"
-                classNamePrefix="profile"
-                closeMenuOnSelect={false}
-                defaultValue={languages}
-                hideSelectedOptions={false}
-                isMulti
-                isSearchable={false}
+              <Controller
                 name="languages"
-                options={languagesOptions}
-                placeholder="select languages..."
-                theme={customSelectTheme}
-                onChange={(value) => setLanguages(value)}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    className="profile-select"
+                    classNamePrefix="profile"
+                    closeMenuOnSelect={false}
+                    defaultValue={languages}
+                    hideSelectedOptions={false}
+                    isMulti
+                    isSearchable={false}
+                    options={languagesOptions}
+                    placeholder="select languages..."
+                    theme={customSelectTheme}
+                    value={value}
+                    onChange={(val) => {
+                      setLanguages(val);
+                      onChange(val);
+                    }}
+                  />
+                )}
               />
+              {errors.languages?.label?.message && (
+                <InputError>{errors.languages?.label?.message}</InputError>
+              )}
             </div>
             <div>
               <InputLabel>
                 <ServiceAreasIcon />
                 Service Areas
               </InputLabel>
-              <Select
-                className="profile-select"
-                classNamePrefix="profile"
-                closeMenuOnSelect={false}
-                defaultValue={serviceAreas}
-                hideSelectedOptions={false}
-                isMulti
+
+              <Controller
                 name="serviceAreas"
-                options={serviceAreasOptions}
-                placeholder="select areas..."
-                theme={customSelectTheme}
-                onChange={(value) => setServiceAreas(value)}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    className="profile-select"
+                    classNamePrefix="profile"
+                    closeMenuOnSelect={false}
+                    defaultValue={serviceAreas}
+                    hideSelectedOptions={false}
+                    isMulti
+                    options={serviceAreasOptions}
+                    placeholder="select areas..."
+                    theme={customSelectTheme}
+                    value={value}
+                    onChange={(val) => {
+                      setServiceAreas(val);
+                      onChange(val);
+                    }}
+                  />
+                )}
               />
+              {errors.serviceAreas?.label?.message && (
+                <InputError>{errors.serviceAreas?.label?.message}</InputError>
+              )}
             </div>
           </InputsContainer>
           <TextAreaInput
