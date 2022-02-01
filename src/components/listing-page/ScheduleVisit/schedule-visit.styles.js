@@ -28,8 +28,8 @@ export const DateContainer = styled.div`
   gap: 0.5rem;
 
   svg {
-    min-width: 1rem;
-    min-height: 1rem;
+    max-width: 1rem;
+    max-height: 1rem;
     opacity: 0.5;
   }
 `;

@@ -17,13 +17,17 @@ import {
 /**
  * Listing page overview section.
  *
- * @param {Object} props      The component props.
- * @param {Object} props.data Overview component data.
+ * @param {Object} listing Overview component data.
  *
  * @return {JSX.Element}
  */
-function Overview({ data }) {
-  const { overview, statistics } = data;
+function Overview({ listing }) {
+  const statistics = {
+    Saves: '10',
+    Shared: '12',
+    'Time on Reverifi': '8 days',
+    Views: '30',
+  };
 
   return (
     <Container>
@@ -40,7 +44,7 @@ function Overview({ data }) {
             ))}
           </Statistics>
 
-          <Paragraph>{overview}</Paragraph>
+          <Paragraph>{listing.overview}</Paragraph>
         </div>
         <Claim>
           <div>
@@ -65,14 +69,8 @@ function Overview({ data }) {
 }
 
 Overview.propTypes = {
-  data: PropTypes.shape({
+  listing: PropTypes.shape({
     overview: PropTypes.string.isRequired,
-    statistics: PropTypes.shape({
-      Saves: PropTypes.string.isRequired,
-      Shared: PropTypes.string.isRequired,
-      'Time on Reverifi': PropTypes.string.isRequired,
-      Views: PropTypes.string.isRequired,
-    }).isRequired,
   }).isRequired,
 };
 

@@ -46,14 +46,12 @@ function PrevArrow({ onClick }) {
  * @return {JSX.Element} Custom paging.
  */
 function customPaging(i, images) {
-  return <img src={images[i].src} alt={images[i].alt} />;
+  return <img src={images[i]} alt={images[i]} />;
 }
 
 /**
  * Listing page slider section.
- *
- * @param {Object} props        The component props.
- * @param {Object} props.images Listing page slider images.
+ * @param {Object} images Listing page slider images.
  *
  * @return {JSX.Element}
  */
@@ -81,7 +79,7 @@ function ListingPageSlider({ images }) {
     ],
     slidesToScroll: 1,
     slidesToShow: 1,
-    speed: 500,
+    speed: 800,
   };
 
   return (
@@ -90,15 +88,15 @@ function ListingPageSlider({ images }) {
         <Slider {...settings}>
           {images.map((img, idx) =>
             idx === imageIndex ? (
-              <ActiveImageWrapper key={img.alt}>
-                <ActiveImage src={img.src} alt={img.alt} />
+              <ActiveImageWrapper key={img}>
+                <ActiveImage src={img} />
                 <CustomPaging>
                   {imageIndex + 1} / {images.length} Photo
                 </CustomPaging>
               </ActiveImageWrapper>
             ) : (
-              <InActiveImageWrapper key={img.alt}>
-                <InActiveImage src={img.src} alt={img.alt} />
+              <InActiveImageWrapper key={img}>
+                <InActiveImage src={img} />
               </InActiveImageWrapper>
             )
           )}
@@ -109,12 +107,7 @@ function ListingPageSlider({ images }) {
 }
 
 ListingPageSlider.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      alt: PropTypes.string.isRequired,
-      src: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 NextArrow.propTypes = {

@@ -37,6 +37,7 @@ export const Location = styled.div`
 export const LocationText = styled.span`
   color: ${colors.gray};
   font-size: 1rem;
+  margin-left: 1rem;
 `;
 
 export const SubmitOffer = styled.div`
