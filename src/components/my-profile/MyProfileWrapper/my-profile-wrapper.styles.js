@@ -10,8 +10,8 @@ export const ProfileContainer = styled.div`
 `;
 
 export const UserInfoContainer = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 1.4rem;
 `;
 
@@ -20,20 +20,20 @@ export const ImageContainer = styled.div`
 `;
 
 export const UserImage = styled.img`
-  width: 8rem;
-  height: 8rem;
   border-radius: 50%;
+  height: 8rem;
+  width: 8rem;
 `;
 
 export const EditIconContainer = styled.div`
-  position: absolute;
-  bottom: 0.5rem;
-  right: 0;
   background-color: ${colors.white};
-  box-shadow: 0 0.06rem 0.25rem ${colors.midGray};
-  padding: 0.5rem 0.5rem 0.35rem 0.5rem;
   border-radius: 50%;
+  bottom: 0.5rem;
+  box-shadow: 0 0.06rem 0.25rem ${colors.midGray};
   cursor: pointer;
+  padding: 0.5rem 0.5rem 0.35rem 0.5rem;
+  position: absolute;
+  right: 0;
 
   &:hover {
     background-color: ${colors.green};
@@ -49,26 +49,26 @@ export const UserName = styled.h3`
 `;
 
 export const UserDescription = styled.p`
-  margin: 0;
   color: ${colors.gray};
+  margin: 0;
 `;
 
 export const FormContainer = styled.form`
   .profile-select {
     .profile__control {
-      padding: 0.08rem;
-      border: 0.06rem solid ${colors.mercury};
       border-radius: 1.12rem;
+      border: 0.06rem solid ${colors.mercury};
       box-shadow: 0;
+      padding: 0.08rem;
     }
 
     .profile__multi-value {
-      font-size: 0.85rem;
-      padding: 0.2rem;
-      margin: 0 0.2rem;
       background-color: ${colors.white};
-      box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
       border-radius: 1.1rem;
+      box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
+      font-size: 0.85rem;
+      margin: 0 0.2rem;
+      padding: 0.2rem;
     }
 
     .profile__option {
@@ -83,8 +83,8 @@ export const FormContainer = styled.form`
 
 export const FormSectionContainer = styled.div`
   background-color: ${colors.whiteSand}99;
-  padding: 2.2rem 3.75rem;
   margin: 2.2rem 0;
+  padding: 2.2rem 3.75rem;
 `;
 
 export const FormSectionTitle = styled.h4`
@@ -107,9 +107,9 @@ export const InputsContainer = styled.div`
 `;
 
 export const AddressInputsContainer = styled(InputsContainer)`
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 0;
-  flex-wrap: wrap;
 
   div:last-child {
     flex: 2;
@@ -122,14 +122,14 @@ export const AddressInputsContainer = styled(InputsContainer)`
 `;
 
 export const SaveButton = styled(Button)`
-  padding: 0 2.5rem;
-  height: 2.1rem;
   font-size: 0.95rem;
+  height: 2.1rem;
+  padding: 0 2.5rem;
 `;
 
 export const InputLabel = styled(Label)`
-  width: 100%;
   padding: ${({ noPadding }) => noPadding && 0};
+  width: 100%;
 `;
 
 export const InputError = styled(Error)``;

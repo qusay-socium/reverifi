@@ -20,7 +20,6 @@ import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
@@ -44,16 +43,21 @@ import {
 } from './my-profile-wrapper.styles';
 
 const languagesOptions = [
-  { label: 'Arabic', value: 'ar' },
-  { label: 'English', value: 'eng' },
-  { label: 'French', value: 'fr' },
+  { label: 'Arabic', value: 'Arabic' },
+  { label: 'English', value: 'English' },
+  { label: 'French', value: 'French' },
 ];
 
 const serviceAreasOptions = [
-  { label: 'New York', value: 'NY' },
-  { label: 'New Jersey', value: 'NJ' },
+  { label: 'New York', value: 'New York' },
+  { label: 'New Jersey', value: 'New Jersey' },
 ];
 
+/**
+ * custom select theme function to change select default colors
+ *
+ * @param {Object} theme theme object from the select component
+ */
 const customSelectTheme = (theme) => ({
   ...theme,
   colors: {
@@ -69,12 +73,10 @@ const customSelectTheme = (theme) => ({
  * @return {JSX.Element}
  */
 function MyProfileWrapper() {
+  const { userInfo } = useUser();
   const [languages, setLanguages] = useState([]);
   const [serviceAreas, setServiceAreas] = useState([]);
   const [fetchedUserData, setFetchedUserData] = useState({});
-
-  const { userInfo, logout } = useUser();
-  const navigate = useNavigate();
 
   const {
     register,
@@ -87,6 +89,11 @@ function MyProfileWrapper() {
     resolver: yupResolver(myProfileSchema),
   });
 
+  /**
+   * form submit function
+   *
+   * @param {Object} data data collected from the form inputs
+   */
   const submit = async (data) => {
     const {
       aboutMe,
@@ -128,16 +135,23 @@ function MyProfileWrapper() {
 
     await updateUserInfo(dataBody);
 
-    // logout and redirect to the login page
-    logout();
-    navigate('/login');
+    setFetchedUserData((prev) => ({ ...prev, user: { ...dataBody.user } }));
+    // eslint-disable-next-line no-alert
+    alert('data saved');
+    setFocus('name');
   };
 
+  /**
+   * fetch user info function
+   */
   const fetchUserInfo = async () => {
     const info = await getUserInfo();
-    setFetchedUserData(info);
+    if (!info) {
+      setFetchedUserData({ user: userInfo });
+    } else {
+      setFetchedUserData(info);
+    }
 
-    // set languages and service areas
     if (info.languages) {
       const newLanguages = info.languages?.map((lang) => ({
         label: lang,
@@ -154,11 +168,7 @@ function MyProfileWrapper() {
       setServiceAreas(newAreas);
     }
 
-    // focus all input when load the page
-    Object.keys(getValues()).map(
-      (value) =>
-        value !== 'languages' && value !== 'serviceAreas' && setFocus(value)
-    );
+    Object.keys(getValues()).map((value) => setFocus(value));
     setFocus('name');
   };
 
@@ -175,7 +185,7 @@ function MyProfileWrapper() {
         </ImageContainer>
 
         <div>
-          <UserName>{userInfo?.name}</UserName>
+          <UserName>{fetchedUserData.user?.name}</UserName>
           <UserDescription>{fetchedUserData.aboutMe}</UserDescription>
         </div>
       </UserInfoContainer>
@@ -191,7 +201,7 @@ function MyProfileWrapper() {
               labelIconElement={<NameIcon />}
               register={register}
               error={errors.name?.message}
-              defaultValue={userInfo?.name}
+              defaultValue={fetchedUserData.user?.name}
             />
             <FormInput
               type="number"
@@ -200,7 +210,7 @@ function MyProfileWrapper() {
               labelIconElement={<PhoneIcon />}
               register={register}
               error={errors.phone?.message}
-              defaultValue={userInfo?.phone}
+              defaultValue={fetchedUserData.user?.phone}
             />
           </InputsContainer>
           <InputsContainer>
@@ -211,7 +221,7 @@ function MyProfileWrapper() {
               labelIconElement={<EmailIcon />}
               register={register}
               error={errors.email?.message}
-              defaultValue={userInfo?.email}
+              defaultValue={fetchedUserData.user?.email}
             />
 
             <AddressInputsContainer>
@@ -262,8 +272,10 @@ function MyProfileWrapper() {
               <Controller
                 name="languages"
                 control={control}
-                render={({ field: { onChange, value } }) => (
+                defaultValue={[]}
+                render={({ field: { onChange } }) => (
                   <Select
+                    {...register('languages')}
                     className="profile-select"
                     classNamePrefix="profile"
                     closeMenuOnSelect={false}
@@ -273,7 +285,7 @@ function MyProfileWrapper() {
                     options={languagesOptions}
                     placeholder="select languages..."
                     theme={customSelectTheme}
-                    value={languages.length === 0 ? value : languages}
+                    value={languages}
                     onChange={(val) => {
                       setLanguages(val);
                       onChange(val);
@@ -281,8 +293,8 @@ function MyProfileWrapper() {
                   />
                 )}
               />
-              {errors.languages?.label?.message && (
-                <InputError>{errors.languages?.label?.message}</InputError>
+              {errors.languages?.message && (
+                <InputError>{errors.languages?.message}</InputError>
               )}
             </div>
             <div>
@@ -294,8 +306,10 @@ function MyProfileWrapper() {
               <Controller
                 name="serviceAreas"
                 control={control}
-                render={({ field: { onChange, value } }) => (
+                defaultValue={[]}
+                render={({ field: { onChange } }) => (
                   <Select
+                    {...register('serviceAreas')}
                     className="profile-select"
                     classNamePrefix="profile"
                     closeMenuOnSelect={false}
@@ -304,7 +318,7 @@ function MyProfileWrapper() {
                     options={serviceAreasOptions}
                     placeholder="select areas..."
                     theme={customSelectTheme}
-                    value={serviceAreas.length === 0 ? value : serviceAreas}
+                    value={serviceAreas}
                     onChange={(val) => {
                       setServiceAreas(val);
                       onChange(val);
@@ -312,8 +326,8 @@ function MyProfileWrapper() {
                   />
                 )}
               />
-              {errors.serviceAreas?.label?.message && (
-                <InputError>{errors.serviceAreas?.label?.message}</InputError>
+              {errors.serviceAreas?.message && (
+                <InputError>{errors.serviceAreas?.message}</InputError>
               )}
             </div>
           </InputsContainer>
