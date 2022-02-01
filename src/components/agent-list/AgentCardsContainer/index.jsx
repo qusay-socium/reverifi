@@ -3,7 +3,7 @@ import useEffectOnce from 'hooks/use-effect-once';
 import useOnScreen from 'hooks/use-on-screen';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import getUsersByType from 'services/user';
+import { getUsersByType } from 'services/user';
 import DesktopFilterSection from '../DesktopFilterSection';
 import MobileFilterSection from '../MobileFilterSection';
 import {
