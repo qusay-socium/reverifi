@@ -30,6 +30,14 @@ export const Feature = styled.div`
   position: relative;
   cursor: pointer;
 
+  &:hover label {
+    color: ${colors.green};
+  }
+
+  &:hover div {
+    background-color: ${colors.green};
+  }
+
   ${mq.mobile`
     margin: 0 0 2rem 0;
   `}

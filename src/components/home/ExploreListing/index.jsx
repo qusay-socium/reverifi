@@ -35,20 +35,20 @@ function ExploreListing() {
 
   const getItems = () =>
     data.map(({ city, img, searchKey, numOfListings }) => (
-      <ImgContainer key={city}>
+      <ImgContainer
+        key={city}
+        onClick={() => {
+          handleSearch(searchKey);
+        }}
+      >
         <StyledImg src={img} alt="Logo" />
-        <Overlay
-          onClick={() => {
-            handleSearch(searchKey);
-          }}
-        >
-          <ImgContent>
-            <ImgHeader>{city}</ImgHeader>
-            <ImgListings>
-              <span>{numOfListings}</span> Listings
-            </ImgListings>
-          </ImgContent>
-        </Overlay>
+        <Overlay />
+        <ImgContent>
+          <ImgHeader>{city}</ImgHeader>
+          <ImgListings>
+            <span>{numOfListings}</span> Listings
+          </ImgListings>
+        </ImgContent>
       </ImgContainer>
     ));
 

@@ -5,9 +5,15 @@ export const CardContainer = styled.div`
   background: ${colors.white};
   border-radius: 0.375rem;
   box-shadow: 0rem 0.0625rem 0.5625rem ${colors.mineShaft}29;
+  cursor: pointer;
   margin: 2rem 1rem;
   overflow: hidden;
-  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: ${colors.mineShaft};
+    margin-top: 1rem;
+  }
 `;
 
 export const Container = styled.div`

@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -85,7 +86,7 @@ export const OrText = styled.div`
   text-align: center;
 `;
 
-export const SocialButton = styled.button`
+export const SocialButton = styled(Button)`
   background-color: ${colors.green};
   border-radius: 1.5rem;
   border: none;

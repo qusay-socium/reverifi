@@ -1,3 +1,8 @@
+import { ReactComponent as SettingsIcon } from 'assets/icons/account-settings.svg';
+import { ReactComponent as DashboardMenu } from 'assets/icons/dashboard-menu.svg';
+import { ReactComponent as SavedListing } from 'assets/icons/saved-listing.svg';
+import { ReactComponent as SavedSearches } from 'assets/icons/saved-searches.svg';
+import { ReactComponent as SignOut } from 'assets/icons/sign-out.svg';
 import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
@@ -7,16 +12,17 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   BroadNavContainer,
-  EmailWrapper,
   Logo,
   LogoutWrapper,
   MenuIcon,
+  MenuItem,
+  MenuLine,
+  MenuTopWrapper,
   MenuWrapper,
   NarrowNavContainer,
   NavControlSection,
   NavItemsContainer,
   NavLinksContainer,
-  SignedInWrapper,
   SignInButton,
   SignUpButton,
   StyledInput,
@@ -33,7 +39,7 @@ import {
  */
 function Navbar() {
   const navigate = useNavigate();
-  const { userInfo: { name, email } = {}, isLoggedIn, logout } = useUser();
+  const { userInfo: { name } = {}, isLoggedIn, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef(null);
 
@@ -83,11 +89,29 @@ function Navbar() {
               isSticky
             >
               <MenuWrapper>
-                <SignedInWrapper>
-                  Signed in as
-                  <EmailWrapper>{email}</EmailWrapper>
-                </SignedInWrapper>
+                <MenuTopWrapper>
+                  <MenuItem type="button">
+                    <SavedListing />
+                    Saved listings
+                  </MenuItem>
+                  <MenuItem type="button">
+                    <SavedSearches />
+                    Saved agents
+                  </MenuItem>
+                  <MenuItem type="button">
+                    <DashboardMenu />
+                    Dashboard
+                  </MenuItem>
+                  <MenuItem type="button">
+                    <SettingsIcon />
+                    Account settings
+                  </MenuItem>
+                </MenuTopWrapper>
+
+                <MenuLine />
+
                 <LogoutWrapper type="button" onClick={logout}>
+                  <SignOut />
                   Sign Out
                 </LogoutWrapper>
               </MenuWrapper>

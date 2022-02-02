@@ -50,7 +50,7 @@ export const Attendees = styled.h4`
   :hover {
     svg {
       path {
-        fill: ${colors.green};
+        fill: ${colors.gray};
       }
     }
   }

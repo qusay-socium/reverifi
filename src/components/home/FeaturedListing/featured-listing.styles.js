@@ -7,7 +7,7 @@ export const SectionContainer = styled.div`
 
   ${mq.desktop`
       margin: 0.625rem 7.5rem;
-  `}
+  `};
 `;
 
 export const Title = styled.h3`
@@ -33,23 +33,23 @@ export const StyledSlide = styled.div`
       display: inline;
       margin: 0 0.3125rem;
       > button {
-        background-color: ${colors.midGray};
+        background-color: ${colors.mercury};
         border-radius: 50%;
-        border: none;
-        font-size: 0;
-        height: 0.75rem;
-        padding: 0;
-        width: 0.75rem;
+        border: 0.1rem ${colors.mercury} solid;
         cursor: pointer;
+        font-size: 0;
+        height: 1rem;
+        padding: 0;
+        width: 1rem;
       }
     }
   }
   // active dot style
   .slide-dots li.slick-active button {
-    background-color: ${colors.white};
-    height: 0.9375rem;
-    border: 0.125rem solid ${colors.green};
-    width: 0.9375rem;
+    background-color: ${colors.green};
+    border: 0.6rem ${colors.green} solid;
+    height: 1rem;
+    width: 1rem;
   }
   // arrow styles
   .slick-prev {

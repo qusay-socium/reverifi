@@ -11,6 +11,11 @@ const StyledButton = styled.button`
   font-weight: 600;
   height: 2.5rem;
   padding: 0 1.6875rem;
+  transition: 0.1s;
+
+  &:hover {
+    box-shadow: 0rem 0.4rem 1.7rem -1rem ${colors.mineShaft};
+  }
 
   &[disabled] {
     cursor: not-allowed;
