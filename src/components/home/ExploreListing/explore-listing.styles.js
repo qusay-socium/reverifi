@@ -132,9 +132,7 @@ export const ImgContainer = styled.div`
   border: 0.06rem solid ${colors.dustyGray};
   overflow: hidden;
 
-  &:hover div {
-    top: 70%;
-  }
+  
 
   &:hover h4 {
     color: ${colors.green};
@@ -169,14 +167,17 @@ export const Overlay = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-  transition: 1s;
+  transition: 0.5s;
+
+  &:hover {
+    background: ${colors.mineShaft}99;
+  }
 `;
 
 export const ImgContent = styled.div`
   color: ${colors.white};
   left: 2.18rem;
   position: absolute;
-  top: 70%;
 
   ${mq.tablet`
       bottom: 0;

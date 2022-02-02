@@ -118,7 +118,12 @@ export const CardBody = styled.div`
   justify-content: space-between;
   min-height: 6rem;
   padding: 1rem;
+
   ${CardContainer}:hover & {
+    display: none;
+  }
+
+  &:hover {
     display: none;
   }
 `;
@@ -133,6 +138,10 @@ export const CardFooter = styled.div`
   ${CardContainer}:hover & {
     display: none;
   }
+
+  &:hover {
+    display: none;
+  }
 `;
 
 export const TagContainer = styled.div`
@@ -140,6 +149,7 @@ export const TagContainer = styled.div`
   left: 1rem;
   position: absolute;
   top: 1rem;
+  transition: 0.2s;
 
   ${CardContainer}:hover & {
     top: 2rem;
