@@ -131,7 +131,7 @@ export const ImgContainer = styled.div`
     color: ${colors.green};
   }
 
-  // Make the first image size distinguishable. 
+  // Make the first image size distinguishable
   ${mq.tablet`
     border-radius: 0.6rem;
     border: 0.06rem solid ${colors.dustyGray};
