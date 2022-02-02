@@ -52,7 +52,7 @@ function Card({ data }) {
         <Image src={images[0]} />
         <TagContainer>
           {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
-          <Tag>{listingType.type}</Tag>
+          <Tag>{listingType?.type || 'Rent'}</Tag>
         </TagContainer>
         {image && <PersonImg src={image} />}
       </CardImageContainer>
@@ -80,7 +80,7 @@ function Card({ data }) {
           </BodyIconsContainer>
         </InfoContainer>
 
-        <TextSmall>{propertyType.type}</TextSmall>
+        <TextSmall>{propertyType?.type || 'House'}</TextSmall>
       </CardBody>
 
       <CardFooter>
