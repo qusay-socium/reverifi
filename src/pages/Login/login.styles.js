@@ -1,4 +1,3 @@
-import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -13,6 +12,7 @@ export const LoginContainer = styled.div`
 
 export const ImageContainer = styled.div`
   display: none;
+  padding: 2rem;
 
   ${mq.tabletWide`
     background-color: ${colors.alabaster};
@@ -32,12 +32,15 @@ export const ImageContainer = styled.div`
 `;
 
 export const InfoContainer = styled.div`
-  flex: 1;
-  padding: 1rem;
+  padding: 2rem;
   height: 100vh;
 
+  ${mq.desktop`
+    padding: 15rem 7.6rem 0;
+  `}
+
   ${mq.tabletWide`
-    padding: 6.9375rem 7.625rem 0;
+     padding: 8rem 7.6rem 0;
   `}
 `;
 
@@ -66,7 +69,11 @@ export const LinkText = styled.a`
   color: ${colors.blue};
   cursor: pointer;
   font-size: 0.8125rem;
-  text-decoration: underline;
+  padding: 0.3rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const SocialLinksContainer = styled.div`
@@ -80,7 +87,12 @@ export const OrText = styled.div`
   text-align: center;
 `;
 
-export const SocialButton = styled(Button)`
+export const SocialButton = styled.button`
+  background-color: ${colors.green};
+  border-radius: 1.5rem;
+  border: none;
+  color: ${colors.white};
+  cursor: pointer;
   display: flex;
   justify-content: center;
   margin-top: 0.625rem;
@@ -93,8 +105,9 @@ export const SocialButton = styled(Button)`
 
     span {
       margin: auto 0 auto 2.8125rem;
-      min-width: 9.0625rem;
+      min-width: 10.7rem;
       text-align: left;
+      font-size: 1rem;
     }
   }
 `;
@@ -111,4 +124,16 @@ export const GoogleButton = styled(SocialButton)`
   background-color: ${colors.white};
   border: 0.0625rem solid ${colors.mercury};
   color: ${colors.mineShaft};
+`;
+
+export const SocialLinksText = styled.p`
+  color: ${colors.mineShaft}7f;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 2.5rem 0;
+  text-align: center;
+
+  a {
+    font-size: 0.9rem;
+  }
 `;
