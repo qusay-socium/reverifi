@@ -131,6 +131,7 @@ export const ImgContainer = styled.div`
     color: ${colors.green};
   }
 
+  // the first-child element used for the slider's first card render to be bigger
   ${mq.tablet`
     border-radius: 0.6rem;
     border: 0.06rem solid ${colors.dustyGray};
