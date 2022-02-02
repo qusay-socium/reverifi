@@ -9,8 +9,9 @@ import {
   CancelButton,
   CodeContainer,
   DigitInput,
+  DigitInputsContainer,
   FormContainer,
-  InputsContainer,
+  InputsWrapper,
   ResendButton,
   ResendCircleContainer,
   TimerText,
@@ -25,7 +26,7 @@ import {
 function VerifyPhoneForm() {
   const [resendCode, setResendCode] = useState(true);
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, setFocus } = useForm({
     resolver: yupResolver(verifyPhoneSchema),
   });
 
@@ -46,36 +47,58 @@ function VerifyPhoneForm() {
     if (target.nextSibling) {
       target.nextSibling.focus();
     }
+    if (target.name === 'd2') {
+      setFocus('d3');
+    }
   };
 
   /**
    * Handle form submit.
-   *
    */
   const onSubmit = () => {
+    reset();
+  };
+
+  /**
+   * reset inputs when click on cancel
+   */
+  const resetInputs = () => {
     reset();
   };
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <CodeContainer>
-        <InputsContainer>
-          {[1, 2, 3, 4, 5, 6].map((num, index) => (
-            <DigitInput
-              type="text"
-              maxLength="1"
-              autoComplete="off"
-              key={num}
-              {...register(`d${index}`)}
-              onInput={handleInput}
-            />
-          ))}
-        </InputsContainer>
-
+        <InputsWrapper>
+          <DigitInputsContainer>
+            {[0, 1, 2].map((num) => (
+              <DigitInput
+                type="text"
+                maxLength="1"
+                autoComplete="off"
+                key={num}
+                {...register(`d${num}`)}
+                onInput={handleInput}
+              />
+            ))}
+          </DigitInputsContainer>
+          <DigitInputsContainer>
+            {[3, 4, 5].map((num) => (
+              <DigitInput
+                type="text"
+                maxLength="1"
+                autoComplete="off"
+                key={num}
+                {...register(`d${num}`)}
+                onInput={handleInput}
+              />
+            ))}
+          </DigitInputsContainer>
+        </InputsWrapper>
         <ResendCircleContainer>
           <CountdownCircleTimer
             key={resendCode}
-            size={62}
+            size={58}
             strokeWidth={7}
             isPlaying
             duration={150}
@@ -89,16 +112,14 @@ function VerifyPhoneForm() {
           </CountdownCircleTimer>
 
           <ResendButton onClick={() => setResendCode(!resendCode)}>
-            Resend Code
+            Didn&apos;t receive code? send again
           </ResendButton>
         </ResendCircleContainer>
       </CodeContainer>
 
       <ButtonsContainer>
-        <VerifyButton type="submit" onClick={() => {}}>
-          Verify
-        </VerifyButton>
-        <CancelButton type="button" onClick={() => {}}>
+        <VerifyButton type="submit">Verify</VerifyButton>
+        <CancelButton type="button" onClick={resetInputs}>
           Cancel
         </CancelButton>
       </ButtonsContainer>

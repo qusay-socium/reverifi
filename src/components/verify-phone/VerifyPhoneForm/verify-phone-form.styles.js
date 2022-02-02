@@ -12,59 +12,63 @@ export const FormContainer = styled.form`
 export const ButtonsContainer = styled.div`
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin: 2rem auto;
 
   > button {
     font-size: 1rem;
   }
+
+  ${mq.tabletWide`
+    margin: 2rem 0;
+  `}
 `;
 
-export const VerifyButton = styled(Button)`
-  &:hover {
-    background-color: ${colors.white};
-    outline: 0.0625rem solid ${colors.green};
-    color: ${colors.green};
-  }
-`;
+export const VerifyButton = styled(Button)``;
 
 export const CancelButton = styled(Button)`
   background-color: ${colors.white};
-  border: 0.0625rem solid ${colors.gray};
+  border: 0.06rem solid ${colors.gray};
   color: ${colors.gray};
-
-  &:hover {
-    background-color: ${colors.gray};
-    color: ${colors.white};
-  }
 `;
 
 export const CodeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 
   ${mq.tabletWide`
     flex-direction: row;
   `}
 `;
 
-export const InputsContainer = styled.div`
+export const InputsWrapper = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+
+  ${mq.tabletWide`
+    flex-direction: row;
+  `}
+`;
+
+export const DigitInputsContainer = styled.div`
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
   gap: 1.5rem;
 `;
 
 export const DigitInput = styled.input`
   background-color: ${colors.grey};
-  border: 0.1875rem solid ${colors.midGray};
-  font-size: 1.875rem;
-  max-width: 4.375rem;
-  min-height: 5.625rem;
+  border: 0.2rem solid ${colors.midGray};
+  font-size: 1.9rem;
+  max-width: 3.5rem;
+  min-height: 4.5rem;
   text-align: center;
 
   &:focus {
-    border: 0.1875rem solid ${colors.green};
+    border: 0.2rem solid ${colors.green};
+    outline: 0;
   }
 `;
 
@@ -78,7 +82,10 @@ export const ResendButton = styled.a`
   color: ${colors.azure};
   cursor: pointer;
   font-size: 1rem;
-  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const TimerText = styled.span`
