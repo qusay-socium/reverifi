@@ -24,6 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
+import { generateLabelValuePairs } from 'utils/helpers';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   AddressInputsContainer,
@@ -43,16 +44,13 @@ import {
   UserName,
 } from './my-profile-wrapper.styles';
 
-const languagesOptions = [
-  { label: 'Arabic', value: 'Arabic' },
-  { label: 'English', value: 'English' },
-  { label: 'French', value: 'French' },
-];
+const languageOptions = generateLabelValuePairs([
+  'Arabic',
+  'English',
+  'French',
+]);
 
-const serviceAreasOptions = [
-  { label: 'New York', value: 'New York' },
-  { label: 'New Jersey', value: 'New Jersey' },
-];
+const serviceAreasOptions = generateLabelValuePairs(['New York', 'New Jersey']);
 
 /**
  * custom select theme function to change select default colors
@@ -115,7 +113,7 @@ function MyProfileWrapper() {
       zipCode,
     } = data;
 
-    const dataBody = {
+    const variables = {
       company: {
         email: companyEmail,
         id: fetchedUserData.company?.id || null,
@@ -135,12 +133,12 @@ function MyProfileWrapper() {
       },
     };
 
-    await updateUserInfo(dataBody);
+    await updateUserInfo(variables);
 
     setFetchedUserData((prev) => ({
       ...prev,
       aboutMe,
-      user: { ...dataBody.user },
+      user: { ...variables.user },
     }));
     // eslint-disable-next-line no-alert
     alert('data saved');
@@ -151,9 +149,10 @@ function MyProfileWrapper() {
    * fetch user info function
    */
   const fetchUserInfo = async () => {
-    if (!isLoggedIn) navigate('/');
+    if (!isLoggedIn) navigate('/sign-up');
 
     const info = await getUserInfo();
+
     if (!info) {
       setFetchedUserData({ user: userInfo });
     } else {
@@ -289,7 +288,7 @@ function MyProfileWrapper() {
                     hideSelectedOptions={false}
                     isMulti
                     isSearchable={false}
-                    options={languagesOptions}
+                    options={languageOptions}
                     placeholder="select languages..."
                     theme={customSelectTheme}
                     value={languages}

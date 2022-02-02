@@ -4,7 +4,7 @@
  * @param {*} date date (ex: 2022-01-24T12:47:07.098Z)
  * @return {Number} difference between 2 dates
  */
-const getDatesDifference = (date, period) => {
+export const getDatesDifference = (date, period) => {
   const date2 = date.slice(0, 10);
   const today = new Date().toISOString().slice(0, 10);
 
@@ -14,4 +14,12 @@ const getDatesDifference = (date, period) => {
   return diffInDays < period;
 };
 
-export default getDatesDifference;
+/**
+ * generate Label Value Pairs function
+ *
+ * @param {Array} data array of data
+ *
+ * @returns {Array} array or reshaped data
+ */
+export const generateLabelValuePairs = (data) =>
+  data?.map((item) => ({ label: item, value: item }));

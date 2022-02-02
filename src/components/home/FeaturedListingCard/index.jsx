@@ -8,7 +8,7 @@ import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
-import getDatesDifference from 'utils/helpers';
+import { getDatesDifference } from 'utils/helpers';
 import {
   BodyIconsContainer,
   CardBody,
@@ -52,7 +52,7 @@ function Card({ data }) {
         <Image src={images[0]} />
         <TagContainer>
           {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
-          <Tag>{listingType}</Tag>
+          <Tag>{listingType.type}</Tag>
         </TagContainer>
         {image && <PersonImg src={image} />}
       </CardImageContainer>
@@ -80,7 +80,7 @@ function Card({ data }) {
           </BodyIconsContainer>
         </InfoContainer>
 
-        <TextSmall>{propertyType}</TextSmall>
+        <TextSmall>{propertyType.type}</TextSmall>
       </CardBody>
 
       <CardFooter>
@@ -110,10 +110,10 @@ Card.propTypes = {
     createdAt: PropTypes.string,
     fullBathrooms: PropTypes.number,
     images: PropTypes.arrayOf(PropTypes.string),
-    listingType: PropTypes.string,
+    listingType: PropTypes.objectOf(PropTypes.string),
     overview: PropTypes.string,
     price: PropTypes.number,
-    propertyType: PropTypes.string,
+    propertyType: PropTypes.objectOf(PropTypes.string),
   }).isRequired,
 };
 

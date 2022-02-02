@@ -2,6 +2,7 @@ import propTypes from 'prop-types';
 import React from 'react';
 import {
   Error,
+  Placeholder,
   SelectContainer,
   StyledLabel,
   StyledSelect,
@@ -57,9 +58,9 @@ function DropdownMenu({
           small={small}
           {...(register ? register(name) : {})}
         >
-          <option disabled selected>
+          <Placeholder disabled selected>
             {placeholder}
-          </option>
+          </Placeholder>
 
           {options?.map((value, index) => (
             <option value={value} key={index.toString()}>

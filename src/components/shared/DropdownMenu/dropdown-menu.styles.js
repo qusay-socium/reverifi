@@ -6,7 +6,7 @@ import colors from 'styles/colors';
 export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 0.3125rem;
+  gap: 0.3rem;
   margin-bottom: 0.6rem;
 `;
 
@@ -16,14 +16,14 @@ export const SelectContainer = styled.div`
   gap: 10px;
   width: 100%;
   padding: 0 1rem;
-  border: 0.0625rem solid ${colors.midGray};
+  border: 0.06rem solid ${colors.midGray};
   border-radius: ${({ smallBorderRadius }) =>
-    smallBorderRadius ? '0.4375rem' : '1.875rem'};
+    smallBorderRadius ? '0.45rem' : '1.9rem'};
   background-color: ${({ dark }) => (dark ? colors.mineShaft : colors.white)};
 
   background-image: url(${({ leftIcon }) => leftIcon && leftIcon});
   background-repeat: no-repeat;
-  background-position-x: 0.9375rem;
+  background-position-x: 1rem;
   background-position-y: ${({ small }) => (small ? '0.5rem' : ' 1rem')};
 `;
 
@@ -52,15 +52,15 @@ export const StyledSelect = styled.select`
 
   option {
     color: ${colors.mineShaft}95;
-
-    &:first-child {
-      display: none;
-    }
   }
 `;
 
 export const Error = styled.p`
   color: ${colors.red};
   font-size: 0.75rem;
-  margin: 0.3125rem 0 0.9375rem 0;
+  margin: 0.3rem 0 1rem 0;
+`;
+
+export const Placeholder = styled.option`
+  display: none;
 `;
