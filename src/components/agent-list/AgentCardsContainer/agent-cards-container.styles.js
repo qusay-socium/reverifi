@@ -39,13 +39,6 @@ export const HiddenComponent = styled.div`
   visibility: hidden;
 `;
 
-// export const Container = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   margin: 1rem 0;
-//   width: 100%;
-// `;
-
 export const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,19 +54,19 @@ export const BannerContainer = styled.div`
 
 export const FilterSection = styled.div`
   border-radius: 1.75rem;
-  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGray};
+  box-shadow: 0 0.0625rem 0.3rem ${colors.midGray};
   color: ${colors.gray};
   display: flex;
   justify-content: space-between;
-  margin: 0.125rem 0.3125rem;
-  padding: 0.3125rem;
+  margin: 0.125rem 0.3rem;
+  padding: 0.3rem;
 `;
 
 export const Heading = styled.p`
   font-size: 1.75rem;
   font-weight: 600;
-  line-height: 2.4375rem;
-  margin: 0.9375rem 0.625rem;
+  line-height: 2.5rem;
+  margin: 1rem 0.625rem;
 `;
 
 export const FilterSearchContainer = styled.form`
@@ -107,21 +100,21 @@ export const SelectFilter = styled.select`
   color: ${colors.gray};
   cursor: pointer;
   font-size: 0.75rem;
-  margin: 0 0 0.1875rem 0.625rem;
+  margin: 0 0 0.2rem 0.625rem;
 
   option {
     background-color: ${colors.white};
     display: flex;
-    font-size: 0.9375rem;
+    font-size: 1rem;
   }
 
   ${mq.mobileWide`
-    font-size: 0.9375rem;
+    font-size: 1rem;
   `}
 
   ${mq.tablet`
     display: flex;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
   `}
 `;
 
@@ -139,12 +132,12 @@ export const LocationSearch = styled.input`
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
-  margin: 0 0.3125rem;
-  padding: 0 1.5625rem;
+  margin: 0 0.3rem;
+  padding: 0 1.6rem;
   width: 100%;
 
   ${mq.mobileWide`
-    font-size: 0.9375rem;
+    font-size: 1rem;
   `}
 
   ${mq.tablet`
@@ -160,12 +153,12 @@ export const AgentSearch = styled.input`
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
-  margin: 0 0.3125rem;
-  padding: 0 0 0 1.5625rem;
+  margin: 0 0.3rem;
+  padding: 0 0 0 1.6rem;
   width: 100%;
 
   ${mq.mobileWide`
-    font-size: 0.9375rem;
+    font-size: 1rem;
   `};
 
   ${mq.tablet`
@@ -180,7 +173,7 @@ export const SearchButton = styled.button`
   background-color: ${colors.green};
   border-radius: 50%;
   border: none;
-  box-shadow: 0 0.0625rem 0.1875rem ${colors.mercury};
+  box-shadow: 0 0.0625rem 0.2rem ${colors.mercury};
   color: ${colors.white};
   cursor: pointer;
   width: 4rem;

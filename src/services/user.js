@@ -1,4 +1,5 @@
 import { apiUrl } from 'config/config';
+import { capitalizeFirstLetter } from 'utils/helpers';
 import http from 'utils/http';
 
 /**
@@ -16,7 +17,7 @@ export const updateUserRoles = async (rolesIds) => {
   return data;
 };
 
-/*
+/**
  * Service that update user info
  *
  * @param {Object} body data to be send as request body
@@ -31,7 +32,7 @@ export const updateUserInfo = async (body) => {
   return data;
 };
 
-/*
+/**
  * Service that get agent users
  *
  * @param {String} type agent type
@@ -42,7 +43,8 @@ export const updateUserInfo = async (body) => {
  * @return {Object[]} Array of agents.
  */
 export const getUsersByType = async (type, location, name, page = 0) => {
-  const userType = type.charAt(0).toUpperCase() + type.slice(1);
+  const userType = capitalizeFirstLetter(type);
+
   const {
     data: { data },
   } = await http.get(

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useEffectOnce from './use-effect-once';
 
 /**
  * hook that check if a component is on view
@@ -7,20 +8,19 @@ import { useEffect, useState } from 'react';
  * @return {Boolean}  is component in view
  */
 function useOnScreen(ref) {
-  const [isIntersecting, setIntersecting] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   const observer = new IntersectionObserver(([entry]) =>
-    setIntersecting(entry.isIntersecting)
+    setIsIntersecting(entry.isIntersecting)
   );
 
-  useEffect(() => {
+  useEffectOnce(() => {
     observer.observe(ref.current);
     // Remove the observer as soon as the component is unmounted
     return () => {
       observer.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return isIntersecting;
 }
