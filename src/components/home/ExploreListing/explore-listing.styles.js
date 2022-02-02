@@ -111,7 +111,7 @@ export const ImgListings = styled.h5`
 
   ${mq.tablet`
       font-size: min(1.5vw, 1rem);
-      margin: 0 0 0.93rem 0;
+      margin: 0 0 0.9rem 0;
   `}
 `;
 
@@ -124,7 +124,7 @@ export const ImgContainer = styled.div`
   }
 
   &:hover div {
-    top: 68%;
+    top: 70%;
   }
 
   &:hover h4 {
@@ -166,7 +166,7 @@ export const ImgContent = styled.div`
   color: ${colors.white};
   left: 2.18rem;
   position: absolute;
-  top: 68%;
+  top: 70%;
 
   ${mq.tablet`
       bottom: 0;

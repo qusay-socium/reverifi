@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -85,7 +86,7 @@ export const OrText = styled.div`
   text-align: center;
 `;
 
-export const SocialButton = styled.button`
+export const SocialButton = styled(Button)`
   background-color: ${colors.green};
   border-radius: 1.5rem;
   border: none;
@@ -96,12 +97,7 @@ export const SocialButton = styled.button`
   margin-top: 0.625rem;
   padding: 0.625rem;
   text-align: center;
-  transition: 0.2s;
   width: 100%;
-
-  &:hover {
-    box-shadow: 0rem 0.4rem 1.7rem -1rem ${colors.mineShaft};
-  }
 
   > div {
     display: flex;

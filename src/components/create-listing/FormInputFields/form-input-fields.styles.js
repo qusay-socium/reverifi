@@ -22,16 +22,27 @@ export const IdentifierButton = styled(Button)`
     ${({ selected }) => (selected ? colors.green : colors.mercury)};
   border-radius: 1.1875rem;
   color: ${({ selected }) => (selected ? colors.white : colors.mineShaft)};
+  cursor: pointer;
   display: flex;
   font-size: 1rem;
   margin: 1.25rem 0 0;
   padding: 0.75rem 1.5rem;
+  transition: 0.2s;
   width: 100%;
-  cursor: pointer;
 
   &:hover {
     background-color: ${colors.green};
     color: ${colors.white};
+
+    svg {
+      path {
+        fill: ${colors.white};
+      }
+
+      rect {
+        fill: ${colors.white};
+      }
+    }
   }
 
   svg {

@@ -11,7 +11,7 @@ export const CardContainer = styled.div`
   transition: 0.5s;
 
   &:hover {
-    box-shadow: 0rem 0.31rem 1.56rem -0.93rem ${colors.mineShaft};
+    box-shadow: ${colors.mineShaft};
     margin-top: 1rem;
   }
 `;

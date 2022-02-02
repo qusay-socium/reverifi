@@ -89,7 +89,7 @@ export const UserNavControlContainer = styled.div`
 
 export const MenuIcon = styled(Menu)`
   color: white;
-  height: 2.12rem;
+  height: 2rem;
   left: 1.25rem;
   position: absolute;
   width: 3rem;
