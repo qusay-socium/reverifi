@@ -137,7 +137,11 @@ function MyProfileWrapper() {
 
     await updateUserInfo(dataBody);
 
-    setFetchedUserData((prev) => ({ ...prev, user: { ...dataBody.user } }));
+    setFetchedUserData((prev) => ({
+      ...prev,
+      aboutMe,
+      user: { ...dataBody.user },
+    }));
     // eslint-disable-next-line no-alert
     alert('data saved');
     setFocus('name');
