@@ -20,6 +20,7 @@ import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
@@ -73,10 +74,11 @@ const customSelectTheme = (theme) => ({
  * @return {JSX.Element}
  */
 function MyProfileWrapper() {
-  const { userInfo } = useUser();
+  const { userInfo, isLoggedIn } = useUser();
   const [languages, setLanguages] = useState([]);
   const [serviceAreas, setServiceAreas] = useState([]);
   const [fetchedUserData, setFetchedUserData] = useState({});
+  const navigate = useNavigate();
 
   const {
     register,
@@ -145,6 +147,8 @@ function MyProfileWrapper() {
    * fetch user info function
    */
   const fetchUserInfo = async () => {
+    if (!isLoggedIn) navigate('/');
+
     const info = await getUserInfo();
     if (!info) {
       setFetchedUserData({ user: userInfo });
