@@ -1,5 +1,5 @@
 import { ReactComponent as Arrow } from 'assets/images/arrow.svg';
-import { ReactComponent as WhiteLogo } from 'assets/images/white-logo.svg';
+import { ReactComponent as WhiteLogo } from 'assets/logo.svg';
 import Input from 'components/shared/Input/index';
 import React from 'react';
 import {
@@ -11,7 +11,8 @@ import {
   JoinUsButton,
   JoinUsText,
   LocationPin,
-  LocationPinStar,
+  MapIcon,
+  Overlay,
 } from './claim-address.styles';
 
 /**
@@ -23,21 +24,23 @@ function ClaimAddress() {
   return (
     <>
       <ClaimAddressContainer>
-        <LocationPinStar />
-        <ClaimAddressItems>
-          <span>Claim your Address</span>
-          <AddressInputWrapper>
-            <Input
-              leftElement={<LocationPin />}
-              placeholder="Enter Your Address"
-              rightElement={
-                <AddressButton ariaLabel="Search" onClick={() => {}}>
-                  <Arrow />
-                </AddressButton>
-              }
-            />
-          </AddressInputWrapper>
-        </ClaimAddressItems>
+        <Overlay>
+          <ClaimAddressItems>
+            <span>Claim your Address</span>
+            <AddressInputWrapper>
+              <Input
+                leftElement={<LocationPin />}
+                placeholder="Enter Your Address"
+                rightElement={
+                  <AddressButton ariaLabel="Search" onClick={() => {}}>
+                    <Arrow />
+                  </AddressButton>
+                }
+              />
+            </AddressInputWrapper>
+          </ClaimAddressItems>
+          <MapIcon />
+        </Overlay>
       </ClaimAddressContainer>
       <JoinUs>
         <JoinUsText>

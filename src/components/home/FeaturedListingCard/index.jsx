@@ -20,6 +20,13 @@ import {
   IconsContainer,
   Image,
   InfoContainer,
+  OverlayAddress,
+  OverlayButton,
+  OverlayContainer,
+  OverlayFeatures,
+  OverlayIcons,
+  OverlayPrice,
+  OverlayProperty,
   PersonImg,
   ServiceQuantity,
   Tag,
@@ -48,6 +55,43 @@ function Card({ data }) {
 
   return (
     <CardContainer>
+      <OverlayContainer>
+        <OverlayProperty>{propertyType}</OverlayProperty>
+        <OverlayAddress>{address}</OverlayAddress>
+        <OverlayPrice>${price.toLocaleString()}</OverlayPrice>
+
+        <OverlayFeatures>
+          {bedrooms && (
+            <Container>
+              <ServiceQuantity>{bedrooms}</ServiceQuantity>
+              <BedroomIcon />
+            </Container>
+          )}
+          <WifiIcon />
+          {fullBathrooms && (
+            <Container>
+              <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
+              <BathtubIcon />
+            </Container>
+          )}
+          <AirConditionerIcon />
+          <BenchIcon />
+        </OverlayFeatures>
+
+        <OverlayButton>View Listing</OverlayButton>
+
+        <OverlayIcons>
+          <IconsContainer>
+            <IconContainer stroke="true">
+              <HeartIcon />
+            </IconContainer>
+            <IconContainer fill="true" onClick={() => setShowModal(true)}>
+              <ShareIcon />
+            </IconContainer>
+          </IconsContainer>
+        </OverlayIcons>
+      </OverlayContainer>
+
       <CardImageContainer>
         <Image src={images[0]} />
         <TagContainer>
@@ -60,6 +104,8 @@ function Card({ data }) {
       <CardBody>
         <InfoContainer>
           <TextMedium>{address}</TextMedium>
+
+          <TextSmall>{propertyType}</TextSmall>
 
           <BodyIconsContainer>
             {bedrooms && (
@@ -79,8 +125,6 @@ function Card({ data }) {
             <BenchIcon />
           </BodyIconsContainer>
         </InfoContainer>
-
-        {propertyType?.type && <TextSmall>{propertyType?.type}</TextSmall>}
       </CardBody>
 
       <CardFooter>

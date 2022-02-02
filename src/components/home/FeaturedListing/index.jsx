@@ -53,7 +53,7 @@ function FeaturedListing() {
 
   return (
     <SectionContainer>
-      <Title>Our Featured Listing</Title>
+      <Title>Our Featured Listings</Title>
       <StyledSlide>
         <Slider
           dots

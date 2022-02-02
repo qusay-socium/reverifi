@@ -13,9 +13,9 @@ export const CardContainer = styled.div`
 
 export const AddButton = styled.button`
   align-items: center;
-  background: ${colors.white};
+  background: ${colors.wildSand};
   border-radius: 50%;
-  border: 0.0625rem solid ${colors.green};
+  border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -23,20 +23,25 @@ export const AddButton = styled.button`
   min-width: 1.5rem;
   padding: 0;
 
+  svg {
+    path {
+      fill: ${colors.dustyGray};
+    }
+  }
+
   :hover {
     background: ${colors.green};
 
     svg {
       path {
         fill: ${colors.white};
-        stroke: ${colors.white};
       }
     }
   }
 `;
 
 export const Attendees = styled.h4`
-  color: ${colors.green};
+  color: ${colors.gray};
   font-size: 0.75rem;
   font-weight: normal;
   margin: 1.12rem 0 0 0;
@@ -62,14 +67,14 @@ export const ButtonsWrapper = styled.div`
 `;
 
 export const CardImg = styled.img`
-  max-height: 14.31rem;
-  min-height: 100%;
-  min-width: 100%;
+  height: 12rem;
+  width: 100%;
   object-fit: cover;
   object-position: center center;
 `;
 
 export const Description = styled.div`
+  background-color: ${colors.white};
   display: flex;
   gap: 0.43rem;
   justify-content: space-between;
@@ -94,18 +99,18 @@ export const EventDate = styled.h3`
 export const EventHeader = styled.h4`
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 0.12rem 0 0.31rem 0;
+  margin: 0.5rem 0 1rem 0;
 `;
 
 export const EventTimePlace = styled.h5`
   font-size: 0.875rem;
   font-weight: normal;
-  margin: 0;
+  margin: 0.2rem 0;
   opacity: 0.5;
 `;
 
 export const ShareButton = styled(AddButton)`
-  background: ${colors.alabaster};
+  background: ${colors.wildSand};
   border: 0.0625rem solid ${colors.alabaster};
 `;
 

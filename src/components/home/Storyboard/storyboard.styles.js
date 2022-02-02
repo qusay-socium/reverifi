@@ -10,9 +10,8 @@ export const StoryBoardContainer = styled.div`
   flex-direction: column;
   font-weight: 600;
   gap: 2rem;
-  margin-top: 1.875rem;
-  padding-bottom: 2.8125rem;
-
+  margin-top: 1.8rem;
+  padding-bottom: 2rem;
   ${mq.tablet`
     align-items: center;
     flex-direction: row;
@@ -91,7 +90,7 @@ export const SearchIcon = styled(rawSearchIcon)`
   margin-right: 0.3125rem;
   width: 2.5625rem;
   ${mq.desktopMax`
-    margin-right: 0.625rem;
+    margin-right: .625rem;
     width: 3.5rem;
   `}
 `;
@@ -110,11 +109,14 @@ export const StyledInput = styled.input`
   border: none;
   color: ${colors.mineShaft};
   flex: 1;
-  font-size: 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
   height: 2.5rem;
+  outline: none;
 
   ::placeholder {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   ${mq.desktopMax`

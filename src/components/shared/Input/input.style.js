@@ -34,7 +34,7 @@ export const StyledInput = styled.input`
   font-weight: 400;
   padding: 0 1rem;
   ${({ size }) => inputSizes[size]}
-
+  outline: none;
   ::placeholder {
     color: ${colors.gray};
   }

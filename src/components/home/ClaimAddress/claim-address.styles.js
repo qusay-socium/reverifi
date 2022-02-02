@@ -1,7 +1,7 @@
-import ClaimAddressDesktop from 'assets/images/claim-address-desktop.svg';
-import ClaimAddressMobile from 'assets/images/claim-address-mobile.svg';
 import { ReactComponent as RawLocationPinStar } from 'assets/images/location-pin-star.svg';
 import { ReactComponent as RawLocationPin } from 'assets/images/location-pin.svg';
+import MapClaimAddress from 'assets/map-claim-address.svg';
+import { ReactComponent as MapSmall } from 'assets/map-small.svg';
 import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -9,35 +9,48 @@ import mq from 'styles/media-query';
 
 export const ClaimAddressContainer = styled.div`
   align-items: center;
-  background: url(${ClaimAddressMobile});
+  background: url(${MapClaimAddress});
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  gap: 6.5625rem;
-  height: 34.25rem;
+  position: relative;
+`;
 
-  ${mq.tablet`
-     background: url(${ClaimAddressDesktop});
-     background-repeat: no-repeat;
-     background-size: cover;
-     flex-direction: row;
-     gap: 0rem;
-     height:16.4375rem;
-     justify-content:center;
+export const Overlay = styled.div`
+  background-color: ${colors.liver}99;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5rem 0;
+
+  ${mq.desktop`
+      background-color: ${colors.mineShaft}99;
+      padding: 1rem 0;
   `}
+`;
+
+export const MapIcon = styled(MapSmall)`
+  display: none;
+  padding-top: 1rem;
+  ${mq.desktop`
+      display: block;
+      width: 23rem;
+      height: 15rem;
+  `};
 `;
 
 export const ClaimAddressItems = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  column-gap: 2rem;
-
+  margin-bottom: 3rem;
   span {
     font-size: 2rem;
     font-weight: 600;
     padding: 2rem 0;
+    color: ${colors.white};
   }
 `;
 
@@ -64,7 +77,7 @@ export const AddressButton = styled(Button)`
 `;
 
 export const LocationPinStar = styled(RawLocationPinStar)`
-  margin-top: 3.75rem;
+  margin-bottom: 0;
   ${mq.tablet`
     position: relative;
     bottom: -1.0625rem;
@@ -83,12 +96,16 @@ export const JoinUs = styled.div`
   background-color: ${colors.green};
   display: flex;
   flex-direction: column;
-  height: 9.125rem;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 1.5rem 0;
 
   p {
-    color: ${colors.white};
     font-weight: 600;
+    color: ${colors.white};
+  }
+
+  svg {
+    filter: brightness(12);
   }
 
   ${mq.tablet`
@@ -107,11 +124,11 @@ export const JoinUsButton = styled(Button)`
 `;
 
 export const JoinUsText = styled.div`
-  align-items: center;
   display: flex;
 
   svg {
-    filter: brightness(5);
-    margin-left: 0.5625rem;
+    margin: 0.4rem 0 0 1rem;
+    max-height: 5rem;
+    max-width: 5rem;
   }
 `;

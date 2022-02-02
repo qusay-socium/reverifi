@@ -42,13 +42,14 @@ function ExploreListing() {
         }}
       >
         <StyledImg src={img} alt="Logo" />
-        <Overlay />
-        <ImgContent>
-          <ImgHeader>{city}</ImgHeader>
-          <ImgListings>
-            <span>{numOfListings}</span> Listings
-          </ImgListings>
-        </ImgContent>
+        <Overlay>
+          <ImgContent>
+            <ImgHeader>{city}</ImgHeader>
+            <ImgListings>
+              <span>{numOfListings}</span> Listings
+            </ImgListings>
+          </ImgContent>
+        </Overlay>
       </ImgContainer>
     ));
 

@@ -77,9 +77,25 @@ export const SubscribeWrapper = styled.div`
   color: ${colors.green};
 `;
 
-export const SubscribeInputWrapper = styled.div`
-  height: 2.375rem;
+export const LogoContainer = styled.div`
+  svg {
+    height: 5rem;
+    margin: 0;
+    width: 10rem;
+  }
+`;
+export const LogoAndSocialContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
+export const SubscribeInputWrapper = styled.div`
+  input {
+    &::placeholder {
+      font-size: 0.9rem;
+    }
+  }
   ${mq.desktop`
      min-width: 20rem;
   `}
