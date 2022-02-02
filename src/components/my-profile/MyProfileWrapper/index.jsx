@@ -280,7 +280,6 @@ function MyProfileWrapper() {
               <Controller
                 name="languages"
                 control={control}
-                defaultValue={[]}
                 render={({ field: { onChange } }) => (
                   <Select
                     {...register('languages')}
@@ -314,7 +313,6 @@ function MyProfileWrapper() {
               <Controller
                 name="serviceAreas"
                 control={control}
-                defaultValue={[]}
                 render={({ field: { onChange } }) => (
                   <Select
                     {...register('serviceAreas')}
