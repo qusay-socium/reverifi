@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Label = styled.label`
   align-items: center;
-  color: ${colors.mineShaft}7f;
+  color: ${colors.mineShaft};
   display: flex;
   font-size: 0.9375rem;
   gap: 0.5rem;

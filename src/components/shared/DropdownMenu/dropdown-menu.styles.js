@@ -1,12 +1,13 @@
 import whiteArrow from 'assets/icons/arrow-down-white.svg';
 import arrow from 'assets/icons/arrow-down.svg';
+import { Error } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 0.3125rem;
+  gap: 0.3rem;
   margin-bottom: 0.6rem;
 `;
 
@@ -14,16 +15,16 @@ export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  width: fit-content;
+  width: 100%;
   padding: 0 1rem;
-  border: 0.0625rem solid ${colors.midGrey};
+  border: 0.06rem solid ${colors.midGray};
   border-radius: ${({ smallBorderRadius }) =>
-    smallBorderRadius ? '0.4375rem' : '1.875rem'};
+    smallBorderRadius ? '0.45rem' : '1.9rem'};
   background-color: ${({ dark }) => (dark ? colors.mineShaft : colors.white)};
 
   background-image: url(${({ leftIcon }) => leftIcon && leftIcon});
   background-repeat: no-repeat;
-  background-position-x: 0.9375rem;
+  background-position-x: 1rem;
   background-position-y: ${({ small }) => (small ? '0.5rem' : ' 1rem')};
 `;
 
@@ -37,6 +38,7 @@ export const StyledSelect = styled.select`
   color: ${({ dark }) => (dark ? colors.white : `${colors.mineShaft}95`)};
   font-weight: ${({ dark }) => dark && 600};
   font-size: 0.875rem;
+  width: 100%;
 
   -webkit-appearance: none;
   appearance: none;
@@ -52,4 +54,10 @@ export const StyledSelect = styled.select`
   option {
     color: ${colors.mineShaft}95;
   }
+`;
+
+export const ErrorMessage = styled(Error)``;
+
+export const Placeholder = styled.option`
+  display: none;
 `;

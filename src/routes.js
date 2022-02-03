@@ -109,6 +109,13 @@ const routes = [
     path: '/dashboard',
     title: 'Dashboard',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/MyProfile')),
+    label: 'my-profile',
+    path: '/my-profile',
+    title: 'My Profile',
+  },
 ];
 
 export default routes;

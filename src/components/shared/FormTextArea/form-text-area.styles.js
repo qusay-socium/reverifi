@@ -7,8 +7,10 @@ export const Labels = styled.div`
 `;
 
 export const LimitMessage = styled.span`
-  color: ${({ color }) => color || colors.midGray};
+  color: ${({ color }) => color || colors.gray};
   font-size: 0.75rem;
+  align-self: flex-end;
+  margin-bottom: 0.18rem;
 `;
 
 export const Input = styled.textarea`

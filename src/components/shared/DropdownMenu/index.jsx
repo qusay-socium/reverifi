@@ -1,6 +1,8 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import {
+  ErrorMessage,
+  Placeholder,
   SelectContainer,
   StyledLabel,
   StyledSelect,
@@ -21,14 +23,17 @@ import {
  * @return {JSX.Element}
  */
 function DropdownMenu({
-  children,
+  dark,
   label,
-  name,
   labelIcon: LabelIcon,
   leftIcon,
+  name,
+  placeholder,
   small,
   smallBorderRadius,
-  dark,
+  options,
+  error,
+  register,
 }) {
   return (
     <div>
@@ -40,20 +45,30 @@ function DropdownMenu({
       )}
 
       <SelectContainer
+        dark={dark}
         leftIcon={leftIcon}
         small={small}
         smallBorderRadius={smallBorderRadius}
-        dark={dark}
       >
         <StyledSelect
-          name={name}
+          dark={dark}
           id={name}
           leftIcon={leftIcon}
+          name={name}
           small={small}
-          dark={dark}
+          {...(register ? register(name) : {})}
         >
-          {children}
+          <Placeholder disabled selected>
+            {placeholder}
+          </Placeholder>
+
+          {options?.map((value) => (
+            <option value={value} key={value}>
+              {value}
+            </option>
+          ))}
         </StyledSelect>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </SelectContainer>
     </div>
   );
@@ -61,16 +76,19 @@ function DropdownMenu({
 
 DropdownMenu.defaultProps = {
   dark: false,
+  error: null,
   label: null,
   labelIcon: null,
   leftIcon: null,
+  placeholder: '',
+  register: null,
   small: false,
   smallBorderRadius: false,
 };
 
 DropdownMenu.propTypes = {
-  children: propTypes.node.isRequired,
   dark: propTypes.bool,
+  error: propTypes.string,
   label: propTypes.string,
   labelIcon: propTypes.oneOfType([
     propTypes.func,
@@ -78,6 +96,9 @@ DropdownMenu.propTypes = {
   ]),
   leftIcon: propTypes.string,
   name: propTypes.string.isRequired,
+  options: propTypes.arrayOf(propTypes.any).isRequired,
+  placeholder: propTypes.string,
+  register: propTypes.func,
   small: propTypes.bool,
   smallBorderRadius: propTypes.bool,
 };
