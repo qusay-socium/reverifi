@@ -28,9 +28,9 @@ export const generateLabelValuePairs = (data) =>
 /**
  * capitalize First Letter function
  *
- * @param {String} text text to be capitalize first letter
+ * @param {String} string text to be capitalize first letter
  *
  * @return {String} capitalized string
  */
-export const capitalizeFirstLetter = (text) =>
-  text.charAt(0).toUpperCase() + text.slice(1);
+export const toUpperCaseFirstLetter = (string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);

@@ -154,7 +154,7 @@ export const AgentSearch = styled.input`
   font-size: 0.75rem;
   height: 100%;
   margin: 0 0.3rem;
-  padding: 0 0 0 1.6rem;
+  padding-left: 1.6rem;
   width: 100%;
 
   ${mq.mobileWide`
@@ -163,7 +163,7 @@ export const AgentSearch = styled.input`
 
   ${mq.tablet`
     display: flex;
-    padding: 0.625rem;
+    padding: 0.6rem;
     text-align: left; 
     width: 100%;
   `};

@@ -1,5 +1,5 @@
 import { apiUrl } from 'config/config';
-import { capitalizeFirstLetter } from 'utils/helpers';
+import { toUpperCaseFirstLetter } from 'utils/helpers';
 import http from 'utils/http';
 
 /**
@@ -43,7 +43,7 @@ export const updateUserInfo = async (body) => {
  * @return {Object[]} Array of agents.
  */
 export const getUsersByType = async (type, location, name, page = 0) => {
-  const userType = capitalizeFirstLetter(type);
+  const userType = toUpperCaseFirstLetter(type);
 
   const {
     data: { data },
