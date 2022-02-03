@@ -62,7 +62,7 @@ export const NavLinksContainer = styled.div`
 
     span {
       cursor: pointer;
-      font-weight: 400;
+      font-weight: 500;
     }
   `}
 `;
@@ -127,6 +127,7 @@ export const Logo = styled(RawLogo)`
 export const SignInButton = styled(Button)`
   background-color: transparent;
   font-size: 0.9rem;
+  font-weight: 500;
 `;
 
 export const SignUpButton = styled(Button)`
@@ -138,6 +139,7 @@ export const SignUpButton = styled(Button)`
     color: ${colors.green};
     border: 0.06rem solid ${colors.green};
   }
+  font-weight: 600;
 `;
 
 export const StyledInputGroup = styled.div`

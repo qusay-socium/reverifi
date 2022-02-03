@@ -90,7 +90,6 @@ function Events() {
       <CardsContainer>
         <Slider
           dots={false}
-          infinite={false}
           slidesToShow={4}
           slidesToScroll={4}
           arrows

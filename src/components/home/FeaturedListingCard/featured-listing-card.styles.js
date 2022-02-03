@@ -1,25 +1,54 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
-
-export const CardContainer = styled.div`
-  background: ${colors.white};
-  border-radius: 0.375rem;
-  box-shadow: 0rem 0.0625rem 0.5625rem ${colors.mineShaft}29;
-  cursor: pointer;
-  margin: 2rem 1rem;
-  overflow: hidden;
-  transition: 0.5s;
-
-  &:hover {
-    box-shadow: ${colors.mineShaft};
-    margin-top: 1rem;
-  }
-`;
 
 export const Container = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+`;
+
+export const OverlayProperty = styled.h4`
+  color: ${colors.midGray};
+`;
+
+export const OverlayAddress = styled.h4`
+  color: ${colors.white};
+  padding: 0 1rem;
+`;
+
+export const OverlayPrice = styled.h4`
+  color: ${colors.green};
+`;
+
+export const OverlayFeatures = styled.div`
+  display: flex;
+  padding-bottom: 1rem;
+  svg {
+    margin-right: 1rem;
+    path {
+      fill: ${colors.white};
+      circle {
+        stroke: ${colors.white};
+      }
+    }
+  }
+
+  div {
+    span {
+      color: ${colors.white};
+    }
+  }
+`;
+
+export const OverlayButton = styled(Button)`
+  color: ${colors.white};
+`;
+
+export const OverlayIcons = styled.div`
+  bottom: 1rem;
+  position: absolute;
+  right: 1rem;
 `;
 
 export const InfoContainer = styled(Container)`
@@ -37,14 +66,18 @@ export const IconsContainer = styled(Container)`
 
 export const CardImageContainer = styled.div`
   position: relative;
+  overflow: hidden;
+  height: 12rem;
 `;
 
 export const Image = styled.img`
-  height: 18rem;
+  height: 12rem;
   width: 100%;
+  transition: 0.2s;
 `;
 
 export const CardBody = styled.div`
+  position: relative;
   align-items: flex-start;
   display: flex;
   gap: 0.5rem;
@@ -55,10 +88,14 @@ export const CardBody = styled.div`
 
 export const CardFooter = styled.div`
   align-items: center;
-  border-top: 0.0625rem solid ${colors.midGray};
+  background-color: ${colors.white};
+  border-top: 0.06rem solid ${colors.midGray};
+  box-shadow: 0rem 0.06rem 0.56rem -0.09rem ${colors.mineShaft}29;
   display: flex;
+  height: 3rem;
   justify-content: space-between;
   padding: 0.75rem 1rem;
+  border-radius: 0 0 0.3rem 0.3rem;
 `;
 
 export const TagContainer = styled.div`
@@ -66,6 +103,7 @@ export const TagContainer = styled.div`
   left: 1rem;
   position: absolute;
   top: 1rem;
+  transition: 0.2s;
 `;
 
 export const Tag = styled.div`
@@ -75,6 +113,7 @@ export const Tag = styled.div`
   font-size: 0.625rem;
   margin-right: 0.4375rem;
   padding: 0.3125rem 1.1875rem;
+  transition: 0.5s;
 `;
 
 export const PersonImg = styled.img`
@@ -88,23 +127,23 @@ export const PersonImg = styled.img`
 
 export const TextLarge = styled.p`
   color: ${colors.mineShaft};
-  font-size: 1.125rem;
+  font-size: 1.12rem;
   font-weight: 600;
-  margin: 0.1875rem 0;
+  margin: 0.18rem 0;
 `;
 
 export const TextMedium = styled.p`
   color: ${colors.mineShaft};
   font-size: 1rem;
-  margin: 0.1875rem 0 0.9375rem 0;
+  margin: 0.2rem 0 0 0;
   line-height: 1.2rem;
   font-weight: 600;
 `;
 
 export const TextSmall = styled.p`
-  color: ${colors.mineShaft}7f;
-  font-size: 0.75rem;
-  margin: 0.1875rem 0;
+  color: ${colors.osloGray};
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
 `;
 
 export const ServiceQuantity = styled.span`
@@ -117,12 +156,12 @@ export const IconContainer = styled.div`
   align-items: center;
   background-color: ${colors.wildSand};
   border-radius: 50%;
-  box-shadow: 0 0.0625rem 0.375rem ${colors.mineShaft}29;
+  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
   cursor: pointer;
   display: flex;
-  height: 1.5625rem;
+  height: 1.56rem;
   justify-content: center;
-  width: 1.5625rem;
+  width: 1.56rem;
 
   svg {
     margin-top: ${({ stroke }) => stroke && '0.0938rem'};
@@ -138,5 +177,54 @@ export const IconContainer = styled.div`
       opacity: 1;
       stroke: ${({ stroke }) => stroke && colors.white};
     }
+  }
+`;
+
+export const CardContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: ${colors.white};
+
+  img {
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+`;
+
+export const OverlayBackground = styled(CardContainer)`
+  background: url(${({ image }) => image});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+  border-radius: 0.3rem;
+  overflow: hidden;
+`;
+
+export const Overlay = styled.div`
+  background-color: ${colors.mineShaft}99;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0.3rem;
+`;
+
+export const CardParent = styled.div`
+  min-height: 22rem;
+  max-height: 24rem;
+  margin: 1.2rem;
+  position: relative;
+  box-shadow: 0rem 0.06rem 0.56rem ${colors.mineShaft}29;
+  border-radius: 2rem;
+
+  &:hover ${CardContainer} {
+    display: none;
+  }
+
+  &:hover ${OverlayBackground} {
+    display: block;
   }
 `;

@@ -4,7 +4,6 @@ import mq from 'styles/media-query';
 
 export const SectionContainer = styled.div`
   margin: 0.625rem 0;
-
   ${mq.desktop`
       margin: 0.625rem 7.5rem;
   `};

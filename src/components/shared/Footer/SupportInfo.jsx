@@ -6,12 +6,15 @@ import {
   EmailLink,
   InfoGroup,
   InfoGroupItem,
+  LogoWrapper,
 } from './footer.styles';
 
 function SupportInfo() {
   return (
     <InfoGroup>
-      <Logo />
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
       <ContactInfo>
         <MapPin />
         <InfoGroupItem to="/">714-427-1242</InfoGroupItem>

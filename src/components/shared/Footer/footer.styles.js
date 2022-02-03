@@ -44,8 +44,12 @@ export const ContactInfo = styled.div`
 export const InfoGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
-  padding-bottom: 1.8125rem;
+  gap: 0.87rem;
+  padding-bottom: 1.8rem;
+`;
+
+export const LogoWrapper = styled.div`
+  width: 7rem;
 `;
 
 export const InfoGroupHeader = styled.p`
@@ -77,9 +81,25 @@ export const SubscribeWrapper = styled.div`
   color: ${colors.green};
 `;
 
-export const SubscribeInputWrapper = styled.div`
-  height: 2.375rem;
+export const LogoContainer = styled.div`
+  svg {
+    height: 5rem;
+    margin: 0;
+    width: 10rem;
+  }
+`;
+export const LogoAndSocialContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
+export const SubscribeInputWrapper = styled.div`
+  input {
+    &::placeholder {
+      font-size: 0.9rem;
+    }
+  }
   ${mq.desktop`
      min-width: 20rem;
   `}

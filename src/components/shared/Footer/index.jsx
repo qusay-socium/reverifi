@@ -34,7 +34,7 @@ function Footer() {
       <InfoWrapper>
         <SupportInfo />
         <InfoGroup>
-          <InfoGroupHeader>Helpful Link</InfoGroupHeader>
+          <InfoGroupHeader>Helpful Links</InfoGroupHeader>
           <InfoGroupItem to="/">Sign in</InfoGroupItem>
           <InfoGroupItem to="/">Support</InfoGroupItem>
           <InfoGroupItem to="/">FAQs</InfoGroupItem>
@@ -61,7 +61,9 @@ function Footer() {
         </SubscribeWrapper>
       </InfoWrapper>
       <FooterWrapper>
-        <p>Copyright © 2021 Reverifi. All rights reserved</p>
+        <p>
+          Copyright © {new Date().getFullYear()} reverifi. All rights reserved.
+        </p>
       </FooterWrapper>
     </>
   );

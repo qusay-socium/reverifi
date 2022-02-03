@@ -15,11 +15,20 @@ import {
   CardContainer,
   CardFooter,
   CardImageContainer,
+  CardParent,
   Container,
   IconContainer,
   IconsContainer,
   Image,
   InfoContainer,
+  Overlay,
+  OverlayAddress,
+  OverlayBackground,
+  OverlayButton,
+  OverlayFeatures,
+  OverlayIcons,
+  OverlayPrice,
+  OverlayProperty,
   PersonImg,
   ServiceQuantity,
   Tag,
@@ -47,21 +56,66 @@ function Card({ data }) {
   const { setShowModal } = useShowModal();
 
   return (
-    <CardContainer>
-      <CardImageContainer>
-        <Image src={images[0]} />
-        <TagContainer>
-          {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
-          {listingType?.type && <Tag>{listingType?.type}</Tag>}
-        </TagContainer>
-        {image && <PersonImg src={image} />}
-      </CardImageContainer>
+    <CardParent>
+      <CardContainer>
+        <CardImageContainer>
+          <Image src={images[0]} />
+          <TagContainer>
+            {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
+            {listingType?.type && <Tag>{listingType?.type}</Tag>}
+          </TagContainer>
+          {image && <PersonImg src={image} />}
+        </CardImageContainer>
 
-      <CardBody>
-        <InfoContainer>
-          <TextMedium>{address}</TextMedium>
+        <CardBody>
+          <InfoContainer>
+            <TextMedium>{address}</TextMedium>
 
-          <BodyIconsContainer>
+            {propertyType?.type && <TextSmall>{propertyType?.type}</TextSmall>}
+
+            <BodyIconsContainer>
+              {bedrooms && (
+                <Container>
+                  <ServiceQuantity>{bedrooms}</ServiceQuantity>
+                  <BedroomIcon />
+                </Container>
+              )}
+              <WifiIcon />
+              {fullBathrooms && (
+                <Container>
+                  <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
+                  <BathtubIcon />
+                </Container>
+              )}
+              <AirConditionerIcon />
+              <BenchIcon />
+            </BodyIconsContainer>
+          </InfoContainer>
+        </CardBody>
+
+        <CardFooter>
+          <TextLarge>$ {price.toLocaleString()}</TextLarge>
+
+          <IconsContainer>
+            <IconContainer stroke="true">
+              <HeartIcon />
+            </IconContainer>
+            <IconContainer fill="true" onClick={() => setShowModal(true)}>
+              <ShareIcon />
+            </IconContainer>
+          </IconsContainer>
+        </CardFooter>
+      </CardContainer>
+
+      <OverlayBackground image={images[0]}>
+        <Overlay>
+          {propertyType?.type && (
+            <OverlayProperty>{propertyType?.type}</OverlayProperty>
+          )}
+          <OverlayAddress>{address}</OverlayAddress>
+          <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
+
+          <OverlayFeatures>
             {bedrooms && (
               <Container>
                 <ServiceQuantity>{bedrooms}</ServiceQuantity>
@@ -77,25 +131,23 @@ function Card({ data }) {
             )}
             <AirConditionerIcon />
             <BenchIcon />
-          </BodyIconsContainer>
-        </InfoContainer>
+          </OverlayFeatures>
 
-        {propertyType?.type && <TextSmall>{propertyType?.type}</TextSmall>}
-      </CardBody>
+          <OverlayButton>View Listing</OverlayButton>
 
-      <CardFooter>
-        <TextLarge>${price.toLocaleString()}</TextLarge>
-
-        <IconsContainer>
-          <IconContainer stroke="true">
-            <HeartIcon />
-          </IconContainer>
-          <IconContainer fill="true" onClick={() => setShowModal(true)}>
-            <ShareIcon />
-          </IconContainer>
-        </IconsContainer>
-      </CardFooter>
-    </CardContainer>
+          <OverlayIcons>
+            <IconsContainer>
+              <IconContainer stroke="true">
+                <HeartIcon />
+              </IconContainer>
+              <IconContainer fill="true" onClick={() => setShowModal(true)}>
+                <ShareIcon />
+              </IconContainer>
+            </IconsContainer>
+          </OverlayIcons>
+        </Overlay>
+      </OverlayBackground>
+    </CardParent>
   );
 }
 

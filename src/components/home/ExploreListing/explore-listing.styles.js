@@ -91,7 +91,8 @@ export const MainContainer = styled.div`
 
 export const ImgHeader = styled.h4`
   font-size: 2rem;
-  margin: 0.5625rem 0;
+  margin: 0.56rem 0;
+  transition: 0.5s;
 
   ${mq.tablet`
     font-size: min(2.3vw, 1.5rem);
@@ -103,10 +104,11 @@ export const ImgListings = styled.h5`
   font-size: 1.1rem;
   font-weight: 400;
   margin: 0 0 2rem 0;
-
+  transition: 0.5s;
   span {
-    color: ${colors.green};
+    color: ${colors.white};
     font-weight: 600;
+    transition: 0.5s;
   }
 
   ${mq.tablet`
@@ -119,18 +121,23 @@ export const ImgContainer = styled.div`
   cursor: pointer;
   position: relative;
 
-  &:hover img {
-    transform: scale(1.3);
+  &:hover h4,
+  &:hover h5,
+  &:hover span {
+    color: ${colors.green};
   }
 
-  &:hover div {
-    top: 70%;
-  }
+  ${mq.tablet`
+  border-radius: 0.6rem;
+  border: 0.06rem solid ${colors.dustyGray};
+  overflow: hidden;
+
+  
 
   &:hover h4 {
     color: ${colors.green};
   }
-
+`}
   // Make the first image size distinguishable
   ${mq.tablet`
     border-radius: 0.6rem;
@@ -154,20 +161,23 @@ export const ImgContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background: ${colors.mineShaft}99;
+  background: ${colors.mineShaft}60;
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
-  transition: 1s;
+  transition: 0.5s;
+
+  &:hover {
+    background: ${colors.mineShaft}B5;
+  }
 `;
 
 export const ImgContent = styled.div`
   color: ${colors.white};
   left: 2.18rem;
   position: absolute;
-  top: 70%;
 
   ${mq.tablet`
       bottom: 0;

@@ -48,7 +48,7 @@ export const getUsersByType = async (type, location, name, page = 0) => {
   const {
     data: { data },
   } = await http.get(
-    `${apiUrl}/users/roles/${userType}?page=${page}&location=${location}&name=${name}`
+    `${apiUrl}/users/agents/${userType}?page=${page}&location=${location}&name=${name}`
   );
 
   return data;
