@@ -5,6 +5,7 @@ import mq from 'styles/media-query';
 
 export const SignUpContainer = styled.div`
   display: flex;
+  min-height: 100vh;
 
   > div {
     flex: 1;
@@ -13,30 +14,27 @@ export const SignUpContainer = styled.div`
 
 export const ImageContainer = styled.div`
   display: none;
+  align-self: stretch;
+  padding: 0 2rem;
 
-  ${mq.tabletWide`
+  ${mq.desktopWide`
     background-color: ${colors.alabaster};
     display: flex;
     justify-content: center;
 
     svg {
-      width: 100%;
-    } 
-  `}
-
-  ${mq.desktop`
-    svg {
       margin: auto;
     }
-  `}
+  `};
 `;
 
 export const InfoContainer = styled.div`
+  align-self: center;
   flex: 1;
-  padding: 1rem;
+  padding: 1.5rem;
 
   ${mq.tabletWide`
-    padding: 7rem 7.625rem 0;
+    padding: 5rem 7rem 0;
   `}
 `;
 
@@ -65,6 +63,10 @@ export const PhoneInputContainer = styled.div`
   display: flex;
   gap: 1.5rem;
   margin-bottom: 2rem;
+
+  > div:first-child {
+    max-width: 6rem;
+  }
 `;
 
 export const SignUpTerms = styled.p`
@@ -79,14 +81,21 @@ export const LinkText = styled.a`
   color: ${colors.blue};
   cursor: pointer;
   font-size: 0.8125rem;
-  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const OrText = styled.div`
   text-align: center;
 `;
 
-export const SocialButton = styled(Button)`
+export const SubmitButton = styled(Button)`
+  font-size: 1rem;
+`;
+
+export const SocialButton = styled.button`
   background-color: ${colors.green};
   border-radius: 1.5rem;
   border: none;
@@ -104,8 +113,9 @@ export const SocialButton = styled(Button)`
 
     span {
       margin: auto 0 auto 2.8125rem;
-      min-width: 9.0625rem;
+      min-width: 10.7rem;
       text-align: left;
+      font-size: 1rem;
     }
   }
 `;
@@ -125,14 +135,12 @@ export const GoogleButton = styled(SocialButton)`
 `;
 
 export const SocialLinksText = styled.p`
-  border-top: ${({ borderTop }) =>
-    borderTop && `0.0625rem solid ${colors.mercury}`};
   color: ${colors.mineShaft}7f;
   font-size: 0.9375rem;
   margin: 0;
-  margin-top: ${({ borderTop }) => (borderTop ? '2.1875rem' : '0.9375rem')};
-  padding: ${({ borderTop }) => borderTop && '1.5625rem'};
+  padding: 2.5rem 0;
   text-align: center;
+
   a {
     font-size: 0.9375rem;
   }

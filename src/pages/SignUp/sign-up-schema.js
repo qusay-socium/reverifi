@@ -19,8 +19,8 @@ const signUpSchema = yup
         is: true,
         then: yup
           .number()
-          .required()
-          .typeError('Phone Number must be a number'),
+          .required('number is required')
+          .typeError('number is required'),
       }),
     phonePrefix: yup
       .number()
@@ -31,8 +31,8 @@ const signUpSchema = yup
         is: true,
         then: yup
           .number()
-          .required()
-          .typeError('Phone Number must be a number'),
+          .required('ext is required')
+          .typeError('ext is required'),
       }),
   })
   .required();

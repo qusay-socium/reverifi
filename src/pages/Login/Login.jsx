@@ -23,6 +23,7 @@ import {
   LoginContainer,
   OrText,
   SocialLinksContainer,
+  SocialLinksText,
   Title,
 } from './login.styles';
 
@@ -62,64 +63,67 @@ function Login() {
       <ImageContainer>
         <MainImg />
       </ImageContainer>
-      <div>
-        <InfoContainer>
-          <Title>Log In</Title>
 
-          <Form onSubmit={handleSubmit(submit)}>
-            <InputWrapper>
-              <FormInput
-                error={errors.email?.message}
-                label="E-mail"
-                name="email"
-                placeholder="eg: Jhon@domain.com"
-                register={register}
-              />
-            </InputWrapper>
-            <InputWrapper>
-              <FormInput
-                name="password"
-                error={errors.password?.message}
-                label="Password"
-                register={register}
-                type="password"
-              />
-            </InputWrapper>
+      <InfoContainer>
+        <Title>Log In</Title>
 
-            <FormCheckbox
-              name="rememberMe"
-              label="Remember me"
+        <Form onSubmit={handleSubmit(submit)}>
+          <InputWrapper>
+            <FormInput
+              error={errors.email?.message}
+              label="E-mail"
+              name="email"
+              placeholder="eg: Jhon@domain.com"
               register={register}
             />
+          </InputWrapper>
+          <InputWrapper>
+            <FormInput
+              name="password"
+              error={errors.password?.message}
+              label="Password"
+              register={register}
+              type="password"
+            />
+          </InputWrapper>
 
-            <LinkText>Forgot Password</LinkText>
+          <FormCheckbox
+            name="rememberMe"
+            label="Remember me"
+            register={register}
+          />
 
-            <Button type="submit">Log In</Button>
-          </Form>
+          <LinkText>Forgot Password</LinkText>
 
-          <SocialLinksContainer>
-            <OrText>Or</OrText>
-            <FacebookButton>
-              <div>
-                <FacebookIcon />
-                <span> Continue with Facebook</span>
-              </div>
-            </FacebookButton>
-            <AppleButton>
-              <div>
-                <AppleIcon />
-                <span> Continue with Apple</span>
-              </div>
-            </AppleButton>
-            <GoogleButton>
-              <div>
-                <GoogleIcon />
-                <span>Continue with Google</span>
-              </div>
-            </GoogleButton>
-          </SocialLinksContainer>
-        </InfoContainer>
-      </div>
+          <Button type="submit">Log In</Button>
+        </Form>
+
+        <SocialLinksContainer>
+          <OrText>Or</OrText>
+          <FacebookButton>
+            <div>
+              <FacebookIcon />
+              <span> Continue with Facebook</span>
+            </div>
+          </FacebookButton>
+          <AppleButton>
+            <div>
+              <AppleIcon />
+              <span> Continue with Apple</span>
+            </div>
+          </AppleButton>
+          <GoogleButton>
+            <div>
+              <GoogleIcon />
+              <span>Continue with Google</span>
+            </div>
+          </GoogleButton>
+        </SocialLinksContainer>
+        <SocialLinksText>
+          Don&apos;t have an account?
+          <LinkText onClick={() => navigate('/sign-up')}> Sign up</LinkText>
+        </SocialLinksText>
+      </InfoContainer>
     </LoginContainer>
   );
 }
