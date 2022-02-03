@@ -51,14 +51,6 @@ export const Attendees = styled.h4`
     margin: 0 0.37rem 0 0;
     padding: 0 auto;
   }
-
-  :hover {
-    svg {
-      path {
-        fill: ${colors.gray};
-      }
-    }
-  }
 `;
 
 export const ButtonsWrapper = styled.div`

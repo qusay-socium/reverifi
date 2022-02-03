@@ -5,7 +5,7 @@ import mq from 'styles/media-query';
 export const MainHeader = styled.h2`
   color: ${colors.mineShaft};
   font-size: 1.37rem;
-  margin: 0 auto 1.1rem auto;
+  margin: 0 auto 2rem auto;
   text-align: center;
 
   ${mq.tablet`
@@ -128,22 +128,10 @@ export const ImgContainer = styled.div`
   }
 
   ${mq.tablet`
-  border-radius: 0.6rem;
-  border: 0.06rem solid ${colors.dustyGray};
-  overflow: hidden;
-
-  
-
-  &:hover h4 {
-    color: ${colors.green};
-  }
-`}
-  // Make the first image size distinguishable
-  ${mq.tablet`
     border-radius: 0.6rem;
-    border: 0.06rem solid ${colors.dustyGray};
     overflow: hidden;
 
+    // Make the first image size distinguishable
     :first-child {
       grid-row: 1 / span 2;
 
