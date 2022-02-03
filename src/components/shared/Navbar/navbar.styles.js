@@ -48,7 +48,7 @@ export const NavLinksContainer = styled.div`
   display: none;
   font-size: 0.9rem;
   span {
-    font-weight: 800;
+    font-weight: bold;
   }
 
   span:hover {

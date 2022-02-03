@@ -15,18 +15,18 @@ import { Container, FeaturesItem, Label, Wrapper } from './features.styles';
  */
 // eslint-disable-next-line react/prop-types
 function Features({ features }) {
-  if (features.length === 0) return null;
+  if (!features.length) return null;
   return (
     <Container>
       <Title> Features </Title>
       <Wrapper>
-        {data.map((key) => (
+        {data.map(({ icon, feature }) => (
           <FeaturesItem
-            key={key.feature}
-            selected={features.find((list) => list.feature === key.feature)}
+            key={feature}
+            selected={features.find((list) => list.feature === feature)}
           >
-            <Image src={key.icon} />
-            <Label>{key.feature}</Label>
+            <Image src={icon} />
+            <Label>{feature}</Label>
           </FeaturesItem>
         ))}
       </Wrapper>

@@ -41,7 +41,6 @@ function ListingPage() {
         <Details details={listingDetails} />
         <Features features={listingDetails.features} />
         <Location />
-        {/* <SimilarListings similarListings={similarListings} /> */}
         <ListingShareModal />
       </ShowModalProvider>
     );
