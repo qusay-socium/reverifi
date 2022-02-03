@@ -1,13 +1,9 @@
+import { Image } from 'components/home/FeaturedListingCard/featured-listing-card.styles';
+import { Title } from 'components/listing-page/Details/details.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Title } from 'components/listing-page/Details/details.styles';
-import {
-  Container,
-  FeaturesItem,
-  Image,
-  Label,
-  Wrapper,
-} from './features.styles';
+import data from './data';
+import { Container, FeaturesItem, Label, Wrapper } from './features.styles';
 
 /**
  * Listing page details section.
@@ -17,44 +13,29 @@ import {
  *
  * @return {JSX.Element}
  */
-function Features({ data }) {
-  const { features, icons } = data;
-
+// eslint-disable-next-line react/prop-types
+function Features({ features }) {
+  if (!features.length) return null;
   return (
     <Container>
       <Title> Features </Title>
       <Wrapper>
-        {Object.keys(features).map(
-          (key, index) =>
-            features[key] && (
-              <FeaturesItem key={key}>
-                <Image src={icons[index]} alt={key} />
-                <Label>{key}</Label>
-              </FeaturesItem>
-            )
-        )}
+        {data.map(({ icon, feature }) => (
+          <FeaturesItem
+            key={feature}
+            selected={features.find((list) => list.feature === feature)}
+          >
+            <Image src={icon} />
+            <Label>{feature}</Label>
+          </FeaturesItem>
+        ))}
       </Wrapper>
     </Container>
   );
 }
 
 Features.propTypes = {
-  data: PropTypes.shape({
-    features: PropTypes.shape({
-      'Air Conditioning': PropTypes.bool.isRequired,
-      'Central Heating': PropTypes.bool.isRequired,
-      'Cleaning Service': PropTypes.bool.isRequired,
-      'Dining Room': PropTypes.bool.isRequired,
-      Dryer: PropTypes.bool.isRequired,
-      GYM: PropTypes.bool.isRequired,
-      Parking: PropTypes.bool.isRequired,
-      Sauna: PropTypes.bool.isRequired,
-      'Swimming Pool': PropTypes.bool.isRequired,
-      'TV Cable': PropTypes.bool.isRequired,
-      WIFI: PropTypes.bool.isRequired,
-    }).isRequired,
-    icons: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
+  features: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Features;

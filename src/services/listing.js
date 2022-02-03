@@ -24,3 +24,15 @@ export const getListingsBySearchKey = async (keyWord) => {
 
   return data;
 };
+
+/* @param {uuid} listing id.
+ *
+ * @return {Promise<Object>} listing data response.
+ */
+export const getListingsById = async (id) => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/listings/${id}`);
+
+  return data;
+};

@@ -47,6 +47,9 @@ export const NavItemsContainer = styled.div`
 export const NavLinksContainer = styled.div`
   display: none;
   font-size: 0.9rem;
+  span {
+    font-weight: bold;
+  }
 
   span:hover {
     color: ${colors.green};
@@ -133,6 +136,7 @@ export const SignInButton = styled(Button)`
 export const SignUpButton = styled(Button)`
   border: 0.06rem solid ${colors.green};
   font-size: 0.9rem;
+  font-weight: 600;
 
   &:hover {
     background-color: ${colors.mineShaft};

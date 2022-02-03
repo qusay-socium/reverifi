@@ -71,9 +71,9 @@ export const CardImageContainer = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 12rem;
-  width: 100%;
-  transition: 0.2s;
+  height: 1rem;
+  margin-right: 1rem;
+  width: 1rem;
 `;
 
 export const CardBody = styled.div`

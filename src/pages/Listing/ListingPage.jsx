@@ -1,25 +1,16 @@
-import data from 'components/listing-page/data';
 import Details from 'components/listing-page/Details';
 import Features from 'components/listing-page/Features';
-import Location from 'components/listing-page/Location';
 import Offer from 'components/listing-page/Offer';
+import { Location } from 'components/listing-page/Offer/offer.styles';
 import Overview from 'components/listing-page/Overview';
-import SimilarListings from 'components/listing-page/SimilarListings';
 import ListingPageSlider from 'components/listing-page/Slider';
 import ListingShareModal from 'components/ListingShareModal';
 import ShowModalProvider from 'contexts/ShowModalContext/index';
-import React, { useEffect, useState } from 'react';
-import { getListingData } from 'services/listing-create-service';
-import { useParams } from 'react-router-dom';
-
-const {
-  location,
-  images,
-  statistics,
-  features,
-  featuresIcons,
-  similarListings,
-} = { ...data };
+import React, { useEffect } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useParams } from 'react-router';
+import { useState } from 'react/cjs/react.development';
+import { getListingsById } from 'services/listing';
 
 /**
  * Listing page component.
@@ -29,68 +20,32 @@ const {
 function ListingPage() {
   const { id } = useParams();
 
-  const [detailsData, setDetailsData] = useState({
-    bedrooms: '',
-    fullBathrooms: '',
-    garage: '',
-    homeArea: '',
-    lotArea: '',
-    lotDimensions: '',
-    overview: '',
-    partialBathrooms: '',
-    price: '0',
-    propertyCondition: '',
-    rooms: '',
-    yearBuilt: '',
-  });
+  const [listingDetails, setListingDetails] = useState({});
 
-  const {
-    yearBuilt,
-    bedrooms,
-    fullBathrooms,
-    partialBathrooms,
-    homeArea,
-    lotArea,
-    lotDimensions,
-    rooms,
-    garage,
-    propertyCondition,
-  } = detailsData;
-
-  const details = {
-    Bedrooms: bedrooms,
-    'Full bathrooms': fullBathrooms,
-    Garage: garage,
-    'Home area': `${homeArea} sqft`,
-    'Lot area': `${lotArea} sqft`,
-    'Lot dimensions': `${lotDimensions} sqft`,
-    'Partial Bathrooms': partialBathrooms,
-    'Property condition': propertyCondition,
-    Rooms: rooms,
-    'Year Built': yearBuilt,
+  const getListingDetails = async (listingId) => {
+    setListingDetails(await getListingsById(listingId));
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await getListingData(id);
-      setDetailsData(response);
+    if (id) {
+      getListingDetails(id);
     }
-
-    if (id) fetchData();
   }, [id]);
 
-  return (
-    <ShowModalProvider>
-      <Offer data={{ location, price: detailsData.price }} />
-      <ListingPageSlider images={images} />
-      <Overview data={{ overview: detailsData.overview, statistics }} />
-      <Details details={details} />
-      <Features data={{ features, icons: featuresIcons }} />
-      <Location />
-      <SimilarListings similarListings={similarListings} />
-      <ListingShareModal />
-    </ShowModalProvider>
-  );
+  if (listingDetails.id) {
+    return (
+      <ShowModalProvider>
+        <Offer address={listingDetails.address} price={listingDetails.price} />
+        <ListingPageSlider images={listingDetails.images} />
+        <Overview listing={listingDetails} />
+        <Details details={listingDetails} />
+        <Features features={listingDetails.features} />
+        <Location />
+        <ListingShareModal />
+      </ShowModalProvider>
+    );
+  }
+  return null;
 }
 
 export default ListingPage;

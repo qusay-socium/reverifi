@@ -2,15 +2,15 @@ import { ReactComponent as BellIcon } from 'assets/images/bell.svg';
 import { ReactComponent as HeartIcon } from 'assets/images/heart.svg';
 import { ReactComponent as MoreOptionsIcon } from 'assets/images/more-horizontal.svg';
 import { ReactComponent as ShareIcon } from 'assets/images/share.svg';
-import { ReactComponent as LocationPinIcon } from 'assets/images/location-pin.svg';
+import { ReactComponent as LocationPinIcon } from 'assets/location.svg';
 import {
-  SideButtonsContainer,
   Container,
-  OfferDetails,
   Location,
   LocationText,
   LogoButton,
+  OfferDetails,
   Price,
+  SideButtonsContainer,
   SubmitButton,
   SubmitOffer,
 } from 'components/listing-page/Offer/offer.styles';
@@ -21,24 +21,22 @@ import React from 'react';
 /**
  * Offer details section.
  *
- * @param {Object} props      Offer Details component props.
- * @param {Object} props.data Offer details data.
+ * @param {Object} price      price for listing.
+ * @param {Object} address    address for listing.
  *
  * @return {JSX.Element}
  */
-function Offer({ data }) {
-  const { price, location } = data;
-
+function Offer({ price, address }) {
   const { setShowModal } = useShowModal();
 
   return (
     <Container>
       <OfferDetails>
         <div>
-          <Price> {`$${price}`} </Price>
+          <Price> {`$ ${price}`} </Price>
           <Location>
             <LocationPinIcon />
-            <LocationText> {location}</LocationText>
+            <LocationText> {address}</LocationText>
           </Location>
         </div>
         <SubmitOffer>
@@ -81,10 +79,8 @@ function Offer({ data }) {
 }
 
 Offer.propTypes = {
-  data: PropTypes.shape({
-    location: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-  }).isRequired,
+  address: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 export default Offer;
