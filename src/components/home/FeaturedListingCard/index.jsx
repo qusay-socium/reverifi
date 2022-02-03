@@ -15,7 +15,7 @@ import {
   CardContainer,
   CardFooter,
   CardImageContainer,
-  CardParents,
+  CardParent,
   Container,
   IconContainer,
   IconsContainer,
@@ -56,7 +56,7 @@ function Card({ data }) {
   const { setShowModal } = useShowModal();
 
   return (
-    <CardParents>
+    <CardParent>
       <CardContainer>
         <CardImageContainer>
           <Image src={images[0]} />
@@ -147,7 +147,7 @@ function Card({ data }) {
           </OverlayIcons>
         </Overlay>
       </OverlayBackground>
-    </CardParents>
+    </CardParent>
   );
 }
 

@@ -192,7 +192,6 @@ export const CardContainer = styled.div`
 `;
 
 export const OverlayBackground = styled(CardContainer)`
-  background-color: ${colors.mineShaft}99;
   background: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -213,7 +212,7 @@ export const Overlay = styled.div`
   border-radius: 0.3rem;
 `;
 
-export const CardParents = styled.div`
+export const CardParent = styled.div`
   min-height: 22rem;
   max-height: 24rem;
   margin: 1.2rem;
