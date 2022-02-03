@@ -18,7 +18,7 @@ export const ClaimAddressContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background-color: ${colors.liver}99;
+  background-color: ${colors.liver}DB;
   width: 100%;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@ export const Overlay = styled.div`
   padding: 5rem 0;
 
   ${mq.desktop`
-      background-color: ${colors.mineShaft}99;
+      background-color: ${colors.mineShaft}DB;
       padding: 1rem 0;
   `}
 `;

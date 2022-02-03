@@ -161,7 +161,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background: ${colors.mineShaft}60;
+  background: ${colors.mineShaft}0;
   bottom: 0;
   left: 0;
   position: absolute;
@@ -170,7 +170,7 @@ export const Overlay = styled.div`
   transition: 0.5s;
 
   &:hover {
-    background: ${colors.mineShaft}99;
+    background: ${colors.mineShaft}80;
   }
 `;
 

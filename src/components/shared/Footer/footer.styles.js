@@ -44,8 +44,12 @@ export const ContactInfo = styled.div`
 export const InfoGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
-  padding-bottom: 1.8125rem;
+  gap: 0.87rem;
+  padding-bottom: 1.8rem;
+`;
+
+export const LogoWrapper = styled.div`
+  width: 7rem;
 `;
 
 export const InfoGroupHeader = styled.p`

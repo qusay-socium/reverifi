@@ -2,47 +2,19 @@ import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
-export const CardContainer = styled.div`
-  background: ${colors.white};
-  border-radius: 0.37rem;
-  box-shadow: 0rem 0.06rem 0.56rem ${colors.mineShaft}29;
-  cursor: pointer;
-  margin: 2rem 1rem;
-  overflow: hidden;
-  overflow: hidden;
-  position: relative;
-`;
-
 export const Container = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
 `;
 
-export const OverlayContainer = styled.div`
-  align-items: center;
-  background-color: ${colors.mineShaft}99;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  opacity: 0;
-  position: absolute;
-  text-align: center;
-  transition: 0.5s;
-  width: 100%;
-  z-index: 2;
-  ${CardContainer}:hover & {
-    opacity: 1;
-  }
-`;
-
-export const OverlayProperty = styled.h6`
+export const OverlayProperty = styled.h4`
   color: ${colors.midGray};
 `;
 
 export const OverlayAddress = styled.h4`
   color: ${colors.white};
+  padding: 0 1rem;
 `;
 
 export const OverlayPrice = styled.h4`
@@ -96,18 +68,12 @@ export const CardImageContainer = styled.div`
   position: relative;
   overflow: hidden;
   height: 12rem;
-  ${CardContainer}:hover & {
-    height: 100%;
-  }
 `;
 
 export const Image = styled.img`
   height: 12rem;
   width: 100%;
   transition: 0.2s;
-  ${CardContainer}:hover & {
-    height: 22rem;
-  }
 `;
 
 export const CardBody = styled.div`
@@ -118,30 +84,18 @@ export const CardBody = styled.div`
   justify-content: space-between;
   min-height: 6rem;
   padding: 1rem;
-
-  ${CardContainer}:hover & {
-    display: none;
-  }
-
-  &:hover {
-    display: none;
-  }
 `;
 
 export const CardFooter = styled.div`
   align-items: center;
+  background-color: ${colors.white};
   border-top: 0.06rem solid ${colors.midGray};
+  box-shadow: 0rem 0.06rem 0.56rem -0.09rem ${colors.mineShaft}29;
   display: flex;
+  height: 3rem;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-
-  ${CardContainer}:hover & {
-    display: none;
-  }
-
-  &:hover {
-    display: none;
-  }
+  border-radius: 0 0 0.3rem 0.3rem;
 `;
 
 export const TagContainer = styled.div`
@@ -150,10 +104,6 @@ export const TagContainer = styled.div`
   position: absolute;
   top: 1rem;
   transition: 0.2s;
-
-  ${CardContainer}:hover & {
-    top: 2rem;
-  }
 `;
 
 export const Tag = styled.div`
@@ -164,10 +114,6 @@ export const Tag = styled.div`
   margin-right: 0.4375rem;
   padding: 0.3125rem 1.1875rem;
   transition: 0.5s;
-
-  ${CardContainer}:hover & {
-    opacity: 0;
-  }
 `;
 
 export const PersonImg = styled.img`
@@ -177,11 +123,6 @@ export const PersonImg = styled.img`
   position: absolute;
   right: 1rem;
   width: 2.5rem;
-
-  ${CardContainer}:hover & {
-    opacity: 0;
-    bottom: 0;
-  }
 `;
 
 export const TextLarge = styled.p`
@@ -236,5 +177,55 @@ export const IconContainer = styled.div`
       opacity: 1;
       stroke: ${({ stroke }) => stroke && colors.white};
     }
+  }
+`;
+
+export const CardContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: ${colors.white};
+
+  img {
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+`;
+
+export const OverlayBackground = styled(CardContainer)`
+  background-color: ${colors.mineShaft}99;
+  background: url(${({ image }) => image});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: none;
+  position: absolute;
+  border-radius: 0.3rem;
+  overflow: hidden;
+`;
+
+export const Overlay = styled.div`
+  background-color: ${colors.mineShaft}99;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 0.3rem;
+`;
+
+export const CardParents = styled.div`
+  min-height: 22rem;
+  max-height: 24rem;
+  margin: 1.2rem;
+  position: relative;
+  box-shadow: 0rem 0.06rem 0.56rem ${colors.mineShaft}29;
+  border-radius: 2rem;
+
+  &:hover ${CardContainer} {
+    display: none;
+  }
+
+  &:hover ${OverlayBackground} {
+    display: block;
   }
 `;
