@@ -47,6 +47,7 @@ function VerifyPhoneForm() {
     if (target.nextSibling) {
       target.nextSibling.focus();
     }
+    // when 3rd input focused we focused the 4th (because  above logic (nexSibling won't work))
     if (target.name === 'd2') {
       setFocus('d3');
     }

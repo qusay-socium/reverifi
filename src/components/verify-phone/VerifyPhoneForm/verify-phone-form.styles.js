@@ -69,6 +69,7 @@ export const DigitInput = styled.input`
   &:focus {
     border: 0.2rem solid ${colors.green};
     outline: 0;
+    background-color: ${colors.alabaster};
   }
 `;
 
