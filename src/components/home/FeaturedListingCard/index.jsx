@@ -62,7 +62,7 @@ function Card({ data }) {
           <Image src={images[0]} />
           <TagContainer>
             {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
-            <Tag>{listingType}</Tag>
+            {listingType?.type && <Tag>{listingType?.type}</Tag>}
           </TagContainer>
           {image && <PersonImg src={image} />}
         </CardImageContainer>
@@ -71,7 +71,7 @@ function Card({ data }) {
           <InfoContainer>
             <TextMedium>{address}</TextMedium>
 
-            <TextSmall>{propertyType}</TextSmall>
+            {propertyType?.type && <TextSmall>{propertyType?.type}</TextSmall>}
 
             <BodyIconsContainer>
               {bedrooms && (
@@ -109,7 +109,9 @@ function Card({ data }) {
 
       <OverlayBackground image={images[0]}>
         <Overlay>
-          <OverlayProperty>{propertyType}</OverlayProperty>
+          {propertyType?.type && (
+            <OverlayProperty>{propertyType?.type}</OverlayProperty>
+          )}
           <OverlayAddress>{address}</OverlayAddress>
           <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 

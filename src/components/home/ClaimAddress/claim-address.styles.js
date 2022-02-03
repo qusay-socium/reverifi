@@ -125,6 +125,8 @@ export const JoinUsButton = styled(Button)`
 
 export const JoinUsText = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   svg {
     margin: 0.4rem 0 0 1rem;
