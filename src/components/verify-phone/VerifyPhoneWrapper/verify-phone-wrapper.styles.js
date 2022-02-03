@@ -6,7 +6,7 @@ export const VerifyPhoneContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 1.875rem;
+  gap: 2rem;
   margin-top: 1.25rem;
 `;
 
@@ -24,15 +24,15 @@ export const Title = styled.h3`
 
 export const Subtitle = styled.p`
   color: ${colors.gray};
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   margin: 0;
 `;
 
 export const BottomImage = styled.div`
   background-image: url(${bottomImg});
   background-repeat: no-repeat;
-  background-size: contain;
-  height: 21.25rem;
+  background-size: cover;
+  height: 27rem;
   overflow-x: hidden;
   width: 100%;
 `;
