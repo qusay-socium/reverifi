@@ -45,7 +45,7 @@ import {
  * @return {JSX.Element} The agent card holding all of the agent's information.
  */
 function AgentCard({
-  address,
+  address: { city, country, zipCode },
   agentImg,
   agentName,
   companyName,
@@ -101,7 +101,9 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Address</PropertyText>
             </ContactProperty>
-            <ContactText>{address}</ContactText>
+            <ContactText>
+              {zipCode} {city}, {country}
+            </ContactText>
           </ContactField>
         </ContactInfoContainer>
         <Line />
@@ -124,7 +126,11 @@ function AgentCard({
 }
 
 AgentCard.propTypes = {
-  address: PropTypes.string.isRequired,
+  address: PropTypes.shape({
+    city: PropTypes.string,
+    country: PropTypes.string,
+    zipCode: PropTypes.string,
+  }).isRequired,
   agentImg: PropTypes.string.isRequired,
   agentName: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,

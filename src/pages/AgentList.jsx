@@ -1,5 +1,4 @@
 import AgentCardsContainer from 'components/agent-list/AgentCardsContainer';
-import AgentsListBanner from 'components/agent-list/AgentsListBanner';
 import React from 'react';
 
 /**
@@ -8,12 +7,7 @@ import React from 'react';
  * @return {JSX.Element}
  */
 function AgentList() {
-  return (
-    <>
-      <AgentsListBanner />
-      <AgentCardsContainer />
-    </>
-  );
+  return <AgentCardsContainer />;
 }
 
 export default AgentList;

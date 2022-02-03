@@ -2,6 +2,7 @@
  * get dates difference function
  *
  * @param {*} date date (ex: 2022-01-24T12:47:07.098Z)
+ *
  * @return {Number} difference between 2 dates
  */
 export const getDatesDifference = (date, period) => {
@@ -23,3 +24,13 @@ export const getDatesDifference = (date, period) => {
  */
 export const generateLabelValuePairs = (data) =>
   data?.map((item) => ({ label: item, value: item }));
+
+/**
+ * capitalize First Letter function
+ *
+ * @param {String} string text to be capitalize first letter
+ *
+ * @return {String} capitalized string
+ */
+export const toUpperCaseFirstLetter = (string) =>
+  string.charAt(0).toUpperCase() + string.slice(1);

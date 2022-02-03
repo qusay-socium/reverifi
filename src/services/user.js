@@ -1,4 +1,5 @@
 import { apiUrl } from 'config/config';
+import { toUpperCaseFirstLetter } from 'utils/helpers';
 import http from 'utils/http';
 
 /**
@@ -16,7 +17,7 @@ export const updateUserRoles = async (rolesIds) => {
   return data;
 };
 
-/*
+/**
  * Service that update user info
  *
  * @param {Object} body data to be send as request body
@@ -27,6 +28,28 @@ export const updateUserInfo = async (body) => {
   const {
     data: { data },
   } = await http.patch(`${apiUrl}/users`, body);
+
+  return data;
+};
+
+/**
+ * Service that get agent users
+ *
+ * @param {String} type agent type
+ * @param {String} location agent location
+ * @param {String} name agent name
+ * @param {number} [page=0]
+ *
+ * @return {Object[]} Array of agents.
+ */
+export const getUsersByType = async (type, location, name, page = 0) => {
+  const userType = toUpperCaseFirstLetter(type);
+
+  const {
+    data: { data },
+  } = await http.get(
+    `${apiUrl}/users/roles/${userType}?page=${page}&location=${location}&name=${name}`
+  );
 
   return data;
 };

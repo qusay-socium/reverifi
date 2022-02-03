@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import {
   AgentSearch,
   FilterIcon,
@@ -9,16 +11,17 @@ import {
   SearchIcon,
   SelectFilter,
   SelectType,
-} from 'components/agent-list/AgentsListBanner/agents-list-banner.styles';
-import React, { useState } from 'react';
+} from '../AgentCardsContainer/agent-cards-container.styles';
 import { FilterSectionMobile } from './mobile-filter-section.styles';
 
 /**
  * Filter component displayed in mobile.
  *
+ *  @param {Function} handleSearch handle search function
+ *
  * @return {JSX.Element} Filter component including three filter options.
  */
-function MobileFilterSection() {
+function MobileFilterSection({ handleSearch }) {
   const [filterBy, setFilterBy] = useState('location');
 
   /**
@@ -31,7 +34,7 @@ function MobileFilterSection() {
   };
   return (
     <FilterSectionMobile>
-      <FilterSearchContainer>
+      <FilterSearchContainer onSubmit={handleSearch}>
         <FilterProperty>
           <FilterIconContainer>
             <FilterIcon />
@@ -45,20 +48,28 @@ function MobileFilterSection() {
         </FilterProperty>
 
         {filterBy === 'type' && (
-          <SelectType>
+          <SelectType name="type">
             <option value="">Select Type</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Seller">Seller</option>
           </SelectType>
         )}
         {filterBy === 'location' && (
-          <LocationSearch placeholder="Search for Location" />
+          <LocationSearch placeholder="Search for Location" name="location" />
         )}
-        {filterBy === 'agent' && <AgentSearch placeholder="Agent's Name" />}
+        {filterBy === 'agent' && (
+          <AgentSearch placeholder="Agent's Name" name="name" />
+        )}
+        <SearchButton type="submit">
+          <SearchIcon />
+        </SearchButton>
       </FilterSearchContainer>
-      <SearchButton>
-        <SearchIcon />
-      </SearchButton>
     </FilterSectionMobile>
   );
 }
+
+MobileFilterSection.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+};
 
 export default MobileFilterSection;
