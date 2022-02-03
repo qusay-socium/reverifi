@@ -122,7 +122,7 @@ export const AddressInputsContainer = styled(InputsContainer)`
 `;
 
 export const SaveButton = styled(Button)`
-  font-size: 0.95rem;
+  font-size: 1rem;
   height: 2.1rem;
   padding: 0 2.5rem;
 `;

@@ -1,5 +1,6 @@
 import whiteArrow from 'assets/icons/arrow-down-white.svg';
 import arrow from 'assets/icons/arrow-down.svg';
+import { Error } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -55,11 +56,7 @@ export const StyledSelect = styled.select`
   }
 `;
 
-export const Error = styled.p`
-  color: ${colors.red};
-  font-size: 0.75rem;
-  margin: 0.3rem 0 1rem 0;
-`;
+export const ErrorMessage = styled(Error)``;
 
 export const Placeholder = styled.option`
   display: none;

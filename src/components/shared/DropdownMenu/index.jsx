@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import React from 'react';
 import {
-  Error,
+  ErrorMessage,
   Placeholder,
   SelectContainer,
   StyledLabel,
@@ -62,13 +62,13 @@ function DropdownMenu({
             {placeholder}
           </Placeholder>
 
-          {options?.map((value, index) => (
-            <option value={value} key={index.toString()}>
+          {options?.map((value) => (
+            <option value={value} key={value}>
               {value}
             </option>
           ))}
         </StyledSelect>
-        {error && <Error>{error}</Error>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </SelectContainer>
     </div>
   );
