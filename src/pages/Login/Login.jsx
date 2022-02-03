@@ -7,12 +7,13 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { useUser } from 'contexts/UserContext';
 import { SubmitButton } from 'pages/SignUp/sign-up.styles';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import loginSchema from './login-schema';
 import {
   AppleButton,
+  ErrorMessage,
   FacebookButton,
   Form,
   GoogleButton,
@@ -33,6 +34,7 @@ import {
  * @return {JSX.Element}
  */
 function Login() {
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
 
@@ -54,8 +56,9 @@ function Login() {
     try {
       await login(email, password);
       navigate('/');
-    } catch (error) {
-      // TODO: show error to the user
+    } catch (err) {
+      console.log(err);
+      setError(true);
     }
   };
 
@@ -69,7 +72,7 @@ function Login() {
         <Title>Log In</Title>
 
         <Form onSubmit={handleSubmit(submit)}>
-          <InputWrapper>
+          <InputWrapper onClick={() => setError(false)}>
             <FormInput
               error={errors.email?.message}
               label="E-mail"
@@ -78,7 +81,7 @@ function Login() {
               register={register}
             />
           </InputWrapper>
-          <InputWrapper>
+          <InputWrapper onClick={() => setError(false)}>
             <FormInput
               name="password"
               error={errors.password?.message}
@@ -88,14 +91,14 @@ function Login() {
               onChange={() => setFocus('password')}
             />
           </InputWrapper>
-
           <FormCheckbox
             name="rememberMe"
             label="Remember me"
             register={register}
           />
-
           <LinkText>Forgot Password</LinkText>
+
+          {error && <ErrorMessage>Wrong password or email</ErrorMessage>}
 
           <SubmitButton type="submit">Log In</SubmitButton>
         </Form>
