@@ -74,6 +74,22 @@ function SignUp() {
     }
   };
 
+  /**
+   * Handle input function prevent enter other types than numbers
+   *
+   * @param {object} target input target object
+   *
+   */
+  const handleInput = ({ target }) => {
+    if (
+      !Number.parseInt(target.value, 10) &&
+      Number.parseInt(target.value, 10) !== 0 &&
+      target.value !== '+'
+    ) {
+      target.value = '';
+    }
+  };
+
   return (
     <SignUpContainer>
       <ImageContainer>
@@ -127,18 +143,22 @@ function SignUp() {
                 <FormInput
                   error={errors.phonePrefix?.message}
                   name="phonePrefix"
-                  placeholder="ext"
+                  placeholder="Ext"
                   register={register}
                   rounded={false}
-                  type="number"
+                  type="text"
+                  maxLength="3"
+                  onChange={handleInput}
                 />
                 <FormInput
                   name="phoneNumber"
-                  placeholder="number"
+                  placeholder="(201)555-0123"
                   register={register}
                   error={errors.phoneNumber?.message}
                   rounded={false}
-                  type="number"
+                  type="text"
+                  maxLength="10"
+                  onChange={handleInput}
                 />
               </PhoneInputContainer>
             </>
