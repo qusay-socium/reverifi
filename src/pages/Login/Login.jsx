@@ -40,6 +40,7 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -84,6 +85,7 @@ function Login() {
               label="Password"
               register={register}
               type="password"
+              onChange={() => setFocus('password')}
             />
           </InputWrapper>
 
