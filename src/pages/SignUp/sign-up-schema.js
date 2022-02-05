@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import * as yup from 'yup';
 
 const signUpSchema = yup
@@ -9,6 +10,11 @@ const signUpSchema = yup
       .string()
       .label('Password')
       .required()
+      .min(8, 'password is too short - should be 8 chars minimum')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        'must Contain One Uppercase, One Lowercase, One Number and One Special Case Character'
+      )
       .typeError('password must be a number'),
     phoneNumber: yup
       .number()
