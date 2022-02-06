@@ -31,6 +31,7 @@ function FormInput({
   type,
   min,
   max,
+  maxLength,
   step,
   labelIconElement,
   defaultValue,
@@ -52,6 +53,7 @@ function FormInput({
         rounded={rounded}
         min={min}
         max={max}
+        maxLength={maxLength}
         step={step}
         defaultValue={defaultValue}
       />
@@ -67,6 +69,7 @@ FormInput.propTypes = {
   label: PropTypes.string,
   labelIconElement: PropTypes.node,
   max: PropTypes.string,
+  maxLength: PropTypes.string,
   min: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
@@ -84,6 +87,7 @@ FormInput.defaultProps = {
   label: null,
   labelIconElement: null,
   max: null,
+  maxLength: null,
   min: null,
   onChange: null,
   placeholder: '',
