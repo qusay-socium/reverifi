@@ -96,6 +96,7 @@ export const CardBody = styled.div`
   justify-content: space-between;
   min-height: 6rem;
   padding: 1rem;
+  width: 100%;
 `;
 
 export const CardFooter = styled.div`
@@ -148,20 +149,14 @@ export const TextMedium = styled.p`
   color: ${colors.mineShaft};
   font-size: 1rem;
   margin: 0.2rem 0 0 0;
-  line-height: 1.2rem;
-  font-weight: 600;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 100%;
-  background-color: green;
+  font-weight: 600;
 `;
 
-export const TextContainer = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 100%;
+export const TextContainer = styled.div`
+  /* width: 90%; */
   background-color: green;
 `;
 

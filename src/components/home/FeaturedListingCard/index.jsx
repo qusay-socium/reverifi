@@ -33,6 +33,7 @@ import {
   ServiceQuantity,
   Tag,
   TagContainer,
+  TextContainer,
   TextLarge,
   TextMedium,
   TextSmall,
@@ -69,7 +70,9 @@ function Card({ data }) {
 
         <CardBody>
           <InfoContainer>
-            <TextMedium>{address}</TextMedium>
+            <TextContainer>
+              <TextMedium>{address}</TextMedium>
+            </TextContainer>
 
             {propertyType?.type && <TextSmall>{propertyType?.type}</TextSmall>}
 
