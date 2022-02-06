@@ -3,8 +3,6 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const MainHeader = styled.h2`
-  color: ${colors.mineShaft};
-  font-size: 1.37rem;
   margin: 0 auto 2rem auto;
   text-align: center;
 
