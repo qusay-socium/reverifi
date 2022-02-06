@@ -47,7 +47,7 @@ function Footer() {
           <InfoGroupItem to="/">Accessibility</InfoGroupItem>
         </InfoGroup>
         <SubscribeWrapper>
-          <InfoGroupHeader>Subscribe to our Newsletter</InfoGroupHeader>
+          <InfoGroupHeader>Subscribe to our newsletter</InfoGroupHeader>
           <SubscribeInputWrapper>
             <Input
               placeholder="Subscribe to our Newsletter"
