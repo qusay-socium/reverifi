@@ -15,9 +15,7 @@ import {
  * @return {JSX.Element}
  */
 function VerifyPhoneWrapper() {
-  const {
-    userInfo: { phone },
-  } = useUser();
+  const { userInfo } = useUser();
 
   return (
     <VerifyPhoneContainer>
@@ -25,7 +23,7 @@ function VerifyPhoneWrapper() {
         <Title>Verify your phone number</Title>
         <Subtitle>
           Please enter the verification code we sent to your mobile
-          {phone && ` **${phone?.slice(-2)}`}
+          {userInfo?.phone && ` **${userInfo?.phone?.slice(-2)}`}
         </Subtitle>
         <VerifyPhoneForm />
       </InfoContainer>

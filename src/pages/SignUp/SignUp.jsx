@@ -62,13 +62,19 @@ function SignUp() {
     password,
     phonePrefix,
     phoneNumber,
+    industryProfessional,
   }) => {
     try {
       const phone =
         phonePrefix && phoneNumber ? `${phonePrefix}${phoneNumber}` : null;
 
       await signUp(name, email, password, phone);
-      navigate('/');
+
+      if (industryProfessional) {
+        navigate('/verify-phone');
+      } else {
+        navigate('/');
+      }
     } catch ({ response }) {
       if (response.status === 400) setEmailExist(response.data?.message);
     }
