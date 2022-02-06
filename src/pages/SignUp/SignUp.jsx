@@ -98,11 +98,7 @@ function SignUp() {
               name="email"
               placeholder="eg: Jhon@domain.com"
               register={register}
-<<<<<<< HEAD
               onChange={() => setEmailExist(false)}
-=======
-              onChange={() => setFocus('email')}
->>>>>>> fix autofill fields issue
             />
             {emailExist && <Error>{emailExist}</Error>}
           </InputWrapper>
