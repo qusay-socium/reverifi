@@ -23,7 +23,7 @@ const data = [
     img: peoplegroup,
     place: 'somewhere',
     time: '7:30 - 10:30PM',
-    title: 'Lorem Ipsum',
+    title: 'Lorem Ipsum 1',
     type: 'Personal',
   },
   {
@@ -34,7 +34,7 @@ const data = [
     img: christmas,
     place: 'somewhere',
     time: '7:30 - 10:30PM',
-    title: 'Lorem Ipsum',
+    title: 'Lorem Ipsum 2',
     type: 'Webinar',
   },
   {
@@ -45,7 +45,7 @@ const data = [
     img: atoffice,
     place: 'somewhere',
     time: '7:30 - 10:30PM',
-    title: 'Lorem Ipsum',
+    title: 'Lorem Ipsum 3',
     type: 'Webinar',
   },
   {
@@ -56,7 +56,7 @@ const data = [
     img: chairs,
     place: 'somewhere',
     time: '7:30 - 10:30PM',
-    title: 'Lorem Ipsum',
+    title: 'Lorem Ipsum 4',
     type: 'Personal',
   },
 ];
