@@ -60,9 +60,9 @@ function Navbar() {
       <Logo onClick={() => navigate('/')} />
       <NavItemsContainer>
         <NavLinksContainer>
-          <span>How we Work</span>
-          <span>Find an Agent</span>
-          <span>Knowledge Center</span>
+          <a href="/">How we Work</a>
+          <a href="/agent-list">Find an Agent</a>
+          <a href="/">Knowledge Center</a>
         </NavLinksContainer>
         {isLoggedIn ? (
           <UserNavControlContainer>
