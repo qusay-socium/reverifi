@@ -46,6 +46,7 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
@@ -88,7 +89,11 @@ function SignUp() {
               name="email"
               placeholder="eg: Jhon@domain.com"
               register={register}
+<<<<<<< HEAD
               onChange={() => setEmailExist(false)}
+=======
+              onChange={() => setFocus('email')}
+>>>>>>> fix autofill fields issue
             />
             {emailExist && <Error>{emailExist}</Error>}
           </InputWrapper>
@@ -99,6 +104,7 @@ function SignUp() {
               label="Password"
               register={register}
               type="password"
+              onChange={() => setFocus('password')}
             />
           </InputWrapper>
 
