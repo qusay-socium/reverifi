@@ -110,10 +110,12 @@ export function UserProvider({ children }) {
    * @param {string} name User name.
    * @param {string} email User email.
    * @param {string} password User password.
+   * @param {string} phone User phone number.
+   *
    */
   const signUp = useCallback(
-    async (name, email, password) => {
-      const { token } = await auth.signUp(name, email, password);
+    async (name, email, password, phone) => {
+      const { token } = await auth.signUp(name, email, password, phone);
       setTokenData(token);
     },
     [setTokenData]

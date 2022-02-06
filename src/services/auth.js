@@ -23,16 +23,18 @@ const login = async (email, password) => {
  * @param {string} name User name.
  * @param {string} email User email.
  * @param {string} password User password.
+ * @param {string} phone User phone number.
  *
  * @return {Promise<Object>} The sign up response
  */
-const signUp = async (name, email, password) => {
+const signUp = async (name, email, password, phone) => {
   const {
     data: { data },
   } = await http.post(`${apiUrl}/auth/signup`, {
     email,
     name,
     password,
+    phone,
   });
 
   return data;

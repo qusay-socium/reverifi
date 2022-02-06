@@ -1,3 +1,4 @@
+import { useUser } from 'contexts/UserContext';
 import React from 'react';
 import VerifyPhoneForm from '../VerifyPhoneForm';
 import {
@@ -14,13 +15,17 @@ import {
  * @return {JSX.Element}
  */
 function VerifyPhoneWrapper() {
+  const {
+    userInfo: { phone },
+  } = useUser();
+
   return (
     <VerifyPhoneContainer>
       <InfoContainer>
         <Title>Verify your phone number</Title>
         <Subtitle>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod.
+          Please enter the verification code we sent to your mobile
+          {phone && ` **${phone?.slice(-2)}`}
         </Subtitle>
         <VerifyPhoneForm />
       </InfoContainer>
