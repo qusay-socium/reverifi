@@ -127,6 +127,7 @@ export const JoinUsText = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 31rem;
 
   svg {
     margin: 0.4rem 0 0 1rem;
