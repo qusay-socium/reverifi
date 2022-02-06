@@ -75,6 +75,10 @@ export const EmailLink = styled.a`
   font-size: 0.875rem;
   color: ${colors.gray};
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const SubscribeWrapper = styled.div`
@@ -97,7 +101,8 @@ export const LogoAndSocialContainer = styled.div`
 export const SubscribeInputWrapper = styled.div`
   input {
     &::placeholder {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
+      font-family: inherit;
     }
   }
   ${mq.desktop`
