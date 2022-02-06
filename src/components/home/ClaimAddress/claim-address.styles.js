@@ -42,14 +42,14 @@ export const MapIcon = styled(MapSmall)`
 `;
 
 export const ClaimAddressItems = styled.div`
-  align-items: center;
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
+
   span {
     font-size: 2rem;
     font-weight: 600;
-    padding: 2rem 0;
+    padding: 2rem 0.2rem;
     color: ${colors.white};
   }
 `;
