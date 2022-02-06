@@ -149,15 +149,11 @@ export const TextMedium = styled.p`
   color: ${colors.mineShaft};
   font-size: 1rem;
   margin: 0.2rem 0 0 0;
-  white-space: nowrap;
+  font-weight: 600;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-weight: 600;
-`;
-
-export const TextContainer = styled.div`
-  /* width: 90%; */
-  background-color: green;
+  white-space: nowrap;
+  width: 15rem;
 `;
 
 export const TextSmall = styled.p`
