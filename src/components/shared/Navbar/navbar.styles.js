@@ -112,6 +112,7 @@ export const NavControlSection = styled.div`
 
 export const UserControlSectionWrapper = styled(NavControlSection)`
   cursor: pointer;
+  gap: 0.7rem;
 `;
 
 export const Logo = styled(RawLogo)`
@@ -162,15 +163,12 @@ export const StyledInput = styled.input`
   height: 2.5rem;
 
   ::placeholder {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', Helvetica, sans-serif;
   }
 
   ${mq.desktopMax`
     font-size: 1.2rem;
-    
-    ::placeholder {
-      font-size: 1.2rem;
-    }
   `}
 `;
 
