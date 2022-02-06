@@ -61,6 +61,7 @@ const customSelectTheme = (theme) => ({
   ...theme,
   colors: {
     ...theme.colors,
+    dangerLight: colors.alabaster,
     primary: colors.green,
     primary25: colors.midGray,
   },
