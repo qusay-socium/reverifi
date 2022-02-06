@@ -203,8 +203,8 @@ export const MenuItem = styled.div`
   align-items: center;
   cursor: pointer;
   display: flex;
-  margin: 0.5rem 0 0.5rem 0.5rem;
   font-weight: 600;
+  margin: 0.5rem 0 0.5rem 0.5rem;
 
   &:hover {
     color: ${colors.green};
@@ -226,11 +226,11 @@ export const LogoutWrapper = styled.button`
   cursor: pointer;
   display: flex;
   font-size: 0.875rem;
+  font-weight: 600;
   height: 3rem;
   justify-content: flex-start;
   padding: 1rem;
   width: 100%;
-  font-weight: 600;
 
   svg {
     margin-right: 0.5rem;
