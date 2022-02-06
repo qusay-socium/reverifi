@@ -95,7 +95,13 @@ function Navbar() {
 
                 <MenuLine />
 
-                <LogoutWrapper type="button" onClick={logout}>
+                <LogoutWrapper
+                  type="button"
+                  onClick={() => {
+                    logout();
+                    navigate('/');
+                  }}
+                >
                   Sign Out
                 </LogoutWrapper>
               </MenuWrapper>
@@ -103,10 +109,10 @@ function Navbar() {
           </UserNavControlContainer>
         ) : (
           <UserNavRegContainer>
-            <SignInButton onClick={() => navigate('login')}>
+            <SignInButton onClick={() => navigate('/login')}>
               Sign In
             </SignInButton>
-            <SignUpButton onClick={() => navigate('sign-up')}>
+            <SignUpButton onClick={() => navigate('/sign-up')}>
               Join Now
             </SignUpButton>
           </UserNavRegContainer>
