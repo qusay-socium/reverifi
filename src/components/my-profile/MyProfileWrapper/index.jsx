@@ -76,6 +76,7 @@ function MyProfileWrapper() {
   const [languages, setLanguages] = useState([]);
   const [serviceAreas, setServiceAreas] = useState([]);
   const [fetchedUserData, setFetchedUserData] = useState({});
+
   const navigate = useNavigate();
 
   const {
@@ -151,28 +152,27 @@ function MyProfileWrapper() {
   const fetchUserInfo = async () => {
     if (!isLoggedIn) navigate('/sign-up');
 
-    const info = await getUserInfo();
-
-    if (!info) {
-      setFetchedUserData({ user: userInfo });
-    } else {
+    try {
+      const info = await getUserInfo();
       setFetchedUserData(info);
-    }
 
-    if (info.languages) {
-      const newLanguages = info.languages?.map((lang) => ({
-        label: lang,
-        value: lang,
-      }));
-      setLanguages(newLanguages);
-    }
+      if (info.languages) {
+        const newLanguages = info.languages?.map((lang) => ({
+          label: lang,
+          value: lang,
+        }));
+        setLanguages(newLanguages);
+      }
 
-    if (info.serviceAreas) {
-      const newAreas = info.serviceAreas?.map((area) => ({
-        label: area,
-        value: area,
-      }));
-      setServiceAreas(newAreas);
+      if (info.serviceAreas) {
+        const newAreas = info.serviceAreas?.map((area) => ({
+          label: area,
+          value: area,
+        }));
+        setServiceAreas(newAreas);
+      }
+    } catch (err) {
+      setFetchedUserData({ user: userInfo });
     }
 
     Object.keys(getValues()).map((value) => setFocus(value));
@@ -180,6 +180,20 @@ function MyProfileWrapper() {
   };
 
   useEffectOnce(fetchUserInfo);
+
+  /**
+   * Handle input function set max length for number fields
+   *
+   * @param {object} target input target object
+   *
+   */
+  const handleInput = ({ target }) => {
+    const numberPattern = /\d+/g;
+
+    if (!target.value.match(numberPattern)) {
+      target.value = '';
+    }
+  };
 
   return (
     <ProfileContainer>
@@ -211,10 +225,12 @@ function MyProfileWrapper() {
               defaultValue={fetchedUserData.user?.name}
             />
             <FormInput
-              type="number"
+              type="text"
               name="phone"
               label="Phone"
+              maxLength="15"
               labelIconElement={<PhoneIcon />}
+              onChange={handleInput}
               register={register}
               error={errors.phone?.message}
               defaultValue={fetchedUserData.user?.phone}
@@ -253,12 +269,14 @@ function MyProfileWrapper() {
                 defaultValue={fetchedUserData.city}
               />
               <FormInput
-                type="number"
+                type="text"
                 name="zipCode"
                 placeholder="zipCode"
+                maxLength="5"
                 register={register}
                 error={errors.zipCode?.message}
                 defaultValue={fetchedUserData.zipCode}
+                onChange={handleInput}
               />
               <FormInput
                 type="text"

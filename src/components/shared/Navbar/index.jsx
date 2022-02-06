@@ -88,7 +88,9 @@ function Navbar() {
                   <MenuItem>Saved listings</MenuItem>
                   <MenuItem>Saved agents</MenuItem>
                   <MenuItem>Dashboard</MenuItem>
-                  <MenuItem>Account settings</MenuItem>
+                  <MenuItem onClick={() => navigate('/my-profile')}>
+                    Account settings
+                  </MenuItem>
                 </MenuTopWrapper>
 
                 <MenuLine />
