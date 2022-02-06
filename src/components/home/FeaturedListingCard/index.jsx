@@ -109,10 +109,10 @@ function Card({ data }) {
 
       <OverlayBackground image={images[0]}>
         <Overlay>
+          <OverlayAddress>{address}</OverlayAddress>
           {propertyType?.type && (
             <OverlayProperty>{propertyType?.type}</OverlayProperty>
           )}
-          <OverlayAddress>{address}</OverlayAddress>
           <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 
           <OverlayFeatures>
