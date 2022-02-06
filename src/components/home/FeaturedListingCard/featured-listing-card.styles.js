@@ -15,24 +15,32 @@ export const OverlayProperty = styled.h4`
 export const OverlayAddress = styled.h3`
   color: ${colors.white};
   padding: 0 1rem;
+  margin: 0;
+  text-align: center;
 `;
 
 export const OverlayPrice = styled.h3`
   color: ${colors.green};
+  margin-top: 0;
 `;
 
 export const OverlayFeatures = styled.div`
+  align-items: center;
   display: flex;
+  justify-content: center;
   padding-bottom: 1rem;
+
   svg {
+    height: 1.2rem;
     margin-right: 1rem;
+    width: 1.7rem;
+
     path {
       fill: ${colors.white};
-      stroke: ${colors.white};
+    }
 
-      circle {
-        stroke: ${colors.white};
-      }
+    circle {
+      stroke: ${colors.white};
     }
   }
 
@@ -44,6 +52,7 @@ export const OverlayFeatures = styled.div`
 `;
 
 export const OverlayButton = styled(Button)`
+  margin-top: 1rem;
   color: ${colors.white};
 `;
 
@@ -151,7 +160,7 @@ export const TextSmall = styled.p`
 
 export const ServiceQuantity = styled.span`
   color: ${colors.mineShaft}7f;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding-right: 0.25rem;
 `;
 

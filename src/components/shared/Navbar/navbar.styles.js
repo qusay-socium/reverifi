@@ -128,7 +128,7 @@ export const Logo = styled(RawLogo)`
 export const SignInButton = styled(Button)`
   background-color: transparent;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const SignUpButton = styled(Button)`

@@ -41,7 +41,6 @@ export const AddButton = styled.button`
 `;
 
 export const Attendees = styled.h4`
-  color: ${colors.gray};
   font-size: 0.75rem;
   font-weight: normal;
   margin: 1.12rem 0 0 0;
