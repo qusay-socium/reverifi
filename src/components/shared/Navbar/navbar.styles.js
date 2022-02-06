@@ -47,11 +47,14 @@ export const NavItemsContainer = styled.div`
 export const NavLinksContainer = styled.div`
   display: none;
   font-size: 0.9rem;
-  span {
-    font-weight: bold;
+
+  a {
+    font-weight: 600;
+    color: ${colors.white};
+    text-decoration: none;
   }
 
-  span:hover {
+  a:hover {
     color: ${colors.green};
   }
 
@@ -62,11 +65,6 @@ export const NavLinksContainer = styled.div`
     justify-content: start;
     text-align: center;
     width: fit-content;
-
-    span {
-      cursor: pointer;
-      font-weight: 500;
-    }
   `}
 `;
 
