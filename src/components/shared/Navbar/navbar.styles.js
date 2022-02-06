@@ -185,7 +185,7 @@ export const MenuWrapper = styled.div`
   line-height: 1.5;
   margin-top: 0.5rem;
   opacity: 1;
-  width: 15rem;
+  width: 13rem;
 `;
 
 export const MenuTopWrapper = styled.div`
@@ -203,12 +203,8 @@ export const MenuItem = styled.div`
   align-items: center;
   cursor: pointer;
   display: flex;
-  margin: 0.5rem 0;
-
-  svg {
-    margin: 0 0.5rem;
-    width: 1rem;
-  }
+  margin: 0.5rem 0 0.5rem 0.5rem;
+  font-weight: 600;
 
   &:hover {
     color: ${colors.green};
@@ -234,6 +230,7 @@ export const LogoutWrapper = styled.button`
   justify-content: flex-start;
   padding: 1rem;
   width: 100%;
+  font-weight: 600;
 
   svg {
     margin-right: 0.5rem;
