@@ -40,7 +40,7 @@ function SignUp() {
   const { signUp } = useUser();
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
-  const [emailExist, setEmailExist] = useState(false);
+  const [emailExist, setEmailExist] = useState('');
 
   const {
     register,
@@ -59,8 +59,8 @@ function SignUp() {
     try {
       await signUp(name, email, password);
       navigate('/');
-    } catch (error) {
-      setEmailExist(true);
+    } catch ({ response }) {
+      if (response.status === 400) setEmailExist(response.data?.message);
     }
   };
 
@@ -90,7 +90,7 @@ function SignUp() {
               register={register}
               onChange={() => setEmailExist(false)}
             />
-            {emailExist && <Error>Email is already in use</Error>}
+            {emailExist && <Error>{emailExist}</Error>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
