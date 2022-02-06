@@ -5,6 +5,7 @@ import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
+import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -39,6 +40,7 @@ function SignUp() {
   const { signUp } = useUser();
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
+  const [emailExist, setEmailExist] = useState('');
 
   const {
     register,
@@ -57,8 +59,8 @@ function SignUp() {
     try {
       await signUp(name, email, password);
       navigate('/');
-    } catch (error) {
-      // TODO: show error to the user
+    } catch ({ response }) {
+      if (response.status === 400) setEmailExist(response.data?.message);
     }
   };
 
@@ -86,7 +88,9 @@ function SignUp() {
               name="email"
               placeholder="eg: Jhon@domain.com"
               register={register}
+              onChange={() => setEmailExist(false)}
             />
+            {emailExist && <Error>{emailExist}</Error>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
