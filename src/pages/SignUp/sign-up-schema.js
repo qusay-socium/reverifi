@@ -1,5 +1,9 @@
-/* eslint-disable no-useless-escape */
 import * as yup from 'yup';
+
+// make sure that the password have 1 uppercase, 1 lowercase, 1 special case and 1 number characters
+const passwordRegex =
+  // eslint-disable-next-line no-useless-escape
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
 const signUpSchema = yup
   .object({
@@ -12,7 +16,7 @@ const signUpSchema = yup
       .required()
       .min(8, 'password is too short - should be 8 chars minimum')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        passwordRegex,
         'must Contain One Uppercase, One Lowercase, One Number and One Special Case Character'
       )
       .typeError('password must be a number'),
