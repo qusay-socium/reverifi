@@ -3,10 +3,10 @@ import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
-import Button from 'components/shared/Button';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { useUser } from 'contexts/UserContext';
+import { SubmitButton } from 'pages/SignUp/sign-up.styles';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -95,7 +95,7 @@ function Login() {
 
           <LinkText>Forgot Password</LinkText>
 
-          <Button type="submit">Log In</Button>
+          <SubmitButton type="submit">Log In</SubmitButton>
         </Form>
 
         <SocialLinksContainer>
