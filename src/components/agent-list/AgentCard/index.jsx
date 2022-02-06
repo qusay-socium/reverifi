@@ -1,9 +1,11 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-var */
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { toUpperCaseFirstLetter } from 'utils/helpers';
+import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import {
   AgentPicture,
   ButtonsContainer,
@@ -53,18 +55,6 @@ function AgentCard({
   email,
   phoneNumber,
 }) {
-  const convertPhoneNumber = (phoneNum) => {
-    if (phoneNum) {
-      const num = phoneNum.split('');
-      num.splice(0, 0, '(');
-      num.splice(4, 0, ')');
-      num.splice(8, 0, '-');
-      num.join('');
-
-      return num;
-    }
-    return '';
-  };
   return (
     <Card>
       <ImgContainer>
@@ -96,7 +86,7 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Phone</PropertyText>
             </ContactProperty>
-            <ContactText>{convertPhoneNumber(phoneNumber)}</ContactText>
+            <ContactText>{formatPhoneNumber(phoneNumber)}</ContactText>
           </ContactField>
           <ContactField>
             <ContactProperty>
