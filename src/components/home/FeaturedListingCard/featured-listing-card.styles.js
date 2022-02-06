@@ -150,6 +150,19 @@ export const TextMedium = styled.p`
   margin: 0.2rem 0 0 0;
   line-height: 1.2rem;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  background-color: green;
+`;
+
+export const TextContainer = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  background-color: green;
 `;
 
 export const TextSmall = styled.p`
@@ -202,7 +215,7 @@ export const CardContainer = styled.div`
 
 export const OverlayBackground = styled(CardContainer)`
   background-repeat: no-repeat;
-  background-size: 100% 90%;
+  background-size: 100% 100%;
   background: url(${({ image }) => image});
   border-radius: 0.3rem;
   display: none;
@@ -229,6 +242,7 @@ export const CardParent = styled.div`
   margin: 1.2rem;
   position: relative;
   border-radius: 2rem;
+  box-shadow: 0rem 0.06rem 0.6rem 0.1rem ${colors.mineShaft}29;
 
   &:hover ${CardContainer} {
     display: none;
