@@ -50,7 +50,7 @@ function Footer() {
           <InfoGroupHeader>Subscribe to our newsletter</InfoGroupHeader>
           <SubscribeInputWrapper>
             <Input
-              placeholder="Subscribe to our Newsletter"
+              placeholder="Subscribe to our newsletter"
               rightElement={
                 <Button onClick={() => {}} ariaLabel="Subscribe">
                   Subscribe
