@@ -12,19 +12,25 @@ const myProfileSchema = yup
     email: yup.string().label('E-mail').email().required(),
     facebook: yup.string().label('Facebook'),
     instagram: yup.string().label('Instagram'),
-    languages: yup.array().min(1),
+    languages: yup
+      .array()
+      .min(1, 'Languages should have at least 1 value')
+      .typeError('Languages should have at least 1 value'),
     linkedin: yup.string().label('LinkedIn'),
     name: yup.string().label('Name').required(),
     phone: yup
-      .string()
+      .number()
       .label('Phone')
       .required()
-      .min(10, 'Must be 10 digits')
+      .min(13, 'must be at least 13 digits')
       .typeError('phone must be a number'),
-    serviceAreas: yup.array().min(1),
+    serviceAreas: yup
+      .array()
+      .min(1, 'Service areas should have at least 1 value')
+      .typeError('Service areas should have at least 1 value'),
     youtube: yup.string().label('YouTube'),
     zipCode: yup
-      .string()
+      .number()
       .required('zipCode is required')
       .typeError('zipCode must be a number')
       .min(5, 'Must be 5 digits'),

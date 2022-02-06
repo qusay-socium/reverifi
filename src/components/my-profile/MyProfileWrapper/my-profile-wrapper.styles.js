@@ -101,6 +101,12 @@ export const InputsContainer = styled.div`
     flex: 1;
   }
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   ${mq.desktopWide`
     flex-direction: row;
   `}
