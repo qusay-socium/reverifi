@@ -121,18 +121,20 @@ export const SelectFilter = styled.select`
 export const SelectType = styled(SelectFilter)`
   display: flex;
   margin: 0 0.625rem;
+  outline: none;
   width: 100%;
 `;
 
 export const LocationSearch = styled.input`
   align-content: center;
   align-items: center;
-  border: none;
   border-left: 0.0625rem solid ${colors.midGray};
+  border: none;
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
   margin: 0 0.3rem;
+  outline: none;
   padding: 0 1.6rem;
   width: 100%;
 
@@ -148,12 +150,13 @@ export const LocationSearch = styled.input`
 `;
 
 export const AgentSearch = styled.input`
-  border: none;
   border-left: 0.0625rem solid ${colors.midGray};
+  border: none;
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
   margin: 0 0.3rem;
+  outline: none;
   padding-left: 1.6rem;
   width: 100%;
 

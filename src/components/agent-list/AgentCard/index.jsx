@@ -1,9 +1,9 @@
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
-import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { toUpperCaseFirstLetter } from 'utils/helpers';
 import {
   AgentPicture,
   ButtonsContainer,
@@ -12,6 +12,7 @@ import {
   CardFooter,
   CardHeader,
   CompanyName,
+  ContactButton,
   ContactEmail,
   ContactField,
   ContactInfoContainer,
@@ -52,6 +53,18 @@ function AgentCard({
   email,
   phoneNumber,
 }) {
+  const convertPhoneNumber = (phoneNum) => {
+    if (phoneNum) {
+      const num = phoneNum.split('');
+      num.splice(0, 0, '(');
+      num.splice(4, 0, ')');
+      num.splice(8, 0, '-');
+      num.join('');
+
+      return num;
+    }
+    return '';
+  };
   return (
     <Card>
       <ImgContainer>
@@ -63,7 +76,7 @@ function AgentCard({
       <CardContent>
         <CardHeader>
           <div>
-            <Username>{agentName}</Username>
+            <Username>{toUpperCaseFirstLetter(agentName)}</Username>
             <CompanyName>{companyName}</CompanyName>
           </div>
           <ButtonsContainer>
@@ -83,7 +96,7 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Phone</PropertyText>
             </ContactProperty>
-            <ContactText>{phoneNumber}</ContactText>
+            <ContactText>{convertPhoneNumber(phoneNumber)}</ContactText>
           </ContactField>
           <ContactField>
             <ContactProperty>
@@ -108,7 +121,7 @@ function AgentCard({
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <Button onClick={() => {}}>Contact</Button>
+          <ContactButton onClick={() => {}}>Contact</ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <IconContainer>
