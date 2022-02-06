@@ -89,6 +89,7 @@ function Events() {
       </FilterList>
       <CardsContainer>
         <Slider
+          infinite={filterData().length > 3}
           dots={false}
           slidesToShow={4}
           slidesToScroll={4}
