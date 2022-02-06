@@ -1,8 +1,3 @@
-import { ReactComponent as SettingsIcon } from 'assets/icons/account-settings.svg';
-import { ReactComponent as DashboardMenu } from 'assets/icons/dashboard-menu.svg';
-import { ReactComponent as SavedListing } from 'assets/icons/saved-listing.svg';
-import { ReactComponent as SavedSearches } from 'assets/icons/saved-searches.svg';
-import { ReactComponent as SignOut } from 'assets/icons/sign-out.svg';
 import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
@@ -90,28 +85,15 @@ function Navbar() {
             >
               <MenuWrapper>
                 <MenuTopWrapper>
-                  <MenuItem type="button">
-                    <SavedListing />
-                    Saved listings
-                  </MenuItem>
-                  <MenuItem type="button">
-                    <SavedSearches />
-                    Saved agents
-                  </MenuItem>
-                  <MenuItem type="button">
-                    <DashboardMenu />
-                    Dashboard
-                  </MenuItem>
-                  <MenuItem type="button">
-                    <SettingsIcon />
-                    Account settings
-                  </MenuItem>
+                  <MenuItem>Saved listings</MenuItem>
+                  <MenuItem>Saved agents</MenuItem>
+                  <MenuItem>Dashboard</MenuItem>
+                  <MenuItem>Account settings</MenuItem>
                 </MenuTopWrapper>
 
                 <MenuLine />
 
                 <LogoutWrapper type="button" onClick={logout}>
-                  <SignOut />
                   Sign Out
                 </LogoutWrapper>
               </MenuWrapper>
