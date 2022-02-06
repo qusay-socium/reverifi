@@ -1,3 +1,4 @@
+import { Error } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -136,4 +137,10 @@ export const SocialLinksText = styled.p`
   a {
     font-size: 0.9rem;
   }
+`;
+
+export const ErrorMessage = styled(Error)`
+  font-size: 0.8rem;
+  margin: 0.5rem 0 0 0;
+  padding: 0.3rem;
 `;
