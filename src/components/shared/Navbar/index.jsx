@@ -64,7 +64,7 @@ function Navbar() {
           <span>Find an Agent</span>
           <span>Knowledge Center</span>
         </NavLinksContainer>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <UserNavControlContainer>
             <NavControlSection>
               <StyledInputGroup>
