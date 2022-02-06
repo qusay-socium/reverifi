@@ -73,7 +73,7 @@ function SignUp() {
       if (industryProfessional) {
         navigate('/verify-phone');
       } else {
-        navigate('/');
+        navigate('/my-roles');
       }
     } catch ({ response }) {
       if (response.status === 400) setEmailExist(response.data?.message);
