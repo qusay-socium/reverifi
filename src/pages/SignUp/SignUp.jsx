@@ -56,9 +56,18 @@ function SignUp() {
    *
    * @param {Object} data Form data.
    */
-  const submit = async ({ name, email, password }) => {
+  const submit = async ({
+    name,
+    email,
+    password,
+    phonePrefix,
+    phoneNumber,
+  }) => {
     try {
-      await signUp(name, email, password);
+      const phone =
+        phonePrefix && phoneNumber ? `${phonePrefix}-${phoneNumber}` : null;
+
+      await signUp(name, email, password, phone);
       navigate('/');
     } catch ({ response }) {
       if (response.status === 400) setEmailExist(response.data?.message);
