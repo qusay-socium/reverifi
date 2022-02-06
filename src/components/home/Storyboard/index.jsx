@@ -51,7 +51,7 @@ function Storyboard() {
                 <LocationPin />
                 <StyledInput
                   type="text"
-                  placeholder="Enter City"
+                  placeholder="Enter City, neighborhood, ZIP, or address"
                   onChange={(e) => setAddress(e.target.value)}
                 />
                 <SearchIcon onClick={handleSearch} />
