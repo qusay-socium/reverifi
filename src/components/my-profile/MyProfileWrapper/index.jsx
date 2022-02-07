@@ -15,6 +15,7 @@ import { ReactComponent as YoutubeIcon } from 'assets/icons/profile-youtube.svg'
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
 import avatar from 'assets/images/avatar.svg';
 import FormInput from 'components/shared/FormInput';
+import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
@@ -28,12 +29,12 @@ import { generateLabelValuePairs } from 'utils/helpers';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   AddressInputsContainer,
+  DataSavedMessage,
   EditIconContainer,
   FormContainer,
   FormSectionContainer,
   FormSectionTitle,
   ImageContainer,
-  InputError,
   InputLabel,
   InputsContainer,
   ProfileContainer,
@@ -74,10 +75,15 @@ const customSelectTheme = (theme) => ({
  */
 function MyProfileWrapper() {
   const { userInfo, isLoggedIn } = useUser();
-  const [languages, setLanguages] = useState([]);
-  const [serviceAreas, setServiceAreas] = useState([]);
+  const [languages, setLanguages] = useState(
+    generateLabelValuePairs(['English'])
+  );
+  const [serviceAreas, setServiceAreas] = useState(
+    generateLabelValuePairs(['New York'])
+  );
   const [fetchedUserData, setFetchedUserData] = useState({});
 
+  const [dataSaved, setDataSaved] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -142,9 +148,8 @@ function MyProfileWrapper() {
       aboutMe,
       user: { ...variables.user },
     }));
-    // eslint-disable-next-line no-alert
-    alert('data saved');
-    setFocus('name');
+
+    setDataSaved(true);
   };
 
   /**
@@ -212,7 +217,10 @@ function MyProfileWrapper() {
         </div>
       </UserInfoContainer>
 
-      <FormContainer onSubmit={handleSubmit(submit)}>
+      <FormContainer
+        onSubmit={handleSubmit(submit)}
+        onClick={() => setDataSaved(false)}
+      >
         <FormSectionContainer>
           <FormSectionTitle>Personal Information</FormSectionTitle>
           <InputsContainer>
@@ -319,7 +327,7 @@ function MyProfileWrapper() {
                 )}
               />
               {errors.languages?.message && (
-                <InputError>{errors.languages?.message}</InputError>
+                <Error>{errors.languages?.message}</Error>
               )}
             </div>
             <div>
@@ -351,7 +359,7 @@ function MyProfileWrapper() {
                 )}
               />
               {errors.serviceAreas?.message && (
-                <InputError>{errors.serviceAreas?.message}</InputError>
+                <Error>{errors.serviceAreas?.message}</Error>
               )}
             </div>
           </InputsContainer>
@@ -448,6 +456,10 @@ function MyProfileWrapper() {
         </FormSectionContainer>
 
         <SaveButton type="submit">Save</SaveButton>
+
+        {dataSaved && (
+          <DataSavedMessage>Data Saved Successfully</DataSavedMessage>
+        )}
       </FormContainer>
     </ProfileContainer>
   );

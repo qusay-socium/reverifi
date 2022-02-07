@@ -149,4 +149,9 @@ export const InputLabel = styled(Label)`
   width: 100%;
 `;
 
-export const InputError = styled(Error)``;
+export const DataSavedMessage = styled(Error)`
+  font-size: 1.1rem;
+  color: ${colors.green};
+  font-weight: 600;
+  margin-top: 1rem;
+`;
