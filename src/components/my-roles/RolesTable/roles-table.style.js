@@ -37,10 +37,12 @@ export const TableHead = styled.th`
 
 export const IconContainer = styled.button`
   background: none;
-  border: 0.05rem solid ${colors.white};
+  border: 0.08rem solid ${colors.white};
   cursor: pointer;
+  padding: 0.3rem;
 
-  :hover {
+  &:hover {
     border-color: ${colors.green};
+    border-radius: 10rem;
   }
 `;
