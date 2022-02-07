@@ -264,7 +264,7 @@ function MyProfileWrapper() {
               <FormInput
                 type="text"
                 name="country"
-                placeholder="country"
+                placeholder="Country"
                 register={register}
                 error={errors.country?.message}
                 defaultValue={fetchedUserData.country}
@@ -272,7 +272,7 @@ function MyProfileWrapper() {
               <FormInput
                 type="text"
                 name="city"
-                placeholder="city"
+                placeholder="City"
                 register={register}
                 error={errors.city?.message}
                 defaultValue={fetchedUserData.city}
@@ -280,7 +280,7 @@ function MyProfileWrapper() {
               <FormInput
                 type="text"
                 name="zipCode"
-                placeholder="zipCode"
+                placeholder="ZipCode"
                 maxLength="5"
                 register={register}
                 error={errors.zipCode?.message}
@@ -290,7 +290,7 @@ function MyProfileWrapper() {
               <FormInput
                 type="text"
                 name="address"
-                placeholder="address"
+                placeholder="Address"
                 register={register}
                 error={errors.address?.message}
                 defaultValue={fetchedUserData.address}
@@ -316,7 +316,7 @@ function MyProfileWrapper() {
                     isMulti
                     isSearchable={false}
                     options={languageOptions}
-                    placeholder="select languages..."
+                    placeholder="Select languages..."
                     theme={customSelectTheme}
                     value={languages}
                     onChange={(val) => {
@@ -348,7 +348,7 @@ function MyProfileWrapper() {
                     hideSelectedOptions={false}
                     isMulti
                     options={serviceAreasOptions}
-                    placeholder="select areas..."
+                    placeholder="Select areas..."
                     theme={customSelectTheme}
                     value={serviceAreas}
                     onChange={(val) => {
