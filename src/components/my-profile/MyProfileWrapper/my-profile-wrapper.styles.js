@@ -1,5 +1,5 @@
 import Button from 'components/shared/Button';
-import { Error, Label } from 'components/shared/FormInput/form-input.styles';
+import { Label } from 'components/shared/FormInput/form-input.styles';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -147,11 +147,4 @@ export const SaveButton = styled(Button)`
 export const InputLabel = styled(Label)`
   padding: ${({ noPadding }) => noPadding && 0};
   width: 100%;
-`;
-
-export const DataSavedMessage = styled(Error)`
-  font-size: 1.1rem;
-  color: ${colors.green};
-  font-weight: 600;
-  margin-top: 1rem;
 `;
