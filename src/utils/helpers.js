@@ -50,3 +50,14 @@ export const formatPhoneNumber = (phoneNumberString) => {
   }
   return null;
 };
+
+/**
+ * get Last Characters function
+ *
+ * @param {String} string text to return last characters of
+ * @param {Number} numOfCharacters number of characters to return
+ *
+ * @return {String} capitalized string
+ */
+export const getLastCharacters = (string, numOfCharacters = 2) =>
+  string?.slice(-numOfCharacters);

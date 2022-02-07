@@ -1,5 +1,6 @@
 import { useUser } from 'contexts/UserContext';
 import React from 'react';
+import { getLastCharacters } from 'utils/helpers';
 import VerifyPhoneForm from '../VerifyPhoneForm';
 import {
   BottomImage,
@@ -15,9 +16,7 @@ import {
  * @return {JSX.Element}
  */
 function VerifyPhoneWrapper() {
-  const {
-    userInfo: { phone },
-  } = useUser();
+  const { userInfo } = useUser();
 
   return (
     <VerifyPhoneContainer>
@@ -25,7 +24,7 @@ function VerifyPhoneWrapper() {
         <Title>Verify your phone number</Title>
         <Subtitle>
           Please enter the verification code we sent to your mobile
-          {phone && ` **${phone?.slice(-2)}`}
+          {userInfo?.phone && ` **${getLastCharacters(userInfo?.phone)}`}
         </Subtitle>
         <VerifyPhoneForm />
       </InfoContainer>
