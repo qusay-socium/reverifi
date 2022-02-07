@@ -128,7 +128,6 @@ export const ContactEmail = styled.a`
   font-weight: 600;
   line-height: 1.25rem;
   overflow: hidden;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 300px;
