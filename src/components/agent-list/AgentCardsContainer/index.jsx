@@ -86,7 +86,7 @@ function AgentCardsContainer() {
                 agentImg={userInfo?.image}
                 agentName={name}
                 companyName={userInfo?.company?.name}
-                email="ddddddddddddddddddddddddddddddddddddddddddd"
+                email={email}
                 phoneNumber={phone}
               />
             </Wrapper>
