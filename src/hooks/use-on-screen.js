@@ -10,8 +10,9 @@ import useEffectOnce from './use-effect-once';
 function useOnScreen(ref) {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  const observer = new IntersectionObserver(([entry]) =>
-    setIsIntersecting(entry.isIntersecting)
+  const observer = new IntersectionObserver(
+    ([entry]) => setIsIntersecting(entry.isIntersecting),
+    { threshold: 1.0 }
   );
 
   useEffectOnce(() => {
