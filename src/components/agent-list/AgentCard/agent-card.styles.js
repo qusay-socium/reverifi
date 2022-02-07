@@ -127,6 +127,16 @@ export const ContactEmail = styled.a`
   color: ${colors.azure};
   font-weight: 600;
   line-height: 1.25rem;
+  overflow: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+
+  ${mq.desktop`
+    width: 200px;
+    
+  `}
 `;
 
 export const Line = styled.hr`
