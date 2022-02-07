@@ -6,6 +6,11 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
+export const ContactButton = styled(Button)`
+  max-height: 2rem;
+  padding: 0 2.2rem;
+`;
+
 export const Card = styled.div`
   background-color: ${colors.white};
   border-radius: 0.5rem;
@@ -119,14 +124,14 @@ export const ContactText = styled.p`
 `;
 
 export const ContactEmail = styled.a`
-  color: ${colors.blue};
+  color: ${colors.azure};
   font-weight: 600;
   line-height: 1.25rem;
 `;
 
 export const Line = styled.hr`
-  border: 0.0625rem solid ${colors.mercury};
   margin: 0;
+  opacity: 0.4;
 `;
 
 export const HeartIcon = styled(Heart)`
@@ -171,5 +176,6 @@ export const CardFooter = styled.div`
 `;
 
 export const IconContainer = styled.div`
+  cursor: pointer;
   width: 1.375rem;
 `;

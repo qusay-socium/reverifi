@@ -34,3 +34,19 @@ export const generateLabelValuePairs = (data) =>
  */
 export const toUpperCaseFirstLetter = (string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
+
+/**
+ * format phone number
+ *
+ * @param {String} phoneNumberString to format
+ *
+ * @return {String} format phone number
+ */
+export const formatPhoneNumber = (phoneNumberString) => {
+  const cleaned = ` ${phoneNumberString}`.replace(/\D/g, '');
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
+  if (match) {
+    return `(${match[1]})  ${match[2]} - ${match[3]} `;
+  }
+  return null;
+};

@@ -1,9 +1,11 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-var */
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
-import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import {
   AgentPicture,
   ButtonsContainer,
@@ -12,6 +14,7 @@ import {
   CardFooter,
   CardHeader,
   CompanyName,
+  ContactButton,
   ContactEmail,
   ContactField,
   ContactInfoContainer,
@@ -63,7 +66,7 @@ function AgentCard({
       <CardContent>
         <CardHeader>
           <div>
-            <Username>{agentName}</Username>
+            <Username>{toUpperCaseFirstLetter(agentName)}</Username>
             <CompanyName>{companyName}</CompanyName>
           </div>
           <ButtonsContainer>
@@ -83,7 +86,7 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Phone</PropertyText>
             </ContactProperty>
-            <ContactText>{phoneNumber}</ContactText>
+            <ContactText>{formatPhoneNumber(phoneNumber)}</ContactText>
           </ContactField>
           <ContactField>
             <ContactProperty>
@@ -108,7 +111,7 @@ function AgentCard({
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <Button onClick={() => {}}>Contact</Button>
+          <ContactButton onClick={() => {}}>Contact</ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <IconContainer>
