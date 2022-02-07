@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getUsersByType } from 'services/user';
 import DesktopFilterSection from '../DesktopFilterSection';
 import MobileFilterSection from '../MobileFilterSection';
+import ResultNotFound from '../ResultNotFound';
 import {
   BannerContainer,
   CardsContainer,
@@ -77,18 +78,23 @@ function AgentCardsContainer() {
       </BannerContainer>
 
       <CardsContainer>
-        {agents?.map(({ id, name, phone, email, userInfo }) => (
-          <Wrapper key={id}>
-            <AgentCard
-              address={userInfo}
-              agentImg={userInfo?.image}
-              agentName={name}
-              companyName={userInfo?.company?.name}
-              email={email}
-              phoneNumber={phone}
-            />
-          </Wrapper>
-        ))}
+        {agents.length ? (
+          agents?.map(({ id, name, phone, email, userInfo }) => (
+            <Wrapper key={id}>
+              <AgentCard
+                address={userInfo}
+                agentImg={userInfo?.image}
+                agentName={name}
+                companyName={userInfo?.company?.name}
+                email={email}
+                phoneNumber={phone}
+              />
+            </Wrapper>
+          ))
+        ) : (
+          <ResultNotFound />
+        )}
+
         <HiddenComponent ref={hiddenComponentRef} />
       </CardsContainer>
     </Container>

@@ -128,8 +128,8 @@ export const SelectType = styled(SelectFilter)`
 export const LocationSearch = styled.input`
   align-content: center;
   align-items: center;
-  border-left: 0.0625rem solid ${colors.midGray};
   border: none;
+  border-left: 0.06rem solid ${colors.midGray};
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
@@ -150,8 +150,8 @@ export const LocationSearch = styled.input`
 `;
 
 export const AgentSearch = styled.input`
-  border-left: 0.0625rem solid ${colors.midGray};
   border: none;
+  border-left: 0.0625rem solid ${colors.midGray};
   cursor: text;
   font-size: 0.75rem;
   height: 100%;
