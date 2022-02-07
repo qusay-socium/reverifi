@@ -3,7 +3,7 @@
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
-import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
+import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';

@@ -21,7 +21,7 @@ export const Card = styled.div`
 
   ${mq.desktop`
     flex-direction: row;
-     height: 18.375rem;
+    height: 18.375rem;
   `};
 `;
 
