@@ -74,7 +74,7 @@ const customSelectTheme = (theme) => ({
  * @return {JSX.Element}
  */
 function MyProfileWrapper() {
-  const { userInfo, isLoggedIn } = useUser();
+  const { userInfo, isLoggedIn, setUserInfo } = useUser();
   const [languages, setLanguages] = useState(
     generateLabelValuePairs(['English'])
   );
@@ -150,6 +150,9 @@ function MyProfileWrapper() {
     }));
 
     setDataSaved(true);
+
+    // change global context value
+    setUserInfo({ email, name, phone });
   };
 
   /**
