@@ -96,6 +96,7 @@ export const CardBody = styled.div`
   justify-content: space-between;
   min-height: 6rem;
   padding: 1rem;
+  width: 100%;
 `;
 
 export const CardFooter = styled.div`
@@ -148,8 +149,11 @@ export const TextMedium = styled.p`
   color: ${colors.mineShaft};
   font-size: 1rem;
   margin: 0.2rem 0 0 0;
-  line-height: 1.2rem;
   font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 15rem;
 `;
 
 export const TextSmall = styled.p`
@@ -202,7 +206,7 @@ export const CardContainer = styled.div`
 
 export const OverlayBackground = styled(CardContainer)`
   background-repeat: no-repeat;
-  background-size: 100% 90%;
+  background-size: 100% 100%;
   background: url(${({ image }) => image});
   border-radius: 0.3rem;
   display: none;
@@ -229,6 +233,7 @@ export const CardParent = styled.div`
   margin: 1.2rem;
   position: relative;
   border-radius: 2rem;
+  box-shadow: 0rem 0.06rem 0.6rem 0.1rem ${colors.mineShaft}29;
 
   &:hover ${CardContainer} {
     display: none;
