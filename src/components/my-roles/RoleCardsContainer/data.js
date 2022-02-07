@@ -11,7 +11,11 @@ import { Icon } from 'components/my-roles/RoleCard/role-card.styles';
 
 const rolesData = [
   {
-    Icon: Icon(seller),
+    Icon: Icon(agent),
+    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    Icon: Icon(attorney),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
@@ -23,27 +27,23 @@ const rolesData = [
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
-    Icon: Icon(lender),
-    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
-    Icon: Icon(attorney),
-    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
-    Icon: Icon(agent),
-    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  },
-  {
     Icon: Icon(insuranceProvider),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
-    Icon: Icon(transactionCoordinator),
+    Icon: Icon(lender),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
   {
     Icon: Icon(reverifiPlus),
+    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    Icon: Icon(seller),
+    overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    Icon: Icon(transactionCoordinator),
     overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
 ];
