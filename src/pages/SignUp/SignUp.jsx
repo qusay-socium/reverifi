@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ReactComponent as Eye } from 'assets/eye-icon.svg';
 import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
@@ -7,6 +8,7 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
+import { InputGroup } from 'pages/Login/login.styles';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -41,6 +43,7 @@ function SignUp() {
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
+  const [passwordOn, setPasswordOn] = useState(false);
 
   const {
     register,
@@ -128,14 +131,17 @@ function SignUp() {
             {DoesEmailExist && <Error>{DoesEmailExist}</Error>}
           </InputWrapper>
           <InputWrapper>
-            <FormInput
-              name="password"
-              error={errors.password?.message}
-              label="Password"
-              register={register}
-              type="password"
-              onChange={() => setFocus('password')}
-            />
+            <InputGroup active={passwordOn}>
+              <FormInput
+                name="password"
+                error={errors.password?.message}
+                label="Password"
+                register={register}
+                type={passwordOn ? 'text' : 'password'}
+                onChange={() => setFocus('password')}
+              />
+              <Eye onClick={() => setPasswordOn(!passwordOn)} />
+            </InputGroup>
           </InputWrapper>
 
           <FormCheckbox

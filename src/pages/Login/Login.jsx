@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ReactComponent as Eye } from 'assets/eye-icon.svg';
 import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
@@ -19,6 +20,7 @@ import {
   GoogleButton,
   ImageContainer,
   InfoContainer,
+  InputGroup,
   InputWrapper,
   LinkText,
   LoginContainer,
@@ -35,6 +37,7 @@ import {
  */
 function Login() {
   const [error, setError] = useState(false);
+  const [passwordOn, setPasswordOn] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
 
@@ -82,15 +85,18 @@ function Login() {
             />
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
-            <FormInput
-              name="password"
-              error={errors.password?.message}
-              label="Password"
-              register={register}
-              type="password"
-              onChange={() => setFocus('password')}
-            />
-            {error && <ErrorMessage>Invalid email or password</ErrorMessage>}
+            <InputGroup active={passwordOn}>
+              <FormInput
+                name="password"
+                error={errors.password?.message}
+                label="Password"
+                register={register}
+                type={passwordOn ? 'text' : 'password'}
+                onChange={() => setFocus('password')}
+              />
+              {error && <ErrorMessage>Invalid email or password</ErrorMessage>}
+              <Eye onClick={() => setPasswordOn(!passwordOn)} />
+            </InputGroup>
           </InputWrapper>
           <FormCheckbox
             name="rememberMe"
