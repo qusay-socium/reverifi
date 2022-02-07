@@ -33,7 +33,7 @@ export const generateLabelValuePairs = (data) =>
  * @return {String} capitalized string
  */
 export const toUpperCaseFirstLetter = (string) =>
-  string.charAt(0).toUpperCase() + string.slice(1);
+  string?.charAt(0).toUpperCase() + string?.slice(1);
 
 /**
  * format phone number
