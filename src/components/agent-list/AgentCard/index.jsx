@@ -67,7 +67,7 @@ function AgentCard({
         <CardHeader>
           <div>
             <Username>{toUpperCaseFirstLetter(agentName)}</Username>
-            <CompanyName>{companyName}</CompanyName>
+            <CompanyName>{toUpperCaseFirstLetter(companyName)}</CompanyName>
           </div>
           <ButtonsContainer>
             <RoundedButton ariaLabel="Like" onClick={() => {}}>
