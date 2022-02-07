@@ -75,6 +75,17 @@ export const FormContainer = styled.form`
       font-size: 0.875rem;
     }
 
+    .profile__menu {
+      .profile__option--is-selected {
+        background-color: ${colors.white};
+        color: ${colors.green};
+
+        &::before {
+          content: '▸ ';
+        }
+      }
+    }
+
     .profile__placeholder {
       font-size: 0.8rem;
     }
