@@ -1,6 +1,7 @@
 /* eslint-disable prefer-template */
 /* eslint-disable no-var */
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
+import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
 import PropTypes from 'prop-types';
@@ -48,7 +49,7 @@ import {
  * @return {JSX.Element} The agent card holding all of the agent's information.
  */
 function AgentCard({
-  address: { city, country, zipCode },
+  address,
   agentImg,
   agentName,
   companyName,
@@ -58,8 +59,8 @@ function AgentCard({
   return (
     <Card>
       <ImgContainer>
-        <AgentPicture src={agentImg} />
-        <HeartButton ariaLabel="Favorite" onClick={() => {}}>
+        <AgentPicture src={agentImg || avatarPlaceholder} />
+        <HeartButton ariaLabel="Favorite">
           <HeartIcon />
         </HeartButton>
       </ImgContainer>
@@ -70,24 +71,27 @@ function AgentCard({
             <CompanyName>{toUpperCaseFirstLetter(companyName)}</CompanyName>
           </div>
           <ButtonsContainer>
-            <RoundedButton ariaLabel="Like" onClick={() => {}}>
+            <RoundedButton ariaLabel="Like">
               <LikeIcon />
             </RoundedButton>
-            <RoundedButton ariaLabel="Share" onClick={() => {}}>
+            <RoundedButton ariaLabel="Share">
               <ShareIcon />
             </RoundedButton>
           </ButtonsContainer>
         </CardHeader>
         <ContactInfoContainer>
-          <ContactField>
-            <ContactProperty>
-              <PropertyIconContainer>
-                <PhoneIcon />
-              </PropertyIconContainer>
-              <PropertyText>Phone</PropertyText>
-            </ContactProperty>
-            <ContactText>{formatPhoneNumber(phoneNumber)}</ContactText>
-          </ContactField>
+          {phoneNumber && (
+            <ContactField>
+              <ContactProperty>
+                <PropertyIconContainer>
+                  <PhoneIcon />
+                </PropertyIconContainer>
+                <PropertyText>Phone</PropertyText>
+              </ContactProperty>
+              <ContactText>{formatPhoneNumber(phoneNumber)}</ContactText>
+            </ContactField>
+          )}
+
           <ContactField>
             <ContactProperty>
               <PropertyIconContainer>
@@ -97,21 +101,23 @@ function AgentCard({
             </ContactProperty>
             <ContactEmail href={`mailto:${email}`}>{email}</ContactEmail>
           </ContactField>
-          <ContactField>
-            <ContactProperty>
-              <PropertyIconContainer>
-                <AddressIcon />
-              </PropertyIconContainer>
-              <PropertyText>Address</PropertyText>
-            </ContactProperty>
-            <ContactText>
-              {zipCode} {city}, {country}
-            </ContactText>
-          </ContactField>
+          {address && (
+            <ContactField>
+              <ContactProperty>
+                <PropertyIconContainer>
+                  <AddressIcon />
+                </PropertyIconContainer>
+                <PropertyText>Address</PropertyText>
+              </ContactProperty>
+              <ContactText>
+                {address?.zipCode} {address?.city}, {address?.country}
+              </ContactText>
+            </ContactField>
+          )}
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <ContactButton onClick={() => {}}>Contact</ContactButton>
+          <ContactButton>Contact</ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <IconContainer>
