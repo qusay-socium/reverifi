@@ -89,6 +89,7 @@ function Login() {
               type="password"
               onChange={() => setFocus('password')}
             />
+            {error && <ErrorMessage>Invalid email or password</ErrorMessage>}
           </InputWrapper>
           <FormCheckbox
             name="rememberMe"
@@ -96,8 +97,6 @@ function Login() {
             register={register}
           />
           <LinkText>Forgot Password</LinkText>
-
-          {error && <ErrorMessage>Wrong password or email</ErrorMessage>}
 
           <SubmitButton type="submit">Log In</SubmitButton>
         </Form>
