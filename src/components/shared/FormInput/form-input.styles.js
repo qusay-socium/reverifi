@@ -13,6 +13,12 @@ export const Label = styled.label`
   font-size: 0.9375rem;
   gap: 0.5rem;
   padding-bottom: 0.625rem;
+
+  > span {
+    color: ${colors.red};
+    align-self: revert;
+    line-height: 0;
+  }
 `;
 
 export const Input = styled.input`
@@ -26,7 +32,8 @@ export const Input = styled.input`
   }
 
   &:focus {
-    outline: 0.0625rem solid ${colors.green};
+    outline: ${({ error }) =>
+      error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.green}`};
   }
 
   ::-webkit-inner-spin-button,

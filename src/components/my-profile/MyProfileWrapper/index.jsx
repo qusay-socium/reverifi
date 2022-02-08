@@ -240,7 +240,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.name?.message}
               defaultValue={fetchedUserData.user?.name}
-              onChange={() => setFocus('name')}
+              required
             />
             <FormInput
               type="text"
@@ -252,6 +252,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.phone?.message}
               defaultValue={fetchedUserData.user?.phone}
+              required
             />
           </InputsContainer>
           <InputsContainer>
@@ -277,7 +278,7 @@ function MyProfileWrapper() {
                 register={register}
                 error={errors.country?.message}
                 defaultValue={fetchedUserData.country}
-                onChange={() => setFocus('country')}
+                required
               />
               <FormInput
                 type="text"
@@ -286,7 +287,7 @@ function MyProfileWrapper() {
                 register={register}
                 error={errors.city?.message}
                 defaultValue={fetchedUserData.city}
-                onChange={() => setFocus('city')}
+                required
               />
               <FormInput
                 type="text"
@@ -297,6 +298,7 @@ function MyProfileWrapper() {
                 error={errors.zipCode?.message}
                 defaultValue={fetchedUserData.zipCode}
                 onChange={handleInput}
+                required
               />
               <FormInput
                 type="text"
