@@ -120,7 +120,10 @@ function SignUp() {
               name="email"
               placeholder="eg: Jhon@domain.com"
               register={register}
-              onChange={() => setEmailExist(false)}
+              onChange={() => {
+                setEmailExist(false);
+                setFocus('email');
+              }}
             />
             {emailExist && <Error>{emailExist}</Error>}
           </InputWrapper>
