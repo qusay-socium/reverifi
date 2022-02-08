@@ -30,7 +30,7 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
-  color: ${colors.mineShaft}7f;
+  color: ${colors.mineShaft};
   font-size: 0.9375rem;
   padding-bottom: 0.625rem;
 `;

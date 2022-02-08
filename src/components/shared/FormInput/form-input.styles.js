@@ -22,7 +22,7 @@ export const Input = styled.input`
   width: 100%;
 
   ::placeholder {
-    color: ${colors.mercury};
+    color: ${colors.midGray};
   }
 
   &:focus {
