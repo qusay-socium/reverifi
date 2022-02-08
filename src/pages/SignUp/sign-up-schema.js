@@ -13,11 +13,16 @@ const signUpSchema = yup
     password: yup
       .string()
       .label('Password')
-      .required()
-      .min(8, 'password is too short - should be 8 chars minimum')
+      .required(
+        'Password should contain at least 8 characters, 1 upper and lower case letter, 1 number and 1 special case character'
+      )
+      .min(
+        8,
+        'Password should be at least 8 characters and contain 1 upper and lower case letter, 1 number and 1 special case character'
+      )
       .matches(
         passwordRegex,
-        'must Contain One Uppercase, One Lowercase, One Number and One Special Case Character'
+        'Password should be at least 8 characters and contain 1 upper and lower case letter and 1 number and 1 special case character'
       )
       .typeError('password must be a number'),
     phoneNumber: yup
