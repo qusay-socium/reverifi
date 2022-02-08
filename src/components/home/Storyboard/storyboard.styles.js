@@ -102,6 +102,24 @@ export const StyledInputGroup = styled.div`
   display: flex;
   gap: 1rem;
   height: 100%;
+  position: relative;
+`;
+
+export const ClearInputButton = styled.div`
+  svg {
+    margin-top: 0.5rem;
+    height: 1rem;
+    width: 0.9rem;
+    cursor: pointer;
+
+    path {
+      fill: ${colors.dustyGray};
+
+      &:hover {
+        fill: ${colors.gray};
+      }
+    }
+  }
 `;
 
 export const StyledInput = styled.input`

@@ -10,6 +10,10 @@ export const CardContainer = styled.div`
   margin: 2rem;
   overflow: hidden;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${mq.tabletWide`
       flex-direction: row;
   `}
@@ -30,21 +34,23 @@ export const ImageContainer = styled.div`
 
   ${mq.tabletWide`
     max-height: 20rem;
-    width: 10rem;
+    max-width: 10rem;
   `}
+
+  ${mq.desktop`
+      max-height: 20rem;
+      max-width: 10rem;
+    `}
 `;
 
 export const Badge = styled.div`
   background-color: ${colors.green};
-  border-radius: 0.3125rem;
+  border-radius: 0.3rem;
   color: ${colors.white};
-  margin: 1rem;
-  padding: 0.3rem 1.2rem;
+  margin: 0.6rem;
+  padding: 0.3rem 1rem;
   position: absolute;
-
-  ${mq.tablet`
-      margin: 0.5rem;
-  `}
+  font-size: 0.7rem;
 `;
 
 export const Image = styled.img`
@@ -67,6 +73,8 @@ export const PriceText = styled.h4`
 export const LocationText = styled.div`
   color: ${colors.dustyGrey};
   display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
 `;
 
 export const LocationIcon = styled.p`
@@ -79,30 +87,20 @@ export const IconsContainer = styled.div`
   color: ${colors.dustyGrey};
   display: flex;
   font-size: 0.7rem;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
   max-width: 60%;
 
-  ${mq.mobileWide`
-    max-width: 35%;
-  `}
-
-  ${mq.tablet`
-    max-width: 30%;
-  `}
-
-  ${mq.tabletWide`
-      max-width: 50%;
-  `}
+  svg {
+    margin-right: 0.5rem;
+    height: 1rem;
+    width: 1.4rem;
+  }
 `;
 
 export const IconsNumber = styled.div`
   align-items: center;
   display: flex;
-
-  svg {
-    margin-left: 0.1rem;
-  }
+  font-size: 1rem;
 `;
 
 export const Label = styled.label`

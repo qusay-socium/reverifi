@@ -6,8 +6,10 @@ import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
 import PropTypes from 'prop-types/prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import appPaths from 'utils/appPath';
 import {
   Badge,
   CardContainer,
@@ -28,13 +30,17 @@ import {
  * @return {JSX.Element}
  */
 function Card({ data }) {
+  const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
   if (data.length < 0) return null;
 
-  const { images, price, address, fullBathrooms, bedrooms } = data;
+  const { images, price, address, fullBathrooms, bedrooms, id } = data;
 
+  const handleClick = () => {
+    navigate(`${appPaths.listingPaths.details}/${id}`);
+  };
   return (
-    <CardContainer>
+    <CardContainer onClick={handleClick}>
       <ImageContainer>
         <Badge>Sale</Badge>
         <Image src={images[0]} />
@@ -54,13 +60,19 @@ function Card({ data }) {
             {bedrooms}
             <Bed />
           </IconsNumber>
-          <WifiIcon />
+          <IconsNumber>
+            <WifiIcon />
+          </IconsNumber>
           <IconsNumber>
             {fullBathrooms}
             <BathtubIcon />
           </IconsNumber>
-          <AirConditionerIcon />
-          <BenchIcon />
+          <IconsNumber>
+            <BenchIcon />
+          </IconsNumber>
+          <IconsNumber>
+            <AirConditionerIcon />
+          </IconsNumber>
         </IconsContainer>
       </CardText>
     </CardContainer>
@@ -73,7 +85,7 @@ Card.propTypes = {
     bedrooms: PropTypes.number,
     fullBathrooms: PropTypes.number,
     id: PropTypes.string,
-    images: PropTypes.arrayOfObject,
+    images: PropTypes.arrayOf(PropTypes.string),
     price: PropTypes.number,
   }).isRequired,
 };
