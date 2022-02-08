@@ -70,28 +70,29 @@ export const InputGroup = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+`;
 
-  div {
-    width: 100%;
-  }
-  input {
-  }
+export const PasswordInputRapper = styled.div`
+  width: 100%;
+`;
+
+export const EyeIconRapper = styled.div`
+  bottom: 0.75rem;
+  height: 0.9rem;
+  position: absolute;
+  right: 0.8rem;
+  width: 1.6rem;
+
   svg {
-    bottom: 0.75rem;
-    height: 0.9rem;
-    position: absolute;
-    right: 0.8rem;
-    width: 1.6rem;
-
     path {
       fill: ${({ active }) => (active ? colors.green : colors.gray)};
     }
+  }
 
-    &:hover {
-      cursor: pointer;
-      path {
-        fill: ${colors.dustyGray};
-      }
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: ${colors.dustyGray};
     }
   }
 `;

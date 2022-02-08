@@ -8,7 +8,11 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
-import { InputGroup } from 'pages/Login/login.styles';
+import {
+  EyeIconRapper,
+  InputGroup,
+  PasswordInputRapper,
+} from 'pages/Login/login.styles';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -131,16 +135,20 @@ function SignUp() {
             {DoesEmailExist && <Error>{DoesEmailExist}</Error>}
           </InputWrapper>
           <InputWrapper>
-            <InputGroup active={passwordOn}>
-              <FormInput
-                name="password"
-                error={errors.password?.message}
-                label="Password"
-                register={register}
-                type={passwordOn ? 'text' : 'password'}
-                onChange={() => setFocus('password')}
-              />
-              <Eye onClick={() => setPasswordOn(!passwordOn)} />
+            <InputGroup>
+              <PasswordInputRapper>
+                <FormInput
+                  name="password"
+                  error={errors.password?.message}
+                  label="Password"
+                  register={register}
+                  type={passwordOn ? 'text' : 'password'}
+                  onChange={() => setFocus('password')}
+                />
+              </PasswordInputRapper>
+              <EyeIconRapper active={passwordOn}>
+                <Eye onClick={() => setPasswordOn(!passwordOn)} />
+              </EyeIconRapper>
             </InputGroup>
           </InputWrapper>
 
