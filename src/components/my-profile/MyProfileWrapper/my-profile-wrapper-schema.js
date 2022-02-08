@@ -4,12 +4,20 @@ const myProfileSchema = yup
   .object({
     aboutMe: yup.string().label('About'),
     address: yup.string(),
-    city: yup.string().required('City is required'),
+    city: yup
+      .object()
+      .required('City is required')
+      .typeError('City is required')
+      .nullable(),
     companyEmail: yup.string().email(),
     companyName: yup.string().label('Company'),
     companyWebsite: yup.string().label('Website'),
-    country: yup.string().required('Country is required'),
-    email: yup.string().label('E-mail').email().required(),
+    country: yup
+      .object()
+      .required('Country is required')
+      .typeError('Country is required')
+      .nullable(),
+    email: yup.string().label('E-mail').email(),
     facebook: yup.string().label('Facebook'),
     instagram: yup.string().label('Instagram'),
     languages: yup.array().min(1, 'Languages field must have at least 1 item'),

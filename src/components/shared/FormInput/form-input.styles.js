@@ -18,6 +18,7 @@ export const Label = styled.label`
     color: ${colors.red};
     align-self: revert;
     line-height: 0;
+    margin-left: -0.2rem;
   }
 `;
 

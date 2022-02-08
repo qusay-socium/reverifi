@@ -36,6 +36,7 @@ function FormInput({
   labelIconElement,
   defaultValue,
   required,
+  disabled,
 }) {
   return (
     <Container>
@@ -60,6 +61,7 @@ function FormInput({
         step={step}
         defaultValue={defaultValue}
         error={error}
+        disabled={disabled}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -67,7 +69,8 @@ function FormInput({
 }
 
 FormInput.propTypes = {
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.node,
+  disabled: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
@@ -87,6 +90,7 @@ FormInput.propTypes = {
 
 FormInput.defaultProps = {
   defaultValue: null,
+  disabled: false,
   error: null,
   id: null,
   label: null,
