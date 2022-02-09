@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-else-return */
 /**
  * get dates difference function
  *
@@ -38,16 +40,40 @@ export const toUpperCaseFirstLetter = (string) =>
 /**
  * format phone number
  *
- * @param {String} phoneNumberString to format
+ * @param {String} phoneNumber to format
  *
- * @return {String} format phone number
+ * @return {String} format phone number (000) 000 - 0000
  */
-export const formatPhoneNumber = (phoneNumberString) => {
-  const cleaned = ` ${phoneNumberString}`.replace(/\D/g, '');
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
-  if (match) {
-    return `(${match[1]})  ${match[2]} - ${match[3]} `;
+export const formatPhoneNumber = (phoneNumber) => {
+  if (!phoneNumber) return null;
+
+  const phoneNumberString = phoneNumber.toString();
+
+  let reg;
+  let lastPartLength;
+
+  if (phoneNumberString?.length > 6) {
+    lastPartLength = phoneNumberString?.length - 6;
+    reg = `^(\\d{3})(\\d{3})(\\d{${lastPartLength}})$`;
+  } else {
+    lastPartLength = phoneNumberString?.length - 3;
+    reg = `^(\\d{3})(\\d{${lastPartLength}})$`;
   }
+
+  const regex = new RegExp(reg);
+  const cleaned = ` ${phoneNumberString}`.replace(/\D/g, '');
+  const match = cleaned.match(regex);
+
+  const countryCode = match[1];
+  const areaCode = match[2];
+  const lineNumber = match[3];
+
+  if (match && phoneNumberString?.length > 6) {
+    return `(${countryCode}) ${areaCode} - ${lineNumber}`;
+  } else if (match && phoneNumberString?.length <= 6) {
+    return areaCode ? `(${countryCode}) - ${areaCode}` : `(${countryCode})`;
+  }
+
   return null;
 };
 
