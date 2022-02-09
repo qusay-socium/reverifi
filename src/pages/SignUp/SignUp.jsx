@@ -9,7 +9,7 @@ import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
 import {
-  EyeIconRapper,
+  IconContainer,
   InputGroup,
   PasswordInputRapper,
 } from 'pages/Login/login.styles';
@@ -47,7 +47,7 @@ function SignUp() {
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
-  const [passwordOn, setPasswordOn] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const {
     register,
@@ -142,13 +142,13 @@ function SignUp() {
                   error={errors.password?.message}
                   label="Password"
                   register={register}
-                  type={passwordOn ? 'text' : 'password'}
+                  type={isShowPassword ? 'text' : 'password'}
                   onChange={() => setFocus('password')}
                 />
               </PasswordInputRapper>
-              <EyeIconRapper active={passwordOn}>
-                <Eye onClick={() => setPasswordOn(!passwordOn)} />
-              </EyeIconRapper>
+              <IconContainer active={isShowPassword}>
+                <Eye onClick={() => setIsShowPassword(!isShowPassword)} />
+              </IconContainer>
             </InputGroup>
           </InputWrapper>
 

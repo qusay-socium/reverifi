@@ -76,7 +76,7 @@ export const PasswordInputRapper = styled.div`
   width: 100%;
 `;
 
-export const EyeIconRapper = styled.div`
+export const IconContainer = styled.div`
   bottom: 0.75rem;
   height: 0.9rem;
   position: absolute;

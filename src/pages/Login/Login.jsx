@@ -37,7 +37,7 @@ import {
  */
 function Login() {
   const [error, setError] = useState(false);
-  const [passwordOn, setPasswordOn] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
 
@@ -85,17 +85,17 @@ function Login() {
             />
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
-            <InputGroup active={passwordOn}>
+            <InputGroup active={isShowPassword}>
               <FormInput
                 name="password"
                 error={errors.password?.message}
                 label="Password"
                 register={register}
-                type={passwordOn ? 'text' : 'password'}
+                type={isShowPassword ? 'text' : 'password'}
                 onChange={() => setFocus('password')}
               />
               {error && <ErrorMessage>Invalid email or password</ErrorMessage>}
-              <Eye onClick={() => setPasswordOn(!passwordOn)} />
+              <Eye onClick={() => setIsShowPassword(!isShowPassword)} />
             </InputGroup>
           </InputWrapper>
           <FormCheckbox
