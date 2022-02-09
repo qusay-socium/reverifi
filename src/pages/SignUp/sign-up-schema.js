@@ -13,11 +13,16 @@ const signUpSchema = yup
     password: yup
       .string()
       .label('Password')
-      .required()
-      .min(8, 'password is too short - should be 8 chars minimum')
+      .required(
+        'Password should contain at least 8 characters, 1 upper and lower case letter, 1 number and 1 special case character'
+      )
+      .min(
+        8,
+        'Password should be at least 8 characters and contain 1 upper and lower case letter, 1 number and 1 special case character'
+      )
       .matches(
         passwordRegex,
-        'must Contain One Uppercase, One Lowercase, One Number and One Special Case Character'
+        'Password should be at least 8 characters and contain 1 upper and lower case letter and 1 number and 1 special case character'
       )
       .typeError('password must be a number'),
     phoneNumber: yup
@@ -29,8 +34,8 @@ const signUpSchema = yup
         is: true,
         then: yup
           .number()
-          .required('number is required')
-          .typeError('number is required'),
+          .required('Number is required')
+          .typeError('Number is required'),
       }),
     phonePrefix: yup
       .number()
@@ -41,8 +46,8 @@ const signUpSchema = yup
         is: true,
         then: yup
           .number()
-          .required('ext is required')
-          .typeError('ext is required'),
+          .required('Ext is required')
+          .typeError('Ext is required'),
       }),
   })
   .required();
