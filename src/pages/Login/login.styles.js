@@ -78,10 +78,8 @@ export const PasswordInputRapper = styled.div`
 
 export const IconContainer = styled.div`
   bottom: 0.75rem;
-  height: 0.9rem;
+  right: 0.9rem;
   position: absolute;
-  right: 0.8rem;
-  width: 1.6rem;
 
   svg {
     path {
@@ -92,7 +90,7 @@ export const IconContainer = styled.div`
   &:hover {
     cursor: pointer;
     path {
-      fill: ${colors.dustyGray};
+      fill: ${({ active }) => (active ? colors.green : colors.dustyGray)};
     }
   }
 `;

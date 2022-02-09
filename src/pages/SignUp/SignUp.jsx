@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ReactComponent as Eye } from 'assets/eye-icon.svg';
+import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
@@ -145,10 +145,10 @@ function SignUp() {
                   type={isShowPassword ? 'text' : 'password'}
                   onChange={() => setFocus('password')}
                 />
+                <IconContainer active={isShowPassword}>
+                  <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
+                </IconContainer>
               </PasswordInputRapper>
-              <IconContainer active={isShowPassword}>
-                <Eye onClick={() => setIsShowPassword(!isShowPassword)} />
-              </IconContainer>
             </InputGroup>
           </InputWrapper>
 

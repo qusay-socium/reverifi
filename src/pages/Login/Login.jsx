@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ReactComponent as Eye } from 'assets/eye-icon.svg';
+import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
@@ -18,6 +18,7 @@ import {
   FacebookButton,
   Form,
   GoogleButton,
+  IconContainer,
   ImageContainer,
   InfoContainer,
   InputGroup,
@@ -25,6 +26,7 @@ import {
   LinkText,
   LoginContainer,
   OrText,
+  PasswordInputRapper,
   SocialLinksContainer,
   SocialLinksText,
   Title,
@@ -85,17 +87,23 @@ function Login() {
             />
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
-            <InputGroup active={isShowPassword}>
-              <FormInput
-                name="password"
-                error={errors.password?.message}
-                label="Password"
-                register={register}
-                type={isShowPassword ? 'text' : 'password'}
-                onChange={() => setFocus('password')}
-              />
-              {error && <ErrorMessage>Invalid email or password</ErrorMessage>}
-              <Eye onClick={() => setIsShowPassword(!isShowPassword)} />
+            <InputGroup>
+              <PasswordInputRapper>
+                <FormInput
+                  name="password"
+                  error={errors.password?.message}
+                  label="Password"
+                  register={register}
+                  type={isShowPassword ? 'text' : 'password'}
+                  onChange={() => setFocus('password')}
+                />
+                {error && (
+                  <ErrorMessage>Invalid email or password</ErrorMessage>
+                )}
+                <IconContainer active={isShowPassword}>
+                  <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
+                </IconContainer>
+              </PasswordInputRapper>
             </InputGroup>
           </InputWrapper>
           <FormCheckbox
