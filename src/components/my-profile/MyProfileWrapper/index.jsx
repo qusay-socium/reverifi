@@ -194,6 +194,8 @@ function MyProfileWrapper() {
    *
    */
   const handleInput = ({ target }) => {
+    setFocus(target.name);
+
     const numberPattern = /\d+/g;
 
     if (!target.value.match(numberPattern)) {
@@ -232,6 +234,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.name?.message}
               defaultValue={fetchedUserData.user?.name}
+              onChange={() => setFocus('name')}
             />
             <FormInput
               type="text"
@@ -268,6 +271,7 @@ function MyProfileWrapper() {
                 register={register}
                 error={errors.country?.message}
                 defaultValue={fetchedUserData.country}
+                onChange={() => setFocus('country')}
               />
               <FormInput
                 type="text"
@@ -276,6 +280,7 @@ function MyProfileWrapper() {
                 register={register}
                 error={errors.city?.message}
                 defaultValue={fetchedUserData.city}
+                onChange={() => setFocus('city')}
               />
               <FormInput
                 type="text"
@@ -294,6 +299,7 @@ function MyProfileWrapper() {
                 register={register}
                 error={errors.address?.message}
                 defaultValue={fetchedUserData.address}
+                onChange={() => setFocus('address')}
               />
             </AddressInputsContainer>
           </InputsContainer>
@@ -372,6 +378,7 @@ function MyProfileWrapper() {
             register={register}
             error={errors.about?.message}
             defaultValue={fetchedUserData.aboutMe}
+            onChange={() => setFocus('aboutMe')}
           />
         </FormSectionContainer>
 
@@ -386,6 +393,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.companyName?.message}
               defaultValue={fetchedUserData.company?.name}
+              onChange={() => setFocus('companyName')}
             />
             <FormInput
               type="email"
@@ -395,6 +403,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.companyEmail?.message}
               defaultValue={fetchedUserData.company?.email}
+              onChange={() => setFocus('companyEmail')}
             />
           </InputsContainer>
           <InputsContainer>
@@ -406,6 +415,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.companyWebsite?.message}
               defaultValue={fetchedUserData.company?.website}
+              onChange={() => setFocus('companyWebsite')}
             />
             <div />
           </InputsContainer>
@@ -422,6 +432,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.facebook?.message}
               defaultValue={fetchedUserData.socials?.facebook}
+              onChange={() => setFocus('facebook')}
             />
             <FormInput
               type="text"
@@ -431,6 +442,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.instagram?.message}
               defaultValue={fetchedUserData.socials?.instagram}
+              onChange={() => setFocus('instagram')}
             />
           </InputsContainer>
           <InputsContainer>
@@ -442,6 +454,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.linkedin?.message}
               defaultValue={fetchedUserData.socials?.linkedin}
+              onChange={() => setFocus('linkedin')}
             />
             <FormInput
               type="text"
@@ -451,6 +464,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.youtube?.message}
               defaultValue={fetchedUserData.socials?.youtube}
+              onChange={() => setFocus('youtube')}
             />
           </InputsContainer>
         </FormSectionContainer>
