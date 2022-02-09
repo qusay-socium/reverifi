@@ -5,7 +5,7 @@ import { useEffect } from 'react';
  *
  * @param {Bool} isShown state
  * @param {Function} setIsShown function that change state value
- * @param {Number} time time to reset the state in millisecond (2000 = 2s)
+ * @param {Number} time time to reset the state in millisecond defaults to (2000 = 2s)
  *
  */
 

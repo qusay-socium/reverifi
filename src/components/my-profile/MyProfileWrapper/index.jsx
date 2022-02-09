@@ -194,7 +194,7 @@ function MyProfileWrapper() {
   /**
    * hook that hide toast message after n duration in seconds
    */
-  useShowToastBar(dataSaved, setDataSaved, 2000);
+  useShowToastBar(dataSaved, setDataSaved);
 
   /**
    * Handle input function set max length for number fields
