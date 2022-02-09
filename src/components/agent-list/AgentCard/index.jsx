@@ -3,7 +3,7 @@
 import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
-import { ReactComponent as PhoneIcon } from 'assets/icons/phone.svg';
+import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
@@ -136,17 +136,24 @@ function AgentCard({
   );
 }
 
+AgentCard.defaultProps = {
+  address: null,
+  agentImg: null,
+  companyName: '',
+  phoneNumber: '',
+};
+
 AgentCard.propTypes = {
   address: PropTypes.shape({
     city: PropTypes.string,
     country: PropTypes.string,
     zipCode: PropTypes.string,
-  }).isRequired,
-  agentImg: PropTypes.string.isRequired,
+  }),
+  agentImg: PropTypes.string,
   agentName: PropTypes.string.isRequired,
-  companyName: PropTypes.string.isRequired,
+  companyName: PropTypes.string,
   email: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string,
 };
 
 export default AgentCard;
