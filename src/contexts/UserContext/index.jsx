@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import auth from 'services/auth';
+import { getUserInfo } from 'services/user';
 import tokenUtil from 'utils/token';
 
 export const UserContext = createContext({
@@ -76,16 +77,18 @@ export function UserProvider({ children }) {
    * @param {string} token User token.
    */
   const setTokenData = useCallback(
-    (token) => {
-      const { email, name, phone } = tokenUtil.decodeToken(token) || {};
+    async (token) => {
+      const { email, name } = tokenUtil.decodeToken(token) || {};
       // if token not decoded correctly consider the token is invalid and logout the user
       if (!(email && name)) {
         logout();
         return;
       }
       tokenUtil.setToken(token);
-      setUserInfo({ email, name, phone });
       setIsLoggedIn(true);
+
+      const { user } = await getUserInfo();
+      setUserInfo({ email: user.email, name: user.name, phone: user.phone });
     },
     [logout]
   );
