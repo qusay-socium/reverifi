@@ -17,6 +17,7 @@ import avatar from 'assets/images/avatar.svg';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
+import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
@@ -29,7 +30,6 @@ import { generateLabelValuePairs } from 'utils/helpers';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   AddressInputsContainer,
-  DataSavedMessage,
   EditIconContainer,
   FormContainer,
   FormSectionContainer,
@@ -472,7 +472,10 @@ function MyProfileWrapper() {
         <SaveButton type="submit">Save</SaveButton>
 
         {dataSaved && (
-          <DataSavedMessage>Data Saved Successfully</DataSavedMessage>
+          <Toast
+            status="success"
+            message="Your profile information has been saved"
+          />
         )}
       </FormContainer>
     </ProfileContainer>
