@@ -9,7 +9,9 @@ services:
     environment:
       - PORT=80
       - VIRTUAL_HOST=reverifi.docker
-      - REACT_APP_API_URL=http://reverifi-api.docker
+      - REACT_APP_API_URL=http://localhost:62757
+      - REACT_APP_FACEBOOK_APP_ID=348656156906042
+      - REACT_APP_GOOGLE_CLIENT_ID=277465120739-3k8i62n20e9fg3hv1rkcd32agkv0c4ak.apps.googleusercontent.com
     volumes:
       - ${PWD}:/app
     ports:

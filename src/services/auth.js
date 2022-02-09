@@ -18,6 +18,22 @@ const login = async (email, password) => {
 };
 
 /**
+ * Social Login user.
+ *
+ * @param {string} email User email.
+ * @param {string} name  User name.
+ *
+ * @return {Promise<Object>} The login response.
+ */
+const socialLink = async (email, name) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/auth/socialLink`, { email, name });
+
+  return data;
+};
+
+/**
  * Sign up new user.
  *
  * @param {string} name User name.
@@ -43,4 +59,5 @@ const signUp = async (name, email, password, phone) => {
 export default {
   login,
   signUp,
+  socialLink,
 };

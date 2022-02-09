@@ -1,6 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
-import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/login-main.svg';
@@ -11,9 +11,9 @@ import { SubmitButton } from 'pages/SignUp/sign-up.styles';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { OldSocialLogin as SocialLogin } from 'react-social-login';
 import loginSchema from './login-schema';
 import {
-  AppleButton,
   ErrorMessage,
   FacebookButton,
   Form,
@@ -31,6 +31,9 @@ import {
   Title,
 } from './login.styles';
 
+const facebookAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
+const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 /**
  * Login page component.
  *
@@ -40,9 +43,8 @@ function Login() {
   const [error, setError] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login } = useUser();
+  const { login, socialLink } = useUser();
   const continueButton = useRef(null);
-
   const {
     register,
     handleSubmit,
@@ -66,10 +68,21 @@ function Login() {
   const submit = async ({ email, password }) => {
     try {
       await login(email, password);
-      navigate('/');
+      navigate('/my-roles');
     } catch (err) {
       setError(true);
     }
+  };
+
+  /**
+   * Handle social link success.
+   *
+   * @param {Object} linkData link data returned from social APIs.
+   */
+  const handleSocialLogin = async (linkData) => {
+    const { email, name } = linkData._profile;
+    await socialLink(email, name);
+    navigate('/my-roles');
   };
 
   return (
@@ -128,24 +141,31 @@ function Login() {
 
         <SocialLinksContainer>
           <OrText>Or</OrText>
-          <FacebookButton>
-            <div>
-              <FacebookIcon />
-              <span> Continue with Facebook</span>
-            </div>
-          </FacebookButton>
-          <AppleButton>
-            <div>
-              <AppleIcon />
-              <span> Continue with Apple</span>
-            </div>
-          </AppleButton>
-          <GoogleButton>
-            <div>
-              <GoogleIcon />
-              <span>Continue with Google</span>
-            </div>
-          </GoogleButton>
+          <SocialLogin
+            provider="facebook"
+            appId={facebookAppId}
+            callback={handleSocialLogin}
+            cookiePolicy="single_host_origin"
+          >
+            <FacebookButton>
+              <div>
+                <FacebookIcon />
+                <span> Continue with Facebook</span>
+              </div>
+            </FacebookButton>
+          </SocialLogin>
+          <SocialLogin
+            provider="google"
+            appId={googleClientId}
+            callback={handleSocialLogin}
+          >
+            <GoogleButton>
+              <div>
+                <GoogleIcon />
+                <span>Continue with Google</span>
+              </div>
+            </GoogleButton>
+          </SocialLogin>
         </SocialLinksContainer>
         <SocialLinksText>
           Do not have an account?

@@ -108,6 +108,20 @@ export function UserProvider({ children }) {
   );
 
   /**
+   * Social link the user.
+   *
+   * @param {string} email User email.
+   * @param {string} name  User name.
+   */
+  const socialLink = useCallback(
+    async (email, name) => {
+      const { token } = await auth.socialLink(email, name);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
+
+  /**
    * Login user.
    *
    * @param {string} email User email.
@@ -147,8 +161,16 @@ export function UserProvider({ children }) {
   });
 
   const value = useMemo(
-    () => ({ isLoggedIn, login, logout, setUserInfo, signUp, userInfo }),
-    [isLoggedIn, userInfo, login, logout, signUp]
+    () => ({
+      isLoggedIn,
+      login,
+      logout,
+      setUserInfo,
+      signUp,
+      socialLink,
+      userInfo,
+    }),
+    [isLoggedIn, userInfo, login, logout, signUp, socialLink]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
