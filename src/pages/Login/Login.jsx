@@ -26,7 +26,6 @@ import {
   LinkText,
   LoginContainer,
   OrText,
-  PasswordInputRapper,
   SocialLinksContainer,
   SocialLinksText,
   Title,
@@ -88,7 +87,7 @@ function Login() {
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
             <InputGroup>
-              <PasswordInputRapper>
+              <div>
                 <FormInput
                   name="password"
                   error={errors.password?.message}
@@ -103,7 +102,7 @@ function Login() {
                 <IconContainer active={isShowPassword}>
                   <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
                 </IconContainer>
-              </PasswordInputRapper>
+              </div>
             </InputGroup>
           </InputWrapper>
           <FormCheckbox

@@ -70,10 +70,10 @@ export const InputGroup = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-`;
 
-export const PasswordInputRapper = styled.div`
-  width: 100%;
+  div:first-child {
+    width: 100%;
+  }
 `;
 
 export const IconContainer = styled.div`

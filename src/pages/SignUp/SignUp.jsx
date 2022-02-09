@@ -8,11 +8,7 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
-import {
-  IconContainer,
-  InputGroup,
-  PasswordInputRapper,
-} from 'pages/Login/login.styles';
+import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -136,19 +132,17 @@ function SignUp() {
           </InputWrapper>
           <InputWrapper>
             <InputGroup>
-              <PasswordInputRapper>
-                <FormInput
-                  name="password"
-                  error={errors.password?.message}
-                  label="Password"
-                  register={register}
-                  type={isShowPassword ? 'text' : 'password'}
-                  onChange={() => setFocus('password')}
-                />
-                <IconContainer active={isShowPassword}>
-                  <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
-                </IconContainer>
-              </PasswordInputRapper>
+              <FormInput
+                name="password"
+                error={errors.password?.message}
+                label="Password"
+                register={register}
+                type={isShowPassword ? 'text' : 'password'}
+                onChange={() => setFocus('password')}
+              />
+              <IconContainer active={isShowPassword}>
+                <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
+              </IconContainer>
             </InputGroup>
           </InputWrapper>
 
