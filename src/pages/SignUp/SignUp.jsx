@@ -40,7 +40,7 @@ function SignUp() {
   const { signUp } = useUser();
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
-  const [emailExist, setEmailExist] = useState('');
+  const [DoesEmailExist, setDoesEmailExist] = useState('');
 
   const {
     register,
@@ -76,7 +76,7 @@ function SignUp() {
         navigate('/my-roles');
       }
     } catch ({ response }) {
-      if (response.status === 400) setEmailExist(response.data?.message);
+      if (response.status === 400) setDoesEmailExist(response.data?.message);
     }
   };
 
@@ -121,11 +121,11 @@ function SignUp() {
               placeholder="eg: Jhon@domain.com"
               register={register}
               onChange={() => {
-                setEmailExist(false);
+                setDoesEmailExist(false);
                 setFocus('email');
               }}
             />
-            {emailExist && <Error>{emailExist}</Error>}
+            {DoesEmailExist && <Error>{DoesEmailExist}</Error>}
           </InputWrapper>
           <InputWrapper>
             <FormInput
