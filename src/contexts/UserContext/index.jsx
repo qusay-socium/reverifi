@@ -130,7 +130,7 @@ export function UserProvider({ children }) {
   });
 
   const value = useMemo(
-    () => ({ isLoggedIn, login, logout, signUp, userInfo }),
+    () => ({ isLoggedIn, login, logout, setUserInfo, signUp, userInfo }),
     [isLoggedIn, userInfo, login, logout, signUp]
   );
 
