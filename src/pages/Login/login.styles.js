@@ -66,6 +66,35 @@ export const InputWrapper = styled.div`
   margin-bottom: 1.25rem;
 `;
 
+export const InputGroup = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  div:first-child {
+    width: 100%;
+  }
+`;
+
+export const IconContainer = styled.div`
+  bottom: 0.75rem;
+  right: 0.9rem;
+  position: absolute;
+
+  svg {
+    path {
+      fill: ${({ active }) => (active ? colors.green : colors.gray)};
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    path {
+      fill: ${({ active }) => (active ? colors.green : colors.dustyGray)};
+    }
+  }
+`;
+
 export const LinkText = styled.a`
   color: ${colors.blue};
   cursor: pointer;
