@@ -78,6 +78,7 @@ function Login() {
               name="email"
               placeholder="eg: Jhon@domain.com"
               register={register}
+              onChange={() => setFocus('email')}
             />
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
