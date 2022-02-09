@@ -1,13 +1,12 @@
 import { ReactComponent as ClearIcon } from 'assets/close-icon.svg';
 import { ReactComponent as FilterIcon } from 'assets/icons/filter.svg';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
-import Button from 'components/shared/Button';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getListingsBySearchKey } from 'services/listing';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import appPaths from 'utils/appPath';
+import { listingPaths } from 'utils/appPaths';
 import Card from '../Card';
 import {
   CardsContainer,
@@ -15,11 +14,12 @@ import {
   InputWrapper,
   ListingSearchContainer,
   Message,
+  MessageContainer,
   ResultCount,
   ResultNumber,
   ResultText,
+  SearchButton,
   SearchContainer,
-  SorryMessage,
   SuggestedListing,
 } from './listing-search-cards.style';
 
@@ -44,19 +44,21 @@ function ListingSearch() {
     setCardData(listingData);
     setResultCount(`${listingData.length} Results Found in`);
 
-    navigate(`${appPaths.listingPaths.search}?key=${address}`);
+    navigate(`${listingPaths.search}?key=${address}`);
   };
 
   useEffect(() => {
     if (keyWord) fetchListingDataBySearchKey(keyWord);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const handleInputClose = () => {
     setKeyWord('');
     inputValue.current.value = '';
     fetchListingDataBySearchKey(inputValue.current.value);
     inputValue.current.focus();
   };
+
   return (
     <ListingSearchContainer>
       <SearchContainer>
@@ -69,7 +71,7 @@ function ListingSearch() {
               setKeyWord(e.target.value);
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.keyCode === 13) {
                 setKeyWord(e.target.value);
                 fetchListingDataBySearchKey(e.target.value);
               }
@@ -81,13 +83,13 @@ function ListingSearch() {
           <FilterIcon />
           <p>Filter</p>
         </FilterButton>
-        <Button
+        <SearchButton
           onClick={() => {
             fetchListingDataBySearchKey(keyWord);
           }}
         >
           <SearchIcon />
-        </Button>
+        </SearchButton>
       </SearchContainer>
 
       {cardData?.length ? (
@@ -104,10 +106,11 @@ function ListingSearch() {
         </>
       ) : (
         <>
-          <SorryMessage>
+          <MessageContainer>
             <Message>{sorryMessage}</Message>
-          </SorryMessage>
+          </MessageContainer>
           <SuggestedListing>Suggested Listings you may like</SuggestedListing>
+          {/* todo */}
         </>
       )}
     </ListingSearchContainer>

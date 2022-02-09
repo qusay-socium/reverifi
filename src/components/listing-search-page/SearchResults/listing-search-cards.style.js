@@ -17,7 +17,8 @@ export const FilterButton = styled(Button)`
   display: flex;
   font-size: 0.8rem;
   font-weight: 400;
-  padding: 0.05rem 1rem;
+  margin: 0 0.7rem;
+  padding: 0.3rem 0.8rem;
 
   svg {
     height: 1.1rem;
@@ -30,11 +31,9 @@ export const FilterButton = styled(Button)`
   }
 `;
 
-export const SearchButton = styled.button`
-  background-color: ${colors.green};
-  border-radius: 2.5rem;
-  border: none;
-  padding: 0.8rem;
+export const SearchButton = styled(Button)`
+  margin: 0 0.7rem;
+  padding: 0.3rem 0.8rem;
 `;
 
 export const CardsContainer = styled.div`
@@ -42,22 +41,24 @@ export const CardsContainer = styled.div`
   overflow-y: scroll;
 `;
 
-export const SorryMessage = styled.div`
+export const MessageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 5rem 3rem;
 `;
 
-export const Message = styled.p`
-  text-align: center;
-  width: 90%;
-  color: ${colors.dustyGray};
-  font-size: 1.2rem;
+export const ListingSearchText = styled.p`
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
-export const SuggestedListing = styled.p`
-  font-size: 1.3rem;
+export const Message = styled(ListingSearchText)`
+  text-align: center;
+  color: ${colors.dustyGray};
+`;
+
+export const SuggestedListing = styled.h4`
   margin-left: 2rem;
 `;
 
@@ -67,13 +68,11 @@ export const ResultCount = styled.div`
   flex-direction: row;
 `;
 
-export const ResultNumber = styled.p`
-  font-weight: 600;
+export const ResultNumber = styled(ListingSearchText)`
   padding-right: 0.5rem;
 `;
 
-export const ResultText = styled.p`
-  font-weight: 600;
+export const ResultText = styled(ListingSearchText)`
   color: ${colors.dustyGray};
 `;
 
@@ -81,11 +80,6 @@ export const SearchContainer = styled.div`
   align-items: center;
   display: flex;
   margin: 1.5rem 0 1.5rem 2rem;
-
-  button {
-    margin: 0 0.7rem;
-    padding: 0.3rem 0.8rem;
-  }
 `;
 
 export const InputWrapper = styled.div`

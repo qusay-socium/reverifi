@@ -43,7 +43,7 @@ export const ImageContainer = styled.div`
     `}
 `;
 
-export const Badge = styled.div`
+export const Badge = styled.h4`
   background-color: ${colors.green};
   border-radius: 0.3rem;
   color: ${colors.white};

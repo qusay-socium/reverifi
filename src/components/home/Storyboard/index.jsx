@@ -2,7 +2,7 @@ import { ReactComponent as CloseIcon } from 'assets/close-icon.svg';
 import { ReactComponent as StoryBoardImage } from 'assets/images/story-board-image.svg';
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import appPaths from 'utils/appPath';
+import { listingPaths } from 'utils/appPaths';
 import {
   ClearInputButton,
   LocationPin,
@@ -29,13 +29,11 @@ function Storyboard() {
 
   const handleSearch = () => {
     if (inputValue.current.value) {
-      navigate(
-        `${appPaths.listingPaths.search}?key=${inputValue.current.value}`
-      );
+      navigate(`${listingPaths.search}?key=${inputValue.current.value}`);
     }
   };
 
-  const handleInputClose = () => {
+  const handleInputClear = () => {
     inputValue.current.value = '';
     inputValue.current.focus();
   };
@@ -59,7 +57,7 @@ function Storyboard() {
                   type="text"
                   placeholder="Enter City, neighborhood, ZIP, or address"
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
+                    if (e.keyCode === 13) {
                       handleSearch();
                     }
                   }}
@@ -68,7 +66,7 @@ function Storyboard() {
                   }}
                 />
                 <ClearInputButton>
-                  {checkValue ? <CloseIcon onClick={handleInputClose} /> : null}
+                  {checkValue ? <CloseIcon onClick={handleInputClear} /> : null}
                 </ClearInputButton>
                 <SearchIcon onClick={handleSearch} />
               </StyledInputGroup>

@@ -9,7 +9,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import appPaths from 'utils/appPath';
+import { listingPaths } from 'utils/appPaths';
 import {
   Badge,
   CardContainer,
@@ -37,7 +37,7 @@ function Card({ data }) {
   const { images, price, address, fullBathrooms, bedrooms, id } = data;
 
   const handleClick = () => {
-    navigate(`${appPaths.listingPaths.details}/${id}`);
+    navigate(`${listingPaths.details}/${id}`);
   };
   return (
     <CardContainer onClick={handleClick}>
