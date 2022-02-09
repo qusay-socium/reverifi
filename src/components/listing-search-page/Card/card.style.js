@@ -86,14 +86,12 @@ export const IconsContainer = styled.div`
   align-items: center;
   color: ${colors.dustyGrey};
   display: flex;
-  font-size: 0.7rem;
   margin: 1rem 0;
-  max-width: 60%;
 
   svg {
-    margin-right: 0.5rem;
-    height: 1rem;
-    width: 1.4rem;
+    margin: 0 0.2rem;
+    height: 1.2rem;
+    width: 1.5rem;
   }
 `;
 
