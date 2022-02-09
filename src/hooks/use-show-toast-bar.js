@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * use Timer hook that reset state after specified time
+ * use Show Toast Bar hook that reset state after specified time
  *
  * @param {Bool} isShown state
  * @param {Function} setIsShown function that change state value
@@ -9,7 +9,7 @@ import { useEffect } from 'react';
  *
  */
 
-const useTimer = (isShown, setIsShown, time = 2000) =>
+const useShowToastBar = (isShown, setIsShown, time = 2000) =>
   useEffect(() => {
     const timeId = setTimeout(() => {
       setIsShown(false);
@@ -21,4 +21,4 @@ const useTimer = (isShown, setIsShown, time = 2000) =>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isShown]);
 
-export default useTimer;
+export default useShowToastBar;
