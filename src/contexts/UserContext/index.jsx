@@ -108,14 +108,26 @@ export function UserProvider({ children }) {
   );
 
   /**
-   * Social link the user.
+   * Login or sign up Google user.
    *
-   * @param {string} email User email.
-   * @param {string} name  User name.
+   * @param {string} idToken Google user id token retrived from `react-social-login`.
    */
-  const socialLink = useCallback(
-    async (email, name) => {
-      const { token } = await auth.socialLink(email, name);
+  const googleLogin = useCallback(
+    async (idToken) => {
+      const { token } = await auth.googleLogin(idToken);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
+
+  /**
+   * Login or sign up Facebook user.
+   *
+   * @param {string} accessToken Facebook user access token retrived from `react-social-login`.
+   */
+  const facebookLogin = useCallback(
+    async (accessToken) => {
+      const { token } = await auth.facebookLogin(accessToken);
       setTokenData(token);
     },
     [setTokenData]
@@ -162,15 +174,16 @@ export function UserProvider({ children }) {
 
   const value = useMemo(
     () => ({
+      facebookLogin,
+      googleLogin,
       isLoggedIn,
       login,
       logout,
       setUserInfo,
       signUp,
-      socialLink,
       userInfo,
     }),
-    [isLoggedIn, userInfo, login, logout, signUp, socialLink]
+    [isLoggedIn, userInfo, login, logout, signUp, googleLogin, facebookLogin]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

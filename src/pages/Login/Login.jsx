@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
@@ -43,7 +42,7 @@ function Login() {
   const [error, setError] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login, socialLink } = useUser();
+  const { login, googleLogin, facebookLogin } = useUser();
   const continueButton = useRef(null);
   const {
     register,
@@ -75,13 +74,18 @@ function Login() {
   };
 
   /**
-   * Handle social link success.
+   * Handle social login success.
    *
    * @param {Object} linkData link data returned from social APIs.
    */
   const handleSocialLogin = async (linkData) => {
-    const { email, name } = linkData._profile;
-    await socialLink(email, name);
+    const { _provider, _token } = linkData;
+    if (_provider === 'google') {
+      await googleLogin(_token.idToken);
+    }
+    if (_provider === 'facebook') {
+      await facebookLogin(_token.accessToken);
+    }
     navigate('/my-roles');
   };
 

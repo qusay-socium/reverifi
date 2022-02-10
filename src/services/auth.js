@@ -25,11 +25,18 @@ const login = async (email, password) => {
  *
  * @return {Promise<Object>} The login response.
  */
-const socialLink = async (email, name) => {
+const googleLogin = async (idToken) => {
   const {
     data: { data },
-  } = await http.post(`${apiUrl}/auth/socialLink`, { email, name });
+  } = await http.post(`${apiUrl}/auth/google-login`, { idToken });
 
+  return data;
+};
+
+const facebookLogin = async (accessToken) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/auth/facebook-login`, { accessToken });
   return data;
 };
 
@@ -57,7 +64,8 @@ const signUp = async (name, email, password, phone) => {
 };
 
 export default {
+  facebookLogin,
+  googleLogin,
   login,
   signUp,
-  socialLink,
 };

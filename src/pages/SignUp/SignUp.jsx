@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
@@ -44,7 +43,7 @@ const { REACT_APP_FACEBOOK_APP_ID, REACT_APP_GOOGLE_CLIENT_ID } = process.env;
  */
 function SignUp() {
   const navigate = useNavigate();
-  const { signUp, socialLink } = useUser();
+  const { signUp, googleLogin, facebookLogin } = useUser();
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
@@ -109,11 +108,15 @@ function SignUp() {
    * @param {Object} linkData link data returned from social APIs.
    */
   const handleSocialLogin = async (linkData) => {
-    const { email, name } = linkData._profile;
-    await socialLink(email, name);
+    const { _provider, _token } = linkData;
+    if (_provider === 'google') {
+      await googleLogin(_token.idToken);
+    }
+    if (_provider === 'facebook') {
+      await facebookLogin(_token.accessToken);
+    }
     navigate('/my-roles');
   };
-
   return (
     <SignUpContainer>
       <ImageContainer>
