@@ -12,6 +12,7 @@ import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { handleNumberInput, handleTextInput } from 'utils/helpers';
 import signUpSchema from './sign-up-schema';
 import {
   AppleButton,
@@ -83,22 +84,6 @@ function SignUp() {
     }
   };
 
-  /**
-   * Handle input function prevent enter other types than numbers
-   *
-   * @param {object} target input target object
-   *
-   */
-  const handleInput = ({ target }) => {
-    if (
-      !Number.parseInt(target.value, 10) &&
-      Number.parseInt(target.value, 10) !== 0 &&
-      target.value !== '+'
-    ) {
-      target.value = '';
-    }
-  };
-
   return (
     <SignUpContainer>
       <ImageContainer>
@@ -114,6 +99,8 @@ function SignUp() {
               name="name"
               placeholder="eg: Jhon Doe"
               register={register}
+              maxLength="30"
+              onChange={handleTextInput}
             />
           </InputWrapper>
           <InputWrapper>
@@ -165,7 +152,7 @@ function SignUp() {
                   rounded={false}
                   type="text"
                   maxLength="3"
-                  onChange={handleInput}
+                  onChange={handleNumberInput}
                 />
                 <FormInput
                   name="phoneNumber"
@@ -175,7 +162,7 @@ function SignUp() {
                   rounded={false}
                   type="text"
                   maxLength="10"
-                  onChange={handleInput}
+                  onChange={handleNumberInput}
                 />
               </PhoneInputContainer>
             </>

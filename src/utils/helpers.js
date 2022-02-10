@@ -87,3 +87,27 @@ export const formatPhoneNumber = (phoneNumber) => {
  */
 export const getLastCharacters = (string, numOfCharacters = 2) =>
   string?.slice(-numOfCharacters);
+
+/**
+ * Handle number input function prevent enter other types than numbers
+ *
+ * @param {object} target input target object
+ *
+ */
+export const handleNumberInput = ({ target }) => {
+  if (!/^\d+$/g.test(target.value) && !target.value.includes('+')) {
+    target.value = target.value.slice(0, -1);
+  }
+};
+
+/**
+ * Handle text input function prevent enter other types than letters
+ *
+ * @param {object} target input target object
+ *
+ */
+export const handleTextInput = ({ target }) => {
+  if (!/^[a-zA-Z\s]*$/g.test(target.value)) {
+    target.value = target.value.slice(0, -1);
+  }
+};

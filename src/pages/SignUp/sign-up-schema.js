@@ -9,7 +9,11 @@ const signUpSchema = yup
   .object({
     email: yup.string().label('E-mail').email().required(),
     industryProfessional: yup.boolean(),
-    name: yup.string().label('Name').required(),
+    name: yup
+      .string()
+      .label('Name')
+      .required()
+      .matches(/^[a-zA-Z\s]*$/, 'Accept only letters'),
     password: yup
       .string()
       .label('Password')

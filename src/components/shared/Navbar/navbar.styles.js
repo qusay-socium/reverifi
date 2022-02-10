@@ -113,6 +113,13 @@ export const NavControlSection = styled.div`
 export const UserControlSectionWrapper = styled(NavControlSection)`
   cursor: pointer;
   gap: 0.7rem;
+
+  span {
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export const Logo = styled(RawLogo)`

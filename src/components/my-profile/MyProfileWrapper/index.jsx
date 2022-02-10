@@ -31,7 +31,7 @@ import Select, { createFilter } from 'react-select';
 import getAllCountriesAndCities from 'services/apis';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
-import { generateLabelValuePairs } from 'utils/helpers';
+import { generateLabelValuePairs, handleNumberInput } from 'utils/helpers';
 import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
@@ -244,22 +244,6 @@ function MyProfileWrapper() {
    */
   useShowToastBar(saveDataError, setSaveDataError);
 
-  /**
-   * Handle input function set max length for number fields
-   *
-   * @param {object} target input target object
-   *
-   */
-  const handleInput = ({ target }) => {
-    setFocus(target.name);
-
-    const numberPattern = /\d+/g;
-
-    if (!target.value.match(numberPattern)) {
-      target.value = '';
-    }
-  };
-
   return (
     <ProfileContainer>
       <UserInfoContainer>
@@ -284,6 +268,7 @@ function MyProfileWrapper() {
               type="text"
               name="name"
               label="Name"
+              maxLength="30"
               labelIconElement={<NameIcon />}
               register={register}
               error={errors.name?.message}
@@ -296,7 +281,10 @@ function MyProfileWrapper() {
               label="Phone"
               maxLength="15"
               labelIconElement={<PhoneIcon />}
-              onChange={handleInput}
+              onChange={(event) => {
+                setFocus('phone');
+                handleNumberInput(event);
+              }}
               register={register}
               error={errors.phone?.message}
               defaultValue={fetchedUserData.user?.phone}
@@ -486,7 +474,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.zipCode?.message}
               defaultValue={fetchedUserData.zipCode}
-              onChange={handleInput}
+              onChange={handleNumberInput}
               required
             />
             <FormInput
