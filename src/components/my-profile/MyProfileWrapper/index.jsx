@@ -20,6 +20,7 @@ import TextAreaInput from 'components/shared/FormTextArea';
 import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -191,6 +192,11 @@ function MyProfileWrapper() {
   useEffectOnce(fetchUserInfo);
 
   /**
+   * hook that hide toast message after n duration in seconds
+   */
+  useShowToastBar(dataSaved, setDataSaved);
+
+  /**
    * Handle input function set max length for number fields
    *
    * @param {object} target input target object
@@ -222,10 +228,7 @@ function MyProfileWrapper() {
         </div>
       </UserInfoContainer>
 
-      <FormContainer
-        onSubmit={handleSubmit(submit)}
-        onClick={() => setDataSaved(false)}
-      >
+      <FormContainer onSubmit={handleSubmit(submit)}>
         <FormSectionContainer>
           <FormSectionTitle>Personal Information</FormSectionTitle>
           <InputsContainer>

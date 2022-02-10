@@ -11,8 +11,8 @@ export const ToastContainer = styled.div`
   font-size: 0.9rem;
   gap: 1rem;
   margin: 1rem 0;
-  padding-right: 7rem;
   padding: 0.8rem 1rem;
+  padding-right: 3rem;
   width: fit-content;
 `;
 
