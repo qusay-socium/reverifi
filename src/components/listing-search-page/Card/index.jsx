@@ -38,6 +38,7 @@ function Card({ data }) {
     fullBathrooms,
     lotArea,
     homeArea,
+    id,
   } = data;
   const listingBy = `Listing By : ${agent.roles[0]?.role} / ${
     agent.roles[1]?.role ? agent.roles[1]?.role : ''
@@ -47,7 +48,7 @@ function Card({ data }) {
   if (data.length < 0) return null;
 
   const handleClick = () => {
-    navigate(`${listingPaths.details}/${data.id}`);
+    navigate(`${listingPaths.details}/${id}`);
   };
   return (
     <CardContainer onClick={handleClick}>
@@ -70,14 +71,14 @@ function Card({ data }) {
           {bedrooms && (
             <IconsNumber>
               <Bed />
-              <BoldNumber>{data.bedrooms}</BoldNumber>
+              <BoldNumber>{bedrooms}</BoldNumber>
             </IconsNumber>
           )}
 
           {fullBathrooms && (
             <IconsNumber>
               <Bathtub />
-              <BoldNumber>{data.fullBathrooms}</BoldNumber>
+              <BoldNumber>{fullBathrooms}</BoldNumber>
             </IconsNumber>
           )}
 
