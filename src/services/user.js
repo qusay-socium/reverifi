@@ -43,7 +43,7 @@ export const updateUserInfo = async (body) => {
  * @return {Object[]} Array of agents.
  */
 export const getUsersByType = async (type, location, name, page = 0) => {
-  const userType = toUpperCaseFirstLetter(type);
+  const userType = type ? toUpperCaseFirstLetter(type) : 'Agent';
 
   const {
     data: { data },
