@@ -1,10 +1,10 @@
+import { countriesUrl } from 'config/config';
 import http from 'utils/http';
 
 const getAllCountriesAndCities = async () => {
-  const url = 'https://countriesnow.space/api/v0.1/countries';
   const {
     data: { data },
-  } = await http.get(url);
+  } = await http.get(countriesUrl);
 
   return data;
 };

@@ -10,7 +10,13 @@ export const apiUrl = `${REACT_APP_API_URL}/api`;
  */
 export const googleMapApiKey = GOOGLE_MAP_API_KEY;
 
+/**
+ * countries API url
+ */
+export const countriesUrl = 'https://countriesnow.space/api/v0.1/countries';
+
 export default {
   apiUrl,
+  countriesUrl,
   googleMapApiKey,
 };
