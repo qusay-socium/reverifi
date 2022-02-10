@@ -1,5 +1,5 @@
 export const listingPaths = {
-  details: '/listing',
+  listing: '/listing',
   search: '/listing/search',
 };
 

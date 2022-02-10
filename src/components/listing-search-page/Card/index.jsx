@@ -48,7 +48,7 @@ function Card({ data }) {
   if (data.length < 0) return null;
 
   const handleClick = () => {
-    navigate(`${listingPaths.details}/${id}`);
+    navigate(`${listingPaths.listing}/${id}`);
   };
   return (
     <CardContainer onClick={handleClick}>
