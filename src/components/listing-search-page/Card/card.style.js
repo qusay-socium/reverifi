@@ -70,37 +70,67 @@ export const PriceText = styled.h4`
   `}
 `;
 
-export const LocationText = styled.div`
+export const LocationContainer = styled.div`
   color: ${colors.dustyGrey};
   display: flex;
   margin-bottom: 1rem;
   align-items: center;
 `;
 
-export const LocationIcon = styled.p`
-  margin: 0;
-  padding-right: 0.5rem;
+export const LocationText = styled.p`
+  padding-left: 0.5rem;
+  width: 100%;
+  max-width: 12rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  ${mq.mobileWide`
+      max-width: 20rem;
+  `}
+
+  ${mq.tablet`
+      max-width: 30rem;
+  `}
+
+  ${mq.desktop`
+      max-width: 13rem;
+  `}
+
+  ${mq.desktopExtraWide`
+      max-width: 23rem;
+  `}
 `;
 
 export const IconsContainer = styled.div`
   align-items: center;
   color: ${colors.dustyGrey};
   display: flex;
-  margin: 1rem 0;
+  width: 100%;
 
   svg {
-    margin: 0 0.2rem;
-    height: 1.2rem;
-    width: 1.5rem;
+    margin: 0 0.2rem 0.1rem 0;
+    height: 1rem;
+    width: 1rem;
   }
 `;
 
 export const IconsNumber = styled.div`
   align-items: center;
   display: flex;
-  font-size: 1rem;
+  margin-right: 0.5rem;
 `;
 
 export const Label = styled.label`
   font-size: 1rem;
+`;
+
+export const AreaText = styled.p`
+  font-size: 0.8rem;
+  margin: 1rem 0;
+`;
+
+export const BoldNumber = styled(AreaText)`
+  font-weight: 600;
+  margin-right: 0.25rem;
 `;

@@ -24,7 +24,7 @@ import {
  */
 function Storyboard() {
   const navigate = useNavigate();
-  const [checkValue, setCheckValue] = useState(null);
+  const [address, setAddress] = useState('');
   const inputValue = useRef();
 
   const handleSearch = () => {
@@ -34,7 +34,7 @@ function Storyboard() {
   };
 
   const handleInputClear = () => {
-    inputValue.current.value = '';
+    setAddress('');
     inputValue.current.focus();
   };
 
@@ -62,11 +62,12 @@ function Storyboard() {
                     }
                   }}
                   onChange={(e) => {
-                    setCheckValue(e.target.value);
+                    setAddress(e.target.value);
                   }}
+                  value={address}
                 />
                 <ClearInputButton>
-                  {checkValue ? <CloseIcon onClick={handleInputClear} /> : null}
+                  {address && <CloseIcon onClick={handleInputClear} />}
                 </ClearInputButton>
                 <SearchIcon onClick={handleSearch} />
               </StyledInputGroup>

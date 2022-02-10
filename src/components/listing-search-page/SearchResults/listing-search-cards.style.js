@@ -36,46 +36,6 @@ export const SearchButton = styled(Button)`
   padding: 0.3rem 0.8rem;
 `;
 
-export const CardsContainer = styled.div`
-  max-height: 40rem;
-  overflow-y: scroll;
-`;
-
-export const MessageContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5rem 3rem;
-`;
-
-export const ListingSearchText = styled.p`
-  font-size: 1rem;
-  font-weight: 600;
-`;
-
-export const Message = styled(ListingSearchText)`
-  text-align: center;
-  color: ${colors.dustyGray};
-`;
-
-export const SuggestedListing = styled.h4`
-  margin-left: 2rem;
-`;
-
-export const ResultCount = styled.div`
-  padding-left: 2rem;
-  display: flex;
-  flex-direction: row;
-`;
-
-export const ResultNumber = styled(ListingSearchText)`
-  padding-right: 0.5rem;
-`;
-
-export const ResultText = styled(ListingSearchText)`
-  color: ${colors.dustyGray};
-`;
-
 export const SearchContainer = styled.div`
   align-items: center;
   display: flex;
