@@ -37,6 +37,7 @@ function FormInput({
   defaultValue,
   required,
   disabled,
+  onClickInputKey,
 }) {
   return (
     <Container>
@@ -62,6 +63,7 @@ function FormInput({
         defaultValue={defaultValue}
         error={error}
         disabled={disabled}
+        onKeyDown={onClickInputKey}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -80,6 +82,7 @@ FormInput.propTypes = {
   min: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onClickInputKey: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   required: PropTypes.bool,
@@ -99,6 +102,7 @@ FormInput.defaultProps = {
   maxLength: null,
   min: null,
   onChange: null,
+  onClickInputKey: null,
   placeholder: '',
   register: null,
   required: false,

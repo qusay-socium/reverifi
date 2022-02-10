@@ -41,10 +41,7 @@ Button.propTypes = {
   ariaLabel: PropTypes.string,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.elementType }),
-  ]),
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit']),
 };

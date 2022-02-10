@@ -77,7 +77,7 @@ export const InputGroup = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  bottom: 0.75rem;
+  top: 2.22rem;
   right: 0.9rem;
   position: absolute;
 
