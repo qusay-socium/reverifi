@@ -1,3 +1,4 @@
+import addIcon from 'assets/add-icon-small.svg';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -41,6 +42,14 @@ export const Input = styled.input`
   ::-webkit-outer-spin-button {
     opacity: 1;
   }
+
+  ${({ withPrefix }) =>
+    withPrefix &&
+    `
+    background: url(${addIcon}) no-repeat scroll 0.56rem 0.88rem;
+    padding-left: 1.2rem;
+    background-color: ${colors.white};
+  `}
 `;
 
 export const Error = styled.p`

@@ -2,7 +2,6 @@ import { ReactComponent as Dashboard } from 'assets/icons/dashboard.svg';
 import { ReactComponent as List } from 'assets/icons/list.svg';
 import { ReactComponent as Logout } from 'assets/icons/logout.svg';
 import { ReactComponent as Saved } from 'assets/icons/saved.svg';
-import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 import { ReactComponent as Transaction } from 'assets/icons/transaction.svg';
 import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
@@ -71,6 +70,7 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
       </MenuLink>
+<<<<<<< HEAD
       <MenuLink isCollapsed={isCollapsed} to="/settings">
         <MenuItem type="button">
           <Settings />
@@ -78,6 +78,9 @@ function Sidebar() {
         <LinkTitle>Settings</LinkTitle>
       </MenuLink>
       <MenuLink isCollapsed={isCollapsed} to="/logout">
+=======
+      <MenuLink to="/logout">
+>>>>>>> fix profile page issues
         <MenuItem type="button">
           <Logout />
         </MenuItem>

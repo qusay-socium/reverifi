@@ -69,12 +69,14 @@ export const FormContainer = styled.form`
 
     .profile__option {
       font-size: 0.875rem;
+      padding-left: 20px;
     }
 
     .profile__menu {
       .profile__option--is-selected {
         background-color: ${colors.white};
         color: ${colors.green};
+        padding-left: 10px;
 
         &::before {
           content: '▸ ';
