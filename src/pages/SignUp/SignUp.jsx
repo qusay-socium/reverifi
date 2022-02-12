@@ -172,9 +172,9 @@ function SignUp() {
 
           <SignUpTerms>
             By submitting I accept reverifi
-            <LinkText> Terms of Use </LinkText>
+            <LinkText>Terms of Use </LinkText>
             and
-            <LinkText> Privacy Policy</LinkText>
+            <LinkText>Privacy Policy</LinkText>
           </SignUpTerms>
         </Form>
 

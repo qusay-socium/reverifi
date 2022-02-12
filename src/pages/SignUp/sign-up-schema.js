@@ -17,9 +17,7 @@ const signUpSchema = yup
     password: yup
       .string()
       .label('Password')
-      .required(
-        'Password should contain at least 8 characters, 1 upper and lower case letter, 1 number and 1 special case character'
-      )
+      .required('Password is a required field')
       .min(
         8,
         'Password should be at least 8 characters and contain 1 upper and lower case letter, 1 number and 1 special case character'
@@ -39,8 +37,14 @@ const signUpSchema = yup
         then: yup
           .number()
           .required('Number is required')
+          .test(
+            'len',
+            'Phone number must contain 10 digits',
+            (val) => val.toString().length === 10
+          )
           .typeError('Number is required'),
-      }),
+      })
+      .typeError('Number is required'),
     phonePrefix: yup
       .number()
       .label('Phone Number')
@@ -52,7 +56,8 @@ const signUpSchema = yup
           .number()
           .required('Ext is required')
           .typeError('Ext is required'),
-      }),
+      })
+      .typeError('Ext is required'),
   })
   .required();
 
