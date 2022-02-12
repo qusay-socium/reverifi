@@ -114,9 +114,16 @@ export const ItemIcon = styled.div`
   width: 2rem;
 
   svg {
+    mask {
+      path {
+        fill: ${colors.dustyGray};
+      }
+    }
+
     path {
       fill: ${colors.dustyGray};
     }
+
     rect {
       fill: ${colors.dustyGray};
     }

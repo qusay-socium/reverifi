@@ -157,8 +157,18 @@ export const StyledInputGroup = styled.div`
   border-radius: 2.1875rem;
   box-shadow: 0rem 0.06rem 0.18rem ${colors.mineShaft}29;
   display: flex;
-  gap: 1rem;
   height: 100%;
+
+  svg {
+    width: 2rem;
+    height: 1.3rem;
+  }
+`;
+
+export const SearchIconContainer = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -168,6 +178,8 @@ export const StyledInput = styled.input`
   flex: 1;
   font-size: 0.9rem;
   height: 2.5rem;
+  outline: none;
+  font-family: inherit;
 
   ::placeholder {
     font-size: 1rem;

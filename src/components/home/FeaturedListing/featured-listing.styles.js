@@ -14,10 +14,11 @@ export const Title = styled.h3`
   font-weight: 600;
   margin: 0;
   text-align: center;
+  margin-bottom: 2rem;
 
   ${mq.mobileWide`
       font-size: 2rem;
-  `}
+  `};
 `;
 
 export const StyledSlide = styled.div`

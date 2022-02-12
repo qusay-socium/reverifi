@@ -54,7 +54,7 @@ function SignUp() {
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
-
+  const haveAccount = 'Have an account? ';
   /**
    * Handle form submit.
    *
@@ -199,8 +199,8 @@ function SignUp() {
             </div>
           </GoogleButton>
           <SocialLinksText>
-            Have an account?
-            <LinkText onClick={() => navigate('/login')}> Log In</LinkText>
+            {haveAccount}
+            <LinkText onClick={() => navigate('/login')}>Log In</LinkText>
           </SocialLinksText>
         </div>
       </InfoContainer>

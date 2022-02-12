@@ -26,7 +26,7 @@ export const Title = styled.h3`
 
 export const FilterList = styled.div`
   display: flex;
-  gap: 2.25rem;
+  gap: 0.5rem;
   justify-content: center;
   margin: 0 0 1.12rem 0;
 
@@ -46,6 +46,7 @@ export const FilterButton = styled.button`
   opacity: ${({ isActive }) => (isActive ? '1' : '0.5')};
   padding: 0 0 0.25rem 0;
   position: relative;
+  min-width: 7rem;
 
   ${({ isActive }) =>
     isActive &&

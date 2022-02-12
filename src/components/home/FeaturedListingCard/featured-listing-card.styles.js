@@ -6,6 +6,11 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+
+  svg {
+    width: 1.5rem;
+    height: 1.2rem;
+  }
 `;
 
 export const OverlayProperty = styled.h4`

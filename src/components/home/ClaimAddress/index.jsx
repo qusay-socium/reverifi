@@ -46,7 +46,7 @@ function ClaimAddress() {
       </ClaimAddressContainer>
       <JoinUs>
         <JoinUsText>
-          <p>Start Your real estate journey with </p>
+          <p> Start your real estate journey with</p>
           <WhiteLogo />
         </JoinUsText>
         <JoinUsButton ariaLabel="Join" onClick={() => navigate('/sign-up')}>

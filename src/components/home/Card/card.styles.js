@@ -41,13 +41,13 @@ export const AddButton = styled.button`
 `;
 
 export const Attendees = styled.h4`
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: normal;
-  margin: 1.12rem 0 0 0;
+  margin: 1.12rem 0.1rem 0 0;
   text-align: right;
 
   svg {
-    margin: 0 0.37rem 0 0;
+    margin: 0.1rem 0.7rem 0 0;
     padding: 0 auto;
   }
 `;
