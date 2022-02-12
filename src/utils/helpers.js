@@ -95,7 +95,7 @@ export const getLastCharacters = (string, numOfCharacters = 2) =>
  *
  */
 export const handleNumberInput = ({ target }) => {
-  if (!/^\d+$/g.test(target.value) && !target.value.includes('+')) {
+  if (!/^\d+$/g.test(target.value)) {
     target.value = target.value.slice(0, -1);
   }
 };
