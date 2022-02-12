@@ -4,7 +4,7 @@ import {
   Label,
 } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Labels, LimitMessage } from './form-text-area.styles';
 
 /**
@@ -35,7 +35,10 @@ function TextAreaInput({
   limit,
   labelIconElement,
   defaultValue,
+  onChange,
 }) {
+  const [charactersCount, setCharactersCount] = useState();
+
   return (
     <Container>
       <Labels>
@@ -45,8 +48,10 @@ function TextAreaInput({
             {label}
           </Label>
         )}
-        <LimitMessage color={limit <= 10 ? 'red' : null}>
-          ({limit} chars)
+        <LimitMessage color={limit === charactersCount ? 'red' : null}>
+          {charactersCount >= 0
+            ? `(${charactersCount}/${limit} chars)`
+            : `(${limit} chars)`}
         </LimitMessage>
       </Labels>
 
@@ -56,6 +61,11 @@ function TextAreaInput({
         placeholder={placeholder}
         rounded={rounded}
         defaultValue={defaultValue}
+        maxLength={limit}
+        onChange={(event) => {
+          onChange();
+          setCharactersCount(event.target.value.length);
+        }}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -70,6 +80,7 @@ TextAreaInput.propTypes = {
   labelIconElement: PropTypes.node,
   limit: PropTypes.number,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
   rounded: PropTypes.bool,
@@ -82,6 +93,7 @@ TextAreaInput.defaultProps = {
   label: null,
   labelIconElement: null,
   limit: null,
+  onChange: null,
   placeholder: '',
   register: null,
   rounded: true,

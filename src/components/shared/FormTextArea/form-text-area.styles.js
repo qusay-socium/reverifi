@@ -15,10 +15,11 @@ export const LimitMessage = styled.span`
 
 export const Input = styled.textarea`
   background-color: white;
-  border: 0.0625rem solid ${colors.mercury};
-  border-radius: ${({ rounded }) => (rounded ? '1.1875rem' : '0.375rem')};
+  border-radius: ${({ rounded }) => (rounded ? '1.20rem' : '0.4rem')};
+  border: 0.06rem solid ${colors.mercury};
   height: ${({ height }) => height || '10rem'};
   padding: 0.625rem;
+  resize: none;
   width: 100%;
 
   ::placeholder {

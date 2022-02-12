@@ -44,7 +44,6 @@ import {
   InputsContainer,
   ProfileContainer,
   SaveButton,
-  UserDescription,
   UserImage,
   UserInfoContainer,
   UserName,
@@ -254,10 +253,7 @@ function MyProfileWrapper() {
           </EditIconContainer>
         </ImageContainer>
 
-        <div>
-          <UserName>{fetchedUserData.user?.name}</UserName>
-          <UserDescription>{fetchedUserData.aboutMe}</UserDescription>
-        </div>
+        <UserName>{fetchedUserData.user?.name}</UserName>
       </UserInfoContainer>
 
       <FormContainer onSubmit={handleSubmit(submit)}>
@@ -377,13 +373,16 @@ function MyProfileWrapper() {
           </InputsContainer>
           <TextAreaInput
             name="aboutMe"
-            label="About"
+            label="About me"
             rounded={false}
             labelIconElement={<AboutIcon />}
-            limit={100}
+            limit={300}
             register={register}
             error={errors.about?.message}
             defaultValue={fetchedUserData.aboutMe}
+            onChange={() => {
+              setFocus('aboutMe');
+            }}
           />
         </FormSectionContainer>
 
