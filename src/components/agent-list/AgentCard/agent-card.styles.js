@@ -18,7 +18,7 @@ export const ContactButton = styled(Button)`
 export const Card = styled.div`
   background-color: ${colors.white};
   border-radius: 0.5rem;
-  box-shadow: 0 0.06rem 0.31rem ${colors.midGray};
+  box-shadow: 0 0.06rem 0.3rem ${colors.midGray};
   display: flex;
   flex-direction: column;
   margin: 0 0 0.6rem;
@@ -155,7 +155,7 @@ export const HeartIcon = styled(Heart)`
 
 export const LikeIcon = styled(Like)`
   width: 1rem;
-  padding-bottom: 0.19rem;
+  padding-bottom: 0.2rem;
 `;
 
 export const ShareIcon = styled(Share)`
