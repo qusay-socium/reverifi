@@ -1,40 +1,92 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import Button from 'components/shared/Button';
+import FormInput from 'components/shared/FormInput';
+import TextAreaInput from 'components/shared/FormTextArea';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Form, InputField, Label, TextArea } from './contact-agent.style';
+import { useForm } from 'react-hook-form';
+import { handleNumberInput, handleTextInput } from 'utils/helpers';
+import contactAgentSchema from './contact-agent-schema';
+import { Form } from './contact-agent.style';
 
 /**
  * Contact Agent Form component.
  *
  * @return {JSX.Element}
  */
-function ContactAgent() {
+function ContactAgent({ name }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setFocus,
+  } = useForm({
+    resolver: yupResolver(contactAgentSchema),
+  });
+
+  /**
+   * Handle form submit.
+   *
+   * @param {Object} data Form data.
+   */
+  const submit = () => {};
+
   return (
-    <Form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
-      <h2>Contact John Doe</h2>
-      <InputField type="text" id="name" name="name" placeholder="Name" />
-      <InputField
-        type="text"
-        id="phone"
-        name="phone"
-        placeholder="Phone Number"
+    <Form onSubmit={handleSubmit(submit)}>
+      <h2>Contact {name}</h2>
+      <FormInput
+        error={errors.name?.message}
+        label="Name"
+        name="name"
+        placeholder="eg: Jhon Doe"
+        register={register}
+        maxLength="30"
+        onChange={handleTextInput}
       />
-      <InputField type="email" id="email" name="email" placeholder="Email" />
-      <div>
-        <Label htmlFor="message">
-          <p>Message</p>
-          <span>(max 140 chars)</span>
-        </Label>
-        <TextArea id="message" />
-      </div>
-      <Button ariaLabel="Contact" onClick={() => {}}>
+      <FormInput
+        label="Phone"
+        name="phone"
+        placeholder="(201)555-0123"
+        register={register}
+        error={errors.phone?.message}
+        type="text"
+        maxLength="15"
+        onChange={handleNumberInput}
+      />
+      <FormInput
+        error={errors.email?.message}
+        label="E-mail"
+        name="email"
+        placeholder="eg: Jhon@domain.com"
+        register={register}
+        onChange={() => {
+          setFocus('email');
+        }}
+      />
+      <TextAreaInput
+        name="message"
+        label="Message"
+        rounded={false}
+        limit={140}
+        register={register}
+        error={errors.message?.message}
+        onChange={() => {
+          setFocus('message');
+        }}
+      />
+      <Button ariaLabel="Contact" type="submit">
         Contact
       </Button>
     </Form>
   );
 }
+
+ContactAgent.defaultProps = {
+  name: '',
+};
+
+ContactAgent.propTypes = {
+  name: PropTypes.string,
+};
 
 export default ContactAgent;

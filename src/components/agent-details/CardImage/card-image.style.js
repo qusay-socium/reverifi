@@ -1,5 +1,6 @@
-import colors from 'styles/colors';
 import styled from 'styled-components';
+import colors from 'styles/colors';
+import mq from 'styles/media-query';
 
 export const CardImageContainer = styled.div`
   position: relative;
@@ -14,21 +15,33 @@ export const CornerItems = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  height: 18rem;
 `;
 
 export const LocationTagContainer = styled.div`
   color: ${colors.white};
   display: flex;
-  font-size: 0.875rem;
+  align-items: center;
+  font-size: 0.9rem;
   gap: 0.5rem;
+  background-color: ${colors.mineShaft}60;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1.3rem;
+  max-width: 15rem;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ${mq.desktopExtraMax`
+     max-width: 100%;
+  `}
 `;
 
-export const PhotosNumberContainer = styled.div`
-  align-items: center;
-  color: ${colors.white};
-  display: flex;
-  font-size: 0.875rem;
-  gap: 0.5rem;
+export const PhotosNumberContainer = styled(LocationTagContainer)`
+  font-weight: 600;
 `;
 
 export const Tag = styled.div`
@@ -36,5 +49,5 @@ export const Tag = styled.div`
   border-radius: 0.25rem;
   color: ${colors.white};
   font-size: 0.75rem;
-  padding: 0.3125rem 1.1875rem;
+  padding: 0.3rem 1.2rem;
 `;

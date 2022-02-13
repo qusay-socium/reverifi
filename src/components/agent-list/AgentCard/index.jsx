@@ -6,6 +6,7 @@ import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import {
   AgentPicture,
@@ -48,6 +49,7 @@ import {
  * @return {JSX.Element} The agent card holding all of the agent's information.
  */
 function AgentCard({
+  id,
   address,
   agentImg,
   agentName,
@@ -55,6 +57,8 @@ function AgentCard({
   email,
   phoneNumber,
 }) {
+  const navigate = useNavigate();
+
   return (
     <Card>
       <ImgContainer>
@@ -118,7 +122,9 @@ function AgentCard({
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <ContactButton>More details</ContactButton>
+          <ContactButton onClick={() => navigate(`/agent-details/${id}`)}>
+            More details
+          </ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <IconContainer>
@@ -152,6 +158,7 @@ AgentCard.propTypes = {
   agentName: PropTypes.string.isRequired,
   companyName: PropTypes.string,
   email: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string,
 };
 

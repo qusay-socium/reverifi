@@ -93,7 +93,7 @@ const routes = [
   {
     component: lazy(() => import('pages/AgentDetails')),
     label: 'agent-details',
-    path: '/agent-details',
+    path: '/agent-details/:id',
     title: 'Agent Details',
   },
   {

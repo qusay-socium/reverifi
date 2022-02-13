@@ -1,8 +1,7 @@
-import React from 'react';
-import image from 'assets/img1.png';
-import { ReactComponent as Camera } from 'assets/photo-camera.svg';
 import { ReactComponent as Location } from 'assets/location.svg';
-import data from './data';
+import { ReactComponent as Camera } from 'assets/photo-camera.svg';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
   CardImageContainer,
   CornerItems,
@@ -17,28 +16,33 @@ import {
  *
  * @return {JSX.Element}
  */
-function CardImage() {
-  const { tag, photos, location } = data;
+function CardImage({ listingType, address, images }) {
   return (
     <CardImageContainer>
-      <Image src={image} />
+      <Image src={images[0]} />
       <CornerItems isRight={false} isBottom={false}>
-        <Tag>{tag}</Tag>
+        <Tag>{listingType}</Tag>
       </CornerItems>
       <CornerItems isRight isBottom={false}>
         <PhotosNumberContainer>
-          {photos}
+          {images.length}
           <Camera />
         </PhotosNumberContainer>
       </CornerItems>
       <CornerItems isBottom isRight={false}>
         <LocationTagContainer>
           <Location />
-          {location}
+          <span>{address}</span>
         </LocationTagContainer>
       </CornerItems>
     </CardImageContainer>
   );
 }
+
+CardImage.propTypes = {
+  address: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  listingType: PropTypes.string.isRequired,
+};
 
 export default CardImage;

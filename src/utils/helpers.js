@@ -1,20 +1,27 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-else-return */
+
 /**
  * get dates difference function
  *
- * @param {*} date date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {String} date date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {Number} period period to compare if the dates difference exceed it
  *
  * @return {Number} difference between 2 dates
  */
 export const getDatesDifference = (date, period) => {
-  const date2 = date.slice(0, 10);
+  const cleanedDate = date.slice(0, 10);
   const today = new Date().toISOString().slice(0, 10);
 
-  const diffInMs = new Date(today) - new Date(date2);
+  const diffInMs = new Date(today) - new Date(cleanedDate);
   const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-  return diffInDays < period;
+  if (period) {
+    return diffInDays < period;
+  }
+
+  return diffInDays || 1;
 };
 
 /**
@@ -47,7 +54,7 @@ export const toUpperCaseFirstLetter = (string) =>
 export const formatPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return null;
 
-  const phoneNumberString = phoneNumber.toString();
+  const phoneNumberString = phoneNumber.toString().replace('+', '00');
 
   let reg;
   let lastPartLength;
@@ -111,3 +118,16 @@ export const handleTextInput = ({ target }) => {
     target.value = target.value.slice(0, -1);
   }
 };
+
+/**
+ * separateBy function that return an array as a separated string
+ *
+ * @param {Array} data array of data you want to separate
+ * @param {String} separator separator between data array (ex: ',' '/')
+ *
+ * @return {String} separated string
+ */
+export const separateBy = (data, separator = ' ') =>
+  data?.map((item, i, array) =>
+    i + 1 !== array.length ? `${item}${separator} ` : `${item}`
+  );
