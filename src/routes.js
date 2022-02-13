@@ -43,9 +43,10 @@ const routes = [
     title: 'Verify Phone',
   },
   {
+    adminLayout: true,
     component: lazy(() => import('pages/Listing/Create')),
     label: 'create-listing',
-    path: '/listing/create',
+    path: '/my-listings/create',
     title: 'Create Listing',
   },
   {
@@ -60,9 +61,10 @@ const routes = [
     path: '/listing/:id',
   },
   {
-    component: lazy(() => import('pages/Listing/Create')),
+    adminLayout: true,
+    component: lazy(() => import('pages/Listing/Edit')),
     label: 'create-listing',
-    path: '/listing/:id',
+    path: '/my-listings/edit/:id',
     title: 'Create Listing',
   },
   {
@@ -118,10 +120,17 @@ const routes = [
   },
   {
     adminLayout: true,
+<<<<<<< HEAD
     component: lazy(() => import('pages/HowWeWork')),
     label: 'how-we-work',
     path: '/dashboard/how-we-work',
     title: 'How We Work',
+=======
+    component: lazy(() => import('pages/MyListings')),
+    label: 'my-listings',
+    path: '/my-listings',
+    title: 'My listings',
+>>>>>>> add table
   },
 ];
 

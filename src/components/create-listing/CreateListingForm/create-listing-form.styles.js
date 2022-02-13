@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
+export const CreateListingContainer = styled.div`
+  margin: 2rem 4rem;
+  width: 100%;
+`;
+
 export const Wrapper = styled.div`
-  margin-top: 2rem;
-  max-width: 50rem;
-  padding: 0 1rem;
+  width: 85%;
 `;
 
 export const SubmitSection = styled.div`

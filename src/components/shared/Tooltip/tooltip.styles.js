@@ -33,11 +33,11 @@ const arrowPositions = {
 
 export const TooltipText = styled.span`
   background-color: ${colors.mineShaft};
-  border-radius: 0.625rem;
+  border-radius: 0.62rem;
   color: ${colors.white};
   display: none;
-  min-width: 7.5rem;
-  padding: 0.5rem 0.625rem;
+  width: fit-content;
+  padding: 0.5rem 0.7rem;
   position: absolute;
   text-align: center;
   z-index: 5;

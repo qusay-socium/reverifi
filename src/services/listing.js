@@ -28,10 +28,26 @@ export const getListingsBySearchKey = async (keyWord) => {
   return data;
 };
 
+<<<<<<< HEAD
 /**
  * get Listings By Id
  *
  * @param {uuid} listing id.
+=======
+/* @param {string} keyWord the word to search for .
+ *
+ * @return {Promise<Object>} listing data response.
+ */
+export const getAllListingWithRelations = async (pageNumber) => {
+  const {
+    data: { data, count },
+  } = await http.get(`${apiUrl}/listings?page=${pageNumber}`);
+
+  return { count, data };
+};
+
+/* @param {uuid} listing id.
+>>>>>>> add table
  *
  * @return {Promise<Object>} listing data response.
  */

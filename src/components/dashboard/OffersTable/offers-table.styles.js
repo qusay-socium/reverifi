@@ -26,7 +26,7 @@ export const IconsContainer = styled.td`
     display: flex;
     position: absolute;
     right: 2rem;
-    top: 1.5rem;
+    top: 0.8rem;
   `}
 `;
 

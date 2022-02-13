@@ -21,7 +21,7 @@ export const StyledTable = styled.table`
 `;
 
 export const TableRow = styled.tr`
-  border-bottom: 0.0625rem solid ${colors.mercury};
+  border-bottom: 0.06rem solid ${colors.mercury};
   padding: 0.5rem;
   position: relative;
   text-align: left;
@@ -35,7 +35,7 @@ export const TableCell = styled.td`
   ${({ centerAlign }) => centerAlign && 'text-align: center;'}
 
   ${mq.tablet`
-    padding: 1.7rem;
+    padding: 1rem;
   `}
 `;
 
@@ -44,7 +44,7 @@ export const TableHead = styled.th`
   color: ${colors.dustyGray};
   font-size: 0.75rem;
   font-weight: bold;
-  padding: 1.6875rem;
+  padding: 1.68rem;
 `;
 
 export const IconContainer = styled.button`

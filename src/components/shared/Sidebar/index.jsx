@@ -46,7 +46,7 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Roles</LinkTitle>
       </MenuLink>
-      <MenuLink isCollapsed={isCollapsed} to="/list-properties<">
+      <MenuLink isCollapsed={isCollapsed} to="/my-listings">
         <MenuItem type="button">
           <List />
         </MenuItem>

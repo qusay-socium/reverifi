@@ -14,13 +14,18 @@ import {
   updateListingForm,
 } from 'services/listing-create-service';
 import listingFormSchema from './create-listing-form-schema';
-import { SubmitSection, Wrapper } from './create-listing-form.styles';
+import {
+  CreateListingContainer,
+  SubmitSection,
+  Wrapper,
+} from './create-listing-form.styles';
 /**
  * Render new listing form.
  *
  * @return {JSX.Element}
  */
-function CreateListingForm() {
+// eslint-disable-next-line react/prop-types
+function CreateListingForm({ date }) {
   const navigate = useNavigate();
   const { id: formId } = useParams();
   const [images, setImages] = useState([]);
@@ -106,30 +111,32 @@ function CreateListingForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <Wrapper>
-        <h1> Create New Listing </h1>
-        <ListingFormMap />
-        <FormInputFields
-          errors={errors}
-          register={register}
-          setValue={setValue}
-          values={values}
+    <CreateListingContainer>
+      <form onSubmit={handleSubmit(submit)}>
+        <Wrapper>
+          <h1> {date || 'Create New Listing'} </h1>
+          <ListingFormMap />
+          <FormInputFields
+            errors={errors}
+            register={register}
+            setValue={setValue}
+            values={values}
+          />
+        </Wrapper>
+        <ListingImageInput
+          images={images}
+          onAddImages={handleAddImages}
+          onDeleteImage={handleDeleteImage}
         />
-      </Wrapper>
-      <ListingImageInput
-        images={images}
-        onAddImages={handleAddImages}
-        onDeleteImage={handleDeleteImage}
-      />
-      <FeatureSelection
-        featureIds={featureIds}
-        handleFeatureClick={handleFeatureClick}
-      />
-      <SubmitSection>
-        <Button type="submit">Save</Button>
-      </SubmitSection>
-    </form>
+        <FeatureSelection
+          featureIds={featureIds}
+          handleFeatureClick={handleFeatureClick}
+        />
+        <SubmitSection>
+          <Button type="submit">Save</Button>
+        </SubmitSection>
+      </form>
+    </CreateListingContainer>
   );
 }
 
