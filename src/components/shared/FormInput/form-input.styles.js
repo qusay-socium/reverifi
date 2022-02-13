@@ -10,9 +10,9 @@ export const Label = styled.label`
   align-items: center;
   color: ${colors.mineShaft};
   display: flex;
-  font-size: 0.9375rem;
+  font-size: 0.93rem;
   gap: 0.5rem;
-  padding-bottom: 0.625rem;
+  padding-bottom: 0.6rem;
 
   > span {
     color: ${colors.red};
@@ -23,9 +23,9 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  border: 0.0625rem solid ${colors.mercury};
-  border-radius: ${({ rounded }) => (rounded ? '1.1875rem' : '0.375rem')};
-  padding: 0.625rem;
+  border: 0.06rem solid ${colors.mercury};
+  border-radius: ${({ rounded }) => (rounded ? '1.18rem' : '0.3rem')};
+  padding: 0.6rem;
   width: 100%;
 
   ::placeholder {
@@ -46,5 +46,5 @@ export const Input = styled.input`
 export const Error = styled.p`
   color: ${colors.red};
   font-size: 0.75rem;
-  margin: 0.3125rem 0 0.9375rem 0;
+  margin: 0.31rem 0 0.93rem 0;
 `;
