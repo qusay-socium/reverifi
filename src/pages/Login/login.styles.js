@@ -47,7 +47,7 @@ export const InfoContainer = styled.div`
 
 export const Title = styled.h3`
   color: ${colors.mineShaft};
-  font-size: 1.375rem;
+  font-size: 1.37rem;
   margin: 0 0 1.25rem;
 `;
 
@@ -57,7 +57,7 @@ export const Form = styled.form`
 
   > button {
     &:last-child {
-      margin-top: 0.625rem;
+      margin-top: 0.62rem;
     }
   }
 `;
@@ -98,7 +98,7 @@ export const IconContainer = styled.div`
 export const LinkText = styled.a`
   color: ${colors.blue};
   cursor: pointer;
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   padding: 0.3rem;
 
   &:hover {
@@ -113,7 +113,7 @@ export const SocialLinksContainer = styled.div`
 `;
 
 export const OrText = styled.div`
-  margin: 0.9375rem 0 0.625rem 0;
+  margin: 0.9375rem 0 0.62rem 0;
   text-align: center;
 `;
 
@@ -125,7 +125,7 @@ export const SocialButton = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin-top: 0.625rem;
+  margin-top: 0.62rem;
   padding: 0.625rem;
   text-align: center;
   width: 100%;
@@ -134,7 +134,7 @@ export const SocialButton = styled.button`
     display: flex;
 
     span {
-      margin: auto 0 auto 2.8125rem;
+      margin: auto 0 auto 2.8rem;
       min-width: 10.7rem;
       text-align: left;
       font-size: 1rem;
@@ -152,7 +152,7 @@ export const AppleButton = styled(SocialButton)`
 
 export const GoogleButton = styled(SocialButton)`
   background-color: ${colors.white};
-  border: 0.0625rem solid ${colors.mercury};
+  border: 0.062rem solid ${colors.mercury};
   color: ${colors.mineShaft};
 `;
 

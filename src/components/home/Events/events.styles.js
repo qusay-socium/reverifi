@@ -44,9 +44,9 @@ export const FilterButton = styled.button`
   font-size: 1rem;
   font-weight: bold;
   opacity: ${({ isActive }) => (isActive ? '1' : '0.5')};
-  padding: 0 0 0.25rem 0;
   position: relative;
-  min-width: 7rem;
+  padding: 0 0.2rem;
+  margin: 0 0.2rem;
 
   ${({ isActive }) =>
     isActive &&

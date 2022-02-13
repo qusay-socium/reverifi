@@ -82,7 +82,6 @@ export const LinkText = styled.a`
   cursor: pointer;
   font-size: 0.8125rem;
   margin: 0 0.22rem;
-
   &:hover {
     text-decoration: underline;
   }
