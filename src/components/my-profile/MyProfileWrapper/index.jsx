@@ -99,6 +99,8 @@ function MyProfileWrapper() {
 
   const [fetchedUserData, setFetchedUserData] = useState({});
   const [dataSaved, setDataSaved] = useState(false);
+  const [saveDataError, setSaveDataError] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -154,18 +156,22 @@ function MyProfileWrapper() {
       },
     };
 
-    await updateUserInfo(variables);
+    try {
+      await updateUserInfo(variables);
 
-    setFetchedUserData((prev) => ({
-      ...prev,
-      aboutMe,
-      user: { ...variables.user },
-    }));
+      setFetchedUserData((prev) => ({
+        ...prev,
+        aboutMe,
+        user: { ...variables.user },
+      }));
 
-    setDataSaved(true);
+      setDataSaved(true);
 
-    // change global context value
-    setUserInfo({ email, name, phone });
+      // change global context value
+      setUserInfo({ email, name, phone });
+    } catch (err) {
+      setSaveDataError(true);
+    }
   };
 
   /**
@@ -229,9 +235,14 @@ function MyProfileWrapper() {
   }, [countries, selectedCountry]);
 
   /**
-   * hook that hide toast message after n duration in seconds
+   * hook that hide success toast message after n duration in seconds
    */
-  useShowToastBar(dataSaved, setDataSaved);
+  useShowToastBar(dataSaved, setDataSaved, 20000);
+
+  /**
+   * hook that hide fail toast message after n duration in seconds
+   */
+  useShowToastBar(saveDataError, setSaveDataError);
 
   /**
    * Handle input function set max length for number fields
@@ -584,6 +595,12 @@ function MyProfileWrapper() {
           <Toast
             status="success"
             message="Your profile information has been saved"
+          />
+        )}
+        {saveDataError && (
+          <Toast
+            status="fail"
+            message="Oops, Failed to save your changes, Please try that again."
           />
         )}
       </FormContainer>
