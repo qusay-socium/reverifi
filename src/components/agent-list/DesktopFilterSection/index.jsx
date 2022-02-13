@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   AgentSearch,
   FilterSearchContainer,
@@ -18,11 +18,22 @@ import { FilterSectionDesktop } from './desktop-filter-section.styles';
  * @return {JSX.Element} Filter component including three filter options.
  */
 function DesktopFilterSection({ handleSearch }) {
+  const submitButtonRef = useRef(null);
+
   return (
     <FilterSectionDesktop>
       <FilterSearchContainer onSubmit={handleSearch}>
-        <SelectType name="type">
-          <option value="">Select Type</option>
+        <SelectType
+          name="type"
+          onKeyPress={({ key }) =>
+            key === 'Enter' && submitButtonRef?.current.click()
+          }
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Select Type
+          </option>
+          <option value="Agent">All</option>
           <option value="Buyer">Buyer</option>
           <option value="Seller">Seller</option>
         </SelectType>
@@ -32,7 +43,7 @@ function DesktopFilterSection({ handleSearch }) {
           type="text"
         />
         <AgentSearch placeholder="Agent's Name" name="name" type="text" />
-        <SearchButton type="submit">
+        <SearchButton type="submit" ref={submitButtonRef}>
           <SearchIcon />
         </SearchButton>
       </FilterSearchContainer>

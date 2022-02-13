@@ -123,6 +123,10 @@ export const SelectType = styled(SelectFilter)`
   margin: 0 0.625rem;
   outline: none;
   width: 100%;
+
+  option:first-child {
+    display: none;
+  }
 `;
 
 export const LocationSearch = styled.input`
