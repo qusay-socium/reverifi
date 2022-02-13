@@ -60,6 +60,7 @@ export const FormContainer = styled.form`
       border: 0.06rem solid ${colors.mercury};
       box-shadow: 0;
       padding: 0.08rem;
+      font-size: 0.875rem;
     }
 
     .profile__multi-value {
@@ -120,21 +121,6 @@ export const InputsContainer = styled.div`
 
   ${mq.desktopWide`
     flex-direction: row;
-  `}
-`;
-
-export const AddressInputsContainer = styled(InputsContainer)`
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 0;
-
-  div:last-child {
-    flex: 2;
-  }
-
-  ${mq.desktopWide`
-      align-items: flex-start;
-      gap: 0.5rem;
   `}
 `;
 

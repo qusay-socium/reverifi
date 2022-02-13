@@ -1,8 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as AboutIcon } from 'assets/icons/profile-about.svg';
 import { ReactComponent as AddressIcon } from 'assets/icons/profile-address.svg';
+import { ReactComponent as CityIcon } from 'assets/icons/profile-city.svg';
 import { ReactComponent as CompanyNameIcon } from 'assets/icons/profile-company-name.svg';
 import { ReactComponent as CompanyWebsiteIcon } from 'assets/icons/profile-company-website.svg';
+import { ReactComponent as CountryIcon } from 'assets/icons/profile-country.svg';
 import { ReactComponent as EmailIcon } from 'assets/icons/profile-email.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/profile-facebook.svg';
 import { ReactComponent as InstaIcon } from 'assets/icons/profile-insta.svg';
@@ -12,6 +14,7 @@ import { ReactComponent as NameIcon } from 'assets/icons/profile-name.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/profile-phone.svg';
 import { ReactComponent as ServiceAreasIcon } from 'assets/icons/profile-service-areas.svg';
 import { ReactComponent as YoutubeIcon } from 'assets/icons/profile-youtube.svg';
+import { ReactComponent as ZipCodeIcon } from 'assets/icons/profile-zipcode.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
 import avatar from 'assets/images/avatar.svg';
 import FormInput from 'components/shared/FormInput';
@@ -21,16 +24,17 @@ import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select';
+import Select, { createFilter } from 'react-select';
+import getAllCountriesAndCities from 'services/apis';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
 import { generateLabelValuePairs } from 'utils/helpers';
+import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
-  AddressInputsContainer,
   EditIconContainer,
   FormContainer,
   FormSectionContainer,
@@ -59,12 +63,12 @@ const serviceAreasOptions = generateLabelValuePairs(['New York', 'New Jersey']);
  *
  * @param {Object} theme theme object from the select component
  */
-const customSelectTheme = (theme) => ({
+const customSelectTheme = (theme, error) => ({
   ...theme,
   colors: {
     ...theme.colors,
     dangerLight: colors.alabaster,
-    primary: colors.green,
+    primary: error ? colors.red : colors.green,
     primary25: colors.midGray,
   },
 });
@@ -82,8 +86,18 @@ function MyProfileWrapper() {
   const [serviceAreas, setServiceAreas] = useState(
     generateLabelValuePairs(['New York'])
   );
-  const [fetchedUserData, setFetchedUserData] = useState({});
 
+  const [countries, setCountries] = useState([]);
+  const [countryOptions, setCountryOptions] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(
+    generateLabelValuePairs(['United States'])[0]
+  );
+  const [cityOptions, setCityOptions] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(
+    generateLabelValuePairs(['New York'])[0]
+  );
+
+  const [fetchedUserData, setFetchedUserData] = useState({});
   const [dataSaved, setDataSaved] = useState(false);
   const navigate = useNavigate();
 
@@ -107,11 +121,9 @@ function MyProfileWrapper() {
     const {
       aboutMe,
       address,
-      city,
       companyEmail,
       companyName,
       companyWebsite,
-      country,
       email,
       facebook,
       instagram,
@@ -133,8 +145,8 @@ function MyProfileWrapper() {
       userInfo: {
         aboutMe,
         address,
-        city,
-        country,
+        city: selectedCity?.value,
+        country: selectedCountry?.value,
         languages: languages?.map(({ value }) => value),
         serviceAreas: serviceAreas?.map(({ value }) => value),
         socials: { facebook, instagram, linkedin, youtube },
@@ -163,23 +175,38 @@ function MyProfileWrapper() {
     if (!isLoggedIn) navigate('/sign-up');
 
     try {
+      // get countries and cities
+      const fetchedCountries = await getAllCountriesAndCities();
+
+      setCountries(fetchedCountries);
+
+      setCountryOptions(
+        generateLabelValuePairs(fetchedCountries.map((item) => item.country))
+      );
+
+      // get user info
       const info = await getUserInfo();
       setFetchedUserData(info);
 
+      // set dropdown menu fields states
       if (info.languages) {
-        const newLanguages = info.languages?.map((lang) => ({
-          label: lang,
-          value: lang,
-        }));
+        const newLanguages = generateLabelValuePairs(info?.languages);
         setLanguages(newLanguages);
       }
 
       if (info.serviceAreas) {
-        const newAreas = info.serviceAreas?.map((area) => ({
-          label: area,
-          value: area,
-        }));
+        const newAreas = generateLabelValuePairs(info?.serviceAreas);
         setServiceAreas(newAreas);
+      }
+
+      if (info.country) {
+        const newCountry = generateLabelValuePairs([info?.country])[0];
+        setSelectedCountry(newCountry);
+      }
+
+      if (info.city) {
+        const newCity = generateLabelValuePairs([info?.city])[0];
+        setSelectedCity(newCity);
       }
     } catch (err) {
       setFetchedUserData({ user: userInfo });
@@ -190,6 +217,16 @@ function MyProfileWrapper() {
   };
 
   useEffectOnce(fetchUserInfo);
+
+  useEffect(() => {
+    // get cities of each selected country
+    const fetchedCities = countries?.find(
+      (item) => item.country === selectedCountry?.value
+    );
+
+    if (fetchedCities)
+      setCityOptions(generateLabelValuePairs(fetchedCities?.cities));
+  }, [countries, selectedCountry]);
 
   /**
    * hook that hide toast message after n duration in seconds
@@ -240,7 +277,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.name?.message}
               defaultValue={fetchedUserData.user?.name}
-              onChange={() => setFocus('name')}
+              required
             />
             <FormInput
               type="text"
@@ -252,6 +289,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.phone?.message}
               defaultValue={fetchedUserData.user?.phone}
+              required
             />
           </InputsContainer>
           <InputsContainer>
@@ -261,59 +299,51 @@ function MyProfileWrapper() {
               label="E-mail"
               labelIconElement={<EmailIcon />}
               register={register}
-              error={errors.email?.message}
               defaultValue={fetchedUserData.user?.email}
+              disabled
             />
 
-            <AddressInputsContainer>
-              <InputLabel htmlFor="country" noPadding>
-                <AddressIcon />
-                Address
+            <div>
+              <InputLabel>
+                <ServiceAreasIcon />
+                Service Areas
+                <span>*</span>
               </InputLabel>
-              <FormInput
-                type="text"
-                name="country"
-                placeholder="Country"
-                register={register}
-                error={errors.country?.message}
-                defaultValue={fetchedUserData.country}
-                onChange={() => setFocus('country')}
+              <Controller
+                name="serviceAreas"
+                control={control}
+                render={({ field: { onChange } }) => (
+                  <Select
+                    {...register('serviceAreas')}
+                    className="profile-select"
+                    classNamePrefix="profile"
+                    closeMenuOnSelect={false}
+                    hideSelectedOptions={false}
+                    isMulti
+                    options={serviceAreasOptions}
+                    placeholder="Select areas..."
+                    theme={(theme) =>
+                      customSelectTheme(theme, errors.serviceAreas?.message)
+                    }
+                    value={serviceAreas}
+                    onChange={(val) => {
+                      setServiceAreas(val);
+                      onChange(val);
+                    }}
+                  />
+                )}
               />
-              <FormInput
-                type="text"
-                name="city"
-                placeholder="City"
-                register={register}
-                error={errors.city?.message}
-                defaultValue={fetchedUserData.city}
-                onChange={() => setFocus('city')}
-              />
-              <FormInput
-                type="text"
-                name="zipCode"
-                placeholder="ZipCode"
-                maxLength="5"
-                register={register}
-                error={errors.zipCode?.message}
-                defaultValue={fetchedUserData.zipCode}
-                onChange={handleInput}
-              />
-              <FormInput
-                type="text"
-                name="address"
-                placeholder="Address"
-                register={register}
-                error={errors.address?.message}
-                defaultValue={fetchedUserData.address}
-                onChange={() => setFocus('address')}
-              />
-            </AddressInputsContainer>
+              {errors.serviceAreas?.message && (
+                <Error>{errors.serviceAreas?.message}</Error>
+              )}
+            </div>
           </InputsContainer>
           <InputsContainer>
             <div>
               <InputLabel>
                 <LanguagesIcon />
                 Languages
+                <span>*</span>
               </InputLabel>
               <Controller
                 name="languages"
@@ -329,7 +359,9 @@ function MyProfileWrapper() {
                     isSearchable={false}
                     options={languageOptions}
                     placeholder="Select languages..."
-                    theme={customSelectTheme}
+                    theme={(theme) =>
+                      customSelectTheme(theme, errors.languages?.message)
+                    }
                     value={languages}
                     onChange={(val) => {
                       setLanguages(val);
@@ -342,38 +374,7 @@ function MyProfileWrapper() {
                 <Error>{errors.languages?.message}</Error>
               )}
             </div>
-            <div>
-              <InputLabel>
-                <ServiceAreasIcon />
-                Service Areas
-              </InputLabel>
-
-              <Controller
-                name="serviceAreas"
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <Select
-                    {...register('serviceAreas')}
-                    className="profile-select"
-                    classNamePrefix="profile"
-                    closeMenuOnSelect={false}
-                    hideSelectedOptions={false}
-                    isMulti
-                    options={serviceAreasOptions}
-                    placeholder="Select areas..."
-                    theme={customSelectTheme}
-                    value={serviceAreas}
-                    onChange={(val) => {
-                      setServiceAreas(val);
-                      onChange(val);
-                    }}
-                  />
-                )}
-              />
-              {errors.serviceAreas?.message && (
-                <Error>{errors.serviceAreas?.message}</Error>
-              )}
-            </div>
+            <div />
           </InputsContainer>
           <TextAreaInput
             name="aboutMe"
@@ -384,8 +385,110 @@ function MyProfileWrapper() {
             register={register}
             error={errors.about?.message}
             defaultValue={fetchedUserData.aboutMe}
-            onChange={() => setFocus('aboutMe')}
           />
+        </FormSectionContainer>
+
+        <FormSectionContainer>
+          <FormSectionTitle>Location Information</FormSectionTitle>
+          <InputsContainer>
+            <div>
+              <InputLabel>
+                <CountryIcon />
+                Country
+                <span>*</span>
+              </InputLabel>
+              <Controller
+                name="country"
+                control={control}
+                defaultValue={selectedCountry}
+                render={({ field: { onChange } }) => (
+                  <Select
+                    {...register('country')}
+                    className="profile-select"
+                    classNamePrefix="profile"
+                    isClearable
+                    hideSelectedOptions={false}
+                    options={countryOptions}
+                    placeholder="Select country..."
+                    theme={(theme) =>
+                      customSelectTheme(theme, errors.country?.message)
+                    }
+                    value={selectedCountry}
+                    onChange={(val) => {
+                      setSelectedCountry(val);
+                      onChange(val);
+                    }}
+                    filterOption={createFilter({ ignoreAccents: false })}
+                  />
+                )}
+              />
+              {errors.country?.message && (
+                <Error>{errors.country?.message}</Error>
+              )}
+            </div>
+
+            <div>
+              <InputLabel>
+                <CityIcon />
+                City
+                <span>*</span>
+              </InputLabel>
+              <Controller
+                name="city"
+                control={control}
+                defaultValue={selectedCity}
+                render={({ field: { onChange } }) => (
+                  <Select
+                    components={{ MenuList }}
+                    {...register('city')}
+                    className="profile-select"
+                    classNamePrefix="profile"
+                    isClearable
+                    hideSelectedOptions={false}
+                    options={cityOptions}
+                    placeholder="Select city..."
+                    theme={(theme) =>
+                      customSelectTheme(theme, errors.country?.message)
+                    }
+                    value={selectedCity}
+                    onChange={(val) => {
+                      setSelectedCity(val);
+                      onChange(val);
+                    }}
+                    filterOption={createFilter({ ignoreAccents: false })}
+                  />
+                )}
+              />
+              {errors.country?.message && (
+                <Error>{errors.country?.message}</Error>
+              )}
+            </div>
+          </InputsContainer>
+          <InputsContainer>
+            <FormInput
+              type="text"
+              name="zipCode"
+              label="Zip code"
+              labelIconElement={<ZipCodeIcon />}
+              placeholder="ZipCode"
+              maxLength="5"
+              register={register}
+              error={errors.zipCode?.message}
+              defaultValue={fetchedUserData.zipCode}
+              onChange={handleInput}
+              required
+            />
+            <FormInput
+              type="text"
+              name="address"
+              label="Address"
+              labelIconElement={<AddressIcon />}
+              placeholder="Address"
+              register={register}
+              error={errors.address?.message}
+              defaultValue={fetchedUserData.address}
+            />
+          </InputsContainer>
         </FormSectionContainer>
 
         <FormSectionContainer>

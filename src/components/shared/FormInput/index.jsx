@@ -35,6 +35,8 @@ function FormInput({
   step,
   labelIconElement,
   defaultValue,
+  required,
+  disabled,
 }) {
   return (
     <Container>
@@ -42,8 +44,10 @@ function FormInput({
         <Label htmlFor={id || name}>
           {labelIconElement}
           {label}
+          {required && <span>*</span>}
         </Label>
       )}
+
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
@@ -56,6 +60,8 @@ function FormInput({
         maxLength={maxLength}
         step={step}
         defaultValue={defaultValue}
+        error={error}
+        disabled={disabled}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -63,7 +69,8 @@ function FormInput({
 }
 
 FormInput.propTypes = {
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.node,
+  disabled: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
@@ -75,6 +82,7 @@ FormInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
+  required: PropTypes.bool,
   rounded: PropTypes.bool,
   step: PropTypes.string,
   type: PropTypes.string,
@@ -82,6 +90,7 @@ FormInput.propTypes = {
 
 FormInput.defaultProps = {
   defaultValue: null,
+  disabled: false,
   error: null,
   id: null,
   label: null,
@@ -92,6 +101,7 @@ FormInput.defaultProps = {
   onChange: null,
   placeholder: '',
   register: null,
+  required: false,
   rounded: true,
   step: null,
   type: 'text',
