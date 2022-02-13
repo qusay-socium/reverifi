@@ -48,11 +48,6 @@ export const UserName = styled.h3`
   margin: 0.8rem 0;
 `;
 
-export const UserDescription = styled.p`
-  color: ${colors.gray};
-  margin: 0;
-`;
-
 export const FormContainer = styled.form`
   .profile-select {
     .profile__control {
