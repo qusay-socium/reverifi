@@ -22,7 +22,6 @@ import {
   ContactProperty,
   ContactText,
   FooterButtonsContainer,
-  HeartButton,
   HeartIcon,
   IconContainer,
   ImgContainer,
@@ -60,9 +59,6 @@ function AgentCard({
     <Card>
       <ImgContainer>
         <AgentPicture src={agentImg || avatarPlaceholder} />
-        <HeartButton ariaLabel="Favorite">
-          <HeartIcon />
-        </HeartButton>
       </ImgContainer>
       <CardContent>
         <CardHeader>
@@ -73,6 +69,9 @@ function AgentCard({
             </CompanyName>
           </div>
           <ButtonsContainer>
+            <RoundedButton ariaLabel="Favorite">
+              <HeartIcon />
+            </RoundedButton>
             <RoundedButton ariaLabel="Like">
               <LikeIcon />
             </RoundedButton>
@@ -119,7 +118,7 @@ function AgentCard({
         </ContactInfoContainer>
         <Line />
         <CardFooter>
-          <ContactButton>Contact</ContactButton>
+          <ContactButton>More details</ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <IconContainer>

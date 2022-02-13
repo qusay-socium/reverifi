@@ -8,16 +8,20 @@ import mq from 'styles/media-query';
 
 export const ContactButton = styled(Button)`
   max-height: 2rem;
-  padding: 0 2.2rem;
+  padding: 0 1.2rem;
+
+  :hover {
+    box-shadow: 0 0.06rem 0.19rem ${colors.dustyGray};
+  }
 `;
 
 export const Card = styled.div`
   background-color: ${colors.white};
   border-radius: 0.5rem;
-  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGray};
+  box-shadow: 0 0.06rem 0.3rem ${colors.midGray};
   display: flex;
   flex-direction: column;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.6rem;
 
   ${mq.desktop`
     flex-direction: row;
@@ -79,11 +83,12 @@ export const ButtonsContainer = styled.div`
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
-  width: 3.75rem;
+  width: 6.5rem;
 `;
 
 export const FooterButtonsContainer = styled(ButtonsContainer)`
   align-items: center;
+  width: 3.75rem;
 `;
 
 export const ContactInfoContainer = styled.div`
@@ -135,7 +140,6 @@ export const ContactEmail = styled.a`
 
   ${mq.desktop`
     width: 200px;
-    
   `}
 `;
 
@@ -151,30 +155,28 @@ export const HeartIcon = styled(Heart)`
 
 export const LikeIcon = styled(Like)`
   width: 1rem;
+  padding-bottom: 0.2rem;
 `;
 
 export const ShareIcon = styled(Share)`
   width: 1rem;
+  padding-right: 0.1rem;
 `;
 export const RoundedButton = styled(Button)`
-  background-color: ${colors.white};
+  background-color: ${colors.wildSand};
   border-radius: 50%;
-  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mercury};
   color: ${colors.dustyGray};
   height: 1.875rem;
   margin: 0.125rem;
   padding: 0 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   :hover {
     background-color: ${colors.green};
     color: ${colors.white};
   }
-`;
-
-export const HeartButton = styled(RoundedButton)`
-  left: 0.625rem;
-  position: absolute;
-  top: 0.625rem;
 `;
 
 export const CardFooter = styled.div`
