@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import {
@@ -26,9 +25,9 @@ function DesktopFilterSection({ handleSearch }) {
       <FilterSearchContainer onSubmit={handleSearch}>
         <SelectType
           name="type"
-          onKeyPress={({ key }) => {
-            key === 'Enter' && submitButtonRef?.current.click();
-          }}
+          onKeyPress={({ key }) =>
+            key === 'Enter' && submitButtonRef?.current.click()
+          }
           defaultValue=""
         >
           <option value="" disabled>
