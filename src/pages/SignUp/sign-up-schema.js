@@ -18,10 +18,6 @@ const signUpSchema = yup
       .string()
       .label('Password')
       .required()
-      .min(
-        8,
-        'Password should be at least 8 characters and contain 1 upper and lower case letter, 1 number and 1 special case character'
-      )
       .matches(
         passwordRegex,
         'Password should be at least 8 characters and contain 1 upper and lower case letter and 1 number and 1 special case character'
