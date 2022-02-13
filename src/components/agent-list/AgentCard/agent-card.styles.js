@@ -71,6 +71,10 @@ export const Username = styled.p`
   letter-spacing: 0.125rem;
   line-height: 1.375rem;
   margin: 1.25rem 0 0.625rem 0;
+  max-width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const CompanyName = styled.p`

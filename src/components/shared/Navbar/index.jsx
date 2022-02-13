@@ -74,7 +74,7 @@ function Navbar() {
             </NavControlSection>
             <UserControlSectionWrapper ref={clickRef} onClick={handleOpenMenu}>
               <Avatar />
-              {name}
+              <span>{name}</span>
               <ChevronDown />
             </UserControlSectionWrapper>
             <Menu
