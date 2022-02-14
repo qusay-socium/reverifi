@@ -1,7 +1,7 @@
+import { HeaderIconWrapper } from 'components/agent-details/CardInformation/card-information.style';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import { HeaderIconWrapper } from '../CardInformation/card-information.style';
 
 export const AgentInformationContainer = styled.div`
   background-color: ${colors.alabaster};
@@ -15,7 +15,7 @@ export const AgentInformationContainer = styled.div`
 
   ${mq.desktopWide`
     flex-direction: row;
-    padding: 2.25rem 4.375rem;
+    padding: 2.3rem 4.4rem;
   `}
 `;
 
