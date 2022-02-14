@@ -1,7 +1,7 @@
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import React from 'react';
-import listingsTableData from './data';
+import listingsTableData from '../data';
 import { LinkText, ListingsTableContainer } from './listings-table.styles';
 
 /**
