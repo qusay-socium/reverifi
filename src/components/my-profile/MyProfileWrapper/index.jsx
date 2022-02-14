@@ -525,7 +525,7 @@ function MyProfileWrapper() {
               register={register}
               error={
                 errors.companyEmail?.message || companyEmailError
-                  ? 'Email already exist'
+                  ? 'Email already exists'
                   : null
               }
               defaultValue={fetchedUserData.company?.email}
