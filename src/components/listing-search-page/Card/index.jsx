@@ -1,15 +1,16 @@
-import { ReactComponent as AirConditionerIcon } from 'assets/icons/air-conditioner.svg';
-import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
+import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
-import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
-import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
 import PropTypes from 'prop-types/prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { listingPaths } from 'utils/appPaths';
 import {
+  AreaText,
   Badge,
+  BoldNumber,
   CardContainer,
   CardText,
   IconsContainer,
@@ -17,7 +18,7 @@ import {
   Image,
   ImageContainer,
   Label,
-  LocationIcon,
+  LocationContainer,
   LocationText,
   PriceText,
 } from './card.style';
@@ -28,39 +29,72 @@ import {
  * @return {JSX.Element}
  */
 function Card({ data }) {
+  const {
+    agent,
+    images,
+    price,
+    address,
+    bedrooms,
+    fullBathrooms,
+    lotArea,
+    homeArea,
+    id,
+  } = data;
+  const listingBy = `Listing By : ${agent.roles[0]?.role} / ${
+    agent.roles[1]?.role ? agent.roles[1]?.role : ''
+  }`;
+  const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
   if (data.length < 0) return null;
 
-  const { images, price, address, fullBathrooms, bedrooms } = data;
-
+  const handleClick = () => {
+    navigate(`${listingPaths.listing}/${id}`);
+  };
   return (
-    <CardContainer>
+    <CardContainer onClick={handleClick}>
       <ImageContainer>
         <Badge>Sale</Badge>
         <Image src={images[0]} />
       </ImageContainer>
 
       <CardText>
-        <PriceText>$ {price}</PriceText>
-        <LocationText>
-          <LocationIcon>
+        <PriceText>$ {price.toLocaleString()}</PriceText>
+        <LocationContainer>
+          <div>
             <PinIcon />
-          </LocationIcon>
-          <LocationIcon>{address}</LocationIcon>
-        </LocationText>
-        <Label> Listing By:</Label>
+          </div>
+          <LocationText>{address}</LocationText>
+        </LocationContainer>
+        <Label>{listingBy}</Label>
+
         <IconsContainer>
-          <IconsNumber>
-            {bedrooms}
-            <Bed />
-          </IconsNumber>
-          <WifiIcon />
-          <IconsNumber>
-            {fullBathrooms}
-            <BathtubIcon />
-          </IconsNumber>
-          <AirConditionerIcon />
-          <BenchIcon />
+          {bedrooms && (
+            <IconsNumber>
+              <Bed />
+              <BoldNumber>{bedrooms}</BoldNumber>
+            </IconsNumber>
+          )}
+
+          {fullBathrooms && (
+            <IconsNumber>
+              <Bathtub />
+              <BoldNumber>{fullBathrooms}</BoldNumber>
+            </IconsNumber>
+          )}
+
+          {homeArea && (
+            <IconsNumber>
+              <BoldNumber>{homeArea.sqft} </BoldNumber>
+              <AreaText>sqft</AreaText>
+            </IconsNumber>
+          )}
+
+          {lotArea && (
+            <IconsNumber>
+              <BoldNumber>{lotArea.sqft} </BoldNumber>{' '}
+              <AreaText>sqft lot</AreaText>
+            </IconsNumber>
+          )}
         </IconsContainer>
       </CardText>
     </CardContainer>
@@ -70,10 +104,25 @@ function Card({ data }) {
 Card.propTypes = {
   data: PropTypes.shape({
     address: PropTypes.string,
+    agent: PropTypes.shape({
+      roles: PropTypes.arrayOf(
+        PropTypes.shape({
+          role: PropTypes.string,
+        })
+      ),
+    }),
     bedrooms: PropTypes.number,
+    features: PropTypes.arrayOf(
+      PropTypes.shape({
+        feature: PropTypes.string,
+      })
+    ),
     fullBathrooms: PropTypes.number,
+    homeArea: PropTypes.shape({ sqft: PropTypes.string }),
     id: PropTypes.string,
-    images: PropTypes.arrayOfObject,
+    images: PropTypes.arrayOf(PropTypes.string),
+    lotArea: PropTypes.shape({ sqft: PropTypes.string }),
+
     price: PropTypes.number,
   }).isRequired,
 };

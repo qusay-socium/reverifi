@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
+import { listingPaths } from 'utils/appPaths';
 import data from './data';
 import {
   ImgContainer,
@@ -24,13 +25,7 @@ function ExploreListing() {
   const navigate = useNavigate();
 
   const handleSearch = (searchKey) => {
-    const appPaths = {
-      listingPaths: {
-        search: '/listing/search',
-      },
-    };
-
-    navigate(`${appPaths.listingPaths.search}?key=${searchKey}`);
+    navigate(`${listingPaths.search}?key=${searchKey}`);
   };
 
   const getItems = () =>

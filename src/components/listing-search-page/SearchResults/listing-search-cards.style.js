@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -6,7 +7,7 @@ export const ListingSearchContainer = styled.div`
   flex: 1;
 `;
 
-export const FilterButton = styled.button`
+export const FilterButton = styled(Button)`
   align-items: center;
   background-color: ${colors.white};
   border-radius: 2.5rem;
@@ -16,7 +17,9 @@ export const FilterButton = styled.button`
   display: flex;
   font-size: 0.8rem;
   font-weight: 400;
-  padding: 0.05rem 1rem;
+  margin: 0 0.7rem;
+  padding: 0.3rem 0.8rem;
+
   svg {
     height: 1.1rem;
     padding-right: 0.4rem;
@@ -28,22 +31,19 @@ export const FilterButton = styled.button`
   }
 `;
 
-export const SearchButton = styled.button`
-  background-color: ${colors.green};
-  border-radius: 2.5rem;
-  border: none;
-  padding: 0.8rem;
-`;
-
-export const CardsContainer = styled.div`
-  max-height: 40rem;
-  overflow: scroll;
+export const SearchButton = styled(Button)`
+  margin: 0 0.7rem;
+  padding: 0.3rem 0.8rem;
 `;
 
 export const SearchContainer = styled.div`
   align-items: center;
   display: flex;
   margin: 1.5rem 0 1.5rem 2rem;
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
 
   input {
     padding: 1rem;
@@ -58,8 +58,21 @@ export const SearchContainer = styled.div`
      `}
   }
 
-  button {
-    margin: 0 0.7rem;
-    padding: 0.3rem 0.8rem;
+  svg {
+    position: absolute;
+
+    bottom: 1.3rem;
+    right: 0.5rem;
+    width: 1rem;
+    height: 0.8rem;
+    cursor: pointer;
+
+    path {
+      fill: ${colors.dustyGray};
+
+      &:hover {
+        fill: ${colors.gray};
+      }
+    }
   }
 `;
