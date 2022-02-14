@@ -8,7 +8,7 @@ import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { useUser } from 'contexts/UserContext';
 import { SubmitButton } from 'pages/SignUp/sign-up.styles';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import loginSchema from './login-schema';
@@ -41,6 +41,7 @@ function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
+  const continueButton = useRef(null);
 
   const {
     register,
@@ -50,6 +51,12 @@ function Login() {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
+  const onClickInputKey = (key) => {
+    if (key.keyCode === 13) {
+      continueButton.current.focus();
+    }
+  };
 
   /**
    * Handle form submit.
@@ -83,6 +90,7 @@ function Login() {
               placeholder="eg: Jhon@domain.com"
               register={register}
               onChange={() => setFocus('email')}
+              onClickInputKey={onClickInputKey}
             />
           </InputWrapper>
           <InputWrapper onClick={() => setError(false)}>
@@ -95,6 +103,7 @@ function Login() {
                   register={register}
                   type={isShowPassword ? 'text' : 'password'}
                   onChange={() => setFocus('password')}
+                  onClickInputKey={onClickInputKey}
                 />
                 {error && (
                   <ErrorMessage>Invalid email or password</ErrorMessage>
@@ -112,7 +121,9 @@ function Login() {
           />
           <LinkText>Forgot Password</LinkText>
 
-          <SubmitButton type="submit">Log In</SubmitButton>
+          <SubmitButton forwardedRef={continueButton} type="submit">
+            Log In
+          </SubmitButton>
         </Form>
 
         <SocialLinksContainer>

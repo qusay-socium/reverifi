@@ -9,7 +9,7 @@ import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import { useUser } from 'contexts/UserContext';
 import { IconContainer, InputGroup } from 'pages/Login/login.styles';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
@@ -45,6 +45,7 @@ function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const continueButton = useRef(null);
 
   const {
     register,
@@ -54,6 +55,12 @@ function SignUp() {
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
+
+  const onClickInputKey = (key) => {
+    if (key.keyCode === 13) {
+      continueButton.current.focus();
+    }
+  };
 
   /**
    * Handle form submit.
@@ -101,6 +108,7 @@ function SignUp() {
               register={register}
               maxLength="30"
               onChange={handleTextInput}
+              onClickInputKey={onClickInputKey}
             />
           </InputWrapper>
           <InputWrapper>
@@ -114,6 +122,7 @@ function SignUp() {
                 setDoesEmailExist(false);
                 setFocus('email');
               }}
+              onClickInputKey={onClickInputKey}
             />
             {DoesEmailExist && <Error>{DoesEmailExist}</Error>}
           </InputWrapper>
@@ -126,6 +135,7 @@ function SignUp() {
                 register={register}
                 type={isShowPassword ? 'text' : 'password'}
                 onChange={() => setFocus('password')}
+                onClickInputKey={onClickInputKey}
               />
               <IconContainer active={isShowPassword}>
                 <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
@@ -153,6 +163,7 @@ function SignUp() {
                   type="text"
                   maxLength="3"
                   onChange={handleNumberInput}
+                  onClickInputKey={onClickInputKey}
                 />
                 <FormInput
                   name="phoneNumber"
@@ -163,12 +174,15 @@ function SignUp() {
                   type="text"
                   maxLength="10"
                   onChange={handleNumberInput}
+                  onClickInputKey={onClickInputKey}
                 />
               </PhoneInputContainer>
             </>
           )}
 
-          <SubmitButton type="submit">Continue</SubmitButton>
+          <SubmitButton forwardedRef={continueButton} type="submit">
+            Continue
+          </SubmitButton>
 
           <SignUpTerms>
             By submitting I accept reverifi
