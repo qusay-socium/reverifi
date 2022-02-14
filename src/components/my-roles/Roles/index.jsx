@@ -29,9 +29,7 @@ function Roles() {
         <Header>What am I:</Header>
       </Wrapper>
       <RoleCardsContainer setSelectedRoles={setSelectedRoles} />
-      <StyledButton onClick={handleOnClick}>
-        Start New Selling/Buying Process
-      </StyledButton>
+      <StyledButton onClick={handleOnClick}>Save My Roles</StyledButton>
       <Wrapper>
         <RolesTable />
       </Wrapper>
