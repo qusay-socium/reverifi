@@ -1,4 +1,6 @@
-import React from 'react';
+import ShowModalProvider from 'contexts/ShowModalContext';
+import React, { useState } from 'react';
+import DeleteBox from '../DeleteBox';
 import MyListingHeader from '../ListingsHeader';
 import ListingsTable from '../ListingsTable';
 import { MyListingContainer } from './my-lsitings.style';
@@ -9,10 +11,14 @@ import { MyListingContainer } from './my-lsitings.style';
  * @return {JSX.Element}
  */
 function MyProfile() {
+  const [deleteId, setDeleteId] = useState(null);
   return (
     <MyListingContainer>
       <MyListingHeader />
-      <ListingsTable />
+      <ShowModalProvider>
+        <ListingsTable setDeleteId={setDeleteId} />
+        <DeleteBox deleteId={deleteId} />
+      </ShowModalProvider>
     </MyListingContainer>
   );
 }

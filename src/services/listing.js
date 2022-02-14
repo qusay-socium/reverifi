@@ -76,3 +76,15 @@ export const getUserListings = async (id, limit) => {
 
   return data;
 };
+
+/* @param {uuid} listing id.
+ *
+ * @return {Promise<Object>} delete listing .
+ */
+export const deleteListingById = async (id) => {
+  const {
+    data: { data },
+  } = await http.delete(`${apiUrl}/listings/${id}`);
+
+  return data;
+};

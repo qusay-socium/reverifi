@@ -7,7 +7,9 @@ import { ReactComponent as ScheduleIcon } from 'assets/icons/schedule.svg';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
+import { useShowModal } from 'contexts/ShowModalContext';
 import { useUser } from 'contexts/UserContext';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAllListingWithRelations } from 'services/listing';
@@ -30,13 +32,13 @@ const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
  *
  * @return {JSX.Element}
  */
-export default function MyListings() {
+export default function MyListings({ setDeleteId }) {
   const { isLoggedIn } = useUser();
-  const navigate = useNavigate();
   const listingPerPage = 8;
   const [listings, setListings] = useState(null);
-
   const [pageNumber, setPageNumber] = useState(0);
+  const { showModal, setShowModal } = useShowModal();
+  const navigate = useNavigate();
 
   const startItem = pageNumber * listingPerPage + 1;
   let endItem = startItem - 1 + listingPerPage;
@@ -61,17 +63,13 @@ export default function MyListings() {
     }
   };
 
-  // const handleHide =()=>{
-
-  // }
-
   useEffect(() => {
     if (!isLoggedIn) navigate('/sign-up');
 
     fetchAllListingsForUser(pageNumber + 1);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber]);
+  }, [pageNumber, showModal]);
 
   return (
     <>
@@ -94,12 +92,12 @@ export default function MyListings() {
             <TableCell> </TableCell>
             <TableCell iconsCell>
               <IconContainer hover>
-                <EyeIcon />
-                <Tooltip
-                  text="Hide/Show"
-                  arrowPosition="top"
-                  position={[3, -1.8]}
+                <EyeIcon
+                  onClick={() => {
+                    navigate(`/listing/${id}`);
+                  }}
                 />
+                <Tooltip text="View" arrowPosition="top" position={[3, -1.8]} />
               </IconContainer>
               <IconContainer hover>
                 <EditIcon
@@ -118,7 +116,12 @@ export default function MyListings() {
                 />
               </IconContainer>
               <IconContainer hover>
-                <DeleteIcon />
+                <DeleteIcon
+                  onClick={() => {
+                    setShowModal(true);
+                    setDeleteId(id);
+                  }}
+                />
                 <Tooltip
                   text="Delete"
                   arrowPosition="top"
@@ -140,3 +143,11 @@ export default function MyListings() {
     </>
   );
 }
+
+MyListings.propTypes = {
+  setDeleteId: PropTypes.func,
+};
+
+MyListings.defaultProps = {
+  setDeleteId: () => {},
+};
