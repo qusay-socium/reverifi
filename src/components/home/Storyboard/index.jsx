@@ -55,7 +55,6 @@ function Storyboard() {
                 <StyledInput
                   ref={inputValue}
                   type="text"
-                  placeholder="Enter City, neighborhood, ZIP, or address"
                   onKeyDown={(e) => {
                     if (e.keyCode === 13) {
                       handleSearch();
@@ -65,6 +64,7 @@ function Storyboard() {
                     setAddress(e.target.value);
                   }}
                   value={address}
+                  placeholder="Enter city, neighborhood, ZIP code, or an address"
                 />
                 <ClearInputButton>
                   {address && <CloseIcon onClick={handleInputClear} />}

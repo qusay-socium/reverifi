@@ -50,7 +50,7 @@ function ExploreListing() {
 
   return (
     <MainContainer>
-      <MainHeader>Explore our Listings</MainHeader>
+      <MainHeader>Explore Our Listings</MainHeader>
       <SliderContainer>
         <Slider
           dots

@@ -200,7 +200,7 @@ function SignUp() {
           </GoogleButton>
           <SocialLinksText>
             Have an account?
-            <LinkText onClick={() => navigate('/login')}> Log In</LinkText>
+            <LinkText onClick={() => navigate('/login')}>Log In</LinkText>
           </SocialLinksText>
         </div>
       </InfoContainer>

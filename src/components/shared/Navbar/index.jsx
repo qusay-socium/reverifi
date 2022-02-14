@@ -18,6 +18,7 @@ import {
   NavControlSection,
   NavItemsContainer,
   NavLinksContainer,
+  SearchIconContainer,
   SignInButton,
   SignUpButton,
   StyledInput,
@@ -60,7 +61,7 @@ function Navbar() {
       <Logo onClick={() => navigate('/')} />
       <NavItemsContainer>
         <NavLinksContainer>
-          <a href="/">How we Work</a>
+          <a href="/">How We Work</a>
           <a href="/agent-list">Find an Agent</a>
           <a href="/">Knowledge Center</a>
         </NavLinksContainer>
@@ -68,7 +69,9 @@ function Navbar() {
           <UserNavControlContainer>
             <NavControlSection>
               <StyledInputGroup>
-                <SearchIcon />
+                <SearchIconContainer>
+                  <SearchIcon />
+                </SearchIconContainer>
                 <StyledInput type="text" placeholder="Search for Property" />
               </StyledInputGroup>
             </NavControlSection>

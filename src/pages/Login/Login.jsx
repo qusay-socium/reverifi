@@ -138,7 +138,7 @@ function Login() {
         </SocialLinksContainer>
         <SocialLinksText>
           Don&apos;t have an account?
-          <LinkText onClick={() => navigate('/sign-up')}> Sign up</LinkText>
+          <LinkText onClick={() => navigate('/sign-up')}>Sign up</LinkText>
         </SocialLinksText>
       </InfoContainer>
     </LoginContainer>

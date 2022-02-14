@@ -32,6 +32,7 @@ export const StyledInput = styled.input`
   flex: 1;
   font-size: 0.75rem;
   font-weight: 400;
+  font-family: inherit;
   padding: 0 1rem;
   ${({ size }) => inputSizes[size]}
   outline: none;
