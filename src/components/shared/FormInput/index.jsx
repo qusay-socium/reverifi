@@ -88,7 +88,7 @@ FormInput.propTypes = {
   required: PropTypes.bool,
   rounded: PropTypes.bool,
   step: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 FormInput.defaultProps = {
@@ -108,6 +108,7 @@ FormInput.defaultProps = {
   required: false,
   rounded: true,
   step: null,
+  type: null,
 };
 
 export default FormInput;
