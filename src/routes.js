@@ -116,6 +116,13 @@ const routes = [
     path: '/my-profile',
     title: 'My Profile',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/HowWeWork')),
+    label: 'how-we-work',
+    path: '/dashboard/how-we-work',
+    title: 'How We Work',
+  },
 ];
 
 export default routes;

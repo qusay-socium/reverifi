@@ -6,6 +6,7 @@ import { ReactComponent as TeamIcon } from 'assets/icons/dashboard-people-team.s
 import DropdownMenu from 'components/shared/DropdownMenu';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { incomingInvitations, offersData, transactionsData } from '../data';
 import InvitationsTable from '../InvitationsTable';
 import OffersTable from '../OffersTable';
@@ -24,14 +25,17 @@ import {
 const cardsInfo = [
   {
     Icon: TeamIcon,
+    route: '/dashboard/how-we-work',
     text: 'Start New Selling /Buying Transactions',
   },
   {
     Icon: MoneyIcon,
+    route: '',
     text: 'Invite Other Parties to my Transactions',
   },
   {
     Icon: CreateIcon,
+    route: '/my-listings/create',
     text: 'Create Listing',
   },
 ];
@@ -42,13 +46,14 @@ const cardsInfo = [
  * @return {JSX.Element}
  */
 function DashboardWrapper() {
+  const navigate = useNavigate();
   return (
     <DashboardContainer>
       <DashboardTitle>Hi Belle Doe,</DashboardTitle>
 
       <DashboardCardsContainer>
-        {cardsInfo.map(({ Icon, text }, index) => (
-          <DashboardCard key={index.toString()}>
+        {cardsInfo.map(({ Icon, text, route }, index) => (
+          <DashboardCard key={index.toString()} onClick={() => navigate(route)}>
             <Icon />
             <DashboardCardText>{text}</DashboardCardText>
           </DashboardCard>

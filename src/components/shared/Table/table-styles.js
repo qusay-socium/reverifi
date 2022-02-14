@@ -28,9 +28,11 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  font-size: 0.8125rem;
-  padding: 1.7rem 0.625rem;
-  text-align: ${({ iconsCell }) => iconsCell && 'right'};
+  font-size: 0.8rem;
+  padding: 1.7rem 0.6rem;
+
+  ${({ iconsCell }) => iconsCell && 'text-align: right;'}
+  ${({ centerAlign }) => centerAlign && 'text-align: center;'}
 
   ${mq.tablet`
     padding: 1.7rem;
