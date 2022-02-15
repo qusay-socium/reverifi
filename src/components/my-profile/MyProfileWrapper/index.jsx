@@ -376,9 +376,9 @@ function MyProfileWrapper() {
             label="About me"
             rounded={false}
             labelIconElement={<AboutIcon />}
-            limit={300}
+            limit={400}
             register={register}
-            error={errors.about?.message}
+            error={errors.aboutMe?.message}
             defaultValue={fetchedUserData.aboutMe}
             onChange={() => {
               setFocus('aboutMe');

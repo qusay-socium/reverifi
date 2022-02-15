@@ -13,7 +13,10 @@ export const getFeaturedListings = async () => {
   return data;
 };
 
-/* @param {string} keyWord the word to search for .
+/**
+ * get Listings By Search Key
+ *
+ * @param {string} keyWord the word to search for .
  *
  * @return {Promise<Object>} listing data response.
  */
@@ -25,7 +28,10 @@ export const getListingsBySearchKey = async (keyWord) => {
   return data;
 };
 
-/* @param {uuid} listing id.
+/**
+ * get Listings By Id
+ *
+ * @param {uuid} listing id.
  *
  * @return {Promise<Object>} listing data response.
  */
@@ -33,6 +39,24 @@ export const getListingsById = async (id) => {
   const {
     data: { data },
   } = await http.get(`${apiUrl}/listings/${id}`);
+
+  return data;
+};
+
+/**
+ * get user listings
+ *
+ * @param {String} listing id.
+ * @param {Number} limit number of fetched listings
+ *
+ * @return {Promise<Object>} listing data response.
+ */
+export const getUserListings = async (id, limit) => {
+  const numOfListings = limit ? `?limit=${limit}` : '';
+
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/listings/user-listings/${id}${numOfListings}`);
 
   return data;
 };

@@ -72,10 +72,12 @@ export const getUserRoles = async () => {
  *
  * @return {Object[]} Array of info data.
  */
-export const getUserInfo = async () => {
+export const getUserInfo = async (id) => {
+  const path = id ? `/${id}` : '';
+
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/users`);
+  } = await http.get(`${apiUrl}/users${path}`);
 
   return data;
 };

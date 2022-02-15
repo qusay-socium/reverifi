@@ -1,11 +1,21 @@
-import React from 'react';
-import AgentPhoto from 'assets/agent-photo.png';
+import { ReactComponent as Like } from 'assets//icons/agent-detailes-like.svg';
+import { ReactComponent as AddressIcon } from 'assets/address.svg';
+import { ReactComponent as CompanyName } from 'assets/company.svg';
+import { ReactComponent as EmailIcon } from 'assets/email.svg';
+import placeholderPhoto from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as Facebook } from 'assets/images/facebook.svg';
 import { ReactComponent as Instagram } from 'assets/images/instagram.svg';
-import { ReactComponent as Like } from 'assets/like.svg';
 import { ReactComponent as Linkedin } from 'assets/images/linkedin.svg';
 import { ReactComponent as Youtube } from 'assets/images/youtube.svg';
-import { agentData, companyData, aboutText, agentName } from './data';
+import { ReactComponent as LanguagesIcon } from 'assets/language.svg';
+import { ReactComponent as PhoneIcon } from 'assets/phone.svg';
+import { ReactComponent as ServiceAreaIcon } from 'assets/service-area.svg';
+import { ReactComponent as CompanyWebsite } from 'assets/website.svg';
+import useEffectOnce from 'hooks/use-effect-once';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getUserInfo } from 'services/user';
+import { separateBy, toUpperCaseFirstLetter } from 'utils/helpers';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -16,6 +26,8 @@ import {
   AgentSection,
   CompanyInformation,
   ContactInfo,
+  IconLinkWrapper,
+  IconWrapper,
   ImageContainer,
   InfoKey,
   InfoValue,
@@ -24,66 +36,129 @@ import {
   StyledImg,
 } from './agent-information.style';
 
+const companyInfoIcons = [<CompanyName />, <EmailIcon />, <CompanyWebsite />];
+
 /**
  * Agent Information section.
  *
  * @return {JSX.Element}
  */
 function AgentInformation() {
+  const { id } = useParams();
+  const [userData, setUserData] = useState({});
+
+  const fetchUserData = async () => {
+    const user = await getUserInfo(id);
+    setUserData(user);
+  };
+
+  useEffectOnce(fetchUserData);
+
   return (
     <AgentInformationContainer>
       <AgentItemsContainer>
         <AgentSection>
           <ImageContainer>
-            <StyledImg src={AgentPhoto} />
+            <StyledImg src={userData.image || placeholderPhoto} />
             <SocialMediaIcons>
-              <Facebook />
-              <Instagram />
-              <Youtube />
-              <Linkedin />
+              <IconLinkWrapper
+                href={userData.socials?.facebook || ''}
+                target="_blank"
+              >
+                <Facebook />
+              </IconLinkWrapper>
+              <IconLinkWrapper
+                href={userData.socials?.instagram || ''}
+                target="_blank"
+              >
+                <Instagram />
+              </IconLinkWrapper>
+              <IconLinkWrapper
+                href={userData.socials?.youtube || ''}
+                target="_blank"
+              >
+                <Youtube />
+              </IconLinkWrapper>
+              <IconLinkWrapper
+                href={userData.socials?.linkedin || ''}
+                target="_blank"
+              >
+                <Linkedin />
+              </IconLinkWrapper>
             </SocialMediaIcons>
           </ImageContainer>
           <AgentBasicInformation>
             <ContactInfo>
               <AgentName>
-                <h2>{agentName}</h2>
-                <Like />
+                <h2>{toUpperCaseFirstLetter(userData.user?.name) || ''}</h2>
+                <IconWrapper fill="true">
+                  <Like />
+                </IconWrapper>
               </AgentName>
-              {agentData.map(({ key, value, Icon }) => (
-                <InfoWrapper key={key}>
-                  <InfoKey>
-                    <Icon />
-                    <span>{key}</span>
-                  </InfoKey>
-                  <InfoValue>{value}</InfoValue>
-                </InfoWrapper>
-              ))}
+              <InfoWrapper>
+                <InfoKey>
+                  <PhoneIcon />
+                  <span>Phone</span>
+                </InfoKey>
+                <InfoValue>{userData.user?.phone}</InfoValue>
+              </InfoWrapper>
+              <InfoWrapper>
+                <InfoKey>
+                  <EmailIcon />
+                  <span>Email</span>
+                </InfoKey>
+                <InfoValue>{userData.user?.email}</InfoValue>
+              </InfoWrapper>
+              <InfoWrapper>
+                <InfoKey>
+                  <AddressIcon />
+                  <span>Address</span>
+                </InfoKey>
+                <InfoValue>
+                  {userData?.zipCode} {userData?.city}, {userData?.country}
+                </InfoValue>
+              </InfoWrapper>
+              <InfoWrapper>
+                <InfoKey>
+                  <LanguagesIcon />
+                  <span>Languages</span>
+                </InfoKey>
+                <InfoValue>{separateBy(userData?.languages, ',')}</InfoValue>
+              </InfoWrapper>
+              <InfoWrapper>
+                <InfoKey>
+                  <ServiceAreaIcon />
+                  <span>Service Area</span>
+                </InfoKey>
+                <InfoValue>{separateBy(userData?.serviceAreas, ',')}</InfoValue>
+              </InfoWrapper>
             </ContactInfo>
           </AgentBasicInformation>
         </AgentSection>
-
         <AgentSection>
-          <CompanyInformation>
-            <ContactInfo>
-              <h2>Company Information</h2>
-              {companyData.map(({ key, value, Icon }) => (
-                <InfoWrapper key={key}>
-                  <InfoKey>
-                    <Icon />
-                    <span>{key}</span>
-                  </InfoKey>
-                  <InfoValue>{value}</InfoValue>
-                </InfoWrapper>
-              ))}
-            </ContactInfo>
-          </CompanyInformation>
+          {userData?.company && (
+            <CompanyInformation>
+              <ContactInfo>
+                <h2>Company Information</h2>
+                {Object.entries(userData?.company).map((field, i) => (
+                  <InfoWrapper key={field[0]}>
+                    <InfoKey>
+                      {companyInfoIcons[i]}
+                      <span>{toUpperCaseFirstLetter(field[0])}</span>
+                    </InfoKey>
+                    <InfoValue>{field[1]}</InfoValue>
+                  </InfoWrapper>
+                ))}
+              </ContactInfo>
+            </CompanyInformation>
+          )}
           <AboutAgent>
             <h3>About Me</h3>
-            <p>{aboutText}</p>
+            <p>{userData?.aboutMe}</p>
           </AboutAgent>
         </AgentSection>
       </AgentItemsContainer>
-      <ContactAgent />
+      <ContactAgent name={userData.user?.name} />
     </AgentInformationContainer>
   );
 }

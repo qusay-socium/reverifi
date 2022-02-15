@@ -1,6 +1,7 @@
+import { HeaderIconWrapper } from 'components/agent-details/CardInformation/card-information.style';
+import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import styled from 'styled-components';
 
 export const AgentInformationContainer = styled.div`
   background-color: ${colors.alabaster};
@@ -14,7 +15,7 @@ export const AgentInformationContainer = styled.div`
 
   ${mq.desktopWide`
     flex-direction: row;
-    padding: 2.25rem 4.375rem;
+    padding: 2.3rem 4.4rem;
   `}
 `;
 
@@ -43,8 +44,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  border-radius: 0.3125rem;
+  border-radius: 0.4rem;
   width: 100%;
+  height: 17rem;
 `;
 
 export const AgentBasicInformation = styled.ul`
@@ -56,7 +58,7 @@ export const AgentBasicInformation = styled.ul`
 export const AgentName = styled.div`
   align-items: center;
   display: flex;
-  gap: 0.875rem;
+  gap: 0.8rem;
 
   h2 {
     margin: 0;
@@ -73,7 +75,7 @@ export const InfoWrapper = styled.li`
   display: flex;
 
   ${mq.tablet`
-    font-size:0.875rem
+    font-size: 0.8rem
   `};
 
   ${mq.tabletWide`
@@ -86,6 +88,7 @@ export const InfoKey = styled.div`
   display: flex;
   flex: 2;
   gap: 0.5rem;
+  color: ${colors.gray};
 `;
 
 export const InfoValue = styled.h4`
@@ -111,7 +114,8 @@ export const CompanyInformation = styled.ul`
   border-radius: 0.625rem;
   flex: 2;
   margin: 0;
-  padding: 0rem 0 1rem 1rem;
+  padding: 1rem;
+  padding-top: 0;
 
   h2 {
     margin-bottom: 0;
@@ -121,4 +125,13 @@ export const CompanyInformation = styled.ul`
 export const AboutAgent = styled.div`
   flex: 3;
   line-height: 1.25rem;
+`;
+
+export const IconLinkWrapper = styled.a`
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+export const IconWrapper = styled(HeaderIconWrapper)`
+  background-color: ${colors.white};
 `;
