@@ -38,6 +38,7 @@ function FormInput({
   required,
   disabled,
   onClickInputKey,
+  withPrefix,
 }) {
   return (
     <Container>
@@ -64,6 +65,7 @@ function FormInput({
         error={error}
         disabled={disabled}
         onKeyDown={onClickInputKey}
+        withPrefix={withPrefix}
       />
       {error && <Error>{error}</Error>}
     </Container>
@@ -89,6 +91,7 @@ FormInput.propTypes = {
   rounded: PropTypes.bool,
   step: PropTypes.string,
   type: PropTypes.string,
+  withPrefix: PropTypes.bool,
 };
 
 FormInput.defaultProps = {
@@ -108,7 +111,8 @@ FormInput.defaultProps = {
   required: false,
   rounded: true,
   step: null,
-  type: null,
+  type: 'text',
+  withPrefix: false,
 };
 
 export default FormInput;

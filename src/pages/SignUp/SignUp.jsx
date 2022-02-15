@@ -77,7 +77,7 @@ function SignUp() {
   }) => {
     try {
       const phone =
-        phonePrefix && phoneNumber ? `${phonePrefix}${phoneNumber}` : null;
+        phonePrefix && phoneNumber ? `+${phonePrefix}${phoneNumber}` : null;
 
       await signUp(name, email, password, phone);
 
@@ -164,6 +164,7 @@ function SignUp() {
                   maxLength="3"
                   onChange={handleNumberInput}
                   onClickInputKey={onClickInputKey}
+                  withPrefix
                 />
                 <FormInput
                   name="phoneNumber"

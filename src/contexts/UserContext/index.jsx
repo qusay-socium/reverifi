@@ -78,7 +78,7 @@ export function UserProvider({ children }) {
    */
   const setTokenData = useCallback(
     async (token) => {
-      const { email, name } = tokenUtil.decodeToken(token) || {};
+      const { email, name, phone } = tokenUtil.decodeToken(token) || {};
       // if token not decoded correctly consider the token is invalid and logout the user
       if (!(email && name)) {
         logout();
@@ -87,8 +87,16 @@ export function UserProvider({ children }) {
       tokenUtil.setToken(token);
       setIsLoggedIn(true);
 
-      const { user } = await getUserInfo();
-      setUserInfo({ email: user.email, name: user.name, phone: user.phone });
+      try {
+        const { user } = await getUserInfo();
+        setUserInfo({
+          email: user?.email,
+          name: user?.name,
+          phone: user?.phone,
+        });
+      } catch (err) {
+        setUserInfo({ email, name, phone });
+      }
     },
     [logout]
   );

@@ -31,7 +31,11 @@ import Select, { createFilter } from 'react-select';
 import getAllCountriesAndCities from 'services/apis';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
-import { generateLabelValuePairs, handleNumberInput } from 'utils/helpers';
+import {
+  generateLabelValuePairs,
+  handleNumberInput,
+  handleTextInput,
+} from 'utils/helpers';
 import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
@@ -99,6 +103,7 @@ function MyProfileWrapper() {
   const [fetchedUserData, setFetchedUserData] = useState({});
   const [dataSaved, setDataSaved] = useState(false);
   const [saveDataError, setSaveDataError] = useState(false);
+  const [companyEmailError, setCompanyEmailError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -142,7 +147,7 @@ function MyProfileWrapper() {
         name: companyName,
         website: companyWebsite,
       },
-      user: { email, name, phone },
+      user: { email, name, phone: `+${phone}` },
       userInfo: {
         aboutMe,
         address,
@@ -168,7 +173,11 @@ function MyProfileWrapper() {
 
       // change global context value
       setUserInfo({ email, name, phone });
-    } catch (err) {
+    } catch ({ response: { data: serverData } }) {
+      if (serverData.errors[0].message === 'email must be unique') {
+        setCompanyEmailError(true);
+        setFocus('companyEmail');
+      }
       setSaveDataError(true);
     }
   };
@@ -191,7 +200,11 @@ function MyProfileWrapper() {
 
       // get user info
       const info = await getUserInfo();
-      setFetchedUserData(info);
+      if (!info) {
+        setFetchedUserData({ user: userInfo });
+      } else {
+        setFetchedUserData(info);
+      }
 
       // set dropdown menu fields states
       if (info.languages) {
@@ -269,6 +282,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.name?.message}
               defaultValue={fetchedUserData.user?.name}
+              onChange={handleTextInput}
               required
             />
             <FormInput
@@ -283,8 +297,9 @@ function MyProfileWrapper() {
               }}
               register={register}
               error={errors.phone?.message}
-              defaultValue={fetchedUserData.user?.phone}
               required
+              defaultValue={fetchedUserData.user?.phone.slice(1)}
+              withPrefix
             />
           </InputsContainer>
           <InputsContainer>
@@ -508,9 +523,16 @@ function MyProfileWrapper() {
               label="E-mail"
               labelIconElement={<EmailIcon />}
               register={register}
-              error={errors.companyEmail?.message}
+              error={
+                errors.companyEmail?.message || companyEmailError
+                  ? 'Email already exists'
+                  : null
+              }
               defaultValue={fetchedUserData.company?.email}
-              onChange={() => setFocus('companyEmail')}
+              onChange={() => {
+                setFocus('companyEmail');
+                setCompanyEmailError(false);
+              }}
             />
           </InputsContainer>
           <InputsContainer>
