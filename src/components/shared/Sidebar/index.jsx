@@ -46,7 +46,7 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Roles</LinkTitle>
       </MenuLink>
-      <MenuLink isCollapsed={isCollapsed} to="/list-properties<">
+      <MenuLink isCollapsed={isCollapsed} to="/my-listings">
         <MenuItem type="button">
           <List />
         </MenuItem>
@@ -70,17 +70,7 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
       </MenuLink>
-<<<<<<< HEAD
-      <MenuLink isCollapsed={isCollapsed} to="/settings">
-        <MenuItem type="button">
-          <Settings />
-        </MenuItem>
-        <LinkTitle>Settings</LinkTitle>
-      </MenuLink>
-      <MenuLink isCollapsed={isCollapsed} to="/logout">
-=======
       <MenuLink to="/logout">
->>>>>>> fix profile page issues
         <MenuItem type="button">
           <Logout />
         </MenuItem>

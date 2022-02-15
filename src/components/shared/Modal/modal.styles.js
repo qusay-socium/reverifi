@@ -27,6 +27,8 @@ export const Dialog = styled.div`
 export const CloseButton = styled.div`
   cursor: pointer;
   position: absolute;
-  right: 0.9375rem;
-  top: 0.9375rem;
+  right: 0.93rem;
+  top: 0.93rem;
+
+  display: ${({ showCloseIcon }) => (!showCloseIcon ? 'flex' : 'none')};
 `;

@@ -12,11 +12,11 @@ import { CloseButton, Dialog, Overlay } from './modal.styles';
  * @param {boolean}  transparent whether the background overlay exist or not.
  *
  */
-function Modal({ children, show, handleClose, transparent }) {
+function Modal({ children, show, handleClose, transparent, showCloseIcon }) {
   return (
     <Overlay show={show} onClick={handleClose} transparent={transparent}>
       <Dialog onClick={(event) => event.stopPropagation()}>
-        <CloseButton onClick={handleClose}>
+        <CloseButton showCloseIcon={showCloseIcon} onClick={handleClose}>
           <Close />
         </CloseButton>
         {children}
@@ -27,14 +27,17 @@ function Modal({ children, show, handleClose, transparent }) {
 
 Modal.propTypes = {
   children: PropTypes.node,
-  handleClose: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
   show: PropTypes.bool,
+  showCloseIcon: PropTypes.bool,
   transparent: PropTypes.bool,
 };
 
 Modal.defaultProps = {
   children: null,
+  handleClose: () => {},
   show: false,
+  showCloseIcon: false,
   transparent: false,
 };
 

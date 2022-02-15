@@ -12,7 +12,7 @@ export const FilterButton = styled(Button)`
   background-color: ${colors.white};
   border-radius: 2.5rem;
   border: none;
-  box-shadow: 0rem 0.0625rem 0.1875rem ${colors.mineShaft}29;
+  box-shadow: 0rem 0.06rem 0.18rem ${colors.mineShaft}29;
   color: ${colors.gray};
   display: flex;
   font-size: 0.8rem;

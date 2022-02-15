@@ -28,10 +28,19 @@ export const getListingsBySearchKey = async (keyWord) => {
   return data;
 };
 
-/**
- * get Listings By Id
+/* @param {string} pageNumber the page number to search for .
  *
- * @param {uuid} listing id.
+ * @return {Promise<Object>} listing data response.
+ */
+export const getAllListingWithRelations = async (pageNumber) => {
+  const {
+    data: { data, count },
+  } = await http.get(`${apiUrl}/listings?page=${pageNumber}`);
+
+  return { count, data };
+};
+
+/* @param {uuid} listing id.
  *
  * @return {Promise<Object>} listing data response.
  */
@@ -57,6 +66,18 @@ export const getUserListings = async (id, limit) => {
   const {
     data: { data },
   } = await http.get(`${apiUrl}/listings/user-listings/${id}${numOfListings}`);
+
+  return data;
+};
+
+/* @param {uuid} listing id.
+ *
+ * @return {Promise<Object>} delete listing .
+ */
+export const deleteListingById = async (id) => {
+  const {
+    data: { data },
+  } = await http.delete(`${apiUrl}/listings/${id}`);
 
   return data;
 };
