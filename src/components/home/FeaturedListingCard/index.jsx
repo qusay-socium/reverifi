@@ -77,10 +77,11 @@ function Card({ data }) {
         <CardBody>
           <InfoContainer>
             <TextMedium>{address}</TextMedium>
-
-            {propertyType?.type && (
-              <TextSmall>{propertyTypeConverter(propertyType)}</TextSmall>
-            )}
+            <TextSmall>
+              {propertyType?.type
+                ? propertyTypeConverter(propertyType)
+                : 'Others'}
+            </TextSmall>
 
             <BodyIconsContainer>
               {bedrooms && (
@@ -119,11 +120,11 @@ function Card({ data }) {
       <OverlayBackground image={images[0]}>
         <Overlay>
           <OverlayAddress>{address}</OverlayAddress>
-          {propertyType?.type && (
-            <OverlayProperty>
-              {propertyTypeConverter(propertyType)}
-            </OverlayProperty>
-          )}
+          <OverlayProperty>
+            {propertyType?.type
+              ? propertyTypeConverter(propertyType)
+              : 'Others'}
+          </OverlayProperty>
           <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 
           <OverlayFeatures>

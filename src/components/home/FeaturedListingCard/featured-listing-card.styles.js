@@ -185,8 +185,9 @@ export const IconContainer = styled.div`
   width: 1.56rem;
 
   svg {
-    margin-top: ${({ stroke }) => stroke && '0.0938rem'};
-    margin-right: ${({ fill }) => fill && '0.0938rem'};
+    margin-top: ${({ stroke }) => stroke && '0.09rem'};
+    margin-right: ${({ fill }) => fill && '0.09rem'};
+    padding: 0.15rem;
   }
 
   &:hover {
