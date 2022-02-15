@@ -11,7 +11,8 @@ export const TableWrapper = styled.div`
 
 export const StyledTable = styled.table`
   border-collapse: collapse;
-  min-width: 100%;
+  table-layout: ${({ fixedLayout }) => fixedLayout && 'fixed'};
+  width: 100%;
 
   > * {
     tr:last-child {
@@ -30,13 +31,14 @@ export const TableRow = styled.tr`
 export const TableCell = styled.td`
   font-size: 0.8rem;
   padding: 1.7rem 0.6rem;
+  white-space: nowrap;
 
-  ${({ iconsCell }) => iconsCell && 'text-align: right;'}
-  ${({ centerAlign }) => centerAlign && 'text-align: center;'}
+  ${({ iconsCell }) => iconsCell && 'text-align: right;'};
+  ${({ centerAlign }) => centerAlign && 'text-align: center;'};
 
   ${mq.tablet`
-    padding: 1rem;
-  `}
+    padding: 1rem ;
+  `};
 `;
 
 export const TableHead = styled.th`
@@ -44,7 +46,7 @@ export const TableHead = styled.th`
   color: ${colors.dustyGray};
   font-size: 0.75rem;
   font-weight: bold;
-  padding: 1.68rem;
+  padding: 1.7rem;
 `;
 
 export const IconContainer = styled.button`

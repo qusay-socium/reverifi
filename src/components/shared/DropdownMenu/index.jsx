@@ -3,22 +3,27 @@ import React from 'react';
 import {
   ErrorMessage,
   Placeholder,
+  RequiredStar,
   SelectContainer,
   StyledLabel,
   StyledSelect,
 } from './dropdown-menu.styles';
 
 /**
- * shared dropdown menu
+ * shared Dropdown Menu
  *
- * @param {JSX.Element} children the child component to wrap.
+ * @param {Boolean} dark dark color: ;
  * @param {String} label menu label
+ * @param {JSX.Element} labelIcon menu label icon element
+ * @param {String} leftIcon left icon inside the menu
  * @param {String} name menu name
- * @param {JSX.Element} labelIcon menu label icon
- * @param {String} leftIcon icon inside the menu
- * @param {Boolean} small small menu height
- * @param {Boolean} smallBorderRadius small border radius
- * @param {Boolean} dark dark background
+ * @param {String} placeholder menu placeholder
+ * @param {Boolean} small small size menu
+ * @param {Boolean} smallBorderRadius small border radius menu
+ * @param {Array} options menu options
+ * @param {String} error validation error
+ * @param {Function} register validation register function
+ * @param {Boolean} required if true add red star (*) to the menu
  *
  * @return {JSX.Element}
  */
@@ -34,6 +39,7 @@ function DropdownMenu({
   options,
   error,
   register,
+  required,
 }) {
   return (
     <div>
@@ -41,6 +47,7 @@ function DropdownMenu({
         <StyledLabel htmlFor={name}>
           {LabelIcon && LabelIcon}
           <span>{label}</span>
+          {required && <RequiredStar>*</RequiredStar>}
         </StyledLabel>
       )}
 
@@ -49,6 +56,7 @@ function DropdownMenu({
         leftIcon={leftIcon}
         small={small}
         smallBorderRadius={smallBorderRadius}
+        error={error}
       >
         <StyledSelect
           dark={dark}
@@ -58,7 +66,7 @@ function DropdownMenu({
           small={small}
           {...(register ? register(name) : {})}
         >
-          <Placeholder disabled selected>
+          <Placeholder disabled selected value="">
             {placeholder}
           </Placeholder>
 
@@ -68,8 +76,8 @@ function DropdownMenu({
             </option>
           ))}
         </StyledSelect>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
       </SelectContainer>
+      {register && <ErrorMessage>{error || ''}</ErrorMessage>}
     </div>
   );
 }
@@ -82,6 +90,7 @@ DropdownMenu.defaultProps = {
   leftIcon: null,
   placeholder: '',
   register: null,
+  required: false,
   small: false,
   smallBorderRadius: false,
 };
@@ -99,6 +108,7 @@ DropdownMenu.propTypes = {
   options: propTypes.arrayOf(propTypes.any).isRequired,
   placeholder: propTypes.string,
   register: propTypes.func,
+  required: propTypes.bool,
   small: propTypes.bool,
   smallBorderRadius: propTypes.bool,
 };

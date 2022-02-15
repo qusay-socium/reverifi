@@ -7,25 +7,30 @@ import colors from 'styles/colors';
 export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
   margin-bottom: 0.6rem;
+  font-size: 0.9rem;
 `;
 
 export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
   width: 100%;
   padding: 0 1rem;
-  border: 0.06rem solid ${colors.midGray};
+  outline: ${({ error }) =>
+    error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.midGray}`};
   border-radius: ${({ smallBorderRadius }) =>
     smallBorderRadius ? '0.45rem' : '1.9rem'};
   background-color: ${({ dark }) => (dark ? colors.mineShaft : colors.white)};
-
   background-image: url(${({ leftIcon }) => leftIcon && leftIcon});
   background-repeat: no-repeat;
   background-position-x: 1rem;
   background-position-y: ${({ small }) => (small ? '0.5rem' : ' 1rem')};
+
+  &:active {
+    outline: 0.06rem solid ${colors.green};
+  }
 `;
 
 export const StyledSelect = styled.select`
@@ -35,10 +40,10 @@ export const StyledSelect = styled.select`
     leftIcon ? '1rem 1.7rem' : '1rem 1.7rem 1rem 0'};
   padding-top: ${({ small }) => small && '0.5rem'};
   padding-bottom: ${({ small }) => small && '0.5rem'};
-  color: ${({ dark }) => (dark ? colors.white : `${colors.mineShaft}95`)};
   font-family: inherit;
   font-weight: ${({ dark }) => dark && 600};
   font-size: 0.87rem;
+  color: ${({ dark }) => (dark ? colors.white : `${colors.gray}`)};
   width: 100%;
 
   -webkit-appearance: none;
@@ -46,19 +51,28 @@ export const StyledSelect = styled.select`
   background-image: url(${({ dark }) => (dark ? whiteArrow : arrow)});
   background-repeat: no-repeat;
   background-position-x: 99%;
-  background-position-y: ${({ small }) => (small ? '0.6rem' : ' 1.1rem')};
+  background-position-y: ${({ small }) => (small ? '0.7rem' : ' 1.1rem')};
+  font-family: inherit;
 
   &:focus {
     outline: none;
   }
 
   option {
-    color: ${colors.mineShaft}95;
+    color: ${colors.gray};
+    padding: 5rem;
   }
 `;
 
-export const ErrorMessage = styled(Error)``;
+export const ErrorMessage = styled(Error)`
+  margin: 0.3rem 0;
+  height: 0.6rem;
+`;
 
 export const Placeholder = styled.option`
   display: none;
+`;
+
+export const RequiredStar = styled.span`
+  color: ${colors.red};
 `;
