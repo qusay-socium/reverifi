@@ -7,6 +7,7 @@ const colors = {
   gray: '#6f7076',
   green: '#b2d235',
   liver: '#524d4d',
+  matterhorn: '#545454',
   mercury: '#e4e4e4',
   midGray: '#d8d8d8',
   mineShaft: '#222222',
