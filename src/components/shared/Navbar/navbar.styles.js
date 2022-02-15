@@ -205,54 +205,26 @@ export const MenuWrapper = styled.div`
 
 export const MenuTopWrapper = styled.div`
   padding: 0.5rem;
-`;
 
-export const EmailWrapper = styled.div`
-  font-weight: bold;
-  max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  svg {
+    width: 1rem;
+    height: 1.2rem;
+    margin-right: 0.6rem;
+  }
 `;
 
 export const MenuItem = styled.div`
   align-items: center;
   cursor: pointer;
   display: flex;
-  font-weight: 600;
-  margin: 0.5rem 0 0.5rem 0.5rem;
+  font-weight: 500;
+  margin: 0.5rem 0 1rem 0.5rem;
 
   &:hover {
     color: ${colors.green};
-  }
-`;
-
-export const MenuLine = styled.div`
-  background-color: ${colors.midGray};
-  height: 0.1rem;
-`;
-
-export const LogoutWrapper = styled.button`
-  align-items: center;
-  align-items: center;
-  background: none;
-  border-radius: 0.25rem;
-  border: 0rem;
-  color: ${colors.liver};
-  cursor: pointer;
-  display: flex;
-  font-size: 0.875rem;
-  font-weight: 600;
-  height: 3rem;
-  justify-content: flex-start;
-  padding: 1rem;
-  width: 100%;
-
-  svg {
-    margin-right: 0.5rem;
-    width: 1rem;
-  }
-
-  :hover {
-    background: ${colors.alabaster};
+    svg path {
+      ${({ filled }) => filled && `fill: ${colors.green};`}
+      ${({ stroke }) => stroke && `stroke: ${colors.green};`}
+    }
   }
 `;

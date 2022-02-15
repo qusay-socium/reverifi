@@ -28,11 +28,11 @@ function ClaimAddress() {
       <ClaimAddressContainer>
         <Overlay>
           <ClaimAddressItems>
-            <span>Claim your Address</span>
+            <span>Claim Your Address</span>
             <AddressInputWrapper>
               <Input
                 leftElement={<LocationPin />}
-                placeholder="Enter Your Address"
+                placeholder="Enter your address"
                 rightElement={
                   <AddressButton ariaLabel="Search" onClick={() => {}}>
                     <Arrow />

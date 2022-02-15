@@ -1,6 +1,10 @@
 import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
+import { ReactComponent as SettingIcon } from 'assets/menu-setting.svg';
+import { ReactComponent as DashboardIcon } from 'assets/my-dashboard.svg';
+import { ReactComponent as SavedListingsIcon } from 'assets/saved-listings.svg';
+import { ReactComponent as SignOut } from 'assets/sign-out.svg';
 import Menu from 'components/shared/Menu';
 import { useUser } from 'contexts/UserContext';
 import React, { useRef, useState } from 'react';
@@ -8,10 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   BroadNavContainer,
   Logo,
-  LogoutWrapper,
   MenuIcon,
   MenuItem,
-  MenuLine,
   MenuTopWrapper,
   MenuWrapper,
   NarrowNavContainer,
@@ -72,7 +74,7 @@ function Navbar() {
                 <SearchIconContainer>
                   <SearchIcon />
                 </SearchIconContainer>
-                <StyledInput type="text" placeholder="Search for Property" />
+                <StyledInput type="text" placeholder="Search for property" />
               </StyledInputGroup>
             </NavControlSection>
             <UserControlSectionWrapper ref={clickRef} onClick={handleOpenMenu}>
@@ -88,25 +90,33 @@ function Navbar() {
             >
               <MenuWrapper>
                 <MenuTopWrapper>
-                  <MenuItem>Saved listings</MenuItem>
-                  <MenuItem>Saved agents</MenuItem>
-                  <MenuItem>Dashboard</MenuItem>
-                  <MenuItem onClick={() => navigate('/my-profile')}>
+                  <MenuItem filled="true">
+                    <SavedListingsIcon />
+                    Saved listings
+                  </MenuItem>
+                  <MenuItem filled="true">
+                    <DashboardIcon />
+                    Dashboard
+                  </MenuItem>
+                  <MenuItem
+                    stroke="true"
+                    onClick={() => navigate('/my-profile')}
+                  >
+                    <SettingIcon />
                     Account settings
                   </MenuItem>
+                  <MenuItem
+                    stroke="true"
+                    type="button"
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                    }}
+                  >
+                    <SignOut />
+                    Sign Out
+                  </MenuItem>
                 </MenuTopWrapper>
-
-                <MenuLine />
-
-                <LogoutWrapper
-                  type="button"
-                  onClick={() => {
-                    logout();
-                    navigate('/');
-                  }}
-                >
-                  Sign Out
-                </LogoutWrapper>
               </MenuWrapper>
             </Menu>
           </UserNavControlContainer>

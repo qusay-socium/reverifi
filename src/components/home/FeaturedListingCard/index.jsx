@@ -41,9 +41,7 @@ import {
 function Card({ data }) {
   const {
     address,
-    agent: {
-      userInfo: { image },
-    },
+    agent,
     bedrooms,
     fullBathrooms,
     images,
@@ -66,21 +64,22 @@ function Card({ data }) {
     <CardParent>
       <CardContainer>
         <CardImageContainer>
-          <Image src={images[0]} />
+          <Image src={images ? images[0] : ''} />
           <TagContainer>
             {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
             {listingType?.type && <Tag>{listingType?.type}</Tag>}
           </TagContainer>
-          {image && <PersonImg src={image} />}
+          {agent?.userInfo?.image && <PersonImg src={agent?.userInfo?.image} />}
         </CardImageContainer>
 
         <CardBody>
           <InfoContainer>
             <TextMedium>{address}</TextMedium>
-
-            {propertyType?.type && (
-              <TextSmall>{propertyTypeConverter(propertyType)}</TextSmall>
-            )}
+            <TextSmall>
+              {propertyType?.type
+                ? propertyTypeConverter(propertyType)
+                : 'Others'}
+            </TextSmall>
 
             <BodyIconsContainer>
               {bedrooms && (
@@ -89,15 +88,15 @@ function Card({ data }) {
                   <BedroomIcon />
                 </Container>
               )}
-              <WifiIcon />
               {fullBathrooms && (
                 <Container>
                   <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
                   <BathtubIcon />
                 </Container>
               )}
-              <AirConditionerIcon />
+              <WifiIcon />
               <BenchIcon />
+              <AirConditionerIcon />
             </BodyIconsContainer>
           </InfoContainer>
         </CardBody>
@@ -116,14 +115,14 @@ function Card({ data }) {
         </CardFooter>
       </CardContainer>
 
-      <OverlayBackground image={images[0]}>
+      <OverlayBackground image={images ? images[0] : ''}>
         <Overlay>
           <OverlayAddress>{address}</OverlayAddress>
-          {propertyType?.type && (
-            <OverlayProperty>
-              {propertyTypeConverter(propertyType)}
-            </OverlayProperty>
-          )}
+          <OverlayProperty>
+            {propertyType?.type
+              ? propertyTypeConverter(propertyType)
+              : 'Others'}
+          </OverlayProperty>
           <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 
           <OverlayFeatures>
