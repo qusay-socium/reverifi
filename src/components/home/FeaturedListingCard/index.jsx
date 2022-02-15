@@ -115,7 +115,7 @@ function Card({ data }) {
         </CardFooter>
       </CardContainer>
 
-      <OverlayBackground image={images[0]}>
+      <OverlayBackground image={images ? images[0] : ''}>
         <Overlay>
           <OverlayAddress>{address}</OverlayAddress>
           <OverlayProperty>
