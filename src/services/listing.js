@@ -32,10 +32,10 @@ export const getListingsBySearchKey = async (keyWord) => {
  *
  * @return {Promise<Object>} listing data response.
  */
-export const getAllListingWithRelations = async (pageNumber) => {
+export const getAllListingWithRelations = async (pageNumber, limit) => {
   const {
     data: { data, count },
-  } = await http.get(`${apiUrl}/listings?page=${pageNumber}`);
+  } = await http.get(`${apiUrl}/listings?page=${pageNumber}&limit=${limit}`);
 
   return { count, data };
 };

@@ -35,7 +35,7 @@ const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
 export default function MyListings({ setDeleteId }) {
   const { isLoggedIn } = useUser();
   const listingPerPage = 8;
-  const [listings, setListings] = useState(null);
+  const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { showModal, setShowModal } = useShowModal();
   const navigate = useNavigate();
@@ -47,8 +47,8 @@ export default function MyListings({ setDeleteId }) {
   }
 
   const fetchAllListingsForUser = async (page) => {
-    const listingData = await getAllListingWithRelations(page);
-    setListings(listingData);
+    const listingData = await getAllListingWithRelations(page, listingPerPage);
+    setListings(listingData.data);
   };
 
   const handleLeftArrowClick = () => {
@@ -78,7 +78,7 @@ export default function MyListings({ setDeleteId }) {
           <TableRow key={id}>
             <TableCell>
               <ListingImageContainer>
-                <ListingImage src={images[0]} />
+                <ListingImage src={images ? images[0] : ''} />
               </ListingImageContainer>
             </TableCell>
             <TableCell>{address}</TableCell>
