@@ -16,8 +16,8 @@ function Table({ children, headers }) {
       <StyledTable>
         <thead>
           <TableRow>
-            {headers.map((header) => (
-              <TableHead key={header}>{header}</TableHead>
+            {headers?.map((header) => (
+              <TableHead key={header}>{header?.toUpperCase()}</TableHead>
             ))}
           </TableRow>
         </thead>
