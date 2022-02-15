@@ -41,9 +41,7 @@ import {
 function Card({ data }) {
   const {
     address,
-    agent: {
-      userInfo: { image },
-    },
+    agent,
     bedrooms,
     fullBathrooms,
     images,
@@ -66,12 +64,12 @@ function Card({ data }) {
     <CardParent>
       <CardContainer>
         <CardImageContainer>
-          <Image src={images[0]} />
+          <Image src={images ? images[0] : ''} />
           <TagContainer>
             {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
             {listingType?.type && <Tag>{listingType?.type}</Tag>}
           </TagContainer>
-          {image && <PersonImg src={image} />}
+          {agent?.userInfo?.image && <PersonImg src={agent?.userInfo?.image} />}
         </CardImageContainer>
 
         <CardBody>
@@ -90,15 +88,15 @@ function Card({ data }) {
                   <BedroomIcon />
                 </Container>
               )}
-              <WifiIcon />
               {fullBathrooms && (
                 <Container>
                   <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
                   <BathtubIcon />
                 </Container>
               )}
-              <AirConditionerIcon />
+              <WifiIcon />
               <BenchIcon />
+              <AirConditionerIcon />
             </BodyIconsContainer>
           </InfoContainer>
         </CardBody>

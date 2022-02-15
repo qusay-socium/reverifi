@@ -34,11 +34,10 @@ export const OverlayFeatures = styled.div`
   display: flex;
   justify-content: center;
   padding-bottom: 1rem;
-
   svg {
     height: 1.2rem;
-    margin-right: 1rem;
-    width: 1.7rem;
+    margin-right: 0.8rem;
+    min-width: 1.8rem;
 
     path {
       fill: ${colors.white};
@@ -73,7 +72,11 @@ export const InfoContainer = styled(Container)`
 `;
 
 export const BodyIconsContainer = styled(Container)`
-  gap: 1rem;
+  svg {
+    min-width: 1rem;
+    height: 1rem;
+    margin-right: 0.4rem;
+  }
 `;
 
 export const IconsContainer = styled(Container)`
@@ -168,7 +171,7 @@ export const TextSmall = styled.p`
 `;
 
 export const ServiceQuantity = styled.span`
-  color: ${colors.mineShaft}7f;
+  color: ${colors.mineShaft};
   font-size: 1rem;
   padding-right: 0.25rem;
 `;
