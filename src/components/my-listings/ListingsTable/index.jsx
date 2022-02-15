@@ -78,15 +78,13 @@ export default function MyListings({ setDeleteId }) {
           <TableRow key={id}>
             <TableCell>
               <ListingImageContainer>
-                <ListingImage src={images ? images[0] : ''} />
+                <ListingImage src={images[0] || ''} />
               </ListingImageContainer>
             </TableCell>
             <TableCell>{address}</TableCell>
             <TableCell>
               <AgentContainer>
-                <AgentImage
-                  src={agent?.userInfo?.image ? agent?.userInfo?.image : ''}
-                />
+                <AgentImage src={agent?.userInfo?.image || ''} />
                 <AgentName>{agent.name}</AgentName>
               </AgentContainer>
             </TableCell>
