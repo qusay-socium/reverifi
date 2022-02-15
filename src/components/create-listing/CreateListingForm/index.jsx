@@ -5,6 +5,7 @@ import ListingFormMap from 'components/create-listing/ListingFormMap';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
 import { useUser } from 'contexts/UserContext';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -19,12 +20,12 @@ import {
   SubmitSection,
   Wrapper,
 } from './create-listing-form.styles';
+
 /**
  * Render new listing form.
  *
  * @return {JSX.Element}
  */
-// eslint-disable-next-line react/prop-types
 function CreateListingForm({ date }) {
   const navigate = useNavigate();
   const { id: formId } = useParams();
@@ -139,5 +140,13 @@ function CreateListingForm({ date }) {
     </CreateListingContainer>
   );
 }
+
+CreateListingForm.propTypes = {
+  date: PropTypes.string,
+};
+
+CreateListingForm.defaultProps = {
+  date: null,
+};
 
 export default CreateListingForm;

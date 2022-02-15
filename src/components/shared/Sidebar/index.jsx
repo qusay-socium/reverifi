@@ -70,17 +70,7 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
       </MenuLink>
-<<<<<<< HEAD
-      <MenuLink isCollapsed={isCollapsed} to="/settings">
-        <MenuItem type="button">
-          <Settings />
-        </MenuItem>
-        <LinkTitle>Settings</LinkTitle>
-      </MenuLink>
-      <MenuLink isCollapsed={isCollapsed} to="/logout">
-=======
       <MenuLink to="/logout">
->>>>>>> fix profile page issues
         <MenuItem type="button">
           <Logout />
         </MenuItem>

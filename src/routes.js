@@ -120,17 +120,17 @@ const routes = [
   },
   {
     adminLayout: true,
-<<<<<<< HEAD
     component: lazy(() => import('pages/HowWeWork')),
     label: 'how-we-work',
     path: '/dashboard/how-we-work',
     title: 'How We Work',
-=======
+  },
+  {
+    adminLayout: true,
     component: lazy(() => import('pages/MyListings')),
     label: 'my-listings',
     path: '/my-listings',
     title: 'My listings',
->>>>>>> add table
   },
 ];
 
