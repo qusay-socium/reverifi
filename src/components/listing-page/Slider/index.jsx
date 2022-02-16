@@ -86,12 +86,12 @@ function ListingPageSlider({ images }) {
     <Container>
       <Wrapper>
         <Slider {...settings}>
-          {images.map((img, idx) =>
+          {images?.map((img, idx) =>
             idx === imageIndex ? (
               <ActiveImageWrapper key={img}>
                 <ActiveImage src={img} />
                 <CustomPaging>
-                  {imageIndex + 1} / {images.length} Photo
+                  {imageIndex + 1} / {images?.length} Photo
                 </CustomPaging>
               </ActiveImageWrapper>
             ) : (

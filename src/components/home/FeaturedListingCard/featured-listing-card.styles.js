@@ -8,9 +8,22 @@ export const Container = styled.div`
   justify-content: center;
 
   svg {
-    width: 1.5rem;
     height: 1.2rem;
+    width: 1.2rem;
   }
+`;
+
+export const FeaturedIconContainer = styled(Container)`
+  svg {
+    width: 0.8rem;
+    margin-right: 0.5rem;
+  }
+`;
+
+export const AreaText = styled.p`
+  font-size: 0.8rem;
+  margin: 0 0.5rem 0 0;
+  white-space: nowrap;
 `;
 
 export const OverlayProperty = styled.h4`
@@ -30,14 +43,16 @@ export const OverlayPrice = styled.h3`
 `;
 
 export const OverlayFeatures = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
   padding-bottom: 1rem;
+  display: flex;
+  color: ${colors.white};
+  justify-content: center;
+  align-items: center;
+
   svg {
-    height: 1.2rem;
-    margin-right: 0.8rem;
-    min-width: 1.8rem;
+    height: 1.1rem;
+    margin-right: 0.3rem;
+    width: 1.5rem;
 
     path {
       fill: ${colors.white};
@@ -61,9 +76,10 @@ export const OverlayButton = styled(Button)`
 `;
 
 export const OverlayIcons = styled.div`
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   position: absolute;
   right: 1rem;
+  bottom: 0;
 `;
 
 export const InfoContainer = styled(Container)`
@@ -73,9 +89,9 @@ export const InfoContainer = styled(Container)`
 
 export const BodyIconsContainer = styled(Container)`
   svg {
-    min-width: 1rem;
-    height: 1rem;
-    margin-right: 0.4rem;
+    height: 1.1rem;
+    margin-right: 0.3rem;
+    width: 1.5rem;
   }
 `;
 
@@ -109,9 +125,7 @@ export const CardBody = styled.div`
 
 export const CardFooter = styled.div`
   align-items: center;
-  background-color: ${colors.white};
   border-top: 0.06rem solid ${colors.midGray};
-  box-shadow: 0rem 0.06rem 0.56rem -0.09rem ${colors.mineShaft}29;
   display: flex;
   height: 3rem;
   justify-content: space-between;
@@ -124,7 +138,6 @@ export const TagContainer = styled.div`
   left: 1rem;
   position: absolute;
   top: 1rem;
-  transition: 0.2s;
 `;
 
 export const Tag = styled.div`
@@ -134,7 +147,6 @@ export const Tag = styled.div`
   font-size: 0.625rem;
   margin-right: 0.4375rem;
   padding: 0.3125rem 1.1875rem;
-  transition: 0.2s;
 `;
 
 export const PersonImg = styled.img`
@@ -164,6 +176,15 @@ export const TextMedium = styled.p`
   width: 15rem;
 `;
 
+export const AddressTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 1rem;
+  }
+`;
+
 export const TextSmall = styled.p`
   color: ${colors.osloGray};
   font-size: 0.9rem;
@@ -172,8 +193,9 @@ export const TextSmall = styled.p`
 
 export const ServiceQuantity = styled.span`
   color: ${colors.mineShaft};
-  font-size: 1rem;
-  padding-right: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-right: 0.2rem;
 `;
 
 export const IconContainer = styled.div`
@@ -209,40 +231,48 @@ export const CardContainer = styled.div`
   background-color: ${colors.white};
   height: 100%;
   position: absolute;
-  transition: all 0.5s;
   width: 100%;
 `;
 
 export const OverlayBackground = styled(CardContainer)`
   background-repeat: no-repeat;
-  background-size: 100% 100%;
   background: url(${({ image }) => image});
   border-radius: 0.3rem;
+  background-size: 100% 100%;
   display: none;
-  height: 100%;
-  opacity: 0.1;
   overflow: hidden;
-  position: absolute;
-  transition: 0.2s;
+  height: 100%;
+`;
+
+export const OverlayBody = styled.div`
+  align-items: center;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const Overlay = styled.div`
+  background-color: ${colors.mineShaft}D4;
+  height: 100%;
+  opacity: 0;
+  transition: 0.3s;
 
   &:hover {
-    background-size: 100% 100%;
-    height: 100%;
-
-    div {
-      opacity: 1;
-      bottom: 0;
-    }
+    padding-top: 4rem;
+    opacity: 1;
   }
 `;
 
 export const CardParent = styled.div`
-  min-height: 22rem;
-  max-height: 24rem;
-  margin: 1.2rem;
-  position: relative;
-  border-radius: 2rem;
   box-shadow: 0rem 0.06rem 0.6rem 0.1rem ${colors.mineShaft}29;
+  margin: 1.2rem;
+  max-height: 24rem;
+  min-height: 22rem;
+  overflow: hidden;
+  position: relative;
+  border-radius: 0.3rem;
 
   &:hover ${CardContainer} {
     display: none;
@@ -252,19 +282,4 @@ export const CardParent = styled.div`
     display: block;
     opacity: 1;
   }
-`;
-
-export const Overlay = styled.div`
-  align-items: center;
-  background-color: ${colors.mineShaft}D4;
-  border-radius: 0.3rem;
-  bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  opacity: 0.1;
-  position: absolute;
-  transition: 0.2s;
-  width: 100%;
 `;

@@ -40,10 +40,10 @@ export const FeaturesItem = styled.li`
   img {
     background-color: ${({ selected }) =>
       selected ? colors.green : colors.white};
-    border-radius: 0.6rem;
-    padding: 0.3rem;
     width: 2rem;
     height: 2rem;
+    padding: 0.3rem;
+    border-radius: 5rem;
   }
 
   ${mq.tablet`
@@ -52,6 +52,7 @@ export const FeaturesItem = styled.li`
 `;
 
 export const Image = styled.img`
+  padding: 1rem;
   height: 5rem;
   margin-right: 0.69rem;
   width: 5rem;
@@ -59,5 +60,5 @@ export const Image = styled.img`
 
 export const Label = styled.span`
   color: ${colors.mineShaft};
-  font-weight: 400;
+  font-weight: 600;
 `;

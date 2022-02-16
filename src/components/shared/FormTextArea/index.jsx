@@ -93,7 +93,7 @@ TextAreaInput.defaultProps = {
   label: null,
   labelIconElement: null,
   limit: null,
-  onChange: null,
+  onChange: () => {},
   placeholder: '',
   register: null,
   rounded: true,

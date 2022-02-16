@@ -1,22 +1,24 @@
-import { ReactComponent as AirConditionerIcon } from 'assets/icons/air-conditioner.svg';
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
-import { ReactComponent as BenchIcon } from 'assets/icons/bench.svg';
 import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
-import { ReactComponent as WifiIcon } from 'assets/icons/wifi.svg';
+import agentImage from 'assets/listing-agent-image.png';
+import listingImage from 'assets/listing-image.png';
+import { ReactComponent as LocationIcon } from 'assets/location.svg';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getDatesDifference } from 'utils/helpers';
 import {
+  AddressTextContainer,
+  AreaText,
   BodyIconsContainer,
   CardBody,
   CardContainer,
   CardFooter,
   CardImageContainer,
   CardParent,
-  Container,
+  FeaturedIconContainer,
   IconContainer,
   IconsContainer,
   Image,
@@ -24,6 +26,7 @@ import {
   Overlay,
   OverlayAddress,
   OverlayBackground,
+  OverlayBody,
   OverlayButton,
   OverlayFeatures,
   OverlayIcons,
@@ -49,6 +52,8 @@ function Card({ data }) {
     propertyType,
     listingType,
     createdAt,
+    homeArea,
+    lotArea,
   } = data;
 
   const propertyTypeConverter = (property) => {
@@ -64,17 +69,22 @@ function Card({ data }) {
     <CardParent>
       <CardContainer>
         <CardImageContainer>
-          <Image src={images ? images[0] : ''} />
+          <Image src={images ? images[0] : listingImage} />
           <TagContainer>
             {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
             {listingType?.type && <Tag>{listingType?.type}</Tag>}
           </TagContainer>
-          {agent?.userInfo?.image && <PersonImg src={agent?.userInfo?.image} />}
+          <PersonImg src={agent?.userInfo?.image || agentImage} />
         </CardImageContainer>
 
         <CardBody>
           <InfoContainer>
-            <TextMedium>{address}</TextMedium>
+            <AddressTextContainer>
+              <FeaturedIconContainer>
+                <LocationIcon />
+              </FeaturedIconContainer>
+              <TextMedium>{address || 'USA'}</TextMedium>
+            </AddressTextContainer>
             <TextSmall>
               {propertyType?.type
                 ? propertyTypeConverter(propertyType)
@@ -83,20 +93,30 @@ function Card({ data }) {
 
             <BodyIconsContainer>
               {bedrooms && (
-                <Container>
+                <FeaturedIconContainer>
                   <ServiceQuantity>{bedrooms}</ServiceQuantity>
                   <BedroomIcon />
-                </Container>
+                </FeaturedIconContainer>
               )}
               {fullBathrooms && (
-                <Container>
+                <FeaturedIconContainer>
                   <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
                   <BathtubIcon />
-                </Container>
+                </FeaturedIconContainer>
               )}
-              <WifiIcon />
-              <BenchIcon />
-              <AirConditionerIcon />
+              {homeArea && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{homeArea?.sqft} </ServiceQuantity>
+                  <AreaText>sqft</AreaText>
+                </FeaturedIconContainer>
+              )}
+
+              {lotArea && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{lotArea?.sqft} </ServiceQuantity>{' '}
+                  <AreaText>sqft lot</AreaText>
+                </FeaturedIconContainer>
+              )}
             </BodyIconsContainer>
           </InfoContainer>
         </CardBody>
@@ -117,44 +137,58 @@ function Card({ data }) {
 
       <OverlayBackground image={images ? images[0] : ''}>
         <Overlay>
-          <OverlayAddress>{address}</OverlayAddress>
-          <OverlayProperty>
-            {propertyType?.type
-              ? propertyTypeConverter(propertyType)
-              : 'Others'}
-          </OverlayProperty>
-          <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
+          <OverlayBody>
+            <OverlayAddress>{address || 'USA'}</OverlayAddress>
+            <OverlayProperty>
+              {propertyType?.type
+                ? propertyTypeConverter(propertyType)
+                : 'Others'}
+            </OverlayProperty>
+            <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 
-          <OverlayFeatures>
-            {bedrooms && (
-              <Container>
-                <ServiceQuantity>{bedrooms}</ServiceQuantity>
-                <BedroomIcon />
-              </Container>
-            )}
-            <WifiIcon />
-            {fullBathrooms && (
-              <Container>
-                <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
-                <BathtubIcon />
-              </Container>
-            )}
-            <AirConditionerIcon />
-            <BenchIcon />
-          </OverlayFeatures>
+            <OverlayFeatures>
+              {bedrooms && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{bedrooms}</ServiceQuantity>
+                  <BedroomIcon />
+                </FeaturedIconContainer>
+              )}
 
-          <OverlayButton>View Listing</OverlayButton>
+              {fullBathrooms && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{fullBathrooms}</ServiceQuantity>
+                  <BathtubIcon />
+                </FeaturedIconContainer>
+              )}
 
-          <OverlayIcons>
-            <IconsContainer>
-              <IconContainer stroke="true">
-                <HeartIcon />
-              </IconContainer>
-              <IconContainer fill="true" onClick={() => setShowModal(true)}>
-                <ShareIcon />
-              </IconContainer>
-            </IconsContainer>
-          </OverlayIcons>
+              {homeArea && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{homeArea?.sqft} </ServiceQuantity>
+                  <AreaText>sqft</AreaText>
+                </FeaturedIconContainer>
+              )}
+
+              {lotArea && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{lotArea?.sqft} </ServiceQuantity>{' '}
+                  <AreaText>sqft lot</AreaText>
+                </FeaturedIconContainer>
+              )}
+            </OverlayFeatures>
+
+            <OverlayButton>View Listing</OverlayButton>
+
+            <OverlayIcons>
+              <IconsContainer>
+                <IconContainer stroke="true">
+                  <HeartIcon />
+                </IconContainer>
+                <IconContainer fill="true" onClick={() => setShowModal(true)}>
+                  <ShareIcon />
+                </IconContainer>
+              </IconsContainer>
+            </OverlayIcons>
+          </OverlayBody>
         </Overlay>
       </OverlayBackground>
     </CardParent>
@@ -171,8 +205,14 @@ Card.propTypes = {
     bedrooms: PropTypes.number,
     createdAt: PropTypes.string,
     fullBathrooms: PropTypes.number,
+    homeArea: PropTypes.shape({
+      sqft: PropTypes.objectOf(PropTypes.string),
+    }),
     images: PropTypes.arrayOf(PropTypes.string),
     listingType: PropTypes.objectOf(PropTypes.string),
+    lotArea: PropTypes.shape({
+      sqft: PropTypes.objectOf(PropTypes.string),
+    }),
     overview: PropTypes.string,
     price: PropTypes.number,
     propertyType: PropTypes.objectOf(PropTypes.string),

@@ -13,7 +13,6 @@ import { Container, FeaturesItem, Label, Wrapper } from './features.styles';
  *
  * @return {JSX.Element}
  */
-// eslint-disable-next-line react/prop-types
 function Features({ features }) {
   if (!features.length) return null;
   return (
