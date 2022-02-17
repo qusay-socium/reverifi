@@ -1,5 +1,7 @@
 import * as yup from 'yup';
 
+const textAndNumbersRegex = /([a-zA-Z])([0-9])*$/;
+
 const myProfileSchema = yup
   .object({
     aboutMe: yup.string().label('About'),
@@ -7,11 +9,46 @@ const myProfileSchema = yup
     city: yup
       .object()
       .required('City is required')
-      .typeError('City is required')
-      .nullable(),
+      .typeError('City is required'),
     companyEmail: yup.string().email(),
-    companyName: yup.string().label('Company'),
-    companyWebsite: yup.string().label('Website'),
+    companyName: yup
+      .string()
+      .label('Company')
+      .trim()
+      .notRequired()
+      .test('company_name', 'Company name should contain letters', (value) => {
+        if (value) {
+          const schema = yup
+            .string()
+            .matches(
+              textAndNumbersRegex,
+              'Company name should contain letters'
+            );
+          return schema.isValidSync(value);
+        }
+        return true;
+      }),
+    companyWebsite: yup
+      .string()
+      .label('Website')
+      .trim()
+      .notRequired()
+      .test(
+        'company_name',
+        'Company website should contain letters',
+        (value) => {
+          if (value) {
+            const schema = yup
+              .string()
+              .matches(
+                textAndNumbersRegex,
+                'Company website should contain letters'
+              );
+            return schema.isValidSync(value);
+          }
+          return true;
+        }
+      ),
     country: yup
       .object()
       .required('Country is required')
@@ -24,7 +61,7 @@ const myProfileSchema = yup
     linkedin: yup.string().label('LinkedIn'),
     name: yup.string().label('Name').required(),
     phone: yup
-      .number()
+      .string()
       .label('Phone')
       .required()
       .min(13, 'Must be at least 13 digits')
@@ -35,7 +72,7 @@ const myProfileSchema = yup
       .typeError('Service areas should have at least 1 value'),
     youtube: yup.string().label('YouTube'),
     zipCode: yup
-      .number()
+      .string()
       .required('ZipCode is required')
       .typeError('ZipCode must be a number')
       .min(5, 'Must be 5 digits'),

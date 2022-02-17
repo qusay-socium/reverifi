@@ -1,4 +1,3 @@
-import addIcon from 'assets/add-icon-small.svg';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -24,36 +23,52 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  border: 0.06rem solid ${colors.mercury};
-  border-radius: ${({ rounded }) => (rounded ? '1.18rem' : '0.3rem')};
-  padding: 0.6rem;
+  border: none;
+  outline: none;
   width: 100%;
+
+  padding-left: ${({ withPrefix }) => withPrefix && '0.7rem'};
 
   ::placeholder {
     color: ${colors.midGray};
-  }
-
-  &:focus {
-    outline: ${({ error }) =>
-      error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.green}`};
   }
 
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {
     opacity: 1;
   }
-
-  ${({ withPrefix }) =>
-    withPrefix &&
-    `
-    background: url(${addIcon}) no-repeat scroll 0.56rem 0.88rem;
-    padding-left: 1.2rem;
-    background-color: ${colors.white};
-  `}
 `;
 
 export const Error = styled.p`
   color: ${colors.red};
   font-size: 0.75rem;
   margin: 0.31rem 0 0.93rem 0;
+`;
+
+export const InputWrapper = styled.div`
+  border: ${({ error }) =>
+    error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.mercury}`};
+  border-radius: ${({ rounded }) => (rounded ? '1.18rem' : '0.3rem')};
+  padding: 0.6rem;
+  width: 100%;
+  background-color: ${colors.white};
+  position: relative;
+  cursor: text;
+
+  &:hover {
+    border: ${({ disabled }) => !disabled && `0.06rem solid ${colors.green}`};
+  }
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+    background-color: ${colors.mercury}60;
+    border: none;
+    cursor: auto;
+  `}
+`;
+
+export const PlusSign = styled.span`
+  position: absolute;
+  top: 29%;
 `;

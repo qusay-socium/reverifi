@@ -140,15 +140,18 @@ function AgentInformation() {
             <CompanyInformation>
               <ContactInfo>
                 <h2>Company Information</h2>
-                {Object.entries(userData?.company).map((field, i) => (
-                  <InfoWrapper key={field[0]}>
-                    <InfoKey>
-                      {companyInfoIcons[i]}
-                      <span>{toUpperCaseFirstLetter(field[0])}</span>
-                    </InfoKey>
-                    <InfoValue>{field[1]}</InfoValue>
-                  </InfoWrapper>
-                ))}
+                {Object.entries(userData?.company).map(
+                  (field, i) =>
+                    field[0] !== 'id' && (
+                      <InfoWrapper key={field[0]}>
+                        <InfoKey>
+                          {companyInfoIcons?.[i - 1]}
+                          <span>{toUpperCaseFirstLetter(field[0])}</span>
+                        </InfoKey>
+                        <InfoValue>{field[1]}</InfoValue>
+                      </InfoWrapper>
+                    )
+                )}
               </ContactInfo>
             </CompanyInformation>
           )}

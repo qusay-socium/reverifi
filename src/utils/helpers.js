@@ -102,9 +102,11 @@ export const getLastCharacters = (string, numOfCharacters = 2) =>
  *
  */
 export const handleNumberInput = ({ target }) => {
-  if (!/^\d+$/g.test(target.value)) {
-    target.value = target.value.slice(0, -1);
-  }
+  target.value = target.value.replace(
+    // eslint-disable-next-line no-useless-escape
+    /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|a-zA-Z]/g,
+    ''
+  );
 };
 
 /**
@@ -114,9 +116,11 @@ export const handleNumberInput = ({ target }) => {
  *
  */
 export const handleTextInput = ({ target }) => {
-  if (!/^[a-zA-Z\s]*$/g.test(target.value)) {
-    target.value = target.value.slice(0, -1);
-  }
+  target.value = target.value.replace(
+    // eslint-disable-next-line no-useless-escape
+    /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|0-9]/g,
+    ''
+  );
 };
 
 /**

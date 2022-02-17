@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container, Error, Input, Label } from './form-input.styles';
+import {
+  Container,
+  Error,
+  Input,
+  InputWrapper,
+  Label,
+  PlusSign,
+} from './form-input.styles';
 
 /**
  * Render form input.
@@ -50,23 +57,26 @@ function FormInput({
         </Label>
       )}
 
-      <Input
-        {...(register ? register(name) : {})}
-        id={id || name}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        rounded={rounded}
-        min={min}
-        max={max}
-        maxLength={maxLength}
-        step={step}
-        defaultValue={defaultValue}
-        error={error}
-        disabled={disabled}
-        onKeyDown={onClickInputKey}
-        withPrefix={withPrefix}
-      />
+      <InputWrapper rounded={rounded} error={error} disabled={disabled}>
+        {withPrefix && <PlusSign>+</PlusSign>}
+
+        <Input
+          {...(register ? register(name) : {})}
+          id={id || name}
+          type={type}
+          placeholder={placeholder}
+          onChange={onChange}
+          min={min}
+          max={max}
+          maxLength={maxLength}
+          step={step}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          onKeyDown={onClickInputKey}
+          withPrefix={withPrefix}
+        />
+      </InputWrapper>
+
       {error && <Error>{error}</Error>}
     </Container>
   );
