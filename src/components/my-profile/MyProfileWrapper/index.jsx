@@ -298,7 +298,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.phone?.message}
               required
-              defaultValue={fetchedUserData.user?.phone.slice(1)}
+              defaultValue={fetchedUserData.user?.phone?.slice(1)}
               withPrefix
             />
           </InputsContainer>

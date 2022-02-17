@@ -44,7 +44,7 @@ function CardInformation({
       <CardHeader>
         <CardPrice>
           <h3>
-            ${price.toLocaleString()}
+            ${price?.toLocaleString()}
             {perPeriod && `/${perPeriod}`}
           </h3>
           <span>{getDatesDifference(createdAt)} days on reverifi</span>
@@ -61,7 +61,7 @@ function CardInformation({
       <CardBody>
         <p>
           {propertyType === 'Apartments'
-            ? propertyType.slice(0, -1)
+            ? propertyType?.slice(0, -1)
             : propertyType}
         </p>
         <IconsContainers>
