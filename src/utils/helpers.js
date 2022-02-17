@@ -11,8 +11,8 @@
  * @return {Number} difference between 2 dates
  */
 export const getDatesDifference = (date, period) => {
-  const cleanedDate = date.slice(0, 10);
-  const today = new Date().toISOString().slice(0, 10);
+  const cleanedDate = date?.slice(0, 10);
+  const today = new Date().toISOString()?.slice(0, 10);
 
   const diffInMs = new Date(today) - new Date(cleanedDate);
   const diffInDays = diffInMs / (1000 * 60 * 60 * 24);

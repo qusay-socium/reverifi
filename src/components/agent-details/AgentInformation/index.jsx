@@ -59,28 +59,28 @@ function AgentInformation() {
       <AgentItemsContainer>
         <AgentSection>
           <ImageContainer>
-            <StyledImg src={userData.image || placeholderPhoto} />
+            <StyledImg src={userData?.image || placeholderPhoto} />
             <SocialMediaIcons>
               <IconLinkWrapper
-                href={userData.socials?.facebook || ''}
+                href={userData?.socials?.facebook || ''}
                 target="_blank"
               >
                 <Facebook />
               </IconLinkWrapper>
               <IconLinkWrapper
-                href={userData.socials?.instagram || ''}
+                href={userData?.socials?.instagram || ''}
                 target="_blank"
               >
                 <Instagram />
               </IconLinkWrapper>
               <IconLinkWrapper
-                href={userData.socials?.youtube || ''}
+                href={userData?.socials?.youtube || ''}
                 target="_blank"
               >
                 <Youtube />
               </IconLinkWrapper>
               <IconLinkWrapper
-                href={userData.socials?.linkedin || ''}
+                href={userData?.socials?.linkedin || ''}
                 target="_blank"
               >
                 <Linkedin />
@@ -90,7 +90,7 @@ function AgentInformation() {
           <AgentBasicInformation>
             <ContactInfo>
               <AgentName>
-                <h2>{toUpperCaseFirstLetter(userData.user?.name) || ''}</h2>
+                <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
                 <IconWrapper fill="true">
                   <Like />
                 </IconWrapper>
@@ -100,14 +100,14 @@ function AgentInformation() {
                   <PhoneIcon />
                   <span>Phone</span>
                 </InfoKey>
-                <InfoValue>{userData.user?.phone}</InfoValue>
+                <InfoValue>{userData?.user?.phone}</InfoValue>
               </InfoWrapper>
               <InfoWrapper>
                 <InfoKey>
                   <EmailIcon />
                   <span>Email</span>
                 </InfoKey>
-                <InfoValue>{userData.user?.email}</InfoValue>
+                <InfoValue>{userData?.user?.email}</InfoValue>
               </InfoWrapper>
               <InfoWrapper>
                 <InfoKey>
