@@ -16,8 +16,8 @@ function ListingsTable() {
         {listingsTableData?.map(({ property, myRole, status }, index) => (
           <TableRow key={index.toString()}>
             <TableCell>{property}</TableCell>
-            <TableCell centerAlign>{myRole}</TableCell>
-            <TableCell centerAlign>
+            <TableCell>{myRole}</TableCell>
+            <TableCell iconsCell>
               <LinkText to="/dashboard">{status}</LinkText>
             </TableCell>
           </TableRow>
