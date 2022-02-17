@@ -78,12 +78,13 @@ export function UserProvider({ children }) {
    */
   const setTokenData = useCallback(
     async (token) => {
-      const { email, name, phone } = tokenUtil.decodeToken(token) || {};
+      const { email, id, name, phone } = tokenUtil.decodeToken(token) || {};
       // if token not decoded correctly consider the token is invalid and logout the user
       if (!(email && name)) {
         logout();
         return;
       }
+
       tokenUtil.setToken(token);
       setIsLoggedIn(true);
 
@@ -91,11 +92,12 @@ export function UserProvider({ children }) {
         const { user } = await getUserInfo();
         setUserInfo({
           email: user?.email,
+          id: user?.id,
           name: user?.name,
           phone: user?.phone,
         });
       } catch (err) {
-        setUserInfo({ email, name, phone });
+        setUserInfo({ email, id, name, phone });
       }
     },
     [logout]
