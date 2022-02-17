@@ -55,10 +55,10 @@ export const getListingsById = async (id) => {
  */
 export const getUserListings = async (id, limit, page) => {
   const {
-    data: { data },
+    data: { data, count },
   } = await http.get(`${apiUrl}/listings/${id}?limit=${limit}&page=${page}`);
 
-  return data;
+  return { count, data };
 };
 
 /* @param {uuid} listing id.

@@ -55,7 +55,7 @@ export default function MyListings({ setDeleteId }) {
         listingPerPage,
         page
       );
-      setListings(listingData.data);
+      setListings(listingData);
     }
   };
 
