@@ -60,12 +60,12 @@ export const getListingsById = async (id) => {
  *
  * @return {Promise<Object>} listing data response.
  */
-export const getUserListings = async (id, limit) => {
-  const numOfListings = limit ? `?limit=${limit}` : '';
-
+export const getUserListings = async (id, limit, page) => {
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/listings/user-listings/${id}${numOfListings}`);
+  } = await http.get(
+    `${apiUrl}/listings/${id}?limit=${limit || ''}&page=${page || ''}`
+  );
 
   return data;
 };
