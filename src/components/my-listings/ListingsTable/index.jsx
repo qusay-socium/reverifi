@@ -14,7 +14,7 @@ import { useUser } from 'contexts/UserContext';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllListingWithRelations } from 'services/listing';
+import { getUserListings } from 'services/listing';
 import {
   AgentContainer,
   AgentImage,
@@ -35,7 +35,7 @@ const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
  * @return {JSX.Element}
  */
 export default function MyListings({ setDeleteId }) {
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, userInfo: authInfo } = useUser();
   const listingPerPage = 8;
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -49,8 +49,14 @@ export default function MyListings({ setDeleteId }) {
   }
 
   const fetchAllListingsForUser = async (page) => {
-    const listingData = await getAllListingWithRelations(page, listingPerPage);
-    setListings(listingData.data);
+    if (authInfo?.id) {
+      const listingData = await getUserListings(
+        authInfo?.id,
+        listingPerPage,
+        page
+      );
+      setListings(listingData.data);
+    }
   };
 
   const handleLeftArrowClick = () => {
@@ -71,7 +77,7 @@ export default function MyListings({ setDeleteId }) {
     fetchAllListingsForUser(pageNumber + 1);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber, showModal]);
+  }, [authInfo, pageNumber, showModal]);
 
   return (
     <>

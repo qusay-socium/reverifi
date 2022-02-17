@@ -28,26 +28,17 @@ export const getListingsBySearchKey = async (keyWord) => {
   return data;
 };
 
-/* @param {string} pageNumber the page number to search for .
+/**
+ * get listings by id
  *
- * @return {Promise<Object>} listing data response.
- */
-export const getAllListingWithRelations = async (pageNumber, limit) => {
-  const {
-    data: { data, count },
-  } = await http.get(`${apiUrl}/listings?page=${pageNumber}&limit=${limit}`);
-
-  return { count, data };
-};
-
-/* @param {uuid} listing id.
+ * @param {uuid} listing id.
  *
  * @return {Promise<Object>} listing data response.
  */
 export const getListingsById = async (id) => {
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/listings/${id}`);
+  } = await http.get(`${apiUrl}/listings/listing/${id}`);
 
   return data;
 };
@@ -57,6 +48,8 @@ export const getListingsById = async (id) => {
  *
  * @param {String} listing id.
  * @param {Number} limit number of fetched listings
+ * @param {Number} limit number of fetched listings
+ * @param {Number} page page number
  *
  * @return {Promise<Object>} listing data response.
  */
@@ -64,7 +57,7 @@ export const getUserListings = async (id, limit, page) => {
   const {
     data: { data },
   } = await http.get(
-    `${apiUrl}/listings/${id}?limit=${limit || ''}&page=${page || ''}`
+    `${apiUrl}/listings/${id || ''}?limit=${limit || ''}&page=${page || ''}`
   );
 
   return data;
