@@ -101,7 +101,7 @@ function CreateListingForm({ date }) {
     if (!isLoggedIn) {
       navigate('/sign-up');
     } else {
-      values.featureIds = Array.from(values.featureIds);
+      values.featureIds = Array.from(values?.featureIds || []);
       if (!formId) {
         const { id } = await submitListingForm(values);
         navigate(`/listing/${id}`, { replace: true });

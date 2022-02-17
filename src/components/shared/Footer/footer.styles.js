@@ -7,6 +7,8 @@ export const SocialMediaIcons = styled.div`
   display: flex;
   background: ${colors.whiteSand};
   padding: 0.9375rem 0rem 0rem 0.9375rem;
+  position: relative;
+  z-index: 3;
 
   svg {
     cursor: pointer;
@@ -23,6 +25,8 @@ export const InfoWrapper = styled.div`
   flex-direction: column;
   background: ${colors.whiteSand};
   padding: 2.25rem 1.6875rem;
+  position: relative;
+  z-index: 3;
 
   ${mq.tablet`
     flex-direction:row;
@@ -92,6 +96,7 @@ export const LogoContainer = styled.div`
     width: 10rem;
   }
 `;
+
 export const LogoAndSocialContainer = styled.div`
   display: flex;
   align-items: center;

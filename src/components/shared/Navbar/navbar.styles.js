@@ -102,7 +102,6 @@ export const MenuIcon = styled(Menu)`
 
 export const NavControlSection = styled.div`
   align-items: center;
-  border-left: 0.06rem solid;
   display: flex;
   font-weight: 600;
   gap: 0.2rem;
@@ -193,10 +192,10 @@ export const StyledInput = styled.input`
 
 export const MenuWrapper = styled.div`
   background: ${colors.white};
-  border-radius: 0.375rem;
-  box-shadow: rgb(0 0 0 / 0%) 0px 8px 10px, rgb(0 0 0 / 12%) 0px 3px 14px;
+  border-radius: 0.37rem;
+  box-shadow: 0 0.06rem 0.3rem ${colors.midGray};
   color: ${colors.mineShaft};
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   line-height: 1.5;
   margin-top: 0.5rem;
   opacity: 1;

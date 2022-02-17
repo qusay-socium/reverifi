@@ -11,6 +11,7 @@ import { useUser } from 'contexts/UserContext';
 import React, { useState } from 'react';
 import {
   LinkTitle,
+  MenuArrow,
   MenuIconContainer,
   MenuItem,
   MenuItemsContainer,
@@ -29,11 +30,11 @@ function Sidebar() {
 
   return (
     <MenuItemsContainer isCollapsed={isCollapsed} isLoggedIn={isLoggedIn}>
-      <MenuItem onClick={() => setIsCollapsed(!isCollapsed)}>
+      <MenuArrow onClick={() => setIsCollapsed(!isCollapsed)}>
         <MenuIconContainer isCollapsed={isCollapsed}>
           {isCollapsed ? <LeftArrow /> : <RightArrow />}
         </MenuIconContainer>
-      </MenuItem>
+      </MenuArrow>
       <MenuLink isCollapsed={isCollapsed} to="/dashboard">
         <MenuItem type="button">
           <Dashboard />

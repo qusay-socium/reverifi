@@ -1,3 +1,4 @@
+import { ReactComponent as ArrowLeftIcon } from 'assets/arrow-left.svg';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -72,6 +73,18 @@ export const Pagination = styled.div`
 
 export const CurrentListing = styled.h5`
   margin-right: 0.3rem;
+`;
+
+export const ArrowLeft = styled(ArrowLeftIcon)`
+  &:hover {
+    path {
+      stroke: ${colors.mineShaft};
+    }
+  }
+`;
+
+export const ArrowRight = styled(ArrowLeft)`
+  transform: rotate(180deg);
 `;
 
 export const MaxListingNumber = styled(CurrentListing)`

@@ -1,10 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
-import mq from 'styles/media-query';
-
-// TODO: move these values to shared place
-const NAVAR_HEIGHT = '5rem';
 
 const fadeIn = keyframes`
   from {
@@ -13,7 +9,6 @@ const fadeIn = keyframes`
   
   to {
     max-width: 5rem;
-    position: static;
   }
 `;
 
@@ -34,23 +29,18 @@ export const MenuItemsContainer = styled.div`
       return '';
     }}
     ease-in-out forwards;
+
   animation-duration: 0.4s;
-  background-color: ${colors.mineShaft};
   display: flex;
   flex-direction: column;
-  height: calc(100vh - ${NAVAR_HEIGHT});
+  background-color: ${colors.mineShaft};
   margin-top: 0.1rem;
-  max-width: 15rem;
-  padding: 6rem 0 0 1rem;
-  position: relative;
-  text-align: center;
-  width: 100%;
+  padding: 5rem 0 0 1rem;
+  position: sticky;
   z-index: 1;
-
-  ${mq.tablet`
-    height: auto;
-    position: static;
-  `}
+  height: 94vh;
+  margin-bottom: -30rem;
+  max-width: 15rem;
 `;
 
 export const MenuLink = styled(NavLink)`
@@ -59,7 +49,7 @@ export const MenuLink = styled(NavLink)`
   color: ${colors.white};
   display: flex;
   font-weight: 500;
-  height: 3.063rem;
+  height: 3rem;
   justify-content: start;
   padding: 0.5rem 0.8rem;
   text-decoration: none;
@@ -79,55 +69,44 @@ export const LinkTitle = styled.p`
   overflow: hidden;
 `;
 
+export const ItemsContainer = styled.p`
+  margin-left: 2rem;
+  overflow: hidden;
+`;
+
 export const MenuItem = styled.span`
   cursor: pointer;
   background-color: inherit;
   padding: 0;
   border: none;
+  position: relative;
 `;
 
-const fadeInButton = keyframes`
-  from {
-    left: 12.7rem;
-  }
-  
-  to {
-    left: 2.8rem;
-  }
-`;
-
-const fadeOutButton = keyframes`
-  from {
-    left: 2.8rem;
-  }
-  
-  to {  
-    left: 12.7rem;
-  }
+export const MenuArrow = styled.span`
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  position: relative;
 `;
 
 export const MenuIconContainer = styled.div`
-  animation: ${({ isCollapsed }) => {
-      if (isCollapsed === true) return fadeOutButton;
-      if (isCollapsed === false) return fadeInButton;
-      return '';
-    }}
-    ease-in-out forwards;
+  animation: ease-in-out forwards;
+
   animation-duration: 0.4s;
   background-color: ${colors.white};
   border-radius: 20rem;
-  box-shadow: 0 0.0625rem 0.3125rem ${colors.midGray};
+  border: 0.1rem ${colors.midGray} solid;
+  box-shadow: none;
   display: flex;
-  left: 12.7rem;
-  margin: 1rem;
   padding: 0.5rem;
   position: absolute;
-  top: 6rem;
-  transition: 0.2s;
+  top: -4rem;
+  right: -1rem;
 
   > svg {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1rem;
+    height: 1rem;
+
     path {
       fill: ${colors.mineShaft};
     }
@@ -135,6 +114,8 @@ export const MenuIconContainer = styled.div`
 
   &:hover {
     background-color: ${colors.green};
+    border: 0.1rem ${colors.green} solid;
+
     > svg {
       path {
         fill: ${colors.white};
