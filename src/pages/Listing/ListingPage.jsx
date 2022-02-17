@@ -30,23 +30,18 @@ function ListingPage() {
     }
   }, [id]);
 
-  if (listingDetails?.id) {
-    return (
-      <ShowModalProvider>
-        <Offer
-          address={listingDetails?.address}
-          price={listingDetails?.price}
-        />
-        <ListingPageSlider images={listingDetails?.images} />
-        <Overview listing={listingDetails} />
-        <Details details={listingDetails} />
-        <Features features={listingDetails?.features} />
-        <Location />
-        <ListingShareModal />
-      </ShowModalProvider>
-    );
-  }
-  return null;
+  if (!listingDetails?.id) return null;
+  return (
+    <ShowModalProvider>
+      <Offer address={listingDetails?.address} price={listingDetails?.price} />
+      <ListingPageSlider images={listingDetails?.images} />
+      <Overview listing={listingDetails} />
+      <Details details={listingDetails} />
+      <Features features={listingDetails?.features} />
+      <Location />
+      <ListingShareModal />
+    </ShowModalProvider>
+  );
 }
 
 export default ListingPage;

@@ -4,6 +4,8 @@ import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
 import { ReactComponent as ScheduleIcon } from 'assets/icons/schedule.svg';
+import agentImage from 'assets/listing-agent-image.png';
+import listingImage from 'assets/listing-image.png';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
@@ -74,18 +76,18 @@ export default function MyListings({ setDeleteId }) {
   return (
     <>
       <Table headers={tableHeaders}>
-        {listings?.data?.map(({ address, images, agent, createdAt, id }) => (
+        {listings?.map(({ address, images, agent, createdAt, id, owner }) => (
           <TableRow key={id}>
             <TableCell>
               <ListingImageContainer>
-                <ListingImage src={images ? images[0] : ''} />
+                <ListingImage src={images ? images[0] : listingImage} />
               </ListingImageContainer>
             </TableCell>
             <TableCell>{address}</TableCell>
             <TableCell>
               <AgentContainer>
-                <AgentImage src={agent?.userInfo?.image || ''} />
-                <AgentName>{agent.name}</AgentName>
+                <AgentImage src={agent?.userInfo?.image || agentImage} />
+                <AgentName>{agent?.name || owner?.name || 'N/A'}</AgentName>
               </AgentContainer>
             </TableCell>
             <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>

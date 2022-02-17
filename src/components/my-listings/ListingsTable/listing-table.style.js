@@ -15,7 +15,6 @@ export const ListingImage = styled.img`
 export const AgentContainer = styled.div`
   display: flex;
   height: 2.5rem;
-  justify-content: space-around;
   width: 2.5rem;
 `;
 
@@ -26,9 +25,8 @@ export const AgentImage = styled.img`
 `;
 
 export const AgentName = styled.p`
-  border-radius: 20rem;
   height: 100%;
-  padding-left: 0.8rem;
+  margin-left: 0.8rem;
   width: 100%;
 `;
 
