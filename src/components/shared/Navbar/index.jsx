@@ -1,6 +1,5 @@
 import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
-import { ReactComponent as SearchIcon } from 'assets/images/search-icon.svg';
 import { ReactComponent as SettingIcon } from 'assets/menu-setting.svg';
 import { ReactComponent as DashboardIcon } from 'assets/my-dashboard.svg';
 import { ReactComponent as SavedListingsIcon } from 'assets/saved-listings.svg';
@@ -17,14 +16,10 @@ import {
   MenuTopWrapper,
   MenuWrapper,
   NarrowNavContainer,
-  NavControlSection,
   NavItemsContainer,
   NavLinksContainer,
-  SearchIconContainer,
   SignInButton,
   SignUpButton,
-  StyledInput,
-  StyledInputGroup,
   UserControlSectionWrapper,
   UserNavControlContainer,
   UserNavRegContainer,
@@ -69,14 +64,6 @@ function Navbar() {
         </NavLinksContainer>
         {isLoggedIn ? (
           <UserNavControlContainer>
-            <NavControlSection>
-              <StyledInputGroup>
-                <SearchIconContainer>
-                  <SearchIcon />
-                </SearchIconContainer>
-                <StyledInput type="text" placeholder="Search for property" />
-              </StyledInputGroup>
-            </NavControlSection>
             <UserControlSectionWrapper ref={clickRef} onClick={handleOpenMenu}>
               <Avatar />
               <span>{name}</span>
@@ -94,7 +81,10 @@ function Navbar() {
                     <SavedListingsIcon />
                     Saved listings
                   </MenuItem>
-                  <MenuItem filled="true">
+                  <MenuItem
+                    filled="true"
+                    onClick={() => navigate('/dashboard')}
+                  >
                     <DashboardIcon />
                     Dashboard
                   </MenuItem>

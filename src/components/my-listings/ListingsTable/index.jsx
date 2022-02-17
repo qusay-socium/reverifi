@@ -1,5 +1,3 @@
-import { ReactComponent as ArrowLeft } from 'assets/arrow-left.svg';
-import { ReactComponent as ArrowRight } from 'assets/arrow-right.svg';
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
@@ -19,6 +17,8 @@ import {
   AgentContainer,
   AgentImage,
   AgentName,
+  ArrowLeft,
+  ArrowRight,
   CurrentListing,
   IconContainer,
   ListingImage,
@@ -82,63 +82,73 @@ export default function MyListings({ setDeleteId }) {
   return (
     <>
       <Table headers={tableHeaders}>
-        {listings?.map(({ address, images, agent, createdAt, id, owner }) => (
-          <TableRow key={id}>
-            <TableCell>
-              <ListingImageContainer>
-                <ListingImage src={images ? images[0] : listingImage} />
-              </ListingImageContainer>
-            </TableCell>
-            <TableCell>{address}</TableCell>
-            <TableCell>
-              <AgentContainer>
-                <AgentImage src={agent?.userInfo?.image || agentImage} />
-                <AgentName>{agent?.name || owner?.name || 'N/A'}</AgentName>
-              </AgentContainer>
-            </TableCell>
-            <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>
-            <TableCell> </TableCell>
-            <TableCell iconsCell>
-              <IconContainer hover>
-                <EyeIcon
-                  onClick={() => {
-                    navigate(`/listing/${id}`);
-                  }}
-                />
-                <Tooltip text="View" arrowPosition="top" position={[3, -1.8]} />
-              </IconContainer>
-              <IconContainer hover>
-                <EditIcon
-                  onClick={() => {
-                    navigate(`/my-listings/edit/${id}`);
-                  }}
-                />
-                <Tooltip text="Edit" arrowPosition="top" position={[3, -0.5]} />
-              </IconContainer>
-              <IconContainer hover>
-                <ScheduleIcon />
-                <Tooltip
-                  text="Schedule"
-                  arrowPosition="top"
-                  position={[3, -1.8]}
-                />
-              </IconContainer>
-              <IconContainer hover>
-                <DeleteIcon
-                  onClick={() => {
-                    setShowModal(true);
-                    setDeleteId(id);
-                  }}
-                />
-                <Tooltip
-                  text="Delete"
-                  arrowPosition="top"
-                  position={[3, -0.8]}
-                />
-              </IconContainer>
-            </TableCell>
-          </TableRow>
-        ))}
+        {listings?.data?.map(
+          ({ address, images, agent, createdAt, id, owner }) => (
+            <TableRow key={id}>
+              <TableCell>
+                <ListingImageContainer>
+                  <ListingImage src={images ? images[0] : listingImage} />
+                </ListingImageContainer>
+              </TableCell>
+              <TableCell>{address}</TableCell>
+              <TableCell>
+                <AgentContainer>
+                  <AgentImage src={agent?.userInfo?.image || agentImage} />
+                  <AgentName>{agent?.name || owner?.name || 'N/A'}</AgentName>
+                </AgentContainer>
+              </TableCell>
+              <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>
+              <TableCell> </TableCell>
+              <TableCell iconsCell>
+                <IconContainer hover>
+                  <EyeIcon
+                    onClick={() => {
+                      navigate(`/listing/${id}`);
+                    }}
+                  />
+                  <Tooltip
+                    text="View"
+                    arrowPosition="top"
+                    position={[3, -1.8]}
+                  />
+                </IconContainer>
+                <IconContainer hover>
+                  <EditIcon
+                    onClick={() => {
+                      navigate(`/my-listings/edit/${id}`);
+                    }}
+                  />
+                  <Tooltip
+                    text="Edit"
+                    arrowPosition="top"
+                    position={[3, -0.5]}
+                  />
+                </IconContainer>
+                <IconContainer hover>
+                  <ScheduleIcon />
+                  <Tooltip
+                    text="Schedule"
+                    arrowPosition="top"
+                    position={[3, -1.8]}
+                  />
+                </IconContainer>
+                <IconContainer hover>
+                  <DeleteIcon
+                    onClick={() => {
+                      setShowModal(true);
+                      setDeleteId(id);
+                    }}
+                  />
+                  <Tooltip
+                    text="Delete"
+                    arrowPosition="top"
+                    position={[3, -0.8]}
+                  />
+                </IconContainer>
+              </TableCell>
+            </TableRow>
+          )
+        )}
       </Table>
 
       <Pagination>
