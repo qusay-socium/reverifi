@@ -50,7 +50,6 @@ function FeaturedListing() {
       const listingsData = await getFeaturedListings();
       setFeaturedListings(listingsData);
     } catch (err) {
-      console.log(err);
       // render mock data
       setFeaturedListings(data);
     }

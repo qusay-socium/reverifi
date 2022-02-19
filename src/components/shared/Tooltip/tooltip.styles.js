@@ -41,11 +41,14 @@ export const TooltipText = styled.span`
   position: absolute;
   text-align: center;
   z-index: 5;
+  box-shadow: 0 0.06rem 0.3rem ${colors.gray};
 
   bottom: ${({ bottom }) => bottom && `${bottom}rem`};
   left: ${({ left }) => left && `${left}rem`};
   right: ${({ right }) => right && `${right}rem`};
   top: ${({ top }) => top && `${top}rem`};
+  background-color: ${({ light }) => light && `${colors.white}`};
+  color: ${({ light }) => light && `${colors.mineShaft}`};
 
   &::after {
     border-style: solid;

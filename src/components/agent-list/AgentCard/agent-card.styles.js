@@ -79,8 +79,22 @@ export const Username = styled.p`
 
 export const CompanyName = styled.p`
   color: ${colors.osloGray};
-  font-size: 0.875rem;
-  margin: 0 0 0.625rem 0;
+  font-size: 0.87rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 18rem;
+
+  ${mq.desktop`
+    width: 15rem;
+  `}
+`;
+
+export const CompanyNamePlaceholder = styled.div`
+  width: 5rem;
+  height: 0.9rem;
+  margin: 0 0 0.62rem 0;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -108,6 +122,16 @@ export const ContactField = styled.div`
   height: 2.5rem;
 `;
 
+export const EmailTooltip = styled.div`
+  position: relative;
+
+  &:hover {
+    span {
+      display: block;
+    }
+  }
+`;
+
 export const ContactProperty = styled.div`
   align-items: center;
   display: flex;
@@ -131,19 +155,28 @@ export const ContactText = styled.p`
   color: ${colors.black};
   font-weight: 600;
   line-height: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 12rem;
+
+  ${mq.desktop`
+    width: 14rem;
+  `}
 `;
 
 export const ContactEmail = styled.a`
   color: ${colors.azure};
+  display: inline-block;
   font-weight: 600;
   line-height: 1.25rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 300px;
+  width: 12rem;
 
   ${mq.desktop`
-    width: 200px;
+    width: 14rem;
   `}
 `;
 
@@ -166,18 +199,19 @@ export const ShareIcon = styled(Share)`
   width: 1rem;
   padding-right: 0.1rem;
 `;
+
 export const RoundedButton = styled(Button)`
   background-color: ${colors.wildSand};
   border-radius: 50%;
   color: ${colors.dustyGray};
-  height: 1.875rem;
-  margin: 0.125rem;
-  padding: 0 0.375rem;
+  height: 1.87rem;
+  margin: 0.12rem;
+  padding: 0 0.37rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  :hover {
+  &:hover {
     background-color: ${colors.green};
     color: ${colors.white};
   }

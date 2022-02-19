@@ -77,7 +77,7 @@ function AgentCardsContainer() {
       getUsers(page + 1, typeState, locationState, nameState);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nextPageTrigger, typeState, locationState, nameState]);
+  }, [nextPageTrigger, typeState, locationState, nameState, agents.length]);
 
   return (
     <Container>

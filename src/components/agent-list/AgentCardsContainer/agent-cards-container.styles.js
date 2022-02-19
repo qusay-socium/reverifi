@@ -183,9 +183,14 @@ export const SearchButton = styled.button`
   box-shadow: 0 0.0625rem 0.2rem ${colors.mercury};
   color: ${colors.white};
   cursor: pointer;
-  width: 4rem;
 
-  :hover {
+  svg {
+    width: 2rem;
+    height: 1.4rem;
+    padding: 0.1rem;
+  }
+
+  &:hover {
     background-color: ${colors.midGray};
   }
 

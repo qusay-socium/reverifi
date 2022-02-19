@@ -11,7 +11,7 @@ import { TooltipText } from './tooltip.styles';
  *
  * @return {JSX.Element}
  */
-function Tooltip({ text, arrowPosition, position }) {
+function Tooltip({ text, arrowPosition, position, light }) {
   return (
     <TooltipText
       arrowPosition={arrowPosition}
@@ -19,6 +19,7 @@ function Tooltip({ text, arrowPosition, position }) {
       right={position[1]}
       bottom={position[2]}
       left={position[3]}
+      light={light}
     >
       {text}
     </TooltipText>
@@ -27,8 +28,13 @@ function Tooltip({ text, arrowPosition, position }) {
 
 Tooltip.propTypes = {
   arrowPosition: propTypes.string.isRequired,
+  light: propTypes.bool,
   position: propTypes.arrayOf(propTypes.number).isRequired,
   text: propTypes.string.isRequired,
+};
+
+Tooltip.defaultProps = {
+  light: false,
 };
 
 export default Tooltip;

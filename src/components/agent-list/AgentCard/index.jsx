@@ -4,6 +4,7 @@ import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
+import Tooltip from 'components/shared/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,15 +17,17 @@ import {
   CardFooter,
   CardHeader,
   CompanyName,
+  CompanyNamePlaceholder,
   ContactButton,
   ContactEmail,
   ContactField,
   ContactInfoContainer,
   ContactProperty,
   ContactText,
+  EmailTooltip,
   FooterButtonsContainer,
   HeartIcon,
-  IconContainer,
+  IconContainer as TooltipContainer,
   ImgContainer,
   LikeIcon,
   Line,
@@ -68,9 +71,9 @@ function AgentCard({
         <CardHeader>
           <div>
             <Username>{toUpperCaseFirstLetter(agentName)}</Username>
-            <CompanyName>
-              {toUpperCaseFirstLetter(companyName) || ''}
-            </CompanyName>
+            <CompanyNamePlaceholder>
+              <CompanyName>{toUpperCaseFirstLetter(companyName)}</CompanyName>
+            </CompanyNamePlaceholder>
           </div>
           <ButtonsContainer>
             <RoundedButton ariaLabel="Favorite">
@@ -104,7 +107,20 @@ function AgentCard({
               </PropertyIconContainer>
               <PropertyText>Email</PropertyText>
             </ContactProperty>
-            <ContactEmail href={`mailto:${email}`}>{email}</ContactEmail>
+            <EmailTooltip hover>
+              <Tooltip
+                light
+                text={email}
+                arrowPosition="top"
+                position={[2.5, 2]}
+              />
+              <ContactEmail href={`mailto:${email}`}>{email}</ContactEmail>
+            </EmailTooltip>
+            <Tooltip
+              text="Counter Offer"
+              arrowPosition="top"
+              position={[2.3, -3]}
+            />
           </ContactField>
           {address && (
             <ContactField>
@@ -127,13 +143,13 @@ function AgentCard({
           </ContactButton>
           <FooterButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
-              <IconContainer>
+              <TooltipContainer>
                 <MailIcon />
-              </IconContainer>
+              </TooltipContainer>
             </ContactEmail>
-            <IconContainer>
+            <TooltipContainer>
               <PhoneIcon />
-            </IconContainer>
+            </TooltipContainer>
           </FooterButtonsContainer>
         </CardFooter>
       </CardContent>
