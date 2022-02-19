@@ -4,9 +4,10 @@ import mq from 'styles/media-query';
 
 export const CardContainer = styled.div`
   border-radius: 0.5rem;
-  border: 0.0625rem solid ${colors.midGray};
+  border: 0.06rem solid ${colors.midGray};
   display: flex;
   flex-direction: column;
+  max-height: 10rem;
   margin: 2rem;
   overflow: hidden;
 
@@ -19,28 +20,10 @@ export const CardContainer = styled.div`
   `}
 `;
 
-export const CardImageContainer = styled.div`
-  max-height: 8.5rem;
-  overflow: hidden;
-`;
-
 export const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
-
-  ${mq.mobileWide`
-    max-height: 15rem;
-  `}
-
-  ${mq.tabletWide`
-    max-height: 20rem;
-    max-width: 10rem;
-  `}
-
-  ${mq.desktop`
-      max-height: 20rem;
-      max-width: 10rem;
-    `}
+  width: 60%;
 `;
 
 export const Badge = styled.h4`
@@ -54,26 +37,59 @@ export const Badge = styled.h4`
 `;
 
 export const Image = styled.img`
-  min-height: 100%;
-  min-width: 100%;
+  height: 100%;
+  width: 100%;
 `;
 
 export const CardText = styled.div`
-  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  width: 100%;
 `;
 
-export const PriceText = styled.h4`
-  ${mq.tabletWide`
-      font-size:1.125rem;
-      font-weight: 500;
-      margin:1rem 0;
-  `}
+export const CardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const IconsWrapper = styled.div`
+  display: flex;
+`;
+
+export const ShearIconsContainer = styled.div`
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  justify-content: space-around;
+  border-radius: 50%;
+  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
+  background-color: ${colors.wildSand};
+  margin: 0 0.4rem 0 0.4rem;
+  border-radius: 10rem;
+
+  svg {
+    padding: 0.15rem;
+    color: ${colors.dustyGray};
+  }
+  &:hover {
+    background-color: ${colors.green};
+    svg {
+      color: ${colors.white};
+    }
+  }
+`;
+
+export const PriceText = styled.h3`
+  font-weight: 600;
 `;
 
 export const LocationContainer = styled.div`
   color: ${colors.dustyGrey};
   display: flex;
-  margin-bottom: 1rem;
   align-items: center;
 `;
 
@@ -110,8 +126,8 @@ export const IconsContainer = styled.div`
 
   svg {
     margin: 0 0.2rem 0.1rem 0;
-    height: 1rem;
-    width: 1rem;
+    min-height: 1.2rem;
+    width: 1.4rem;
   }
 `;
 
@@ -133,4 +149,5 @@ export const AreaText = styled.p`
 export const BoldNumber = styled(AreaText)`
   font-weight: 600;
   margin-right: 0.25rem;
+  font-size: 0.9rem;
 `;

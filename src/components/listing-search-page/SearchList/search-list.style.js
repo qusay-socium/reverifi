@@ -3,7 +3,6 @@ import colors from 'styles/colors';
 
 export const CardsContainer = styled.div`
   max-height: 40rem;
-  overflow-y: scroll;
 `;
 
 export const MessageContainer = styled.div`
@@ -30,7 +29,8 @@ export const SuggestedListing = styled.h4`
 export const ResultCountContainer = styled.div`
   padding-left: 2rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-top: 1rem;
 `;
 
 export const ResultNumber = styled(ListingSearchText)`

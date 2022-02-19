@@ -19,7 +19,7 @@ import {
  * @return {JSX.Element}
  */
 function SearchList({ data, wordKey }) {
-  const [dataCard, setDataCard] = useState(null);
+  const [dataCard, setDataCard] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -33,8 +33,10 @@ function SearchList({ data, wordKey }) {
       {dataCard?.length ? (
         <>
           <ResultCountContainer>
-            <ResultNumber>{`${dataCard.length} Found in`}</ResultNumber>
-            <ResultText>{decodeURI(wordKey)}</ResultText>
+            <ResultNumber>{`${decodeURI(
+              wordKey
+            )} Listings For Sale`}</ResultNumber>
+            <ResultText>{`${dataCard.length} listings available on reverifi`}</ResultText>
           </ResultCountContainer>
           <CardsContainer>
             {dataCard?.map((item) => (
