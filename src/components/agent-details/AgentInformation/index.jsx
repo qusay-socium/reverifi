@@ -51,6 +51,7 @@ const companyInfoIcons = [<CompanyName />, <EmailIcon />, <CompanyWebsite />];
 function AgentInformation() {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
+  const [likeActive, setLikeActive] = useState(false);
 
   const fetchUserData = async () => {
     const user = await getUserInfo(id);
@@ -96,7 +97,10 @@ function AgentInformation() {
             <ContactInfo>
               <AgentName>
                 <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
-                <IconWrapper>
+                <IconWrapper
+                  onClick={() => setLikeActive(!likeActive)}
+                  active={likeActive}
+                >
                   <Like />
                   <EmptyLike />
                 </IconWrapper>

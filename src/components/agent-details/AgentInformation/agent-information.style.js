@@ -159,6 +159,19 @@ export const IconWrapper = styled.div`
     display: none;
   }
 
+  ${({ active }) =>
+    active &&
+    `
+    svg {
+      display: none;
+    }
+
+    svg:first-child {
+      display: inline;
+    }
+  
+  `}
+
   :hover {
     svg {
       display: none;

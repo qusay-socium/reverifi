@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
+import { IconWrapper } from '../AgentInformation/agent-information.style';
 
 export const RatingContainer = styled.div`
   display: flex;
@@ -32,12 +33,14 @@ export const RatingForm = styled.form`
 
 export const TextArea = styled.textarea`
   background-color: ${colors.white};
-  border-radius: 0.9375rem;
-  border: 0.0823rem solid ${colors.mercury};
+  border-radius: 0.94rem;
+  border: 0.08rem solid ${colors.mercury};
   height: 12.375rem;
   padding: 1.5rem 1.5rem;
   resize: none;
   width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
 `;
 
 export const RequestLink = styled(Link)`
@@ -82,23 +85,8 @@ export const CommentText = styled.div`
   }
 `;
 
-export const CommentLike = styled.div`
+export const CommentLike = styled(IconWrapper)`
   width: 2.5rem;
-  cursor: pointer;
-
-  svg:first-child {
-    display: none;
-  }
-
-  :hover {
-    svg {
-      display: none;
-    }
-
-    svg:first-child {
-      display: inline;
-    }
-  }
 `;
 
 export const CommentsWrapper = styled.div`
