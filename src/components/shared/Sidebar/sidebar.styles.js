@@ -41,6 +41,7 @@ export const MenuItemsContainer = styled.div`
   height: 94vh;
   margin-bottom: -30rem;
   max-width: 15rem;
+  top: 5.1rem;
 `;
 
 export const MenuLink = styled(NavLink)`
