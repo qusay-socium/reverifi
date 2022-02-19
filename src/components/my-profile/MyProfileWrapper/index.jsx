@@ -192,7 +192,6 @@ function MyProfileWrapper() {
 
     try {
       // get countries and cities
-      // get countries and cities
       const fetchedCountries = await getAllCountriesAndCities();
 
       setCountries(fetchedCountries);
