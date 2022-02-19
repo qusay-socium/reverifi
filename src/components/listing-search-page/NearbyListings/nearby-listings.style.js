@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
-export const NearbyContainer = styled.div`
-  margin: 5rem auto;
+export const Container = styled.div`
+  margin: 12rem auto 5rem;
   border: 0.1rem solid ${colors.midGray};
   border-radius: 1rem;
   padding: 2rem;
@@ -16,14 +16,14 @@ export const NearbyText = styled.h3`
   justify-content: center;
 `;
 
-export const NearbyItemsContainer = styled.div`
+export const ItemsContainer = styled.div`
   display: flex;
 `;
 
-export const NearbyItemsWrapper = styled.div`
-  margin: 0 2rem;
-`;
+export const ItemsWrapper = styled.ul``;
 
-export const NearbyItems = styled.p`
+export const Items = styled.li`
   color: ${colors.azure};
+  list-style: none;
+  padding-top: 0.5rem;
 `;

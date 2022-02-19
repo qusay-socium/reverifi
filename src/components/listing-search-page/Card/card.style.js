@@ -24,7 +24,6 @@ export const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   width: 60%;
-  background-color: lightblue;
 `;
 
 export const Badge = styled.h4`

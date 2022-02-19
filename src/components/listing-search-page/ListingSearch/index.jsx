@@ -12,7 +12,7 @@ import SearchHeader from '../SearchHeader';
 import ListingSearch from '../SearchResults';
 import { ListingPage, MapContainer, SearchBody } from './listing-search.style';
 
-const fakeData = [
+const mockData = [
   {
     id: 1,
     image: room,
@@ -66,10 +66,10 @@ function ListingSearchPage() {
   const [cardData, setCardData] = useState([]);
   const navigate = useNavigate();
 
-  const fetchListingDataBySearchKey = async (address) => {
-    const listingData = await getListingsBySearchKey(address);
+  const fetchListingDataBySearchKey = async (searchWord) => {
+    const listingData = await getListingsBySearchKey(searchWord);
     setCardData(listingData);
-    navigate(`${listingPaths?.search}?key=${address}`);
+    navigate(`${listingPaths?.search}?key=${searchWord}`);
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ function ListingSearchPage() {
       <SearchBody>
         <ListingSearch cardData={cardData} keyWord={keyWord} />
         <MapContainer>
-          <Map ComponentOnMap={renderCards} listings={fakeData} isMarkerShown />
+          <Map ComponentOnMap={renderCards} listings={mockData} isMarkerShown />
         </MapContainer>
       </SearchBody>
       <NearbyListings />
