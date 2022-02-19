@@ -24,18 +24,24 @@ function CardImage({ listingType, address, images }) {
       <CornerItems isRight={false} isBottom={false}>
         <Tag>{listingType}</Tag>
       </CornerItems>
-      <CornerItems isRight isBottom={false}>
-        <PhotosNumberContainer>
-          {images?.length}
-          <Camera />
-        </PhotosNumberContainer>
-      </CornerItems>
-      <CornerItems isBottom isRight={false}>
-        <LocationTagContainer>
-          <Location />
-          <span>{address}</span>
-        </LocationTagContainer>
-      </CornerItems>
+
+      {images?.length > 0 && (
+        <CornerItems isRight isBottom={false}>
+          <PhotosNumberContainer>
+            {images?.length}
+            <Camera />
+          </PhotosNumberContainer>
+        </CornerItems>
+      )}
+
+      {address && (
+        <CornerItems isBottom isRight={false}>
+          <LocationTagContainer>
+            <Location />
+            <span>{address}</span>
+          </LocationTagContainer>
+        </CornerItems>
+      )}
     </CardImageContainer>
   );
 }

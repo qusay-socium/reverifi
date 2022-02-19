@@ -1,9 +1,10 @@
+import AgentPhoto from 'assets/agent-photo.png';
+import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
+import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
+import Button from 'components/shared/Button';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import { ReactComponent as Like } from 'assets/like.svg';
-import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
-import AgentPhoto from 'assets/agent-photo.png';
-import Button from 'components/shared/Button';
+import { IconWrapper } from '../AgentInformation/agent-information.style';
 import {
   Comment,
   CommentLike,
@@ -27,10 +28,10 @@ import {
  */
 function AgentRating() {
   const [likes, setLikes] = useState({
-    Helpful: false,
-    Knowledgeable: false,
     Responsiveness: false,
+    Knowledgeable: false,
     Trustworthy: false,
+    Helpful: false,
   });
 
   /**
@@ -52,8 +53,15 @@ function AgentRating() {
         <RatingBoxContainer>
           {Object.entries(likes).map(([name, value]) => (
             <RatingBox key={name} onClick={() => onLike(name)}>
-              {value ? <Like /> : <EmptyLike />}
-              {name}
+              <span>{name}</span>
+              {value ? (
+                <Like />
+              ) : (
+                <IconWrapper>
+                  <Like />
+                  <EmptyLike />
+                </IconWrapper>
+              )}
             </RatingBox>
           ))}
         </RatingBoxContainer>
@@ -83,6 +91,7 @@ function AgentRating() {
               <StyledImg src={AgentPhoto} />
               <CommentSection>
                 <CommentText>
+                  <h3>Jhone Doe</h3>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et
@@ -91,6 +100,7 @@ function AgentRating() {
                 </CommentText>
                 <CommentLike>
                   <Like />
+                  <EmptyLike />
                 </CommentLike>
               </CommentSection>
             </Comment>
@@ -103,6 +113,7 @@ function AgentRating() {
           <Comment key={index}>
             <StyledImg src={AgentPhoto} />
             <CommentText>
+              <h3>Jhone Doe</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna
@@ -111,6 +122,7 @@ function AgentRating() {
             </CommentText>
             <CommentLike>
               <Like />
+              <EmptyLike />
             </CommentLike>
           </Comment>
         ))}

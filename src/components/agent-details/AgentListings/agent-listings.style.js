@@ -16,7 +16,7 @@ export const CardsContainer = styled.div`
   gap: 1rem;
 
   > div {
-    flex: 1;
+    flex: ${({ cardsNum }) => cardsNum > 1 && 1};
   }
 
   ${mq.desktop`

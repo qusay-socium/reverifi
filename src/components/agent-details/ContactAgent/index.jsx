@@ -5,7 +5,11 @@ import TextAreaInput from 'components/shared/FormTextArea';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { handleNumberInput, handleTextInput } from 'utils/helpers';
+import {
+  handleNumberInput,
+  handleTextInput,
+  toUpperCaseFirstLetter,
+} from 'utils/helpers';
 import contactAgentSchema from './contact-agent-schema';
 import { Form } from './contact-agent.style';
 
@@ -33,7 +37,7 @@ function ContactAgent({ name }) {
 
   return (
     <Form onSubmit={handleSubmit(submit)}>
-      <h2>Contact {name}</h2>
+      <h2>Contact {toUpperCaseFirstLetter(name)}</h2>
       <FormInput
         error={errors.name?.message}
         label="Name"
@@ -55,7 +59,7 @@ function ContactAgent({ name }) {
       />
       <FormInput
         error={errors.email?.message}
-        label="E-mail"
+        label="Email"
         name="email"
         placeholder="eg: Jhon@domain.com"
         register={register}

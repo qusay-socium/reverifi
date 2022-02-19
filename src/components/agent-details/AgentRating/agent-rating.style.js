@@ -84,6 +84,21 @@ export const CommentText = styled.div`
 
 export const CommentLike = styled.div`
   width: 2.5rem;
+  cursor: pointer;
+
+  svg:first-child {
+    display: none;
+  }
+
+  :hover {
+    svg {
+      display: none;
+    }
+
+    svg:first-child {
+      display: inline;
+    }
+  }
 `;
 
 export const CommentsWrapper = styled.div`
@@ -158,6 +173,15 @@ export const RatingBox = styled.div`
   display: flex;
   flex: 50%;
   font-size: 1.25rem;
+  gap: 0.5rem;
+
+  > svg {
+    margin-bottom: 0.187rem;
+  }
+
+  > span {
+    min-width: 10rem;
+  }
 `;
 
 export const CommentSection = styled.div`
