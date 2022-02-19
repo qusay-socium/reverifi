@@ -1,6 +1,7 @@
 import { ReactComponent as Arrow } from 'assets/images/arrow.svg';
 import { ReactComponent as WhiteLogo } from 'assets/logo.svg';
 import Input from 'components/shared/Input/index';
+import { useUser } from 'contexts/UserContext';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -23,6 +24,7 @@ import {
  */
 function ClaimAddress() {
   const navigate = useNavigate();
+  const { isLoggedIn } = useUser();
   return (
     <>
       <ClaimAddressContainer>
@@ -44,15 +46,18 @@ function ClaimAddress() {
           <MapIcon />
         </Overlay>
       </ClaimAddressContainer>
-      <JoinUs>
-        <JoinUsText>
-          <p>Start your real estate journey with</p>
-          <WhiteLogo />
-        </JoinUsText>
-        <JoinUsButton ariaLabel="Join" onClick={() => navigate('/sign-up')}>
-          Join Us
-        </JoinUsButton>
-      </JoinUs>
+
+      {!isLoggedIn && (
+        <JoinUs>
+          <JoinUsText>
+            <p>Start your real estate journey with</p>
+            <WhiteLogo />
+          </JoinUsText>
+          <JoinUsButton ariaLabel="Join" onClick={() => navigate('/sign-up')}>
+            Join Us
+          </JoinUsButton>
+        </JoinUs>
+      )}
     </>
   );
 }
