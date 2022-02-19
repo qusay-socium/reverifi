@@ -1,3 +1,4 @@
+import { ReactComponent as LeftArrow } from 'assets/visit-left-arrow.svg';
 import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
@@ -70,6 +71,20 @@ export const LinkTitle = styled.p`
   overflow: hidden;
 `;
 
+export const LeftArrowIcon = styled(LeftArrow)`
+  width: 1rem;
+  height: 1rem;
+
+  path {
+    fill: ${colors.mineShaft};
+  }
+`;
+
+export const RightArrowIcon = styled(LeftArrowIcon)`
+  transform: rotate(180deg);
+  margin-left: 0.1rem;
+`;
+
 export const ItemsContainer = styled.p`
   margin-left: 2rem;
   overflow: hidden;
@@ -96,7 +111,7 @@ export const MenuIconContainer = styled.div`
   animation-duration: 0.4s;
   background-color: ${colors.white};
   border-radius: 20rem;
-  border: 0.1rem ${colors.midGray} solid;
+  border: 0.15rem ${colors.midGray} solid;
   box-shadow: none;
   display: flex;
   padding: 0.5rem;
@@ -104,18 +119,9 @@ export const MenuIconContainer = styled.div`
   top: -4rem;
   right: -1rem;
 
-  > svg {
-    width: 1rem;
-    height: 1rem;
-
-    path {
-      fill: ${colors.mineShaft};
-    }
-  }
-
   &:hover {
     background-color: ${colors.green};
-    border: 0.1rem ${colors.green} solid;
+    border: 0.15rem ${colors.green} solid;
 
     > svg {
       path {
