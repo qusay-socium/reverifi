@@ -5,17 +5,17 @@ import { ReactComponent as Saved } from 'assets/icons/saved.svg';
 import { ReactComponent as Transaction } from 'assets/icons/transaction.svg';
 import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
-import { ReactComponent as LeftArrow } from 'assets/visit-left-arrow.svg';
-import { ReactComponent as RightArrow } from 'assets/visit-right-arrow.svg';
 import { useUser } from 'contexts/UserContext';
 import React, { useState } from 'react';
 import {
+  LeftArrowIcon,
   LinkTitle,
   MenuArrow,
   MenuIconContainer,
   MenuItem,
   MenuItemsContainer,
   MenuLink,
+  RightArrowIcon,
 } from './sidebar.styles';
 
 /**
@@ -32,7 +32,7 @@ function Sidebar() {
     <MenuItemsContainer isCollapsed={isCollapsed} isLoggedIn={isLoggedIn}>
       <MenuArrow onClick={() => setIsCollapsed(!isCollapsed)}>
         <MenuIconContainer isCollapsed={isCollapsed}>
-          {isCollapsed ? <LeftArrow /> : <RightArrow />}
+          {isCollapsed ? <LeftArrowIcon /> : <RightArrowIcon />}
         </MenuIconContainer>
       </MenuArrow>
       <MenuLink isCollapsed={isCollapsed} to="/dashboard">
