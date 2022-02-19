@@ -1,20 +1,19 @@
 import styled from 'styled-components';
-import mq from 'styles/media-query';
 
 export const ListingPage = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
+
+export const SearchBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rem;
+`;
+
 export const MapContainer = styled.div`
-  display: none;
-  min-height: 45rem;
-
-  ${mq.desktop`
-    display: flex;
-    flex:1;
-`}
-
-  ${mq.desktopMax`
-    flex:1.5;
-`}
+  flex: 1;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 1rem;
 `;

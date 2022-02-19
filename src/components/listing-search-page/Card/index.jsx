@@ -1,4 +1,6 @@
 import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
+import { ReactComponent as Heart } from 'assets/icons/agent-heart.svg';
+import { ReactComponent as Share } from 'assets/icons/agent-share.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import PropTypes from 'prop-types/prop-types';
@@ -12,15 +14,17 @@ import {
   Badge,
   BoldNumber,
   CardContainer,
+  CardHeader,
   CardText,
   IconsContainer,
   IconsNumber,
+  IconsWrapper,
   Image,
   ImageContainer,
-  Label,
   LocationContainer,
   LocationText,
   PriceText,
+  ShearIconsContainer,
 } from './card.style';
 
 /**
@@ -30,7 +34,6 @@ import {
  */
 function Card({ data }) {
   const {
-    agent,
     images,
     price,
     address,
@@ -40,9 +43,7 @@ function Card({ data }) {
     homeArea,
     id,
   } = data;
-  const listingBy = `Listing By : ${agent.roles[0]?.role} / ${
-    agent.roles[1]?.role ? agent.roles[1]?.role : ''
-  }`;
+
   const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
   if (data.length < 0) return null;
@@ -58,27 +59,36 @@ function Card({ data }) {
       </ImageContainer>
 
       <CardText>
-        <PriceText>$ {price.toLocaleString()}</PriceText>
+        <CardHeader>
+          <PriceText>$ {price.toLocaleString()}</PriceText>
+          <IconsWrapper>
+            <ShearIconsContainer>
+              <Heart />
+            </ShearIconsContainer>
+            <ShearIconsContainer>
+              <Share />
+            </ShearIconsContainer>
+          </IconsWrapper>
+        </CardHeader>
         <LocationContainer>
           <div>
             <PinIcon />
           </div>
           <LocationText>{address}</LocationText>
         </LocationContainer>
-        <Label>{listingBy}</Label>
 
         <IconsContainer>
           {bedrooms && (
             <IconsNumber>
-              <Bed />
               <BoldNumber>{bedrooms}</BoldNumber>
+              <Bed />
             </IconsNumber>
           )}
 
           {fullBathrooms && (
             <IconsNumber>
-              <Bathtub />
               <BoldNumber>{fullBathrooms}</BoldNumber>
+              <Bathtub />
             </IconsNumber>
           )}
 

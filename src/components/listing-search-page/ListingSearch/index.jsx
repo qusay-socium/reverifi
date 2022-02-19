@@ -1,11 +1,16 @@
 import room from 'assets/images/living-room.png';
 import Map from 'components/shared/Map';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getListingsBySearchKey } from 'services/listing';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { listingPaths } from 'utils/appPaths';
 import MapCard from '../MapCard';
+import NearbyListings from '../NearbyListings';
+import SearchHeader from '../SearchHeader';
 import ListingSearch from '../SearchResults';
-import { ListingPage, MapContainer } from './listing-search.style';
+import { ListingPage, MapContainer, SearchBody } from './listing-search.style';
 
 const fakeData = [
   {
@@ -57,12 +62,35 @@ function renderCards({ data }) {
  * @return {JSX.Element}
  */
 function ListingSearchPage() {
+  const [keyWord, setKeyWord] = useState(useLocation().search?.split('=')[1]);
+  const [cardData, setCardData] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchListingDataBySearchKey = async (address) => {
+    const listingData = await getListingsBySearchKey(address);
+    setCardData(listingData);
+    navigate(`${listingPaths?.search}?key=${address}`);
+  };
+
+  useEffect(() => {
+    if (keyWord) fetchListingDataBySearchKey(decodeURI(keyWord));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keyWord]);
   return (
     <ListingPage>
-      <ListingSearch />
-      <MapContainer>
-        <Map ComponentOnMap={renderCards} listings={fakeData} isMarkerShown />
-      </MapContainer>
+      <SearchHeader
+        keyWord={keyWord}
+        setKeyWord={setKeyWord}
+        fetchListingDataBySearchKey={fetchListingDataBySearchKey}
+      />
+      <SearchBody>
+        <ListingSearch cardData={cardData} keyWord={keyWord} />
+        <MapContainer>
+          <Map ComponentOnMap={renderCards} listings={fakeData} isMarkerShown />
+        </MapContainer>
+      </SearchBody>
+      <NearbyListings />
     </ListingPage>
   );
 }
