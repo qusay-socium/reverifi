@@ -71,11 +71,9 @@ function AgentCard({
         <CardHeader>
           <div>
             <Username>{toUpperCaseFirstLetter(agentName)}</Username>
-            <CompanyName>
-              {toUpperCaseFirstLetter(companyName) || (
-                <CompanyNamePlaceholder />
-              )}
-            </CompanyName>
+            <CompanyNamePlaceholder>
+              <CompanyName>{toUpperCaseFirstLetter(companyName)}</CompanyName>
+            </CompanyNamePlaceholder>
           </div>
           <ButtonsContainer>
             <RoundedButton ariaLabel="Favorite">

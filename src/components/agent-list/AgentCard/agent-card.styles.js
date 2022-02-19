@@ -80,7 +80,7 @@ export const Username = styled.p`
 export const CompanyName = styled.p`
   color: ${colors.osloGray};
   font-size: 0.87rem;
-  margin: 0 0 0.62rem 0;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -94,6 +94,7 @@ export const CompanyName = styled.p`
 export const CompanyNamePlaceholder = styled.div`
   width: 5rem;
   height: 0.9rem;
+  margin: 0 0 0.62rem 0;
 `;
 
 export const ButtonsContainer = styled.div`
