@@ -20,10 +20,8 @@ export const ItemsContainer = styled.div`
   display: flex;
 `;
 
-export const ItemsWrapper = styled.ul``;
-
 export const Items = styled.li`
   color: ${colors.azure};
   list-style: none;
-  padding-top: 0.5rem;
+  padding-top: 0.6rem;
 `;

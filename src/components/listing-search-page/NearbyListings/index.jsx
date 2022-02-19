@@ -5,7 +5,6 @@ import {
   Container,
   Items,
   ItemsContainer,
-  ItemsWrapper,
   NearbyText,
 } from './nearby-listings.style';
 
@@ -19,19 +18,19 @@ function NearbyListings() {
     <Container>
       <NearbyText>Nearby Real Estate</NearbyText>
       <ItemsContainer>
-        <ItemsWrapper>
+        <ul>
           <Items>Condominiums for Sale Near Me</Items>
           <Items>Houses for Sale Near Me</Items>
           <Items>Co-op for Sale Near Me by Owner</Items>
           <Items>Single Family Home Near Me</Items>
-        </ItemsWrapper>
+        </ul>
 
-        <ItemsWrapper>
+        <ul>
           <Items>Land for Sale Near Me</Items>
           <Items>Townhouse for Sale Near Me</Items>
           <Items>Multi Family Home Real Estate</Items>
           <Items>7989087 Real Estate</Items>
-        </ItemsWrapper>
+        </ul>
       </ItemsContainer>
     </Container>
   );
