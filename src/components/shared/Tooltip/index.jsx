@@ -34,7 +34,7 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  light: null,
+  light: false,
 };
 
 export default Tooltip;
