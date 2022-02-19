@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FixedSizeList as List } from 'react-window';
 
-const height = 30;
+const height = 35;
 
 /**
  * Menu List component enhance react-select menu speed
@@ -12,7 +12,7 @@ const height = 30;
  * @param {Number} maxHeight react-select maxHeight
  * @param {Function} getValue react-select getValue function
  *
- * @return {*}
+ * @return {JSX.Element}
  */
 function MenuList({ options, children, maxHeight, getValue }) {
   const [value] = getValue();

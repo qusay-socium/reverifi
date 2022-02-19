@@ -48,6 +48,7 @@ import {
   InputsContainer,
   ProfileContainer,
   SaveButton,
+  SelectContainer,
   UserImage,
   UserInfoContainer,
   UserName,
@@ -66,12 +67,12 @@ const serviceAreasOptions = generateLabelValuePairs(['New York', 'New Jersey']);
  *
  * @param {Object} theme theme object from the select component
  */
-const customSelectTheme = (theme, error) => ({
+const customSelectTheme = (theme) => ({
   ...theme,
   colors: {
     ...theme.colors,
     dangerLight: colors.alabaster,
-    primary: error ? colors.red : colors.green,
+    primary: colors.green,
     primary25: colors.midGray,
   },
 });
@@ -83,6 +84,7 @@ const customSelectTheme = (theme, error) => ({
  */
 function MyProfileWrapper() {
   const { userInfo, isLoggedIn, setUserInfo } = useUser();
+  const [count, setCount] = useState(0);
   const [languages, setLanguages] = useState(
     generateLabelValuePairs(['English'])
   );
@@ -237,19 +239,27 @@ function MyProfileWrapper() {
   useEffectOnce(fetchUserInfo);
 
   useEffect(() => {
+    if (count < 3) setCount(count + 1);
     // get cities of each selected country
     const fetchedCities = countries?.find(
       (item) => item.country === selectedCountry?.value
     );
 
-    if (fetchedCities)
+    if (fetchedCities) {
       setCityOptions(generateLabelValuePairs(fetchedCities?.cities));
+
+      if (count > 2) {
+        setSelectedCity(generateLabelValuePairs([fetchedCities?.cities[0]])[0]);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countries, selectedCountry]);
 
   /**
    * hook that hide success toast message after n duration in seconds
    */
-  useShowToastBar(dataSaved, setDataSaved, 20000);
+  useShowToastBar(dataSaved, setDataSaved);
 
   /**
    * hook that hide fail toast message after n duration in seconds
@@ -319,30 +329,30 @@ function MyProfileWrapper() {
                 Service Areas
                 <span>*</span>
               </InputLabel>
-              <Controller
-                name="serviceAreas"
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <Select
-                    {...register('serviceAreas')}
-                    className="profile-select"
-                    classNamePrefix="profile"
-                    closeMenuOnSelect={false}
-                    hideSelectedOptions={false}
-                    isMulti
-                    options={serviceAreasOptions}
-                    placeholder="Select areas..."
-                    theme={(theme) =>
-                      customSelectTheme(theme, errors.serviceAreas?.message)
-                    }
-                    value={serviceAreas}
-                    onChange={(val) => {
-                      setServiceAreas(val);
-                      onChange(val);
-                    }}
-                  />
-                )}
-              />
+              <SelectContainer error={errors.serviceAreas?.message}>
+                <Controller
+                  name="serviceAreas"
+                  control={control}
+                  render={({ field: { onChange } }) => (
+                    <Select
+                      {...register('serviceAreas')}
+                      className="profile-select"
+                      classNamePrefix="profile"
+                      closeMenuOnSelect={false}
+                      hideSelectedOptions={false}
+                      isMulti
+                      options={serviceAreasOptions}
+                      placeholder="Select areas..."
+                      theme={(theme) => customSelectTheme(theme)}
+                      value={serviceAreas}
+                      onChange={(val) => {
+                        setServiceAreas(val);
+                        onChange(val);
+                      }}
+                    />
+                  )}
+                />
+              </SelectContainer>
               {errors.serviceAreas?.message && (
                 <Error>{errors.serviceAreas?.message}</Error>
               )}
@@ -355,31 +365,31 @@ function MyProfileWrapper() {
                 Languages
                 <span>*</span>
               </InputLabel>
-              <Controller
-                name="languages"
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <Select
-                    {...register('languages')}
-                    className="profile-select"
-                    classNamePrefix="profile"
-                    closeMenuOnSelect={false}
-                    hideSelectedOptions={false}
-                    isMulti
-                    isSearchable={false}
-                    options={languageOptions}
-                    placeholder="Select languages..."
-                    theme={(theme) =>
-                      customSelectTheme(theme, errors.languages?.message)
-                    }
-                    value={languages}
-                    onChange={(val) => {
-                      setLanguages(val);
-                      onChange(val);
-                    }}
-                  />
-                )}
-              />
+              <SelectContainer error={errors.languages?.message}>
+                <Controller
+                  name="languages"
+                  control={control}
+                  render={({ field: { onChange } }) => (
+                    <Select
+                      {...register('languages')}
+                      className="profile-select"
+                      classNamePrefix="profile"
+                      closeMenuOnSelect={false}
+                      hideSelectedOptions={false}
+                      isMulti
+                      isSearchable={false}
+                      options={languageOptions}
+                      placeholder="Select languages..."
+                      theme={(theme) => customSelectTheme(theme)}
+                      value={languages}
+                      onChange={(val) => {
+                        setLanguages(val);
+                        onChange(val);
+                      }}
+                    />
+                  )}
+                />
+              </SelectContainer>
               {errors.languages?.message && (
                 <Error>{errors.languages?.message}</Error>
               )}
@@ -402,7 +412,7 @@ function MyProfileWrapper() {
         </FormSectionContainer>
 
         <FormSectionContainer>
-          <FormSectionTitle>Location Information</FormSectionTitle>
+          <FormSectionTitle>Address Information</FormSectionTitle>
           <InputsContainer>
             <div>
               <InputLabel>
@@ -410,31 +420,33 @@ function MyProfileWrapper() {
                 Country
                 <span>*</span>
               </InputLabel>
-              <Controller
-                name="country"
-                control={control}
-                defaultValue={selectedCountry}
-                render={({ field: { onChange } }) => (
-                  <Select
-                    {...register('country')}
-                    className="profile-select"
-                    classNamePrefix="profile"
-                    isClearable
-                    hideSelectedOptions={false}
-                    options={countryOptions}
-                    placeholder="Select country..."
-                    theme={(theme) =>
-                      customSelectTheme(theme, errors.country?.message)
-                    }
-                    value={selectedCountry}
-                    onChange={(val) => {
-                      setSelectedCountry(val);
-                      onChange(val);
-                    }}
-                    filterOption={createFilter({ ignoreAccents: false })}
-                  />
-                )}
-              />
+              <SelectContainer error={errors.country?.message}>
+                <Controller
+                  name="country"
+                  control={control}
+                  defaultValue={selectedCountry}
+                  render={({ field: { onChange } }) => (
+                    <Select
+                      components={{ MenuList }}
+                      filterOption={createFilter({ ignoreAccents: false })}
+                      {...register('country')}
+                      className="profile-select"
+                      classNamePrefix="profile"
+                      isClearable
+                      hideSelectedOptions={false}
+                      options={countryOptions}
+                      placeholder="Select country..."
+                      theme={(theme) => customSelectTheme(theme)}
+                      value={selectedCountry}
+                      onChange={(val) => {
+                        setSelectedCountry(val);
+                        onChange(val);
+                      }}
+                    />
+                  )}
+                />
+              </SelectContainer>
+
               {errors.country?.message && (
                 <Error>{errors.country?.message}</Error>
               )}
@@ -446,35 +458,33 @@ function MyProfileWrapper() {
                 City
                 <span>*</span>
               </InputLabel>
-              <Controller
-                name="city"
-                control={control}
-                defaultValue={selectedCity}
-                render={({ field: { onChange } }) => (
-                  <Select
-                    components={{ MenuList }}
-                    {...register('city')}
-                    className="profile-select"
-                    classNamePrefix="profile"
-                    isClearable
-                    hideSelectedOptions={false}
-                    options={cityOptions}
-                    placeholder="Select city..."
-                    theme={(theme) =>
-                      customSelectTheme(theme, errors.country?.message)
-                    }
-                    value={selectedCity}
-                    onChange={(val) => {
-                      setSelectedCity(val);
-                      onChange(val);
-                    }}
-                    filterOption={createFilter({ ignoreAccents: false })}
-                  />
-                )}
-              />
-              {errors.country?.message && (
-                <Error>{errors.country?.message}</Error>
-              )}
+              <SelectContainer error={errors.city?.message}>
+                <Controller
+                  name="city"
+                  control={control}
+                  defaultValue={selectedCity}
+                  render={({ field: { onChange } }) => (
+                    <Select
+                      components={{ MenuList }}
+                      filterOption={createFilter({ ignoreAccents: false })}
+                      {...register('city')}
+                      className="profile-select"
+                      classNamePrefix="profile"
+                      isClearable
+                      hideSelectedOptions={false}
+                      options={cityOptions}
+                      placeholder="Select city..."
+                      theme={(theme) => customSelectTheme(theme)}
+                      value={selectedCity}
+                      onChange={(val) => {
+                        setSelectedCity(val);
+                        onChange(val);
+                      }}
+                    />
+                  )}
+                />
+              </SelectContainer>
+              {errors.city?.message && <Error>{errors.city?.message}</Error>}
             </div>
           </InputsContainer>
           <InputsContainer>
@@ -511,6 +521,7 @@ function MyProfileWrapper() {
               type="text"
               name="companyName"
               label="Company"
+              maxLength="60"
               labelIconElement={<CompanyNameIcon />}
               register={register}
               error={errors.companyName?.message}
@@ -521,6 +532,7 @@ function MyProfileWrapper() {
               type="email"
               name="companyEmail"
               label="E-mail"
+              maxLength="60"
               labelIconElement={<EmailIcon />}
               register={register}
               error={
@@ -540,6 +552,7 @@ function MyProfileWrapper() {
               type="text"
               name="companyWebsite"
               label="Website"
+              maxLength="60"
               labelIconElement={<CompanyWebsiteIcon />}
               register={register}
               error={errors.companyWebsite?.message}

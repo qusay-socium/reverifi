@@ -49,6 +49,15 @@ const GlobalStyles = createGlobalStyle`
     display: block;
     max-width: 100%;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 62.5rem ${colors.white} inset;
+    -moz-box-shadow: 0 0 0 6.25rem ${colors.white} inset;
+    box-shadow: 0 0 0 6.25rem ${colors.white} inset;
+  }
 `;
 
 export default GlobalStyles;

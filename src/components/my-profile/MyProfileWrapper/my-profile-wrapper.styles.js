@@ -69,14 +69,14 @@ export const FormContainer = styled.form`
 
     .profile__option {
       font-size: 0.875rem;
-      padding-left: 20px;
+      padding-left: 0.6rem;
     }
 
     .profile__menu {
       .profile__option--is-selected {
         background-color: ${colors.white};
         color: ${colors.green};
-        padding-left: 10px;
+        padding-left: 0.6rem;
 
         &::before {
           content: '▸ ';
@@ -130,4 +130,15 @@ export const SaveButton = styled(Button)`
 export const InputLabel = styled(Label)`
   padding: ${({ noPadding }) => noPadding && 0};
   width: 100%;
+`;
+
+export const SelectContainer = styled.div`
+  .profile-select {
+    .profile__control {
+      border: ${({ error }) =>
+        error
+          ? `0.08rem solid ${colors.red}`
+          : `0.08rem solid ${colors.mercury}`};
+    }
+  }
 `;
