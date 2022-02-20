@@ -54,7 +54,9 @@ export const toUpperCaseFirstLetter = (string) =>
 export const formatPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return null;
 
-  const phoneNumberString = phoneNumber?.toString().slice(2);
+  const phoneNumberString = phoneNumber?.toString()?.slice(2);
+
+  if (phoneNumberString.length < 3) return null;
 
   let reg;
   let lastPartLength;
@@ -70,6 +72,8 @@ export const formatPhoneNumber = (phoneNumber) => {
   const regex = new RegExp(reg);
   const cleaned = ` ${phoneNumberString}`.replace(/\D/g, '');
   const match = cleaned.match(regex);
+
+  console.log(match);
 
   const countryCode = match[1];
   const areaCode = match[2];
