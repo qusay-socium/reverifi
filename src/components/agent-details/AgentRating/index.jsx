@@ -1,13 +1,11 @@
 import AgentPhoto from 'assets/agent-photo.png';
 import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
-import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
 import Button from 'components/shared/Button';
+import LikeButton from 'components/shared/LikeButton';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import { IconWrapper } from '../AgentInformation/agent-information.style';
 import {
   Comment,
-  CommentLike,
   CommentSection,
   CommentsWrapper,
   CommentText,
@@ -54,22 +52,13 @@ function AgentRating() {
           {Object.entries(likes).map(([name, value]) => (
             <RatingBox key={name} onClick={() => onLike(name)}>
               <span>{name}</span>
-              {value ? (
-                <Like />
-              ) : (
-                <IconWrapper>
-                  <Like />
-                  <EmptyLike />
-                </IconWrapper>
-              )}
+              {value ? <Like /> : <LikeButton />}
             </RatingBox>
           ))}
         </RatingBoxContainer>
         <TextArea placeholder="Write Your Review" />
         <div>
-          <Button ariaLabel="Submit" onClick={() => {}}>
-            Submit
-          </Button>
+          <Button ariaLabel="Submit">Submit</Button>
           <RequestLink to="/">Request Reverifi Review</RequestLink>
         </div>
       </RatingForm>
@@ -98,10 +87,7 @@ function AgentRating() {
                   </p>
                   <span>8 days ago</span>
                 </CommentText>
-                <CommentLike>
-                  <Like />
-                  <EmptyLike />
-                </CommentLike>
+                <LikeButton />
               </CommentSection>
             </Comment>
           ))}
@@ -120,10 +106,7 @@ function AgentRating() {
               </p>
               <span>8 days ago</span>
             </CommentText>
-            <CommentLike>
-              <Like />
-              <EmptyLike />
-            </CommentLike>
+            <LikeButton />
           </Comment>
         ))}
       </CommentsWrapper>

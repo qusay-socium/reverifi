@@ -49,7 +49,7 @@ function CardInformation({
           </h3>
           <span>
             {getDatesDifference(createdAt)} day
-            <span>{getDatesDifference(createdAt) > 1 && 's'}</span> on reverifi
+            {getDatesDifference(createdAt) > 1 && 's'} on reverifi
           </span>
         </CardPrice>
         <HeaderIcons>

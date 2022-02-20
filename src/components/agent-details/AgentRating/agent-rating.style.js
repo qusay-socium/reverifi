@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
-import { IconWrapper } from '../AgentInformation/agent-information.style';
 
 export const RatingContainer = styled.div`
   display: flex;
@@ -83,10 +82,6 @@ export const CommentText = styled.div`
     float: right;
     padding: 0.5rem;
   }
-`;
-
-export const CommentLike = styled(IconWrapper)`
-  width: 2.5rem;
 `;
 
 export const CommentsWrapper = styled.div`

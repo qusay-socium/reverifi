@@ -1,9 +1,7 @@
 import { ReactComponent as AddressIcon } from 'assets/address.svg';
 import { ReactComponent as CompanyName } from 'assets/company.svg';
 import { ReactComponent as EmailIcon } from 'assets/email.svg';
-import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
 import placeholderPhoto from 'assets/icons/agent-list-avatar-placeholder.svg';
-import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
 import { ReactComponent as Facebook } from 'assets/images/facebook.svg';
 import { ReactComponent as Instagram } from 'assets/images/instagram.svg';
 import { ReactComponent as Linkedin } from 'assets/images/linkedin.svg';
@@ -21,6 +19,7 @@ import {
   separateBy,
   toUpperCaseFirstLetter,
 } from 'utils/helpers';
+import LikeButton from '../../shared/LikeButton';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -32,7 +31,6 @@ import {
   CompanyInformation,
   ContactInfo,
   IconLinkWrapper,
-  IconWrapper,
   ImageContainer,
   InfoKey,
   InfoValue,
@@ -51,7 +49,6 @@ const companyInfoIcons = [<CompanyName />, <EmailIcon />, <CompanyWebsite />];
 function AgentInformation() {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
-  const [likeActive, setLikeActive] = useState(false);
 
   const fetchUserData = async () => {
     const user = await getUserInfo(id);
@@ -97,13 +94,7 @@ function AgentInformation() {
             <ContactInfo>
               <AgentName>
                 <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
-                <IconWrapper
-                  onClick={() => setLikeActive(!likeActive)}
-                  active={likeActive}
-                >
-                  <Like />
-                  <EmptyLike />
-                </IconWrapper>
+                <LikeButton />
               </AgentName>
               <InfoWrapper>
                 <InfoKey>
