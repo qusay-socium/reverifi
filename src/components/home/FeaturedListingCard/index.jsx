@@ -60,13 +60,6 @@ function Card({ data }) {
     id,
   } = data;
 
-  const propertyTypeConverter = (property) => {
-    if (property.type === 'Apartments') {
-      return 'Apartment';
-    }
-    return property.type;
-  };
-
   const { setShowModal } = useShowModal();
 
   return (
@@ -90,9 +83,7 @@ function Card({ data }) {
               <TextMedium>{address || 'USA'}</TextMedium>
             </AddressTextContainer>
             <TextSmall>
-              {propertyType?.type
-                ? propertyTypeConverter(propertyType)
-                : 'Others'}
+              {propertyType?.type ? propertyType?.type : 'Others'}
             </TextSmall>
 
             <BodyIconsContainer>
@@ -144,9 +135,7 @@ function Card({ data }) {
           <OverlayBody>
             <OverlayAddress>{address || 'USA'}</OverlayAddress>
             <OverlayProperty>
-              {propertyType?.type
-                ? propertyTypeConverter(propertyType)
-                : 'Others'}
+              {propertyType?.type ? propertyType?.type : 'Others'}
             </OverlayProperty>
             <OverlayPrice>$ {price.toLocaleString()}</OverlayPrice>
 

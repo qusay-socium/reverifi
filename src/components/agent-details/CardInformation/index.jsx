@@ -62,11 +62,7 @@ function CardInformation({
         </HeaderIcons>
       </CardHeader>
       <CardBody>
-        <p>
-          {propertyType === 'Apartments'
-            ? propertyType?.slice(0, -1)
-            : propertyType}
-        </p>
+        <p>{propertyType || 'Others'}</p>
         <IconsContainers>
           {bedrooms && (
             <IconGroup>
