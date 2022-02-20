@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import Button from 'components/shared/Button';
 import FormInput from 'components/shared/FormInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import PropTypes from 'prop-types';
@@ -11,7 +10,7 @@ import {
   toUpperCaseFirstLetter,
 } from 'utils/helpers';
 import contactAgentSchema from './contact-agent-schema';
-import { Form } from './contact-agent.style';
+import { ContactButton, Form } from './contact-agent.style';
 
 /**
  * Contact Agent Form component.
@@ -78,9 +77,9 @@ function ContactAgent({ name }) {
           setFocus('message');
         }}
       />
-      <Button ariaLabel="Contact" type="submit">
+      <ContactButton ariaLabel="Contact" type="submit">
         Contact
-      </Button>
+      </ContactButton>
     </Form>
   );
 }

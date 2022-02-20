@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -34,12 +35,17 @@ export const UserImg = styled.img`
 export const DialButtonContent = styled.div`
   display: flex;
   gap: 0.5rem;
+  font-size: 1rem;
 `;
 
 export const SubmitSection = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+`;
+
+export const ContactButton = styled(Button)`
+  font-size: 1rem;
 `;
 
 export const Input = styled.input`
@@ -53,6 +59,12 @@ export const Input = styled.input`
   &:focus {
     border-color: ${colors.green};
     outline: none;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 

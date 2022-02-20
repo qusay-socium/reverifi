@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { splitCamelCaseString } from 'utils/helpers';
 import {
   Container,
   DetailsItem,
@@ -23,35 +24,35 @@ function Details({ details }) {
   const {
     rooms,
     bedrooms,
-    city,
     lotArea,
     lotDimensions,
     yearBuilt,
     fullBathrooms,
     homeArea,
     garage,
+    partialBathrooms,
   } = details;
 
   useEffect(() => {
     setListingDetails([
       { rooms },
       { bedrooms },
-      { city },
       { yearBuilt },
       { fullBathrooms },
       { garage },
+      { partialBathrooms },
     ]);
     setListingSize([{ lotArea }, { lotDimensions }, { homeArea }]);
   }, [
     rooms,
     bedrooms,
-    city,
     lotArea,
     lotDimensions,
     yearBuilt,
     fullBathrooms,
     homeArea,
     garage,
+    partialBathrooms,
   ]);
 
   if (listingDetails.length === 0 && listingDetails.length === 0) return null;
@@ -61,13 +62,13 @@ function Details({ details }) {
       <Wrapper>
         {listingDetails.map((key) => (
           <DetailsItem key={Object.keys(key)}>
-            <Key> {Object.keys(key)} :</Key>
+            <Key>{splitCamelCaseString(Object.keys(key)[0])}:</Key>
             <Value> {Object.values(key)} </Value>
           </DetailsItem>
         ))}
         {listingSize.map((key) => (
           <DetailsItem key={Object.keys(key)}>
-            <Key> {Object.keys(key)} :</Key>
+            <Key>{splitCamelCaseString(Object.keys(key)[0])}:</Key>
             <Value> {Object.values(key)[0].sqft} </Value>
           </DetailsItem>
         ))}
@@ -91,6 +92,7 @@ Details.propTypes = {
     lotDimensions: PropTypes.shape({
       sqft: PropTypes.string,
     }),
+    partialBathrooms: PropTypes.number,
     rooms: PropTypes.number,
     yearBuilt: PropTypes.number,
   }).isRequired,

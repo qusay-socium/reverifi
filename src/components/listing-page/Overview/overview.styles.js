@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -10,7 +11,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 2rem 6.5625rem;
+    margin: 2rem 6rem;
     padding-bottom: 2rem;
   `};
 `;
@@ -47,8 +48,13 @@ export const Value = styled.span`
   font-weight: bold;
 `;
 
+export const ClaimButton = styled(Button)`
+  font-size: 1rem;
+`;
+
 export const Paragraph = styled.p`
   line-height: 1.25rem;
+  word-break: break-all;
 `;
 
 export const Claim = styled.div`

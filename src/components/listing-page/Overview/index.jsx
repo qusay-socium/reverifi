@@ -1,11 +1,11 @@
 import { Title } from 'components/listing-page/Details/details.styles';
-import Button from 'components/shared/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ContactForm from '../ContactForm';
 import ScheduleVisit from '../ScheduleVisit';
 import {
   Claim,
+  ClaimButton,
   Container,
   Paragraph,
   Partition,
@@ -43,23 +43,18 @@ function Overview({ listing }) {
               </label>
             ))}
           </Statistics>
-
-          <Paragraph>{listing.overview}</Paragraph>
+          <div>
+            <Paragraph>{listing.overview}</Paragraph>
+          </div>
         </div>
         <Claim>
           <div>
             <Title> Do you own this property? </Title>
             <Paragraph>Claim this property and verifiy it’s details</Paragraph>
           </div>
-          <Button
-            aria-label="Claim this property"
-            type="button"
-            onClick={() => {
-              /* Todo */
-            }}
-          >
-            Claim property
-          </Button>
+          <ClaimButton aria-label="Claim This Property" type="button">
+            Claim This Property
+          </ClaimButton>
         </Claim>
         <ScheduleVisit />
       </Wrapper>

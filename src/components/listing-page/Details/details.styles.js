@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
   margin: 1rem 0 1rem;
   padding: 0;
 

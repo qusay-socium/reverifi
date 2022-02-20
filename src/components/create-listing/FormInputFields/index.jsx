@@ -249,6 +249,7 @@ function FormInputFields({ register, errors, setValue, values }) {
           name="price"
           register={register}
           placeholder="$10000"
+          maxLength="7"
           labelIconElement={<PriceIcon />}
           onChange={(e) => {
             setValue('price', e.target.value);

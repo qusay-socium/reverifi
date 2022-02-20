@@ -1,6 +1,5 @@
 import { ReactComponent as BellIcon } from 'assets/images/bell.svg';
 import { ReactComponent as HeartIcon } from 'assets/images/heart.svg';
-import { ReactComponent as MoreOptionsIcon } from 'assets/images/more-horizontal.svg';
 import { ReactComponent as ShareIcon } from 'assets/images/share.svg';
 import { ReactComponent as LocationPinIcon } from 'assets/location.svg';
 import {
@@ -33,45 +32,28 @@ function Offer({ price, address }) {
     <Container>
       <OfferDetails>
         <div>
-          <Price> {`$ ${price}`} </Price>
+          <Price> {`$ ${price.toLocaleString()}`} </Price>
           <Location>
             <LocationPinIcon />
             <LocationText> {address}</LocationText>
           </Location>
         </div>
         <SubmitOffer>
-          <SubmitButton
-            aria-label="Submit an Offer"
-            type="button"
-            onClick={() => {
-              /* Todo */
-            }}
-          >
+          <SubmitButton aria-label="Submit an Offer" type="button">
             Submit an Offer
           </SubmitButton>
         </SubmitOffer>
       </OfferDetails>
 
       <SideButtonsContainer>
-        <LogoButton
-          onClick={() => {
-            /* Todo */
-          }}
-        >
+        <LogoButton>
           <BellIcon />
         </LogoButton>
-        <LogoButton
-          onClick={() => {
-            /* Todo */
-          }}
-        >
+        <LogoButton>
           <HeartIcon />
         </LogoButton>
         <LogoButton onClick={() => setShowModal(true)}>
           <ShareIcon />
-        </LogoButton>
-        <LogoButton onClick={() => setShowModal(true)}>
-          <MoreOptionsIcon />
         </LogoButton>
       </SideButtonsContainer>
     </Container>

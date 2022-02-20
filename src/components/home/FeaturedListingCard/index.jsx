@@ -8,6 +8,7 @@ import { ReactComponent as LocationIcon } from 'assets/location.svg';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getDatesDifference } from 'utils/helpers';
 import {
   AddressTextContainer,
@@ -42,6 +43,8 @@ import {
 } from './featured-listing-card.styles';
 
 function Card({ data }) {
+  const navigate = useNavigate();
+
   const {
     address,
     agent,
@@ -54,6 +57,7 @@ function Card({ data }) {
     createdAt,
     homeArea,
     lotArea,
+    id,
   } = data;
 
   const propertyTypeConverter = (property) => {
@@ -176,7 +180,9 @@ function Card({ data }) {
               )}
             </OverlayFeatures>
 
-            <OverlayButton>View Listing</OverlayButton>
+            <OverlayButton onClick={() => navigate(`/listing/${id}`)}>
+              View Listing
+            </OverlayButton>
 
             <OverlayIcons>
               <IconsContainer>
@@ -208,6 +214,7 @@ Card.propTypes = {
     homeArea: PropTypes.shape({
       sqft: PropTypes.objectOf(PropTypes.string),
     }),
+    id: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
     listingType: PropTypes.objectOf(PropTypes.string),
     lotArea: PropTypes.shape({

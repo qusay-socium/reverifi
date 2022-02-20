@@ -10,13 +10,14 @@ export const Container = styled.div`
   padding: 1rem 0.5rem;
 
   ${mq.desktop`
-    padding: 2rem 8.75rem;
+    padding: 2rem 6rem;
   `};
 `;
 
 export const OfferDetails = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   ${mq.desktop`
     align-items: center;
@@ -27,6 +28,9 @@ export const OfferDetails = styled.div`
 export const Price = styled.h4`
   font-size: 2rem;
   margin: 0 0 0.5rem;
+  font-weight: 600;
+  max-width: 14rem;
+  line-height: 2.5rem;
 `;
 
 export const Location = styled.div`
@@ -41,8 +45,6 @@ export const LocationText = styled.span`
 `;
 
 export const SubmitOffer = styled.div`
-  margin-top: 1rem;
-
   ${mq.desktop`
     margin-left: 2rem;
   `}
@@ -52,6 +54,7 @@ export const SubmitButton = styled(Button)`
   align-items: center;
   display: flex;
   padding: 0 2rem;
+  font-size: 1rem;
 `;
 
 export const SideButtonsContainer = styled.div`
@@ -69,18 +72,21 @@ export const SideButtonsContainer = styled.div`
   `}
 `;
 
-export const LogoButton = styled(Button)`
-  background-color: ${colors.white};
-  height: 3rem;
-  margin-right: 0.5rem;
-  padding: 0;
-  width: 3rem;
+export const LogoButton = styled.div`
+  background-color: ${colors.mercury};
+  border-radius: 10rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
 
+  svg {
+    stroke: ${colors.dustyGray};
+    width: 1.1rem;
+    height: 1.1rem;
+  }
   :hover {
-    background-color: ${colors.green};
-
     svg {
-      stroke: ${colors.mineShaft};
+      stroke: ${colors.white};
     }
+    background-color: ${colors.green};
   }
 `;
