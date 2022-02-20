@@ -61,7 +61,8 @@ export const CardContent = styled.div`
 export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0.8125rem 1rem 0;
+  margin: 0.8rem 1rem 0.5rem;
+  align-items: flex-start;
 `;
 
 export const Username = styled.p`
@@ -70,7 +71,7 @@ export const Username = styled.p`
   font-weight: bold;
   letter-spacing: 0.125rem;
   line-height: 1.375rem;
-  margin: 1.25rem 0 0.625rem 0;
+  margin: 0 0 0.625rem 0;
   max-width: 15rem;
   white-space: nowrap;
   overflow: hidden;

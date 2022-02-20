@@ -123,6 +123,7 @@ export const SelectType = styled(SelectFilter)`
   margin: 0 0.625rem;
   outline: none;
   width: 100%;
+  font-family: inherit;
 
   option:first-child {
     display: none;
@@ -141,6 +142,11 @@ export const LocationSearch = styled.input`
   outline: none;
   padding: 0 1.6rem;
   width: 100%;
+  font-family: inherit;
+
+  ::placeholder {
+    font-size: 1.05rem;
+  }
 
   ${mq.mobileWide`
     font-size: 1rem;
@@ -163,6 +169,11 @@ export const AgentSearch = styled.input`
   outline: none;
   padding-left: 1.6rem;
   width: 100%;
+  font-family: inherit;
+
+  ::placeholder {
+    font-size: 1.05rem;
+  }
 
   ${mq.mobileWide`
     font-size: 1rem;
