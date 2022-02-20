@@ -22,7 +22,7 @@ export const AgentItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  gap: 1rem;
+  gap: 0.3rem;
 `;
 
 export const AgentSection = styled.div`
@@ -42,7 +42,7 @@ export const ImageContainer = styled.div`
   flex: 2;
 
   ${mq.tablet`
-     min-width: 25rem;
+     max-width: 23rem;
   `}
 `;
 
@@ -133,7 +133,7 @@ export const CompanyInformation = styled.ul`
   }
 
   ${mq.tablet`
-     min-width: 25rem;
+    max-width: 23rem;
   `}
 `;
 

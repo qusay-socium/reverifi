@@ -48,7 +48,7 @@ function ContactAgent({ name }) {
         onChange={handleTextInput}
       />
       <FormInput
-        label="Phone"
+        label="Phone Number"
         name="phone"
         placeholder="(201)555-0123"
         register={register}
