@@ -57,19 +57,23 @@ export const Paragraph = styled.p`
 `;
 
 export const Claim = styled.div`
-  border: 0.0625rem solid ${colors.midGray};
+  border: 0.06rem solid ${colors.midGray};
   border-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
   padding: 2rem 0.5rem;
   text-align: center;
 
+  p {
+    color: ${colors.gray};
+  }
+
   ${mq.desktopWide`
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem;
     text-align: left;
-   `};
+  `};
 `;
 
 export const Partition = styled.span`

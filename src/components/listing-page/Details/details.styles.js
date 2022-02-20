@@ -50,7 +50,7 @@ export const DetailsItem = styled.li`
 `;
 
 export const Key = styled.span`
-  color: ${colors.gray};
+  color: ${colors.liver};
   margin-right: 3rem;
   min-width: 10rem;
 `;

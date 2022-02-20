@@ -41,7 +41,6 @@ function ContactAgent({ name }) {
         error={errors.name?.message}
         label="Name"
         name="name"
-        placeholder="eg: Jhon Doe"
         register={register}
         maxLength="30"
         onChange={handleTextInput}
@@ -49,7 +48,6 @@ function ContactAgent({ name }) {
       <FormInput
         label="Phone Number"
         name="phone"
-        placeholder="(201)555-0123"
         register={register}
         error={errors.phone?.message}
         type="text"
@@ -60,7 +58,6 @@ function ContactAgent({ name }) {
         error={errors.email?.message}
         label="Email"
         name="email"
-        placeholder="eg: Jhon@domain.com"
         register={register}
         onChange={() => {
           setFocus('email');

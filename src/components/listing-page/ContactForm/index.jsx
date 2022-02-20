@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as DialLogo } from 'assets/dial-logo.svg';
 import userImage from 'assets/images/user-photo.jpg';
 import Button from 'components/shared/Button';
+import TextAreaInput from 'components/shared/FormTextArea';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import schema from './contact-form-schema';
@@ -12,7 +13,6 @@ import {
   ErrorMessage,
   Input,
   Message,
-  MessageLabel,
   SubmitSection,
   UserImg,
   UserInfo,
@@ -59,12 +59,16 @@ function ContactForm() {
         <ErrorMessage>{errors.phoneNumber?.message}</ErrorMessage>
         <Input {...register('email')} placeholder="Email" />
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
-        <MessageLabel htmlFor="message">
-          Message
-          <span>(Max 140 chars)</span>
-        </MessageLabel>
-        <Message {...register('message')} maxLength={140} />
-        <ErrorMessage>{errors.message?.message}</ErrorMessage>
+        <Message>
+          <TextAreaInput
+            name="message"
+            label="Message"
+            rounded={false}
+            limit={140}
+            register={register}
+            error={errors.message?.message}
+          />
+        </Message>
         <SubmitSection>
           <ContactButton type="submit">Contact</ContactButton>
         </SubmitSection>

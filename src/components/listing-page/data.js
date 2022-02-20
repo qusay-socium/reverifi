@@ -150,7 +150,7 @@ const data = {
   statistics: {
     Saves: '10',
     Shared: '12',
-    'Time on Reverifi': '8 days',
+    'Time on reverifi': '8 days',
     Views: '30',
   },
 };
