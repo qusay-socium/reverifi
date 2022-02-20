@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
-export const AssignTasksContainer = styled.div``;
-
-export const AssignTasksForm = styled.form``;
+export const AssignTasksForm = styled.form`
+  margin-top: 2.5rem;
+`;
 
 export const PartiesInputsContainer = styled.div`
   background-color: ${colors.wildSand};

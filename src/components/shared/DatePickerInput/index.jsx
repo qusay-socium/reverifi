@@ -39,7 +39,6 @@ function DatePickerInput({
           <Controller
             control={control}
             name={name}
-            // defaultValue={null}
             render={({ field: { onChange, value } }) => (
               <DatePicker
                 placeholderText={placeholder}

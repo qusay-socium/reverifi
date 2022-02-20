@@ -16,7 +16,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import assignTasksSchema from './assign-tasks-wrapper-schema';
 import {
-  AssignTasksContainer,
   AssignTasksForm,
   ButtonsContainer,
   InputsContainer,
@@ -143,142 +142,140 @@ function AssignTasksWrapper() {
   const submit = () => {};
 
   return (
-    <AssignTasksContainer>
-      <AssignTasksForm onSubmit={handleSubmit(submit)}>
-        <PartiesInputsContainer>
-          <InputsContainer>
-            <DropdownMenu
-              register={register}
-              error={errors?.lender?.message}
-              label="Select or Invite Lender:"
-              labelIcon={<LenderIcon />}
-              name="lender"
-              small
-              required
-              placeholder="Select Lender"
-              options={['John', 'Mark', 'Frank']}
-            />
-            <DropdownMenu
-              register={register}
-              error={errors?.coordinator?.message}
-              label="Select or Invite Transaction Coordinator:"
-              labelIcon={<CoordinatorIcon />}
-              name="coordinator"
-              small
-              required
-              placeholder="Select Coordinator"
-              options={['John', 'Mark', 'Frank']}
-            />
-          </InputsContainer>
-          <InputsContainer>
-            <DropdownMenu
-              register={register}
-              error={errors?.buyerAttorney?.message}
-              label="Buyer Attorney:"
-              labelIcon={<BuyerAttorneyIcon />}
-              name="buyerAttorney"
-              small
-              required
-              placeholder="Select Buyer Attorney"
-              options={['John', 'Mark', 'Frank']}
-            />
-            <DropdownMenu
-              register={register}
-              error={errors?.sellerAttorney?.message}
-              label="Seller Attorney:"
-              labelIcon={<SellerAttorneyIcon />}
-              name="sellerAttorney"
-              small
-              required
-              placeholder="Select Seller Attorney"
-              options={['John', 'Mark', 'Frank']}
-            />
-          </InputsContainer>
-
-          <InputsContainer>
-            <DropdownMenu
-              register={register}
-              error={errors?.titleInsurance?.message}
-              label="Title Insurance:"
-              labelIcon={<TitleInsuranceIcon />}
-              name="titleInsurance"
-              small
-              required
-              placeholder="Select Title Insurance"
-              options={['John', 'Mark', 'Frank']}
-            />
-            <DropdownMenu
-              register={register}
-              error={errors?.homeInsurance?.message}
-              label="Home Insurance:"
-              labelIcon={<HomeInsuranceIcon />}
-              name="homeInsurance"
-              small
-              required
-              placeholder="Select Home Insurance"
-              options={['John', 'Mark', 'Frank']}
-            />
-          </InputsContainer>
-        </PartiesInputsContainer>
-
-        <SectionContainer>
-          <Table headers={['process', 'assign to', 'due date']} fixedLayout>
-            {tableContent?.map(
-              ({ assignToName, assignToOptions, dateName, process, id }) => (
-                <TableRow key={id}>
-                  <TableCell>
-                    <ProcessText>{process}</ProcessText>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu
-                      register={register}
-                      error={errors[assignToName]?.message}
-                      name={assignToName}
-                      small
-                      smallBorderRadius
-                      placeholder="Unassigned"
-                      options={assignToOptions}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <DatePickerInput
-                      required
-                      small
-                      smallBorderRadius
-                      placeholder="Select Date Range"
-                      name={dateName}
-                      control={control}
-                      error={
-                        errors[dateName]?.[0]?.message ||
-                        errors[dateName]?.[1]?.message ||
-                        errors[dateName]?.message
-                      }
-                      register={register}
-                    />
-                  </TableCell>
-                </TableRow>
-              )
-            )}
-          </Table>
-
-          <TextAreaInput
+    <AssignTasksForm onSubmit={handleSubmit(submit)}>
+      <PartiesInputsContainer>
+        <InputsContainer>
+          <DropdownMenu
             register={register}
-            error={errors?.notes?.message}
-            name="notes"
-            label="Notes"
-            rounded={false}
-            labelIconElement={<NotesIcon />}
-            limit={250}
+            error={errors?.lender?.message}
+            label="Select or Invite Lender:"
+            labelIcon={<LenderIcon />}
+            name="lender"
+            small
+            required
+            placeholder="Select Lender"
+            options={['John', 'Mark', 'Frank']}
           />
-          <ButtonsContainer>
-            <Button type="button" light>
-              Back
-            </Button>
-            <Button type="submit">Confirm and Next</Button>
-          </ButtonsContainer>
-        </SectionContainer>
-      </AssignTasksForm>
-    </AssignTasksContainer>
+          <DropdownMenu
+            register={register}
+            error={errors?.coordinator?.message}
+            label="Select or Invite Transaction Coordinator:"
+            labelIcon={<CoordinatorIcon />}
+            name="coordinator"
+            small
+            required
+            placeholder="Select Coordinator"
+            options={['John', 'Mark', 'Frank']}
+          />
+        </InputsContainer>
+        <InputsContainer>
+          <DropdownMenu
+            register={register}
+            error={errors?.buyerAttorney?.message}
+            label="Buyer Attorney:"
+            labelIcon={<BuyerAttorneyIcon />}
+            name="buyerAttorney"
+            small
+            required
+            placeholder="Select Buyer Attorney"
+            options={['John', 'Mark', 'Frank']}
+          />
+          <DropdownMenu
+            register={register}
+            error={errors?.sellerAttorney?.message}
+            label="Seller Attorney:"
+            labelIcon={<SellerAttorneyIcon />}
+            name="sellerAttorney"
+            small
+            required
+            placeholder="Select Seller Attorney"
+            options={['John', 'Mark', 'Frank']}
+          />
+        </InputsContainer>
+
+        <InputsContainer>
+          <DropdownMenu
+            register={register}
+            error={errors?.titleInsurance?.message}
+            label="Title Insurance:"
+            labelIcon={<TitleInsuranceIcon />}
+            name="titleInsurance"
+            small
+            required
+            placeholder="Select Title Insurance"
+            options={['John', 'Mark', 'Frank']}
+          />
+          <DropdownMenu
+            register={register}
+            error={errors?.homeInsurance?.message}
+            label="Home Insurance:"
+            labelIcon={<HomeInsuranceIcon />}
+            name="homeInsurance"
+            small
+            required
+            placeholder="Select Home Insurance"
+            options={['John', 'Mark', 'Frank']}
+          />
+        </InputsContainer>
+      </PartiesInputsContainer>
+
+      <SectionContainer>
+        <Table headers={['process', 'assign to', 'due date']} fixedLayout>
+          {tableContent?.map(
+            ({ assignToName, assignToOptions, dateName, process, id }) => (
+              <TableRow key={id}>
+                <TableCell>
+                  <ProcessText>{process}</ProcessText>
+                </TableCell>
+                <TableCell>
+                  <DropdownMenu
+                    register={register}
+                    error={errors[assignToName]?.message}
+                    name={assignToName}
+                    small
+                    smallBorderRadius
+                    placeholder="Unassigned"
+                    options={assignToOptions}
+                  />
+                </TableCell>
+                <TableCell>
+                  <DatePickerInput
+                    required
+                    small
+                    smallBorderRadius
+                    placeholder="Select Date Range"
+                    name={dateName}
+                    control={control}
+                    error={
+                      errors[dateName]?.[0]?.message ||
+                      errors[dateName]?.[1]?.message ||
+                      errors[dateName]?.message
+                    }
+                    register={register}
+                  />
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </Table>
+
+        <TextAreaInput
+          register={register}
+          error={errors?.notes?.message}
+          name="notes"
+          label="Notes"
+          rounded={false}
+          labelIconElement={<NotesIcon />}
+          limit={250}
+        />
+        <ButtonsContainer>
+          <Button type="button" light>
+            Back
+          </Button>
+          <Button type="submit">Confirm and Next</Button>
+        </ButtonsContainer>
+      </SectionContainer>
+    </AssignTasksForm>
   );
 }
 
