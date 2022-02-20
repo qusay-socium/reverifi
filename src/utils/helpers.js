@@ -73,8 +73,6 @@ export const formatPhoneNumber = (phoneNumber) => {
   const cleaned = ` ${phoneNumberString}`.replace(/\D/g, '');
   const match = cleaned.match(regex);
 
-  console.log(match);
-
   const countryCode = match[1];
   const areaCode = match[2];
   const lineNumber = match[3];
