@@ -65,7 +65,7 @@ const myProfileSchema = yup
       .label('Phone')
       .required()
       .min(13, 'Must be at least 13 digits')
-      .typeError('Phone must be a number'),
+      .typeError('Phone number is required'),
     serviceAreas: yup
       .array()
       .min(1, 'Service areas should have at least 1 value')
@@ -74,7 +74,7 @@ const myProfileSchema = yup
     zipCode: yup
       .string()
       .required('ZipCode is required')
-      .typeError('ZipCode must be a number')
+      .typeError('ZipCode is required')
       .min(5, 'Must be 5 digits'),
   })
   .required();

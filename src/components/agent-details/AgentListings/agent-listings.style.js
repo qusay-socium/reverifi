@@ -13,6 +13,7 @@ export const ListingsContainer = styled.div`
 export const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0 0.1rem;
   gap: 1rem;
 
   > div {

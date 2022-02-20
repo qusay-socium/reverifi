@@ -79,8 +79,8 @@ export const IconGroup = styled.div`
 
 export const FooterIconGroup = styled(IconGroup)`
   svg {
-    width: 0.8rem !important;
-    height: 0.8rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
   }
 
   span {
