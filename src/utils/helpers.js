@@ -64,7 +64,9 @@ export const splitCamelCaseString = (string) =>
 export const formatPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return null;
 
-  const phoneNumberString = phoneNumber?.toString().slice(2);
+  const phoneNumberString = phoneNumber?.toString()?.slice(2);
+
+  if (phoneNumberString.length < 3) return null;
 
   let reg;
   let lastPartLength;
