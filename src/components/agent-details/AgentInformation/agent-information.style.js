@@ -1,4 +1,3 @@
-import { HeaderIconWrapper } from 'components/agent-details/CardInformation/card-information.style';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -41,6 +40,10 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
+
+  ${mq.tablet`
+     min-width: 25rem;
+  `}
 `;
 
 export const StyledImg = styled.img`
@@ -62,6 +65,7 @@ export const AgentName = styled.div`
 
   h2 {
     margin: 0;
+    text-transform: capitalize;
   }
 `;
 
@@ -71,8 +75,9 @@ export const ContactInfo = styled.div`
   gap: 1.4rem;
 `;
 
-export const InfoWrapper = styled.li`
+export const InfoWrapper = styled.div`
   display: flex;
+  gap: ${({ companyInfoWrapper }) => (companyInfoWrapper ? 0 : '3rem')};
 
   ${mq.tablet`
     font-size: 0.8rem
@@ -86,7 +91,7 @@ export const InfoWrapper = styled.li`
 export const InfoKey = styled.div`
   align-items: center;
   display: flex;
-  flex: 2;
+  min-width: 9rem;
   gap: 0.5rem;
   color: ${colors.gray};
 `;
@@ -94,8 +99,14 @@ export const InfoKey = styled.div`
 export const InfoValue = styled.h4`
   flex: 3;
   margin: 0;
-  width: max-content;
-  word-break: break-all;
+  max-width: 13rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  a {
+    color: ${colors.azure};
+  }
 `;
 
 export const SocialMediaIcons = styled.div`
@@ -120,18 +131,22 @@ export const CompanyInformation = styled.ul`
   h2 {
     margin-bottom: 0;
   }
+
+  ${mq.tablet`
+     min-width: 25rem;
+  `}
 `;
 
 export const AboutAgent = styled.div`
   flex: 3;
   line-height: 1.25rem;
+
+  p {
+    word-break: break-all;
+  }
 `;
 
 export const IconLinkWrapper = styled.a`
   text-decoration: none;
   cursor: pointer;
-`;
-
-export const IconWrapper = styled(HeaderIconWrapper)`
-  background-color: ${colors.white};
 `;

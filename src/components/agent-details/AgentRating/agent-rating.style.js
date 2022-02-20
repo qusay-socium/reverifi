@@ -32,12 +32,14 @@ export const RatingForm = styled.form`
 
 export const TextArea = styled.textarea`
   background-color: ${colors.white};
-  border-radius: 0.9375rem;
-  border: 0.0823rem solid ${colors.mercury};
+  border-radius: 0.94rem;
+  border: 0.08rem solid ${colors.mercury};
   height: 12.375rem;
   padding: 1.5rem 1.5rem;
   resize: none;
   width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
 `;
 
 export const RequestLink = styled(Link)`
@@ -80,10 +82,6 @@ export const CommentText = styled.div`
     float: right;
     padding: 0.5rem;
   }
-`;
-
-export const CommentLike = styled.div`
-  width: 2.5rem;
 `;
 
 export const CommentsWrapper = styled.div`
@@ -158,6 +156,15 @@ export const RatingBox = styled.div`
   display: flex;
   flex: 50%;
   font-size: 1.25rem;
+  gap: 0.5rem;
+
+  > svg {
+    margin-bottom: 0.187rem;
+  }
+
+  > span {
+    min-width: 10rem;
+  }
 `;
 
 export const CommentSection = styled.div`

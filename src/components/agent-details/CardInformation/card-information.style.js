@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import mq from 'styles/media-query';
 
 export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.6rem;
 
   p {
     font-size: 1rem;
@@ -30,7 +31,7 @@ export const CardHeader = styled.div`
 export const CardInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.6rem;
   padding: 2rem 1.9rem 1rem 1.9rem;
 `;
 
@@ -90,7 +91,11 @@ export const FooterIconGroup = styled(IconGroup)`
 export const IconsContainers = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 5rem;
+
+  ${mq.desktop`
+    gap: 1rem;
+    `}
 `;
 
 export const HeaderIconWrapper = styled.div`

@@ -1,4 +1,3 @@
-import { ReactComponent as Like } from 'assets//icons/agent-detailes-like.svg';
 import { ReactComponent as AddressIcon } from 'assets/address.svg';
 import { ReactComponent as CompanyName } from 'assets/company.svg';
 import { ReactComponent as EmailIcon } from 'assets/email.svg';
@@ -11,11 +10,16 @@ import { ReactComponent as LanguagesIcon } from 'assets/language.svg';
 import { ReactComponent as PhoneIcon } from 'assets/phone.svg';
 import { ReactComponent as ServiceAreaIcon } from 'assets/service-area.svg';
 import { ReactComponent as CompanyWebsite } from 'assets/website.svg';
+import LikeButton from 'components/shared/LikeButton';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUserInfo } from 'services/user';
-import { separateBy, toUpperCaseFirstLetter } from 'utils/helpers';
+import {
+  formatPhoneNumber,
+  separateBy,
+  toUpperCaseFirstLetter,
+} from 'utils/helpers';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -27,7 +31,6 @@ import {
   CompanyInformation,
   ContactInfo,
   IconLinkWrapper,
-  IconWrapper,
   ImageContainer,
   InfoKey,
   InfoValue,
@@ -91,23 +94,27 @@ function AgentInformation() {
             <ContactInfo>
               <AgentName>
                 <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
-                <IconWrapper fill="true">
-                  <Like />
-                </IconWrapper>
+                <LikeButton />
               </AgentName>
               <InfoWrapper>
                 <InfoKey>
                   <PhoneIcon />
                   <span>Phone</span>
                 </InfoKey>
-                <InfoValue>{userData?.user?.phone}</InfoValue>
+                <InfoValue>
+                  {formatPhoneNumber(userData?.user?.phone)}
+                </InfoValue>
               </InfoWrapper>
               <InfoWrapper>
                 <InfoKey>
                   <EmailIcon />
                   <span>Email</span>
                 </InfoKey>
-                <InfoValue>{userData?.user?.email}</InfoValue>
+                <InfoValue>
+                  <a href={`mailto:${userData?.user?.email}`}>
+                    {userData?.user?.email}
+                  </a>
+                </InfoValue>
               </InfoWrapper>
               <InfoWrapper>
                 <InfoKey>
@@ -143,10 +150,14 @@ function AgentInformation() {
                 {Object.entries(userData?.company).map(
                   (field, i) =>
                     field[0] !== 'id' && (
-                      <InfoWrapper key={field[0]}>
+                      <InfoWrapper key={field[0]} companyInfoWrapper>
                         <InfoKey>
                           {companyInfoIcons?.[i - 1]}
-                          <span>{toUpperCaseFirstLetter(field[0])}</span>
+                          <span>
+                            {toUpperCaseFirstLetter(
+                              field[0] === 'name' ? 'company' : field[0]
+                            )}
+                          </span>
                         </InfoKey>
                         <InfoValue>{field[1]}</InfoValue>
                       </InfoWrapper>
@@ -155,10 +166,13 @@ function AgentInformation() {
               </ContactInfo>
             </CompanyInformation>
           )}
-          <AboutAgent>
-            <h3>About Me</h3>
-            <p>{userData?.aboutMe}</p>
-          </AboutAgent>
+
+          {userData?.aboutMe && (
+            <AboutAgent>
+              <h3>About Me</h3>
+              <p>{userData?.aboutMe}</p>
+            </AboutAgent>
+          )}
         </AgentSection>
       </AgentItemsContainer>
       <ContactAgent name={userData.user?.name} />

@@ -21,7 +21,7 @@ function AgentListings() {
 
   const fetchUserListings = async () => {
     const listings = await getUserListings(id, 3);
-    setUserListings(listings);
+    setUserListings(listings.data);
   };
 
   useEffectOnce(fetchUserListings);
@@ -29,7 +29,7 @@ function AgentListings() {
   return userListings.length ? (
     <ListingsContainer>
       <h2>Listings</h2>
-      <CardsContainer>
+      <CardsContainer cardsNum={userListings.length}>
         {userListings?.map(
           ({
             id: listingId,

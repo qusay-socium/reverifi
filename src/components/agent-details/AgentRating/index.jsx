@@ -1,12 +1,11 @@
+import AgentPhoto from 'assets/agent-photo.png';
+import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
+import Button from 'components/shared/Button';
+import LikeButton from 'components/shared/LikeButton';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import { ReactComponent as Like } from 'assets/like.svg';
-import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
-import AgentPhoto from 'assets/agent-photo.png';
-import Button from 'components/shared/Button';
 import {
   Comment,
-  CommentLike,
   CommentSection,
   CommentsWrapper,
   CommentText,
@@ -27,10 +26,10 @@ import {
  */
 function AgentRating() {
   const [likes, setLikes] = useState({
-    Helpful: false,
-    Knowledgeable: false,
     Responsiveness: false,
+    Knowledgeable: false,
     Trustworthy: false,
+    Helpful: false,
   });
 
   /**
@@ -52,16 +51,14 @@ function AgentRating() {
         <RatingBoxContainer>
           {Object.entries(likes).map(([name, value]) => (
             <RatingBox key={name} onClick={() => onLike(name)}>
-              {value ? <Like /> : <EmptyLike />}
-              {name}
+              <span>{name}</span>
+              {value ? <Like /> : <LikeButton />}
             </RatingBox>
           ))}
         </RatingBoxContainer>
         <TextArea placeholder="Write Your Review" />
         <div>
-          <Button ariaLabel="Submit" onClick={() => {}}>
-            Submit
-          </Button>
+          <Button ariaLabel="Submit">Submit</Button>
           <RequestLink to="/">Request Reverifi Review</RequestLink>
         </div>
       </RatingForm>
@@ -83,15 +80,14 @@ function AgentRating() {
               <StyledImg src={AgentPhoto} />
               <CommentSection>
                 <CommentText>
+                  <h3>Jhone Doe</h3>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et
                   </p>
                   <span>8 days ago</span>
                 </CommentText>
-                <CommentLike>
-                  <Like />
-                </CommentLike>
+                <LikeButton />
               </CommentSection>
             </Comment>
           ))}
@@ -103,15 +99,14 @@ function AgentRating() {
           <Comment key={index}>
             <StyledImg src={AgentPhoto} />
             <CommentText>
+              <h3>Jhone Doe</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna
               </p>
               <span>8 days ago</span>
             </CommentText>
-            <CommentLike>
-              <Like />
-            </CommentLike>
+            <LikeButton />
           </Comment>
         ))}
       </CommentsWrapper>

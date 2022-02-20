@@ -47,7 +47,10 @@ function CardInformation({
             ${price?.toLocaleString()}
             {perPeriod && `/${perPeriod}`}
           </h3>
-          <span>{getDatesDifference(createdAt)} days on reverifi</span>
+          <span>
+            {getDatesDifference(createdAt)} day
+            {getDatesDifference(createdAt) > 1 && 's'} on reverifi
+          </span>
         </CardPrice>
         <HeaderIcons>
           <HeaderIconWrapper stroke="true">
@@ -77,16 +80,16 @@ function CardInformation({
               <BathtubIcon />
             </IconGroup>
           )}
-          {homeArea && (
+          {homeArea ? (
             <IconGroup>
               <span>{homeArea} sqft</span>
             </IconGroup>
-          )}
-          {lotArea && (
+          ) : null}
+          {lotArea ? (
             <IconGroup>
               <span>{lotArea} sqft lot</span>
             </IconGroup>
-          )}
+          ) : null}
         </IconsContainers>
       </CardBody>
       <CardFooter>

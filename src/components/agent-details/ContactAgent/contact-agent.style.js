@@ -12,6 +12,11 @@ export const Form = styled.form`
 
   h2 {
     margin-bottom: 0;
+    text-transform: capitalize;
+  }
+
+  button {
+    align-self: center;
   }
 `;
 
