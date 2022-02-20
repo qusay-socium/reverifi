@@ -54,5 +54,4 @@ export const Label = styled.label`
 
 export const ContactButton = styled(Button)`
   font-size: 2rem;
-  background-color: green;
 `;

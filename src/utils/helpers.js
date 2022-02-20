@@ -52,7 +52,7 @@ export const toUpperCaseFirstLetter = (string) =>
  * @return {String} normal text after split
  */
 export const splitCamelCaseString = (string) =>
-  string.replace(/([a-z])([A-Z])/g, '$1 $2');
+  toUpperCaseFirstLetter(string?.replace(/([a-z])([A-Z])/g, '$1 $2'));
 
 /**
  * format phone number

@@ -59,7 +59,6 @@ function CreateListingForm({ date }) {
     setValue('featureIds', featureIds);
 
     if (formId) fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formId, reset, featureIds]);
 
   const values = watch();
@@ -103,9 +102,9 @@ function CreateListingForm({ date }) {
       navigate('/sign-up');
     } else {
       values.featureIds = Array.from(values?.featureIds || []);
-      values.homeArea = { sqft: values.homeArea };
-      values.lotArea = { sqft: values.lotArea };
-      values.lotDimensions = { sqft: values.lotDimensions };
+      values.homeArea = { sqft: values?.homeArea };
+      values.lotArea = { sqft: values?.lotArea };
+      values.lotDimensions = { sqft: values?.lotDimensions };
 
       if (!formId) {
         const { id } = await submitListingForm(values);
