@@ -23,7 +23,7 @@ export const Input = styled.input`
 
   &:checked {
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain !important;
     background: url(${checkbox});
     border: none;
   }

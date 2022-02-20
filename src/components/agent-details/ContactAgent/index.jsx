@@ -53,7 +53,7 @@ function ContactAgent({ name }) {
         register={register}
         error={errors.phone?.message}
         type="text"
-        maxLength="15"
+        maxLength="10"
         onChange={handleNumberInput}
       />
       <FormInput

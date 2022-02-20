@@ -28,7 +28,7 @@ const listingFormSchema = yup
   .object({
     bedrooms: positiveIntegerValidator,
     fullBathrooms: positiveIntegerValidator,
-    garage: positiveIntegerValidator,
+    garages: positiveIntegerValidator,
     homeArea: positiveFloatValidator,
     isAgent: yup.boolean(),
     isOwner: yup.boolean(),
