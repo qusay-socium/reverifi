@@ -1,3 +1,4 @@
+import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -49,4 +50,9 @@ export const Label = styled.label`
     float: right;
     font-size: 0.75rem;
   }
+`;
+
+export const ContactButton = styled(Button)`
+  font-size: 2rem;
+  background-color: green;
 `;

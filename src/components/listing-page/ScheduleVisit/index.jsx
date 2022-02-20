@@ -1,11 +1,11 @@
 import { ReactComponent as DateIcon } from 'assets/date-picker.svg';
+import { Title } from 'components/listing-page/Details/details.styles';
 import PropTypes from 'prop-types';
 import React, { forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Slider from 'react-slick';
-import { Title } from 'components/listing-page/Details/details.styles';
-import { mockDates, breakPoints } from './data';
+import { breakPoints, mockDates } from './data';
 import {
   Container,
   DateButton,
@@ -57,7 +57,7 @@ function ScheduleVisit() {
           ))}
         </Slider>
       </DateSliderContainer>
-      <SubmitButton type="button">Request this time</SubmitButton>
+      <SubmitButton type="button">Request This Time</SubmitButton>
     </Container>
   );
 }

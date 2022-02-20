@@ -6,6 +6,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import schema from './contact-form-schema';
 import {
+  ContactButton,
   Container,
   DialButtonContent,
   ErrorMessage,
@@ -65,7 +66,7 @@ function ContactForm() {
         <Message {...register('message')} maxLength={140} />
         <ErrorMessage>{errors.message?.message}</ErrorMessage>
         <SubmitSection>
-          <Button type="submit">Contact</Button>
+          <ContactButton type="submit">Contact</ContactButton>
         </SubmitSection>
       </form>
     </Container>

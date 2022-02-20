@@ -45,6 +45,16 @@ export const toUpperCaseFirstLetter = (string) =>
   string?.charAt(0).toUpperCase() + string?.slice(1);
 
 /**
+ * split camel case string
+ *
+ * @param {String} string text with camel case
+ *
+ * @return {String} normal text after split
+ */
+export const splitCamelCaseString = (string) =>
+  string.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+/**
  * format phone number
  *
  * @param {String} phoneNumber to format

@@ -67,4 +67,5 @@ export const DateCard = styled.div`
 
 export const SubmitButton = styled(Button)`
   min-width: 100%;
+  font-size: 1rem;
 `;

@@ -56,9 +56,11 @@ function CreateListingForm({ date }) {
       response.listingType = response.listingTypedId;
       reset(response);
     }
+    setValue('featureIds', featureIds);
 
     if (formId) fetchData();
-  }, [formId, reset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formId, reset, featureIds]);
 
   const values = watch();
 
@@ -91,7 +93,6 @@ function CreateListingForm({ date }) {
         return new Set(prevState);
       });
     }
-    setValue('featureIds', featureIds);
   };
 
   /**
@@ -102,6 +103,10 @@ function CreateListingForm({ date }) {
       navigate('/sign-up');
     } else {
       values.featureIds = Array.from(values?.featureIds || []);
+      values.homeArea = { sqft: values.homeArea };
+      values.lotArea = { sqft: values.lotArea };
+      values.lotDimensions = { sqft: values.lotDimensions };
+
       if (!formId) {
         const { id } = await submitListingForm(values);
         navigate(`/listing/${id}`, { replace: true });
