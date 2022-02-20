@@ -23,32 +23,28 @@ const signUpSchema = yup
         'Password should be at least 8 characters and contain 1 upper and lower case letter and 1 number and 1 special case character'
       ),
     phoneNumber: yup
-      .number()
+      .string()
       .label('Phone Number')
-      .positive()
-      .integer()
       .when('industryProfessional', {
         is: true,
         then: yup
-          .number()
-          .required('Phone number must be a number')
+          .string()
+          .required('Phone number is required')
           .test(
             'len',
             'Phone number must contain 10 digits',
             (val) => val.toString().length === 10
           )
-          .typeError('Phone number must be a number'),
+          .typeError('Phone number is required'),
       })
-      .typeError('Phone number must be a number'),
+      .typeError('Phone number is required'),
     phonePrefix: yup
-      .number()
+      .string()
       .label('Phone Number')
-      .positive()
-      .integer()
       .when('industryProfessional', {
         is: true,
         then: yup
-          .number()
+          .string()
           .required('Ext is required')
           .typeError('Ext is required'),
       })

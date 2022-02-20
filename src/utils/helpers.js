@@ -54,7 +54,7 @@ export const toUpperCaseFirstLetter = (string) =>
 export const formatPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return null;
 
-  const phoneNumberString = phoneNumber.toString().replace('+', '00');
+  const phoneNumberString = phoneNumber?.toString().slice(2);
 
   let reg;
   let lastPartLength;
