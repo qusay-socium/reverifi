@@ -3,6 +3,7 @@ import { ReactComponent as Heart } from 'assets/icons/agent-heart.svg';
 import { ReactComponent as Share } from 'assets/icons/agent-share.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
+import listingImage from 'assets/listing-image.png';
 import PropTypes from 'prop-types/prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -55,7 +56,7 @@ function Card({ data }) {
     <CardContainer onClick={handleClick}>
       <ImageContainer>
         <Badge>Sale</Badge>
-        <Image src={images[0]} />
+        <Image src={images ? images[0] : listingImage} />
       </ImageContainer>
 
       <CardText>
@@ -94,15 +95,15 @@ function Card({ data }) {
 
           {homeArea && (
             <IconsNumber>
-              <BoldNumber>{homeArea.sqft} </BoldNumber>
-              <AreaText>sqft</AreaText>
+              <BoldNumber>{homeArea?.sqft} </BoldNumber>
+              <AreaText>Sq.Ft</AreaText>
             </IconsNumber>
           )}
 
           {lotArea && (
             <IconsNumber>
-              <BoldNumber>{lotArea.sqft} </BoldNumber>{' '}
-              <AreaText>sqft lot</AreaText>
+              <BoldNumber>{lotArea?.sqft} </BoldNumber>{' '}
+              <AreaText>Sq.Ft lot</AreaText>
             </IconsNumber>
           )}
         </IconsContainer>

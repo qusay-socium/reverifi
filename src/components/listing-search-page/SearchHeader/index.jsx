@@ -1,6 +1,5 @@
 import { ReactComponent as ClearIcon } from 'assets/close-icon.svg';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
-import DropdownMenu from 'components/shared/DropdownMenu';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import 'slick-carousel/slick/slick-theme.css';
@@ -11,6 +10,7 @@ import {
   ListingSearchContainer,
   SearchButton,
   SearchContainer,
+  SelectDropdownMenu,
 } from './search-header.style';
 
 /**
@@ -28,7 +28,7 @@ function ListingsSearchHeader({
   const handleInputClear = () => {
     setKeyWord('');
     inputValue.current.value = '';
-    fetchListingDataBySearchKey(inputValue.current.value);
+    fetchListingDataBySearchKey(inputValue?.current?.value);
     inputValue.current.focus();
   };
 
@@ -51,29 +51,30 @@ function ListingsSearchHeader({
         </InputWrapper>
 
         <FilterContainer>
-          <DropdownMenu name="status" placeholder="Price">
+          <SelectDropdownMenu name="status" placeholder="Price">
             <option value="">Status</option>
-          </DropdownMenu>
+          </SelectDropdownMenu>
 
-          <DropdownMenu name="status" placeholder="Listing Status">
+          <SelectDropdownMenu name="status" placeholder="Listing Status">
             <option value="">Status</option>
-          </DropdownMenu>
+          </SelectDropdownMenu>
 
-          <DropdownMenu name="status" placeholder="Property type">
+          <SelectDropdownMenu name="status" placeholder="Property Type">
             <option value="">Status</option>
-          </DropdownMenu>
+          </SelectDropdownMenu>
 
-          <DropdownMenu name="status" placeholder="Bedrooms">
+          <SelectDropdownMenu name="status" placeholder="Bedrooms">
             <option value="">Status</option>
-          </DropdownMenu>
+          </SelectDropdownMenu>
 
-          <DropdownMenu name="status" placeholder="Bathrooms">
+          <SelectDropdownMenu name="status" placeholder="Bathrooms">
             <option value="">Status</option>
-          </DropdownMenu>
+          </SelectDropdownMenu>
         </FilterContainer>
 
         <SearchButton
           onClick={() => {
+            setKeyWord(inputValue?.current?.value);
             fetchListingDataBySearchKey(keyWord);
           }}
         >

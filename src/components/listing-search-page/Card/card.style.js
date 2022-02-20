@@ -3,6 +3,7 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const CardContainer = styled.div`
+  background-color: ${colors.white};
   border-radius: 0.5rem;
   border: 0.06rem solid ${colors.midGray};
   display: flex;
@@ -100,6 +101,7 @@ export const LocationText = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 0.87rem;
 
   ${mq.mobileWide`
       max-width: 20rem;
@@ -110,11 +112,11 @@ export const LocationText = styled.p`
   `}
 
   ${mq.desktop`
-      max-width: 13rem;
+      max-width: 20rem;
   `}
 
   ${mq.desktopExtraWide`
-      max-width: 23rem;
+      max-width: 27rem;
   `}
 `;
 
