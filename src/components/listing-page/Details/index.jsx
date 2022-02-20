@@ -29,7 +29,7 @@ function Details({ details }) {
     yearBuilt,
     fullBathrooms,
     homeArea,
-    garage,
+    garages,
     partialBathrooms,
   } = details;
 
@@ -39,7 +39,7 @@ function Details({ details }) {
       { bedrooms },
       { yearBuilt },
       { fullBathrooms },
-      { garage },
+      { garages },
       { partialBathrooms },
     ]);
     setListingSize([{ lotArea }, { lotDimensions }, { homeArea }]);
@@ -51,7 +51,7 @@ function Details({ details }) {
     yearBuilt,
     fullBathrooms,
     homeArea,
-    garage,
+    garages,
     partialBathrooms,
   ]);
 
@@ -82,7 +82,7 @@ Details.propTypes = {
     bedrooms: PropTypes.number,
     city: PropTypes.string,
     fullBathrooms: PropTypes.number,
-    garage: PropTypes.number,
+    garages: PropTypes.number,
     homeArea: PropTypes.shape({
       sqft: PropTypes.string,
     }),
