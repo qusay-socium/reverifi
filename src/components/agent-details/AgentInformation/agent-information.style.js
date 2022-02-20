@@ -77,7 +77,7 @@ export const ContactInfo = styled.div`
 
 export const InfoWrapper = styled.div`
   display: flex;
-  gap: ${({ company }) => (company ? 0 : '3rem')};
+  gap: ${({ companyInfoWrapper }) => (companyInfoWrapper ? 0 : '3rem')};
 
   ${mq.tablet`
     font-size: 0.8rem
@@ -92,7 +92,6 @@ export const InfoKey = styled.div`
   align-items: center;
   display: flex;
   min-width: 9rem;
-  /* flex: 1; */
   gap: 0.5rem;
   color: ${colors.gray};
 `;

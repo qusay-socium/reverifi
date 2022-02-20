@@ -10,6 +10,7 @@ import { ReactComponent as LanguagesIcon } from 'assets/language.svg';
 import { ReactComponent as PhoneIcon } from 'assets/phone.svg';
 import { ReactComponent as ServiceAreaIcon } from 'assets/service-area.svg';
 import { ReactComponent as CompanyWebsite } from 'assets/website.svg';
+import LikeButton from 'components/shared/LikeButton';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -19,7 +20,6 @@ import {
   separateBy,
   toUpperCaseFirstLetter,
 } from 'utils/helpers';
-import LikeButton from '../../shared/LikeButton';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -150,7 +150,7 @@ function AgentInformation() {
                 {Object.entries(userData?.company).map(
                   (field, i) =>
                     field[0] !== 'id' && (
-                      <InfoWrapper key={field[0]} company>
+                      <InfoWrapper key={field[0]} companyInfoWrapper>
                         <InfoKey>
                           {companyInfoIcons?.[i - 1]}
                           <span>
