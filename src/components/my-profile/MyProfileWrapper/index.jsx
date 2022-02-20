@@ -144,10 +144,10 @@ function MyProfileWrapper() {
 
     const variables = {
       company: {
-        email: companyEmail,
+        email: companyEmail || null,
         id: fetchedUserData.company?.id || null,
-        name: companyName,
-        website: companyWebsite,
+        name: companyName || null,
+        website: companyWebsite || null,
       },
       user: { email, name, phone: `+${phone}` },
       userInfo: {
