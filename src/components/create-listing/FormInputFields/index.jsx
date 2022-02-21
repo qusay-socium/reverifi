@@ -132,9 +132,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Bedrooms"
           name="bedrooms"
           register={register}
-          type="number"
+          type="text"
           min="0"
           step="1"
+          maxLength="7"
           placeholder="1"
           labelIconElement={<BedroomsIcon />}
           onChange={(e) => {
@@ -148,8 +149,9 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Full bathrooms"
           name="fullBathrooms"
           register={register}
-          type="number"
+          type="text"
           min="0"
+          maxLength="7"
           step="1"
           placeholder="1"
           labelIconElement={<FullBathroomsIcon />}
@@ -164,9 +166,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Partial bathrooms"
           name="partialBathrooms"
           register={register}
-          type="number"
+          type="text"
           min="0"
           step="1"
+          maxLength="7"
           placeholder="1"
           labelIconElement={<PartialBathroomsIcon />}
           onChange={(e) => {
@@ -214,9 +217,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           error={errors.rooms?.message}
           id="rooms"
           label="Rooms"
+          maxLength="7"
           name="rooms"
           register={register}
-          type="number"
+          type="text"
           min="0"
           step="1"
           placeholder="1"
@@ -232,7 +236,8 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Garages"
           name="garages"
           register={register}
-          type="number"
+          type="text"
+          maxLength="7"
           min="0"
           step="1"
           placeholder="1"

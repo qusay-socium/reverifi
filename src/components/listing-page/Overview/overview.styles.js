@@ -5,7 +5,6 @@ import mq from 'styles/media-query';
 
 export const Container = styled.div`
   margin: 1rem 0;
-  padding: 0.5rem;
 
   ${mq.desktop`
     display: flex;

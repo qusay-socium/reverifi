@@ -17,7 +17,6 @@ export const Container = styled.div`
 export const OfferDetails = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   ${mq.desktop`
     align-items: center;
@@ -29,8 +28,11 @@ export const Price = styled.h4`
   font-size: 2rem;
   margin: 0 0 0.5rem;
   font-weight: 600;
-  max-width: 14rem;
+  max-width: 17rem;
   line-height: 2.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Location = styled.div`
@@ -45,6 +47,8 @@ export const LocationText = styled.span`
 `;
 
 export const SubmitOffer = styled.div`
+  align-self: flex-end;
+
   ${mq.desktop`
     margin-left: 2rem;
   `}
@@ -73,15 +77,23 @@ export const SideButtonsContainer = styled.div`
 `;
 
 export const LogoButton = styled.div`
-  background-color: ${colors.mercury};
-  border-radius: 10rem;
-  padding: 0.5rem;
+  align-items: center;
+  background-color: ${colors.wildSand};
+  border-radius: 50%;
+  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
+  cursor: pointer;
+  display: flex;
+  height: 1.56rem;
+  justify-content: center;
+  width: 1.56rem;
   margin-left: 0.5rem;
 
   svg {
     stroke: ${colors.dustyGray};
-    width: 1.1rem;
-    height: 1.1rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    padding: 0;
+    margin-left: 0;
   }
   :hover {
     svg {
