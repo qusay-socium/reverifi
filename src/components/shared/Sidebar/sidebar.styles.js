@@ -37,12 +37,8 @@ export const MenuItemsContainer = styled.div`
   background-color: ${colors.mineShaft};
   margin-top: 0.1rem;
   padding: 5rem 0 0 1rem;
-  position: sticky;
-  z-index: 1;
-  height: 94vh;
-  margin-bottom: -30rem;
   max-width: 15rem;
-  top: 5.1rem;
+  width: 100%;
 `;
 
 export const MenuLink = styled(NavLink)`
