@@ -32,7 +32,7 @@ const signUpSchema = yup
           .required('Phone number is required')
           .test(
             'len',
-            'Please enter a valid phone number',
+            'Phone number must be at least 10 digits',
             (val) => val.toString().length === 10
           )
           .typeError('Phone number is required'),
