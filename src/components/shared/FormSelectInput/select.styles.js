@@ -3,9 +3,10 @@ import colors from 'styles/colors';
 
 export const Input = styled.select`
   background-color: ${colors.white};
-  border: 0.0625rem solid ${colors.mercury};
-  border-radius: ${({ rounded }) => (rounded ? '1.1875rem' : '0.375rem')};
-  padding: 0.625rem;
+  border: 0.06rem solid ${colors.mercury};
+  border-radius: ${({ rounded }) => (rounded ? '1.18rem' : '0.37rem')};
+  color: ${colors.liver};
+  padding: 0.62rem;
   width: 100%;
 
   ::placeholder {
@@ -13,6 +14,10 @@ export const Input = styled.select`
   }
 
   &:focus {
-    outline: 0.0625rem solid ${colors.green};
+    outline: 0.06rem solid ${colors.green};
   }
+`;
+
+export const Placeholder = styled.option`
+  display: none;
 `;
