@@ -3,7 +3,8 @@ import colors from 'styles/colors';
 
 export const Labels = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ isLabeled }) =>
+    isLabeled ? 'space-between' : 'flex-end'};
 `;
 
 export const LimitMessage = styled.span`

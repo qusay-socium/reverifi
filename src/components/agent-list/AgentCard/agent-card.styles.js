@@ -216,6 +216,10 @@ export const RoundedButton = styled(Button)`
   &:hover {
     background-color: ${colors.green};
     color: ${colors.white};
+
+    svg path {
+      fill: ${colors.white};
+    }
   }
 `;
 

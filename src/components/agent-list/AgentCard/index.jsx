@@ -4,6 +4,7 @@ import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
+import LikeButton from 'components/shared/LikeButton';
 import Tooltip from 'components/shared/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -29,7 +30,6 @@ import {
   HeartIcon,
   IconContainer as TooltipContainer,
   ImgContainer,
-  LikeIcon,
   Line,
   PropertyIconContainer,
   PropertyText,
@@ -79,9 +79,7 @@ function AgentCard({
             <RoundedButton ariaLabel="Favorite">
               <HeartIcon />
             </RoundedButton>
-            <RoundedButton ariaLabel="Like">
-              <LikeIcon />
-            </RoundedButton>
+            <LikeButton userId={id} grayIcon />
             <RoundedButton ariaLabel="Share">
               <ShareIcon />
             </RoundedButton>

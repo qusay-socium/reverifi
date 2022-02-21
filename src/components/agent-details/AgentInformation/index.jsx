@@ -90,7 +90,7 @@ function AgentInformation() {
             <ContactInfo>
               <AgentName>
                 <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
-                <LikeButton />
+                <LikeButton userId={id} />
               </AgentName>
               <InfoWrapper>
                 <InfoKey>
