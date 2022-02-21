@@ -1,10 +1,12 @@
 import * as yup from 'yup';
 
-const textAndNumbersRegex = /([a-zA-Z])([0-9])*$/;
+const textAndNumbersRegex =
+  // eslint-disable-next-line no-useless-escape
+  /([a-zA-Z])([-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|0-9])*$/;
 
 const myProfileSchema = yup
   .object({
-    aboutMe: yup.string().label('About'),
+    aboutMe: yup.string().label('About me').required('About me is required'),
     address: yup.string(),
     city: yup
       .object()
@@ -55,11 +57,57 @@ const myProfileSchema = yup
       .typeError('Country is required')
       .nullable(),
     email: yup.string().label('E-mail').email(),
-    facebook: yup.string().label('Facebook'),
-    instagram: yup.string().label('Instagram'),
+    facebook: yup
+      .string()
+      .label('Facebook')
+      .test('facebook', 'facebook link should contain letters', (value) => {
+        if (value) {
+          const schema = yup
+            .string()
+            .matches(
+              textAndNumbersRegex,
+              'facebook link should contain letters'
+            );
+          return schema.isValidSync(value);
+        }
+        return true;
+      }),
+    instagram: yup
+      .string()
+      .label('Instagram')
+      .test('instagram', 'instagram link should contain letters', (value) => {
+        if (value) {
+          const schema = yup
+            .string()
+            .matches(
+              textAndNumbersRegex,
+              'instagram link should contain letters'
+            );
+          return schema.isValidSync(value);
+        }
+        return true;
+      }),
     languages: yup.array().min(1, 'Languages field must have at least 1 item'),
-    linkedin: yup.string().label('LinkedIn'),
-    name: yup.string().label('Name').required(),
+    linkedin: yup
+      .string()
+      .label('LinkedIn')
+      .test(' linkedin', ' linkedin link should contain letters', (value) => {
+        if (value) {
+          const schema = yup
+            .string()
+            .matches(
+              textAndNumbersRegex,
+              ' linkedin link should contain letters'
+            );
+          return schema.isValidSync(value);
+        }
+        return true;
+      }),
+    name: yup
+      .string()
+      .label('Name')
+      .required()
+      .min(3, 'Name should be at least 3 letters'),
     phone: yup
       .string()
       .label('Phone')
@@ -75,7 +123,21 @@ const myProfileSchema = yup
       .array()
       .min(1, 'Service areas should have at least 1 value')
       .typeError('Service areas should have at least 1 value'),
-    youtube: yup.string().label('YouTube'),
+    youtube: yup
+      .string()
+      .label('YouTube')
+      .test('youtube', 'youtube link should contain letters', (value) => {
+        if (value) {
+          const schema = yup
+            .string()
+            .matches(
+              textAndNumbersRegex,
+              'youtube link should contain letters'
+            );
+          return schema.isValidSync(value);
+        }
+        return true;
+      }),
     zipCode: yup
       .string()
       .required('ZipCode is required')

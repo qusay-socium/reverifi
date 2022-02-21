@@ -1,10 +1,11 @@
 import AgentPhoto from 'assets/agent-photo.png';
-import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
+// import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
 import Button from 'components/shared/Button';
 import LikeButton from 'components/shared/LikeButton';
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import {
+  ButtonContainer,
   Comment,
   CommentSection,
   CommentsWrapper,
@@ -49,18 +50,18 @@ function AgentRating() {
       <RatingForm>
         <h1>Rating And Reviews</h1>
         <RatingBoxContainer>
-          {Object.entries(likes).map(([name, value]) => (
+          {Object.entries(likes).map(([name]) => (
             <RatingBox key={name} onClick={() => onLike(name)}>
               <span>{name}</span>
-              {value ? <Like /> : <LikeButton />}
+              <LikeButton />
             </RatingBox>
           ))}
         </RatingBoxContainer>
         <TextArea placeholder="Write Your Review" />
-        <div>
+        <ButtonContainer>
           <Button ariaLabel="Submit">Submit</Button>
           <RequestLink to="/">Request Reverifi Review</RequestLink>
-        </div>
+        </ButtonContainer>
       </RatingForm>
 
       <StyledSlide>
@@ -102,7 +103,7 @@ function AgentRating() {
               <h3>Jhone Doe</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
+                eiusmod tempor incididunt ut labore et
               </p>
               <span>8 days ago</span>
             </CommentText>

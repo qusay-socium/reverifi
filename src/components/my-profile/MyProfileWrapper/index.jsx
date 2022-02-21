@@ -407,6 +407,7 @@ function MyProfileWrapper() {
             onChange={() => {
               setFocus('aboutMe');
             }}
+            required
           />
         </FormSectionContainer>
 
@@ -502,6 +503,7 @@ function MyProfileWrapper() {
               type="text"
               name="address"
               label="Address"
+              maxLength="60"
               labelIconElement={<AddressIcon />}
               placeholder="Address"
               register={register}

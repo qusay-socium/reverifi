@@ -36,6 +36,7 @@ function TextAreaInput({
   labelIconElement,
   defaultValue,
   onChange,
+  required,
 }) {
   const [charactersCount, setCharactersCount] = useState();
 
@@ -46,6 +47,7 @@ function TextAreaInput({
           <Label htmlFor={id || name}>
             {labelIconElement}
             {label}
+            {required && <span>*</span>}
           </Label>
         )}
         <LimitMessage color={limit === charactersCount ? 'red' : null}>
@@ -86,6 +88,7 @@ TextAreaInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   register: PropTypes.func,
+  required: PropTypes.bool,
   rounded: PropTypes.bool,
 };
 
@@ -99,6 +102,7 @@ TextAreaInput.defaultProps = {
   onChange: () => {},
   placeholder: '',
   register: null,
+  required: false,
   rounded: true,
 };
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LikeButtonWrapper = styled.div`
   cursor: pointer;
+  border-radius: 50%;
 
   svg:first-child {
     display: none;

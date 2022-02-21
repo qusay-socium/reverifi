@@ -5,6 +5,11 @@ import mq from 'styles/media-query';
 export const ListingsContainer = styled.div`
   margin: 0rem 1rem;
 
+  > h2 {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
   ${mq.desktop`
     margin: 0rem 3.44rem;
   `};

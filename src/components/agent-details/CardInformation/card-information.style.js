@@ -65,7 +65,7 @@ export const IconGroup = styled.div`
 
   svg {
     width: 1.7rem !important;
-    height: 1.7rem !important;
+    height: 1.5rem !important;
 
     path {
       fill: ${colors.gray};
@@ -84,7 +84,7 @@ export const FooterIconGroup = styled(IconGroup)`
   }
 
   span {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 `;
 
