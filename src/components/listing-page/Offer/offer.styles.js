@@ -76,7 +76,7 @@ export const SideButtonsContainer = styled.div`
   `}
 `;
 
-export const LogoButton = styled.div`
+export const Logo = styled.div`
   align-items: center;
   background-color: ${colors.wildSand};
   border-radius: 50%;
