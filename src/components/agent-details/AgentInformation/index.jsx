@@ -15,11 +15,7 @@ import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUserInfo } from 'services/user';
-import {
-  formatPhoneNumber,
-  separateBy,
-  toUpperCaseFirstLetter,
-} from 'utils/helpers';
+import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import ContactAgent from '../ContactAgent';
 import {
   AboutAgent,
@@ -130,14 +126,14 @@ function AgentInformation() {
                   <LanguagesIcon />
                   <span>Languages</span>
                 </InfoKey>
-                <InfoValue>{separateBy(userData?.languages, ',')}</InfoValue>
+                <InfoValue>{userData?.languages?.join(', ')}</InfoValue>
               </InfoWrapper>
               <InfoWrapper>
                 <InfoKey>
                   <ServiceAreaIcon />
                   <span>Service Area</span>
                 </InfoKey>
-                <InfoValue>{separateBy(userData?.serviceAreas, ',')}</InfoValue>
+                <InfoValue>{userData?.serviceAreas?.join(', ')}</InfoValue>
               </InfoWrapper>
             </ContactInfo>
           </AgentBasicInformation>
@@ -169,7 +165,7 @@ function AgentInformation() {
 
           {userData?.aboutMe && (
             <AboutAgent>
-              <h3>About Me</h3>
+              <h2>About Me</h2>
               <p>{userData?.aboutMe}</p>
             </AboutAgent>
           )}

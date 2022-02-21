@@ -12,7 +12,7 @@ export const AgentInformationContainer = styled.div`
     gap: 1.5rem;
   `}
 
-  ${mq.desktopWide`
+  ${mq.desktopExtraMax`
     flex-direction: row;
     padding: 2.3rem 4.4rem;
   `}
@@ -22,7 +22,7 @@ export const AgentItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  gap: 0.3rem;
+  /* gap: 0.1rem; */
 `;
 
 export const AgentSection = styled.div`
@@ -40,9 +40,11 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
+  flex-grow: 0;
+  flex-shrink: 0;
 
   ${mq.tablet`
-     max-width: 23rem;
+    min-width: 23rem;
   `}
 `;
 
@@ -66,6 +68,8 @@ export const AgentName = styled.div`
   h2 {
     margin: 0;
     text-transform: capitalize;
+    font-weight: 600;
+    font-size: 2rem;
   }
 `;
 
@@ -73,6 +77,13 @@ export const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+
+  > h2 {
+    margin: 0;
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
 `;
 
 export const InfoWrapper = styled.div`
@@ -89,7 +100,6 @@ export const InfoWrapper = styled.div`
 `;
 
 export const InfoKey = styled.div`
-  align-items: center;
   display: flex;
   min-width: 9rem;
   gap: 0.5rem;
@@ -99,10 +109,13 @@ export const InfoKey = styled.div`
 export const InfoValue = styled.h4`
   flex: 3;
   margin: 0;
-  max-width: 13rem;
-  white-space: nowrap;
+  max-width: 25rem;
+  word-break: break-all;
+  font-weight: 600;
+
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 
   a {
     color: ${colors.azure};
@@ -113,7 +126,7 @@ export const SocialMediaIcons = styled.div`
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
 
   path:first-child {
     fill: ${colors.green};
@@ -125,8 +138,7 @@ export const CompanyInformation = styled.ul`
   border-radius: 0.625rem;
   flex: 2;
   margin: 0;
-  padding: 1rem;
-  padding-top: 0;
+  padding: 2rem 1rem;
 
   h2 {
     margin-bottom: 0;
@@ -143,6 +155,11 @@ export const AboutAgent = styled.div`
 
   p {
     word-break: break-all;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 1.3rem;
   }
 `;
 

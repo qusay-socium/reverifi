@@ -18,6 +18,7 @@ export const Form = styled.form`
 
   button {
     align-self: center;
+    margin-bottom: 1.2rem;
   }
 `;
 
@@ -53,5 +54,6 @@ export const Label = styled.label`
 `;
 
 export const ContactButton = styled(Button)`
-  font-size: 2rem;
+  font-size: 1rem;
+  padding: 0 2rem;
 `;

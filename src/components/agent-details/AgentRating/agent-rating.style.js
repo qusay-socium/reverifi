@@ -27,12 +27,14 @@ export const RatingForm = styled.form`
 
   h1 {
     margin: 0;
+    font-weight: 600;
+    font-size: 2rem;
   }
 `;
 
 export const TextArea = styled.textarea`
   background-color: ${colors.white};
-  border-radius: 0.94rem;
+  border-radius: 0.9rem;
   border: 0.08rem solid ${colors.mercury};
   height: 12.375rem;
   padding: 1.5rem 1.5rem;
@@ -40,12 +42,14 @@ export const TextArea = styled.textarea`
   width: 100%;
   font-family: inherit;
   font-size: 1rem;
+  box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
 `;
 
 export const RequestLink = styled(Link)`
-  color: ${colors.blue};
-  font-size: 0.875rem;
+  color: ${colors.azure};
+  font-size: 1rem;
   margin-left: 1rem;
+  font-weight: 600;
 `;
 
 export const Comment = styled.div`
@@ -54,9 +58,11 @@ export const Comment = styled.div`
   display: flex !important;
   flex-direction: column;
   flex: 1;
-  gap: 1.875rem;
+  gap: 1.8rem;
   justify-content: space-between;
   padding: 2rem;
+  box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
+  border-radius: 0.38rem;
 
   ${mq.tablet`
     flex-direction:row
@@ -73,8 +79,15 @@ export const CommentText = styled.div`
   display: inline;
   line-height: 1.1875rem;
 
+  h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
   p {
     margin: 0;
+    text-align: justify;
   }
 
   span {
@@ -91,7 +104,7 @@ export const CommentsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 0.7rem;
+    gap: 1.4rem;
   `}
 `;
 
@@ -136,7 +149,7 @@ export const StyledSlide = styled.div`
 
 export const StyledImg = styled.img`
   border-radius: 50%;
-  height: 5.625rem;
+  height: 6.25rem;
   width: 6.25rem;
 `;
 
@@ -152,15 +165,11 @@ export const RatingBoxContainer = styled.div`
 
 export const RatingBox = styled.div`
   align-items: center;
-  cursor: pointer;
   display: flex;
   flex: 50%;
   font-size: 1.25rem;
   gap: 0.5rem;
-
-  > svg {
-    margin-bottom: 0.187rem;
-  }
+  margin: 0.15rem 0;
 
   > span {
     min-width: 10rem;
@@ -171,4 +180,11 @@ export const CommentSection = styled.div`
   align-items: center;
   display: flex;
   gap: 0.5rem;
+`;
+
+export const ButtonContainer = styled.div`
+  > button {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
 `;

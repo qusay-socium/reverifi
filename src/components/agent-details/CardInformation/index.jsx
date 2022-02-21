@@ -78,12 +78,12 @@ function CardInformation({
           )}
           {homeArea ? (
             <IconGroup>
-              <span>{homeArea} sqft</span>
+              <span>{homeArea} Sq.Ft.</span>
             </IconGroup>
           ) : null}
           {lotArea ? (
             <IconGroup>
-              <span>{lotArea} sqft lot</span>
+              <span>{lotArea} Sq.Ft. lot</span>
             </IconGroup>
           ) : null}
         </IconsContainers>
