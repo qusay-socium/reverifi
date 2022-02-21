@@ -227,10 +227,10 @@ function FormInputFields({ register, errors, setValue, values }) {
         />
 
         <FormInput
-          error={errors.garage?.message}
-          id="garage"
-          label="Garage"
-          name="garage"
+          error={errors.garages?.message}
+          id="garages"
+          label="Garages"
+          name="garages"
           register={register}
           type="number"
           min="0"
@@ -238,7 +238,7 @@ function FormInputFields({ register, errors, setValue, values }) {
           placeholder="1"
           labelIconElement={<GarageIcon />}
           onChange={(e) => {
-            setValue('garage', e.target.value);
+            setValue('garages', e.target.value);
           }}
         />
 

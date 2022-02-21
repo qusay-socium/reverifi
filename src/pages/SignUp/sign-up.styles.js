@@ -53,20 +53,9 @@ export const InputWrapper = styled.div`
   margin-bottom: 1.25rem;
 `;
 
-export const Label = styled.label`
-  color: ${colors.mineShaft};
-  font-size: 0.9375rem;
-  padding-bottom: 0.625rem;
-`;
-
 export const PhoneInputContainer = styled.div`
-  display: flex;
-  gap: 1.5rem;
+  margin-top: 0.2rem;
   margin-bottom: 2rem;
-
-  > div:first-child {
-    max-width: 6rem;
-  }
 `;
 
 export const SignUpTerms = styled.p`

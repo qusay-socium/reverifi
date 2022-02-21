@@ -32,23 +32,12 @@ const signUpSchema = yup
           .required('Phone number is required')
           .test(
             'len',
-            'Phone number must contain 10 digits',
+            'Phone number must be at least 10 digits',
             (val) => val.toString().length === 10
           )
           .typeError('Phone number is required'),
       })
       .typeError('Phone number is required'),
-    phonePrefix: yup
-      .string()
-      .label('Phone Number')
-      .when('industryProfessional', {
-        is: true,
-        then: yup
-          .string()
-          .required('Ext is required')
-          .typeError('Ext is required'),
-      })
-      .typeError('Ext is required'),
   })
   .required();
 

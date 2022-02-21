@@ -64,7 +64,12 @@ const myProfileSchema = yup
       .string()
       .label('Phone')
       .required()
-      .min(13, 'Must be at least 13 digits')
+      .min(10, 'Phone number must be at least 10 digits')
+      .test(
+        'len',
+        'Phone number must be at least 10 digits',
+        (val) => val.toString().length === 10
+      )
       .typeError('Phone number is required'),
     serviceAreas: yup
       .array()

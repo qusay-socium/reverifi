@@ -22,7 +22,6 @@ import {
   ImageContainer,
   InfoContainer,
   InputWrapper,
-  Label,
   LinkText,
   OrText,
   PhoneInputContainer,
@@ -71,13 +70,11 @@ function SignUp() {
     name,
     email,
     password,
-    phonePrefix,
     phoneNumber,
     industryProfessional,
   }) => {
     try {
-      const phone =
-        phonePrefix && phoneNumber ? `+${phonePrefix}${phoneNumber}` : null;
+      const phone = phoneNumber ? `+1${phoneNumber}` : null;
 
       await signUp(name, email, password, phone);
 
@@ -151,34 +148,20 @@ function SignUp() {
           />
 
           {showPhoneNum && (
-            <>
-              <Label htmlFor="phonePrefix">Phone Number</Label>
-              <PhoneInputContainer>
-                <FormInput
-                  error={errors.phonePrefix?.message}
-                  name="phonePrefix"
-                  placeholder="Ext"
-                  register={register}
-                  rounded={false}
-                  type="text"
-                  maxLength="3"
-                  onChange={handleNumberInput}
-                  onClickInputKey={onClickInputKey}
-                  withPrefix
-                />
-                <FormInput
-                  name="phoneNumber"
-                  placeholder="(201)555-0123"
-                  register={register}
-                  error={errors.phoneNumber?.message}
-                  rounded={false}
-                  type="text"
-                  maxLength="10"
-                  onChange={handleNumberInput}
-                  onClickInputKey={onClickInputKey}
-                />
-              </PhoneInputContainer>
-            </>
+            <PhoneInputContainer>
+              <FormInput
+                label="Phone Number"
+                name="phoneNumber"
+                placeholder="(201)555-0123"
+                register={register}
+                error={errors.phoneNumber?.message}
+                rounded
+                type="text"
+                maxLength="10"
+                onChange={handleNumberInput}
+                onClickInputKey={onClickInputKey}
+              />
+            </PhoneInputContainer>
           )}
 
           <SubmitButton forwardedRef={continueButton} type="submit">

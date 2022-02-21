@@ -28,7 +28,6 @@ import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select, { createFilter } from 'react-select';
-import getAllCountriesAndCities from 'services/apis';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
 import {
@@ -36,6 +35,7 @@ import {
   handleNumberInput,
   handleTextInput,
 } from 'utils/helpers';
+import myProfileData from '../data';
 import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
@@ -54,13 +54,11 @@ import {
   UserName,
 } from './my-profile-wrapper.styles';
 
-const languageOptions = generateLabelValuePairs([
-  'Arabic',
-  'English',
-  'French',
-]);
+const languageOptions = generateLabelValuePairs(myProfileData.languages);
 
-const serviceAreasOptions = generateLabelValuePairs(['New York', 'New Jersey']);
+const serviceAreasOptions = generateLabelValuePairs(
+  myProfileData.countries[0].cities
+);
 
 /**
  * custom select theme function to change select default colors
@@ -149,7 +147,7 @@ function MyProfileWrapper() {
         name: companyName || null,
         website: companyWebsite || null,
       },
-      user: { email, name, phone: `+${phone}` },
+      user: { email, name, phone: `+1${phone}` },
       userInfo: {
         aboutMe,
         address,
@@ -191,15 +189,6 @@ function MyProfileWrapper() {
     if (!isLoggedIn) navigate('/sign-up');
 
     try {
-      // get countries and cities
-      const fetchedCountries = await getAllCountriesAndCities();
-
-      setCountries(fetchedCountries);
-
-      setCountryOptions(
-        generateLabelValuePairs(fetchedCountries.map((item) => item.country))
-      );
-
       // get user info
       const info = await getUserInfo();
       if (!info) {
@@ -228,6 +217,15 @@ function MyProfileWrapper() {
         const newCity = generateLabelValuePairs([info?.city])[0];
         setSelectedCity(newCity);
       }
+
+      // get countries and cities
+      const fetchedCountries = myProfileData.countries;
+
+      setCountries(fetchedCountries);
+
+      setCountryOptions(
+        generateLabelValuePairs(fetchedCountries.map((item) => item.country))
+      );
     } catch (err) {
       setFetchedUserData({ user: userInfo });
     }
@@ -299,7 +297,7 @@ function MyProfileWrapper() {
               type="text"
               name="phone"
               label="Phone"
-              maxLength="15"
+              maxLength="10"
               labelIconElement={<PhoneIcon />}
               onChange={(event) => {
                 setFocus('phone');
@@ -308,8 +306,7 @@ function MyProfileWrapper() {
               register={register}
               error={errors.phone?.message}
               required
-              defaultValue={fetchedUserData.user?.phone?.slice(1)}
-              withPrefix
+              defaultValue={fetchedUserData.user?.phone?.slice(2)}
             />
           </InputsContainer>
           <InputsContainer>
@@ -336,6 +333,8 @@ function MyProfileWrapper() {
                   render={({ field: { onChange } }) => (
                     <Select
                       {...register('serviceAreas')}
+                      components={{ MenuList }}
+                      filterOption={createFilter({ ignoreAccents: false })}
                       className="profile-select"
                       classNamePrefix="profile"
                       closeMenuOnSelect={false}
@@ -427,8 +426,6 @@ function MyProfileWrapper() {
                   defaultValue={selectedCountry}
                   render={({ field: { onChange } }) => (
                     <Select
-                      components={{ MenuList }}
-                      filterOption={createFilter({ ignoreAccents: false })}
                       {...register('country')}
                       className="profile-select"
                       classNamePrefix="profile"
@@ -497,7 +494,7 @@ function MyProfileWrapper() {
               maxLength="5"
               register={register}
               error={errors.zipCode?.message}
-              defaultValue={fetchedUserData.zipCode}
+              defaultValue={fetchedUserData?.zipCode}
               onChange={handleNumberInput}
               required
             />
@@ -509,7 +506,7 @@ function MyProfileWrapper() {
               placeholder="Address"
               register={register}
               error={errors.address?.message}
-              defaultValue={fetchedUserData.address}
+              defaultValue={fetchedUserData?.address}
             />
           </InputsContainer>
         </FormSectionContainer>
