@@ -6,7 +6,7 @@ import {
   Container,
   Location,
   LocationText,
-  LogoButton,
+  Logo,
   OfferDetails,
   Price,
   SideButtonsContainer,
@@ -46,15 +46,15 @@ function Offer({ price, address }) {
       </OfferDetails>
 
       <SideButtonsContainer>
-        <LogoButton>
+        <Logo>
           <BellIcon />
-        </LogoButton>
-        <LogoButton>
+        </Logo>
+        <Logo>
           <HeartIcon />
-        </LogoButton>
-        <LogoButton onClick={() => setShowModal(true)}>
+        </Logo>
+        <Logo onClick={() => setShowModal(true)}>
           <ShareIcon />
-        </LogoButton>
+        </Logo>
       </SideButtonsContainer>
     </Container>
   );

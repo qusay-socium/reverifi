@@ -33,9 +33,10 @@ export const Input = styled.input`
     color: ${colors.midGray};
   }
 
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    opacity: 1;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 
