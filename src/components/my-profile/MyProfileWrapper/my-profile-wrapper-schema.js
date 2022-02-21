@@ -103,7 +103,11 @@ const myProfileSchema = yup
         }
         return true;
       }),
-    name: yup.string().label('Name').required(),
+    name: yup
+      .string()
+      .label('Name')
+      .required()
+      .min(3, 'Name should be at least 3 letters'),
     phone: yup
       .string()
       .label('Phone')

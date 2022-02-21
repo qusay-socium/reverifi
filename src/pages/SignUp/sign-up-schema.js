@@ -13,6 +13,7 @@ const signUpSchema = yup
       .string()
       .label('Name')
       .required()
+      .min(3, 'Name should be at least 3 letters')
       .matches(/^[a-zA-Z\s]*$/, 'Accept only letters'),
     password: yup
       .string()
