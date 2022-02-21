@@ -9,7 +9,7 @@ export const MessageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5rem 3rem;
+  margin: 3rem 3rem;
 `;
 
 export const ListingSearchText = styled.p`
@@ -20,6 +20,8 @@ export const ListingSearchText = styled.p`
 export const Message = styled(ListingSearchText)`
   text-align: center;
   color: ${colors.dustyGray};
+  width: 60%;
+  margin: 0;
 `;
 
 export const SuggestedListing = styled.h4`
@@ -30,13 +32,17 @@ export const ResultCountContainer = styled.div`
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
 `;
 
 export const ResultNumber = styled(ListingSearchText)`
   padding-right: 0.5rem;
+  font-size: 1.38rem;
+  font-weight: 500;
+  margin-bottom: 0;
 `;
 
 export const ResultText = styled(ListingSearchText)`
   color: ${colors.dustyGray};
+  font-weight: 700;
+  margin: 0.5rem 0 0 0;
 `;

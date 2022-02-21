@@ -36,8 +36,9 @@ export const StyledSelect = styled.select`
   padding-top: ${({ small }) => small && '0.5rem'};
   padding-bottom: ${({ small }) => small && '0.5rem'};
   color: ${({ dark }) => (dark ? colors.white : `${colors.mineShaft}95`)};
+  font-family: inherit;
   font-weight: ${({ dark }) => dark && 600};
-  font-size: 0.875rem;
+  font-size: 0.87rem;
   width: 100%;
 
   -webkit-appearance: none;

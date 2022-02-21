@@ -16,4 +16,5 @@ export const MapContainer = styled.div`
   border-radius: 0.5rem;
   overflow: hidden;
   margin: 1rem;
+  min-height: 44rem;
 `;
