@@ -22,7 +22,6 @@ export const AgentItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  /* gap: 0.1rem; */
 `;
 
 export const AgentSection = styled.div`
@@ -112,10 +111,6 @@ export const InfoValue = styled.h4`
   max-width: 25rem;
   word-break: break-all;
   font-weight: 600;
-
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
 
   a {
     color: ${colors.azure};
