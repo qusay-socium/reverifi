@@ -155,7 +155,21 @@ function AgentInformation() {
                             )}
                           </span>
                         </InfoKey>
-                        <InfoValue>{field[1]}</InfoValue>
+                        <InfoValue>
+                          {field[0] === 'name' ? (
+                            field[1]
+                          ) : (
+                            <a
+                              href={
+                                field[0] === 'email'
+                                  ? `mailto:${field[1]}`
+                                  : field[1]
+                              }
+                            >
+                              {field[1]}
+                            </a>
+                          )}
+                        </InfoValue>
                       </InfoWrapper>
                     )
                 )}
