@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: ${({ withMargin }) => (withMargin ? '1.25rem' : 0)};
 
   label {
     padding: 0;

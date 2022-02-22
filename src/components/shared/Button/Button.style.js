@@ -6,12 +6,13 @@ const StyledButton = styled.button`
   border-radius: 1.75rem;
   border: none;
   color: ${colors.white};
-  font-family: Montserrat;
+  font-family: inherit;
   font-size: 0.75rem;
   font-weight: 600;
   height: 2.5rem;
-  padding: 0 1.6875rem;
+  padding: 0 1.69rem;
   transition: 0.1s;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0rem 0.4rem 1.7rem -1rem ${colors.mineShaft};
@@ -21,9 +22,13 @@ const StyledButton = styled.button`
     cursor: not-allowed;
   }
 
-  :hover {
-    cursor: pointer;
-  }
+  ${({ light }) =>
+    light &&
+    `
+  background-color: ${colors.white};
+  color: ${colors.gray};
+  border: 1px solid ${colors.gray};
+  `}
 `;
 
 export default StyledButton;

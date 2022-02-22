@@ -7,13 +7,14 @@ import { StyledTable, TableHead, TableRow, TableWrapper } from './table-styles';
  *
  * @param {JSX.Element} children table body component
  * @param {Array(String)} headers table headers array
+ * @param {Array(String)} fixedLayout table layout fixed (css property)
  *
  * @return {JSX.Element}
  */
-function Table({ children, headers }) {
+function Table({ children, headers, fixedLayout }) {
   return (
     <TableWrapper>
-      <StyledTable>
+      <StyledTable fixedLayout={fixedLayout}>
         <thead>
           <TableRow>
             {headers?.map((header) => (

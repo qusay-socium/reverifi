@@ -132,6 +132,13 @@ const routes = [
     path: '/my-listings',
     title: 'My listings',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/Transaction')),
+    label: 'transaction',
+    path: '/transaction/*',
+    title: 'Transaction',
+  },
 ];
 
 export default routes;

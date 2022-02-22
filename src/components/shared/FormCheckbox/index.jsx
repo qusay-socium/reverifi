@@ -14,9 +14,9 @@ import { Container, Input, Label } from './form-checkbox.style';
  *
  * @return {JSX.Element}
  */
-function FormCheckbox({ id, label, name, onChange, register }) {
+function FormCheckbox({ id, label, name, onChange, register, withMargin }) {
   return (
-    <Container>
+    <Container withMargin={withMargin}>
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
@@ -34,13 +34,15 @@ FormCheckbox.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   register: PropTypes.func,
+  withMargin: PropTypes.bool,
 };
 
 FormCheckbox.defaultProps = {
   id: null,
   label: null,
-  onChange: null,
+  onChange: () => {},
   register: null,
+  withMargin: true,
 };
 
 export default FormCheckbox;
