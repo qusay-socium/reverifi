@@ -68,18 +68,8 @@ export const Input = styled.input`
   }
 `;
 
-export const Message = styled.textarea`
-  border: 0.06rem solid ${colors.midGray};
-  min-height: 9.5rem;
-  min-width: 100%;
-  resize: none;
-  font-size: 1rem;
-  font-family: Montserrat;
-
-  &:focus {
-    border-color: ${colors.green};
-    outline: none;
-  }
+export const Message = styled.div`
+  margin: 3rem 0;
 `;
 
 export const MessageLabel = styled.label`

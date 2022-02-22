@@ -57,7 +57,7 @@ export const SubmitOffer = styled.div`
 export const SubmitButton = styled(Button)`
   align-items: center;
   display: flex;
-  padding: 0 2rem;
+  padding: 0 3rem;
   font-size: 1rem;
 `;
 

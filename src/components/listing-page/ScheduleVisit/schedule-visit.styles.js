@@ -54,6 +54,7 @@ export const DateSliderContainer = styled.div`
 export const DateCard = styled.div`
   border-radius: 0.5rem;
   border: 0.06rem solid ${colors.midGray};
+  cursor: pointer;
   max-height: 5rem;
   max-width: 5rem;
   padding: 1rem 0;
