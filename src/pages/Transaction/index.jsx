@@ -18,6 +18,7 @@ function Transaction() {
   useEffectOnce(() => {
     if (!isLoggedIn) navigate('/sign-up');
   });
+
   return (
     <TransactionContainer>
       <TransactionSharedComponent />

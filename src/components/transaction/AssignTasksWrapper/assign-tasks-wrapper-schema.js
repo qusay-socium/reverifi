@@ -1,94 +1,44 @@
 import * as yup from 'yup';
 
+const stringValidator = yup.string().required('Required field');
+
+const dateArrayValidator = yup
+  .array()
+  .of(
+    yup.date().typeError('Required field'),
+    yup.date().typeError('Required field')
+  )
+  .required('Required field');
+
 const assignTasksSchema = yup
   .object({
-    attorneyApprovalBuyerSideDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    attorneyApprovalBuyerSideName: yup.string().required('Required field'),
-    attorneyApprovalSellerSideDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    attorneyApprovalSellerSideName: yup.string().required('Required field'),
-    attorneyReviewBuyerSideDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    attorneyReviewBuyerSideName: yup.string().required('Required field'),
-    attorneyReviewSellerSideDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    attorneyReviewSellerSideName: yup.string().required('Required field'),
-    buyerAttorney: yup.string().required('Required field'),
-    confirmInspectionDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    confirmInspectionName: yup.string().required('Required field'),
-    coordinator: yup.string().required('Required field'),
-    homeInsurance: yup.string().required('Required field'),
-    initialContractDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    initialContractName: yup.string().required('Required field'),
-    inspectionDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    inspectionDateName: yup.string().required('Required field'),
-    inspectionResultsDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    inspectionResultsName: yup.string().required('Required field'),
-    lender: yup.string().required('Required field'),
+    attorneyApprovalBuyerSideDate: dateArrayValidator,
+    attorneyApprovalBuyerSideName: stringValidator,
+    attorneyApprovalSellerSideDate: dateArrayValidator,
+    attorneyApprovalSellerSideName: stringValidator,
+    attorneyReviewBuyerSideDate: dateArrayValidator,
+    attorneyReviewBuyerSideName: stringValidator,
+    attorneyReviewSellerSideDate: dateArrayValidator,
+    attorneyReviewSellerSideName: stringValidator,
+    buyerAttorney: stringValidator,
+    confirmInspectionDate: dateArrayValidator,
+    confirmInspectionName: stringValidator,
+    coordinator: stringValidator,
+    homeInsurance: stringValidator,
+    initialContractDate: dateArrayValidator,
+    initialContractName: stringValidator,
+    inspectionDate: dateArrayValidator,
+    inspectionDateName: stringValidator,
+    inspectionResultsDate: dateArrayValidator,
+    inspectionResultsName: stringValidator,
+    lender: stringValidator,
     notes: yup.string(),
-    sellerAttorney: yup.string().required('Required field'),
-    signedInitialContractDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    signedInitialContractName: yup.string().required('Required field'),
-    suggestAppraisalDate: yup
-      .array()
-      .of(
-        yup.date().typeError('Required field'),
-        yup.date().typeError('Required field')
-      )
-      .required('Required field'),
-    suggestAppraisalName: yup.string().required('Required field'),
-    titleInsurance: yup.string().required('Required field'),
+    sellerAttorney: stringValidator,
+    signedInitialContractDate: dateArrayValidator,
+    signedInitialContractName: stringValidator,
+    suggestAppraisalDate: dateArrayValidator,
+    suggestAppraisalName: stringValidator,
+    titleInsurance: stringValidator,
   })
   .required();
 
