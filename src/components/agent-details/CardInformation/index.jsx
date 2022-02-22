@@ -78,12 +78,12 @@ function CardInformation({
           )}
           {homeArea ? (
             <IconGroup>
-              <span>{homeArea} Sq.Ft.</span>
+              <span>{homeArea}</span>Sq.Ft
             </IconGroup>
           ) : null}
           {lotArea ? (
             <IconGroup>
-              <span>{lotArea} Sq.Ft. lot</span>
+              <span>{lotArea}</span>Sq.Ft lot
             </IconGroup>
           ) : null}
         </IconsContainers>
@@ -96,7 +96,7 @@ function CardInformation({
 
         <FooterIconGroup>
           <Comment />
-          <span>231 Views</span>
+          <span>231</span>Views
         </FooterIconGroup>
         <Button
           ariaLabel="View Listing"

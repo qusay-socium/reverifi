@@ -58,14 +58,15 @@ export const HeaderIcons = styled.div`
 
 export const IconGroup = styled.div`
   align-items: center;
-  color: ${colors.dustyGray};
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
+  color: ${colors.mineShaft};
+  font-size: 0.8rem;
 
   svg {
     width: 1.7rem !important;
-    height: 1.5rem !important;
+    height: 1.4rem !important;
 
     path {
       fill: ${colors.gray};
@@ -74,6 +75,7 @@ export const IconGroup = styled.div`
 
   span {
     font-size: 0.9rem;
+    font-weight: 600;
   }
 `;
 

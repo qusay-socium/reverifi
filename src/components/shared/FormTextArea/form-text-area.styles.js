@@ -16,7 +16,8 @@ export const LimitMessage = styled.span`
 export const Input = styled.textarea`
   background-color: white;
   border-radius: ${({ rounded }) => (rounded ? '1.20rem' : '0.4rem')};
-  border: 0.06rem solid ${colors.mercury};
+  border: ${({ error }) =>
+    error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.mercury}`};
   height: ${({ height }) => height || '10rem'};
   padding: 0.625rem;
   resize: none;
@@ -27,6 +28,7 @@ export const Input = styled.textarea`
   }
 
   &:focus {
-    outline: 0.0625rem solid ${colors.green};
+    outline: ${({ error }) =>
+      error ? 'none' : `0.06rem solid ${colors.green}`};
   }
 `;

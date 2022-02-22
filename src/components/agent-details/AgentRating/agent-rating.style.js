@@ -172,6 +172,7 @@ export const RatingBox = styled.div`
   margin: 0.15rem 0;
 
   > span {
+    font-weight: 500;
     min-width: 10rem;
   }
 `;

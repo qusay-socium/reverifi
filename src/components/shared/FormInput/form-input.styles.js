@@ -58,6 +58,8 @@ export const InputWrapper = styled.div`
 
   &:hover {
     border: ${({ disabled }) => !disabled && `0.06rem solid ${colors.green}`};
+
+    ${({ error }) => error && `border: 0.06rem solid ${colors.red};`}
   }
 
   ${({ disabled }) =>
