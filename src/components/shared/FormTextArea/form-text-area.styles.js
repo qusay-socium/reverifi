@@ -29,6 +29,6 @@ export const Input = styled.textarea`
 
   &:focus {
     outline: ${({ error }) =>
-      error ? 'none' : `0.06rem solid ${colors.green}`};
+      error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.green}`};
   }
 `;

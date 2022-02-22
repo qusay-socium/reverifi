@@ -70,7 +70,7 @@ const customSelectTheme = (theme, error) => ({
   colors: {
     ...theme.colors,
     dangerLight: colors.alabaster,
-    primary: error ? 'transparent' : colors.green,
+    primary: error ? colors.red : colors.green,
     primary25: colors.midGray,
   },
 });
