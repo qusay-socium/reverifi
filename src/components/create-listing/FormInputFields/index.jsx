@@ -22,6 +22,7 @@ import {
   getAllListingTypes,
   getAllPropertyTypes,
 } from 'services/listing-create-service';
+import { handleNumberInput } from 'utils/helpers';
 import {
   ButtonsContainer,
   DetailsInputsContainer,
@@ -84,7 +85,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <SelectInput
           error={errors.propertyType?.message}
           id="propertyType"
-          label="Property type"
+          label="Property Type"
           name="property_type_id"
           placeholder="please select a property type"
           register={register}
@@ -98,7 +99,7 @@ function FormInputFields({ register, errors, setValue, values }) {
         <SelectInput
           error={errors.listingType?.message}
           id="listingType"
-          label="Listing type"
+          label="Listing Type"
           name="listing_type_id"
           placeholder="please select listing type"
           register={register}
@@ -112,17 +113,15 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.yearBuilt?.message}
           id="yearBuilt"
-          label="Year built"
+          label="Year Built"
           name="yearBuilt"
           register={register}
-          type="number"
-          min="0"
-          max="2022"
-          step="1"
-          placeholder="1995"
+          type="text"
+          maxLength="4"
           labelIconElement={<YearBuiltIcon />}
           onChange={(e) => {
-            setValue('yearBuilt', e.target.value);
+            handleNumberInput(e);
+            setValue('yearBuilt', e?.target?.value);
           }}
         />
 
@@ -133,12 +132,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           name="bedrooms"
           register={register}
           type="text"
-          min="0"
-          step="1"
-          maxLength="7"
-          placeholder="1"
+          maxLength="2"
           labelIconElement={<BedroomsIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('bedrooms', e.target.value);
           }}
         />
@@ -146,16 +143,14 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.fullBathrooms?.message}
           id="fullBathrooms"
-          label="Full bathrooms"
+          label="Full Bathrooms"
           name="fullBathrooms"
           register={register}
           type="text"
-          min="0"
-          maxLength="7"
-          step="1"
-          placeholder="1"
+          maxLength="2"
           labelIconElement={<FullBathroomsIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('fullBathrooms', e.target.value);
           }}
         />
@@ -163,16 +158,14 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.partialBathrooms?.message}
           id="partialBathrooms"
-          label="Partial bathrooms"
+          label="Partial Bathrooms"
           name="partialBathrooms"
           register={register}
           type="text"
-          min="0"
-          step="1"
-          maxLength="7"
-          placeholder="1"
+          maxLength="2"
           labelIconElement={<PartialBathroomsIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('partialBathrooms', e.target.value);
           }}
         />
@@ -183,8 +176,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Home Area (Sq. Ft.)"
           name="homeArea"
           register={register}
+          maxLength="5"
           labelIconElement={<HomeAreaIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('homeArea', e.target.value);
           }}
         />
@@ -192,11 +187,13 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.lotArea?.message}
           id="lotArea"
-          label="Lot area (Sq. Ft.)"
+          label="Lot Area (Sq. Ft.)"
           name="lotArea"
           register={register}
+          maxLength="5"
           labelIconElement={<LotAreaIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('lotArea', e.target.value);
           }}
         />
@@ -204,9 +201,10 @@ function FormInputFields({ register, errors, setValue, values }) {
         <FormInput
           error={errors.lotDimensions?.message}
           id="lotDimensions"
-          label="Lot dimensions"
+          label="Lot Dimensions"
           name="lotDimensions"
           register={register}
+          maxLength="10"
           labelIconElement={<LotDimensionsIcon />}
           onChange={(e) => {
             setValue('lotDimensions', e.target.value);
@@ -217,15 +215,13 @@ function FormInputFields({ register, errors, setValue, values }) {
           error={errors.rooms?.message}
           id="rooms"
           label="Rooms"
-          maxLength="7"
           name="rooms"
           register={register}
           type="text"
-          min="0"
-          step="1"
-          placeholder="1"
+          maxLength="2"
           labelIconElement={<RoomsIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('rooms', e.target.value);
           }}
         />
@@ -237,10 +233,7 @@ function FormInputFields({ register, errors, setValue, values }) {
           name="garages"
           register={register}
           type="text"
-          maxLength="7"
-          min="0"
-          step="1"
-          placeholder="1"
+          maxLength="2"
           labelIconElement={<GarageIcon />}
           onChange={(e) => {
             setValue('garages', e.target.value);
@@ -253,10 +246,10 @@ function FormInputFields({ register, errors, setValue, values }) {
           label="Price"
           name="price"
           register={register}
-          placeholder="$10000"
           maxLength="7"
           labelIconElement={<PriceIcon />}
           onChange={(e) => {
+            handleNumberInput(e);
             setValue('price', e.target.value);
           }}
         />
@@ -274,8 +267,6 @@ function FormInputFields({ register, errors, setValue, values }) {
           limit={140}
           labelIconElement={<OverviewIcon />}
         />
-
-        <h4> To do: Implement Chips input </h4>
       </TextInputContainer>
     </>
   );

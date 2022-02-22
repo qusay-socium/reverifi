@@ -5,7 +5,7 @@ import {
 } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Input } from './select.styles';
+import { Input, Placeholder } from './select.styles';
 
 /**
  * Render form select input.
@@ -47,10 +47,13 @@ function SelectInput({
       <Input
         {...(register ? register(name) : {})}
         id={id || name}
-        placeholder={placeholder}
         onChange={onChange}
         rounded={rounded}
       >
+        <Placeholder disabled selected>
+          {placeholder}
+        </Placeholder>
+
         {options.map(({ type, id: typeId }) => (
           <option value={typeId} key={typeId}>
             {type}
