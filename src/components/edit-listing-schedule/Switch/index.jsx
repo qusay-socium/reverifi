@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -10,31 +9,21 @@ import {
 
 /**
  * @param  {object} day for the checkbox day data
- * @param  {func} handleToggle to add the values to the day object
+ * @param  {func} handleChange to add the change for the checkbox
+ *
  * @return {element}
  */
-function Switch({ handleToggle, day }) {
-  const handleChange = () => {
-    handleToggle(day.number);
-  };
+function Switch({ handleChange, day }) {
   return (
     <CheckBoxWrapper>
-      {day.outOfDate ? (
-        <CheckBox
-          id={day.label}
-          type="checkbox"
-          onChange={handleChange}
-          disabled={day.outOfDate}
-          checked={!day.outOfDate}
-        />
-      ) : (
-        <CheckBox
-          id={day.label}
-          type="checkbox"
-          onChange={handleChange}
-          checked={day.available}
-        />
-      )}
+      <CheckBox
+        id={day.label}
+        defaultChecked={day.active}
+        type="checkbox"
+        onChange={() => {
+          handleChange(day);
+        }}
+      />
 
       <CheckBoxLabel htmlFor={day.label} />
       <TextLabel>{day.label}</TextLabel>
@@ -43,13 +32,13 @@ function Switch({ handleToggle, day }) {
 }
 
 Switch.propTypes = {
-  day: PropTypes.object,
-  handleToggle: PropTypes.func,
+  day: PropTypes.objectOf(PropTypes.object),
+  handleChange: PropTypes.func,
 };
 
 Switch.defaultProps = {
   day: null,
-  handleToggle: null,
+  handleChange: () => {},
 };
 
 export default Switch;

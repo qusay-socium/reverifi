@@ -1,60 +1,60 @@
-export const weekDays = [
-  {
-    available: true,
+export const weekDays = {
+  sunday: {
+    active: true,
+    endHour: null,
+    id: 0,
     label: 'Sunday',
-    name: 'Sun',
-    number: 0,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  monday: {
+    active: true,
+    endHour: null,
+    id: 1,
     label: 'Monday',
-    name: 'Mon',
-    number: 1,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  tuesday: {
+    active: true,
+    endHour: null,
+    id: 2,
     label: 'Tuesday',
-    name: 'Tue',
-    number: 2,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  wednesday: {
+    active: true,
+    endHour: null,
+    id: 3,
     label: 'Wednesday',
-    name: 'Wed',
-    number: 3,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  thursday: {
+    active: true,
+    endHour: null,
+    id: 4,
     label: 'Thursday',
-    name: 'Thu',
-    number: 4,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  friday: {
+    active: true,
+    endHour: null,
+    id: 5,
     label: 'Friday',
-    name: 'Fri',
-    number: 5,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-  {
-    available: true,
+  saturday: {
+    active: true,
+    endHour: null,
+    id: 6,
     label: 'Saturday',
-    name: 'Sat',
-    number: 6,
-    outOfDate: false,
-    time: { end: null, start: null },
+    outOfDate: true,
+    startHour: null,
   },
-];
+};
 
 export default weekDays;

@@ -25,62 +25,37 @@ function TimeInput({
 }) {
   const handelChange = (e) => {
     if (name.split('-')[1] === 'start') {
-      day.time.start = e;
+      day.start = e;
     } else {
-      day.time.end = e;
+      day.end = e;
     }
   };
 
   return (
     <DateInputsWrapper>
       <DateInputs>
-        {day.outOfDate ? (
-          <Controller
-            control={control}
-            name={name}
-            render={({ field }) => (
-              <ReactDatePicker
-                className="input"
-                onChange={(e) => {
-                  setStartDate(e);
-                  field.onChange(e);
-                  handelChange(e);
-                }}
-                selected={field.value}
-                placeholderText="00:00 AM"
-                dateFormat="h:mm aa"
-                timeIntervals={60}
-                showTimeSelect
-                showTimeSelectOnly
-                filterTime={filterPassedTime}
-                readOnly={day.outOfDate}
-              />
-            )}
-          />
-        ) : (
-          <Controller
-            control={control}
-            name={name}
-            render={({ field }) => (
-              <ReactDatePicker
-                className="input"
-                onChange={(e) => {
-                  setStartDate(e);
-                  field.onChange(e);
-                  handelChange(e);
-                }}
-                selected={field.value}
-                placeholderText="00:00 AM"
-                dateFormat="h:mm aa"
-                timeIntervals={60}
-                showTimeSelect
-                showTimeSelectOnly
-                filterTime={filterPassedTime}
-                readOnly={!day.available}
-              />
-            )}
-          />
-        )}
+        <Controller
+          control={control}
+          name={name}
+          render={({ field }) => (
+            <ReactDatePicker
+              className="input"
+              onChange={(e) => {
+                setStartDate(e);
+                field.onChange(e);
+                handelChange(e);
+              }}
+              selected={field.value}
+              placeholderText="00:00 AM"
+              dateFormat="h:mm aa"
+              timeIntervals={60}
+              showTimeSelect
+              showTimeSelectOnly
+              filterTime={filterPassedTime}
+              readOnly={!day.active}
+            />
+          )}
+        />
 
         <ArrowUpDown />
       </DateInputs>
@@ -92,12 +67,10 @@ TimeInput.propTypes = {
   Controller: PropTypes.func,
   control: PropTypes.object,
   day: PropTypes.shape({
+    active: PropTypes.bool,
     available: PropTypes.bool,
-    outOfDate: PropTypes.bool,
-    time: PropTypes.shape({
-      end: PropTypes.string,
-      start: PropTypes.string,
-    }),
+    end: PropTypes.string,
+    start: PropTypes.string,
   }),
   filterPassedTime: PropTypes.func,
   name: PropTypes.string,

@@ -4,9 +4,10 @@ import mq from 'styles/media-query';
 
 export const CheckBoxWrapper = styled.div`
   position: relative;
+
   ${mq.tablet`
       width:13rem;
-    `}
+  `}
 `;
 
 export const CheckBoxLabel = styled.label`
@@ -15,6 +16,7 @@ export const CheckBoxLabel = styled.label`
   border-radius: 1rem;
   background: ${colors.midGray};
   cursor: pointer;
+
   &::after {
     content: '';
     display: block;
@@ -38,8 +40,10 @@ export const CheckBox = styled.input`
   z-index: 1;
   border-radius: 1rem;
   width: 2.8rem;
+
   &:checked + ${CheckBoxLabel} {
     background: ${colors.green};
+
     &::after {
       content: '';
       display: block;

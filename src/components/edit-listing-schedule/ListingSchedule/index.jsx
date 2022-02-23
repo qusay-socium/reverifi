@@ -1,10 +1,11 @@
-/* eslint-disable arrow-body-style */
-import { ReactComponent as ArrowDown } from 'assets/mocks/images/arrow-down.svg';
 import Button from 'components/shared/Button';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from 'react-hook-form';
-import DatePickerInput from '../DateInput';
+import { useNavigate, useParams } from 'react-router-dom';
+import { submitListingSchedule } from 'services/listing-create-service';
+import { getDifferenceBetweenTwoDates } from 'utils/helpers';
+import DatePickerInputHandler from '../DateInput';
 import Switch from '../Switch';
 import TimeInput from '../TimeInput';
 import { weekDays } from './days';
@@ -12,7 +13,6 @@ import {
   ButtonCancel,
   ButtonsContainer,
   DateInputWrapper,
-  DateTwoInputsContainer,
   SetTime,
 } from './edit-listing-schedule';
 
@@ -20,136 +20,153 @@ import {
  *
  * @return component for the schedule page
  */
+// eslint-disable-next-line react/prop-types
 function EditListingSchedule() {
+  const { id } = useParams();
   const { handleSubmit, reset, control } = useForm();
-  const [dateRange, setDateRange] = useState(null);
   const [startDate, setStartDate] = useState(null);
-  const [weekComponent, setWeekComponent] = useState(weekDays);
+  const [endDate, setEndDate] = useState(null);
+  const [dateRange, setDateRange] = useState(weekDays);
+  const navigate = useNavigate();
 
-  const handleToggle = (dayNumber) => {
-    setWeekComponent((currDay) => {
-      return currDay.map((day) => {
-        if (day.number === dayNumber) {
-          return { ...day, available: !day.available };
-        }
-        return day;
-      });
-    });
-  };
-
-  const onSubmit = () => {
-    if (dateRange) {
-      setWeekComponent(
-        [...weekComponent],
-        (weekComponent.StartEndDate = {
-          endDate: dateRange[1],
-          startDate: dateRange[0],
-        })
-      );
-    }
-    reset();
+  const handleChange = (daySelected) => {
+    Object.entries?.(dateRange).find(
+      (day) =>
+        day?.[1]?.id === daySelected.id &&
+        setDateRange((currentDate) => ({
+          ...currentDate,
+          [day?.[0]]: { ...day?.[1], active: !daySelected.active },
+        }))
+    );
   };
 
   const filterPassedTime = (time) => {
-    const currentDate = startDate;
+    const currentDate = new Date();
     const selectedDate = new Date(time);
 
-    if (startDate) {
-      return currentDate.getTime() < selectedDate.getTime();
-    }
-    return null;
+    return currentDate.getTime() < selectedDate.getTime();
   };
-  const handleCancel = () => {
-    setWeekComponent(weekDays);
+
+  const onSubmit = async (data) => {
+    if (startDate && endDate) {
+      setDateRange((currentDate) => ({
+        ...currentDate,
+        date: { endDate, startDate },
+      }));
+    }
+    const date = {
+      days: data,
+      endDate,
+      listingId: id,
+      startDate,
+    };
+
+    await submitListingSchedule(date);
+    navigate(`/my-listings`);
     reset();
   };
 
+  const handleCancel = () => {
+    setDateRange(weekDays);
+    reset();
+  };
+
+  const findPickedDays = (missingDays) => {
+    const renderDays = [];
+    [...Array(missingDays)].forEach((day, index) => {
+      renderDays.push(
+        new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate() + index
+        ).getDay()
+      );
+    });
+    return renderDays;
+  };
+
   useEffect(() => {
-    setWeekComponent(weekDays);
+    setDateRange(weekDays);
 
-    if (dateRange) {
-      const daysDiff = Math.abs(dateRange[1]) - Math.abs(dateRange[0]);
-      if (daysDiff <= 432000000) {
-        const daysNumber = Math.abs(
-          (dateRange[1] - Math.abs(dateRange[0])) / 86400000
-        );
-        const renderDays = [];
-        if (daysNumber < 7) {
-          [...Array(daysNumber + 1)].forEach((day, index) => {
-            renderDays.push(
-              new Date(
-                dateRange[0].getFullYear(),
-                dateRange[0].getMonth(),
-                dateRange[0].getDate() + index
-              ).getDay()
-            );
-          });
+    if (
+      startDate &&
+      endDate &&
+      getDifferenceBetweenTwoDates(startDate, endDate, 7)
+    ) {
+      const pickedDaysDate = getDifferenceBetweenTwoDates(startDate, endDate);
+      const PickedDaysNumber = findPickedDays(pickedDaysDate);
 
-          setWeekComponent((currDay) => {
-            return currDay.map((day) => {
-              return {
-                ...day,
-                available: false,
-                outOfDate: true,
-              };
-            });
-          });
-
-          renderDays.map((dayNumber) => {
-            setWeekComponent((currDay) => {
-              return currDay.map((day) => {
-                if (day.number === dayNumber) {
-                  return {
-                    ...day,
-                    available: true,
-                    outOfDate: false,
-                  };
-                }
-                return day;
-              });
-            });
-            return null;
-          });
-        }
-      }
+      PickedDaysNumber.forEach((dayNumber) =>
+        Object.entries?.(dateRange).find(
+          (day) =>
+            day?.[1]?.id === dayNumber &&
+            setDateRange((currentDate) => ({
+              ...currentDate,
+              [day?.[0]]: { ...day?.[1], outOfDate: false },
+            }))
+        )
+      );
+    } else {
+      Object.entries?.(dateRange).forEach((day) => {
+        setDateRange((currentDate) => ({
+          ...currentDate,
+          [day?.[0]]: { ...day?.[1], outOfDate: false },
+        }));
+      });
     }
-  }, [dateRange]);
+  }, [startDate, endDate]);
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DateInputWrapper>
-          <DatePickerInput onChange={setDateRange} />
-          <ArrowDown />
+          <DatePickerInputHandler
+            placeholder="Select Date"
+            date={startDate}
+            setDate={setStartDate}
+            minDate={new Date()}
+            label="From"
+          />
+          <DatePickerInputHandler
+            placeholder="Select Date"
+            date={endDate}
+            setDate={setEndDate}
+            minDate={startDate || new Date()}
+            label="To"
+          />
         </DateInputWrapper>
+        <div>
+          {startDate &&
+            endDate &&
+            Object.values?.(dateRange)?.map(
+              (day, index) =>
+                !day.outOfDate &&
+                index < 7 && (
+                  <SetTime key={day?.id}>
+                    <Switch day={day} handleChange={handleChange} />
+
+                    <TimeInput
+                      Controller={Controller}
+                      control={control}
+                      name={`${day?.label}-start`}
+                      setStartDate={setStartDate}
+                      day={day}
+                    />
+                    <p>To</p>
+                    <TimeInput
+                      Controller={Controller}
+                      control={control}
+                      name={`${day.label}-end`}
+                      setStartDate={setStartDate}
+                      filterPassedTime={filterPassedTime}
+                      day={day}
+                    />
+                  </SetTime>
+                )
+            )}
+        </div>
 
         <div>
-          {weekComponent.map((day) => (
-            <SetTime key={day.label}>
-              <Switch key={day.number} handleToggle={handleToggle} day={day} />
-
-              <DateTwoInputsContainer>
-                <TimeInput
-                  Controller={Controller}
-                  control={control}
-                  name={`${day.label}-start`}
-                  setStartDate={setStartDate}
-                  day={day}
-                />
-
-                <p>To</p>
-
-                <TimeInput
-                  Controller={Controller}
-                  control={control}
-                  name={`${day.label}-end`}
-                  setStartDate={setStartDate}
-                  filterPassedTime={filterPassedTime}
-                  day={day}
-                />
-              </DateTwoInputsContainer>
-            </SetTime>
-          ))}
-
           <ButtonsContainer>
             <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
             <Button type="submit">Add Schedule</Button>

@@ -99,9 +99,10 @@ const routes = [
     title: 'Agent Details',
   },
   {
-    component: lazy(() => import('pages/EditListingSchedule')),
+    adminLayout: true,
+    component: lazy(() => import('pages/Listing/Edit')),
     label: 'edit-listing-schedule',
-    path: '/listing-schedule/edit',
+    path: '/my-listings/listing-schedule/edit/:id',
     title: 'Edit Listing Schedule',
   },
   {

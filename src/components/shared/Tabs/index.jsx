@@ -1,5 +1,5 @@
 import propTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tab, TabContent } from './tabs.styles';
 
 /**
@@ -10,8 +10,12 @@ import { Tab, TabContent } from './tabs.styles';
  *
  * @return {JSX.Element}
  */
-function Tabs({ tabsTitles, tabsContent }) {
+function Tabs({ tabsTitles, tabsContent, activePage }) {
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    setActiveTab(activePage);
+  }, [activePage]);
 
   return (
     <div>
@@ -34,7 +38,12 @@ function Tabs({ tabsTitles, tabsContent }) {
   );
 }
 
+Tabs.defaultProps = {
+  activePage: 0,
+};
+
 Tabs.propTypes = {
+  activePage: propTypes.number,
   tabsContent: propTypes.arrayOf(propTypes.node).isRequired,
   tabsTitles: propTypes.arrayOf(propTypes.string).isRequired,
 };

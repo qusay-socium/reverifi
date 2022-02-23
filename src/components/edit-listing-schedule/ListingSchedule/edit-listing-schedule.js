@@ -7,28 +7,21 @@ import mq from 'styles/media-query';
 export const DateInput = styled(DatePicker)`
   background-color: transparent;
   border-radius: 1.75rem;
-  border: none;
-  color: ${colors.mineshaft};
+  color: ${colors.mineShaft};
   flex: 1;
   font-size: 0.75rem;
   font-weight: 400;
-  outline: none;
-  padding: 0.8rem 1rem 0.8rem 2rem;
+  padding: 0.4rem;
 `;
 
 export const DateInputWrapper = styled.div`
   align-items: center;
   background-color: ${colors.white};
   border-radius: 2.18rem;
-  border: 0.06rem ${colors.midGray} solid;
   display: flex;
-  margin: 1.3rem 3rem;
+  margin: 1.3rem 2rem;
   max-width: 90%;
   position: relative;
-
-  input {
-    width: 100%;
-  }
 
   /* while picking a date color */
   .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
@@ -50,14 +43,9 @@ export const DateInputWrapper = styled.div`
     }
   }
 
-  svg {
-    position: absolute;
-    right: 1.2rem;
-  }
-
   ${mq.tablet`
       justify-content: flex-start;
-      max-width: 20rem;
+      max-width: 26rem;
     `}
 `;
 
@@ -75,7 +63,7 @@ export const SetTime = styled.div`
   ${mq.tablet`
     align-items: center;
     flex-direction: row;
-    margin: 0 3rem;
+    margin: 0 2rem;
   `}
 `;
 
@@ -91,7 +79,7 @@ export const ButtonsContainer = styled.div`
   margin: 1rem;
 
   ${mq.tablet`
-      margin: 1rem 3rem;
+      margin: 1rem 2rem;
     `}
 `;
 

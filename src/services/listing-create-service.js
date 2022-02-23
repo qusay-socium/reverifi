@@ -81,3 +81,19 @@ export const getListingData = async (formID) => {
 
   return data;
 };
+
+/**
+ * Submit listing form.
+ *
+ * @param {string} formData Contains all schedule data.
+ * @param {uuid} id listing id.
+ *
+ * @return {Promise<Object>} submitted response.
+ */
+export const submitListingSchedule = async (formData) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/schedule`, formData);
+
+  return data;
+};
