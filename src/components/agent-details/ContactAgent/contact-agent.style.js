@@ -12,6 +12,7 @@ export const Form = styled.form`
   padding: 0 2rem;
 
   h2 {
+    font-weight: 600;
     margin-bottom: 0;
     text-transform: capitalize;
   }

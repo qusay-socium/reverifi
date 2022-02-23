@@ -71,6 +71,7 @@ function TextAreaInput({
         onFocus={(event) => {
           setCharactersCount(event.target.value.length);
         }}
+        error={error}
       />
       {error && <Error>{error}</Error>}
     </Container>

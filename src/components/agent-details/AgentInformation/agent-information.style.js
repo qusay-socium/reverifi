@@ -103,6 +103,10 @@ export const InfoKey = styled.div`
   min-width: 9rem;
   gap: 0.5rem;
   color: ${colors.gray};
+
+  span {
+    font-weight: 500;
+  }
 `;
 
 export const InfoValue = styled.h4`
@@ -147,12 +151,14 @@ export const CompanyInformation = styled.ul`
 export const AboutAgent = styled.div`
   flex: 3;
   line-height: 1.25rem;
+  margin-left: 0.5rem;
 
   p {
     word-break: break-all;
   }
 
   h2 {
+    margin-top: 0.4rem;
     font-weight: 600;
     font-size: 1.3rem;
   }

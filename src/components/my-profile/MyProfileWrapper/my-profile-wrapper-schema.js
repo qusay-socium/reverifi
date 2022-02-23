@@ -6,7 +6,11 @@ const textAndNumbersRegex =
 
 const myProfileSchema = yup
   .object({
-    aboutMe: yup.string().label('About me').required('About me is required'),
+    aboutMe: yup
+      .string()
+      .label('About me')
+      .required('About me is required')
+      .matches(/^(\S+)/, 'About me is required'),
     address: yup.string(),
     city: yup
       .object()
@@ -97,7 +101,7 @@ const myProfileSchema = yup
             .string()
             .matches(
               textAndNumbersRegex,
-              ' linkedin link should contain letters'
+              'linkedin link should contain letters'
             );
           return schema.isValidSync(value);
         }
@@ -106,13 +110,15 @@ const myProfileSchema = yup
     name: yup
       .string()
       .label('Name')
-      .required()
-      .min(3, 'Name should be at least 3 letters'),
+      .required('Name is required')
+      .min(3, 'Name should be at least 3 letters')
+      .matches(/^(\S+)/, 'Name is required'),
     phone: yup
       .string()
       .label('Phone')
       .required()
       .min(10, 'Phone number must be at least 10 digits')
+      .matches(/^(\S+)/, 'Phone number is required')
       .test(
         'len',
         'Phone number must be at least 10 digits',
@@ -142,7 +148,8 @@ const myProfileSchema = yup
       .string()
       .required('ZipCode is required')
       .typeError('ZipCode is required')
-      .min(5, 'Must be 5 digits'),
+      .min(5, 'Must be 5 digits')
+      .matches(/^(\S+)/, 'ZipCode is required'),
   })
   .required();
 

@@ -65,12 +65,12 @@ const serviceAreasOptions = generateLabelValuePairs(
  *
  * @param {Object} theme theme object from the select component
  */
-const customSelectTheme = (theme) => ({
+const customSelectTheme = (theme, error) => ({
   ...theme,
   colors: {
     ...theme.colors,
     dangerLight: colors.alabaster,
-    primary: colors.green,
+    primary: error ? colors.red : colors.green,
     primary25: colors.midGray,
   },
 });
@@ -342,7 +342,9 @@ function MyProfileWrapper() {
                       isMulti
                       options={serviceAreasOptions}
                       placeholder="Select areas..."
-                      theme={(theme) => customSelectTheme(theme)}
+                      theme={(theme) =>
+                        customSelectTheme(theme, errors.serviceAreas?.message)
+                      }
                       value={serviceAreas}
                       onChange={(val) => {
                         setServiceAreas(val);
@@ -379,7 +381,9 @@ function MyProfileWrapper() {
                       isSearchable={false}
                       options={languageOptions}
                       placeholder="Select languages..."
-                      theme={(theme) => customSelectTheme(theme)}
+                      theme={(theme) =>
+                        customSelectTheme(theme, errors.languages?.message)
+                      }
                       value={languages}
                       onChange={(val) => {
                         setLanguages(val);
@@ -434,7 +438,9 @@ function MyProfileWrapper() {
                       hideSelectedOptions={false}
                       options={countryOptions}
                       placeholder="Select country..."
-                      theme={(theme) => customSelectTheme(theme)}
+                      theme={(theme) =>
+                        customSelectTheme(theme, errors.country?.message)
+                      }
                       value={selectedCountry}
                       onChange={(val) => {
                         setSelectedCountry(val);
@@ -472,7 +478,9 @@ function MyProfileWrapper() {
                       hideSelectedOptions={false}
                       options={cityOptions}
                       placeholder="Select city..."
-                      theme={(theme) => customSelectTheme(theme)}
+                      theme={(theme) =>
+                        customSelectTheme(theme, errors.city?.message)
+                      }
                       value={selectedCity}
                       onChange={(val) => {
                         setSelectedCity(val);

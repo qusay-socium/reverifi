@@ -57,7 +57,8 @@ export const InputWrapper = styled.div`
   cursor: text;
 
   &:hover {
-    border: ${({ disabled }) => !disabled && `0.06rem solid ${colors.green}`};
+    outline: ${({ error }) =>
+      error ? `0.06rem solid ${colors.red}` : `0.06rem solid ${colors.green}`};
   }
 
   ${({ disabled }) =>
