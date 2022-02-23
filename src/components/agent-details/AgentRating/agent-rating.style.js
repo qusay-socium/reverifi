@@ -43,8 +43,6 @@ export const RatingForm = styled.form`
   textarea {
     min-height: 12.3rem;
     padding: 1.5rem 1.5rem;
-    resize: none;
-    font-family: inherit;
     font-size: 1rem;
     box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
 

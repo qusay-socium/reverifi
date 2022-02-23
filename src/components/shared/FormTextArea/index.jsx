@@ -42,7 +42,7 @@ function TextAreaInput({
 
   return (
     <Container>
-      <Labels isLabeled={label}>
+      <Labels hasLabel={label}>
         {label && (
           <Label htmlFor={id || name}>
             {labelIconElement}
