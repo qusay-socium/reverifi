@@ -66,6 +66,10 @@ function AgentRating() {
    * handle rate click
    */
   const handleRate = (id) => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+
     if (selectedCriteria.find((selectedId) => selectedId === id)) {
       setSelectedCriteria((prev) =>
         prev.filter((selectedId) => selectedId !== id)
