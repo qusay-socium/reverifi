@@ -4,4 +4,5 @@ import React from 'react';
 function EditListingSchedulePage() {
   return <EditListingSchedule />;
 }
+
 export default EditListingSchedulePage;

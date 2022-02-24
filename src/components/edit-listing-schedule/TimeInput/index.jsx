@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import { ReactComponent as ArrowUpDown } from 'assets/mocks/images/arrow-up-down.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -22,12 +21,30 @@ function TimeInput({
   setStartDate,
   filterPassedTime,
   day,
+  dateRange,
+  setDateRange,
 }) {
+  const { active, id } = day;
+
   const handelChange = (e) => {
     if (name.split('-')[1] === 'start') {
-      day.start = e;
+      Object.entries?.(dateRange).find(
+        (currentDay) =>
+          currentDay?.[1]?.id === id &&
+          setDateRange((currentDate) => ({
+            ...currentDate,
+            [currentDay?.[0]]: { ...currentDay?.[1], startHour: e },
+          }))
+      );
     } else {
-      day.end = e;
+      Object.entries?.(dateRange).find(
+        (currentDay) =>
+          currentDay?.[1]?.id === id &&
+          setDateRange((currentDate) => ({
+            ...currentDate,
+            [currentDay?.[0]]: { ...currentDay?.[1], endHour: e },
+          }))
+      );
     }
   };
 
@@ -52,7 +69,7 @@ function TimeInput({
               showTimeSelect
               showTimeSelectOnly
               filterTime={filterPassedTime}
-              readOnly={!day.active}
+              readOnly={!active}
             />
           )}
         />
@@ -65,24 +82,27 @@ function TimeInput({
 
 TimeInput.propTypes = {
   Controller: PropTypes.func,
-  control: PropTypes.object,
+  control: PropTypes.objectOf(PropTypes.object),
+  dateRange: PropTypes.objectOf(PropTypes.instanceOf(Date)),
   day: PropTypes.shape({
     active: PropTypes.bool,
-    available: PropTypes.bool,
-    end: PropTypes.string,
-    start: PropTypes.string,
+    id: PropTypes.string,
   }),
   filterPassedTime: PropTypes.func,
   name: PropTypes.string,
+  setDateRange: PropTypes.func,
   setStartDate: PropTypes.func,
 };
 
 TimeInput.defaultProps = {
   Controller: null,
   control: null,
+  dateRange: null,
   day: null,
   filterPassedTime: null,
   name: null,
-  setStartDate: null,
+  setDateRange: () => {},
+  setStartDate: () => {},
 };
+
 export default TimeInput;

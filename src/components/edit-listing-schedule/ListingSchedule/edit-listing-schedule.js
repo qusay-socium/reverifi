@@ -55,9 +55,10 @@ export const SetTime = styled.div`
   margin: 0 auto 0 auto;
   max-width: 90%;
 
-  p {
+  span {
     color: ${colors.gray};
     font-size: 1rem;
+    margin: 0.9rem 0;
   }
 
   ${mq.tablet`

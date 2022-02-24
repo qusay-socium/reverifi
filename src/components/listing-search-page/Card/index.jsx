@@ -46,7 +46,7 @@ function Card({ data }) {
   } = data;
 
   const navigate = useNavigate();
-  // eslint-disable-next-line react/prop-types
+
   if (data.length < 0) return null;
 
   const handleClick = () => {
@@ -132,6 +132,7 @@ Card.propTypes = {
     homeArea: PropTypes.shape({ sqft: PropTypes.string }),
     id: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
+    length: PropTypes.number,
     lotArea: PropTypes.shape({ sqft: PropTypes.string }),
 
     price: PropTypes.number,

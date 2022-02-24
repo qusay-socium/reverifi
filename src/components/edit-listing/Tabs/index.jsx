@@ -12,12 +12,12 @@ import { Container } from './tabs.style';
  */
 function EditTabsForm() {
   const [searchParams] = useSearchParams();
-  const tab = searchParams.get('tab') || '';
+  const tab = searchParams.get('tab') || 0;
 
   return (
     <Container>
       <Tabs
-        activePage={+tab || 0}
+        activePage={+tab}
         tabsTitles={['Details', 'Schedule', 'reverifi PLUS']}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,

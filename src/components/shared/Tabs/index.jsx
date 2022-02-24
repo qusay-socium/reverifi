@@ -7,6 +7,7 @@ import { Tab, TabContent } from './tabs.styles';
  *
  * @param {Array(String)} tabsTitles tabs titles array
  * @param {Array(any)} tabsContent tabs content array
+ * @param {number} activePage the number of the current active page
  *
  * @return {JSX.Element}
  */

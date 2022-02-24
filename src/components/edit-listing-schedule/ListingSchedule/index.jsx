@@ -20,7 +20,6 @@ import {
  *
  * @return component for the schedule page
  */
-// eslint-disable-next-line react/prop-types
 function EditListingSchedule() {
   const { id } = useParams();
   const { handleSubmit, reset, control } = useForm();
@@ -47,7 +46,7 @@ function EditListingSchedule() {
     return currentDate.getTime() < selectedDate.getTime();
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     if (startDate && endDate) {
       setDateRange((currentDate) => ({
         ...currentDate,
@@ -55,7 +54,7 @@ function EditListingSchedule() {
       }));
     }
     const date = {
-      days: data,
+      days: dateRange,
       endDate,
       listingId: id,
       startDate,
@@ -151,8 +150,10 @@ function EditListingSchedule() {
                       name={`${day?.label}-start`}
                       setStartDate={setStartDate}
                       day={day}
+                      dateRange={dateRange}
+                      setDateRange={setDateRange}
                     />
-                    <p>To</p>
+                    <span>To</span>
                     <TimeInput
                       Controller={Controller}
                       control={control}
@@ -160,6 +161,8 @@ function EditListingSchedule() {
                       setStartDate={setStartDate}
                       filterPassedTime={filterPassedTime}
                       day={day}
+                      dateRange={dateRange}
+                      setDateRange={setDateRange}
                     />
                   </SetTime>
                 )

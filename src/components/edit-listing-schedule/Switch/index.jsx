@@ -14,25 +14,30 @@ import {
  * @return {element}
  */
 function Switch({ handleChange, day }) {
+  const { active, label } = day;
+
   return (
     <CheckBoxWrapper>
       <CheckBox
-        id={day.label}
-        defaultChecked={day.active}
+        id={label}
+        defaultChecked={active}
         type="checkbox"
         onChange={() => {
           handleChange(day);
         }}
       />
 
-      <CheckBoxLabel htmlFor={day.label} />
-      <TextLabel>{day.label}</TextLabel>
+      <CheckBoxLabel htmlFor={label} />
+      <TextLabel>{label}</TextLabel>
     </CheckBoxWrapper>
   );
 }
 
 Switch.propTypes = {
-  day: PropTypes.objectOf(PropTypes.object),
+  day: PropTypes.shape({
+    active: PropTypes.bool,
+    label: PropTypes.string,
+  }),
   handleChange: PropTypes.func,
 };
 

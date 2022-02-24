@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { ReactComponent as ArrowDown } from 'assets/icons/arrow-down.svg';
 import { ReactComponent as ScheduleIcon } from 'assets/icons/schedule.svg';
 import PropTypes from 'prop-types';
@@ -12,11 +10,15 @@ import {
 } from './date-input.style';
 
 /**
-
  *
- * @param  {function} { onChange } to get the start end date range value
+ *  @param  {date} date, the current selected date
+ *  @param  {string} placeholder, input placeholder
+ *  @param  {date} minDate, the minimum date can be selected
+ *  @param  {string} dateFormat, how the date should be formatted
+ *  @param  {string} label, the label for the date input
+ *  @param  {func} setDate, set the selected date
  *
- * @return input component for the start end date range value
+ * @return {date} Date range
  */
 function DatePickerInputHandler({
   date,
@@ -24,8 +26,6 @@ function DatePickerInputHandler({
   placeholder,
   minDate,
   dateFormat,
-  showTimeSelect,
-  showTimeSelectOnly,
   label,
 }) {
   return (
@@ -41,8 +41,6 @@ function DatePickerInputHandler({
           }}
           dateFormat={dateFormat}
           timeIntervals={60}
-          showTimeSelect={showTimeSelect}
-          showTimeSelectOnly={showTimeSelectOnly}
           minDate={minDate}
         />
         <ArrowDown />
