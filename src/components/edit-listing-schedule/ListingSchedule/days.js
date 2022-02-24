@@ -1,0 +1,60 @@
+export const weekDays = {
+  sunday: {
+    active: true,
+    endHour: null,
+    id: 0,
+    label: 'Sunday',
+    outOfDate: true,
+    startHour: null,
+  },
+  monday: {
+    active: true,
+    endHour: null,
+    id: 1,
+    label: 'Monday',
+    outOfDate: true,
+    startHour: null,
+  },
+  tuesday: {
+    active: true,
+    endHour: null,
+    id: 2,
+    label: 'Tuesday',
+    outOfDate: true,
+    startHour: null,
+  },
+  wednesday: {
+    active: true,
+    endHour: null,
+    id: 3,
+    label: 'Wednesday',
+    outOfDate: true,
+    startHour: null,
+  },
+  thursday: {
+    active: true,
+    endHour: null,
+    id: 4,
+    label: 'Thursday',
+    outOfDate: true,
+    startHour: null,
+  },
+  friday: {
+    active: true,
+    endHour: null,
+    id: 5,
+    label: 'Friday',
+    outOfDate: true,
+    startHour: null,
+  },
+  saturday: {
+    active: true,
+    endHour: null,
+    id: 6,
+    label: 'Saturday',
+    outOfDate: true,
+    startHour: null,
+  },
+};
+
+export default weekDays;

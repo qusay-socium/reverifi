@@ -25,6 +25,29 @@ export const getDatesDifference = (date, period) => {
 };
 
 /**
+ * get dates difference function
+ *
+ * @param {date} firstDate date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {date} secondDate date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {Number} period the period to calculate the difference
+ *
+ * @return {Number} will return the difference between the two dates
+ */
+export const getDifferenceBetweenTwoDates = (firstDate, secondDate, period) => {
+  const cleanedFirstDate = firstDate?.toLocaleDateString();
+  const cleanedSecondDate = secondDate?.toLocaleDateString();
+
+  const diffInMs = new Date(cleanedSecondDate) - new Date(cleanedFirstDate);
+  const diffInDays = Math.abs(Math.ceil(diffInMs / (1000 * 60 * 60 * 24) + 1));
+
+  if (period) {
+    return diffInDays < period;
+  }
+
+  return diffInDays || 1;
+};
+
+/**
  * generate Label Value Pairs function
  *
  * @param {Array} data array of data
@@ -64,9 +87,7 @@ export const splitCamelCaseString = (string) =>
 export const formatPhoneNumber = (phoneNumber) => {
   if (!phoneNumber) return null;
 
-  const phoneNumberString = phoneNumber?.toString()?.slice(2);
-
-  if (phoneNumberString.length < 3) return null;
+  const phoneNumberString = phoneNumber?.toString().slice(2);
 
   let reg;
   let lastPartLength;

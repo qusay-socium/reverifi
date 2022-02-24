@@ -125,7 +125,13 @@ export default function MyListings({ setDeleteId }) {
                   />
                 </IconContainer>
                 <IconContainer hover>
-                  <ScheduleIcon />
+                  <ScheduleIcon
+                    onClick={() => {
+                      navigate(
+                        `/my-listings/listing-schedule/edit/${id}?tab=1`
+                      );
+                    }}
+                  />
                   <Tooltip
                     text="Schedule"
                     arrowPosition="top"
