@@ -27,17 +27,18 @@ export const getDatesDifference = (date, period) => {
 /**
  * get dates difference function
  *
- * @param {String} date date (ex: 2022-01-24T12:47:07.098Z)
- * @param {Number} period period to compare if the dates difference exceed it
+ * @param {date} firstDate date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {date} secondDate date (ex: 2022-01-24T12:47:07.098Z)
+ * @param {Number} period the period to calculate the difference
  *
- * @return {Number} difference between 2 dates
+ * @return {Number} will return the difference between the two dates
  */
 export const getDifferenceBetweenTwoDates = (firstDate, secondDate, period) => {
   const cleanedFirstDate = firstDate?.toLocaleDateString();
   const cleanedSecondDate = secondDate?.toLocaleDateString();
 
   const diffInMs = new Date(cleanedSecondDate) - new Date(cleanedFirstDate);
-  const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24) + 1);
+  const diffInDays = Math.abs(Math.ceil(diffInMs / (1000 * 60 * 60 * 24) + 1));
 
   if (period) {
     return diffInDays < period;
