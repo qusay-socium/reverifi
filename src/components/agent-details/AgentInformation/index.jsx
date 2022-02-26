@@ -10,10 +10,11 @@ import { ReactComponent as LanguagesIcon } from 'assets/language.svg';
 import { ReactComponent as PhoneIcon } from 'assets/phone.svg';
 import { ReactComponent as ServiceAreaIcon } from 'assets/service-area.svg';
 import { ReactComponent as CompanyWebsite } from 'assets/website.svg';
-import LikeButton from 'components/shared/LikeButton';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { viewOrShareUserOrListing } from 'services/social-statistics';
 import { getUserInfo } from 'services/user';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import ContactAgent from '../ContactAgent';
@@ -49,6 +50,9 @@ function AgentInformation() {
   const fetchUserData = async () => {
     const user = await getUserInfo(id);
     setUserData(user);
+
+    // add view to user
+    await viewOrShareUserOrListing({ type: 'views', userId: id });
   };
 
   useEffectOnce(fetchUserData);
@@ -90,7 +94,8 @@ function AgentInformation() {
             <ContactInfo>
               <AgentName>
                 <h2>{toUpperCaseFirstLetter(userData?.user?.name) || ''}</h2>
-                <LikeButton userId={id} />
+
+                <SaveAndShareButtons userId={id} />
               </AgentName>
               <InfoWrapper>
                 <InfoKey>

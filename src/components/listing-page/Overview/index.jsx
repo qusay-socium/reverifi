@@ -1,6 +1,7 @@
 import { Title } from 'components/listing-page/Details/details.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { getDatesDifference } from 'utils/helpers';
 import ContactForm from '../ContactForm';
 import ScheduleVisit from '../ScheduleVisit';
 import {
@@ -22,35 +23,44 @@ import {
  * @return {JSX.Element}
  */
 function Overview({ listing }) {
-  const statistics = {
-    Saves: '10',
-    Shared: '12',
-    'Time on reverifi': '8 days',
-    Views: '30',
-  };
-
   return (
     <Container>
       <Wrapper>
         <div>
           <Title>Overview</Title>
           <Statistics>
-            {Object.keys(statistics).map((key, index, array) => (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label key={key}>
-                {key}: <Value>{statistics[key]}</Value>
-                {index !== array.length - 1 && <Partition />}
-              </label>
-            ))}
+            <span>
+              Time on reverifi:
+              <Value>
+                &nbsp;
+                {getDatesDifference(listing?.createdAt)} day
+                {getDatesDifference(listing?.createdAt) > 1 && 's'}
+              </Value>
+              <Partition />
+            </span>
+            <span>
+              Views:
+              <Value> {listing?.listingSocial?.views || 0}</Value>
+              <Partition />
+            </span>
+            <span>
+              Saves:
+              <Value> {listing?.listingSocial?.saves || 0}</Value>
+              <Partition />
+            </span>
+            <span>
+              Shares:
+              <Value> {listing?.listingSocial?.shares || 0}</Value>
+            </span>
           </Statistics>
           <div>
-            <Paragraph>{listing.overview}</Paragraph>
+            <Paragraph>{listing?.overview}</Paragraph>
           </div>
         </div>
         <Claim>
           <div>
             <Title> Do you own this property? </Title>
-            <Paragraph>Claim this property and verifiy it’s details</Paragraph>
+            <Paragraph>Claim this property and verify its details</Paragraph>
           </div>
           <ClaimButton aria-label="Claim This Property" type="button">
             Claim This Property
@@ -65,6 +75,8 @@ function Overview({ listing }) {
 
 Overview.propTypes = {
   listing: PropTypes.shape({
+    createdAt: PropTypes.string,
+    listingSocial: PropTypes.objectOf(PropTypes.string),
     overview: PropTypes.string.isRequired,
   }).isRequired,
 };

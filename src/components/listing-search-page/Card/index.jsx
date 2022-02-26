@@ -1,9 +1,8 @@
 import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
-import { ReactComponent as Heart } from 'assets/icons/agent-heart.svg';
-import { ReactComponent as Share } from 'assets/icons/agent-share.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import PropTypes from 'prop-types/prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,13 +18,11 @@ import {
   CardText,
   IconsContainer,
   IconsNumber,
-  IconsWrapper,
   Image,
   ImageContainer,
   LocationContainer,
   LocationText,
   PriceText,
-  ShearIconsContainer,
 } from './card.style';
 
 /**
@@ -62,14 +59,7 @@ function Card({ data }) {
       <CardText>
         <CardHeader>
           <PriceText>$ {price.toLocaleString()}</PriceText>
-          <IconsWrapper>
-            <ShearIconsContainer>
-              <Heart />
-            </ShearIconsContainer>
-            <ShearIconsContainer>
-              <Share />
-            </ShearIconsContainer>
-          </IconsWrapper>
+          <SaveAndShareButtons listingId={id} />
         </CardHeader>
         <LocationContainer>
           <div>

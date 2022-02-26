@@ -95,10 +95,6 @@ export const BodyIconsContainer = styled(Container)`
   }
 `;
 
-export const IconsContainer = styled(Container)`
-  gap: 0.5rem;
-`;
-
 export const CardImageContainer = styled.div`
   border-radius: 0.3rem 0.3rem 0 0;
   height: 12rem;
@@ -196,35 +192,6 @@ export const ServiceQuantity = styled.span`
   font-size: 0.9rem;
   font-weight: 600;
   margin-right: 0.2rem;
-`;
-
-export const IconContainer = styled.div`
-  align-items: center;
-  background-color: ${colors.wildSand};
-  border-radius: 50%;
-  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
-  cursor: pointer;
-  display: flex;
-  height: 1.56rem;
-  justify-content: center;
-  width: 1.56rem;
-
-  svg {
-    margin-top: ${({ stroke }) => stroke && '0.09rem'};
-    margin-right: ${({ fill }) => fill && '0.09rem'};
-    padding: 0.15rem;
-  }
-
-  &:hover {
-    background-color: ${colors.green};
-    cursor: pointer;
-
-    svg path {
-      fill: ${({ fill }) => fill && colors.white};
-      opacity: 1;
-      stroke: ${({ stroke }) => stroke && colors.white};
-    }
-  }
 `;
 
 export const CardContainer = styled.div`

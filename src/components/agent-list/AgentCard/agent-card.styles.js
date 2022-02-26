@@ -1,6 +1,3 @@
-import { ReactComponent as Heart } from 'assets/icons/agent-heart.svg';
-import { ReactComponent as Share } from 'assets/icons/agent-share.svg';
-import { ReactComponent as Like } from 'assets/icons/like.svg';
 import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -99,14 +96,12 @@ export const CompanyNamePlaceholder = styled.div`
   margin: 0 0 0.6rem 0;
 `;
 
-export const ButtonsContainer = styled.div`
+export const FooterButtonsContainer = styled.div`
   align-items: flex-start;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 0.5rem;
   width: 6.5rem;
-`;
-
-export const FooterButtonsContainer = styled(ButtonsContainer)`
   align-items: center;
   width: 3.75rem;
 `;
@@ -185,42 +180,6 @@ export const ContactEmail = styled.a`
 export const Line = styled.hr`
   margin: 0;
   opacity: 0.4;
-`;
-
-export const HeartIcon = styled(Heart)`
-  width: 1.125rem;
-  height: 1.125rem;
-`;
-
-export const LikeIcon = styled(Like)`
-  width: 1rem;
-  padding-bottom: 0.2rem;
-`;
-
-export const ShareIcon = styled(Share)`
-  width: 1rem;
-  padding-right: 0.1rem;
-`;
-
-export const RoundedButton = styled(Button)`
-  background-color: ${colors.wildSand};
-  border-radius: 50%;
-  color: ${colors.dustyGray};
-  height: 1.87rem;
-  margin: 0.12rem;
-  padding: 0 0.37rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background-color: ${colors.green};
-    color: ${colors.white};
-
-    svg path {
-      fill: ${colors.white};
-    }
-  }
 `;
 
 export const CardFooter = styled.div`

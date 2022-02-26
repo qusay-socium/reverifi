@@ -80,3 +80,5 @@ export const Partition = styled.span`
   border-right: 0.0625rem solid ${colors.midGray};
   margin: 0 1rem;
 `;
+
+export const Label = styled.span``;

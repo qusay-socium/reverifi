@@ -1,6 +1,4 @@
 import { ReactComponent as BellIcon } from 'assets/images/bell.svg';
-import { ReactComponent as HeartIcon } from 'assets/images/heart.svg';
-import { ReactComponent as ShareIcon } from 'assets/images/share.svg';
 import { ReactComponent as LocationPinIcon } from 'assets/location.svg';
 import {
   Container,
@@ -13,6 +11,7 @@ import {
   SubmitButton,
   SubmitOffer,
 } from 'components/listing-page/Offer/offer.styles';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,7 +24,7 @@ import React from 'react';
  *
  * @return {JSX.Element}
  */
-function Offer({ price, address }) {
+function Offer({ price, address, id }) {
   const { setShowModal } = useShowModal();
 
   return (
@@ -49,12 +48,7 @@ function Offer({ price, address }) {
         <Logo>
           <BellIcon />
         </Logo>
-        <Logo>
-          <HeartIcon />
-        </Logo>
-        <Logo onClick={() => setShowModal(true)}>
-          <ShareIcon />
-        </Logo>
+        <SaveAndShareButtons listingId={id} setShowModal={setShowModal} />
       </SideButtonsContainer>
     </Container>
   );
@@ -62,6 +56,7 @@ function Offer({ price, address }) {
 
 Offer.propTypes = {
   address: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };
 

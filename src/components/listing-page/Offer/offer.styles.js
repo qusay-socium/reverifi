@@ -64,11 +64,7 @@ export const SubmitButton = styled(Button)`
 export const SideButtonsContainer = styled.div`
   align-items: baseline;
   display: flex;
-
-  svg {
-    cursor: pointer;
-    stroke: ${colors.gray};
-  }
+  gap: 0.8rem;
 
   ${mq.desktop`
     align-items: center;
@@ -94,7 +90,9 @@ export const Logo = styled.div`
     height: 0.9rem;
     padding: 0;
     margin-left: 0;
+    cursor: pointer;
   }
+
   :hover {
     svg {
       stroke: ${colors.white};
