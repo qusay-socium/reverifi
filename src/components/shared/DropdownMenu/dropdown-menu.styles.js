@@ -26,7 +26,7 @@ export const SelectContainer = styled.div`
   background-image: url(${({ leftIcon }) => leftIcon && leftIcon});
   background-repeat: no-repeat;
   background-position-x: 1rem;
-  background-position-y: ${({ small }) => (small ? '0.5rem' : ' 1rem')};
+  background-position-y: ${({ small }) => (small ? '45%' : ' 1rem')};
 
   &:active {
     outline: 0.06rem solid ${colors.green};

@@ -40,9 +40,10 @@ function DropdownMenu({
   error,
   register,
   required,
+  onChange,
 }) {
   return (
-    <div>
+    <>
       {label && (
         <StyledLabel htmlFor={name}>
           {LabelIcon && LabelIcon}
@@ -65,20 +66,23 @@ function DropdownMenu({
           name={name}
           small={small}
           {...(register ? register(name) : {})}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
         >
           <Placeholder disabled selected value="">
             {placeholder}
           </Placeholder>
 
-          {options?.map((value) => (
+          {options?.map(({ value, option }) => (
             <option value={value} key={value}>
-              {value}
+              {option}
             </option>
           ))}
         </StyledSelect>
       </SelectContainer>
       {register && <ErrorMessage>{error || ''}</ErrorMessage>}
-    </div>
+    </>
   );
 }
 
@@ -88,6 +92,7 @@ DropdownMenu.defaultProps = {
   label: null,
   labelIcon: null,
   leftIcon: null,
+  onChange: () => {},
   placeholder: '',
   register: null,
   required: false,
@@ -105,6 +110,7 @@ DropdownMenu.propTypes = {
   ]),
   leftIcon: propTypes.string,
   name: propTypes.string.isRequired,
+  onChange: propTypes.func,
   options: propTypes.arrayOf(propTypes.any).isRequired,
   placeholder: propTypes.string,
   register: propTypes.func,

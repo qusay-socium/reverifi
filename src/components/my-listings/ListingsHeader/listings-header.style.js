@@ -1,5 +1,3 @@
-import { ReactComponent as FilterIcon } from 'assets/filter-button.svg';
-import { ReactComponent as ArrowDown } from 'assets/icons/arrow-down.svg';
 import Button from 'components/shared/Button';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -12,12 +10,9 @@ export const Header = styled.div`
   width: 100%;
 `;
 
-export const HeaderTitle = styled.h2`
-  width: 100%;
-`;
-
 export const ButtonContainer = styled.div`
   display: flex;
+  gap: 1rem;
 `;
 
 export const CreateNewListingButton = styled(Button)`
@@ -29,7 +24,7 @@ export const CreateNewListingButton = styled(Button)`
     margin-right: 0.7rem;
 
     path {
-      fill: ${colors.mercury};
+      fill: ${colors.white};
     }
   }
 `;
@@ -40,13 +35,5 @@ export const FilterButton = styled(Button)`
   border: 0.12rem solid ${colors.mercury};
   color: ${colors.gray};
   display: flex;
-  margin-right: 2rem;
-`;
-
-export const FilterIconContainer = styled(FilterIcon)`
-  margin-right: 0.6rem;
-`;
-
-export const ArrowDownContainer = styled(ArrowDown)`
-  margin-left: 0.6rem;
+  margin-right: 1rem;
 `;

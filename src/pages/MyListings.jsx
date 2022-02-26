@@ -1,4 +1,5 @@
 import MyListingsWrapper from 'components/my-listings/MyListings';
+import ShowModalProvider from 'contexts/ShowModalContext';
 import React from 'react';
 
 /**
@@ -7,7 +8,11 @@ import React from 'react';
  * @return {JSX.Element}
  */
 function MyListings() {
-  return <MyListingsWrapper />;
+  return (
+    <ShowModalProvider>
+      <MyListingsWrapper />
+    </ShowModalProvider>
+  );
 }
 
 export default MyListings;
