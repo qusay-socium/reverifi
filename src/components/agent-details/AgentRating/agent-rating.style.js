@@ -1,3 +1,6 @@
+import { ReactComponent as editIcon } from 'assets/icons/edit.svg';
+import Button from 'components/shared/Button';
+import { IconContainer } from 'components/shared/Table/table-styles';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -6,8 +9,8 @@ import mq from 'styles/media-query';
 export const RatingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.8125rem;
-  padding: 2rem 1.0625rem;
+  gap: 2.8rem;
+  padding: 2rem 1.06rem;
 
   ${mq.tablet`
     flex :1;
@@ -23,26 +26,32 @@ export const RatingForm = styled.form`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 2.8125rem;
+  gap: 2.8rem;
 
   h1 {
     margin: 0;
     font-weight: 600;
     font-size: 2rem;
   }
-`;
 
-export const TextArea = styled.textarea`
-  background-color: ${colors.white};
-  border-radius: 0.9rem;
-  border: 0.08rem solid ${colors.mercury};
-  height: 12.375rem;
-  padding: 1.5rem 1.5rem;
-  resize: none;
-  width: 100%;
-  font-family: inherit;
-  font-size: 1rem;
-  box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
+  > button {
+    font-weight: 600;
+    font-size: 0.9rem;
+    align-self: flex-start;
+  }
+
+  textarea {
+    min-height: 12.3rem;
+    padding: 1.5rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
+
+    ::placeholder {
+      color: ${colors.dustyGray};
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+  }
 `;
 
 export const RequestLink = styled(Link)`
@@ -53,98 +62,45 @@ export const RequestLink = styled(Link)`
 `;
 
 export const Comment = styled.div`
-  align-items: center;
-  border: 0.0823rem solid ${colors.mercury};
-  display: flex !important;
+  align-items: flex-start;
+  border: 0.08rem solid ${colors.mercury};
+  display: flex;
   flex-direction: column;
-  flex: 1;
-  gap: 1.8rem;
-  justify-content: space-between;
-  padding: 2rem;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
   box-shadow: 0 0.06rem 0.38rem ${colors.mercury};
   border-radius: 0.38rem;
+  position: relative;
 
   ${mq.tablet`
     flex-direction:row
   `}
 `;
 
-export const CommentPhoto = styled.div`
-  border-radius: 50%;
-  height: 6.125rem;
-  width: 6.25rem;
-`;
-
 export const CommentText = styled.div`
-  display: inline;
-  line-height: 1.1875rem;
-
   h3 {
     font-weight: 600;
     font-size: 1rem;
-    margin-bottom: 0.4rem;
+    margin: 0.8rem 0;
   }
 
   p {
     margin: 0;
     text-align: justify;
-  }
-
-  span {
-    color: ${colors.dustyGray};
-    float: right;
-    padding: 0.5rem;
+    line-height: 1.25rem;
+    word-break: break-all;
+    margin-bottom: 0.5rem;
   }
 `;
 
 export const CommentsWrapper = styled.div`
-  display: none;
-
-  ${mq.desktop`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 1.4rem;
-  `}
-`;
-
-export const StyledSlide = styled.div`
-  ${mq.desktop`
-    display:none
-  `}
-
-  .slick-slider {
-    width: 100%;
-  }
-
-  .slide-dots {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-
-    > li {
-      display: inline;
-      margin: 0 0.3125rem;
-      > button {
-        background-color: ${colors.midGray};
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-        font-size: 0;
-        height: 0.75rem;
-        padding: 0;
-        width: 0.75rem;
-      }
-    }
-  }
-
-  .slide-dots li.slick-active button {
-    background-color: ${colors.white};
-    border: 0.125rem solid ${colors.green};
-    height: 0.9375rem;
-    width: 0.9375rem;
-  }
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1.4rem;
+  position: relative;
+  max-height: 40rem;
+  overflow-y: auto;
 `;
 
 export const StyledImg = styled.img`
@@ -181,11 +137,72 @@ export const CommentSection = styled.div`
   align-items: center;
   display: flex;
   gap: 0.5rem;
+  flex: 1;
 `;
 
-export const ButtonContainer = styled.div`
-  > button {
-    font-weight: 600;
-    font-size: 0.9rem;
+export const RatingText = styled.span`
+  display: inline-block;
+  color: ${colors.green};
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding-right: 0.2rem;
+`;
+
+export const ReviewDate = styled.span`
+  display: inline-block;
+  color: ${colors.dustyGray};
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.09rem;
+  margin-left: auto;
+`;
+
+export const EditIconContainer = styled(IconContainer)`
+  position: absolute;
+  top: 1.1rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover {
+    background: ${({ hover }) => hover && colors.whiteSand};
   }
+
+  span {
+    padding: 0.5rem 1.25rem;
+  }
+`;
+
+export const EditIcon = styled(editIcon)`
+  &:hover {
+    + span {
+      display: block;
+    }
+  }
+`;
+
+export const CancelButton = styled(Button)`
+  background-color: ${colors.white};
+  border: 0.06rem solid ${colors.gray};
+  color: ${colors.gray};
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  > button {
+    font-size: 1rem;
+    padding: 0 2.1rem;
+  }
+`;
+
+export const RatingTextContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  margin: 0.8rem 0;
 `;

@@ -3,7 +3,8 @@ import colors from 'styles/colors';
 
 export const Labels = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ hasLabel }) =>
+    hasLabel ? 'space-between' : 'flex-end'};
 `;
 
 export const LimitMessage = styled.span`
@@ -22,6 +23,7 @@ export const Input = styled.textarea`
   padding: 0.625rem;
   resize: none;
   width: 100%;
+  font-family: inherit;
 
   ::placeholder {
     color: ${colors.mercury};
