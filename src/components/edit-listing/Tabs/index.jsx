@@ -2,6 +2,7 @@ import CreateListingForm from 'components/create-listing/CreateListingForm';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import ReverifiPlus from '../ReverifiPlus';
 import EditListingSchedulePage from '../Schedule/EditListingSchedule';
 import { Container } from './tabs.style';
 
@@ -22,6 +23,7 @@ function EditTabsForm() {
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,
+          <ReverifiPlus />,
         ]}
       />
     </Container>
