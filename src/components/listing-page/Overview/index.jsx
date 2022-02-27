@@ -23,6 +23,8 @@ import {
  * @return {JSX.Element}
  */
 function Overview({ listing }) {
+  const { schedule } = listing;
+
   return (
     <Container>
       <Wrapper>
@@ -66,7 +68,7 @@ function Overview({ listing }) {
             Claim This Property
           </ClaimButton>
         </Claim>
-        <ScheduleVisit />
+        {schedule && <ScheduleVisit data={schedule} />}
       </Wrapper>
       <ContactForm />
     </Container>
@@ -78,7 +80,14 @@ Overview.propTypes = {
     createdAt: PropTypes.string,
     listingSocial: PropTypes.objectOf(PropTypes.string),
     overview: PropTypes.string.isRequired,
-  }).isRequired,
+    schedule: PropTypes.objectOf(PropTypes.string),
+  }),
+};
+
+Overview.defaultProps = {
+  listing: PropTypes.shape({
+    schedule: null,
+  }),
 };
 
 export default Overview;
