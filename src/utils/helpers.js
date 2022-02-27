@@ -89,6 +89,8 @@ export const formatPhoneNumber = (phoneNumber) => {
 
   const phoneNumberString = phoneNumber?.toString().slice(2);
 
+  if (phoneNumberString.length < 3) return null;
+
   let reg;
   let lastPartLength;
 
