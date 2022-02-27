@@ -40,6 +40,7 @@ const listingFormSchema = yup
     price: positiveFloatValidator,
     propertyType: stringValidator,
     rooms: positiveIntegerValidator,
+    tags: yup.array(),
     yearBuilt: positiveIntegerValidator.max(new Date().getFullYear()),
   })
   .test('atLeastOneCheckBoxIsSelected', null, (obj) => {

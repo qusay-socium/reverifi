@@ -27,14 +27,23 @@ export const ImageContainer = styled.div`
   width: 60%;
 `;
 
+export const BadgesContainer = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+`;
+
 export const Badge = styled.h4`
   background-color: ${colors.green};
   border-radius: 0.3rem;
   color: ${colors.white};
-  margin: 0.6rem;
-  padding: 0.3rem 1rem;
-  position: absolute;
-  font-size: 0.7rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.67rem;
+  margin: 0;
+  font-weight: 600;
 `;
 
 export const Image = styled.img`

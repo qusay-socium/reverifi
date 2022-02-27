@@ -40,6 +40,7 @@ function CreateListingForm({ date }) {
     setValue,
     watch,
     reset,
+    control,
   } = useForm({
     defaultValues: {
       overview: '',
@@ -105,6 +106,7 @@ function CreateListingForm({ date }) {
       values.homeArea = { sqft: values?.homeArea };
       values.lotArea = { sqft: values?.lotArea };
       values.lotDimensions = { sqft: values?.lotDimensions };
+      values.tags = values.tags.map((tag) => tag.value);
 
       if (!formId) {
         const { id } = await submitListingForm(values);
@@ -126,6 +128,7 @@ function CreateListingForm({ date }) {
             register={register}
             setValue={setValue}
             values={values}
+            control={control}
           />
         </Wrapper>
         <ListingImageInput

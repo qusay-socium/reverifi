@@ -146,7 +146,7 @@ export const Tag = styled.div`
   color: ${colors.white};
   font-size: 0.625rem;
   margin-right: 0.4375rem;
-  padding: 0.3125rem 1.1875rem;
+  padding: 0.3rem 0.6rem;
 `;
 
 export const PersonImg = styled.img`
