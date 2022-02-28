@@ -146,6 +146,13 @@ const routes = [
     path: '/transaction/*',
     title: 'Transaction',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/SavedAgentsListings')),
+    label: 'saved-agents-listings',
+    path: '/saved',
+    title: 'Saved Agents Listings',
+  },
 ];
 
 export default routes;

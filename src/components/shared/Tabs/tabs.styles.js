@@ -10,7 +10,9 @@ export const Tab = styled.button`
   font-size: 1.125rem;
   margin-right: 0.4rem;
   min-width: 9rem;
-  padding: 0.7rem;
+  padding: 0.8rem;
+  border-bottom: none;
+  font-family: inherit;
 `;
 
 export const TabContent = styled.div`
@@ -19,4 +21,11 @@ export const TabContent = styled.div`
   > div {
     margin: 0;
   }
+`;
+
+export const Line = styled.hr`
+  margin: 0;
+  height: 2px;
+  background-color: ${colors.mercury};
+  border: none;
 `;

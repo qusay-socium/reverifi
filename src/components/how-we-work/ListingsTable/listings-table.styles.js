@@ -4,8 +4,6 @@ import colors from 'styles/colors';
 
 export const ListingsTableContainer = styled.div`
   th {
-    padding-left: 1rem;
-
     &:last-child {
       text-align: right;
       padding-right: 10rem;

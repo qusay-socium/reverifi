@@ -1,4 +1,7 @@
+import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { howWeWorkDescription } from '../data';
 import ListingsTable from '../ListingsTable';
 import {
@@ -16,6 +19,13 @@ const videoLink = 'https://www.youtube.com/embed/MjS5OVA7ugo?autoplay=1';
  * @return {JSX.Element}
  */
 function HowWeWorkWrapper() {
+  const { isLoggedIn } = useUser();
+  const navigate = useNavigate();
+
+  useEffectOnce(() => {
+    if (!isLoggedIn) navigate('/sign-up');
+  });
+
   return (
     <HowWeWorkContainer>
       <VideoContainer>

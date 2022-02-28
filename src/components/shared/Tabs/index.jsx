@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Tab, TabContent } from './tabs.styles';
+import { Line, Tab, TabContent } from './tabs.styles';
 
 /**
  * Tabs component
@@ -29,7 +29,7 @@ function Tabs({ tabsTitles, tabsContent, activePage }) {
           {title}
         </Tab>
       ))}
-
+      <Line />
       {tabsContent?.map((Content, index) => (
         <TabContent key={index.toString()} active={activeTab === index}>
           {Content}
