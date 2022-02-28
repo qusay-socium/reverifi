@@ -12,7 +12,7 @@ export const Container = styled.div`
   .react-datepicker-wrapper {
     border: 0.06rem solid ${colors.midGray};
     border-radius: 0.5rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     padding: 0.5rem 1rem;
   }
 `;
@@ -51,14 +51,10 @@ export const DateSliderContainer = styled.div`
   }
 
   .input {
-    width: 100%;
     border: none;
     outline: none;
+    width: 100%;
   }
-`;
-
-export const SliderWrapper = styled.div`
-  margin-bottom: 1.5rem;
 `;
 
 export const DateCard = styled.div`
@@ -67,9 +63,8 @@ export const DateCard = styled.div`
   cursor: pointer;
   max-height: 5rem;
   max-width: 5rem;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   text-align: center;
-  margin-bottom: 1rem;
 
   span {
     display: block;

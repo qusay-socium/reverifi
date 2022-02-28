@@ -83,7 +83,7 @@ export const getListingData = async (formID) => {
 };
 
 /**
- * Submit listing form.
+ * Submit listing schedule.
  *
  * @param {string} formData Contains all schedule data.
  * @param {uuid} id listing id.
@@ -93,7 +93,38 @@ export const getListingData = async (formID) => {
 export const submitListingSchedule = async (formData) => {
   const {
     data: { data },
-  } = await http.post(`${apiUrl}/schedule`, formData);
+  } = await http.patch(`${apiUrl}/schedule`, formData);
+
+  return data;
+};
+
+/**
+ * Submit listing visit.
+ *
+ * @param {object} formData Contains all listing visit data.
+ * @param {uuid} id listing id.
+ *
+ * @return {Promise<Object>} submitted response.
+ */
+export const submitListingVisit = async (formData) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/schedule/visit`, formData);
+
+  return data;
+};
+
+/**
+ * get listing schedule.
+ *
+ * @param {uuid} id listing id.
+ *
+ * @return {Promise<Object>} submitted response.
+ */
+export const getListingSchedule = async (id) => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/schedule/${id}`);
 
   return data;
 };

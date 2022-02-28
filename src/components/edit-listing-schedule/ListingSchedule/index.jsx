@@ -1,9 +1,13 @@
 import Button from 'components/shared/Button';
+import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { submitListingSchedule } from 'services/listing-create-service';
+import {
+  getListingSchedule,
+  submitListingSchedule,
+} from 'services/listing-create-service';
 import { getDifferenceBetweenTwoDates } from 'utils/helpers';
 import DatePickerInputHandler from '../DateInput';
 import Switch from '../Switch';
@@ -25,8 +29,10 @@ function EditListingSchedule() {
   const { handleSubmit, reset, control } = useForm();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [updateDate, setUpdateDate] = useState({});
   const [dateRange, setDateRange] = useState(weekDays);
   const navigate = useNavigate();
+  const { isLoggedIn } = useUser();
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -84,8 +90,13 @@ function EditListingSchedule() {
     return renderDays;
   };
 
+  const getScheduleData = async () => {
+    setUpdateDate(await getListingSchedule(id));
+  };
+
   useEffect(() => {
-    setDateRange(weekDays);
+    if (!isLoggedIn) navigate('/sign-up');
+    getScheduleData();
 
     if (
       startDate &&
@@ -113,7 +124,17 @@ function EditListingSchedule() {
         }));
       });
     }
-  }, [startDate, endDate]);
+  }, []);
+
+  useEffect(() => {
+    if (updateDate?.endDate) {
+      setEndDate(updateDate?.endDate ? new Date(updateDate?.endDate) : null);
+      setStartDate(
+        updateDate?.startDate ? new Date(updateDate?.startDate) : null
+      );
+      setDateRange(updateDate?.days);
+    }
+  }, [updateDate]);
 
   return (
     <div>
@@ -152,8 +173,9 @@ function EditListingSchedule() {
                       day={day}
                       dateRange={dateRange}
                       setDateRange={setDateRange}
+                      time={day?.startHour}
                     />
-                    <span>To</span>
+                    <span>To </span>
                     <TimeInput
                       Controller={Controller}
                       control={control}
@@ -163,6 +185,7 @@ function EditListingSchedule() {
                       day={day}
                       dateRange={dateRange}
                       setDateRange={setDateRange}
+                      time={day?.endHour}
                     />
                   </SetTime>
                 )

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
@@ -62,7 +63,7 @@ export default function MyListingsTable({
     <>
       <Table headers={tableHeaders}>
         {listings?.data?.map(
-          ({ address, images, agent, createdAt, id, owner }) => (
+          ({ address, images, agent, createdAt, id, owner, schedule }) => (
             <TableRow key={id}>
               <CellContainer>
                 <ListingImageContainer>

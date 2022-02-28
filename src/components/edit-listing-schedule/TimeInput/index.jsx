@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { ReactComponent as ArrowUpDown } from 'assets/mocks/images/arrow-up-down.svg';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,6 +24,7 @@ function TimeInput({
   day,
   dateRange,
   setDateRange,
+  time,
 }) {
   const { active, id } = day;
 
@@ -62,7 +64,9 @@ function TimeInput({
                 field.onChange(e);
                 handelChange(e);
               }}
-              selected={field.value}
+              selected={
+                field.value ? field.value : time ? new Date(time) : null
+              }
               placeholderText="00:00 AM"
               dateFormat="h:mm aa"
               timeIntervals={60}
@@ -90,6 +94,7 @@ TimeInput.propTypes = {
   }),
   filterPassedTime: PropTypes.func,
   name: PropTypes.string,
+  time: PropTypes.string,
   setDateRange: PropTypes.func,
   setStartDate: PropTypes.func,
 };
@@ -101,6 +106,7 @@ TimeInput.defaultProps = {
   day: null,
   filterPassedTime: null,
   name: null,
+  time: null,
   setDateRange: () => {},
   setStartDate: () => {},
 };
