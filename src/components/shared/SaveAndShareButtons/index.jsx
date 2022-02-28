@@ -15,6 +15,16 @@ import {
   ShareIcon,
 } from './save-and-share-buttons.styles';
 
+/**
+ * Save And Share Buttons component
+ *
+ * @param {String} userId            user id
+ * @param {String} listingId         listing id
+ * @param {Function} setShowModal    show modal function
+ * @param {Boolean} small            small icons if true
+ *
+ *@return {JSX.Element}
+ */
 function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
@@ -35,8 +45,12 @@ function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
    * handle get user saved
    */
   const fetchSave = async () => {
-    const data = await getUserOrListingSave(userId || '', listingId || '');
-    if (data) setSaved(true);
+    try {
+      const data = await getUserOrListingSave(userId || '', listingId || '');
+      if (data) setSaved(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffectOnce(fetchSave);

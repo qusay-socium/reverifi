@@ -19,8 +19,9 @@ import React from 'react';
 /**
  * Offer details section.
  *
- * @param {Object} price      price for listing.
- * @param {Object} address    address for listing.
+ * @param {Object} price      price for listing
+ * @param {Object} address    address for listing
+ * @param {String} id         listing id
  *
  * @return {JSX.Element}
  */

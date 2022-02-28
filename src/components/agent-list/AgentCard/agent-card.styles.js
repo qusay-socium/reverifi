@@ -96,7 +96,7 @@ export const CompanyNamePlaceholder = styled.div`
   margin: 0 0 0.6rem 0;
 `;
 
-export const FooterButtonsContainer = styled.div`
+export const ButtonsContainer = styled.div`
   align-items: flex-start;
   display: flex;
   justify-content: flex-end;

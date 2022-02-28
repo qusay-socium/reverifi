@@ -42,7 +42,7 @@ export const RoundedButton = styled(Button)`
 
 export const HeartIcon = styled(Heart)`
   width: ${({ small }) => (small ? '1rem' : '1.125rem')};
-  height: ${({ small }) => (small ? '1.1rem' : '1.125rem')};
+  height: 1.125rem;
 `;
 
 export const ShareIcon = styled(Share)`

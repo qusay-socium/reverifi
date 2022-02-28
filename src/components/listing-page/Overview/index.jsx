@@ -32,7 +32,7 @@ function Overview({ listing }) {
             <span>
               Time on reverifi:
               <Value>
-                &nbsp;
+                {' '}
                 {getDatesDifference(listing?.createdAt)} day
                 {getDatesDifference(listing?.createdAt) > 1 && 's'}
               </Value>

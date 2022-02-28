@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import {
   AgentPicture,
+  ButtonsContainer,
   Card,
   CardContent,
   CardFooter,
@@ -25,7 +26,6 @@ import {
   ContactProperty,
   ContactText,
   EmailTooltip,
-  FooterButtonsContainer,
   IconContainer as TooltipContainer,
   ImgContainer,
   Line,
@@ -128,7 +128,7 @@ function AgentCard({
           <ContactButton onClick={() => navigate(`/agent-details/${id}`)}>
             More details
           </ContactButton>
-          <FooterButtonsContainer>
+          <ButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <TooltipContainer>
                 <MailIcon />
@@ -137,7 +137,7 @@ function AgentCard({
             <TooltipContainer>
               <PhoneIcon />
             </TooltipContainer>
-          </FooterButtonsContainer>
+          </ButtonsContainer>
         </CardFooter>
       </CardContent>
     </Card>
