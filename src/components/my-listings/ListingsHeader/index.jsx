@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { ReactComponent as AddIcon } from 'assets/add-icon.svg';
 import FilterIcon from 'assets/filter-button.svg';
 import ScheduleIcon from 'assets/icons/schedule.svg';
 import DropdownMenu from 'components/shared/DropdownMenu';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -13,7 +12,7 @@ import {
 } from './listings-header.style';
 
 /**
- * My Profile page component.
+ * My Listing Header component.
  *
  * @return {JSX.Element}
  */
@@ -58,5 +57,13 @@ function MyListingHeader({ setOrder }) {
     </Header>
   );
 }
+
+MyListingHeader.propTypes = {
+  setOrder: PropTypes.func,
+};
+
+MyListingHeader.defaultProps = {
+  setOrder: () => {},
+};
 
 export default MyListingHeader;

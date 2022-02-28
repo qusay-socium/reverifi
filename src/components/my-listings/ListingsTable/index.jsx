@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
@@ -16,26 +14,34 @@ import {
   AgentContainer,
   AgentImage,
   AgentName,
-  ArrowIconContainer,
   ArrowLeft,
   ArrowRight,
+  CellContainer,
   CurrentListing,
   IconContainer,
   ListingImage,
   ListingImageContainer,
   MaxListingNumber,
   Pagination,
-  TableCellContainer,
+  TableIconContainer,
 } from './listing-table.style';
 
 const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
 
 /**
+ *
  * My Listings table component.
+ *
+ * @param  {func} setDeleteId select the id for the item to delete
+ * @param  {func} handleLeftArrowClick handle the previous page
+ * @param  {func} handleRightArrowClick handle the next page
+ * @param  {number} pageNumber the current page number
+ * @param  {object} listings date for the listings
+ * @param  {func} setShowModal handle the delete box
  *
  * @return {JSX.Element}
  */
-export default function MyListings({
+export default function MyListingsTable({
   setDeleteId,
   handleLeftArrowClick,
   handleRightArrowClick,
@@ -58,24 +64,24 @@ export default function MyListings({
         {listings?.data?.map(
           ({ address, images, agent, createdAt, id, owner }) => (
             <TableRow key={id}>
-              <TableCellContainer>
+              <CellContainer>
                 <ListingImageContainer>
                   <ListingImage src={images ? images[0] : listingImage} />
                 </ListingImageContainer>
-              </TableCellContainer>
-              <TableCellContainer>{address}</TableCellContainer>
-              <TableCellContainer>
+              </CellContainer>
+              <CellContainer>{address}</CellContainer>
+              <CellContainer>
                 <AgentContainer>
                   <AgentImage src={agent?.userInfo?.image || agentImage} />
                   <AgentName>{agent?.name || owner?.name || 'N/A'}</AgentName>
                 </AgentContainer>
-              </TableCellContainer>
-              <TableCellContainer>
+              </CellContainer>
+              <CellContainer>
                 {new Date(createdAt).toLocaleDateString()}
-              </TableCellContainer>
-              <TableCellContainer> </TableCellContainer>
-              <TableCellContainer iconsCell>
-                <IconContainer hover>
+              </CellContainer>
+              <CellContainer> </CellContainer>
+              <CellContainer iconsCell>
+                <TableIconContainer hover>
                   <EyeIcon
                     onClick={() => {
                       navigate(`/listing/${id}`);
@@ -86,8 +92,8 @@ export default function MyListings({
                     arrowPosition="top"
                     position={[3, -0.8]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <EditIcon
                     onClick={() => {
                       navigate(`/my-listings/edit/${id}`);
@@ -98,8 +104,8 @@ export default function MyListings({
                     arrowPosition="top"
                     position={[3, -0.5]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <ScheduleIcon
                     onClick={() => {
                       navigate(
@@ -112,8 +118,8 @@ export default function MyListings({
                     arrowPosition="top"
                     position={[3, -1.8]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <DeleteIcon
                     onClick={() => {
                       setShowModal(true);
@@ -125,8 +131,8 @@ export default function MyListings({
                     arrowPosition="top"
                     position={[3, -0.8]}
                   />
-                </IconContainer>
-              </TableCellContainer>
+                </TableIconContainer>
+              </CellContainer>
             </TableRow>
           )
         )}
@@ -136,21 +142,31 @@ export default function MyListings({
         <CurrentListing>{startItem} -</CurrentListing>
         <CurrentListing>{endItem}</CurrentListing>
         <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-        <ArrowIconContainer onClick={handleLeftArrowClick}>
+        <IconContainer onClick={handleLeftArrowClick}>
           <ArrowLeft />
-        </ArrowIconContainer>
-        <ArrowIconContainer onClick={handleRightArrowClick}>
+        </IconContainer>
+        <IconContainer onClick={handleRightArrowClick}>
           <ArrowRight />
-        </ArrowIconContainer>
+        </IconContainer>
       </Pagination>
     </>
   );
 }
 
-MyListings.propTypes = {
+MyListingsTable.propTypes = {
+  handleLeftArrowClick: PropTypes.func,
+  handleRightArrowClick: PropTypes.func,
+  listings: PropTypes.objectOf(PropTypes.string),
+  pageNumber: PropTypes.number,
   setDeleteId: PropTypes.func,
+  setShowModal: PropTypes.func,
 };
 
-MyListings.defaultProps = {
+MyListingsTable.defaultProps = {
+  handleLeftArrowClick: () => {},
+  handleRightArrowClick: () => {},
+  listings: null,
+  pageNumber: null,
   setDeleteId: () => {},
+  setShowModal: () => {},
 };

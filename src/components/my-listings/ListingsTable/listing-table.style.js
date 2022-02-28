@@ -8,7 +8,7 @@ export const ListingImageContainer = styled.div`
   width: 6rem;
 `;
 
-export const TableCellContainer = styled(TableCell)`
+export const CellContainer = styled(TableCell)`
   padding: 0.8rem 0 0.8rem 1.5rem;
 `;
 
@@ -33,7 +33,7 @@ export const AgentName = styled.p`
   margin-left: 0.5rem;
 `;
 
-export const IconContainer = styled.button`
+export const TableIconContainer = styled.button`
   background: none;
   border: none;
   cursor: pointer;
@@ -76,7 +76,7 @@ export const CurrentListing = styled.h5`
   margin-right: 0.3rem;
 `;
 
-export const ArrowIconContainer = styled.div`
+export const IconContainer = styled.div`
   border-radius: 10rem;
   width: 1.5rem;
   height: 1.5rem;

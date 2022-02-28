@@ -50,7 +50,7 @@ function MyListings() {
   };
 
   const handleRightArrowClick = () => {
-    if (pageNumber < Math.floor(listings?.count / listingPerPage)) {
+    if (pageNumber < Math.trunc(listings?.count / listingPerPage)) {
       setPageNumber(pageNumber + 1);
     }
   };
