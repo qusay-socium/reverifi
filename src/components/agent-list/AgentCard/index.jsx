@@ -4,7 +4,7 @@ import { ReactComponent as AddressIcon } from 'assets/icons/address.svg';
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/phone-call.svg';
-import LikeButton from 'components/shared/LikeButton';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import Tooltip from 'components/shared/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -26,15 +26,11 @@ import {
   ContactProperty,
   ContactText,
   EmailTooltip,
-  FooterButtonsContainer,
-  HeartIcon,
   IconContainer as TooltipContainer,
   ImgContainer,
   Line,
   PropertyIconContainer,
   PropertyText,
-  RoundedButton,
-  ShareIcon,
   Username,
 } from './agent-card.styles';
 
@@ -75,15 +71,8 @@ function AgentCard({
               <CompanyName>{toUpperCaseFirstLetter(companyName)}</CompanyName>
             </CompanyNamePlaceholder>
           </div>
-          <ButtonsContainer>
-            <RoundedButton ariaLabel="Favorite">
-              <HeartIcon />
-            </RoundedButton>
-            <LikeButton userId={id} grayIcon />
-            <RoundedButton ariaLabel="Share">
-              <ShareIcon />
-            </RoundedButton>
-          </ButtonsContainer>
+
+          <SaveAndShareButtons userId={id} />
         </CardHeader>
         <ContactInfoContainer>
           {phoneNumber && (
@@ -139,7 +128,7 @@ function AgentCard({
           <ContactButton onClick={() => navigate(`/agent-details/${id}`)}>
             More details
           </ContactButton>
-          <FooterButtonsContainer>
+          <ButtonsContainer>
             <ContactEmail href={`mailto:${email}`}>
               <TooltipContainer>
                 <MailIcon />
@@ -148,7 +137,7 @@ function AgentCard({
             <TooltipContainer>
               <PhoneIcon />
             </TooltipContainer>
-          </FooterButtonsContainer>
+          </ButtonsContainer>
         </CardFooter>
       </CardContent>
     </Card>

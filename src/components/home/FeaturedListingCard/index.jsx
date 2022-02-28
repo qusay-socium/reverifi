@@ -1,10 +1,9 @@
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
-import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
-import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import agentImage from 'assets/listing-agent-image.png';
 import listingImage from 'assets/listing-image.png';
 import { ReactComponent as LocationIcon } from 'assets/location.svg';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,8 +19,6 @@ import {
   CardImageContainer,
   CardParent,
   FeaturedIconContainer,
-  IconContainer,
-  IconsContainer,
   Image,
   InfoContainer,
   Overlay,
@@ -119,14 +116,11 @@ function Card({ data }) {
         <CardFooter>
           <TextLarge>$ {price.toLocaleString()}</TextLarge>
 
-          <IconsContainer>
-            <IconContainer stroke="true">
-              <HeartIcon />
-            </IconContainer>
-            <IconContainer fill="true" onClick={() => setShowModal(true)}>
-              <ShareIcon />
-            </IconContainer>
-          </IconsContainer>
+          <SaveAndShareButtons
+            listingId={id}
+            setShowModal={setShowModal}
+            small="true"
+          />
         </CardFooter>
       </CardContainer>
 
@@ -174,14 +168,11 @@ function Card({ data }) {
             </OverlayButton>
 
             <OverlayIcons>
-              <IconsContainer>
-                <IconContainer stroke="true">
-                  <HeartIcon />
-                </IconContainer>
-                <IconContainer fill="true" onClick={() => setShowModal(true)}>
-                  <ShareIcon />
-                </IconContainer>
-              </IconsContainer>
+              <SaveAndShareButtons
+                listingId={id}
+                setShowModal={setShowModal}
+                small="true"
+              />
             </OverlayIcons>
           </OverlayBody>
         </Overlay>

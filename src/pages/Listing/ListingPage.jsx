@@ -9,6 +9,7 @@ import ShowModalProvider from 'contexts/ShowModalContext/index';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getListingsById } from 'services/listing';
+import { viewOrShareUserOrListing } from 'services/social-statistics';
 
 /**
  * Listing page component.
@@ -21,7 +22,11 @@ function ListingPage() {
   const [listingDetails, setListingDetails] = useState({});
 
   const getListingDetails = async (listingId) => {
-    setListingDetails(await getListingsById(listingId));
+    const listingInfo = await getListingsById(listingId);
+    setListingDetails(listingInfo);
+
+    // add view to listing
+    await viewOrShareUserOrListing({ listingId: id, type: 'views' });
   };
 
   useEffect(() => {
@@ -33,7 +38,11 @@ function ListingPage() {
   if (!listingDetails?.id) return null;
   return (
     <ShowModalProvider>
-      <Offer address={listingDetails?.address} price={listingDetails?.price} />
+      <Offer
+        address={listingDetails?.address}
+        price={listingDetails?.price}
+        id={listingDetails?.id}
+      />
       <ListingPageSlider images={listingDetails?.images} />
       <Overview listing={listingDetails} />
       <Details details={listingDetails} />

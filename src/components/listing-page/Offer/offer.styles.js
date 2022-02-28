@@ -64,11 +64,7 @@ export const SubmitButton = styled(Button)`
 export const SideButtonsContainer = styled.div`
   align-items: baseline;
   display: flex;
-
-  svg {
-    cursor: pointer;
-    stroke: ${colors.gray};
-  }
+  gap: 0.6rem;
 
   ${mq.desktop`
     align-items: center;
@@ -80,21 +76,19 @@ export const Logo = styled.div`
   align-items: center;
   background-color: ${colors.wildSand};
   border-radius: 50%;
-  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
   cursor: pointer;
   display: flex;
-  height: 1.56rem;
+  height: 1.9rem;
   justify-content: center;
-  width: 1.56rem;
-  margin-left: 0.5rem;
+  width: 1.9rem;
 
   svg {
-    stroke: ${colors.dustyGray};
-    width: 0.9rem;
-    height: 0.9rem;
-    padding: 0;
-    margin-left: 0;
+    stroke: ${colors.gray};
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
   }
+
   :hover {
     svg {
       stroke: ${colors.white};

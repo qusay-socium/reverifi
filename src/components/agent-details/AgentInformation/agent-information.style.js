@@ -63,6 +63,7 @@ export const AgentName = styled.div`
   align-items: center;
   display: flex;
   gap: 0.8rem;
+  justify-content: space-between;
 
   h2 {
     margin: 0;

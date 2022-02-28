@@ -53,34 +53,9 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
 
-export const IconsWrapper = styled.div`
-  display: flex;
-`;
-
-export const ShearIconsContainer = styled.div`
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  height: 2rem;
-  width: 2rem;
-  justify-content: space-around;
-  border-radius: 50%;
-  box-shadow: 0 0.06rem 0.37rem ${colors.mineShaft}29;
-  background-color: ${colors.wildSand};
-  margin: 0 0.4rem 0 0.4rem;
-  border-radius: 10rem;
-
-  svg {
-    padding: 0.15rem;
-    color: ${colors.dustyGray};
-  }
-  &:hover {
-    background-color: ${colors.green};
-    svg {
-      color: ${colors.white};
-    }
+  > div:last-child {
+    padding-right: 0.8rem;
   }
 `;
 
