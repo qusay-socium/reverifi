@@ -60,7 +60,7 @@ function Card({ data }) {
         <BadgesContainer>
           <Badge>Sale</Badge>
           {tags?.length > 0 &&
-            tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+            tags?.map((tag) => <Badge key={tag}>{tag}</Badge>)}
         </BadgesContainer>
 
         <Image src={images ? images[0] : listingImage} />

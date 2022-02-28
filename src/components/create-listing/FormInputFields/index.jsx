@@ -67,6 +67,7 @@ const tagsOptions = generateLabelValuePairs([
  * @param {Object}   props.errors                        Error message/s.
  * @param {Function} props.setValue                      Sets form values.
  * @param {Object}   props.values                        Form values.
+ * @param {Object}  props.control                         React useForm control object
  *
  * @return {JSX.Element}
  */

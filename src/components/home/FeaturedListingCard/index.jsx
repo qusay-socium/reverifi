@@ -71,7 +71,7 @@ function Card({ data }) {
           <TagContainer>
             {getDatesDifference(createdAt, 7) && <Tag isNew>New</Tag>}
             {listingType?.type && <Tag>{listingType?.type}</Tag>}
-            {tags?.length > 0 && tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+            {tags?.length > 0 && tags?.map((tag) => <Tag key={tag}>{tag}</Tag>)}
           </TagContainer>
           <PersonImg src={agent?.userInfo?.image || agentImage} />
         </CardImageContainer>
