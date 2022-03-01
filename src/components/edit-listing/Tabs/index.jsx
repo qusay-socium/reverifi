@@ -1,3 +1,4 @@
+import { ReactComponent as AddSvg } from 'assets/add-icon.svg';
 import CreateListingForm from 'components/create-listing/CreateListingForm';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
@@ -19,7 +20,8 @@ function EditTabsForm() {
     <Container>
       <Tabs
         activePage={+tab}
-        tabsTitles={['Details', 'Schedule', 'reverifi PLUS']}
+        tabsTitles={['Details', 'Schedule', 'reverifi']}
+        tabsIcons={[null, null, <AddSvg />]}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,
