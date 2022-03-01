@@ -12,24 +12,52 @@ import { ReactComponent as OwnerIcon } from 'assets/icons/owner.svg';
 import { ReactComponent as RoomsIcon } from 'assets/icons/rooms.svg';
 import { ReactComponent as AgentIcon } from 'assets/icons/seller-agent.svg';
 import { ReactComponent as PartialBathroomsIcon } from 'assets/icons/shower.svg';
+import { ReactComponent as TagsIcon } from 'assets/icons/tags.svg';
 import { ReactComponent as YearBuiltIcon } from 'assets/icons/year-built.svg';
 import FormInput from 'components/shared/FormInput';
 import SelectInput from 'components/shared/FormSelectInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { Controller } from 'react-hook-form';
+import Select from 'react-select';
 import {
   getAllListingTypes,
   getAllPropertyTypes,
 } from 'services/listing-create-service';
-import { handleNumberInput } from 'utils/helpers';
+import colors from 'styles/colors';
+import { generateLabelValuePairs, handleNumberInput } from 'utils/helpers';
 import {
   ButtonsContainer,
   DetailsInputsContainer,
   IdentifierButton,
+  InputLabel,
+  SelectContainer,
   SelectOneError,
   TextInputContainer,
 } from './form-input-fields.styles';
+
+/**
+ * custom select theme function to change select default colors
+ *
+ * @param {Object} theme theme object from the select component
+ */
+const customSelectTheme = (theme, error) => ({
+  ...theme,
+  colors: {
+    ...theme.colors,
+    dangerLight: colors.green,
+    primary: error ? colors.red : colors.green,
+    primary25: colors.green,
+  },
+});
+
+const tagsOptions = generateLabelValuePairs([
+  'REO',
+  'Price Cut',
+  'Pending',
+  'Foreclosure',
+]);
 
 /**
  * Render the form input fields.
@@ -39,10 +67,11 @@ import {
  * @param {Object}   props.errors                        Error message/s.
  * @param {Function} props.setValue                      Sets form values.
  * @param {Object}   props.values                        Form values.
+ * @param {Object}  props.control                         React useForm control object
  *
  * @return {JSX.Element}
  */
-function FormInputFields({ register, errors, setValue, values }) {
+function FormInputFields({ register, errors, setValue, values, control }) {
   const [propertyTypes, setPropertyTypes] = useState([]);
   const [listingTypes, setListingTypes] = useState([]);
 
@@ -267,12 +296,41 @@ function FormInputFields({ register, errors, setValue, values }) {
           limit={140}
           labelIconElement={<OverviewIcon />}
         />
+
+        <div>
+          <InputLabel>
+            <TagsIcon />
+            Special Tags
+          </InputLabel>
+          <SelectContainer error={errors.tags?.message}>
+            <Controller
+              name="tags"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Select
+                  className="tags-select"
+                  classNamePrefix="tags"
+                  closeMenuOnSelect={false}
+                  isMulti
+                  options={value?.length === 2 ? [] : tagsOptions}
+                  placeholder="Select tags..."
+                  theme={(theme) =>
+                    customSelectTheme(theme, errors.tags?.message)
+                  }
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
+          </SelectContainer>
+        </div>
       </TextInputContainer>
     </>
   );
 }
 
 FormInputFields.propTypes = {
+  control: PropTypes.objectOf(PropTypes.string),
   errors: PropTypes.objectOf(
     PropTypes.shape({
       message: PropTypes.string,
@@ -290,6 +348,7 @@ FormInputFields.propTypes = {
 };
 
 FormInputFields.defaultProps = {
+  control: null,
   errors: null,
   register: null,
   values: {

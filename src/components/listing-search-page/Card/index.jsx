@@ -12,6 +12,7 @@ import { listingPaths } from 'utils/appPaths';
 import {
   AreaText,
   Badge,
+  BadgesContainer,
   BoldNumber,
   CardContainer,
   CardHeader,
@@ -39,6 +40,7 @@ function Card({ data }) {
     fullBathrooms,
     lotArea,
     homeArea,
+    tags,
     id,
   } = data;
 
@@ -52,7 +54,12 @@ function Card({ data }) {
   return (
     <CardContainer onClick={handleClick}>
       <ImageContainer>
-        <Badge>Sale</Badge>
+        <BadgesContainer>
+          <Badge>Sale</Badge>
+          {tags?.length > 0 &&
+            tags?.map((tag) => <Badge key={tag}>{tag}</Badge>)}
+        </BadgesContainer>
+
         <Image src={images ? images[0] : listingImage} />
       </ImageContainer>
 
@@ -124,8 +131,8 @@ Card.propTypes = {
     images: PropTypes.arrayOf(PropTypes.string),
     length: PropTypes.number,
     lotArea: PropTypes.shape({ sqft: PropTypes.string }),
-
     price: PropTypes.number,
+    tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
 

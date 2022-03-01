@@ -81,3 +81,64 @@ export const TextInputContainer = styled.div`
   gap: 1.25rem;
   padding: 1.25rem 0;
 `;
+
+export const SelectContainer = styled.div`
+  .tags-select {
+    .tags__control {
+      border-radius: 0.4rem;
+      border: ${({ error }) =>
+        error
+          ? `0.08rem solid ${colors.red}`
+          : `0.08rem solid ${colors.mercury}`};
+      box-shadow: 0;
+      padding: 0.7rem;
+      font-size: 0.875rem;
+    }
+
+    .tags__multi-value {
+      background-color: ${colors.green};
+      border-radius: 1.1rem;
+      box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
+      font-size: 1rem;
+      margin: 0 0.2rem;
+      padding: 0.6rem;
+      color: ${colors.white};
+      font-weight: 600;
+
+      .tags__multi-value__label {
+        color: ${colors.white};
+      }
+    }
+
+    .tags__option {
+      font-size: 0.875rem;
+      padding-left: 0.6rem;
+
+      &:hover,
+      &:active {
+        color: ${colors.white};
+      }
+    }
+
+    .tags__menu {
+      .tags__option--is-selected {
+        background-color: ${colors.white};
+        color: ${colors.green};
+      }
+    }
+
+    .tags__placeholder {
+      font-size: 0.8rem;
+    }
+  }
+`;
+
+export const InputLabel = styled.div`
+  align-items: center;
+  color: ${colors.mineShaft};
+  display: flex;
+  font-size: 0.93rem;
+  gap: 0.5rem;
+  padding-bottom: 0.6rem;
+  width: 100%;
+`;
