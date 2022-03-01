@@ -6,7 +6,7 @@ import { ReactComponent as LocationIcon } from 'assets/location.svg';
 import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getDatesDifference } from 'utils/helpers';
 import {
@@ -41,6 +41,7 @@ import {
 
 function Card({ data }) {
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
 
   const {
     address,
@@ -120,6 +121,7 @@ function Card({ data }) {
             listingId={id}
             setShowModal={setShowModal}
             small="true"
+            activeState={isActive}
           />
         </CardFooter>
       </CardContainer>
@@ -172,6 +174,7 @@ function Card({ data }) {
                 listingId={id}
                 setShowModal={setShowModal}
                 small="true"
+                changeActiveState={() => setIsActive(!isActive)}
               />
             </OverlayIcons>
           </OverlayBody>
