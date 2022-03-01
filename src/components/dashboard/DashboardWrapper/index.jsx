@@ -82,7 +82,10 @@ function DashboardWrapper() {
 
       <DashboardHeading>Invitations</DashboardHeading>
       <Tabs
-        tabsTitles={['Incoming', 'Sent']}
+        tabsTitles={[
+          { icon: null, title: 'Incoming' },
+          { icon: null, title: 'Sent' },
+        ]}
         tabsContent={[
           <InvitationsTable data={incomingInvitations} />,
           'sent invitations table',

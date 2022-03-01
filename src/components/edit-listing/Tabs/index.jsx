@@ -16,12 +16,17 @@ function EditTabsForm() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 0;
 
+  const tabsDate = [
+    { icon: null, title: 'Details' },
+    { icon: null, title: 'Schedule' },
+    { icon: <AddSvg />, title: 'reverifi' },
+  ];
+
   return (
     <Container>
       <Tabs
         activePage={+tab}
-        tabsTitles={['Details', 'Schedule', 'reverifi']}
-        tabsIcons={[null, null, <AddSvg />]}
+        tabs={tabsDate}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,
