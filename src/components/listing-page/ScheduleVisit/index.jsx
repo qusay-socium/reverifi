@@ -65,7 +65,10 @@ function ScheduleVisit({ data, id }) {
     if (!isLoggedIn) {
       navigate('/login');
     }
-    submitListingVisit({ dateTime: selectedHour, listingId: id });
+    submitListingVisit({
+      dateTime: { date: selectedDay, time: selectedHour },
+      listingId: id,
+    });
   };
 
   useEffect(() => {
@@ -82,7 +85,7 @@ function ScheduleVisit({ data, id }) {
           dots={false}
           infinite={false}
           slidesToScroll={7}
-          slidesToShow={7}
+          slidesToShow={dateRange.length < 7 ? dateRange.length : 7}
           responsive={breakPoints}
         >
           {dateRange?.map(({ dayName, month, number, date }) => (

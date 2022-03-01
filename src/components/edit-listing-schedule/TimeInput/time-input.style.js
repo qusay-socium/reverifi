@@ -6,6 +6,7 @@ export const DateInputsWrapper = styled.div`
   align-items: center;
   border-radius: 2.18rem;
   display: flex;
+  flex-direction: column;
   margin: 1rem auto;
   max-width: 8rem;
   position: relative;
@@ -53,4 +54,8 @@ export const DateInputs = styled.div`
       background-color: ${colors.green};
     }
   }
+`;
+
+export const ErrorContainer = styled.div`
+  height: 1.4rem;
 `;

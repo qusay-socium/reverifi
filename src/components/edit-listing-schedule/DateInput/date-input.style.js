@@ -10,6 +10,7 @@ export const DateInput = styled(DatePicker)`
   flex: 1;
   font-size: 0.75rem;
   font-weight: 400;
+  outline: none;
   padding: 0.5rem;
   text-align: center;
   width: 100%;

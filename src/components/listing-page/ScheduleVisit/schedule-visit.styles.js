@@ -65,6 +65,7 @@ export const DateCard = styled.div`
   max-width: 5rem;
   padding: 1rem 0;
   text-align: center;
+  margin: 1rem;
 
   span {
     display: block;
