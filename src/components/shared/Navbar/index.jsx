@@ -77,7 +77,7 @@ function Navbar() {
             >
               <MenuWrapper>
                 <MenuTopWrapper>
-                  <MenuItem filled="true">
+                  <MenuItem filled="true" onClick={() => navigate('/saved')}>
                     <SavedListingsIcon />
                     Saved listings
                   </MenuItem>

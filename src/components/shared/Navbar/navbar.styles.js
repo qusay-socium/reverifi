@@ -118,6 +118,7 @@ export const UserControlSectionWrapper = styled(NavControlSection)`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-transform: capitalize;
   }
 `;
 
