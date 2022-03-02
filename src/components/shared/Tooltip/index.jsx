@@ -8,10 +8,14 @@ import { TooltipText } from './tooltip.styles';
  * @param {String} text tooltip text
  * @param {String} arrowPosition tooltip arrow position (top,bottom,left,right)
  * @param {Array(Number)} position tooltip position numbers array in 'rem' [top,right,bottom,left]
+ * @param {Boolean} light white background
+ * @param {Boolean} noArrow remove arrow from tooltip
+ *
+ *
  *
  * @return {JSX.Element}
  */
-function Tooltip({ text, arrowPosition, position, light }) {
+function Tooltip({ text, arrowPosition, position, light, noArrow }) {
   return (
     <TooltipText
       arrowPosition={arrowPosition}
@@ -20,6 +24,7 @@ function Tooltip({ text, arrowPosition, position, light }) {
       bottom={position[2]}
       left={position[3]}
       light={light}
+      noArrow={noArrow}
     >
       {text}
     </TooltipText>
@@ -29,12 +34,14 @@ function Tooltip({ text, arrowPosition, position, light }) {
 Tooltip.propTypes = {
   arrowPosition: propTypes.string.isRequired,
   light: propTypes.bool,
+  noArrow: propTypes.bool,
   position: propTypes.arrayOf(propTypes.number).isRequired,
   text: propTypes.string.isRequired,
 };
 
 Tooltip.defaultProps = {
   light: false,
+  noArrow: false,
 };
 
 export default Tooltip;

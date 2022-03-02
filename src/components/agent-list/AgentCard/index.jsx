@@ -95,19 +95,9 @@ function AgentCard({
               <PropertyText>Email</PropertyText>
             </ContactProperty>
             <EmailTooltip hover>
-              <Tooltip
-                light
-                text={email}
-                arrowPosition="top"
-                position={[2.5, 2]}
-              />
+              <Tooltip text={email} arrowPosition="top" position={[2.2, 2]} />
               <ContactEmail href={`mailto:${email}`}>{email}</ContactEmail>
             </EmailTooltip>
-            <Tooltip
-              text="Counter Offer"
-              arrowPosition="top"
-              position={[2.3, -3]}
-            />
           </ContactField>
           {address && (
             <ContactField>
