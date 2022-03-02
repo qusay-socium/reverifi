@@ -52,7 +52,7 @@ const customSelectTheme = (theme, error) => ({
   },
 });
 
-const tagsOptions = generateLabelValuePairs([
+const tagsValues = generateLabelValuePairs([
   'REO',
   'Price Cut',
   'Pending',
@@ -74,6 +74,7 @@ const tagsOptions = generateLabelValuePairs([
 function FormInputFields({ register, errors, setValue, values, control }) {
   const [propertyTypes, setPropertyTypes] = useState([]);
   const [listingTypes, setListingTypes] = useState([]);
+  const [tagsOptions, setTagsOptions] = useState(tagsValues);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -312,13 +313,16 @@ function FormInputFields({ register, errors, setValue, values, control }) {
                   classNamePrefix="tags"
                   closeMenuOnSelect={false}
                   isMulti
-                  options={value?.length === 2 ? [] : tagsOptions}
+                  options={tagsOptions}
                   placeholder="Select tags..."
                   theme={(theme) =>
                     customSelectTheme(theme, errors.tags?.message)
                   }
                   value={value}
-                  onChange={onChange}
+                  onChange={(val) => {
+                    if (val.length === 2) setTagsOptions([]);
+                    onChange(val);
+                  }}
                 />
               )}
             />
