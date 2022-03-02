@@ -60,6 +60,7 @@ function CreateListingForm({ date }) {
     setValue('featureIds', featureIds);
 
     if (formId) fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formId, reset, featureIds]);
 
   const values = watch();

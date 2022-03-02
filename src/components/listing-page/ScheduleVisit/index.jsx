@@ -73,6 +73,7 @@ function ScheduleVisit({ data, id }) {
 
   useEffect(() => {
     setDateRange(findPeriodBetweenDates(time));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedHour]);
 
   return (

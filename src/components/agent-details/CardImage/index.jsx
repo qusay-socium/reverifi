@@ -22,7 +22,7 @@ function CardImage({ listingType, address, images }) {
     <CardImageContainer>
       <Image src={images?.[0] || listingImage} />
       <CornerItems isRight={false} isBottom={false}>
-        <Tag>{listingType}</Tag>
+        {listingType && <Tag>{listingType}</Tag>}
       </CornerItems>
 
       {images?.length > 0 && (

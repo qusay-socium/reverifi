@@ -112,30 +112,30 @@ function FormInputFields({ register, errors, setValue, values, control }) {
 
       <DetailsInputsContainer>
         <SelectInput
-          error={errors.propertyType?.message}
+          error={errors.propertyTypeId?.message}
           id="propertyType"
           label="Property Type"
-          name="property_type_id"
+          name="propertyTypeId"
           placeholder="please select a property type"
           register={register}
           options={propertyTypes}
           labelIconElement={<PropertyTypeIcon />}
           onChange={(e) => {
-            setValue('propertyType', e.target.value);
+            setValue('propertyTypeId', e.target.value);
           }}
         />
 
         <SelectInput
-          error={errors.listingType?.message}
+          error={errors.listingTypeId?.message}
           id="listingType"
           label="Listing Type"
-          name="listing_type_id"
+          name="listingTypeId"
           placeholder="please select listing type"
           register={register}
           options={listingTypes}
           labelIconElement={<ListingTypeIcon />}
           onChange={(e) => {
-            setValue('listingType', e.target.value);
+            setValue('listingTypeId', e.target.value);
           }}
         />
 

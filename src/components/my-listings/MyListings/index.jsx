@@ -63,6 +63,7 @@ function MyListings() {
     if (!isLoggedIn) navigate('/sign-up');
 
     fetchAllListingsForUser(pageNumber + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authInfo, pageNumber, showModal, order]);
 
   return (

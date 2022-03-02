@@ -148,6 +148,7 @@ function EditListingSchedule() {
         }));
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate, updateDate]);
 
   useEffect(() => {
@@ -160,6 +161,7 @@ function EditListingSchedule() {
       );
       setDateRange(updateDate?.days);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateDate?.endDate, updateDate?.startDate]);
 
   return (
