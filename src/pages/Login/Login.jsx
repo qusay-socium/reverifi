@@ -148,7 +148,7 @@ function Login() {
           </GoogleButton>
         </SocialLinksContainer>
         <SocialLinksText>
-          Don&apos;t have an account?
+          Do not have an account?
           <LinkText onClick={() => navigate('/sign-up')}>Sign up</LinkText>
         </SocialLinksText>
       </InfoContainer>

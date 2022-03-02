@@ -113,7 +113,7 @@ function VerifyPhoneForm() {
           </CountdownCircleTimer>
 
           <ResendButton onClick={() => setResendCode(!resendCode)}>
-            Didn&apos;t receive code? send again
+            Did not receive code? send again
           </ResendButton>
         </ResendCircleContainer>
       </CodeContainer>

@@ -58,7 +58,7 @@ function Navbar() {
       <Logo onClick={() => navigate('/')} />
       <NavItemsContainer>
         <NavLinksContainer>
-          <a href="/">How We Work</a>
+          <a href="/dashboard/how-we-work">How We Work</a>
           <a href="/agent-list">Find an Agent</a>
           <a href="/">Knowledge Center</a>
         </NavLinksContainer>
@@ -77,7 +77,7 @@ function Navbar() {
             >
               <MenuWrapper>
                 <MenuTopWrapper>
-                  <MenuItem filled="true">
+                  <MenuItem filled="true" onClick={() => navigate('/saved')}>
                     <SavedListingsIcon />
                     Saved listings
                   </MenuItem>
