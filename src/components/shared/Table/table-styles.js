@@ -3,10 +3,12 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const TableWrapper = styled.div`
-  border-radius: 0.4rem;
   box-shadow: 0 0.06rem 0.57rem ${colors.mercury};
   margin: 2rem 0;
   min-width: 100%;
+  position: relative;
+  z-index: 1;
+  border-radius: 0.37rem;
 `;
 
 export const StyledTable = styled.table`
@@ -46,7 +48,7 @@ export const TableHead = styled.th`
   color: ${colors.dustyGray};
   font-size: 0.75rem;
   font-weight: bold;
-  padding: 1.7rem;
+  padding: 1.5rem;
 `;
 
 export const IconContainer = styled.button`

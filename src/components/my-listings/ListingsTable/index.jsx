@@ -5,41 +5,51 @@ import { ReactComponent as ScheduleIcon } from 'assets/icons/schedule.svg';
 import agentImage from 'assets/listing-agent-image.png';
 import listingImage from 'assets/listing-image.png';
 import Table from 'components/shared/Table';
-import { TableCell, TableRow } from 'components/shared/Table/table-styles';
+import { TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
-import { useShowModal } from 'contexts/ShowModalContext';
-import { useUser } from 'contexts/UserContext';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserListings } from 'services/listing';
 import {
   AgentContainer,
   AgentImage,
   AgentName,
   ArrowLeft,
   ArrowRight,
+  CellContainer,
   CurrentListing,
   IconContainer,
   ListingImage,
   ListingImageContainer,
   MaxListingNumber,
   Pagination,
+  TableIconContainer,
 } from './listing-table.style';
 
 const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
 
 /**
+ *
  * My Listings table component.
+ *
+ * @param  {func} setDeleteId select the id for the item to delete
+ * @param  {func} handleLeftArrowClick handle the previous page
+ * @param  {func} handleRightArrowClick handle the next page
+ * @param  {number} pageNumber the current page number
+ * @param  {object} listings date for the listings
+ * @param  {func} setShowModal handle the delete box
  *
  * @return {JSX.Element}
  */
-export default function MyListings({ setDeleteId }) {
-  const { isLoggedIn, userInfo: authInfo } = useUser();
+export default function MyListingsTable({
+  setDeleteId,
+  handleLeftArrowClick,
+  handleRightArrowClick,
+  pageNumber,
+  listings,
+  setShowModal,
+}) {
   const listingPerPage = 8;
-  const [listings, setListings] = useState([]);
-  const [pageNumber, setPageNumber] = useState(0);
-  const { showModal, setShowModal } = useShowModal();
   const navigate = useNavigate();
 
   const startItem = pageNumber * listingPerPage + 1;
@@ -48,59 +58,30 @@ export default function MyListings({ setDeleteId }) {
     endItem = listings?.count;
   }
 
-  const fetchAllListingsForUser = async (page) => {
-    if (authInfo?.id) {
-      const listingData = await getUserListings(
-        authInfo?.id,
-        listingPerPage,
-        page
-      );
-      setListings(listingData);
-    }
-  };
-
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (pageNumber < Math.floor(listings?.count / listingPerPage)) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
-  useEffect(() => {
-    if (!isLoggedIn) navigate('/sign-up');
-
-    fetchAllListingsForUser(pageNumber + 1);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authInfo, pageNumber, showModal]);
-
   return (
     <>
       <Table headers={tableHeaders}>
         {listings?.data?.map(
           ({ address, images, agent, createdAt, id, owner }) => (
             <TableRow key={id}>
-              <TableCell>
+              <CellContainer>
                 <ListingImageContainer>
                   <ListingImage src={images ? images[0] : listingImage} />
                 </ListingImageContainer>
-              </TableCell>
-              <TableCell>{address}</TableCell>
-              <TableCell>
+              </CellContainer>
+              <CellContainer>{address}</CellContainer>
+              <CellContainer>
                 <AgentContainer>
                   <AgentImage src={agent?.userInfo?.image || agentImage} />
                   <AgentName>{agent?.name || owner?.name || 'N/A'}</AgentName>
                 </AgentContainer>
-              </TableCell>
-              <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>
-              <TableCell> </TableCell>
-              <TableCell iconsCell>
-                <IconContainer hover>
+              </CellContainer>
+              <CellContainer>
+                {new Date(createdAt).toLocaleDateString()}
+              </CellContainer>
+              <CellContainer> </CellContainer>
+              <CellContainer iconsCell>
+                <TableIconContainer hover>
                   <EyeIcon
                     onClick={() => {
                       navigate(`/listing/${id}`);
@@ -109,10 +90,10 @@ export default function MyListings({ setDeleteId }) {
                   <Tooltip
                     text="View"
                     arrowPosition="top"
-                    position={[3, -1.8]}
+                    position={[3, -0.8]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <EditIcon
                     onClick={() => {
                       navigate(`/my-listings/edit/${id}`);
@@ -123,8 +104,8 @@ export default function MyListings({ setDeleteId }) {
                     arrowPosition="top"
                     position={[3, -0.5]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <ScheduleIcon
                     onClick={() => {
                       navigate(
@@ -137,8 +118,8 @@ export default function MyListings({ setDeleteId }) {
                     arrowPosition="top"
                     position={[3, -1.8]}
                   />
-                </IconContainer>
-                <IconContainer hover>
+                </TableIconContainer>
+                <TableIconContainer hover>
                   <DeleteIcon
                     onClick={() => {
                       setShowModal(true);
@@ -150,8 +131,8 @@ export default function MyListings({ setDeleteId }) {
                     arrowPosition="top"
                     position={[3, -0.8]}
                   />
-                </IconContainer>
-              </TableCell>
+                </TableIconContainer>
+              </CellContainer>
             </TableRow>
           )
         )}
@@ -161,17 +142,31 @@ export default function MyListings({ setDeleteId }) {
         <CurrentListing>{startItem} -</CurrentListing>
         <CurrentListing>{endItem}</CurrentListing>
         <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-        <ArrowLeft onClick={handleLeftArrowClick} />
-        <ArrowRight onClick={handleRightArrowClick} />
+        <IconContainer onClick={handleLeftArrowClick}>
+          <ArrowLeft />
+        </IconContainer>
+        <IconContainer onClick={handleRightArrowClick}>
+          <ArrowRight />
+        </IconContainer>
       </Pagination>
     </>
   );
 }
 
-MyListings.propTypes = {
+MyListingsTable.propTypes = {
+  handleLeftArrowClick: PropTypes.func,
+  handleRightArrowClick: PropTypes.func,
+  listings: PropTypes.objectOf(PropTypes.string),
+  pageNumber: PropTypes.number,
   setDeleteId: PropTypes.func,
+  setShowModal: PropTypes.func,
 };
 
-MyListings.defaultProps = {
+MyListingsTable.defaultProps = {
+  handleLeftArrowClick: () => {},
+  handleRightArrowClick: () => {},
+  listings: null,
+  pageNumber: null,
   setDeleteId: () => {},
+  setShowModal: () => {},
 };

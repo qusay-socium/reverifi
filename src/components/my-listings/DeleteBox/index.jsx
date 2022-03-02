@@ -30,10 +30,10 @@ function DeleteBox({ deleteId }) {
     <Modal show={showModal} showCloseIcon>
       <BoxContainer>
         <DeleteIcon />
-        <DeleteBoxTitle>DELETE LISTING ?</DeleteBoxTitle>
+        <DeleteBoxTitle>DELETE LISTING?</DeleteBoxTitle>
         <DeleteBoxText>
-          This listing will be peremerntly deleted from reverifi. This cannot be
-          <BoxText>undone</BoxText> .
+          This listing will be permanently deleted from reverifi. This cannot be
+          <BoxText>undone</BoxText>.
         </DeleteBoxText>
         <DeleteBoxButton>
           <CancelButton

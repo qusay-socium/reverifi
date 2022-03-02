@@ -8,17 +8,19 @@ export const BoxContainer = styled.div`
   flex-direction: column;
   height: 20rem;
   justify-content: center;
-  width: 30rem;
+  width: 33.5rem;
 `;
 
 export const DeleteBoxTitle = styled.h4`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   text-align: center;
-  margin-bottom: 0;
 `;
 
 export const DeleteBoxText = styled.p`
   color: ${colors.dustyGray};
-  margin: 1.8rem;
+  margin: 1.5rem 4rem;
   text-align: center;
 `;
 
@@ -38,6 +40,7 @@ export const DeleteButton = styled(Button)`
   background-color: ${colors.orange};
   color: ${colors.white};
   font-size: 1rem;
+  padding: 0 2.5rem;
 `;
 
 export const CancelButton = styled(Button)`
@@ -45,4 +48,5 @@ export const CancelButton = styled(Button)`
   border: ${colors.dustyGray} solid 0.1rem;
   color: ${colors.dustyGray};
   font-size: 1rem;
+  padding: 0 2.5rem;
 `;
