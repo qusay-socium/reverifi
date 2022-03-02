@@ -55,6 +55,20 @@ export const getUsersByType = async (type, location, name, page = 0) => {
 };
 
 /**
+ * Service that get users with limit
+ *
+ * @param {Number} limit number of users
+ * @param {String} name agent name
+ *
+ * @return {Object[]} Array of users.
+ */
+export const getUsersWithLimit = async (limit, name) => {
+  const { data } = await http.get(`${apiUrl}/users/all/${limit}?name=${name}`);
+
+  return data;
+};
+
+/**
  * Service that get user roles
  *
  * @return {Object[]} Array of roles.

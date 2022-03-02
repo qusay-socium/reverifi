@@ -3,11 +3,10 @@ import styled from 'styled-components';
 export const ImgContainer = styled.div`
   margin: 0 3.25rem;
   position: relative;
-`;
-
-export const Img = styled.img`
-  border-radius: 0.4375rem;
-  width: 100%;
+  background-image: ${({ image }) => `url(${image})`};
+  background-size: cover;
+  background-position: center;
+  min-height: 18.125rem;
 `;
 
 export const CardsContainer = styled.div`

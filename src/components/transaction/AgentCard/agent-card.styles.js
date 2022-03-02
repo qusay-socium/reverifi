@@ -11,20 +11,21 @@ export const Card = styled.div`
   gap: 0.625rem;
   padding: 0.625rem 0.625rem;
   margin: 0 0 0.6rem;
+  max-width: 19.125rem;
+  max-height: 8.125rem;
 `;
 
 export const ImgContainer = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 50%;
+  background-image: ${({ image }) => `url(${image})`};
+  background-size: cover;
+  background-position: center;
   margin: 0.4375rem;
-`;
-
-export const AgentPicture = styled.img`
-  border-radius: 0.5rem 0 0 0.5rem;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  min-width: 5.25rem;
+  min-height: 5.25rem;
+  overflow: hidden;
 `;
 
 export const CardContent = styled.div`

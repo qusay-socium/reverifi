@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
 import {
-  AgentPicture,
+  // AgentPicture,
   Card,
   CompanyName,
   ContactInfoContainer,
@@ -33,9 +33,7 @@ import {
 function AgentCard({ agentImg, agentName, companyName, email, phoneNumber }) {
   return (
     <Card>
-      <ImgContainer>
-        <AgentPicture src={agentImg || avatarPlaceholder} />
-      </ImgContainer>
+      <ImgContainer image={agentImg || avatarPlaceholder} />
       <CardContent>
         <Username>{toUpperCaseFirstLetter(agentName)}</Username>
         <CompanyName>

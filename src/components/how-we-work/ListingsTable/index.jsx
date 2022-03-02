@@ -61,7 +61,9 @@ function ListingsTable() {
               </AgentContainer>
             </TableCell>
             <TableCell iconsCell>
-              <LinkText to="/dashboard">start the process </LinkText>
+              <LinkText to="/transaction/f1f579b2-aa08-4a59-a83d-13adfde1b802/add-parties">
+                start the process
+              </LinkText>
             </TableCell>
           </TableRow>
         ))}

@@ -13,6 +13,13 @@ import { lazy } from 'react';
  */
 const routes = [
   {
+    adminLayout: true,
+    component: lazy(() => import('pages/Transaction/index')),
+    label: 'transaction',
+    path: '/transaction/:listingId/*',
+    title: 'Transaction',
+  },
+  {
     component: lazy(() => import('pages/Home')),
     exact: true,
     label: 'home',
@@ -143,7 +150,7 @@ const routes = [
     adminLayout: true,
     component: lazy(() => import('pages/Transaction')),
     label: 'transaction',
-    path: '/transaction/*',
+    path: '/transaction/:listingId/*',
     title: 'Transaction',
   },
   {
