@@ -61,22 +61,24 @@ function FeaturedListing() {
     <SectionContainer>
       <Title>Our Featured Listings</Title>
       <StyledSlide>
-        <Slider
-          dots
-          infinite
-          speed={500}
-          slidesToShow={4}
-          slidesToScroll={4}
-          responsive={slideBreakPoints}
-          dotsClass="slide-dots"
-          lazyLoad="ondemand"
-          arrows={false}
-          easing="ease-in-out"
-        >
-          {featuredListings?.map((item) => (
-            <Card data={item} key={item.id} />
-          ))}
-        </Slider>
+        {featuredListings?.length > 0 && (
+          <Slider
+            dots
+            infinite
+            speed={500}
+            slidesToShow={4}
+            slidesToScroll={4}
+            responsive={slideBreakPoints}
+            dotsClass="slide-dots"
+            lazyLoad="ondemand"
+            arrows={false}
+            easing="ease-in-out"
+          >
+            {featuredListings?.map((item) => (
+              <Card data={item} key={item.id} />
+            ))}
+          </Slider>
+        )}
       </StyledSlide>
     </SectionContainer>
   );

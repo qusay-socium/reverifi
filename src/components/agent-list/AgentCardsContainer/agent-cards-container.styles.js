@@ -128,10 +128,6 @@ export const SelectType = styled(SelectFilter)`
   option:first-child {
     display: none;
   }
-
-  :focus {
-    outline: 0.06rem solid ${colors.green};
-  }
 `;
 
 export const LocationSearch = styled.input`
@@ -146,13 +142,10 @@ export const LocationSearch = styled.input`
   padding: 0 1.6rem;
   width: 100%;
   font-family: inherit;
+  outline: none;
 
   ::placeholder {
     font-size: 1.05rem;
-  }
-
-  :focus {
-    outline: 0.06rem solid ${colors.green};
   }
 
   ${mq.mobileWide`
@@ -176,13 +169,10 @@ export const AgentSearch = styled.input`
   padding-left: 1.6rem;
   width: 100%;
   font-family: inherit;
+  outline: none;
 
   ::placeholder {
     font-size: 1.05rem;
-  }
-
-  :focus {
-    outline: 0.06rem solid ${colors.green};
   }
 
   ${mq.mobileWide`
