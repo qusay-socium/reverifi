@@ -1,7 +1,7 @@
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   getUserOrListingSave,
@@ -18,14 +18,23 @@ import {
 /**
  * Save And Share Buttons component
  *
- * @param {String} userId            user id
- * @param {String} listingId         listing id
- * @param {Function} setShowModal    show modal function
- * @param {Boolean} small            small icons if true
+ * @param {String} userId               user id
+ * @param {String} listingId            listing id
+ * @param {Function} setShowModal       show modal function
+ * @param {Boolean} small               small icons if true
+ * @param {Boolean} activeState         outer active state
+ * @param {Function} changeActiveState  changeActiveState  function
  *
- *@return {JSX.Element}
+ * @return {JSX.Element}
  */
-function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
+function SaveAndShareButtons({
+  userId,
+  listingId,
+  setShowModal,
+  small,
+  activeState,
+  changeActiveState,
+}) {
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
   const [saved, setSaved] = useState(false);
@@ -35,6 +44,8 @@ function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
    */
   const handleSave = async () => {
     if (!isLoggedIn) navigate('/login');
+
+    changeActiveState();
 
     setSaved(!saved);
 
@@ -54,6 +65,10 @@ function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
   };
 
   useEffectOnce(fetchSave);
+
+  useEffect(() => {
+    setSaved(activeState);
+  }, [activeState]);
 
   const handleShare = async () => {
     await viewOrShareUserOrListing({
@@ -82,6 +97,8 @@ function SaveAndShareButtons({ userId, listingId, setShowModal, small }) {
 }
 
 SaveAndShareButtons.defaultProps = {
+  activeState: false,
+  changeActiveState: () => {},
   listingId: null,
   setShowModal: () => {},
   small: null,
@@ -89,6 +106,8 @@ SaveAndShareButtons.defaultProps = {
 };
 
 SaveAndShareButtons.propTypes = {
+  activeState: PropTypes.bool,
+  changeActiveState: PropTypes.func,
   listingId: PropTypes.string,
   setShowModal: PropTypes.func,
   small: PropTypes.string,
