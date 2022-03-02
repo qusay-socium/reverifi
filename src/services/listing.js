@@ -53,7 +53,7 @@ export const getListingsById = async (id) => {
  *
  * @return {Promise<Object>} listing data response.
  */
-export const getUserListings = async (id, limit, page, order) => {
+export const getUserListings = async (id, limit, page = 1, order = 'DESC') => {
   const {
     data: { data, count },
   } = await http.get(

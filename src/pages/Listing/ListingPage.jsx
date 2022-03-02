@@ -33,6 +33,7 @@ function ListingPage() {
     if (id) {
       getListingDetails(id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   if (!listingDetails?.id) return null;
