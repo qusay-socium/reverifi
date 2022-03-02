@@ -40,7 +40,7 @@ function DatePickerInputHandler({
             setDate(updatedDate);
           }}
           dateFormat={dateFormat}
-          timeIntervals={60}
+          timeIntervals={15}
           minDate={minDate}
         />
         <ArrowDown />

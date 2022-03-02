@@ -1,3 +1,4 @@
+import { ReactComponent as AddSvg } from 'assets/add-icon.svg';
 import CreateListingForm from 'components/create-listing/CreateListingForm';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
@@ -15,11 +16,17 @@ function EditTabsForm() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 0;
 
+  const tabsData = [
+    { icon: null, title: 'Details' },
+    { icon: null, title: 'Schedule' },
+    { icon: <AddSvg />, title: 'reverifi' },
+  ];
+
   return (
     <Container>
       <Tabs
         activePage={+tab}
-        tabsTitles={['Details', 'Schedule', 'reverifi PLUS']}
+        tabs={tabsData}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,

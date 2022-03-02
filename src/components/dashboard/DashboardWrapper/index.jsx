@@ -39,6 +39,10 @@ const cardsInfo = [
     text: 'Create Listing',
   },
 ];
+const tabsData = [
+  { icon: null, title: 'Incoming' },
+  { icon: null, title: 'Sent' },
+];
 
 /**
  * Dashboard Wrapper component
@@ -82,7 +86,7 @@ function DashboardWrapper() {
 
       <DashboardHeading>Invitations</DashboardHeading>
       <Tabs
-        tabsTitles={['Incoming', 'Sent']}
+        tabsData={tabsData}
         tabsContent={[
           <InvitationsTable data={incomingInvitations} />,
           'sent invitations table',

@@ -10,9 +10,15 @@ export const Tab = styled.button`
   font-size: 1.125rem;
   margin-right: 0.4rem;
   min-width: 9rem;
-  padding: 0.8rem;
   border-bottom: none;
   font-family: inherit;
+  padding: 0.7rem;
+
+  svg {
+    path {
+      fill: ${({ active }) => active && colors.white};
+    }
+  }
 `;
 
 export const TabContent = styled.div`

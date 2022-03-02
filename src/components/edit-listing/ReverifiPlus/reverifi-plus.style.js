@@ -6,6 +6,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  img {
+    margin-bottom: 5rem;
+  }
 `;
 
 export const HeaderText = styled.h2`

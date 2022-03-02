@@ -5,13 +5,13 @@ import { LineSeparator, Tab, TabContent } from './tabs.styles';
 /**
  * Tabs component
  *
- * @param {Array(String)} tabsTitles tabs titles array
  * @param {Array(any)} tabsContent tabs content array
  * @param {number} activePage the number of the current active page
+ * @param {Array(object)} tabsData tabs icons and titles
  *
  * @return {JSX.Element}
  */
-function Tabs({ tabsTitles, tabsContent, activePage }) {
+function Tabs({ tabsContent, activePage, tabsData }) {
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
@@ -20,13 +20,13 @@ function Tabs({ tabsTitles, tabsContent, activePage }) {
 
   return (
     <div>
-      {tabsTitles?.map((title, index) => (
+      {tabsData?.map(({ title, icon }, index) => (
         <Tab
           onClick={() => setActiveTab(index)}
           key={title}
           active={activeTab === index}
         >
-          {title}
+          {title} {icon && icon}
         </Tab>
       ))}
       <LineSeparator />
@@ -41,12 +41,13 @@ function Tabs({ tabsTitles, tabsContent, activePage }) {
 
 Tabs.defaultProps = {
   activePage: 0,
+  tabsData: [],
 };
 
 Tabs.propTypes = {
   activePage: propTypes.number,
   tabsContent: propTypes.arrayOf(propTypes.node).isRequired,
-  tabsTitles: propTypes.arrayOf(propTypes.string).isRequired,
+  tabsData: propTypes.arrayOf(propTypes.object),
 };
 
 export default Tabs;
