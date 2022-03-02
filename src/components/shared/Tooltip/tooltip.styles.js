@@ -54,8 +54,8 @@ export const TooltipText = styled.span`
   top: ${({ top }) => top && `${top}rem`};
 
   &::after {
-    ${({ noArrow }) =>
-      !noArrow &&
+    ${({ removeArrow }) =>
+      !removeArrow &&
       `
         border-style: solid;
         border-width: 0.45rem;
