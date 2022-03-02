@@ -18,9 +18,9 @@ function NoDataComponent({ image, dataFor, buttonText }) {
   return (
     <NoDataContainer>
       <NoDataImage src={image} />
-      <h2>you haven&apos;t saved any {dataFor} yet</h2>
+      <h2>you have not saved any {dataFor} yet</h2>
       <p>
-        Use the heart icon to like the {dataFor} you&apos;re interested in and
+        Use the heart icon to like the {dataFor} you are interested in and
         access your favorites here.
       </p>
       <Button

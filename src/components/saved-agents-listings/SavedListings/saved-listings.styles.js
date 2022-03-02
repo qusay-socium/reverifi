@@ -35,12 +35,12 @@ export const IconContainer = styled.button`
   border: none;
   cursor: pointer;
   margin: 0 0.3rem;
-  padding: ${({ hover }) => (hover ? '0.35rem' : 0)};
+  padding: ${({ hoverable }) => (hoverable ? '0.35rem' : 0)};
   position: relative;
 
   &:hover {
-    background: ${({ hover }) => hover && colors.mercury};
-    border-radius: ${({ hover }) => hover && '50%'};
+    background: ${({ hoverable }) => hoverable && colors.mercury};
+    border-radius: ${({ hoverable }) => hoverable && '50%'};
   }
 
   svg {
@@ -48,7 +48,7 @@ export const IconContainer = styled.button`
     width: 1rem;
   }
 
-  &:hover {
+  &:hoverable {
     > span {
       display: block;
     }

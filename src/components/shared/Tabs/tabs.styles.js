@@ -23,7 +23,7 @@ export const TabContent = styled.div`
   }
 `;
 
-export const Line = styled.hr`
+export const LineSeparator = styled.hr`
   margin: 0;
   height: 2px;
   background-color: ${colors.mercury};

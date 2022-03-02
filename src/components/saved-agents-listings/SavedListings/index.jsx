@@ -163,7 +163,7 @@ function SavedListings() {
                   <TableCell>${price?.toLocaleString()}</TableCell>
                   <TableCell iconsCell>
                     <IconContainer
-                      hover
+                      hoverable
                       onClick={() => {
                         navigate(`/listing/${id}`);
                       }}
@@ -175,7 +175,7 @@ function SavedListings() {
                         position={[2.5, -0.8]}
                       />
                     </IconContainer>
-                    <IconContainer hover onClick={() => handleDelete(id)}>
+                    <IconContainer hoverable onClick={() => handleDelete(id)}>
                       <DeleteIcon />
                       <Tooltip
                         text="Delete"

@@ -35,9 +35,9 @@ function SavedAgents() {
   const [users, setUsers] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const limit = 8;
-  const startItem = pageNumber * limit + 1;
-  let endItem = startItem - 1 + limit;
+  const PAGE_LIMIT = 8;
+  const startItem = pageNumber * PAGE_LIMIT + 1;
+  let endItem = startItem - 1 + PAGE_LIMIT;
 
   if (endItem > users?.count) {
     endItem = users?.count;
@@ -57,8 +57,8 @@ function SavedAgents() {
    */
   const handleRightArrowClick = () => {
     if (
-      pageNumber < Math.floor(users?.count / limit) &&
-      users?.count !== limit
+      pageNumber < Math.floor(users?.count / PAGE_LIMIT) &&
+      users?.count !== PAGE_LIMIT
     ) {
       setPageNumber(pageNumber + 1);
     }
@@ -75,7 +75,7 @@ function SavedAgents() {
         authInfo?.id,
         'user',
         page,
-        limit
+        PAGE_LIMIT
       );
 
       setUsers(usersData);

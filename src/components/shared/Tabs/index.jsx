@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Line, Tab, TabContent } from './tabs.styles';
+import { LineSeparator, Tab, TabContent } from './tabs.styles';
 
 /**
  * Tabs component
@@ -29,7 +29,7 @@ function Tabs({ tabsTitles, tabsContent, activePage }) {
           {title}
         </Tab>
       ))}
-      <Line />
+      <LineSeparator />
       {tabsContent?.map((Content, index) => (
         <TabContent key={index.toString()} active={activeTab === index}>
           {Content}
