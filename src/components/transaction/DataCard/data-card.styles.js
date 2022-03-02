@@ -7,7 +7,7 @@ export const Card = styled.div`
   box-shadow: 0 0.06rem 0.3rem ${colors.midGray};
   margin: 0 0 0.6rem;
   padding: 0.8125rem 1rem;
-  max-width: 25.6875rem;
+  min-width: 25.6875rem;
   max-height: 8.125rem;
 `;
 
@@ -16,13 +16,6 @@ export const PrimaryText = styled.div`
   font-size: 1.125rem;
   font-weight: bold;
   margin-bottom: 0.375rem;
-`;
-
-export const Address = styled.div`
-  align-items: center;
-  flex-direction: row;
-  display: flex;
-  gap: 0.1875rem;
 `;
 
 export const SecondaryText = styled.div`

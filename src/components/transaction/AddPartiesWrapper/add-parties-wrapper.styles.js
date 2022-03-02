@@ -44,14 +44,21 @@ export const SelectContainer = styled.div`
     }
   }
 
+  svg {
+    display: none;
+  }
+
   span {
     display: none;
   }
 
+  div {
+    border-radius: 1.1875rem;
+    border-color: ${colors.midGray};
+  }
+
   > div {
     > div {
-      border-radius: 1.1875rem;
-      border-color: ${colors.midGray};
       font-size: 0.9375rem;
       color: ${colors.matterhorn};
       box-shadow: none;

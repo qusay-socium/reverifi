@@ -11,7 +11,7 @@ export const Card = styled.div`
   gap: 0.625rem;
   padding: 0.625rem 0.625rem;
   margin: 0 0 0.6rem;
-  max-width: 19.125rem;
+  max-width: 19.25rem;
   max-height: 8.125rem;
 `;
 

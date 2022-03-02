@@ -1,6 +1,6 @@
 import React from 'react';
 import StepProgressBar from 'components/shared/StepProgressBar';
-import Advertisement from 'components/transaction/advertisement';
+import TransactionListingDataWrapper from 'components/transaction/TransactionListingDataWrapper';
 import {
   Container,
   TitleText,
@@ -29,7 +29,7 @@ export default function TransactionSharedComponent() {
         />
       </StepProgressBarContainer>
       <TitleText>Add Involved Parties</TitleText>
-      <Advertisement />
+      <TransactionListingDataWrapper />
     </Container>
   );
 }

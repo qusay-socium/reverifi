@@ -23,7 +23,6 @@ import {
   RowContainer,
   SelectContainer,
   SideContainer,
-  ButtonCheckBoxContainer,
   ButtonText,
   TextAreaContainer,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
@@ -141,24 +140,6 @@ export default function AddPartiesWrapper() {
                     register={register}
                   />
                 </SelectContainer>
-              </RowContainer>
-            )}
-            {!isSellerRepresented && (
-              <RowContainer>
-                <ButtonCheckBoxContainer>
-                  <Button>
-                    <ButtonText>
-                      Upload Power of Attorney or Supporting Document
-                    </ButtonText>
-                  </Button>
-                  <CheckBoxContainer>
-                    <FormCheckbox
-                      label="I confirm i am an agent representing the seller and will do all the transactions on his/her behalf"
-                      name="confirmation"
-                      register={register}
-                    />
-                  </CheckBoxContainer>
-                </ButtonCheckBoxContainer>
               </RowContainer>
             )}
           </SideContainer>

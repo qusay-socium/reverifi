@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   ImgContainer,
   CardsContainer,
-} from 'components/transaction/advertisement/advertisement.styles';
+} from 'components/transaction/TransactionListingDataWrapper/transaction-listing-data-wrapper.styles';
 import AgentCard from 'components/transaction/AgentCard';
 import DataCard from 'components/transaction/DataCard';
 import { getListingsById } from 'services/listing';
@@ -15,7 +15,7 @@ import { useParams } from 'react-router-dom';
  *
  * @return {JSX.Element} The apartment and Agent data.
  */
-export default function Advertisement() {
+export default function TransactionListingDataWrapper() {
   const { listingId } = useParams();
   const [listingDetails, setListingDetails] = useState({});
 
@@ -26,15 +26,14 @@ export default function Advertisement() {
 
   useEffect(() => {
     getListingDetails(listingId);
-    console.log(listingId);
-  }, []);
+  }, [listingId]);
 
   return (
     <ImgContainer image={listingDetails.images && listingDetails.images[0]}>
       <CardsContainer>
         <DataCard
-          title={listingDetails.overview}
           address={listingDetails.address}
+          propertyType={listingDetails.propertyType}
           price={listingDetails.price}
           bathtubs={listingDetails.fullBathrooms}
           rooms={listingDetails.rooms}
