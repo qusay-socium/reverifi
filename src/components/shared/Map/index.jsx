@@ -47,7 +47,9 @@ function Map({ ComponentOnMap, isMarkerShown, listings }) {
    * @return {Number}
    */
   const getAverageCoordinate = (coordsList, direction) => {
-    const total = coordsList.reduce((acc, current) => acc + current);
+    const total =
+      coordsList.length > 0 &&
+      coordsList?.reduce((acc, current) => +acc + +current);
     const coordCenter = total
       ? total / coordsList.length
       : mapDefaults.center[direction];
@@ -60,9 +62,9 @@ function Map({ ComponentOnMap, isMarkerShown, listings }) {
    * @return {Object} Center Object with lat & lng properties.
    */
   const getCenter = () => {
-    const tempData = [...listings];
-    const latDataList = tempData?.map((item) => item.location.lat);
-    const lngDataList = tempData?.map((item) => item.location.lng);
+    const tempData = listings ? [...listings] : [];
+    const latDataList = tempData?.map((item) => item.lat);
+    const lngDataList = tempData?.map((item) => item.lang);
 
     if (!latDataList || !lngDataList) {
       return mapDefaults.center;
@@ -71,7 +73,7 @@ function Map({ ComponentOnMap, isMarkerShown, listings }) {
     const avgLngCenter = getAverageCoordinate(lngDataList, 'lng');
     const avgLatCenter = getAverageCoordinate(latDataList, 'lat');
 
-    return { lat: avgLatCenter, lng: avgLngCenter };
+    return { lat: +avgLatCenter, lng: +avgLngCenter };
   };
 
   useEffect(() => {
@@ -89,31 +91,26 @@ function Map({ ComponentOnMap, isMarkerShown, listings }) {
       <GoogleMapReact
         bootstrapURLKeys={googleMapApiKey}
         center={center}
-        defaultCenter={mapDefaults.center}
-        defaultZoom={mapDefaults.zoom}
+        defaultCenter={mapDefaults?.center}
+        defaultZoom={mapDefaults?.zoom}
         onChildMouseLeave={() => setIsMarkerHovered(false)}
         onClick={() => setIsMarkerHovered(false)}
       >
         {isMarkerShown &&
-          data?.map((item) => {
-            const {
-              location: { lng, lat },
-            } = item;
-            return (
-              <Marker
-                key={item.location.lat}
-                data={item}
-                lat={lat}
-                lng={lng}
-                onMouseOverHandler={showListingOnMap}
-              />
-            );
-          })}
+          data?.map((item) => (
+            <Marker
+              key={item?.id}
+              data={item}
+              lat={item?.lat}
+              lng={item?.lang}
+              onMouseOverHandler={showListingOnMap}
+            />
+          ))}
         {isMarkerHovered && (
           <ComponentOnMap
             data={listingOnMap}
-            lng={listingOnMap.location.lng}
-            lat={listingOnMap.location.lat}
+            lng={listingOnMap?.lang}
+            lat={listingOnMap?.lat}
           />
         )}
       </GoogleMapReact>

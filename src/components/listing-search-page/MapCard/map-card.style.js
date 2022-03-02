@@ -30,8 +30,8 @@ export const Badge = styled.div`
 `;
 
 export const Image = styled.img`
-  min-height: 100%;
-  min-width: 100%;
+  height: 100%;
+  width: 100%;
 `;
 
 export const CardText = styled.div`
