@@ -13,18 +13,21 @@ import {
  *
  * @return {element}
  */
-function Switch({ handleChange, day }) {
+function Switch({ handleChange, day, register }) {
   const { active, label } = day;
 
   return (
     <CheckBoxWrapper>
       <CheckBox
         id={label}
-        defaultChecked={active}
+        checked={active}
         type="checkbox"
-        onChange={() => {
-          handleChange(day);
-        }}
+        name={day?.label}
+        {...(register
+          ? register(`${day?.label}Checkbox`, {
+              onChange: () => handleChange(day),
+            })
+          : {})}
       />
 
       <CheckBoxLabel htmlFor={label} />
@@ -39,11 +42,13 @@ Switch.propTypes = {
     label: PropTypes.string,
   }),
   handleChange: PropTypes.func,
+  register: PropTypes.objectOf(PropTypes.object),
 };
 
 Switch.defaultProps = {
   day: null,
   handleChange: () => {},
+  register: null,
 };
 
 export default Switch;

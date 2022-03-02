@@ -1,6 +1,6 @@
 export const weekDays = {
   sunday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 0,
     label: 'Sunday',
@@ -8,7 +8,7 @@ export const weekDays = {
     startHour: null,
   },
   monday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 1,
     label: 'Monday',
@@ -16,7 +16,7 @@ export const weekDays = {
     startHour: null,
   },
   tuesday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 2,
     label: 'Tuesday',
@@ -24,7 +24,7 @@ export const weekDays = {
     startHour: null,
   },
   wednesday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 3,
     label: 'Wednesday',
@@ -32,7 +32,7 @@ export const weekDays = {
     startHour: null,
   },
   thursday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 4,
     label: 'Thursday',
@@ -40,7 +40,7 @@ export const weekDays = {
     startHour: null,
   },
   friday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 5,
     label: 'Friday',
@@ -48,7 +48,7 @@ export const weekDays = {
     startHour: null,
   },
   saturday: {
-    active: true,
+    active: false,
     endHour: null,
     id: 6,
     label: 'Saturday',

@@ -12,7 +12,7 @@ export const Container = styled.div`
   .react-datepicker-wrapper {
     border: 0.06rem solid ${colors.midGray};
     border-radius: 0.5rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
     padding: 0.5rem 1rem;
   }
 `;
@@ -49,6 +49,12 @@ export const DateSliderContainer = styled.div`
       content: url(${RightArrow});
     }
   }
+
+  .input {
+    border: none;
+    outline: none;
+    width: 100%;
+  }
 `;
 
 export const DateCard = styled.div`
@@ -59,6 +65,7 @@ export const DateCard = styled.div`
   max-width: 5rem;
   padding: 1rem 0;
   text-align: center;
+  margin: 1rem;
 
   span {
     display: block;
@@ -69,4 +76,10 @@ export const DateCard = styled.div`
 export const SubmitButton = styled(Button)`
   min-width: 100%;
   font-size: 1rem;
+`;
+
+export const MonthDate = styled.div`
+  display: flex;
+  padding: 0 0.7rem;
+  gap: 0.5rem;
 `;

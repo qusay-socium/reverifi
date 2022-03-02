@@ -1,9 +1,14 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import Button from 'components/shared/Button';
+import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { submitListingSchedule } from 'services/listing-create-service';
+import {
+  getListingSchedule,
+  submitListingSchedule,
+} from 'services/listing-create-service';
 import { getDifferenceBetweenTwoDates } from 'utils/helpers';
 import DatePickerInputHandler from '../DateInput';
 import Switch from '../Switch';
@@ -14,19 +19,31 @@ import {
   ButtonsContainer,
   DateInputWrapper,
   SetTime,
-} from './edit-listing-schedule';
+} from './edit-listing-schedule.style';
+import listingScheduleSchema from './listing-schedule-schema';
 
 /**
  *
  * @return component for the schedule page
  */
 function EditListingSchedule() {
-  const { id } = useParams();
-  const { handleSubmit, reset, control } = useForm();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [updateDate, setUpdateDate] = useState(null);
   const [dateRange, setDateRange] = useState(weekDays);
+
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { isLoggedIn } = useUser();
+  const {
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+    register,
+  } = useForm({
+    resolver: yupResolver(listingScheduleSchema),
+  });
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -34,16 +51,24 @@ function EditListingSchedule() {
         day?.[1]?.id === daySelected.id &&
         setDateRange((currentDate) => ({
           ...currentDate,
-          [day?.[0]]: { ...day?.[1], active: !daySelected.active },
+          [day?.[0]]: {
+            ...day?.[1],
+            active: !daySelected.active,
+            endHour: null,
+            startHour: null,
+          },
         }))
     );
   };
 
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
+  const filterPassedTime = (time, startTime) => {
+    const currentDate = new Date(startTime);
     const selectedDate = new Date(time);
 
-    return currentDate.getTime() < selectedDate.getTime();
+    if (startTime) {
+      return currentDate.getTime() < selectedDate.getTime();
+    }
+    return null;
   };
 
   const onSubmit = async () => {
@@ -67,6 +92,8 @@ function EditListingSchedule() {
 
   const handleCancel = () => {
     setDateRange(weekDays);
+    setStartDate(null);
+    setEndDate(null);
     reset();
   };
 
@@ -84,7 +111,12 @@ function EditListingSchedule() {
     return renderDays;
   };
 
+  const getScheduleData = async () => {
+    setUpdateDate(await getListingSchedule(id));
+  };
+
   useEffect(() => {
+    if (!isLoggedIn) navigate('/sign-up');
     setDateRange(weekDays);
 
     if (
@@ -101,7 +133,10 @@ function EditListingSchedule() {
             day?.[1]?.id === dayNumber &&
             setDateRange((currentDate) => ({
               ...currentDate,
-              [day?.[0]]: { ...day?.[1], outOfDate: false },
+              [day?.[0]]: {
+                ...day?.[1],
+                outOfDate: false,
+              },
             }))
         )
       );
@@ -113,7 +148,19 @@ function EditListingSchedule() {
         }));
       });
     }
-  }, [startDate, endDate]);
+  }, [startDate, endDate, updateDate]);
+
+  useEffect(() => {
+    getScheduleData();
+
+    if (updateDate) {
+      setEndDate(updateDate?.endDate ? new Date(updateDate?.endDate) : null);
+      setStartDate(
+        updateDate?.startDate ? new Date(updateDate?.startDate) : null
+      );
+      setDateRange(updateDate?.days);
+    }
+  }, [updateDate?.endDate, updateDate?.startDate]);
 
   return (
     <div>
@@ -134,47 +181,56 @@ function EditListingSchedule() {
             label="To"
           />
         </DateInputWrapper>
-        <div>
-          {startDate &&
-            endDate &&
-            Object.values?.(dateRange)?.map(
-              (day, index) =>
-                !day.outOfDate &&
-                index < 7 && (
-                  <SetTime key={day?.id}>
-                    <Switch day={day} handleChange={handleChange} />
+        {startDate && endDate && (
+          <>
+            <div>
+              {Object.values?.(dateRange)?.map(
+                (day, index) =>
+                  !day?.outOfDate &&
+                  index < 7 && (
+                    <SetTime key={day?.id}>
+                      <Switch
+                        day={day}
+                        handleChange={handleChange}
+                        register={register}
+                      />
+                      <TimeInput
+                        Controller={Controller}
+                        control={control}
+                        name={`${day?.label}-start`}
+                        schemaName={`${day?.label}Start`}
+                        setDateRange={setDateRange}
+                        day={day}
+                        dateRange={dateRange}
+                        time={day?.startHour}
+                        error={errors[`${day?.label}Start`]?.message}
+                      />
+                      <span>To </span>
+                      <TimeInput
+                        Controller={Controller}
+                        control={control}
+                        name={`${day.label}-end`}
+                        schemaName={`${day?.label}End`}
+                        setDateRange={setDateRange}
+                        filterPassedTime={filterPassedTime}
+                        day={day}
+                        dateRange={dateRange}
+                        error={errors[`${day?.label}End`]?.message}
+                        time={day?.endHour}
+                      />
+                    </SetTime>
+                  )
+              )}
+            </div>
 
-                    <TimeInput
-                      Controller={Controller}
-                      control={control}
-                      name={`${day?.label}-start`}
-                      setStartDate={setStartDate}
-                      day={day}
-                      dateRange={dateRange}
-                      setDateRange={setDateRange}
-                    />
-                    <span>To</span>
-                    <TimeInput
-                      Controller={Controller}
-                      control={control}
-                      name={`${day.label}-end`}
-                      setStartDate={setStartDate}
-                      filterPassedTime={filterPassedTime}
-                      day={day}
-                      dateRange={dateRange}
-                      setDateRange={setDateRange}
-                    />
-                  </SetTime>
-                )
-            )}
-        </div>
-
-        <div>
-          <ButtonsContainer>
-            <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
-            <Button type="submit">Add Schedule</Button>
-          </ButtonsContainer>
-        </div>
+            <div>
+              <ButtonsContainer>
+                <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
+                <Button type="submit">Add Schedule</Button>
+              </ButtonsContainer>
+            </div>
+          </>
+        )}
       </form>
     </div>
   );

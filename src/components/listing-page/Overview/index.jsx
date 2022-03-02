@@ -23,6 +23,9 @@ import {
  * @return {JSX.Element}
  */
 function Overview({ listing }) {
+  const { schedule, id } = listing;
+  console.log(`💉 ⛑ 💉 ~ id`, id);
+
   return (
     <Container>
       <Wrapper>
@@ -66,7 +69,7 @@ function Overview({ listing }) {
             Claim This Property
           </ClaimButton>
         </Claim>
-        <ScheduleVisit />
+        {schedule && <ScheduleVisit data={schedule} id={id} />}
       </Wrapper>
       <ContactForm />
     </Container>
@@ -76,9 +79,17 @@ function Overview({ listing }) {
 Overview.propTypes = {
   listing: PropTypes.shape({
     createdAt: PropTypes.string,
+    id: PropTypes.bool,
     listingSocial: PropTypes.objectOf(PropTypes.string),
     overview: PropTypes.string.isRequired,
-  }).isRequired,
+    schedule: PropTypes.objectOf(PropTypes.string),
+  }),
+};
+
+Overview.defaultProps = {
+  listing: PropTypes.shape({
+    schedule: null,
+  }),
 };
 
 export default Overview;

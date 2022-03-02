@@ -4,6 +4,7 @@ import mq from 'styles/media-query';
 
 export const CheckBoxWrapper = styled.div`
   position: relative;
+  margin-top: 0.7rem;
 
   ${mq.tablet`
       width:13rem;

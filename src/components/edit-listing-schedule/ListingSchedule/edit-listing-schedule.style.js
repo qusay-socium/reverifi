@@ -58,11 +58,11 @@ export const SetTime = styled.div`
   span {
     color: ${colors.gray};
     font-size: 1rem;
-    margin: 0.9rem 0;
+    margin: 0.4rem 0;
   }
 
   ${mq.tablet`
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     margin: 0 2rem;
   `}
