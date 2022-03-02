@@ -76,7 +76,7 @@ function TimeInput({
               selected={time ? new Date(time) : null}
               placeholderText="00:00 AM"
               dateFormat="h:mm aa"
-              timeIntervals={60}
+              timeIntervals={15}
               showTimeSelect
               showTimeSelectOnly
               filterTime={(filteredTime) =>

@@ -16,7 +16,7 @@ function EditTabsForm() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 0;
 
-  const tabsDate = [
+  const tabsData = [
     { icon: null, title: 'Details' },
     { icon: null, title: 'Schedule' },
     { icon: <AddSvg />, title: 'reverifi' },
@@ -26,7 +26,7 @@ function EditTabsForm() {
     <Container>
       <Tabs
         activePage={+tab}
-        tabs={tabsDate}
+        tabs={tabsData}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,
