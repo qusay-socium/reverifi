@@ -26,7 +26,7 @@ function EditTabsForm() {
     <Container>
       <Tabs
         activePage={+tab}
-        tabs={tabsData}
+        tabsData={tabsData}
         tabsContent={[
           <CreateListingForm date="Edit Listing" />,
           <EditListingSchedulePage />,
