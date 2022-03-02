@@ -7,6 +7,8 @@ import {
   SavedText,
 } from './saved-agents-listings-wrapper.styles';
 
+const tabsData = [{ title: 'Saved Listings' }, { title: 'Saved Agents' }];
+
 /**
  * Saved Agents Listings Wrapper component.
  *
@@ -17,7 +19,7 @@ function SavedAgentsListingsWrapper() {
     <SavedAgentsListingsContainer>
       <SavedText>Saved</SavedText>
       <Tabs
-        tabsTitles={['Saved Listings', 'Saved Agents']}
+        tabsData={tabsData}
         tabsContent={[<SavedListings />, <SavedAgents />]}
       />
     </SavedAgentsListingsContainer>
