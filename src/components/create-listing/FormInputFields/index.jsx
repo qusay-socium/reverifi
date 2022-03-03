@@ -9,6 +9,7 @@ import { ReactComponent as LotAreaIcon } from 'assets/icons/lot-area.svg';
 import { ReactComponent as LotDimensionsIcon } from 'assets/icons/lot-dimensions.svg';
 import { ReactComponent as OverviewIcon } from 'assets/icons/overview.svg';
 import { ReactComponent as OwnerIcon } from 'assets/icons/owner.svg';
+import { ReactComponent as LocationIcon } from 'assets/icons/profile-service-areas.svg';
 import { ReactComponent as RoomsIcon } from 'assets/icons/rooms.svg';
 import { ReactComponent as AgentIcon } from 'assets/icons/seller-agent.svg';
 import { ReactComponent as PartialBathroomsIcon } from 'assets/icons/shower.svg';
@@ -17,6 +18,7 @@ import { ReactComponent as YearBuiltIcon } from 'assets/icons/year-built.svg';
 import FormInput from 'components/shared/FormInput';
 import SelectInput from 'components/shared/FormSelectInput';
 import TextAreaInput from 'components/shared/FormTextArea';
+import LocationSearchInput from 'components/shared/LocationSearchInput';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Controller } from 'react-hook-form';
@@ -31,6 +33,7 @@ import {
   ButtonsContainer,
   DetailsInputsContainer,
   IdentifierButton,
+  IdentifierButtonsContainer,
   InputLabel,
   SelectContainer,
   SelectOneError,
@@ -88,27 +91,42 @@ function FormInputFields({ register, errors, setValue, values, control }) {
   return (
     <>
       <ButtonsContainer>
-        <IdentifierButton
-          aria-label="I am the owner(s)"
-          onClick={() => {
-            setValue('isOwner', !values.isOwner);
-          }}
-          selected={values.isOwner}
-        >
-          <OwnerIcon />I am the owner(s)
-        </IdentifierButton>
-        <IdentifierButton
-          aria-label="I am the Seller Agent"
-          onClick={() => {
-            setValue('isAgent', !values.isAgent);
-          }}
-          selected={values.isAgent}
-        >
-          <AgentIcon /> I am the Seller Agent
-        </IdentifierButton>
-        {errors.AtLeastOneIsSelected && (
-          <SelectOneError>{errors.AtLeastOneIsSelected.message}</SelectOneError>
-        )}
+        <LocationSearchInput
+          label="Location"
+          labelIcon={<LocationIcon />}
+          name="address"
+          placeholder="Enter listing location..."
+          error={errors?.address?.message}
+          register={register}
+          setValue={setValue}
+        />
+        <IdentifierButtonsContainer>
+          <IdentifierButton
+            aria-label="I am the owner(s)"
+            onClick={() => {
+              setValue('isOwner', !values.isOwner);
+            }}
+            selected={values.isOwner}
+          >
+            <OwnerIcon />
+            <span>I am the owner(s)</span>
+            {errors.AtLeastOneIsSelected && (
+              <SelectOneError>
+                {errors?.AtLeastOneIsSelected?.message}
+              </SelectOneError>
+            )}
+          </IdentifierButton>
+          <IdentifierButton
+            aria-label="I am the Seller Agent"
+            onClick={() => {
+              setValue('isAgent', !values.isAgent);
+            }}
+            selected={values.isAgent}
+          >
+            <AgentIcon />
+            <span>I am the Seller Agent</span>
+          </IdentifierButton>
+        </IdentifierButtonsContainer>
       </ButtonsContainer>
 
       <DetailsInputsContainer>

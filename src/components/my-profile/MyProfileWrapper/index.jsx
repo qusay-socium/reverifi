@@ -17,6 +17,7 @@ import { ReactComponent as YoutubeIcon } from 'assets/icons/profile-youtube.svg'
 import { ReactComponent as ZipCodeIcon } from 'assets/icons/profile-zipcode.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
 import avatar from 'assets/images/avatar.svg';
+import myProfileData from 'components/my-profile/data';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
@@ -35,7 +36,6 @@ import {
   handleNumberInput,
   handleTextInput,
 } from 'utils/helpers';
-import myProfileData from '../data';
 import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {

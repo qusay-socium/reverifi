@@ -1,5 +1,6 @@
 import { ReactComponent as rawLocationPin } from 'assets/images/location-pin-simple.svg';
 import { ReactComponent as rawSearchIcon } from 'assets/images/rounded-search-icon.svg';
+import { AutocompleteMenuContainer } from 'components/shared/LocationSearchInput/search-input.style';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -143,4 +144,8 @@ export const StyledInput = styled.input`
       font-size: 1.2rem;
     }
   `}
+`;
+
+export const MenuContainer = styled(AutocompleteMenuContainer)`
+  top: 98%;
 `;

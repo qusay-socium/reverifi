@@ -24,8 +24,14 @@ const stringValidator = yup
   .required()
   .typeError('This field is required');
 
+const addressStringValidator = yup
+  .string()
+  .required('This field is required')
+  .min(10, 'Must be at least 10 letters');
+
 const listingFormSchema = yup
   .object({
+    address: addressStringValidator,
     bedrooms: positiveIntegerValidator,
     fullBathrooms: positiveIntegerValidator,
     garages: positiveIntegerValidator,

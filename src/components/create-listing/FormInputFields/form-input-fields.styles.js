@@ -5,12 +5,25 @@ import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
 export const ButtonsContainer = styled.div`
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 
   ${mq.tabletWide`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1rem
+    display: flex;
+    gap: 1rem;
+
+    > div{
+        flex:1;
+    }
+  `}
+`;
+
+export const IdentifierButtonsContainer = styled.div`
+  display: flex;
+  gap: 0;
+  padding-bottom: 1.8rem;
+
+  ${mq.tabletWide`
+    padding-bottom: 1rem;
   `}
 `;
 
@@ -24,11 +37,12 @@ export const IdentifierButton = styled(Button)`
   color: ${({ selected }) => (selected ? colors.white : colors.mineShaft)};
   cursor: pointer;
   display: flex;
-  font-size: 1rem;
-  margin: 1.25rem 0 0;
+  margin: 1.5rem 0.5rem 0 0;
   padding: 0.75rem 1.5rem;
   transition: 0.2s;
   width: 100%;
+  flex: 1;
+  position: relative;
 
   &:hover {
     background-color: ${colors.green};
@@ -56,10 +70,27 @@ export const IdentifierButton = styled(Button)`
       fill: ${({ selected }) => (selected ? colors.white : colors.mineShaft)};
     }
   }
+
+  span {
+    font-size: 0.6rem;
+  }
+
+  ${mq.desktopWide`
+    span{
+        font-size: 0.8rem;
+    }
+  `}
 `;
 
 export const SelectOneError = styled(Error)`
-  padding-left: 1rem;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  font-weight: 400;
+
+  ${mq.tablet`
+    white-space: nowrap;
+  `}
 `;
 
 export const DetailsInputsContainer = styled.div`
