@@ -302,7 +302,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
           <InputLabel>
             <TagsIcon />
             Special Tags
-            <span>(Please select maximum two tags)</span>
+            <span>(Please select a maximum of two tags)</span>
           </InputLabel>
           <SelectContainer error={errors.tags?.message}>
             <Controller
