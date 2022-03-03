@@ -102,7 +102,15 @@ function SavedAgents() {
       {users?.data?.length > 0 ? (
         <>
           <Table
-            headers={['IMAGE', 'NAME', 'ROLE', 'PHONE', 'EMAIL', 'ADDRESS', '']}
+            headers={[
+              'IMAGE',
+              'AGENT NAME',
+              'AGENT TYPE',
+              'PHONE',
+              'EMAIL',
+              'ADDRESS',
+              '',
+            ]}
           >
             {users?.data?.map(
               ({ savedUser: { id, userInfo, roles, name, phone, email } }) => (
