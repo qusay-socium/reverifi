@@ -119,12 +119,7 @@ function Card({ data }) {
         <CardFooter>
           <TextLarge>$ {price.toLocaleString()}</TextLarge>
 
-          <SaveAndShareButtons
-            listingId={id}
-            setShowModal={setShowModal}
-            small="true"
-            activeState={isActive}
-          />
+          <SaveAndShareButtons small="true" activeState={isActive} noFetch />
         </CardFooter>
       </CardContainer>
 
