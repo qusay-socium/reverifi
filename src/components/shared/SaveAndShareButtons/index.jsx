@@ -24,6 +24,7 @@ import {
  * @param {Boolean} small               small icons if true
  * @param {Boolean} activeState         outer active state
  * @param {Function} changeActiveState  changeActiveState  function
+ * @param {FBoolean} noFetch            if true it work as indicator
  *
  * @return {JSX.Element}
  */
@@ -34,6 +35,7 @@ function SaveAndShareButtons({
   small,
   activeState,
   changeActiveState,
+  noFetch,
 }) {
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
@@ -49,18 +51,21 @@ function SaveAndShareButtons({
 
     setSaved(!saved);
 
-    await saveUserOrListing({ listingId, userId });
+    if (!noFetch) await saveUserOrListing({ listingId, userId });
   };
 
   /**
    * handle get user saved
    */
   const fetchSave = async () => {
-    try {
-      const data = await getUserOrListingSave(userId || '', listingId || '');
-      if (data) setSaved(true);
-    } catch (err) {
-      console.log(err);
+    if (!noFetch) {
+      try {
+        const data = await getUserOrListingSave(userId || '', listingId || '');
+        if (data) setSaved(true);
+      } catch (err) {
+        console.log(err);
+        setSaved(false);
+      }
     }
   };
 
@@ -70,6 +75,9 @@ function SaveAndShareButtons({
     setSaved(activeState);
   }, [activeState]);
 
+  /**
+   * handle share function
+   */
   const handleShare = async () => {
     await viewOrShareUserOrListing({
       listingId,
@@ -100,6 +108,7 @@ SaveAndShareButtons.defaultProps = {
   activeState: false,
   changeActiveState: () => {},
   listingId: null,
+  noFetch: false,
   setShowModal: () => {},
   small: null,
   userId: null,
@@ -109,6 +118,7 @@ SaveAndShareButtons.propTypes = {
   activeState: PropTypes.bool,
   changeActiveState: PropTypes.func,
   listingId: PropTypes.string,
+  noFetch: PropTypes.bool,
   setShowModal: PropTypes.func,
   small: PropTypes.string,
   userId: PropTypes.string,
