@@ -116,9 +116,11 @@ function SavedAgents() {
 
                   <TableCell>{toUpperCaseFirstLetter(name)}</TableCell>
 
-                  <TableCell>
+                  <TableCell wordBreak>
                     {roles.length > 0
-                      ? roles?.map(({ role }) => `${role} `)
+                      ? roles?.map(({ role }, i, array) =>
+                          i + 1 === array.length ? `${role}` : `${role}, `
+                        )
                       : ''}
                   </TableCell>
 

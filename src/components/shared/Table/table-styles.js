@@ -42,6 +42,7 @@ export const TableCell = styled.td`
   font-size: 0.8rem;
   padding: 1.7rem 0.6rem;
   white-space: ${({ wordBreak }) => (wordBreak ? 'normal' : 'nowrap')};
+  line-height: 0.9rem;
 
   ${({ iconsCell }) => iconsCell && 'text-align: right;'};
   ${({ centerAlign }) => centerAlign && 'text-align: center;'};
