@@ -36,7 +36,7 @@ export const DateContainer = styled.div`
 
 export const DateSliderContainer = styled.div`
   margin: 1rem;
-  max-width: calc(100% - 2rem);
+  width: 100%;
 
   .slick-prev {
     :before {

@@ -41,7 +41,7 @@ export const TableIconContainer = styled.button`
   position: relative;
 
   &:hover {
-    background: ${({ hover }) => hover && colors.midGray};
+    background: ${({ hover }) => hover && colors.mercury};
     border-radius: ${({ hover }) => hover && '50%'};
   }
 
@@ -83,14 +83,15 @@ export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: 0.3rem;
-  background-color: ${colors.midGray};
+
+  &:hover {
+    background-color: ${colors.mercury};
+  }
 `;
 
 export const ArrowLeft = styled(ArrowLeftIcon)`
-  &:hover {
-    path {
-      stroke: ${colors.mineShaft};
-    }
+  path {
+    stroke: ${colors.mineShaft};
   }
 `;
 
