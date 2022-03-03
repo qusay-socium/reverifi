@@ -114,7 +114,9 @@ function SavedAgents() {
                     <AgentImage src={userInfo?.image || agentImage} />
                   </TableCell>
 
-                  <TableCell>{toUpperCaseFirstLetter(name)}</TableCell>
+                  <TableCell wordBreak>
+                    {toUpperCaseFirstLetter(name)}
+                  </TableCell>
 
                   <TableCell>
                     {roles.length > 0
@@ -122,9 +124,9 @@ function SavedAgents() {
                       : ''}
                   </TableCell>
 
-                  <TableCell>{phone?.slice(2)}</TableCell>
-                  <TableCell>{email}</TableCell>
-                  <TableCell>
+                  <TableCell wordBreak>{phone?.slice(2)}</TableCell>
+                  <TableCell wordBreak>{email}</TableCell>
+                  <TableCell wordBreak>
                     {userInfo?.zipCode &&
                       `${userInfo?.zipCode}, ${userInfo?.city} ${userInfo?.country}`}
                   </TableCell>
