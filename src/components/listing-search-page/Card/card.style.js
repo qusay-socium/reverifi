@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -11,10 +12,7 @@ export const CardContainer = styled.div`
   max-height: 10rem;
   margin: 2rem;
   overflow: hidden;
-
-  &:hover {
-    cursor: pointer;
-  }
+  position: relative;
 
   ${mq.tabletWide`
       flex-direction: row;
@@ -106,7 +104,7 @@ export const LocationText = styled.p`
 
 export const IconsContainer = styled.div`
   align-items: center;
-  color: ${colors.dustyGrey};
+  color: ${colors.mineShaft};
   display: flex;
   width: 100%;
 
@@ -136,4 +134,17 @@ export const BoldNumber = styled(AreaText)`
   font-weight: 600;
   margin-right: 0.25rem;
   font-size: 0.9rem;
+`;
+
+export const ViewListingLink = styled(Link)`
+  color: ${colors.green};
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-left: auto;
+  margin-right: 0.3rem;
+  justify-content: space-around;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
