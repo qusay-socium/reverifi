@@ -79,7 +79,7 @@ function Navbar() {
                 <MenuTopWrapper>
                   <MenuItem filled="true" onClick={() => navigate('/saved')}>
                     <SavedListingsIcon />
-                    Saved listings
+                    Saved
                   </MenuItem>
                   <MenuItem
                     filled="true"
