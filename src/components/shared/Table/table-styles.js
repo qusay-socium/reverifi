@@ -28,6 +28,14 @@ export const TableRow = styled.tr`
   padding: 0.5rem;
   position: relative;
   text-align: left;
+
+  th:first-child {
+    border-top-left-radius: 0.37rem;
+  }
+
+  th:last-child {
+    border-top-right-radius: 0.37rem;
+  }
 `;
 
 export const TableCell = styled.td`
