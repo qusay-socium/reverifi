@@ -51,25 +51,15 @@ function ListingsSearchHeader({
         </InputWrapper>
 
         <FilterContainer>
-          <SelectDropdownMenu name="status" placeholder="Price">
-            <option value="">Status</option>
-          </SelectDropdownMenu>
+          <SelectDropdownMenu name="status" placeholder="Price" />
 
-          <SelectDropdownMenu name="status" placeholder="Listing Status">
-            <option value="">Status</option>
-          </SelectDropdownMenu>
+          <SelectDropdownMenu name="status" placeholder="Listing Status" />
 
-          <SelectDropdownMenu name="status" placeholder="Property Type">
-            <option value="">Status</option>
-          </SelectDropdownMenu>
+          <SelectDropdownMenu name="status" placeholder="Property Type" />
 
-          <SelectDropdownMenu name="status" placeholder="Bedrooms">
-            <option value="">Status</option>
-          </SelectDropdownMenu>
+          <SelectDropdownMenu name="Bedrooms" placeholder="Bedrooms" />
 
-          <SelectDropdownMenu name="status" placeholder="Bathrooms">
-            <option value="">Status</option>
-          </SelectDropdownMenu>
+          <SelectDropdownMenu name="Bathrooms" placeholder="Bathrooms" />
         </FilterContainer>
 
         <SearchButton
