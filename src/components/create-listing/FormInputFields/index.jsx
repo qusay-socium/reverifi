@@ -302,6 +302,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
           <InputLabel>
             <TagsIcon />
             Special Tags
+            <span>(Please select a maximum of two tags)</span>
           </InputLabel>
           <SelectContainer error={errors.tags?.message}>
             <Controller
@@ -313,6 +314,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
                   classNamePrefix="tags"
                   closeMenuOnSelect={false}
                   isMulti
+                  noOptionsMessage={() => null}
                   options={tagsOptions}
                   placeholder="Select tags..."
                   theme={(theme) =>

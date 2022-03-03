@@ -44,12 +44,14 @@ function AgentListings() {
             fullBathrooms,
             homeArea,
             lotArea,
+            tags,
           }) => (
             <Card key={listingId}>
               <CardImage
                 listingType={listingType?.type}
                 address={address}
                 images={images}
+                tags={tags}
               />
               <CardInformation
                 id={listingId}

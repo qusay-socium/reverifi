@@ -50,4 +50,5 @@ export const Tag = styled.div`
   color: ${colors.white};
   font-size: 0.75rem;
   padding: 0.3rem 1.2rem;
+  margin-right: 0.4rem;
 `;

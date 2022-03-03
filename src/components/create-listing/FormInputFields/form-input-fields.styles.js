@@ -108,6 +108,12 @@ export const SelectContainer = styled.div`
       .tags__multi-value__label {
         color: ${colors.white};
       }
+
+      .tags__multi-value__remove {
+        :hover {
+          color: inherit;
+        }
+      }
     }
 
     .tags__option {
@@ -141,4 +147,9 @@ export const InputLabel = styled.div`
   gap: 0.5rem;
   padding-bottom: 0.6rem;
   width: 100%;
+
+  span {
+    font-size: 0.7rem;
+    color: ${colors.gray};
+  }
 `;
