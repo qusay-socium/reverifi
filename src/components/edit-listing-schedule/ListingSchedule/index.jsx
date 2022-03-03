@@ -72,22 +72,24 @@ function EditListingSchedule() {
   };
 
   const onSubmit = async () => {
-    if (startDate && endDate) {
-      setDateRange((currentDate) => ({
-        ...currentDate,
-        date: { endDate, startDate },
-      }));
-    }
-    const date = {
-      days: dateRange,
-      endDate,
-      listingId: id,
-      startDate,
-    };
+    if (Object.values?.(dateRange)?.some((day) => day.active)) {
+      if (startDate && endDate) {
+        setDateRange((currentDate) => ({
+          ...currentDate,
+          date: { endDate, startDate },
+        }));
+      }
+      const date = {
+        days: dateRange,
+        endDate,
+        listingId: id,
+        startDate,
+      };
 
-    await submitListingSchedule(date);
-    navigate(`/my-listings`);
-    reset();
+      await submitListingSchedule(date);
+      navigate(`/my-listings`);
+      reset();
+    }
   };
 
   const handleCancel = () => {
@@ -153,7 +155,6 @@ function EditListingSchedule() {
 
   useEffect(() => {
     getScheduleData();
-
     if (updateDate) {
       setEndDate(updateDate?.endDate ? new Date(updateDate?.endDate) : null);
       setStartDate(

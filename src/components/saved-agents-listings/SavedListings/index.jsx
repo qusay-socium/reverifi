@@ -27,6 +27,7 @@ import {
   AgentInfoContainer,
   AgentName,
   IconContainer,
+  IconWrapper,
   ListingImage,
   ListingImageContainer,
 } from './saved-listings.styles';
@@ -193,8 +194,12 @@ function SavedListings() {
             <CurrentListing>{startItem} -</CurrentListing>
             <CurrentListing>{endItem}</CurrentListing>
             <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-            <ArrowLeft onClick={handleLeftArrowClick} />
-            <ArrowRight onClick={handleRightArrowClick} />
+            <IconWrapper onClick={handleLeftArrowClick}>
+              <ArrowLeft />
+            </IconWrapper>
+            <IconWrapper onClick={handleRightArrowClick}>
+              <ArrowRight />
+            </IconWrapper>
           </Pagination>
         </>
       ) : (

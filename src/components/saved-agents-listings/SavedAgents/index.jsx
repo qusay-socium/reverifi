@@ -21,7 +21,10 @@ import {
 } from 'services/social-statistics';
 import { toUpperCaseFirstLetter } from 'utils/helpers';
 import NoDataComponent from '../NoDataComponent';
-import { IconContainer } from '../SavedListings/saved-listings.styles';
+import {
+  IconContainer,
+  IconWrapper,
+} from '../SavedListings/saved-listings.styles';
 import { AgentImage } from './saved-agents.styles';
 
 /**
@@ -127,7 +130,7 @@ function SavedAgents() {
                   </TableCell>
                   <TableCell iconsCell>
                     <IconContainer
-                      hover
+                      hoverable
                       onClick={() => {
                         navigate(`/agent-details/${id}`);
                       }}
@@ -139,7 +142,7 @@ function SavedAgents() {
                         position={[2.5, -0.8]}
                       />
                     </IconContainer>
-                    <IconContainer hover onClick={() => handleDelete(id)}>
+                    <IconContainer hoverable onClick={() => handleDelete(id)}>
                       <DeleteIcon />
                       <Tooltip
                         text="Delete"
@@ -157,8 +160,12 @@ function SavedAgents() {
             <CurrentListing>{startItem} -</CurrentListing>
             <CurrentListing>{endItem}</CurrentListing>
             <MaxListingNumber>of {users?.count}</MaxListingNumber>
-            <ArrowLeft onClick={handleLeftArrowClick} />
-            <ArrowRight onClick={handleRightArrowClick} />
+            <IconWrapper onClick={handleLeftArrowClick}>
+              <ArrowLeft />
+            </IconWrapper>
+            <IconWrapper onClick={handleRightArrowClick}>
+              <ArrowRight />
+            </IconWrapper>
           </Pagination>
         </>
       ) : (

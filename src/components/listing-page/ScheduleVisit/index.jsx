@@ -28,6 +28,7 @@ import {
 function ScheduleVisit({ data, id }) {
   const [dateRange, setDateRange] = useState([]);
   const [selectedDay, setSelectedDay] = useState([]);
+  const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
 
   const { endDate, startDate, days } = data;
@@ -54,6 +55,19 @@ function ScheduleVisit({ data, id }) {
     return newDays;
   };
 
+  const filterActiveDays = () => {
+    const filteredData = [];
+    dateRange.map((date) =>
+      Object.values?.(days).map(
+        (day) =>
+          date?.date?.getDay() === day.id &&
+          day?.active &&
+          filteredData.push(date)
+      )
+    );
+    setFilteredDays(filteredData);
+  };
+
   const getSelectedDate = (day) => {
     Object.values(days).find(
       (currentDay) =>
@@ -73,8 +87,11 @@ function ScheduleVisit({ data, id }) {
 
   useEffect(() => {
     setDateRange(findPeriodBetweenDates(time));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedHour]);
+
+  useEffect(() => {
+    filterActiveDays();
+  }, [dateRange]);
 
   return (
     <Container>
@@ -86,18 +103,21 @@ function ScheduleVisit({ data, id }) {
           dots={false}
           infinite={false}
           slidesToScroll={7}
-          slidesToShow={dateRange.length < 7 ? dateRange.length : 7}
+          slidesToShow={filteredDays.length < 7 ? filteredDays.length : 7}
           responsive={breakPoints}
         >
-          {dateRange?.map(({ dayName, month, number, date }) => (
-            <DateCard key={dayName} onClick={() => getSelectedDate(date)}>
-              <span>{dayName}</span>
-              <MonthDate>
-                <span>{month}</span>
-                <span>{number}</span>
-              </MonthDate>
-            </DateCard>
-          ))}
+          {filteredDays?.map(
+            ({ dayName, month, number, date }) =>
+              true && (
+                <DateCard key={dayName} onClick={() => getSelectedDate(date)}>
+                  <span>{dayName}</span>
+                  <MonthDate>
+                    <span>{month}</span>
+                    <span>{number}</span>
+                  </MonthDate>
+                </DateCard>
+              )
+          )}
         </Slider>
 
         {selectedDay?.startHour && (

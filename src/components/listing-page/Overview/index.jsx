@@ -24,7 +24,6 @@ import {
  */
 function Overview({ listing }) {
   const { schedule, id } = listing;
-  console.log(`💉 ⛑ 💉 ~ id`, id);
 
   return (
     <Container>
