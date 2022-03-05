@@ -30,6 +30,7 @@ function ScheduleVisit({ data, id }) {
   const [selectedDay, setSelectedDay] = useState([]);
   const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
+  const [requestedDate, setRequestedDate] = useState(null);
 
   const { endDate, startDate, days } = data;
   const navigate = useNavigate();
@@ -47,9 +48,9 @@ function ScheduleVisit({ data, id }) {
 
     const newDays = renderDays?.map((day) => ({
       date: day,
-      dayName: day.toString().split(' ')[0],
-      month: day.toString().split(' ')[2],
-      number: day.toString().split(' ')[1],
+      dayName: day?.toString()?.split(' ')?.[0],
+      month: day?.toString()?.split(' ')?.[2],
+      number: day?.toString()?.split(' ')?.[1],
     }));
 
     return newDays;
@@ -80,7 +81,7 @@ function ScheduleVisit({ data, id }) {
       navigate('/login');
     }
     submitListingVisit({
-      dateTime: { date: selectedDay, time: selectedHour },
+      dateTime: { date: requestedDate, time: selectedHour },
       listingId: id,
     });
   };
@@ -109,7 +110,13 @@ function ScheduleVisit({ data, id }) {
           {filteredDays?.map(
             ({ dayName, month, number, date }) =>
               true && (
-                <DateCard key={dayName} onClick={() => getSelectedDate(date)}>
+                <DateCard
+                  key={dayName}
+                  onClick={() => {
+                    getSelectedDate(date);
+                    setRequestedDate(date);
+                  }}
+                >
                   <span>{dayName}</span>
                   <MonthDate>
                     <span>{month}</span>

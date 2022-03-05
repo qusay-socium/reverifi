@@ -63,7 +63,7 @@ export const DateCard = styled.div`
   cursor: pointer;
   max-height: 5rem;
   max-width: 5rem;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   text-align: center;
   margin: 1rem;
 
@@ -80,6 +80,7 @@ export const SubmitButton = styled(Button)`
 
 export const MonthDate = styled.div`
   display: flex;
-  padding: 0 0.7rem;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 `;

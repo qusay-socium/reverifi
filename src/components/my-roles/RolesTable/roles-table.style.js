@@ -10,6 +10,10 @@ export const TableWrapper = styled.div`
   width: 100%;
 `;
 
+export const Container = styled.div`
+  width: 100%;
+`;
+
 export const StyledTable = styled.table`
   border-collapse: collapse;
   width: 100%;
