@@ -52,6 +52,7 @@ export const TooltipText = styled.span`
   left: ${({ left }) => left && `${left}rem`};
   right: ${({ right }) => right && `${right}rem`};
   top: ${({ top }) => top && `${top}rem`};
+  white-space: ${({ lineBreak }) => lineBreak && `break-spaces`};
 
   &::after {
     ${({ removeArrow }) =>

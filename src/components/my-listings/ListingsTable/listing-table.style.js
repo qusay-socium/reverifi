@@ -10,6 +10,7 @@ export const ListingImageContainer = styled.div`
 
 export const CellContainer = styled(TableCell)`
   padding: 0.8rem 0 0.8rem 1.5rem;
+  padding-right: ${({ iconsCell }) => (iconsCell ? '1rem' : 0)};
 `;
 
 export const ListingImage = styled.img`
@@ -20,6 +21,13 @@ export const ListingImage = styled.img`
 
 export const AgentContainer = styled.div`
   display: flex;
+  position: relative;
+
+  &:hover {
+    span {
+      display: block;
+    }
+  }
 `;
 
 export const AgentImage = styled.img`
@@ -101,4 +109,19 @@ export const ArrowRight = styled(ArrowLeft)`
 
 export const MaxListingNumber = styled(CurrentListing)`
   color: ${colors.dustyGray};
+`;
+
+export const AgentToolTip = styled.p`
+  width: 100%;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: auto;
+
+  &:hover {
+    span {
+      display: block;
+    }
+  }
 `;

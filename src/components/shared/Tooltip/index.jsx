@@ -10,10 +10,18 @@ import { TooltipText } from './tooltip.styles';
  * @param {Array(Number)} position tooltip position numbers array in 'rem' [top,right,bottom,left]
  * @param {Boolean} light white background
  * @param {Boolean} removeArrow remove arrow from tooltip
+ * @param {Boolean} lineBreak break the tooltip for long text lines
 
  * @return {JSX.Element}
  */
-function Tooltip({ text, arrowPosition, position, light, removeArrow }) {
+function Tooltip({
+  text,
+  arrowPosition,
+  position,
+  light,
+  removeArrow,
+  lineBreak,
+}) {
   return (
     <TooltipText
       arrowPosition={arrowPosition}
@@ -23,6 +31,7 @@ function Tooltip({ text, arrowPosition, position, light, removeArrow }) {
       left={position[3]}
       light={light}
       removeArrow={removeArrow}
+      lineBreak={lineBreak}
     >
       {text}
     </TooltipText>
@@ -32,6 +41,7 @@ function Tooltip({ text, arrowPosition, position, light, removeArrow }) {
 Tooltip.propTypes = {
   arrowPosition: propTypes.string.isRequired,
   light: propTypes.bool,
+  lineBreak: propTypes.bool,
   position: propTypes.arrayOf(propTypes.number).isRequired,
   removeArrow: propTypes.bool,
   text: propTypes.string.isRequired,
@@ -39,6 +49,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   light: false,
+  lineBreak: false,
   removeArrow: false,
 };
 
