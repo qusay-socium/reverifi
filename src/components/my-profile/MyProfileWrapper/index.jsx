@@ -114,6 +114,7 @@ function MyProfileWrapper() {
     control,
     getValues,
     setFocus,
+    setValue,
   } = useForm({
     resolver: yupResolver(myProfileSchema),
   });
@@ -172,7 +173,7 @@ function MyProfileWrapper() {
       setDataSaved(true);
 
       // change global context value
-      setUserInfo({ email, name, phone });
+      setUserInfo({ email, id: fetchedUserData.user?.id, name, phone });
     } catch ({ response: { data: serverData } }) {
       if (serverData.errors[0].message === 'email must be unique') {
         setCompanyEmailError(true);
@@ -198,6 +199,10 @@ function MyProfileWrapper() {
       }
 
       // set dropdown menu fields states
+      if (info.user?.email) {
+        setValue('email', info.user?.email);
+      }
+
       if (info.languages) {
         const newLanguages = generateLabelValuePairs(info?.languages);
         setLanguages(newLanguages);
@@ -224,7 +229,7 @@ function MyProfileWrapper() {
       setCountries(fetchedCountries);
 
       setCountryOptions(
-        generateLabelValuePairs(fetchedCountries.map((item) => item.country))
+        generateLabelValuePairs(fetchedCountries?.map((item) => item?.country))
       );
     } catch (err) {
       setFetchedUserData({ user: userInfo });
