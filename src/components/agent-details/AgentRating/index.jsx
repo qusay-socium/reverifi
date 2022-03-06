@@ -227,8 +227,9 @@ function AgentRating() {
                   ))}
 
                   <ReviewDate>
-                    {getDatesDifference(createdAt)} day
-                    {getDatesDifference(createdAt) > 1 && 's'} ago
+                    {getDatesDifference(createdAt) === 1
+                      ? 'Just now'
+                      : `${getDatesDifference(createdAt)} days ago`}
                   </ReviewDate>
                 </RatingTextContainer>
               </CommentText>
