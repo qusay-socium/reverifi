@@ -9,20 +9,22 @@ export const CardContainer = styled.div`
   border: 0.06rem solid ${colors.midGray};
   display: flex;
   flex-direction: column;
-  max-height: 10rem;
+  max-height: 22rem;
   margin: 2rem;
   overflow: hidden;
   position: relative;
 
   ${mq.tabletWide`
       flex-direction: row;
+      max-height: 10rem;
   `}
 `;
 
 export const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
-  width: 60%;
+  width: 25rem;
+  height: 100%;
 `;
 
 export const BadgesContainer = styled.div`
