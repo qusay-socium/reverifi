@@ -90,7 +90,9 @@ function SavedListings() {
     }
   };
 
-  useEffectOnce(() => fetchSavedListings(1));
+  useEffectOnce(() => {
+    fetchSavedListings(1);
+  });
 
   useEffect(() => {
     fetchSavedListings(pageNumber + 1);
