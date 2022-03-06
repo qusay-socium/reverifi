@@ -1,3 +1,4 @@
+import { ReactComponent as Arrow } from 'assets/arrow-right-green.svg';
 import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
@@ -5,7 +6,6 @@ import listingImage from 'assets/listing-image.png';
 import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import PropTypes from 'prop-types/prop-types';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { listingPaths } from 'utils/appPaths';
@@ -24,6 +24,7 @@ import {
   LocationContainer,
   LocationText,
   PriceText,
+  ViewListingLink,
 } from './card.style';
 
 /**
@@ -44,15 +45,10 @@ function Card({ data }) {
     id,
   } = data;
 
-  const navigate = useNavigate();
-
   if (data.length < 0) return null;
 
-  const handleClick = () => {
-    navigate(`${listingPaths.listing}/${id}`);
-  };
   return (
-    <CardContainer onClick={handleClick}>
+    <CardContainer>
       <ImageContainer>
         <BadgesContainer>
           <Badge>Sale</Badge>
@@ -103,6 +99,10 @@ function Card({ data }) {
               <AreaText>Sq.Ft lot</AreaText>
             </IconsNumber>
           )}
+          <ViewListingLink to={`${listingPaths.listing}/${id}`}>
+            View listing
+          </ViewListingLink>
+          <Arrow />
         </IconsContainer>
       </CardText>
     </CardContainer>
