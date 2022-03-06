@@ -42,7 +42,7 @@ function ScheduleVisit({ data, id }) {
     const renderDays = [];
     [...Array(missingDays)].forEach((day, index) => {
       const currentDate = new Date(startDate);
-      currentDate.setDate(currentDate.getDate() + index + 1);
+      currentDate.setDate(currentDate.getDate() + index);
       renderDays.push(currentDate);
     });
 
