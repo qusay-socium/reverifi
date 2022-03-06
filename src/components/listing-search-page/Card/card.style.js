@@ -9,14 +9,14 @@ export const CardContainer = styled.div`
   border: 0.06rem solid ${colors.midGray};
   display: flex;
   flex-direction: column;
-  max-height: 22rem;
+  height: 20rem;
   margin: 2rem;
   overflow: hidden;
   position: relative;
 
   ${mq.tabletWide`
       flex-direction: row;
-      max-height: 10rem;
+      height: 10rem;
   `}
 `;
 
