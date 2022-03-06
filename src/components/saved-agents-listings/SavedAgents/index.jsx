@@ -1,7 +1,7 @@
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
+import agentImage from 'assets/icons/saved-agent-placeholder.svg';
 import agentNoData from 'assets/images/saved-agent-no-data.svg';
-import agentImage from 'assets/listing-agent-image.png';
 import {
   ArrowLeft,
   ArrowRight,
