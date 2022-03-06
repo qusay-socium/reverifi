@@ -120,6 +120,7 @@ function SignUp() {
                 setFocus('email');
               }}
               onClickInputKey={onClickInputKey}
+              maxLength="50"
             />
             {DoesEmailExist && <Error>{DoesEmailExist}</Error>}
           </InputWrapper>
