@@ -170,3 +170,31 @@ export const separateBy = (data, separator = ' ') =>
   data?.map((item, i, array) =>
     i + 1 !== array.length ? `${item}${separator} ` : `${item}`
   );
+
+/**
+ *  get City Country Zip Code from react autocomplete
+ *
+ * @param {Array} results autocomplete search results
+ *
+ * @returns {Array} array of city, country, zipCode
+ */
+export const getCityCountryZipCode = (results) =>
+  results
+    ?.filter(
+      (item) =>
+        item.types.includes('postal_code') ||
+        item.types.includes('administrative_area_level_1') ||
+        item.types.includes('country')
+    )
+    .reduce(
+      (acc, item) => ({
+        ...acc,
+        // eslint-disable-next-line no-nested-ternary
+        [item.types.includes('postal_code')
+          ? 'zipCode'
+          : item.types.includes('administrative_area_level_1')
+          ? 'city'
+          : 'country']: `${item.long_name}, ${item.short_name}`,
+      }),
+      {}
+    );

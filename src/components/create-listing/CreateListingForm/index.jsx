@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
-import ListingFormMap from 'components/create-listing/ListingFormMap';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
 import { useUser } from 'contexts/UserContext';
@@ -123,7 +122,6 @@ function CreateListingForm({ date }) {
       <form onSubmit={handleSubmit(submit)}>
         <Wrapper>
           <h1> {date || 'Create New Listing'} </h1>
-          <ListingFormMap />
           <FormInputFields
             errors={errors}
             register={register}
