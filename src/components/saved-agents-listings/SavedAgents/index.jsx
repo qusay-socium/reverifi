@@ -81,7 +81,11 @@ function SavedAgents() {
         PAGE_LIMIT
       );
 
-      setUsers(usersData);
+      const filteredUsers = usersData.data.filter((user) =>
+        user.savedUser.roles.some((item) => item.role === 'Agent')
+      );
+
+      setUsers({ ...usersData, data: filteredUsers });
     }
   };
 
