@@ -112,6 +112,7 @@ function AgentRating() {
     }
 
     setValue('review', '');
+    setFocus('review');
     fetchRatingCriteriaAndUserReviews();
   };
 
