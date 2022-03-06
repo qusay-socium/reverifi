@@ -22,13 +22,14 @@ function ListingsSearchHeader({
   keyWord,
   setKeyWord,
   fetchListingDataBySearchKey,
+  setCardData,
 }) {
   const inputValue = useRef();
 
   const handleInputClear = () => {
+    setCardData([]);
     setKeyWord('');
     inputValue.current.value = '';
-    fetchListingDataBySearchKey(inputValue?.current?.value);
     inputValue.current.focus();
   };
 
@@ -79,12 +80,14 @@ ListingsSearchHeader.propTypes = {
   fetchListingDataBySearchKey: PropTypes.func,
   keyWord: PropTypes.string,
   setKeyWord: PropTypes.func,
+  setCardData: PropTypes.func,
 };
 
 ListingsSearchHeader.defaultProps = {
   fetchListingDataBySearchKey: () => {},
   keyWord: null,
   setKeyWord: () => {},
+  setCardData: () => {},
 };
 
 export default ListingsSearchHeader;
