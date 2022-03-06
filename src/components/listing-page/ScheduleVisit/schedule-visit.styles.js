@@ -35,8 +35,7 @@ export const DateContainer = styled.div`
 `;
 
 export const DateSliderContainer = styled.div`
-  margin: 1rem;
-  width: 100%;
+  margin: 0 1rem;
 
   .slick-prev {
     :before {
@@ -66,6 +65,8 @@ export const DateCard = styled.div`
   padding: 1rem 0.5rem;
   text-align: center;
   margin: 1rem;
+
+  border: ${({ activeDay }) => activeDay && `0.06rem solid ${colors.green}`};
 
   span {
     display: block;

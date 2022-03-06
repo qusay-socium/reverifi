@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
 
+export const Container = styled.div`
+  padding-bottom: 8rem;
+`;
+
 export const DateInput = styled(DatePicker)`
   background-color: transparent;
   border-radius: 1.75rem;
@@ -77,11 +81,7 @@ export const ButtonCancel = styled(Button)`
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  margin: 1rem;
-
-  ${mq.tablet`
-      margin: 1rem 2rem;
-    `}
+  margin: 1rem 2rem 2rem;
 `;
 
 export const DateTwoInputsContainer = styled.div`

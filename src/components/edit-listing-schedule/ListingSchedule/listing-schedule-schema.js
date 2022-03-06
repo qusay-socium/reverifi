@@ -1,11 +1,16 @@
 import * as yup from 'yup';
 
 const dateArrayValidator = (day) =>
-  yup.date().when(day, {
-    is: true,
-    then: yup.date().required('Field is required'),
-  });
-
+  yup
+    .date()
+    .when(day, {
+      is: true,
+      then: yup
+        .date()
+        .required('Field is required')
+        .typeError('Field is required'),
+    })
+    .typeError('');
 const checkboxValidator = yup.bool();
 
 const listingScheduleSchema = yup

@@ -15,10 +15,10 @@ export const DateInputsWrapper = styled.div`
     margin-left: 2rem;
     position: absolute;
     right: 1rem;
+    z-index: -1;
   }
 
   ${mq.tablet`
-
     margin: 0 1rem;
   `}
 `;
@@ -28,6 +28,7 @@ export const DateInputs = styled.div`
   border-radius: 2.18rem;
   border: 0.06rem ${colors.midGray} solid;
   display: flex;
+
   .input {
     background-color: transparent;
     border-radius: 1.75rem;

@@ -38,7 +38,7 @@ export const getDifferenceBetweenTwoDates = (firstDate, secondDate, period) => {
   const cleanedSecondDate = new Date(secondDate).toLocaleDateString();
 
   const diffInMs = new Date(cleanedSecondDate) - new Date(cleanedFirstDate);
-  const diffInDays = Math.abs(Math.ceil(diffInMs / (1000 * 60 * 60 * 24) + 1));
+  const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24) + 1);
 
   if (period) {
     return diffInDays < period;

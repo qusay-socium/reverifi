@@ -14,6 +14,8 @@ export const DateInput = styled(DatePicker)`
   padding: 0.5rem;
   text-align: center;
   width: 100%;
+  z-index: 2;
+  position: relative;
 `;
 
 export const DateInputContainer = styled.div`
@@ -26,11 +28,21 @@ export const DateInputContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 
   svg {
-    margin: 0 1rem;
-    width: 1.8rem;
-    height: 1rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    position: absolute;
+    z-index: 0;
+
+    &:first-child {
+      left: 1rem;
+    }
+
+    &:last-child {
+      right: 1rem;
+    }
   }
 `;
 
