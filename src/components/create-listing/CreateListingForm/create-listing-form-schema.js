@@ -27,7 +27,7 @@ const stringValidator = yup
 const addressStringValidator = yup
   .string()
   .required('This field is required')
-  .min(10, 'Must be at least 10 letters');
+  .min(10, 'Must contain at least 10 letters');
 
 const listingFormSchema = yup
   .object({
