@@ -34,9 +34,9 @@ function SearchList({ data, wordKey }) {
         <ResultText>{`${dataCard.length} listings available on reverifi`}</ResultText>
       </ResultCountContainer>
       <CardsContainer>
-        {dataCard?.map(
-          (item, index) => index < 3 && <Card data={item} key={item.id} />
-        )}
+        {dataCard?.map((item) => (
+          <Card data={item} key={item.id} />
+        ))}
       </CardsContainer>
     </div>
   );
