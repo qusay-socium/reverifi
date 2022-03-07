@@ -125,7 +125,7 @@ export const RatingBox = styled.div`
   flex: 50%;
   font-size: 1.25rem;
   gap: 0.5rem;
-  margin: 0.15rem 0;
+  margin: 0.4rem 0;
 
   > span {
     font-weight: 500;
