@@ -1,6 +1,9 @@
+import {
+  IconsContainer,
+  LocationText,
+} from 'components/listing-search-page/Card/card.style';
 import styled from 'styled-components';
 import colors from 'styles/colors';
-import { IconsContainer, LocationText } from '../Card/card.style';
 
 export const CardContainer = styled.div`
   background-color: ${colors.white};

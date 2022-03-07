@@ -2,9 +2,13 @@ import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
+import {
+  AreaText,
+  BoldNumber,
+  IconsNumber,
+} from 'components/listing-search-page/Card/card.style';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { AreaText, BoldNumber, IconsNumber } from '../Card/card.style';
 import {
   AddressContainer,
   AddressText,
