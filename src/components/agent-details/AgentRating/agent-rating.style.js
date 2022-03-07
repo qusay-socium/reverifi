@@ -17,7 +17,7 @@ export const RatingContainer = styled.div`
     padding: 2rem 3rem;
   `};
 
-  ${mq.desktop`
+  ${mq.desktopWide`
     flex-direction : row;
   `};
 `;
@@ -205,4 +205,6 @@ export const RatingTextContainer = styled.div`
   align-items: flex-end;
   width: 100%;
   margin: 0.8rem 0;
+  flex-wrap: wrap;
+  gap: 0.3rem;
 `;
