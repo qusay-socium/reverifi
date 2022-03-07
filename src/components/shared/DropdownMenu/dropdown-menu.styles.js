@@ -45,6 +45,7 @@ export const StyledSelect = styled.select`
   font-size: 0.87rem;
   color: ${({ dark }) => (dark ? colors.white : `${colors.gray}`)};
   width: 100%;
+  min-width: 7rem;
 
   -webkit-appearance: none;
   appearance: none;

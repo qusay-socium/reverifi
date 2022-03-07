@@ -1,17 +1,22 @@
 import { ReactComponent as ClearIcon } from 'assets/close-icon.svg';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
+import CustomMenuList from 'components/shared/CustomMenuList';
+import CustomValueContainer from 'components/shared/CustomValueContainer';
+import {
+  AutocompleteMenu,
+  AutocompleteMenuContainer,
+} from 'components/shared/LocationSearchInput/search-input.style';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
+import PlacesAutocomplete from 'react-places-autocomplete/dist/PlacesAutocomplete';
 import Select from 'react-select';
-import CustomMenuList from 'components/shared/CustomMenuList';
-import colors from 'styles/colors';
-import CustomValueContainer from 'components/shared/CustomValueContainer';
 import {
   getAllListingTypes,
   getAllPropertyTypes,
 } from 'services/listing-create-service';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import colors from 'styles/colors';
 import {
   FilterContainer,
   InputWrapper,
@@ -94,7 +99,6 @@ function ListingsSearchHeader({
   keyWord,
   setKeyWord,
   fetchListingDataBySearchKey,
-  setCardData,
 }) {
   const inputValue = useRef();
   const [selectedBathrooms, setSelectedBathrooms] = useState(null);
@@ -102,10 +106,15 @@ function ListingsSearchHeader({
   const [isFocused, setIsFocused] = useState(false);
   const [min, setMin] = useState(null);
   const [max, setMax] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState(
+    decodeURI(keyWord) || ''
+  );
 
+  /**
+   * handle input clear function
+   */
   const handleInputClear = () => {
-    setCardData([]);
-    setKeyWord('');
+    setSelectedAddress('');
     inputValue.current.value = '';
     inputValue.current.focus();
   };
@@ -123,22 +132,57 @@ function ListingsSearchHeader({
     fetchData();
   }, []);
 
+  /**
+   * handle search clear function
+   */
+  const handleSearch = async (address, placeId) => {
+    if (selectedAddress) setSelectedAddress(address);
+
+    if (!placeId) {
+      // This code runs when you press enter without having a suggestion selected
+      if (inputValue.current.value) {
+        setSelectedAddress(inputValue?.current?.value);
+        setKeyWord(inputValue?.current?.value);
+        fetchListingDataBySearchKey(keyWord);
+      }
+    }
+  };
+
   return (
     <ListingSearchContainer>
       <SearchContainer>
         <InputWrapper>
-          <input
-            ref={inputValue}
-            type="text"
-            defaultValue={decodeURI(keyWord)}
-            onKeyDown={(e) => {
-              if (e.keyCode === 13) {
-                setKeyWord(e.target.value);
-                fetchListingDataBySearchKey(e.target.value);
-              }
-            }}
-          />
-          {keyWord && <ClearIcon onClick={handleInputClear} />}
+          <PlacesAutocomplete
+            value={selectedAddress}
+            onChange={setSelectedAddress}
+            onSelect={handleSearch}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+              <>
+                <input
+                  ref={inputValue}
+                  type="text"
+                  defaultValue={decodeURI(keyWord)}
+                  onKeyDown={(e) => {
+                    if (e.keyCode === 13) {
+                      setKeyWord(e.target.value);
+                      fetchListingDataBySearchKey(e.target.value);
+                    }
+                  }}
+                  {...getInputProps()}
+                />
+                <AutocompleteMenuContainer>
+                  {suggestions?.map((suggestion) => (
+                    <AutocompleteMenu {...getSuggestionItemProps(suggestion)}>
+                      {suggestion?.description}
+                    </AutocompleteMenu>
+                  ))}
+                </AutocompleteMenuContainer>
+              </>
+            )}
+          </PlacesAutocomplete>
+
+          {selectedAddress && <ClearIcon onClick={handleInputClear} />}
         </InputWrapper>
 
         <FilterContainer>
@@ -226,12 +270,7 @@ function ListingsSearchHeader({
           />
         </FilterContainer>
 
-        <SearchButton
-          onClick={() => {
-            setKeyWord(inputValue?.current?.value);
-            fetchListingDataBySearchKey(keyWord);
-          }}
-        >
+        <SearchButton onClick={handleSearch}>
           <SearchIcon />
         </SearchButton>
       </SearchContainer>
@@ -243,14 +282,12 @@ ListingsSearchHeader.propTypes = {
   fetchListingDataBySearchKey: PropTypes.func,
   keyWord: PropTypes.string,
   setKeyWord: PropTypes.func,
-  setCardData: PropTypes.func,
 };
 
 ListingsSearchHeader.defaultProps = {
   fetchListingDataBySearchKey: () => {},
   keyWord: null,
   setKeyWord: () => {},
-  setCardData: () => {},
 };
 
 export default ListingsSearchHeader;

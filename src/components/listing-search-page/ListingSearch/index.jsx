@@ -52,7 +52,6 @@ function ListingSearchPage() {
         keyWord={keyWord}
         setKeyWord={setKeyWord}
         fetchListingDataBySearchKey={fetchListingDataBySearchKey}
-        setCardData={setCardData}
       />
       {cardData?.length > 0 ? (
         <SearchBody>
