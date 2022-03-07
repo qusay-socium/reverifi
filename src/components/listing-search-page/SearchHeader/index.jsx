@@ -131,6 +131,7 @@ function ListingsSearchHeader({
 
     fetchData();
   }, []);
+
   /**
    * handle search clear function
    */
