@@ -3,13 +3,7 @@ import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import listingNoData from 'assets/images/saved-listing-no-data.svg';
 import agentImage from 'assets/listing-agent-image.png';
 import listingImage from 'assets/listing-image.png';
-import {
-  ArrowLeft,
-  ArrowRight,
-  CurrentListing,
-  MaxListingNumber,
-  Pagination,
-} from 'components/my-listings/ListingsTable/listing-table.style';
+import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
@@ -27,10 +21,11 @@ import {
   AgentInfoContainer,
   AgentName,
   IconContainer,
-  IconWrapper,
   ListingImage,
   ListingImageContainer,
 } from './saved-listings.styles';
+
+const PAGE_LIMIT = 8;
 
 /**
  * Saved Listings component.
@@ -43,35 +38,6 @@ function SavedListings() {
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
-  const limit = 8;
-  const startItem = pageNumber * limit + 1;
-  let endItem = startItem - 1 + limit;
-
-  if (endItem > listings?.count) {
-    endItem = listings?.count;
-  }
-
-  /**
-   * handle pagination Left Arrow Click
-   */
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  /**
-   * handle pagination Right Arrow Click
-   */
-  const handleRightArrowClick = () => {
-    if (
-      pageNumber < Math.floor(listings?.count / limit) &&
-      listings?.count !== limit
-    ) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
   /**
    * handle fetch Saved Listings
    */
@@ -83,7 +49,7 @@ function SavedListings() {
         authInfo?.id,
         'listing',
         page,
-        limit
+        PAGE_LIMIT
       );
 
       setListings(listingData);
@@ -112,7 +78,12 @@ function SavedListings() {
   return (
     <div>
       {listings?.data?.length > 0 ? (
-        <>
+        <Pagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          limit={PAGE_LIMIT}
+          dataCount={listings?.count}
+        >
           <Table
             headers={[
               'IMAGE',
@@ -191,19 +162,7 @@ function SavedListings() {
               )
             )}
           </Table>
-
-          <Pagination>
-            <CurrentListing>{startItem} -</CurrentListing>
-            <CurrentListing>{endItem}</CurrentListing>
-            <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-            <IconWrapper onClick={handleLeftArrowClick}>
-              <ArrowLeft />
-            </IconWrapper>
-            <IconWrapper onClick={handleRightArrowClick}>
-              <ArrowRight />
-            </IconWrapper>
-          </Pagination>
-        </>
+        </Pagination>
       ) : (
         <NoDataComponent
           image={listingNoData}

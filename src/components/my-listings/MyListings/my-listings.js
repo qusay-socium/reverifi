@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const MyListingContainer = styled.div`
-  align-items: center;
   display: flex;
   flex-direction: column;
   margin: 0 4rem;

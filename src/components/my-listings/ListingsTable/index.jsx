@@ -5,6 +5,7 @@ import { ReactComponent as EditIcon } from 'assets/icons/edit.svg';
 import { ReactComponent as ScheduleIcon } from 'assets/icons/schedule.svg';
 import agentImage from 'assets/listing-agent-image.png';
 import listingImage from 'assets/listing-image.png';
+import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
 import { TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
@@ -15,22 +16,17 @@ import {
   AgentContainer,
   AgentImage,
   AgentName,
-  ArrowLeft,
-  ArrowRight,
   CellContainer,
-  CurrentListing,
-  IconContainer,
   ListingImage,
   ListingImageContainer,
-  MaxListingNumber,
-  Pagination,
   TableIconContainer,
 } from './listing-table.style';
 
 const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
 
+const PAGE_LIMIT = 8;
+
 /**
- *
  * My Listings table component.
  *
  * @param  {func} setDeleteId select the id for the item to delete
@@ -39,28 +35,26 @@ const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
  * @param  {number} pageNumber the current page number
  * @param  {object} listings date for the listings
  * @param  {func} setShowModal handle the delete box
+ * @param  {func} setPageNumber set page number function
  *
  * @return {JSX.Element}
  */
 export default function MyListingsTable({
   setDeleteId,
-  handleLeftArrowClick,
-  handleRightArrowClick,
   pageNumber,
   listings,
   setShowModal,
+  setPageNumber,
 }) {
-  const listingPerPage = 8;
   const navigate = useNavigate();
 
-  const startItem = pageNumber * listingPerPage + 1;
-  let endItem = startItem - 1 + listingPerPage;
-  if (endItem > listings?.count) {
-    endItem = listings?.count;
-  }
-
   return (
-    <>
+    <Pagination
+      pageNumber={pageNumber}
+      setPageNumber={setPageNumber}
+      limit={PAGE_LIMIT}
+      dataCount={listings?.count}
+    >
       <Table headers={tableHeaders}>
         {listings?.data?.map(
           ({ address, images, agent, createdAt, id, owner, schedule }) => (
@@ -138,36 +132,22 @@ export default function MyListingsTable({
           )
         )}
       </Table>
-
-      <Pagination>
-        <CurrentListing>{startItem} -</CurrentListing>
-        <CurrentListing>{endItem}</CurrentListing>
-        <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-        <IconContainer onClick={handleLeftArrowClick}>
-          <ArrowLeft />
-        </IconContainer>
-        <IconContainer onClick={handleRightArrowClick}>
-          <ArrowRight />
-        </IconContainer>
-      </Pagination>
-    </>
+    </Pagination>
   );
 }
 
 MyListingsTable.propTypes = {
-  handleLeftArrowClick: PropTypes.func,
-  handleRightArrowClick: PropTypes.func,
   listings: PropTypes.objectOf(PropTypes.string),
   pageNumber: PropTypes.number,
   setDeleteId: PropTypes.func,
+  setPageNumber: PropTypes.func,
   setShowModal: PropTypes.func,
 };
 
 MyListingsTable.defaultProps = {
-  handleLeftArrowClick: () => {},
-  handleRightArrowClick: () => {},
   listings: null,
   pageNumber: null,
   setDeleteId: () => {},
+  setPageNumber: () => {},
   setShowModal: () => {},
 };

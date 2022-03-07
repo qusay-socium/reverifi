@@ -2,13 +2,7 @@ import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete-icon.svg';
 import agentImage from 'assets/icons/saved-agent-placeholder.svg';
 import agentNoData from 'assets/images/saved-agent-no-data.svg';
-import {
-  ArrowLeft,
-  ArrowRight,
-  CurrentListing,
-  MaxListingNumber,
-  Pagination,
-} from 'components/my-listings/ListingsTable/listing-table.style';
+import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
@@ -21,11 +15,10 @@ import {
 } from 'services/social-statistics';
 import { toUpperCaseFirstLetter } from 'utils/helpers';
 import NoDataComponent from '../NoDataComponent';
-import {
-  IconContainer,
-  IconWrapper,
-} from '../SavedListings/saved-listings.styles';
+import { IconContainer } from '../SavedListings/saved-listings.styles';
 import { AgentImage } from './saved-agents.styles';
+
+const PAGE_LIMIT = 8;
 
 /**
  * Saved agents component.
@@ -37,35 +30,6 @@ function SavedAgents() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-
-  const PAGE_LIMIT = 8;
-  const startItem = pageNumber * PAGE_LIMIT + 1;
-  let endItem = startItem - 1 + PAGE_LIMIT;
-
-  if (endItem > users?.count) {
-    endItem = users?.count;
-  }
-
-  /**
-   * handle pagination Left Arrow Click
-   */
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  /**
-   * handle pagination Right Arrow Click
-   */
-  const handleRightArrowClick = () => {
-    if (
-      pageNumber < Math.floor(users?.count / PAGE_LIMIT) &&
-      users?.count !== PAGE_LIMIT
-    ) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
 
   /**
    * handle fetch Saved agents
@@ -107,7 +71,12 @@ function SavedAgents() {
   return (
     <div>
       {users?.data?.length > 0 ? (
-        <>
+        <Pagination
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          limit={PAGE_LIMIT}
+          dataCount={users?.count}
+        >
           <Table
             headers={[
               'IMAGE',
@@ -171,19 +140,7 @@ function SavedAgents() {
               )
             )}
           </Table>
-
-          <Pagination>
-            <CurrentListing>{startItem} -</CurrentListing>
-            <CurrentListing>{endItem}</CurrentListing>
-            <MaxListingNumber>of {users?.count}</MaxListingNumber>
-            <IconWrapper onClick={handleLeftArrowClick}>
-              <ArrowLeft />
-            </IconWrapper>
-            <IconWrapper onClick={handleRightArrowClick}>
-              <ArrowRight />
-            </IconWrapper>
-          </Pagination>
-        </>
+        </Pagination>
       ) : (
         <NoDataComponent
           image={agentNoData}
