@@ -106,12 +106,13 @@ function AgentRating() {
       });
 
       setEditMode({ active: false, review: {} });
-      setSelectedCriteria([]);
     } else {
       await addReview({ review, selectedCriteria, userId });
     }
 
+    setSelectedCriteria([]);
     setValue('review', '');
+    setFocus('review');
     fetchRatingCriteriaAndUserReviews();
   };
 
@@ -177,7 +178,7 @@ function AgentRating() {
               {ratingCriteria?.map(({ id, criteria: text }) => (
                 <RatingBox key={id} onClick={() => handleRate(id)}>
                   <span>{text}</span>
-                  <LikeButton />
+                  <LikeButton active={selectedCriteria.includes(id)} />
                 </RatingBox>
               ))}
             </RatingBoxContainer>

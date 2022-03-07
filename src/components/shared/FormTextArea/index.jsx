@@ -38,7 +38,7 @@ function TextAreaInput({
   onChange,
   required,
 }) {
-  const [charactersCount, setCharactersCount] = useState();
+  const [charactersCount, setCharactersCount] = useState(0);
 
   return (
     <Container>
