@@ -29,17 +29,17 @@ import {
  */
 function ScheduleVisit({ data, id }) {
   const [dateRange, setDateRange] = useState([]);
-  const [activeDay, setActiveDay] = useState(null);
+  const [IsActiveDay, setIsActiveDay] = useState(null);
   const [selectedDay, setSelectedDay] = useState([]);
   const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
   const [requestedDate, setRequestedDate] = useState(null);
-  const [scheduleSaved, setScheduleSaved] = useState(false);
+  const [savedSchedule, setSavedSchedule] = useState(false);
 
   const { endDate, startDate, days } = data;
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
-  useShowToastBar(scheduleSaved, setScheduleSaved);
+  useShowToastBar(savedSchedule, setSavedSchedule);
 
   const time = getDifferenceBetweenTwoDates?.(startDate, endDate);
 
@@ -89,7 +89,7 @@ function ScheduleVisit({ data, id }) {
       dateTime: { date: requestedDate, time: selectedHour },
       listingId: id,
     });
-    setScheduleSaved(true);
+    setSavedSchedule(true);
   };
 
   useEffect(() => {
@@ -117,13 +117,13 @@ function ScheduleVisit({ data, id }) {
             ({ dayName, month, number, date }) =>
               true && (
                 <DateCard
-                  activeDay={activeDay === date.toString()}
+                  IsActiveDay={IsActiveDay === date?.toString()}
                   key={date}
                   onClick={() => {
                     getSelectedDate(date);
                     setRequestedDate(date);
                     setSelectedHour(null);
-                    setActiveDay(date.toString());
+                    setIsActiveDay(date.toString());
                   }}
                 >
                   <span>{dayName}</span>
@@ -165,7 +165,7 @@ function ScheduleVisit({ data, id }) {
         Request This Time
       </SubmitButton>
 
-      {scheduleSaved && (
+      {savedSchedule && (
         <Toast status="success" message="Visit has been requested" />
       )}
     </Container>

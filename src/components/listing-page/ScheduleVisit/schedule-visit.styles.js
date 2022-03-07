@@ -66,7 +66,8 @@ export const DateCard = styled.div`
   text-align: center;
   margin: 1rem;
 
-  border: ${({ activeDay }) => activeDay && `0.06rem solid ${colors.green}`};
+  border: ${({ IsActiveDay }) =>
+    IsActiveDay && `0.06rem solid ${colors.green}`};
 
   span {
     display: block;

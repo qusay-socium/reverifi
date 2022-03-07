@@ -65,8 +65,7 @@ function TimeInput({
       <DateInputs>
         <Controller
           control={control}
-          // eslint-disable-next-line no-unneeded-ternary
-          defaultValue={time ? time : new Date()}
+          defaultValue={time || new Date()}
           name={schemaName}
           render={({ field }) => (
             <ReactDatePicker

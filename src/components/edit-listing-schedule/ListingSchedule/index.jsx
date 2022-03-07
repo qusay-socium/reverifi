@@ -34,7 +34,7 @@ function EditListingSchedule() {
   const [endDate, setEndDate] = useState(null);
   const [updateDate, setUpdateDate] = useState(null);
   const [dateRange, setDateRange] = useState(weekDays);
-  const [scheduleSaved, setScheduleSaved] = useState(false);
+  const [savedSchedule, setSavedSchedule] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ function EditListingSchedule() {
     resolver: yupResolver(listingScheduleSchema),
   });
 
-  useShowToastBar(scheduleSaved, setScheduleSaved);
+  useShowToastBar(savedSchedule, setSavedSchedule);
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -93,7 +93,7 @@ function EditListingSchedule() {
       };
 
       await submitListingSchedule(date);
-      setScheduleSaved(true);
+      setSavedSchedule(true);
     }
   };
 
@@ -242,7 +242,7 @@ function EditListingSchedule() {
           </>
         )}
       </form>
-      {scheduleSaved && (
+      {savedSchedule && (
         <Toast status="success" message="Schedule has been saved" />
       )}
     </Container>
