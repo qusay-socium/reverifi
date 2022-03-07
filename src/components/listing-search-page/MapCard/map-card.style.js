@@ -1,3 +1,7 @@
+import {
+  IconsContainer,
+  LocationText,
+} from 'components/listing-search-page/Card/card.style';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
@@ -10,7 +14,7 @@ export const CardContainer = styled.div`
   flex-direction: column;
   left: -10rem;
   max-width: 24rem;
-  min-width: 22rem;
+  min-width: 18rem;
   overflow: hidden;
   position: absolute;
 `;
@@ -19,14 +23,6 @@ export const ImageContainer = styled.div`
   max-height: 10rem;
   overflow: hidden;
   position: relative;
-`;
-
-export const Badge = styled.div`
-  background-color: ${colors.orange};
-  border-radius: 0.31rem;
-  color: ${colors.white};
-  margin: 1rem;
-  padding: 0.3rem 1.2rem;
 `;
 
 export const Image = styled.img`
@@ -38,32 +34,24 @@ export const CardText = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0.4rem 1rem;
-  div {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
-export const PriceText = styled.div`
-  align-items: center;
-  color: ${colors.gray};
-  display: flex;
-  padding-right: 0.8rem;
-  h2 {
-    color: ${colors.green};
-    padding-right: 0.5rem;
-  }
+export const PriceText = styled.h2`
+  font-weight: 600;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
 `;
-export const TimeText = styled.div`
-  align-items: center;
-  color: ${colors.gray};
+
+export const MapCardIconsContainer = styled(IconsContainer)`
+  margin: 0 1.1rem;
+`;
+
+export const AddressText = styled(LocationText)`
+  margin: 0;
+`;
+
+export const AddressContainer = styled.div`
   display: flex;
-  font-size: 0.8rem;
-  padding-right: 1rem;
-  white-space: nowrap;
-  h4 {
-    color: ${colors.black};
-    padding-left: 0.5rem;
-  }
+  align-items: center;
+  justify-content: center;
 `;

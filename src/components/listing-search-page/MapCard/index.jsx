@@ -1,14 +1,23 @@
+import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
+import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
+import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
+import {
+  AreaText,
+  BoldNumber,
+  IconsNumber,
+} from 'components/listing-search-page/Card/card.style';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  Badge,
+  AddressContainer,
+  AddressText,
   CardContainer,
   CardText,
   Image,
   ImageContainer,
+  MapCardIconsContainer,
   PriceText,
-  TimeText,
 } from './map-card.style';
 
 /**
@@ -19,30 +28,51 @@ import {
  * @return
  */
 function MapCard({ data }) {
-  const { images, price, agent, address, tags } = data;
+  const { images, price, address, bedrooms, fullBathrooms, lotArea, homeArea } =
+    data;
   return (
     <CardContainer>
       <ImageContainer>
-        <Image src={images ? images[0] : listingImage} />
+        <Image src={images ? images?.[0] : listingImage} />
       </ImageContainer>
 
       <CardText>
-        <div>
-          <h2>{address}</h2>
-          <Badge>New</Badge>
-        </div>
-
-        <h2>Listing By: {agent ? agent?.roles?.[0]?.role : 'Owner'}</h2>
-
-        <div>
-          <PriceText>
-            <h2>$ {price}</h2> Est./month
-          </PriceText>
-          <TimeText>
-            <h4>{tags ? tags?.[0] : 'Others'}</h4>
-          </TimeText>
-        </div>
+        <PriceText>$ {price.toLocaleString()}</PriceText>
+        <AddressContainer>
+          <PinIcon />
+          <AddressText>{address}</AddressText>
+        </AddressContainer>
       </CardText>
+
+      <MapCardIconsContainer>
+        {bedrooms && (
+          <IconsNumber>
+            <BoldNumber>{bedrooms}</BoldNumber>
+            <Bed />
+          </IconsNumber>
+        )}
+
+        {fullBathrooms && (
+          <IconsNumber>
+            <BoldNumber>{fullBathrooms}</BoldNumber>
+            <Bathtub />
+          </IconsNumber>
+        )}
+
+        {homeArea && (
+          <IconsNumber>
+            <BoldNumber>{homeArea?.sqft} </BoldNumber>
+            <AreaText>Sq.Ft</AreaText>
+          </IconsNumber>
+        )}
+
+        {lotArea && (
+          <IconsNumber>
+            <BoldNumber>{lotArea?.sqft} </BoldNumber>{' '}
+            <AreaText>Sq.Ft lot</AreaText>
+          </IconsNumber>
+        )}
+      </MapCardIconsContainer>
     </CardContainer>
   );
 }
@@ -51,11 +81,14 @@ MapCard.propTypes = {
   data: PropTypes.shape({
     address: PropTypes.string,
     agent: PropTypes.string,
+    bedrooms: PropTypes.number,
+    fullBathrooms: PropTypes.number,
+    homeArea: PropTypes.shape({ sqft: PropTypes.string }),
     id: PropTypes.number,
     images: PropTypes.string,
     listingBy: PropTypes.string,
+    lotArea: PropTypes.shape({ sqft: PropTypes.string }),
     price: PropTypes.string,
-    tags: PropTypes.string,
   }).isRequired,
 };
 
