@@ -1,5 +1,6 @@
 import { ReactComponent as ClearIcon } from 'assets/close-icon.svg';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
+import LocationSearchInput from 'components/shared/LocationSearchInput';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import 'slick-carousel/slick/slick-theme.css';
@@ -127,7 +128,7 @@ function ListingsSearchHeader({
     <ListingSearchContainer>
       <SearchContainer>
         <InputWrapper>
-          <input
+          {/* <input
             ref={inputValue}
             type="text"
             defaultValue={decodeURI(keyWord)}
@@ -137,7 +138,9 @@ function ListingsSearchHeader({
                 fetchListingDataBySearchKey(e.target.value);
               }
             }}
-          />
+          /> */}
+          <LocationSearchInput placeholder="Enter location..." />
+
           {keyWord && <ClearIcon onClick={handleInputClear} />}
         </InputWrapper>
 
