@@ -1,5 +1,4 @@
 import Button from 'components/shared/Button';
-import DropdownMenu from 'components/shared/DropdownMenu';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
@@ -19,14 +18,6 @@ export const ListingSearchContainer = styled.div`
     padding: 0.7rem;
     background-position-x: 100%;
     background-position-y: 0.95rem;
-  }
-`;
-
-export const SelectDropdownMenu = styled(DropdownMenu)`
-  align-items: center;
-
-  svg {
-    top: 0;
   }
 `;
 

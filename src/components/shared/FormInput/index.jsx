@@ -46,6 +46,7 @@ function FormInput({
   disabled,
   onClickInputKey,
   withPrefix,
+  ...props
 }) {
   return (
     <Container>
@@ -74,6 +75,7 @@ function FormInput({
           disabled={disabled}
           onKeyDown={onClickInputKey}
           withPrefix={withPrefix}
+          {...props}
         />
       </InputWrapper>
 
