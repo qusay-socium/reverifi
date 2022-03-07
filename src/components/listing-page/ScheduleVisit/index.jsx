@@ -29,7 +29,7 @@ import {
  */
 function ScheduleVisit({ data, id }) {
   const [dateRange, setDateRange] = useState([]);
-  const [IsActiveDay, setIsActiveDay] = useState(null);
+  const [isActiveDay, setIsActiveDay] = useState(null);
   const [selectedDay, setSelectedDay] = useState([]);
   const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
@@ -71,6 +71,16 @@ function ScheduleVisit({ data, id }) {
           filteredData.push(date)
       )
     );
+
+    Object.values(days).find(
+      (currentDay) =>
+        (currentDay.id === filteredData?.[0]?.date.getDay() &&
+          setSelectedDay(currentDay),
+        isActiveDay) || setIsActiveDay(filteredData?.[0]?.date.toString()),
+      selectedHour || setSelectedHour(selectedDay?.startHour),
+      requestedDate || setRequestedDate(filteredData?.[0]?.date)
+    );
+
     setFilteredDays(filteredData);
   };
 
@@ -85,11 +95,14 @@ function ScheduleVisit({ data, id }) {
     if (!isLoggedIn) {
       navigate('/login');
     }
-    submitListingVisit({
-      dateTime: { date: requestedDate, time: selectedHour },
-      listingId: id,
-    });
-    setSavedSchedule(true);
+
+    if (requestedDate && selectedHour) {
+      submitListingVisit({
+        dateTime: { date: requestedDate, time: selectedHour },
+        listingId: id,
+      });
+      setSavedSchedule(true);
+    }
   };
 
   useEffect(() => {
@@ -100,7 +113,7 @@ function ScheduleVisit({ data, id }) {
   useEffect(() => {
     filterActiveDays();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dateRange]);
+  }, [dateRange, isActiveDay]);
 
   return (
     <Container>
@@ -115,32 +128,33 @@ function ScheduleVisit({ data, id }) {
           slidesToShow={filteredDays.length < 7 ? filteredDays.length : 7}
           responsive={breakPoints}
         >
-          {filteredDays?.map(
-            ({ dayName, month, number, date }) =>
-              true && (
-                <DateCard
-                  IsActiveDay={IsActiveDay === date?.toString()}
-                  key={date}
-                  onClick={() => {
-                    getSelectedDate(date);
-                    setRequestedDate(date);
-                    setSelectedHour(null);
-                    setIsActiveDay(date.toString());
-                  }}
-                >
-                  <span>{dayName}</span>
-                  <MonthDate>
-                    <span>{month}</span>
-                    <span>{number}</span>
-                  </MonthDate>
-                </DateCard>
-              )
-          )}
+          {filteredDays?.map(({ dayName, month, number, date }) => (
+            <DateCard
+              IsActiveDay={isActiveDay === date?.toString()}
+              key={date}
+              onClick={() => {
+                getSelectedDate(date);
+                setRequestedDate(date);
+                setSelectedHour(null);
+                setIsActiveDay(date.toString());
+              }}
+            >
+              <span>{dayName}</span>
+              <MonthDate>
+                <span>{month}</span>
+                <span>{number}</span>
+              </MonthDate>
+            </DateCard>
+          ))}
         </Slider>
 
         {selectedDay?.startHour && (
           <ReactDatePicker
-            selected={selectedHour ? new Date(selectedHour) : null}
+            selected={
+              selectedHour
+                ? new Date(selectedHour)
+                : new Date(selectedDay?.startHour)
+            }
             className="input"
             onChange={(e) => {
               setSelectedHour(e);
@@ -168,7 +182,7 @@ function ScheduleVisit({ data, id }) {
       </SubmitButton>
 
       {savedSchedule && (
-        <Toast status="success" message="Visit has been requested" />
+        <Toast status="success" message="Your request has been sent!" />
       )}
     </Container>
   );

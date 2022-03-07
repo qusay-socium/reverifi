@@ -51,6 +51,27 @@ export const mockDates = [
 
 export const breakPoints = [
   {
+    breakpoint: 1900,
+    settings: {
+      slidesToScroll: 6,
+      slidesToShow: 6,
+    },
+  },
+  {
+    breakpoint: 1500,
+    settings: {
+      slidesToScroll: 5,
+      slidesToShow: 5,
+    },
+  },
+  {
+    breakpoint: 1200,
+    settings: {
+      slidesToScroll: 4,
+      slidesToShow: 4,
+    },
+  },
+  {
     breakpoint: 740,
     settings: {
       slidesToScroll: 6,

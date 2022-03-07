@@ -1,4 +1,4 @@
-import { ReactComponent as ArrowUpDown } from 'assets/mocks/images/arrow-up-down.svg';
+import { ReactComponent as ArrowDown } from 'assets/icons/arrow-down.svg';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -45,7 +45,11 @@ function TimeInput({
           currentDay?.[1]?.id === id &&
           setDateRange((currentDate) => ({
             ...currentDate,
-            [currentDay?.[0]]: { ...currentDay?.[1], startHour: e },
+            [currentDay?.[0]]: {
+              ...currentDay?.[1],
+              endHour: null,
+              startHour: e,
+            },
           }))
       );
     } else {
@@ -66,10 +70,12 @@ function TimeInput({
         <Controller
           control={control}
           defaultValue={time || null}
+          disabled="true"
           name={schemaName}
           render={({ field }) => (
             <ReactDatePicker
               className="input"
+              onChangeRaw={(e) => e.preventDefault()}
               onChange={(e) => {
                 field.onChange(e);
                 handelChange(e);
@@ -90,7 +96,7 @@ function TimeInput({
           )}
         />
 
-        <ArrowUpDown />
+        <ArrowDown />
       </DateInputs>
       <ErrorContainer>{error && <Error>{error}</Error>}</ErrorContainer>
     </DateInputsWrapper>
@@ -103,6 +109,7 @@ TimeInput.propTypes = {
   dateRange: PropTypes.objectOf(PropTypes.instanceOf(Date)),
   day: PropTypes.shape({
     active: PropTypes.bool,
+    endHour: PropTypes.string,
     id: PropTypes.string,
     startHour: PropTypes.string,
   }),
