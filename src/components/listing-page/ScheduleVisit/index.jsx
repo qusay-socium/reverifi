@@ -1,5 +1,7 @@
 import { Title } from 'components/listing-page/Details/details.styles';
+import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
@@ -27,14 +29,17 @@ import {
  */
 function ScheduleVisit({ data, id }) {
   const [dateRange, setDateRange] = useState([]);
+  const [IsActiveDay, setIsActiveDay] = useState(null);
   const [selectedDay, setSelectedDay] = useState([]);
   const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
   const [requestedDate, setRequestedDate] = useState(null);
+  const [savedSchedule, setSavedSchedule] = useState(false);
 
   const { endDate, startDate, days } = data;
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
+  useShowToastBar(savedSchedule, setSavedSchedule);
 
   const time = getDifferenceBetweenTwoDates?.(startDate, endDate);
 
@@ -84,6 +89,7 @@ function ScheduleVisit({ data, id }) {
       dateTime: { date: requestedDate, time: selectedHour },
       listingId: id,
     });
+    setSavedSchedule(true);
   };
 
   useEffect(() => {
@@ -111,10 +117,13 @@ function ScheduleVisit({ data, id }) {
             ({ dayName, month, number, date }) =>
               true && (
                 <DateCard
-                  key={dayName}
+                  IsActiveDay={IsActiveDay === date?.toString()}
+                  key={date}
                   onClick={() => {
                     getSelectedDate(date);
                     setRequestedDate(date);
+                    setSelectedHour(null);
+                    setIsActiveDay(date.toString());
                   }}
                 >
                   <span>{dayName}</span>
@@ -136,17 +145,29 @@ function ScheduleVisit({ data, id }) {
             }}
             placeholderText="Choose a Time"
             dateFormat="h:mm aa"
-            timeIntervals={60}
+            timeIntervals={15}
             showTimeSelect
             showTimeSelectOnly
             minTime={new Date(selectedDay?.startHour)}
             maxTime={new Date(selectedDay?.endHour)}
+            popperModifiers={[
+              {
+                name: 'arrow',
+                options: {
+                  padding: 50,
+                },
+              },
+            ]}
           />
         )}
       </DateSliderContainer>
       <SubmitButton onClick={handleSubmit} type="button">
         Request This Time
       </SubmitButton>
+
+      {savedSchedule && (
+        <Toast status="success" message="Visit has been requested" />
+      )}
     </Container>
   );
 }

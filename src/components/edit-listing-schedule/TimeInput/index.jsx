@@ -65,6 +65,7 @@ function TimeInput({
       <DateInputs>
         <Controller
           control={control}
+          defaultValue={time || new Date()}
           name={schemaName}
           render={({ field }) => (
             <ReactDatePicker

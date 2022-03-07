@@ -1,6 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from 'components/shared/Button';
+import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from 'react-hook-form';
@@ -17,6 +19,7 @@ import { weekDays } from './days';
 import {
   ButtonCancel,
   ButtonsContainer,
+  Container,
   DateInputWrapper,
   SetTime,
 } from './edit-listing-schedule.style';
@@ -31,6 +34,7 @@ function EditListingSchedule() {
   const [endDate, setEndDate] = useState(null);
   const [updateDate, setUpdateDate] = useState(null);
   const [dateRange, setDateRange] = useState(weekDays);
+  const [savedSchedule, setSavedSchedule] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -44,6 +48,8 @@ function EditListingSchedule() {
   } = useForm({
     resolver: yupResolver(listingScheduleSchema),
   });
+
+  useShowToastBar(savedSchedule, setSavedSchedule);
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -87,8 +93,7 @@ function EditListingSchedule() {
       };
 
       await submitListingSchedule(date);
-      navigate(`/my-listings`);
-      reset();
+      setSavedSchedule(true);
     }
   };
 
@@ -120,35 +125,39 @@ function EditListingSchedule() {
   useEffect(() => {
     if (!isLoggedIn) navigate('/sign-up');
     setDateRange(weekDays);
+    const pickedDaysDate = getDifferenceBetweenTwoDates(startDate, endDate);
 
-    if (
-      startDate &&
-      endDate &&
-      getDifferenceBetweenTwoDates(startDate, endDate, 7)
-    ) {
-      const pickedDaysDate = getDifferenceBetweenTwoDates(startDate, endDate);
-      const PickedDaysNumber = findPickedDays(pickedDaysDate);
+    if (pickedDaysDate > 0) {
+      if (
+        startDate &&
+        endDate &&
+        getDifferenceBetweenTwoDates(startDate, endDate, 7)
+      ) {
+        const PickedDaysNumber = findPickedDays(pickedDaysDate);
 
-      PickedDaysNumber.forEach((dayNumber) =>
-        Object.entries?.(dateRange).find(
-          (day) =>
-            day?.[1]?.id === dayNumber &&
-            setDateRange((currentDate) => ({
-              ...currentDate,
-              [day?.[0]]: {
-                ...day?.[1],
-                outOfDate: false,
-              },
-            }))
-        )
-      );
+        PickedDaysNumber.forEach((dayNumber) =>
+          Object.entries?.(dateRange).find(
+            (day) =>
+              day?.[1]?.id === dayNumber &&
+              setDateRange((currentDate) => ({
+                ...currentDate,
+                [day?.[0]]: {
+                  ...day?.[1],
+                  outOfDate: false,
+                },
+              }))
+          )
+        );
+      } else {
+        Object.entries?.(dateRange).forEach((day) => {
+          setDateRange((currentDate) => ({
+            ...currentDate,
+            [day?.[0]]: { ...day?.[1], outOfDate: false },
+          }));
+        });
+      }
     } else {
-      Object.entries?.(dateRange).forEach((day) => {
-        setDateRange((currentDate) => ({
-          ...currentDate,
-          [day?.[0]]: { ...day?.[1], outOfDate: false },
-        }));
-      });
+      setEndDate(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate, updateDate]);
@@ -166,7 +175,7 @@ function EditListingSchedule() {
   }, [updateDate?.endDate, updateDate?.startDate]);
 
   return (
-    <div>
+    <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DateInputWrapper>
           <DatePickerInputHandler
@@ -226,16 +235,17 @@ function EditListingSchedule() {
               )}
             </div>
 
-            <div>
-              <ButtonsContainer>
-                <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
-                <Button type="submit">Add Schedule</Button>
-              </ButtonsContainer>
-            </div>
+            <ButtonsContainer>
+              <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
+              <Button type="submit">Save Schedule</Button>
+            </ButtonsContainer>
           </>
         )}
       </form>
-    </div>
+      {savedSchedule && (
+        <Toast status="success" message="Schedule has been saved" />
+      )}
+    </Container>
   );
 }
 
