@@ -10,7 +10,7 @@ const mapDefaults = {
     lat: 39.84,
     lng: -74.85,
   },
-  zoom: 6,
+  zoom: 10,
 };
 
 /**
