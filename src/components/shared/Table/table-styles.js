@@ -58,6 +58,7 @@ export const TableHead = styled.th`
   font-size: 0.75rem;
   font-weight: bold;
   padding: 1.5rem;
+  padding-left: 1rem;
 `;
 
 export const IconContainer = styled.button`
