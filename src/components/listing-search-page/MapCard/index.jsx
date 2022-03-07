@@ -1,5 +1,5 @@
 import listingImage from 'assets/listing-image.png';
-import PropTypes from 'prop-types/prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Badge,
@@ -32,7 +32,7 @@ function MapCard({ data }) {
           <Badge>New</Badge>
         </div>
 
-        <h2>Listing By: {agent ? agent?.roles?.[0].role : 'Owner'}</h2>
+        <h2>Listing By: {agent ? agent?.roles?.[0]?.role : 'Owner'}</h2>
 
         <div>
           <PriceText>

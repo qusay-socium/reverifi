@@ -4,7 +4,7 @@ import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
 import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
-import PropTypes from 'prop-types/prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -112,13 +112,6 @@ function Card({ data }) {
 Card.propTypes = {
   data: PropTypes.shape({
     address: PropTypes.string,
-    agent: PropTypes.shape({
-      roles: PropTypes.arrayOf(
-        PropTypes.shape({
-          role: PropTypes.string,
-        })
-      ),
-    }),
     bedrooms: PropTypes.number,
     features: PropTypes.arrayOf(
       PropTypes.shape({
