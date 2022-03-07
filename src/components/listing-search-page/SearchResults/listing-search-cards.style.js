@@ -5,6 +5,7 @@ import mq from 'styles/media-query';
 
 export const ListingSearchContainer = styled.div`
   flex: 1;
+  overflow-y: auto;
 `;
 
 export const FilterButton = styled(Button)`
