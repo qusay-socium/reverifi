@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import FilesList from 'components/shared/FilesList';
 import FormFileInput from 'components/shared/FormFileInput';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
   Container,
   ImageInputSection,
-  Wrapper,
   InputInterface,
   UploadIcon,
+  Wrapper,
 } from './listingImageInput.styles';
 
 /**
@@ -22,7 +22,7 @@ import {
 function ListingImageInput({ images, onAddImages, onDeleteImage }) {
   return (
     <Container>
-      <h2>Upload Images</h2>
+      <h2>Upload Images and Videos</h2>
       <Wrapper>
         <ImageInputSection>
           <FormFileInput
