@@ -8,11 +8,12 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getListingsById } from 'services/listing';
 import {
-  getListingData,
   submitListingForm,
   updateListingForm,
 } from 'services/listing-create-service';
+import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
 import {
   CreateListingContainer,
@@ -49,11 +50,14 @@ function CreateListingForm({ date }) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getListingData(formId);
+      const response = await getListingsById(formId);
       response.isOwner = !!response.owner;
       response.isAgent = !!response.agent;
-      response.propertyType = response.propertyTypeId;
-      response.listingType = response.listingTypedId;
+      response.lotArea = response.lotArea.sqft;
+      response.lotDimensions = response.lotDimensions.sqft;
+      response.homeArea = response.homeArea.sqft;
+      response.tags = generateLabelValuePairs(response.tags);
+
       reset(response);
     }
     setValue('featureIds', featureIds);
@@ -110,9 +114,10 @@ function CreateListingForm({ date }) {
 
       if (!formId) {
         const { id } = await submitListingForm(values);
-        navigate(`/listing/${id}`, { replace: true });
+        navigate(`/listing/${id}`);
       } else {
         updateListingForm(values, formId);
+        navigate(`/listing/${formId}`);
       }
     }
   };
