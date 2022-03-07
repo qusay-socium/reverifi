@@ -64,30 +64,41 @@ function AgentInformation() {
           <ImageContainer>
             <StyledImg src={userData?.image || placeholderPhoto} />
             <SocialMediaIcons>
-              <IconLinkWrapper
-                href={userData?.socials?.facebook || ''}
-                target="_blank"
-              >
-                <Facebook />
-              </IconLinkWrapper>
-              <IconLinkWrapper
-                href={userData?.socials?.instagram || ''}
-                target="_blank"
-              >
-                <Instagram />
-              </IconLinkWrapper>
-              <IconLinkWrapper
-                href={userData?.socials?.youtube || ''}
-                target="_blank"
-              >
-                <Youtube />
-              </IconLinkWrapper>
-              <IconLinkWrapper
-                href={userData?.socials?.linkedin || ''}
-                target="_blank"
-              >
-                <Linkedin />
-              </IconLinkWrapper>
+              {userData?.socials?.facebook && (
+                <IconLinkWrapper
+                  href={userData?.socials?.facebook}
+                  target="_blank"
+                >
+                  <Facebook />
+                </IconLinkWrapper>
+              )}
+
+              {userData?.socials?.instagram && (
+                <IconLinkWrapper
+                  href={userData?.socials?.instagram}
+                  target="_blank"
+                >
+                  <Instagram />
+                </IconLinkWrapper>
+              )}
+
+              {userData?.socials?.youtube && (
+                <IconLinkWrapper
+                  href={userData?.socials?.youtube}
+                  target="_blank"
+                >
+                  <Youtube />
+                </IconLinkWrapper>
+              )}
+
+              {userData?.socials?.linkedin && (
+                <IconLinkWrapper
+                  href={userData?.socials?.linkedin}
+                  target="_blank"
+                >
+                  <Linkedin />
+                </IconLinkWrapper>
+              )}
             </SocialMediaIcons>
           </ImageContainer>
           <AgentBasicInformation>
