@@ -27,11 +27,11 @@ import {
  */
 function Storyboard() {
   const navigate = useNavigate();
-  const [address2, setAddress] = useState('');
+  const [selectedAddress, setSelectedAddress] = useState('');
   const inputValue = useRef();
 
   const handleSearch = async (address, placeId) => {
-    setAddress(address);
+    setSelectedAddress(address);
 
     if (!placeId) {
       // This code runs when you press enter without having a suggestion selected
@@ -42,7 +42,7 @@ function Storyboard() {
   };
 
   const handleInputClear = () => {
-    setAddress('');
+    setSelectedAddress('');
     inputValue.current.focus();
   };
 
@@ -62,8 +62,8 @@ function Storyboard() {
                 <LocationPin />
 
                 <PlacesAutocomplete
-                  value={address2}
-                  onChange={setAddress}
+                  value={selectedAddress}
+                  onChange={setSelectedAddress}
                   onSelect={handleSearch}
                 >
                   {({ getInputProps, suggestions, getSuggestionItemProps }) => (
@@ -72,9 +72,9 @@ function Storyboard() {
                         ref={inputValue}
                         type="text"
                         onChange={(e) => {
-                          setAddress(e.target.value);
+                          setSelectedAddress(e.target.value);
                         }}
-                        value={address2}
+                        value={selectedAddress}
                         placeholder="Enter city, neighborhood, ZIP code, or an address"
                         {...getInputProps()}
                       />
@@ -92,7 +92,7 @@ function Storyboard() {
                 </PlacesAutocomplete>
 
                 <ClearInputButton>
-                  {address2 && <CloseIcon onClick={handleInputClear} />}
+                  {selectedAddress && <CloseIcon onClick={handleInputClear} />}
                 </ClearInputButton>
                 <SearchIcon onClick={handleSearch} />
               </StyledInputGroup>
