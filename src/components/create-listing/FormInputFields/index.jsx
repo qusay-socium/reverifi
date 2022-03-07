@@ -135,7 +135,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
           id="propertyType"
           label="Property Type"
           name="propertyTypeId"
-          placeholder="please select a property type"
+          placeholder="Please Select"
           register={register}
           options={propertyTypes}
           labelIconElement={<PropertyTypeIcon />}
@@ -149,7 +149,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
           id="listingType"
           label="Listing Type"
           name="listingTypeId"
-          placeholder="please select listing type"
+          placeholder="Please Select"
           register={register}
           options={listingTypes}
           labelIconElement={<ListingTypeIcon />}

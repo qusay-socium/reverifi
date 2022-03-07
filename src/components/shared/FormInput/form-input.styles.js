@@ -6,6 +6,17 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const InputContainer = styled.div`
+  position: relative;
+
+  svg {
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+    z-index: 2;
+  }
+`;
+
 export const Label = styled.label`
   align-items: center;
   color: ${colors.mineShaft};

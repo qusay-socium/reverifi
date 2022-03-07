@@ -1,6 +1,8 @@
+import { ReactComponent as Arrow } from 'assets/icons/arrow-down.svg';
 import {
   Container,
   Error,
+  InputContainer,
   Label,
 } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
@@ -44,23 +46,26 @@ function SelectInput({
           {label}
         </Label>
       )}
-      <Input
-        {...(register ? register(name) : {})}
-        id={id || name}
-        onChange={onChange}
-        rounded={rounded}
-      >
-        <Placeholder disabled selected>
-          {placeholder}
-        </Placeholder>
+      <InputContainer>
+        <Input
+          {...(register ? register(name) : {})}
+          id={id || name}
+          onChange={onChange}
+          rounded={rounded}
+        >
+          <Placeholder disabled selected>
+            {placeholder}
+          </Placeholder>
 
-        {options.map(({ type, id: typeId }) => (
-          <option value={typeId} key={typeId}>
-            {type}
-          </option>
-        ))}
-      </Input>
-      {error && <Error>{error}</Error>}
+          {options.map(({ type, id: typeId }) => (
+            <option value={typeId} key={typeId}>
+              {type}
+            </option>
+          ))}
+        </Input>
+        {error && <Error>{error}</Error>}
+        <Arrow />
+      </InputContainer>
     </Container>
   );
 }

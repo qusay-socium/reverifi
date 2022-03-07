@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import { ReactComponent as ArrowUpDown } from 'assets/mocks/images/arrow-up-down.svg';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
@@ -65,7 +66,7 @@ function TimeInput({
       <DateInputs>
         <Controller
           control={control}
-          defaultValue={time || new Date()}
+          defaultValue={time || null}
           name={schemaName}
           render={({ field }) => (
             <ReactDatePicker

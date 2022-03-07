@@ -44,7 +44,7 @@ export const getDifferenceBetweenTwoDates = (firstDate, secondDate, period) => {
     return diffInDays < period;
   }
 
-  return diffInDays || 1;
+  return diffInDays;
 };
 
 /**

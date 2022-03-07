@@ -47,7 +47,12 @@ const listingFormSchema = yup
     propertyTypeId: stringValidator,
     rooms: positiveIntegerValidator,
     tags: yup.array(),
-    yearBuilt: positiveIntegerValidator.max(new Date().getFullYear()),
+    yearBuilt: positiveIntegerValidator
+      .max(
+        new Date().getFullYear(),
+        ` Year Built must be less than or equal to ${new Date().getFullYear()}`
+      )
+      .min(1700, 'Year Built must be more than or equal to 1700'),
   })
   .test('atLeastOneCheckBoxIsSelected', null, (obj) => {
     if (obj.isAgent === true || obj.isOwner === true) {

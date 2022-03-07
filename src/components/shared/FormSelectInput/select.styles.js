@@ -8,6 +8,8 @@ export const Input = styled.select`
   color: ${colors.liver};
   padding: 0.62rem;
   width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
 
   ::placeholder {
     color: ${colors.mercury};
