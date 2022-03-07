@@ -51,12 +51,13 @@ export const FilterContainer = styled.div`
 
 export const InputWrapper = styled.div`
   position: relative;
+  margin-right: 0.5rem;
 
   input {
     background-color: ${colors.white};
     border-radius: 2rem;
     border: none;
-    border: 0.06rem solid ${colors.dustyGray};
+    border: 0.06rem solid ${colors.midGray};
     outline: none;
     padding: 0.7rem 2.5rem 0.7rem 0.7rem;
     width: 6rem;
