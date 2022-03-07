@@ -36,7 +36,7 @@ function ListingSearchPage() {
   const navigate = useNavigate();
 
   const fetchListingDataBySearchKey = async (searchWord) => {
-    const listingData = await getListingsBySearchKey(searchWord);
+    const listingData = await getListingsBySearchKey(searchWord || null);
     setCardData(listingData);
     navigate(`${listingPaths?.search}?key=${searchWord}`);
   };
@@ -52,6 +52,7 @@ function ListingSearchPage() {
         keyWord={keyWord}
         setKeyWord={setKeyWord}
         fetchListingDataBySearchKey={fetchListingDataBySearchKey}
+        setCardData={setCardData}
       />
       {cardData?.length > 0 ? (
         <SearchBody>
