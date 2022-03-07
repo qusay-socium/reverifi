@@ -1,17 +1,15 @@
-import { ReactComponent as Like } from 'assets/icons/agent-detailes-like.svg';
-import { ReactComponent as GrayEmptyLike } from 'assets/icons/agent-list-empty-like.svg';
-import { ReactComponent as GrayLike } from 'assets/icons/agent-list-like.svg';
-import { ReactComponent as EmptyLike } from 'assets/icons8-share.svg';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { LikeButtonWrapper } from './like-button.styles';
+import { LikeButtonWrapper, LikeIcon } from './like-button.styles';
 
 /**
  * Like Button component
  *
+ * @param {Boolean} active active state
+ *
  * @return {JSX.Element}
  */
-function LikeButton({ grayIcon, active }) {
+function LikeButton({ active }) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
@@ -24,31 +22,18 @@ function LikeButton({ grayIcon, active }) {
       onClick={() => {
         setIsLiked(!isLiked);
       }}
-      active={isLiked}
     >
-      {grayIcon ? (
-        <>
-          <GrayLike />
-          <GrayEmptyLike />
-        </>
-      ) : (
-        <>
-          <Like />
-          <EmptyLike />
-        </>
-      )}
+      <LikeIcon active={isLiked} />
     </LikeButtonWrapper>
   );
 }
 
 LikeButton.defaultProps = {
   active: false,
-  grayIcon: false,
 };
 
 LikeButton.propTypes = {
   active: PropTypes.bool,
-  grayIcon: PropTypes.bool,
 };
 
 export default LikeButton;
