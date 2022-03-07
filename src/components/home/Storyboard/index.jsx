@@ -31,7 +31,7 @@ function Storyboard() {
   const inputValue = useRef();
 
   const handleSearch = async (address, placeId) => {
-    setSelectedAddress(address);
+    if (selectedAddress) setSelectedAddress(address);
 
     if (!placeId) {
       // This code runs when you press enter without having a suggestion selected
