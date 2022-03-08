@@ -36,7 +36,7 @@ export const LocationTagContainer = styled.div`
   }
 
   ${mq.desktopExtraMax`
-     max-width: 100%;
+     max-width: 95%;
   `}
 `;
 

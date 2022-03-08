@@ -208,3 +208,10 @@ export const RatingTextContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.3rem;
 `;
+
+export const NoReviewsMessage = styled.p`
+  color: ${colors.gray};
+  font-size: 1.2rem;
+  align-self: center;
+  margin-top: 13rem;
+`;

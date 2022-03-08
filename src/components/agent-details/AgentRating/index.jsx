@@ -26,6 +26,7 @@ import {
   CommentText,
   EditIcon,
   EditIconContainer,
+  NoReviewsMessage,
   RatingBox,
   RatingBoxContainer,
   RatingContainer,
@@ -138,7 +139,7 @@ function AgentRating() {
   return (
     <RatingContainer>
       <RatingForm onSubmit={handleSubmit(submit)}>
-        <h1>Rating And Reviews</h1>
+        <h1>Ratings And Reviews</h1>
         {editMode.active ? (
           <>
             <RatingBoxContainer>
@@ -198,45 +199,51 @@ function AgentRating() {
       </RatingForm>
 
       <CommentsWrapper>
-        {userReviews?.map(({ id, createdAt, ratings, review, reviewer }) => (
-          <Comment key={id}>
-            {authInfo?.id === reviewer?.id && (
-              <EditIconContainer
-                hover
-                onClick={() => handleReviewEdit({ id, ratings, review })}
-              >
-                <EditIcon />
-                <Tooltip
-                  text="Edit "
-                  arrowPosition="top"
-                  position={[2.8, -1]}
-                />
-              </EditIconContainer>
-            )}
+        {userReviews.length > 0 ? (
+          userReviews?.map(({ id, createdAt, ratings, review, reviewer }) => (
+            <Comment key={id}>
+              {authInfo?.id === reviewer?.id && (
+                <EditIconContainer
+                  hover
+                  onClick={() => handleReviewEdit({ id, ratings, review })}
+                >
+                  <EditIcon />
+                  <Tooltip
+                    text="Edit "
+                    arrowPosition="top"
+                    position={[2.8, -1]}
+                  />
+                </EditIconContainer>
+              )}
 
-            <StyledImg src={reviewer?.userInfo?.image || AgentPhoto} />
-            <CommentSection>
-              <CommentText>
-                <h3>{toUpperCaseFirstLetter(reviewer?.name)}</h3>
-                <p>{review}</p>
+              <StyledImg src={reviewer?.userInfo?.image || AgentPhoto} />
+              <CommentSection>
+                <CommentText>
+                  <h3>{toUpperCaseFirstLetter(reviewer?.name)}</h3>
+                  <p>{review}</p>
 
-                <RatingTextContainer>
-                  {ratings?.map(({ criteria }, i) => (
-                    <RatingText key={criteria}>
-                      {criteria} {i + 1 !== ratings.length && '|'}
-                    </RatingText>
-                  ))}
+                  <RatingTextContainer>
+                    {ratings?.map(({ criteria }, i) => (
+                      <RatingText key={criteria}>
+                        {criteria} {i + 1 !== ratings.length && '|'}
+                      </RatingText>
+                    ))}
 
-                  <ReviewDate>
-                    {getDatesDifference(createdAt) === 1
-                      ? 'Just now'
-                      : `${getDatesDifference(createdAt)} days ago`}
-                  </ReviewDate>
-                </RatingTextContainer>
-              </CommentText>
-            </CommentSection>
-          </Comment>
-        ))}
+                    <ReviewDate>
+                      {getDatesDifference(createdAt) === 1
+                        ? 'Just now'
+                        : `${getDatesDifference(createdAt)} days ago`}
+                    </ReviewDate>
+                  </RatingTextContainer>
+                </CommentText>
+              </CommentSection>
+            </Comment>
+          ))
+        ) : (
+          <NoReviewsMessage>
+            No ratings and reviews provided yet
+          </NoReviewsMessage>
+        )}
       </CommentsWrapper>
     </RatingContainer>
   );
