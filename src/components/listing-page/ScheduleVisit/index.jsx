@@ -94,10 +94,12 @@ function ScheduleVisit({ data, id }) {
 
   useEffect(() => {
     setDateRange(findPeriodBetweenDates(time));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedHour]);
 
   useEffect(() => {
     filterActiveDays();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateRange]);
 
   return (

@@ -63,7 +63,6 @@ function SaveAndShareButtons({
         const data = await getUserOrListingSave(userId || '', listingId || '');
         if (data) setSaved(true);
       } catch (err) {
-        console.log(err);
         setSaved(false);
       }
     }

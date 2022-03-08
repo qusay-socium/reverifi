@@ -1,4 +1,3 @@
-/* eslint-disable no-unneeded-ternary */
 import { ReactComponent as ArrowUpDown } from 'assets/mocks/images/arrow-up-down.svg';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import PropTypes from 'prop-types';
