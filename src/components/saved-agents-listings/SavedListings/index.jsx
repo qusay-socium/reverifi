@@ -114,7 +114,7 @@ function SavedListings() {
 
                   <TableCell wordBreak>{address}</TableCell>
 
-                  <TableCell>
+                  <TableCell wordBreak>
                     <AgentInfoContainer>
                       <AgentImage src={agent?.userInfo?.image || agentImage} />
                       <AgentName>
