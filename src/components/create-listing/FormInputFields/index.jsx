@@ -332,6 +332,7 @@ function FormInputFields({ register, errors, setValue, values, control }) {
                   classNamePrefix="tags"
                   closeMenuOnSelect={false}
                   isMulti
+                  isSearchable={false}
                   noOptionsMessage={() => null}
                   options={tagsOptions}
                   placeholder="Select tags..."
@@ -340,7 +341,11 @@ function FormInputFields({ register, errors, setValue, values, control }) {
                   }
                   value={value}
                   onChange={(val) => {
-                    if (val.length === 2) setTagsOptions([]);
+                    if (val.length === 2) {
+                      setTagsOptions([]);
+                    } else {
+                      setTagsOptions(tagsValues);
+                    }
                     onChange(val);
                   }}
                 />
