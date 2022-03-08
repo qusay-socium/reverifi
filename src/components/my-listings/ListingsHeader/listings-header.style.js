@@ -8,6 +8,7 @@ export const Header = styled.div`
   justify-content: space-between;
   margin: 2rem 4rem 0 4rem;
   width: 100%;
+  align-self: center;
 `;
 
 export const ButtonContainer = styled.div`

@@ -2,21 +2,17 @@ import { EditIcon } from 'components/agent-details/AgentRating/agent-rating.styl
 import {
   AgentContainer,
   AgentToolTip,
-  ArrowLeft,
-  ArrowRight,
   CellContainer,
-  CurrentListing,
-  IconContainer,
-  MaxListingNumber,
-  Pagination,
   TableIconContainer,
 } from 'components/my-listings/ListingsTable/listing-table.style';
+import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
 import Tooltip from 'components/shared/Tooltip';
 import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserListings } from 'services/listing';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import { Container, TableRow } from './roles-table.style';
 
 /**
@@ -25,7 +21,6 @@ import { Container, TableRow } from './roles-table.style';
  * @return {JSX.Element}
  */
 function RolesTable() {
-  const listingPerPage = 8;
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { userInfo } = useUser();
@@ -37,33 +32,16 @@ function RolesTable() {
     if (userInfo?.id) {
       const listingData = await getUserListings(
         userInfo?.id,
-        listingPerPage,
+        DEFAULT_PAGE_LIMIT,
         page
       );
       setListings(listingData);
     }
   };
 
-  const startItem = pageNumber * listingPerPage + 1;
-  let endItem = startItem - 1 + listingPerPage;
-  if (endItem > listings?.count) {
-    endItem = listings?.count;
-  }
-
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (pageNumber < Math.trunc(listings?.count / listingPerPage)) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, userInfo]);
 
   return (
@@ -106,18 +84,12 @@ function RolesTable() {
           </TableRow>
         ))}
       </Table>
-
-      <Pagination>
-        <CurrentListing>{startItem} -</CurrentListing>
-        <CurrentListing>{endItem}</CurrentListing>
-        <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-        <IconContainer onClick={handleLeftArrowClick}>
-          <ArrowLeft />
-        </IconContainer>
-        <IconContainer onClick={handleRightArrowClick}>
-          <ArrowRight />
-        </IconContainer>
-      </Pagination>
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        limit={DEFAULT_PAGE_LIMIT}
+        dataCount={listings?.count}
+      />
     </Container>
   );
 }

@@ -54,16 +54,3 @@ export const IconContainer = styled.button`
     }
   }
 `;
-
-export const IconWrapper = styled.div`
-  border-radius: 10rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  margin-left: 0.3rem;
-
-  &:hover {
-    background-color: ${colors.mercury};
-  }
-`;

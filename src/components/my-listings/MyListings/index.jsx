@@ -43,18 +43,6 @@ function MyListings() {
     }
   };
 
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (pageNumber < Math.trunc(listings?.count / listingPerPage)) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
   const handleCreateNewListing = () => {
     navigate('/my-listings/create');
   };
@@ -73,9 +61,8 @@ function MyListings() {
           <MyListingHeader setOrder={setOrder} />
           <ListingsTable
             setDeleteId={setDeleteId}
-            handleLeftArrowClick={handleLeftArrowClick}
-            handleRightArrowClick={handleRightArrowClick}
             pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
             listings={listings}
             setShowModal={setShowModal}
           />

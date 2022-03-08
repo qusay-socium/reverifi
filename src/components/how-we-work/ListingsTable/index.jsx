@@ -1,19 +1,15 @@
 import {
   AgentContainer,
   AgentToolTip,
-  ArrowLeft,
-  ArrowRight,
-  CurrentListing,
-  IconContainer,
-  MaxListingNumber,
-  Pagination,
 } from 'components/my-listings/ListingsTable/listing-table.style';
+import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
 import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import { getUserListings } from 'services/listing';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import { LinkText, ListingsTableContainer } from './listings-table.styles';
 
 /**
@@ -22,7 +18,6 @@ import { LinkText, ListingsTableContainer } from './listings-table.styles';
  * @return {JSX.Element}
  */
 function ListingsTable() {
-  const listingPerPage = 8;
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { userInfo } = useUser();
@@ -31,33 +26,16 @@ function ListingsTable() {
     if (userInfo?.id) {
       const listingData = await getUserListings(
         userInfo?.id,
-        listingPerPage,
+        DEFAULT_PAGE_LIMIT,
         page
       );
       setListings(listingData);
     }
   };
 
-  const startItem = pageNumber * listingPerPage + 1;
-  let endItem = startItem - 1 + listingPerPage;
-  if (endItem > listings?.count) {
-    endItem = listings?.count;
-  }
-
-  const handleLeftArrowClick = () => {
-    if (pageNumber >= 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (pageNumber < Math.trunc(listings?.count / listingPerPage)) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, userInfo]);
 
   return (
@@ -88,18 +66,12 @@ function ListingsTable() {
           </TableRow>
         ))}
       </Table>
-
-      <Pagination>
-        <CurrentListing>{startItem} -</CurrentListing>
-        <CurrentListing>{endItem}</CurrentListing>
-        <MaxListingNumber>of {listings?.count}</MaxListingNumber>
-        <IconContainer onClick={handleLeftArrowClick}>
-          <ArrowLeft />
-        </IconContainer>
-        <IconContainer onClick={handleRightArrowClick}>
-          <ArrowRight />
-        </IconContainer>
-      </Pagination>
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        limit={DEFAULT_PAGE_LIMIT}
+        dataCount={listings?.count}
+      />
     </ListingsTableContainer>
   );
 }
