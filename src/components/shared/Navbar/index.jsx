@@ -104,7 +104,7 @@ function Navbar() {
                     }}
                   >
                     <SignOut />
-                    Sign Out
+                    Log Out
                   </MenuItem>
                 </MenuTopWrapper>
               </MenuWrapper>
