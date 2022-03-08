@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, useForm } from 'react-hook-form';
-import { ReactComponent as Seller } from 'assets/icons/gray-seller.svg';
-import FormCheckbox from 'components/shared/FormCheckbox';
-import { ReactComponent as SellerAddress } from 'assets/icons/gray-seller-address.svg';
-import { ReactComponent as SellerName } from 'assets/icons/gray-seller-name.svg';
 import { ReactComponent as BuyerAgent } from 'assets/icons/gray-buyer-agent.svg';
 import { ReactComponent as BuyerGroup } from 'assets/icons/gray-buyer-group.svg';
+import { ReactComponent as SellerAddress } from 'assets/icons/gray-seller-address.svg';
+import { ReactComponent as SellerName } from 'assets/icons/gray-seller-name.svg';
+import { ReactComponent as Seller } from 'assets/icons/gray-seller.svg';
 import { ReactComponent as NoteIcon } from 'assets/icons/profile-about.svg';
-import { getUsersWithLimit } from 'services/user';
-import Select from 'react-select';
-import TextAreaInput from 'components/shared/FormTextArea';
-import Button from 'components/shared/Button';
-import FormInput from 'components/shared/FormInput';
 import { InputLabel } from 'components/my-profile/MyProfileWrapper/my-profile-wrapper.styles';
+import Button from 'components/shared/Button';
+import FormCheckbox from 'components/shared/FormCheckbox';
+import FormInput from 'components/shared/FormInput';
+import TextAreaInput from 'components/shared/FormTextArea';
 import addPartiesSchema from 'components/transaction/AddPartiesWrapper/add-parties-wrapper-schema';
 import {
+  ButtonText,
   CheckBoxContainer,
-  SellerTeamFromContainer,
-  TitleText,
   LabelText,
   RowContainer,
   SelectContainer,
+  SellerTeamFromContainer,
   SideContainer,
-  ButtonText,
   TextAreaContainer,
+  TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
+import React, { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import Select from 'react-select';
+import { getUsersWithLimit } from 'services/user';
 
 /**
  * Add Involved Parties.
@@ -71,10 +71,12 @@ export default function AddPartiesWrapper() {
 
   useEffect(() => {
     fetchSellerData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sellerName]);
 
   useEffect(() => {
     fetchBuyerData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buyerName]);
 
   return (
@@ -99,6 +101,7 @@ export default function AddPartiesWrapper() {
                       hideSelectedOptions={false}
                       options={sellerList}
                       placeholder="Seller"
+                      noOptionsMessage={() => null}
                       value={value}
                       onChange={onChange}
                       onInputChange={setSellerName}

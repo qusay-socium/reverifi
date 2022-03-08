@@ -41,7 +41,7 @@ function ListingsTable() {
   return (
     <ListingsTableContainer>
       <Table headers={['property', 'my Role', 'status']}>
-        {listings?.data?.map(({ address, agent }, index) => (
+        {listings?.data?.map(({ id, address, agent }, index) => (
           <TableRow key={index.toString()}>
             <TableCell>{address}</TableCell>
             <TableCell>
@@ -61,7 +61,7 @@ function ListingsTable() {
               </AgentContainer>
             </TableCell>
             <TableCell iconsCell>
-              <LinkText to="/transaction/f1f579b2-aa08-4a59-a83d-13adfde1b802/add-parties">
+              <LinkText to={`/transaction/${id}/add-parties`}>
                 start the process
               </LinkText>
             </TableCell>

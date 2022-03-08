@@ -150,7 +150,7 @@ const routes = [
     adminLayout: true,
     component: lazy(() => import('pages/Transaction')),
     label: 'transaction',
-    path: '/transaction/:listingId/*',
+    path: '/transaction/:listingId',
     title: 'Transaction',
   },
   {
