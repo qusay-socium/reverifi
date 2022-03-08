@@ -15,24 +15,13 @@
     "plugin:jest/recommended"
   ],
   "parser": "babel-eslint",
-  "plugins": [
-    "babel",
-    "jest",
-    "import",
-    "prettier",
-    "react-hooks"
-  ],
+  "plugins": ["babel", "jest", "import", "prettier", "react-hooks"],
   "root": true,
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ],
-        "paths": [
-          "src"
-        ]
+        "extensions": [".js", ".jsx"],
+        "paths": ["src"]
       }
     }
   },
@@ -45,6 +34,8 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/no-array-index-key": "warn",
+    "react/forbid-prop-types": "warn",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -63,9 +54,9 @@
         "maxSize": 150
       }
     ],
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "no-unused-expressions": [
-      "error",
+      "warn",
       {
         "allowTaggedTemplates": true
       }
@@ -79,23 +70,18 @@
     "jsx-a11y/label-has-associated-control": "error",
     "jsx-a11y/anchor-is-valid": "error",
     "no-underscore-dangle": [
-      "error",
+      "warn",
       {
         "allowAfterThis": true
       }
     ],
-    "sort-keys": [
-      "warn",
-      "asc"
-    ],
+    "sort-keys": ["warn", "asc"],
     "react/jsx-props-no-spreading": "off",
     "no-unsafe-optional-chaining": "off"
   },
   "overrides": [
     {
-      "files": [
-        "*.styles.js"
-      ],
+      "files": ["*.styles.js"],
       "rules": {
         "import/prefer-default-export": "off"
       }

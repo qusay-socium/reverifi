@@ -21,7 +21,6 @@ jobs:
             cd /home/reverifi-frontend/reverifi && git checkout package-lock.json && git pull origin main
             cd /home/reverifi-frontend/reverifi
             /usr/bin/rm -rf node_modules
-            /usr/bin/npm install
-            /usr/bin/npm ci && npm cache clean --force
+            /usr/bin/npm install && npm cache clean --force
             /usr/bin/npm cache verify
             /usr/bin/npm run build
