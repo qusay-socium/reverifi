@@ -9,6 +9,7 @@ import Tooltip from 'components/shared/Tooltip';
 import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import { getUserListings } from 'services/listing';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import { LinkText, ListingsTableContainer } from './listings-table.styles';
 
 /**
@@ -23,7 +24,11 @@ function ListingsTable() {
 
   const fetchAllListingsForUser = async (page) => {
     if (userInfo?.id) {
-      const listingData = await getUserListings(userInfo?.id, 8, page);
+      const listingData = await getUserListings(
+        userInfo?.id,
+        DEFAULT_PAGE_LIMIT,
+        page
+      );
       setListings(listingData);
     }
   };
@@ -64,6 +69,7 @@ function ListingsTable() {
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
+        limit={DEFAULT_PAGE_LIMIT}
         dataCount={listings?.count}
       />
     </ListingsTableContainer>

@@ -12,6 +12,7 @@ import Tooltip from 'components/shared/Tooltip';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import {
   AgentContainer,
   AgentImage,
@@ -128,6 +129,7 @@ export default function MyListingsTable({
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
+        limit={DEFAULT_PAGE_LIMIT}
         dataCount={listings?.count}
       />
     </>

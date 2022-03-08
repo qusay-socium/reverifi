@@ -11,6 +11,7 @@ import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import {
   getUserSavedUsersOrListings,
   saveUserOrListing,
@@ -47,7 +48,7 @@ function SavedListings() {
         authInfo?.id,
         'listing',
         page,
-        8
+        DEFAULT_PAGE_LIMIT
       );
 
       setListings(listingData);
@@ -158,6 +159,7 @@ function SavedListings() {
           <Pagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
+            limit={DEFAULT_PAGE_LIMIT}
             dataCount={listings?.count}
           />
         </>

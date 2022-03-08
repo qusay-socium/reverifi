@@ -19,7 +19,7 @@ import {
  *
  *  @return {JSX.Element}
  */
-function Pagination({ pageNumber, setPageNumber, limit = 8, dataCount }) {
+function Pagination({ pageNumber, setPageNumber, limit, dataCount }) {
   const startItem = pageNumber * limit + 1;
   let endItem = startItem - 1 + limit;
 

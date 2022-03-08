@@ -13,6 +13,7 @@ import {
   getUserSavedUsersOrListings,
   saveUserOrListing,
 } from 'services/social-statistics';
+import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import { toUpperCaseFirstLetter } from 'utils/helpers';
 import NoDataComponent from '../NoDataComponent';
 import { IconContainer } from '../SavedListings/saved-listings.styles';
@@ -40,7 +41,7 @@ function SavedAgents() {
         authInfo?.id,
         'user',
         page,
-        8
+        DEFAULT_PAGE_LIMIT
       );
 
       const filteredUsers = usersData.data.filter((user) =>
@@ -136,6 +137,7 @@ function SavedAgents() {
           <Pagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
+            limit={DEFAULT_PAGE_LIMIT}
             dataCount={users?.count}
           />
         </>
