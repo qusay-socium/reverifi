@@ -121,15 +121,15 @@ function CustomMenuList({ selectProps, ...props }) {
 
 CustomMenuList.propTypes = {
   selectProps: PropTypes.shape({
-    onMenuInputFocus: PropTypes.func,
-    setMenuIsOpen: PropTypes.func,
-    setPrice: PropTypes.func,
     horizontal: PropTypes.bool,
-    placeholder: PropTypes.string,
-    min: PropTypes.string,
     max: PropTypes.string,
+    min: PropTypes.string,
+    onMenuInputFocus: PropTypes.func,
+    placeholder: PropTypes.string,
     setMax: PropTypes.func,
+    setMenuIsOpen: PropTypes.func,
     setMin: PropTypes.func,
+    setPrice: PropTypes.func,
   }),
 };
 
