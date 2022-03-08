@@ -7,9 +7,11 @@ import { ReactComponent as UserProfile } from 'assets/icons/user-profile.svg';
 import { ReactComponent as UserRole } from 'assets/icons/user-roles.svg';
 import { useUser } from 'contexts/UserContext';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   LeftArrowIcon,
   LinkTitle,
+  LogoutLink,
   MenuArrow,
   MenuIconContainer,
   MenuItem,
@@ -24,7 +26,8 @@ import {
  * @return {JSX.Element}
  */
 function Sidebar() {
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, logout } = useUser();
+  const navigate = useNavigate();
 
   const [isCollapsed, setIsCollapsed] = useState(' ');
 
@@ -51,7 +54,7 @@ function Sidebar() {
         <MenuItem type="button">
           <List />
         </MenuItem>
-        <LinkTitle>List Properties</LinkTitle>
+        <LinkTitle>My Listings</LinkTitle>
       </MenuLink>
       <MenuLink isCollapsed={isCollapsed} to="/transaction">
         <MenuItem type="button">
@@ -71,12 +74,19 @@ function Sidebar() {
         </MenuItem>
         <LinkTitle>My Profile</LinkTitle>
       </MenuLink>
-      <MenuLink to="/logout">
+
+      <LogoutLink
+        onClick={() => {
+          logout();
+          navigate('/');
+        }}
+        isCollapsed={isCollapsed}
+      >
         <MenuItem type="button">
           <Logout />
         </MenuItem>
         <LinkTitle>Log Out</LinkTitle>
-      </MenuLink>
+      </LogoutLink>
     </MenuItemsContainer>
   );
 }

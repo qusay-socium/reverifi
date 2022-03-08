@@ -126,3 +126,25 @@ export const MenuIconContainer = styled.div`
     }
   }
 `;
+
+export const LogoutLink = styled.div`
+  align-items: center;
+  border-radius: 0.375rem;
+  color: ${colors.white};
+  display: flex;
+  font-weight: 500;
+  height: 3rem;
+  justify-content: start;
+  padding: 0.5rem 0.8rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &.active {
+    ${({ isCollapsed }) =>
+      !isCollapsed && `border-right: 0.35rem ${colors.green} solid;`}
+    ${({ isCollapsed }) => !isCollapsed && `border-radius: 0;`}
+    ${({ isCollapsed }) => isCollapsed && `background-color: ${colors.green};`}
+    ${({ isCollapsed }) => isCollapsed && `margin-right:1rem;`}
+  }
+`;
