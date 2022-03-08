@@ -12,7 +12,7 @@ export const Input = styled.select`
   appearance: none;
 
   ::placeholder {
-    color: ${colors.mercury};
+    /* color: ${colors.mercury}; */
   }
 
   &:focus {

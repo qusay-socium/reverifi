@@ -12,7 +12,7 @@ const routes = [
   {
     component: lazy(() => import('pages/Transaction/AddParties')),
     label: 'transaction-add-parties',
-    path: '/',
+    path: '/add-parties',
     title: 'Transaction Add Parties',
   },
   {
