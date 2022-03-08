@@ -35,6 +35,7 @@ export const DateInputs = styled.div`
     border: 0.06rem ${colors.midGray} solid;
     border: none;
     color: ${colors.mineshaft};
+    cursor: pointer;
     flex: 1;
     font-size: 0.75rem;
     font-weight: 400;

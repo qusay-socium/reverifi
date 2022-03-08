@@ -17,7 +17,6 @@ import Switch from '../Switch';
 import TimeInput from '../TimeInput';
 import { weekDays } from './days';
 import {
-  ButtonCancel,
   ButtonsContainer,
   Container,
   DateInputWrapper,
@@ -34,22 +33,24 @@ function EditListingSchedule() {
   const [endDate, setEndDate] = useState(null);
   const [updateDate, setUpdateDate] = useState(null);
   const [dateRange, setDateRange] = useState(weekDays);
-  const [savedSchedule, setSavedSchedule] = useState(false);
+  const [isScheduleSaved, setIsScheduleSaved] = useState(false);
+  const [isScheduleEmpty, setIsScheduleEmpty] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
   const {
     handleSubmit,
-    reset,
     control,
     formState: { errors },
     register,
+    resetField,
   } = useForm({
     resolver: yupResolver(listingScheduleSchema),
   });
 
-  useShowToastBar(savedSchedule, setSavedSchedule);
+  useShowToastBar(isScheduleSaved, setIsScheduleSaved);
+  useShowToastBar(isScheduleEmpty, setIsScheduleEmpty);
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -65,6 +66,8 @@ function EditListingSchedule() {
           },
         }))
     );
+    resetField(`${daySelected?.label}Start`);
+    resetField(`${daySelected?.label}End`);
   };
 
   const filterPassedTime = (time, startTime) => {
@@ -93,15 +96,10 @@ function EditListingSchedule() {
       };
 
       await submitListingSchedule(date);
-      setSavedSchedule(true);
+      setIsScheduleSaved(true);
+    } else {
+      setIsScheduleEmpty(true);
     }
-  };
-
-  const handleCancel = () => {
-    setDateRange(weekDays);
-    setStartDate(null);
-    setEndDate(null);
-    reset();
   };
 
   const findPickedDays = (missingDays) => {
@@ -236,14 +234,19 @@ function EditListingSchedule() {
             </div>
 
             <ButtonsContainer>
-              <ButtonCancel onClick={handleCancel}>Cancel</ButtonCancel>
               <Button type="submit">Save Schedule</Button>
             </ButtonsContainer>
           </>
         )}
       </form>
-      {savedSchedule && (
-        <Toast status="success" message="Schedule has been saved" />
+      {isScheduleSaved && (
+        <Toast
+          status="success"
+          message="Schedule has been saved successfully"
+        />
+      )}
+      {isScheduleEmpty && (
+        <Toast status="fail" message="Please select at least one day" />
       )}
     </Container>
   );
