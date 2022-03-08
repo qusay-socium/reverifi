@@ -34,12 +34,12 @@ function ScheduleVisit({ data, id }) {
   const [filteredDays, setFilteredDays] = useState([]);
   const [selectedHour, setSelectedHour] = useState(null);
   const [requestedDate, setRequestedDate] = useState(null);
-  const [savedSchedule, setSavedSchedule] = useState(false);
+  const [isScheduleSaved, setIsScheduleSaved] = useState(false);
 
   const { endDate, startDate, days } = data;
   const navigate = useNavigate();
   const { isLoggedIn } = useUser();
-  useShowToastBar(savedSchedule, setSavedSchedule);
+  useShowToastBar(isScheduleSaved, setIsScheduleSaved);
 
   const time = getDifferenceBetweenTwoDates?.(startDate, endDate);
 
@@ -101,7 +101,7 @@ function ScheduleVisit({ data, id }) {
         dateTime: { date: requestedDate, time: selectedHour },
         listingId: id,
       });
-      setSavedSchedule(true);
+      setIsScheduleSaved(true);
     }
   };
 
@@ -181,7 +181,7 @@ function ScheduleVisit({ data, id }) {
         Request This Time
       </SubmitButton>
 
-      {savedSchedule && (
+      {isScheduleSaved && (
         <Toast status="success" message="Your request has been sent!" />
       )}
     </Container>

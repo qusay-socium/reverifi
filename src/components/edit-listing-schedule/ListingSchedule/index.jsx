@@ -33,8 +33,8 @@ function EditListingSchedule() {
   const [endDate, setEndDate] = useState(null);
   const [updateDate, setUpdateDate] = useState(null);
   const [dateRange, setDateRange] = useState(weekDays);
-  const [savedSchedule, setSavedSchedule] = useState(false);
-  const [emptySchedule, setEmptySchedule] = useState(false);
+  const [isScheduleSaved, setIsScheduleSaved] = useState(false);
+  const [isScheduleEmpty, setIsScheduleEmpty] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -49,8 +49,8 @@ function EditListingSchedule() {
     resolver: yupResolver(listingScheduleSchema),
   });
 
-  useShowToastBar(savedSchedule, setSavedSchedule);
-  useShowToastBar(emptySchedule, setEmptySchedule);
+  useShowToastBar(isScheduleSaved, setIsScheduleSaved);
+  useShowToastBar(isScheduleEmpty, setIsScheduleEmpty);
 
   const handleChange = (daySelected) => {
     Object.entries?.(dateRange).find(
@@ -96,9 +96,9 @@ function EditListingSchedule() {
       };
 
       await submitListingSchedule(date);
-      setSavedSchedule(true);
+      setIsScheduleSaved(true);
     } else {
-      setEmptySchedule(true);
+      setIsScheduleEmpty(true);
     }
   };
 
@@ -239,13 +239,13 @@ function EditListingSchedule() {
           </>
         )}
       </form>
-      {savedSchedule && (
+      {isScheduleSaved && (
         <Toast
           status="success"
           message="Schedule has been saved successfully"
         />
       )}
-      {emptySchedule && (
+      {isScheduleEmpty && (
         <Toast status="fail" message="Please select at least one day" />
       )}
     </Container>
