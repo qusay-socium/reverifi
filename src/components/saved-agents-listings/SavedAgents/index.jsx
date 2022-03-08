@@ -71,12 +71,7 @@ function SavedAgents() {
   return (
     <div>
       {users?.data?.length > 0 ? (
-        <Pagination
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          limit={PAGE_LIMIT}
-          dataCount={users?.count}
-        >
+        <>
           <Table
             headers={[
               'IMAGE',
@@ -140,7 +135,13 @@ function SavedAgents() {
               )
             )}
           </Table>
-        </Pagination>
+          <Pagination
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            limit={PAGE_LIMIT}
+            dataCount={users?.count}
+          />
+        </>
       ) : (
         <NoDataComponent
           image={agentNoData}

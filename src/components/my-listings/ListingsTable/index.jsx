@@ -49,12 +49,7 @@ export default function MyListingsTable({
   const navigate = useNavigate();
 
   return (
-    <Pagination
-      pageNumber={pageNumber}
-      setPageNumber={setPageNumber}
-      limit={PAGE_LIMIT}
-      dataCount={listings?.count}
-    >
+    <>
       <Table headers={tableHeaders}>
         {listings?.data?.map(
           ({ address, images, agent, createdAt, id, owner, schedule }) => (
@@ -132,7 +127,13 @@ export default function MyListingsTable({
           )
         )}
       </Table>
-    </Pagination>
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        limit={PAGE_LIMIT}
+        dataCount={listings?.count}
+      />
+    </>
   );
 }
 

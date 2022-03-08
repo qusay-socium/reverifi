@@ -43,51 +43,50 @@ function RolesTable() {
 
   return (
     <Container>
+      <Table headers={tableHeaders}>
+        {listings?.data?.map(({ address, agent, id }) => (
+          <TableRow key={id}>
+            <CellContainer>{address}</CellContainer>
+            <CellContainer>
+              <AgentContainer>
+                <AgentToolTip>
+                  {agent?.roles?.map(({ role }) => (
+                    <>{role || 'N/A'},</>
+                  ))}
+
+                  <Tooltip
+                    text={agent?.roles?.map(({ role }) => `${role}, `)}
+                    arrowPosition="top"
+                    position={[2.5, 2]}
+                    lineBreak
+                  />
+                </AgentToolTip>
+              </AgentContainer>
+            </CellContainer>
+
+            <CellContainer iconsCell>
+              <TableIconContainer hover>
+                <EditIcon
+                  onClick={() => {
+                    navigate(`/my-listings/edit/${id}`);
+                  }}
+                />
+                <Tooltip
+                  text="Edit"
+                  arrowPosition="top"
+                  position={[2.5, -0.5]}
+                />
+              </TableIconContainer>
+            </CellContainer>
+          </TableRow>
+        ))}
+      </Table>
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         limit={PAGE_LIMIT}
         dataCount={listings?.count}
-      >
-        <Table headers={tableHeaders}>
-          {listings?.data?.map(({ address, agent, id }) => (
-            <TableRow key={id}>
-              <CellContainer>{address}</CellContainer>
-              <CellContainer>
-                <AgentContainer>
-                  <AgentToolTip>
-                    {agent?.roles?.map(({ role }) => (
-                      <>{role || 'N/A'},</>
-                    ))}
-
-                    <Tooltip
-                      text={agent?.roles?.map(({ role }) => `${role}, `)}
-                      arrowPosition="top"
-                      position={[2.5, 2]}
-                      lineBreak
-                    />
-                  </AgentToolTip>
-                </AgentContainer>
-              </CellContainer>
-
-              <CellContainer iconsCell>
-                <TableIconContainer hover>
-                  <EditIcon
-                    onClick={() => {
-                      navigate(`/my-listings/edit/${id}`);
-                    }}
-                  />
-                  <Tooltip
-                    text="Edit"
-                    arrowPosition="top"
-                    position={[2.5, -0.5]}
-                  />
-                </TableIconContainer>
-              </CellContainer>
-            </TableRow>
-          ))}
-        </Table>
-      </Pagination>
+      />
     </Container>
   );
 }

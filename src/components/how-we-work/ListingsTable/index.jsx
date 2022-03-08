@@ -37,39 +37,38 @@ function ListingsTable() {
 
   return (
     <ListingsTableContainer>
+      <Table headers={['property', 'my Role', 'status']}>
+        {listings?.data?.map(({ address, agent }, index) => (
+          <TableRow key={index.toString()}>
+            <TableCell>{address}</TableCell>
+            <TableCell>
+              <AgentContainer>
+                <AgentToolTip>
+                  {agent?.roles?.map(({ role }) => (
+                    <>{role || 'N/A'},</>
+                  ))}
+
+                  <Tooltip
+                    text={agent?.roles?.map(({ role }) => `${role}, `)}
+                    arrowPosition="top"
+                    position={[2.5, 2]}
+                    lineBreak
+                  />
+                </AgentToolTip>
+              </AgentContainer>
+            </TableCell>
+            <TableCell iconsCell>
+              <LinkText to="/dashboard">start the process </LinkText>
+            </TableCell>
+          </TableRow>
+        ))}
+      </Table>
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
         limit={PAGE_LIMIT}
         dataCount={listings?.count}
-      >
-        <Table headers={['property', 'my Role', 'status']}>
-          {listings?.data?.map(({ address, agent }, index) => (
-            <TableRow key={index.toString()}>
-              <TableCell>{address}</TableCell>
-              <TableCell>
-                <AgentContainer>
-                  <AgentToolTip>
-                    {agent?.roles?.map(({ role }) => (
-                      <>{role || 'N/A'},</>
-                    ))}
-
-                    <Tooltip
-                      text={agent?.roles?.map(({ role }) => `${role}, `)}
-                      arrowPosition="top"
-                      position={[2.5, 2]}
-                      lineBreak
-                    />
-                  </AgentToolTip>
-                </AgentContainer>
-              </TableCell>
-              <TableCell iconsCell>
-                <LinkText to="/dashboard">start the process </LinkText>
-              </TableCell>
-            </TableRow>
-          ))}
-        </Table>
-      </Pagination>
+      />
     </ListingsTableContainer>
   );
 }

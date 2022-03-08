@@ -78,12 +78,7 @@ function SavedListings() {
   return (
     <div>
       {listings?.data?.length > 0 ? (
-        <Pagination
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          limit={PAGE_LIMIT}
-          dataCount={listings?.count}
-        >
+        <>
           <Table
             headers={[
               'IMAGE',
@@ -162,7 +157,13 @@ function SavedListings() {
               )
             )}
           </Table>
-        </Pagination>
+          <Pagination
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            limit={PAGE_LIMIT}
+            dataCount={listings?.count}
+          />
+        </>
       ) : (
         <NoDataComponent
           image={listingNoData}
