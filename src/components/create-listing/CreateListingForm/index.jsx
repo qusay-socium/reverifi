@@ -58,13 +58,15 @@ function CreateListingForm({ date }) {
       response.homeArea = response.homeArea.sqft;
       response.tags = generateLabelValuePairs(response.tags);
 
+      if (response?.features?.length > 0)
+        setFeatureIds(new Set(response?.features?.map(({ id }) => id)));
+
       reset(response);
     }
-    setValue('featureIds', featureIds);
 
     if (formId) fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formId, reset, featureIds]);
+  }, [formId, reset]);
 
   const values = watch();
 
@@ -106,7 +108,7 @@ function CreateListingForm({ date }) {
     if (!isLoggedIn) {
       navigate('/sign-up');
     } else {
-      values.featureIds = Array.from(values?.featureIds || []);
+      values.features = Array.from(featureIds || []);
       values.homeArea = { sqft: values?.homeArea };
       values.lotArea = { sqft: values?.lotArea };
       values.lotDimensions = { sqft: values?.lotDimensions };
