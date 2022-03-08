@@ -18,8 +18,6 @@ import NoDataComponent from '../NoDataComponent';
 import { IconContainer } from '../SavedListings/saved-listings.styles';
 import { AgentImage } from './saved-agents.styles';
 
-const PAGE_LIMIT = 8;
-
 /**
  * Saved agents component.
  *
@@ -42,7 +40,7 @@ function SavedAgents() {
         authInfo?.id,
         'user',
         page,
-        PAGE_LIMIT
+        8
       );
 
       const filteredUsers = usersData.data.filter((user) =>
@@ -138,7 +136,6 @@ function SavedAgents() {
           <Pagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
-            limit={PAGE_LIMIT}
             dataCount={users?.count}
           />
         </>

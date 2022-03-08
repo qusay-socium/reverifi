@@ -25,8 +25,6 @@ import {
   ListingImageContainer,
 } from './saved-listings.styles';
 
-const PAGE_LIMIT = 8;
-
 /**
  * Saved Listings component.
  *
@@ -49,7 +47,7 @@ function SavedListings() {
         authInfo?.id,
         'listing',
         page,
-        PAGE_LIMIT
+        8
       );
 
       setListings(listingData);
@@ -160,7 +158,6 @@ function SavedListings() {
           <Pagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
-            limit={PAGE_LIMIT}
             dataCount={listings?.count}
           />
         </>

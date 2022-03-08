@@ -14,8 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { getUserListings } from 'services/listing';
 import { Container, TableRow } from './roles-table.style';
 
-const PAGE_LIMIT = 8;
-
 /**
  * My Listings page component.
  *
@@ -31,7 +29,7 @@ function RolesTable() {
 
   const fetchAllListingsForUser = async (page) => {
     if (userInfo?.id) {
-      const listingData = await getUserListings(userInfo?.id, PAGE_LIMIT, page);
+      const listingData = await getUserListings(userInfo?.id, 8, page);
       setListings(listingData);
     }
   };
@@ -84,7 +82,6 @@ function RolesTable() {
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        limit={PAGE_LIMIT}
         dataCount={listings?.count}
       />
     </Container>

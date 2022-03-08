@@ -11,8 +11,6 @@ import React, { useEffect, useState } from 'react';
 import { getUserListings } from 'services/listing';
 import { LinkText, ListingsTableContainer } from './listings-table.styles';
 
-const PAGE_LIMIT = 8;
-
 /**
  * Listings Table component.
  *
@@ -25,7 +23,7 @@ function ListingsTable() {
 
   const fetchAllListingsForUser = async (page) => {
     if (userInfo?.id) {
-      const listingData = await getUserListings(userInfo?.id, PAGE_LIMIT, page);
+      const listingData = await getUserListings(userInfo?.id, 8, page);
       setListings(listingData);
     }
   };
@@ -66,7 +64,6 @@ function ListingsTable() {
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        limit={PAGE_LIMIT}
         dataCount={listings?.count}
       />
     </ListingsTableContainer>

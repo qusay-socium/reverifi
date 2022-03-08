@@ -24,8 +24,6 @@ import {
 
 const tableHeaders = ['IMAGE', 'PROPERTY', 'SELLER', 'DATE', 'STATUS', ''];
 
-const PAGE_LIMIT = 8;
-
 /**
  * My Listings table component.
  *
@@ -130,7 +128,6 @@ export default function MyListingsTable({
       <Pagination
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        limit={PAGE_LIMIT}
         dataCount={listings?.count}
       />
     </>
