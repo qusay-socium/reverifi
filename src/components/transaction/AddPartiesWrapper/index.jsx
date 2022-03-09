@@ -24,8 +24,9 @@ import {
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import Select from 'react-select';
+import Select, { createFilter } from 'react-select';
 import { getUsersWithLimit } from 'services/user';
+import MenuInviteMessage from '../MenuInviteMessage';
 
 /**
  * Add Involved Parties.
@@ -97,11 +98,11 @@ export default function AddPartiesWrapper() {
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <Select
-                      styles={{ backgroundColor: 'red', height: '1000px' }}
+                      components={{ NoOptionsMessage: MenuInviteMessage }}
+                      filterOption={createFilter({ ignoreAccents: false })}
                       hideSelectedOptions={false}
                       options={sellerList}
                       placeholder="Seller"
-                      noOptionsMessage={() => null}
                       value={value}
                       onChange={onChange}
                       onInputChange={setSellerName}
