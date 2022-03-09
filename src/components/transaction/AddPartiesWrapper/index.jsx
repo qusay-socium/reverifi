@@ -22,52 +22,103 @@ import {
   TextAreaContainer,
   TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
+import { useShowModal } from 'contexts/ShowModalContext';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import Select, { createFilter } from 'react-select';
+import Select from 'react-select';
 import { getUsersWithLimit } from 'services/user';
+import colors from 'styles/colors';
 import MenuInviteMessage from '../MenuInviteMessage';
 
 /**
- * Add Involved Parties.
+ * custom select theme function to change select default colors
  *
- * @return {JSX.Element} Transaction first page.
+ * @param {Object} theme theme object from the select component
+ * @param {Object} error input useForm error
+ *
+ */
+const customSelectTheme = (theme, error) => ({
+  ...theme,
+  colors: {
+    ...theme.colors,
+    dangerLight: colors.alabaster,
+    primary: error ? colors.red : colors.green,
+    primary25: colors.midGray,
+  },
+});
+
+/**
+ * Add Parties Wrapper component
+ *
+ * @return {JSX.Element}
  */
 export default function AddPartiesWrapper() {
+  const { setModalData } = useShowModal();
   const [sellerList, setSellerList] = useState([]);
   const [buyerList, setBuyerList] = useState([]);
   const [isSellerRepresented, setIsSellerRepresented] = useState(false);
   const [sellerName, setSellerName] = useState('');
   const [buyerName, setBuyerName] = useState('');
 
-  const { register, handleSubmit, control } = useForm({
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(addPartiesSchema),
   });
 
+  /**
+   * fetch Seller Data function
+   */
   const fetchSellerData = async () => {
-    if (sellerName.length > 2) {
-      const { data } = await getUsersWithLimit(10, sellerName);
-      const users = [];
-      data.forEach((user) => {
-        users.push({ label: user.name, value: user.id });
-      });
-      setSellerList(users);
+    if (sellerName?.length > 2) {
+      const data = await getUsersWithLimit(10, sellerName);
+
+      const sellerOptions = data
+        ? data?.map(({ id, name }) => ({ label: name, value: id }))
+        : [];
+
+      setSellerList(sellerOptions);
     } else {
       setSellerList([]);
     }
   };
 
+  /**
+   * fetch Buyer Data function
+   */
   const fetchBuyerData = async () => {
-    if (buyerName.length > 2) {
-      const { data } = await getUsersWithLimit(10, buyerName);
-      const users = [];
-      data.forEach((user) => {
-        users.push({ label: user.name, value: user.id });
-      });
-      setBuyerList(users);
+    if (buyerName?.length > 2) {
+      const data = await getUsersWithLimit(10, buyerName);
+
+      const buyerOptions = data
+        ? data?.map(({ id, name }) => ({ label: name, value: id }))
+        : [];
+
+      setBuyerList(buyerOptions);
     } else {
       setBuyerList([]);
     }
+  };
+
+  /**
+   * handle Input Change function
+   */
+  const handleInputChange = (val, action, type) => {
+    if (type === 'sellerAgent') {
+      setSellerName(val);
+    } else if (type === 'buyerAgent') {
+      setBuyerName(val);
+    }
+
+    // prevent clear input when not focused
+    if (action !== 'set-value' && val) {
+      setValue(type, { label: val, value: val });
+    }
+    setModalData(val);
   };
 
   useEffect(() => {
@@ -88,24 +139,32 @@ export default function AddPartiesWrapper() {
             <TitleText>Seller Team</TitleText>
 
             <RowContainer>
-              <SelectContainer>
+              <SelectContainer noOptions={sellerList.length > 0}>
                 <InputLabel>
                   <Seller />
                   <LabelText>Seller Agent:</LabelText>
                 </InputLabel>
                 <Controller
-                  name="agents"
+                  name="sellerAgent"
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <Select
                       components={{ NoOptionsMessage: MenuInviteMessage }}
-                      filterOption={createFilter({ ignoreAccents: false })}
                       hideSelectedOptions={false}
                       options={sellerList}
                       placeholder="Seller"
                       value={value}
                       onChange={onChange}
-                      onInputChange={setSellerName}
+                      onInputChange={(val, { action }) =>
+                        handleInputChange(val, action, 'sellerAgent')
+                      }
+                      className="transaction_s1-select"
+                      classNamePrefix="transaction_s1"
+                      theme={(theme) =>
+                        customSelectTheme(theme, errors.sellerAgent?.message)
+                      }
+                      isClearable
+                      isSearchable
                     />
                   )}
                 />
@@ -153,7 +212,7 @@ export default function AddPartiesWrapper() {
           <TitleText>Buyer Team</TitleText>
 
           <RowContainer>
-            <SelectContainer>
+            <SelectContainer noOptions={buyerList.length > 0}>
               <InputLabel>
                 <BuyerAgent />
                 <LabelText>Buyer Agent:</LabelText>
@@ -163,12 +222,22 @@ export default function AddPartiesWrapper() {
                 control={control}
                 render={({ field: { onChange, value } }) => (
                   <Select
+                    components={{ NoOptionsMessage: MenuInviteMessage }}
                     hideSelectedOptions={false}
                     options={buyerList}
-                    placeholder="John Doe"
+                    placeholder="Buyer"
                     value={value}
                     onChange={onChange}
-                    onInputChange={setBuyerName}
+                    onInputChange={(val, { action }) =>
+                      handleInputChange(val, action, 'buyerAgent')
+                    }
+                    className="transaction_s1-select"
+                    classNamePrefix="transaction_s1"
+                    theme={(theme) =>
+                      customSelectTheme(theme, errors.buyerAgent?.message)
+                    }
+                    isClearable
+                    isSearchable
                   />
                 )}
               />

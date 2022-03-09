@@ -11,7 +11,7 @@ function MenuInviteMessage(props) {
   return (
     <components.NoOptionsMessage {...props}>
       <NoOptionsMessage onClick={() => setShowModal(true)}>
-        Invite
+        Invite &#62;
       </NoOptionsMessage>
     </components.NoOptionsMessage>
   );

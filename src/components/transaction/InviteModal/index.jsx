@@ -1,20 +1,29 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import Button from 'components/shared/Button';
 import FormInput from 'components/shared/FormInput';
 import Modal from 'components/shared/Modal';
 import { useShowModal } from 'contexts/ShowModalContext';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import auth from 'services/auth';
 import { handleTextInput } from 'utils/helpers';
 import inviteModalSchema from './invite-modal-schema';
+import { InviteForm } from './invite-modal.styles';
 
+/**
+ * Invite Modal component
+ *
+ * @return {JSX.Element}
+ */
 function InviteModal() {
-  const { showModal, setShowModal } = useShowModal();
+  const { showModal, setShowModal, modalData } = useShowModal();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({
     resolver: yupResolver(inviteModalSchema),
   });
@@ -22,7 +31,9 @@ function InviteModal() {
   /**
    * Handle form submit
    */
-  const submit = () => {
+  const submit = async ({ name, email }) => {
+    await auth.signUp(name, email, null, null, false);
+
     setShowModal(!showModal);
     reset();
   };
@@ -35,9 +46,15 @@ function InviteModal() {
     reset();
   };
 
+  useEffect(() => {
+    if (modalData) setValue('name', modalData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalData]);
+
   return (
     <Modal show={showModal} handleClose={handleClose}>
-      <form onSubmit={handleSubmit(submit)}>
+      <InviteForm onSubmit={handleSubmit(submit)}>
+        <h2>Invite</h2>
         <FormInput
           error={errors.name?.message}
           label="Name"
@@ -46,6 +63,7 @@ function InviteModal() {
           register={register}
           maxLength="30"
           onChange={handleTextInput}
+          defaultValue={modalData}
         />
         <FormInput
           error={errors.email?.message}
@@ -55,7 +73,8 @@ function InviteModal() {
           register={register}
           maxLength="50"
         />
-      </form>
+        <Button type="submit">Save</Button>
+      </InviteForm>
     </Modal>
   );
 }

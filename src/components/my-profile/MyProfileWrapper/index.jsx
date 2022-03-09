@@ -64,6 +64,8 @@ const serviceAreasOptions = generateLabelValuePairs(
  * custom select theme function to change select default colors
  *
  * @param {Object} theme theme object from the select component
+ * @param {Object} error input useForm error
+ *
  */
 const customSelectTheme = (theme, error) => ({
   ...theme,

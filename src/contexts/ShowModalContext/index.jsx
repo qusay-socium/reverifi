@@ -15,8 +15,12 @@ ModalContext.displayName = 'ModalContext';
  */
 function ShowModalProvider({ children }) {
   const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
-  const value = React.useMemo(() => ({ setShowModal, showModal }), [showModal]);
+  const value = React.useMemo(
+    () => ({ modalData, setModalData, setShowModal, showModal }),
+    [showModal, modalData]
+  );
 
   return (
     <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
