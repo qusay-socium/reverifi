@@ -63,7 +63,9 @@ export const getUsersByType = async (type, location, name, page = 0) => {
  * @return {Object[]} Array of users.
  */
 export const getUsersWithLimit = async (limit, name) => {
-  const { data } = await http.get(`${apiUrl}/users/all/${limit}?name=${name}`);
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/users/all/${limit}?name=${name}`);
 
   return data;
 };

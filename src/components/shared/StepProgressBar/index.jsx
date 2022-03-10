@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Container,
-  StepsContainer,
-  Step,
-  ProgressLine,
+  OneStepContainer,
   PrimaryText,
+  ProgressLine,
   SecondaryText,
   SmallDot,
-  OneStepContainer,
+  Step,
+  StepsContainer,
 } from 'components/shared/StepProgressBar/step-progress-bar.styles';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 /**
  * Step Progress Bar.
@@ -25,16 +25,16 @@ function StepProgressBar({ steps, currentStep }) {
     <Container>
       <ProgressLine />
       <StepsContainer>
-        {steps.map((step, index) => (
-          <React.Fragment key={step}>
+        {steps.map(({ text, paramString, stepNum }, index) => (
+          <React.Fragment key={paramString}>
             <OneStepContainer>
-              <Step achieved={index + 1 < currentStep}>
+              <Step achieved={stepNum < currentStep}>
                 <SecondaryText>{index + 1}</SecondaryText>
               </Step>
-              <PrimaryText>{step}</PrimaryText>
+              <PrimaryText>{text}</PrimaryText>
             </OneStepContainer>
             {index + 1 < steps.length && (
-              <SmallDot achieved={index + 1 < currentStep} />
+              <SmallDot achieved={stepNum < currentStep} />
             )}
           </React.Fragment>
         ))}

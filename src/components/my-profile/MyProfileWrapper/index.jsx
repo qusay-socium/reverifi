@@ -21,6 +21,7 @@ import myProfileData from 'components/my-profile/data';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
+import MenuList from 'components/shared/MenuList';
 import Toast from 'components/shared/Toast';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
@@ -36,7 +37,6 @@ import {
   handleNumberInput,
   handleTextInput,
 } from 'utils/helpers';
-import MenuList from '../MenuList';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   EditIconContainer,
@@ -64,6 +64,8 @@ const serviceAreasOptions = generateLabelValuePairs(
  * custom select theme function to change select default colors
  *
  * @param {Object} theme theme object from the select component
+ * @param {Object} error input useForm error
+ *
  */
 const customSelectTheme = (theme, error) => ({
   ...theme,
