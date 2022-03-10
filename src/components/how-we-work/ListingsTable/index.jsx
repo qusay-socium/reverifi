@@ -9,7 +9,7 @@ import Tooltip from 'components/shared/Tooltip';
 import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
 import { getUserListings } from 'services/listing';
-import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
+import { DEFAULT_PAGE_LIMIT, transactionStepsNames } from 'utils/constants';
 import { LinkText, ListingsTableContainer } from './listings-table.styles';
 
 /**
@@ -61,7 +61,9 @@ function ListingsTable() {
               </AgentContainer>
             </TableCell>
             <TableCell iconsCell>
-              <LinkText to={`/transaction/${id}/add-parties`}>
+              <LinkText
+                to={`/transaction/${id}/${transactionStepsNames.addParties}`}
+              >
                 start the process
               </LinkText>
             </TableCell>

@@ -13,13 +13,13 @@ const routes = [
   {
     component: lazy(() => import('pages/Transaction/AddParties')),
     label: 'transaction-add-parties',
-    path: `/${transactionStepsNames.step1}`,
+    path: `/${transactionStepsNames.addParties}`,
     title: 'Transaction Add Parties',
   },
   {
     component: lazy(() => import('pages/Transaction/AssignTasks')),
     label: 'transaction-assign-tasks',
-    path: `/${transactionStepsNames.step2}`,
+    path: `/${transactionStepsNames.assignTasks}`,
     title: 'Transaction Assign Tasks',
   },
 ];

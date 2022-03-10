@@ -11,22 +11,22 @@ import { transactionStepsNames } from 'utils/constants';
 
 const steps = [
   {
-    paramString: transactionStepsNames.step1,
+    paramString: transactionStepsNames.addParties,
     stepNum: 1,
     text: 'Add Involved Parties',
   },
   {
-    paramString: transactionStepsNames.step2,
+    paramString: transactionStepsNames.assignTasks,
     stepNum: 2,
     text: 'Manage & Assign Tasks',
   },
   {
-    paramString: transactionStepsNames.step3,
+    paramString: transactionStepsNames.uploadDocuments,
     stepNum: 3,
     text: 'Upload Documents',
   },
   {
-    paramString: transactionStepsNames.step4,
+    paramString: transactionStepsNames.closeDeal,
     stepNum: 4,
     text: 'Finalize and Close Deal',
   },

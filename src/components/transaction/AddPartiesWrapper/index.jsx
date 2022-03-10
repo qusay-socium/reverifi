@@ -76,12 +76,7 @@ export default function AddPartiesWrapper() {
   const fetchSellerData = async () => {
     if (sellerName?.length > 2) {
       const data = await getUsersWithLimit(10, sellerName);
-
-      const sellerOptions = data
-        ? data?.map(({ id, name }) => ({ label: name, value: id }))
-        : [];
-
-      setSellerList(sellerOptions);
+      setSellerList(data);
     } else {
       setSellerList([]);
     }
@@ -93,12 +88,7 @@ export default function AddPartiesWrapper() {
   const fetchBuyerData = async () => {
     if (buyerName?.length > 2) {
       const data = await getUsersWithLimit(10, buyerName);
-
-      const buyerOptions = data
-        ? data?.map(({ id, name }) => ({ label: name, value: id }))
-        : [];
-
-      setBuyerList(buyerOptions);
+      setBuyerList(data);
     } else {
       setBuyerList([]);
     }
@@ -165,6 +155,8 @@ export default function AddPartiesWrapper() {
                       }
                       isClearable
                       isSearchable
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option.id}
                     />
                   )}
                 />
@@ -238,6 +230,8 @@ export default function AddPartiesWrapper() {
                     }
                     isClearable
                     isSearchable
+                    getOptionLabel={(option) => option.name}
+                    getOptionValue={(option) => option.id}
                   />
                 )}
               />
