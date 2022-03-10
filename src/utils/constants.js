@@ -7,3 +7,9 @@ export const transactionStepsNames = {
   closeDeal: 'close-deal',
   uploadDocuments: 'upload-documents',
 };
+
+export const invitationStatus = {
+  accepted: 'Accepted',
+  declined: 'Declined',
+  waiting: 'Waiting',
+};

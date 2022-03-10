@@ -25,10 +25,12 @@ import {
 import { useShowModal } from 'contexts/ShowModalContext';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import Select from 'react-select';
+import { addInvitation } from 'services/invitations';
 import { getUsersWithLimit } from 'services/user';
 import colors from 'styles/colors';
-import MenuInviteMessage from '../MenuInviteMessage';
+import MenuInviteMessage from '../../shared/MenuInviteMessage';
 
 /**
  * custom select theme function to change select default colors
@@ -53,12 +55,13 @@ const customSelectTheme = (theme, error) => ({
  * @return {JSX.Element}
  */
 export default function AddPartiesWrapper() {
-  const { setModalData } = useShowModal();
+  const { modalData, setModalData } = useShowModal();
   const [sellerList, setSellerList] = useState([]);
   const [buyerList, setBuyerList] = useState([]);
   const [isSellerRepresented, setIsSellerRepresented] = useState(false);
   const [sellerName, setSellerName] = useState('');
   const [buyerName, setBuyerName] = useState('');
+  const { listingId } = useParams();
 
   const {
     register,
@@ -97,18 +100,12 @@ export default function AddPartiesWrapper() {
   /**
    * handle Input Change function
    */
-  const handleInputChange = (val, action, type) => {
+  const handleInputChange = (val, type) => {
     if (type === 'sellerAgent') {
       setSellerName(val);
     } else if (type === 'buyerAgent') {
       setBuyerName(val);
     }
-
-    // prevent clear input when not focused
-    if (action !== 'set-value' && val) {
-      setValue(type, { label: val, value: val });
-    }
-    setModalData(val);
   };
 
   useEffect(() => {
@@ -121,8 +118,53 @@ export default function AddPartiesWrapper() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buyerName]);
 
+  /**
+   * form submit function
+   */
+  const submit = async ({ sellerAgent, buyerAgent, seller, buyer }) => {
+    // filter the non exist and send invitations
+    const userIdsAndRoles = [];
+
+    if (sellerAgent?.name !== sellerAgent?.id) {
+      userIdsAndRoles.push({
+        invitedUserId: sellerAgent?.id,
+        role: 'Seller Agent',
+      });
+    }
+
+    if (buyerAgent?.name !== buyerAgent?.id) {
+      userIdsAndRoles.push({
+        invitedUserId: buyerAgent?.id,
+        role: 'Buyer Agent',
+      });
+    }
+
+    if (seller?.name !== seller?.id) {
+      userIdsAndRoles.push({
+        invitedUserId: seller?.id,
+        role: 'Seller',
+      });
+    }
+
+    if (buyer?.name !== buyer?.id) {
+      userIdsAndRoles.push({
+        invitedUserId: buyer?.id,
+        role: 'Buyer',
+      });
+    }
+
+    await addInvitation({
+      model: 'listings',
+      modelId: listingId,
+      name: 'transaction',
+      userIdsAndRoles: modalData?.invitedUsers?.length
+        ? [...userIdsAndRoles, ...modalData?.invitedUsers]
+        : userIdsAndRoles,
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={handleSubmit(submit)}>
       <div>
         <SellerTeamFromContainer>
           <SideContainer>
@@ -145,9 +187,18 @@ export default function AddPartiesWrapper() {
                       placeholder="Seller"
                       value={value}
                       onChange={onChange}
-                      onInputChange={(val, { action }) =>
-                        handleInputChange(val, action, 'sellerAgent')
-                      }
+                      onInputChange={(val, { action }) => {
+                        handleInputChange(val, 'sellerAgent');
+                        // prevent clear input when not focused
+                        if (action !== 'set-value' && val) {
+                          setValue('sellerAgent', { id: val, name: val });
+                          setModalData((prev) => ({
+                            ...prev,
+                            type: 'Seller Agent',
+                            val,
+                          }));
+                        }
+                      }}
                       className="transaction_s1-select"
                       classNamePrefix="transaction_s1"
                       theme={(theme) =>
@@ -220,9 +271,18 @@ export default function AddPartiesWrapper() {
                     placeholder="Buyer"
                     value={value}
                     onChange={onChange}
-                    onInputChange={(val, { action }) =>
-                      handleInputChange(val, action, 'buyerAgent')
-                    }
+                    onInputChange={(val, { action }) => {
+                      handleInputChange(val, 'buyerAgent');
+                      // prevent clear input when not focused
+                      if (action !== 'set-value' && val) {
+                        setValue('buyerAgent', { id: val, name: val });
+                        setModalData((prev) => ({
+                          ...prev,
+                          type: 'Buyer Agent',
+                          val,
+                        }));
+                      }
+                    }}
                     className="transaction_s1-select"
                     classNamePrefix="transaction_s1"
                     theme={(theme) =>

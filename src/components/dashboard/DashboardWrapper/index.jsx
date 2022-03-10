@@ -3,14 +3,14 @@ import statusDropdownIcon from 'assets/icons/dashboard-dropdown-icon1.svg';
 import roleDropdownIcon from 'assets/icons/dashboard-dropdown-icon2.svg';
 import { ReactComponent as MoneyIcon } from 'assets/icons/dashboard-money.svg';
 import { ReactComponent as TeamIcon } from 'assets/icons/dashboard-people-team.svg';
+import { offersData, transactionsData } from 'components/dashboard/data';
+import InvitationsTable from 'components/dashboard/InvitationsTable';
+import OffersTable from 'components/dashboard/OffersTable';
+import TransactionsTable from 'components/dashboard/TransactionsTable';
 import DropdownMenu from 'components/shared/DropdownMenu';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { incomingInvitations, offersData, transactionsData } from '../data';
-import InvitationsTable from '../InvitationsTable';
-import OffersTable from '../OffersTable';
-import TransactionsTable from '../TransactionsTable';
 import {
   DashboardCard,
   DashboardCardsContainer,
@@ -88,8 +88,8 @@ function DashboardWrapper() {
       <Tabs
         tabsData={tabsData}
         tabsContent={[
-          <InvitationsTable data={incomingInvitations} />,
-          'sent invitations table',
+          <InvitationsTable type="incoming" />,
+          <InvitationsTable type="sent" />,
         ]}
       />
     </DashboardContainer>

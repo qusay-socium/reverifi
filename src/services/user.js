@@ -83,7 +83,7 @@ export const getUserRoles = async () => {
   return data;
 };
 
-/*
+/**
  * Service that get single user info
  *
  * @return {Object[]} Array of info data.
@@ -94,6 +94,19 @@ export const getUserInfo = async (id) => {
   const {
     data: { data },
   } = await http.get(`${apiUrl}/users${path}`);
+
+  return data;
+};
+
+/**
+ * Service that add invited user
+ *
+ * @return {Object} invited user
+ */
+export const addInvitedUser = async (body) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/users/invited`, body);
 
   return data;
 };
