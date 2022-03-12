@@ -1,7 +1,6 @@
 import { ReactComponent as ClearIcon } from 'assets/close-icon.svg';
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg';
 import CustomMenuList from 'components/shared/CustomMenuList';
-import CustomValueContainer from 'components/shared/CustomValueContainer';
 import {
   AutocompleteMenu,
   AutocompleteMenuContainer,
@@ -16,84 +15,29 @@ import {
 } from 'services/listing-create-service';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import colors from 'styles/colors';
+import {
+  numberOfRooms,
+  rentPrices,
+  rentPricesMax,
+  sellPrices,
+  sellPricesMax,
+} from './filter-data';
 import {
   FilterContainer,
   InputWrapper,
   ListingSearchContainer,
   SearchButton,
   SearchContainer,
+  style,
 } from './search-header.style';
 
-const style = (horizontal = false) => ({
-  control: (base) => ({
-    ...base,
-    border: 1,
-    borderRadius: '1.9rem',
-    boxShadow: `0rem 0.06rem 0.3rem ${colors.mineShaft}26`,
-  }),
-
-  menu: (provided) => ({
-    ...provided,
-    display: 'table',
-    padding: horizontal ? '1rem 1rem 1rem 1rem' : '',
-  }),
-
-  menuList: (provided) => ({
-    ...provided,
-    display: 'flex',
-    flexDirection: horizontal ? 'row' : 'column',
-  }),
-
-  option: (provided, state) => ({
-    '&:hover': {
-      backgroundColor: colors.green,
-      borderColor: colors.green,
-      color: 'white',
-    },
-    ...provided,
-    backgroundColor: state.isSelected ? colors.green : 'none',
-    borderColor: state.isSelected ? colors.green : colors.mineShaft,
-    borderRadius: horizontal ? '50%' : '',
-    borderStyle: horizontal ? 'solid' : '',
-    borderWidth: horizontal ? 'thin' : '',
-    padding: '0.7rem 0.7rem 0.7rem 0.7rem',
-  }),
-
-  valueContainer: (provided) => ({
-    ...provided,
-    flexWrap: 'nowrap',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  }),
-});
-
-const numberOfRooms = [
-  { label: 'Any', value: 'Any' },
-  { label: '1+', value: '1+' },
-  { label: '2+', value: '2+' },
-  { label: '3+', value: '3+' },
-  { label: '4+', value: '4+' },
-  { label: '5+', value: '5+' },
-];
-
-const prices = [
-  { label: '$0+', value: '0' },
-  { label: '$200+', value: '200' },
-  { label: '$400+', value: '400' },
-  { label: '$600+', value: '600' },
-  { label: '$800+', value: '800' },
-  { label: '$1000+', value: '1000' },
-  { label: '$1200+', value: '1200' },
-  { label: '$1400+', value: '1400' },
-  { label: '$1600+', value: '1600' },
-  { label: '$1800+', value: '1800' },
-];
-
 /**
- * ListingsSearchHeader  component.
  *
- * @return {JSX.Element}
+ * @param  {any} keyWord the key word for search
+ * @param  {any} setKeyWord to set the key word
+ * @param  {any} fetchListingDataBySearchKey to search for the key word
+ *
+ * @return listings data
  */
 function ListingsSearchHeader({
   keyWord,
@@ -101,11 +45,19 @@ function ListingsSearchHeader({
   fetchListingDataBySearchKey,
 }) {
   const inputValue = useRef();
+
   const [selectedBathrooms, setSelectedBathrooms] = useState(null);
   const [selectedBedrooms, setSelectedBedrooms] = useState(null);
+  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [selectedPropertyType, setSelectedPropertyType] = useState(null);
+  const [selectedListingType, setSelectedListingTypes] = useState(null);
+  const [isPriceMenuOpen, setIsPriceMenuOpen] = useState(false);
+  const [listingTypes, setListingTypes] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
-  const [min, setMin] = useState(null);
-  const [max, setMax] = useState(null);
+  const [priceTag, setPriceTag] = useState({});
+  const [min, setMin] = useState('');
+  const [max, setMax] = useState('');
+  const [isFocusMax, setIsFocusMax] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(
     decodeURI(keyWord) || ''
   );
@@ -119,9 +71,38 @@ function ListingsSearchHeader({
     inputValue.current.focus();
   };
 
-  const [propertyTypes, setPropertyTypes] = useState([]);
-  const [listingTypes, setListingTypes] = useState([]);
-  const [price, setPrice] = useState(null);
+  const filter = {
+    bedrooms: selectedBedrooms?.value?.split('')?.[0] || '',
+    fullBathrooms: selectedBathrooms?.value.split('')?.[0] || '',
+    listingTypeId: selectedListingType || '',
+    max: max > min ? max : min || '',
+    min: min > max ? max : min || '',
+    propertyTypeId: selectedPropertyType || '',
+  };
+
+  /**
+   * handle search clear function
+   */
+  const handleSearch = async (address, placeId) => {
+    if (selectedAddress) setSelectedAddress(address);
+
+    if (isFocused === true) {
+      setIsFocused(false);
+    }
+    if (min > max) {
+      setMin(max);
+      setMax(min);
+    }
+
+    if (!placeId) {
+      // This code runs when you press enter without having a suggestion selected
+      if (inputValue.current.value) {
+        setSelectedAddress(inputValue?.current?.value);
+        setKeyWord(inputValue?.current?.value);
+        fetchListingDataBySearchKey(keyWord, filter);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,22 +112,6 @@ function ListingsSearchHeader({
 
     fetchData();
   }, []);
-
-  /**
-   * handle search clear function
-   */
-  const handleSearch = async (address, placeId) => {
-    if (selectedAddress) setSelectedAddress(address);
-
-    if (!placeId) {
-      // This code runs when you press enter without having a suggestion selected
-      if (inputValue.current.value) {
-        setSelectedAddress(inputValue?.current?.value);
-        setKeyWord(inputValue?.current?.value);
-        fetchListingDataBySearchKey(keyWord);
-      }
-    }
-  };
 
   return (
     <ListingSearchContainer>
@@ -166,7 +131,7 @@ function ListingsSearchHeader({
                   onKeyDown={(e) => {
                     if (e.keyCode === 13) {
                       setKeyWord(e.target.value);
-                      fetchListingDataBySearchKey(e.target.value);
+                      fetchListingDataBySearchKey(e.target.value, filter);
                     }
                   }}
                   {...getInputProps()}
@@ -187,34 +152,42 @@ function ListingsSearchHeader({
 
         <FilterContainer>
           <Select
+            min={min}
+            max={max}
             name="status"
+            priceTag={priceTag}
+            setMax={setMax}
+            setMin={setMin}
             placeholder="Price"
-            options={prices}
+            setPrice={setPriceTag}
             isSearchable={false}
-            styles={style()}
+            isFocused={isFocused}
+            setIsFocused={setIsFocused}
+            setIsFocusMax={setIsFocusMax}
+            styles={style(false, isFocusMax)}
+            isPriceMenuOpen={isPriceMenuOpen}
+            onChange={(e) => setPriceTag(e)}
+            onMenuClose={() => setIsPriceMenuOpen(false)}
+            closeMenuOnScroll={() => setIsFocused(false)}
+            onMenuOpen={() => {
+              setIsPriceMenuOpen(true);
+              setIsFocused(true);
+            }}
             components={{
               IndicatorSeparator: '',
               MenuList: CustomMenuList,
-              ValueContainer: CustomValueContainer,
             }}
-            min={min}
-            max={max}
-            setMax={setMax}
-            setMin={setMin}
-            setMenuIsOpen={setIsFocused}
-            onMenuInputFocus={() => setIsFocused(true)}
-            value={price}
-            setPrice={setPrice}
-            onChange={() => {
-              setIsFocused(false);
-            }}
-            onMenuClose={(e) => {
-              setPrice(e);
-            }}
-            {...{
-              isFocused: isFocused || undefined,
-              menuIsOpen: isFocused || undefined,
-            }}
+            menuIsOpen={isFocused}
+            options={
+              // eslint-disable-next-line no-nested-ternary
+              selectedListingType === 'e7f4803a-8cbc-4028-8c9e-641644fe8b13'
+                ? isFocusMax
+                  ? rentPricesMax
+                  : rentPrices
+                : isFocusMax
+                ? sellPricesMax
+                : sellPrices
+            }
           />
 
           <Select
@@ -225,6 +198,9 @@ function ListingsSearchHeader({
             getOptionLabel={(option) => option.type}
             getOptionValue={(option) => option.id}
             options={listingTypes ?? []}
+            onChange={(e) => {
+              setSelectedListingTypes(e.id);
+            }}
           />
 
           <Select
@@ -235,13 +211,16 @@ function ListingsSearchHeader({
             getOptionLabel={(option) => option.type}
             getOptionValue={(option) => option.id}
             styles={style()}
+            onChange={(e) => {
+              setSelectedPropertyType(e.id);
+            }}
           />
 
           <Select
             name="Bedrooms"
             placeholder="Bedrooms"
             options={numberOfRooms}
-            components={{ IndicatorSeparator: '', MenuList: CustomMenuList }}
+            components={{ IndicatorSeparator: '' }}
             onChange={(option) => {
               setSelectedBedrooms({
                 label: `${option.label} Beds`,
@@ -256,7 +235,7 @@ function ListingsSearchHeader({
           <Select
             name="Bathrooms"
             placeholder="Bathrooms"
-            components={{ IndicatorSeparator: '', MenuList: CustomMenuList }}
+            components={{ IndicatorSeparator: '' }}
             options={numberOfRooms}
             onChange={(option) => {
               setSelectedBathrooms({
