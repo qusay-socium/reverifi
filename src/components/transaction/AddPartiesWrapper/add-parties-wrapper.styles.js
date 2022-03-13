@@ -29,65 +29,10 @@ export const RowContainer = styled.div`
   justify-content: flex-start;
   gap: 2.25rem;
   align-items: flex-end;
-`;
 
-export const SelectContainer = styled.div`
-  flex: 1;
-
-  .transaction_s1-select {
-    .transaction_s1__control {
-      border-radius: 1.12rem;
-      border: 0.06rem solid ${colors.mercury};
-      box-shadow: 0;
-      padding: 0.08rem;
-      font-size: 0.875rem;
-    }
-
-    .transaction_s1__multi-value {
-      background-color: ${colors.white};
-      border-radius: 1.1rem;
-      box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
-      font-size: 0.85rem;
-      margin: 0 0.2rem;
-      padding: 0.2rem;
-    }
-
-    .transaction_s1__option {
-      font-size: 0.875rem;
-      padding-left: 0.6rem;
-    }
-
-    .transaction_s1__menu {
-      ${({ noOptions }) =>
-        !noOptions &&
-        `
-         background-color: ${colors.alabaster};
-        `}
-
-      .transaction_s1__option--is-selected {
-        background-color: ${colors.white};
-        color: ${colors.green};
-        padding-left: 0.6rem;
-
-        &::before {
-          content: '▸ ';
-        }
-      }
-    }
-
-    .transaction_s1__placeholder {
-      font-size: 0.8rem;
-    }
+  > div {
+    flex: 1;
   }
-
-  svg,
-  span {
-    display: none;
-  }
-`;
-
-export const LabelText = styled.div`
-  color: ${colors.matterhorn};
 `;
 
 export const CheckBoxContainer = styled.div`
