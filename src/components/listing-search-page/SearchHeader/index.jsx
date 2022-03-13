@@ -8,6 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete/dist/PlacesAutocomplete';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import {
   getAllListingTypes,
@@ -15,6 +16,7 @@ import {
 } from 'services/listing-create-service';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { listingPaths } from 'utils/appPaths';
 import {
   numberOfRooms,
   rentPrices,
@@ -45,6 +47,7 @@ function ListingsSearchHeader({
   fetchListingDataBySearchKey,
 }) {
   const inputValue = useRef();
+  const navigate = useNavigate();
 
   const [selectedBathrooms, setSelectedBathrooms] = useState(null);
   const [selectedBedrooms, setSelectedBedrooms] = useState(null);
@@ -58,6 +61,7 @@ function ListingsSearchHeader({
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [isFocusMax, setIsFocusMax] = useState(false);
+  const [suggestedAddress, setSuggestedAddress] = useState('New Jersey, USA');
   const [selectedAddress, setSelectedAddress] = useState(
     decodeURI(keyWord) || ''
   );
@@ -83,7 +87,7 @@ function ListingsSearchHeader({
   /**
    * handle search clear function
    */
-  const handleSearch = async (address, placeId) => {
+  const handleSearch = async (address) => {
     if (selectedAddress) setSelectedAddress(address);
 
     if (isFocused === true) {
@@ -94,12 +98,13 @@ function ListingsSearchHeader({
       setMax(min);
     }
 
-    if (!placeId) {
-      // This code runs when you press enter without having a suggestion selected
-      if (inputValue.current.value) {
-        setSelectedAddress(inputValue?.current?.value);
-        setKeyWord(inputValue?.current?.value);
-        fetchListingDataBySearchKey(keyWord, filter);
+    if (inputValue?.current?.value) {
+      if (inputValue?.current?.value === address) {
+        setSelectedAddress(suggestedAddress);
+        navigate(`${listingPaths.search}?key=${suggestedAddress}`);
+      } else {
+        setSelectedAddress(address);
+        navigate(`${listingPaths.search}?key=${address}`);
       }
     }
   };
@@ -116,6 +121,9 @@ function ListingsSearchHeader({
       return sellPricesMax;
     }
     return sellPrices;
+  };
+  const searchOptions = {
+    componentRestrictions: { country: ['us'] },
   };
 
   useEffect(() => {
@@ -135,9 +143,12 @@ function ListingsSearchHeader({
             value={selectedAddress}
             onChange={setSelectedAddress}
             onSelect={handleSearch}
+            searchOptions={searchOptions}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <>
+                {suggestions?.[0]?.description &&
+                  setSuggestedAddress(suggestions?.[0]?.description)}
                 <input
                   ref={inputValue}
                   type="text"

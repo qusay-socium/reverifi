@@ -6,6 +6,8 @@ import { toUpperCaseFirstLetter } from 'utils/helpers';
 import Card from '../Card';
 import {
   CardsContainer,
+  Message,
+  MessageContainer,
   ResultCountContainer,
   ResultNumber,
   ResultText,
@@ -25,7 +27,7 @@ function SearchList({ data, wordKey }) {
     }
   }, [data]);
 
-  return (
+  return data.length > 0 ? (
     <div>
       <ResultCountContainer>
         <ResultNumber>{`${toUpperCaseFirstLetter(
@@ -39,6 +41,14 @@ function SearchList({ data, wordKey }) {
         ))}
       </CardsContainer>
     </div>
+  ) : (
+    <MessageContainer>
+      <Message>
+        {`We did not find listings for: "${decodeURI(
+          wordKey
+        )}", edit or remove these filters for best results.`}
+      </Message>
+    </MessageContainer>
   );
 }
 

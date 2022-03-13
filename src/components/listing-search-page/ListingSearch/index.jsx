@@ -1,4 +1,3 @@
-import searchImages from 'assets/images/search-no-data.png';
 import Map from 'components/shared/Map';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,11 +7,6 @@ import 'slick-carousel/slick/slick.css';
 import { listingPaths } from 'utils/appPaths';
 import MapCard from '../MapCard';
 import SearchHeader from '../SearchHeader';
-import {
-  Container,
-  Message,
-  MessageContainer,
-} from '../SearchList/search-list.style';
 import ListingSearch from '../SearchResults';
 import { ListingPage, MapContainer, SearchBody } from './listing-search.style';
 /**
@@ -41,7 +35,7 @@ function ListingSearchPage() {
       filter
     );
     setCardData(listingData);
-    navigate(`${listingPaths?.search}?key=${searchWord}`);
+    navigate(`${listingPaths?.search}?key=${searchWord}`, { replace: true });
   };
 
   useEffect(() => {
@@ -55,29 +49,16 @@ function ListingSearchPage() {
         setKeyWord={setKeyWord}
         fetchListingDataBySearchKey={fetchListingDataBySearchKey}
       />
-      {cardData?.length > 0 ? (
-        <SearchBody>
-          <ListingSearch cardData={cardData} keyWord={keyWord} />
-          <MapContainer>
-            <Map
-              ComponentOnMap={renderCards}
-              listings={cardData?.length > 0 ? cardData : []}
-              isMarkerShown
-            />
-          </MapContainer>
-        </SearchBody>
-      ) : (
-        <Container>
-          <img src={searchImages} alt="No search results found" />
-          <MessageContainer>
-            <Message>
-              {`We did not find listings for: "${decodeURI(
-                keyWord
-              )}", edit or remove these filters for best results.`}
-            </Message>
-          </MessageContainer>
-        </Container>
-      )}
+      <SearchBody>
+        <ListingSearch cardData={cardData} keyWord={keyWord} />
+        <MapContainer>
+          <Map
+            ComponentOnMap={renderCards}
+            listings={cardData?.length > 0 ? cardData : []}
+            isMarkerShown
+          />
+        </MapContainer>
+      </SearchBody>
     </ListingPage>
   );
 }

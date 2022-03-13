@@ -21,7 +21,8 @@ export const ListingSearchText = styled.p`
 export const Message = styled(ListingSearchText)`
   text-align: center;
   margin: 0;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  color: ${colors.dustyGray};
 `;
 
 export const SuggestedListing = styled.h4`
