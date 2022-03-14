@@ -53,7 +53,7 @@ function InvitationsTable({ type }) {
       {invitations?.map(
         ({
           id,
-          invitationType,
+          invitedListing,
           invitedUser,
           role,
           status,
@@ -61,7 +61,7 @@ function InvitationsTable({ type }) {
           inviter,
         }) => (
           <TableRow key={id}>
-            <TableCell>{invitationType?.invitedListing?.address}</TableCell>
+            <TableCell>{invitedListing?.address}</TableCell>
             <TableCell>
               <InvitedUserImage
                 src={

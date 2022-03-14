@@ -101,8 +101,6 @@ export default function AddPartiesWrapper() {
 
     await addInvitation({
       listingId,
-      model: 'listings',
-      name: 'transaction',
       userIdsAndRoles: modalData?.invitedUsers?.length
         ? [...userIdsAndRoles, ...modalData?.invitedUsers]
         : userIdsAndRoles,
