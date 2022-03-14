@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { useNavigate } from 'react-router-dom';
 import { listingPaths } from 'utils/appPaths';
+import { searchOptions } from 'utils/constants';
 import {
   ClearInputButton,
   LocationPin,
@@ -48,9 +49,6 @@ function Storyboard() {
     inputValue.current.focus();
   };
 
-  const searchOptions = {
-    componentRestrictions: { country: ['us'] },
-  };
   return (
     <StoryBoardContainer>
       <StoryBoardSection>

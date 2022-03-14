@@ -8,7 +8,6 @@ import {
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete/dist/PlacesAutocomplete';
-import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import {
   getAllListingTypes,
@@ -16,7 +15,7 @@ import {
 } from 'services/listing-create-service';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { listingPaths } from 'utils/appPaths';
+import { searchOptions } from 'utils/constants';
 import {
   numberOfRooms,
   rentPrices,
@@ -46,8 +45,9 @@ function ListingsSearchHeader({
   setKeyWord,
   fetchListingDataBySearchKey,
 }) {
+  const rent = 'e7f4803a-8cbc-4028-8c9e-641644fe8b13';
+
   const inputValue = useRef();
-  const navigate = useNavigate();
 
   const [selectedBathrooms, setSelectedBathrooms] = useState(null);
   const [selectedBedrooms, setSelectedBedrooms] = useState(null);
@@ -85,11 +85,9 @@ function ListingsSearchHeader({
   };
 
   /**
-   * handle search clear function
+   * handle search function
    */
-  const handleSearch = async (address) => {
-    if (selectedAddress) setSelectedAddress(address);
-
+  const handleSearch = async () => {
     if (isFocused === true) {
       setIsFocused(false);
     }
@@ -99,18 +97,20 @@ function ListingsSearchHeader({
     }
 
     if (inputValue?.current?.value) {
-      if (inputValue?.current?.value === address) {
+      if (inputValue?.current?.value === selectedAddress) {
         setSelectedAddress(suggestedAddress);
-        navigate(`${listingPaths.search}?key=${suggestedAddress}`);
+        setKeyWord(suggestedAddress);
+        fetchListingDataBySearchKey(suggestedAddress, filter);
       } else {
-        setSelectedAddress(address);
-        navigate(`${listingPaths.search}?key=${address}`);
+        setSelectedAddress(selectedAddress);
+        setKeyWord(selectedAddress);
+        fetchListingDataBySearchKey(selectedAddress, filter);
       }
     }
   };
 
   const renderPriceData = () => {
-    if (selectedListingType === 'e7f4803a-8cbc-4028-8c9e-641644fe8b13') {
+    if (selectedListingType === rent) {
       if (isFocusMax) {
         return rentPricesMax;
       }
@@ -122,15 +122,13 @@ function ListingsSearchHeader({
     }
     return sellPrices;
   };
-  const searchOptions = {
-    componentRestrictions: { country: ['us'] },
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       setPropertyTypes(await getAllPropertyTypes());
       setListingTypes(await getAllListingTypes());
     };
+    setSuggestedAddress(selectedAddress);
 
     fetchData();
   }, []);
@@ -153,12 +151,6 @@ function ListingsSearchHeader({
                   ref={inputValue}
                   type="text"
                   defaultValue={decodeURI(keyWord)}
-                  onKeyDown={(e) => {
-                    if (e.keyCode === 13) {
-                      setKeyWord(e.target.value);
-                      fetchListingDataBySearchKey(e.target.value, filter);
-                    }
-                  }}
                   {...getInputProps()}
                 />
                 <AutocompleteMenuContainer>

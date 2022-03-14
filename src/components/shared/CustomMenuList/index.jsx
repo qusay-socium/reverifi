@@ -69,6 +69,7 @@ function CustomMenuList({ selectProps, ...props }) {
                 setMin(min.slice(0, -1));
               }
             }}
+            autoComplete="off"
           />
 
           <FormInput
@@ -89,6 +90,7 @@ function CustomMenuList({ selectProps, ...props }) {
                 setMax(max.slice(0, -1));
               }
             }}
+            autoComplete="off"
           />
         </Wrapper>
       ) : (
