@@ -51,19 +51,3 @@ export const DashboardHeading = styled.h2`
   font-weight: 600;
   margin: 3rem 0 2rem 0;
 `;
-
-export const TransactionsContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 3rem 0 2rem 0;
-
-  h2 {
-    margin: 0;
-  }
-`;
-
-export const DropdownMenusContainer = styled.div`
-  display: flex;
-  gap: 1.5rem;
-`;

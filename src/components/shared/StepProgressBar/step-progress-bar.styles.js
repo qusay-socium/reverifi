@@ -1,6 +1,6 @@
+import AchievedStepIcon from 'assets/icons/achieved-step-icon.svg';
 import styled from 'styled-components';
 import colors from 'styles/colors';
-import AchievedStepIcon from 'assets/icons/achieved-step-icon.svg';
 
 export const Container = styled.div`
   position: relative;
@@ -37,15 +37,18 @@ export const Step = styled.div`
   box-shadow: 0 0.4rem 1rem ${colors.midGray};
   line-height: 2rem;
   text-align: center;
-  background: ${({ achieved }) =>
-    achieved
-      ? `url(${AchievedStepIcon});
+  background: ${colors.green};
+
+  ${({ achieved }) =>
+    achieved &&
+    `
+      background: url(${AchievedStepIcon});
+      background-size: contain;
       
       > div {
-        visibility: hidden;
+          visibility: hidden;
       }
-      `
-      : colors.green};
+    `}
 
   border-radius: 50%;
   position: relative;

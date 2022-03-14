@@ -1,13 +1,9 @@
 import { ReactComponent as CreateIcon } from 'assets/icons/dashboard-create.svg';
-import statusDropdownIcon from 'assets/icons/dashboard-dropdown-icon1.svg';
-import roleDropdownIcon from 'assets/icons/dashboard-dropdown-icon2.svg';
 import { ReactComponent as MoneyIcon } from 'assets/icons/dashboard-money.svg';
 import { ReactComponent as TeamIcon } from 'assets/icons/dashboard-people-team.svg';
-import { offersData, transactionsData } from 'components/dashboard/data';
+import { offersData } from 'components/dashboard/data';
 import InvitationsTable from 'components/dashboard/InvitationsTable';
 import OffersTable from 'components/dashboard/OffersTable';
-import TransactionsTable from 'components/dashboard/TransactionsTable';
-import DropdownMenu from 'components/shared/DropdownMenu';
 import Tabs from 'components/shared/Tabs';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -18,14 +14,12 @@ import {
   DashboardContainer,
   DashboardHeading,
   DashboardTitle,
-  DropdownMenusContainer,
-  TransactionsContainer,
 } from './dashboard-wrapper.styles';
 
 const cardsInfo = [
   {
     Icon: TeamIcon,
-    route: '/dashboard/how-we-work',
+    route: '/transaction',
     text: 'Start New Selling /Buying Transactions',
   },
   {
@@ -66,23 +60,6 @@ function DashboardWrapper() {
 
       <DashboardHeading>Offers</DashboardHeading>
       <OffersTable data={offersData} />
-
-      <TransactionsContainer>
-        <DashboardHeading>My Current Transactions</DashboardHeading>
-        <DropdownMenusContainer>
-          <DropdownMenu name="status" leftIcon={statusDropdownIcon}>
-            <option value="">Status</option>
-            <option value="1">status 1</option>
-            <option value="1">status 3</option>
-          </DropdownMenu>
-          <DropdownMenu name="role" leftIcon={roleDropdownIcon}>
-            <option value="">My Role</option>
-            <option value="1">Seller</option>
-            <option value="2">Buyer</option>
-          </DropdownMenu>
-        </DropdownMenusContainer>
-      </TransactionsContainer>
-      <TransactionsTable data={transactionsData} />
 
       <DashboardHeading>Invitations</DashboardHeading>
       <Tabs

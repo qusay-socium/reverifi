@@ -3,7 +3,6 @@ import useEffectOnce from 'hooks/use-effect-once';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { howWeWorkDescription } from '../data';
-import ListingsTable from '../ListingsTable';
 import {
   HowWeWorkContainer,
   StyledIframe,
@@ -43,8 +42,6 @@ function HowWeWorkWrapper() {
           />
         </div>
       </VideoContainer>
-
-      <ListingsTable />
     </HowWeWorkContainer>
   );
 }
