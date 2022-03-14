@@ -213,6 +213,28 @@ export const MenuTopWrapper = styled.div`
   }
 `;
 
+export const PointsWrapper = styled.div`
+  align-items: center;
+  border-radius: 0rem;
+  box-shadow: 0rem 0.0625rem 0.625rem 0.0625rem rgb(34 34 34 / 6%);
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem;
+
+  div {
+    padding-top: 0.25rem;
+  }
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  span {
+    color: ${colors.green};
+  }
+`;
+
 export const MenuItem = styled.div`
   align-items: center;
   cursor: pointer;

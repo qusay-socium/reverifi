@@ -7,11 +7,14 @@ import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
+import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { actionTypes } from 'utils/constants';
+import { addUserActionType } from 'services/points-service';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
 import signUpSchema from './sign-up-schema';
 import {
@@ -44,7 +47,9 @@ function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [registrationPoints, setRegistrationPoints] = useState(null);
   const continueButton = useRef(null);
+  const { usePointsNotification } = usePointsNotifications();
 
   const {
     register,
@@ -78,6 +83,12 @@ function SignUp() {
 
       await signUp(name, email, password, phone);
 
+      const addedUserAction = await addUserActionType({
+        actionTypeName: actionTypes.completeRegistration,
+      });
+
+      setRegistrationPoints(addedUserAction.points);
+
       if (industryProfessional) {
         navigate('/verify-phone');
       } else {
@@ -87,6 +98,8 @@ function SignUp() {
       if (response.status === 400) setDoesEmailExist(response.data?.message);
     }
   };
+
+  usePointsNotification(registrationPoints, !!registrationPoints);
 
   return (
     <SignUpContainer>

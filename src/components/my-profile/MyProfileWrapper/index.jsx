@@ -24,6 +24,7 @@ import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
 import MenuList from 'components/shared/MenuList';
 import Toast from 'components/shared/Toast';
+import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
@@ -31,6 +32,8 @@ import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select, { createFilter } from 'react-select';
+import { actionTypes } from 'utils/constants';
+import { addUserActionType } from 'services/points-service';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
 import {
@@ -88,6 +91,8 @@ const customSelectTheme = (theme, error) => ({
  */
 function MyProfileWrapper() {
   const { userInfo, isLoggedIn, setUserInfo } = useUser();
+  const [registrationPoints, setRegistrationPoints] = useState(null);
+  const { usePointsNotification } = usePointsNotifications();
   const [count, setCount] = useState(0);
   const [languages, setLanguages] = useState(
     generateLabelValuePairs(['English'])
@@ -180,8 +185,20 @@ function MyProfileWrapper() {
 
       setDataSaved(true);
 
+      const addedUserAction = await addUserActionType({
+        actionTypeName: actionTypes.completeProfile,
+      });
+
+      setRegistrationPoints(addedUserAction.points);
+
       // change global context value
-      setUserInfo({ email, id: fetchedUserData.user?.id, name, phone });
+      setUserInfo({
+        email,
+        id: fetchedUserData.user?.id,
+        name,
+        phone,
+        points: userInfo?.points + addedUserAction.points,
+      });
     } catch ({ response: { data: serverData } }) {
       if (serverData.errors[0].message === 'email must be unique') {
         setCompanyEmailError(true);
@@ -312,6 +329,8 @@ function MyProfileWrapper() {
    * hook that hide fail toast message after n duration in seconds
    */
   useShowToastBar(saveDataError, setSaveDataError);
+
+  usePointsNotification(registrationPoints, !!registrationPoints);
 
   return (
     <ProfileContainer>

@@ -1,3 +1,4 @@
+import { ReactComponent as Achievements } from 'assets/icons/achievements.svg';
 import { ReactComponent as Dashboard } from 'assets/icons/dashboard.svg';
 import { ReactComponent as List } from 'assets/icons/list.svg';
 import { ReactComponent as Logout } from 'assets/icons/logout.svg';
@@ -67,6 +68,12 @@ function Sidebar() {
           <Saved />
         </MenuItem>
         <LinkTitle>Saved</LinkTitle>
+      </MenuLink>
+      <MenuLink isCollapsed={isCollapsed} to="/achievements">
+        <MenuItem type="button">
+          <Achievements />
+        </MenuItem>
+        <LinkTitle>Achievements</LinkTitle>
       </MenuLink>
       <MenuLink isCollapsed={isCollapsed} to="/my-profile">
         <MenuItem type="button">

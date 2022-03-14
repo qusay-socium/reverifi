@@ -3,16 +3,19 @@ import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
+import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import { actionTypes } from 'utils/constants';
 import { getListingsById } from 'services/listing';
 import {
   submitListingForm,
   updateListingForm,
 } from 'services/listing-create-service';
+import { addUserActionType } from 'services/points-service';
 import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
 import {
@@ -31,7 +34,9 @@ function CreateListingForm({ date }) {
   const { id: formId } = useParams();
   const [images, setImages] = useState([]);
   const [featureIds, setFeatureIds] = useState(new Set());
-  const { isLoggedIn } = useUser();
+  const { userInfo, setUserInfo, isLoggedIn } = useUser();
+  const [registrationPoints, setRegistrationPoints] = useState(null);
+  const { usePointsNotification } = usePointsNotifications();
 
   const {
     register,
@@ -116,6 +121,17 @@ function CreateListingForm({ date }) {
 
       if (!formId) {
         const { id } = await submitListingForm(values);
+
+        const addedUserAction = await addUserActionType({
+          actionTypeName: actionTypes.createNewListing,
+        });
+
+        setRegistrationPoints(addedUserAction.points);
+        setUserInfo({
+          ...userInfo,
+          points: userInfo.points + addedUserAction.points,
+        });
+
         navigate(`/listing/${id}`);
       } else {
         updateListingForm(values, formId);
@@ -123,6 +139,8 @@ function CreateListingForm({ date }) {
       }
     }
   };
+
+  usePointsNotification(registrationPoints, !!registrationPoints);
 
   return (
     <CreateListingContainer>

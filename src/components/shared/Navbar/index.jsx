@@ -2,6 +2,7 @@ import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as SettingIcon } from 'assets/menu-setting.svg';
 import { ReactComponent as DashboardIcon } from 'assets/my-dashboard.svg';
+import { ReactComponent as NotificationIcon } from 'assets/notification.svg';
 import { ReactComponent as SavedListingsIcon } from 'assets/saved-listings.svg';
 import { ReactComponent as SignOut } from 'assets/sign-out.svg';
 import Menu from 'components/shared/Menu';
@@ -18,11 +19,12 @@ import {
   NarrowNavContainer,
   NavItemsContainer,
   NavLinksContainer,
+  PointsWrapper,
   SignInButton,
   SignUpButton,
   UserControlSectionWrapper,
   UserNavControlContainer,
-  UserNavRegContainer,
+  UserNavRegContainer
 } from './navbar.styles';
 
 /**
@@ -32,7 +34,7 @@ import {
  */
 function Navbar() {
   const navigate = useNavigate();
-  const { userInfo: { name } = {}, isLoggedIn, logout } = useUser();
+  const { userInfo: { name, points } = {}, isLoggedIn, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef(null);
 
@@ -76,6 +78,12 @@ function Navbar() {
               isSticky
             >
               <MenuWrapper>
+                <PointsWrapper>
+                  <NotificationIcon />
+                  <div>
+                    <span>{points}</span> Points
+                  </div>
+                </PointsWrapper>
                 <MenuTopWrapper>
                   <MenuItem filled="true" onClick={() => navigate('/saved')}>
                     <SavedListingsIcon />
