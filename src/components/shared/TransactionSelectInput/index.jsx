@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
@@ -29,6 +29,17 @@ const customSelectTheme = (theme, error) => ({
 
 /**
  * Transaction Select Input component
+ *
+ * @param {Array} options select options
+ * @param {Object} control useForm control object
+ * @param {String} label input label
+ * @param {node} labelIcon input label icon
+ * @param {String} name input name
+ * @param {String} placeholder input placeholder
+ * @param {Function} handleInputChange handle input change function
+ * @param {Function} setValue useForm set value function
+ * @param {Function} setModalData modal context function
+ * @param {String} error useForm error message
  *
  * @return {JSX.Element}
  */
@@ -80,11 +91,32 @@ function TransactionSelectInput({
             isSearchable
             getOptionLabel={(option) => option.name}
             getOptionValue={(option) => option.id}
+            type={label}
           />
         )}
       />
     </SelectContainer>
   );
 }
+
+TransactionSelectInput.defaultProps = {
+  error: null,
+  label: null,
+  labelIcon: null,
+  placeholder: null,
+};
+
+TransactionSelectInput.propTypes = {
+  control: PropTypes.objectOf(PropTypes.any).isRequired,
+  error: PropTypes.string,
+  handleInputChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  labelIcon: PropTypes.node,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  placeholder: PropTypes.string,
+  setModalData: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
 
 export default TransactionSelectInput;

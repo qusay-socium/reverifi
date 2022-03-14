@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import { invitationStatus } from 'utils/constants';
@@ -13,12 +12,11 @@ export const InvitedUserImage = styled.img`
 `;
 
 export const StatusText = styled.span`
-  color: ${({ status }) =>
-    status === invitationStatus.accepted
-      ? colors.green
-      : status === invitationStatus.declined
-      ? colors.red
-      : colors.mineShaft};
+  color: ${({ status }) => {
+    if (status === invitationStatus.accepted) return colors.green;
+    if (status === invitationStatus.declined) return colors.red;
+    return colors.mineShaft;
+  }};
 
   font-weight: ${({ status }) =>
     status === invitationStatus.accepted || status === invitationStatus.declined

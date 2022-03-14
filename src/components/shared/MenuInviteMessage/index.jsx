@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import { useShowModal } from 'contexts/ShowModalContext';
 import React from 'react';
@@ -12,11 +13,19 @@ import { NoOptionsMessage } from './menu-invite-message.styles';
  * @return {JSX.Element}
  */
 function MenuInviteMessage(props) {
-  const { setShowModal } = useShowModal();
+  const { setShowModal, setModalData } = useShowModal();
 
   return (
     <components.NoOptionsMessage {...props}>
-      <NoOptionsMessage onClick={() => setShowModal(true)}>
+      <NoOptionsMessage
+        onClick={() => {
+          setModalData((prev) => ({
+            ...prev,
+            type: props.selectProps.type,
+          }));
+          setShowModal(true);
+        }}
+      >
         Invite &#62;
       </NoOptionsMessage>
     </components.NoOptionsMessage>
