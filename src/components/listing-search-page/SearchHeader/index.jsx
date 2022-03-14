@@ -104,6 +104,20 @@ function ListingsSearchHeader({
     }
   };
 
+  const renderPriceData = () => {
+    if (selectedListingType === 'e7f4803a-8cbc-4028-8c9e-641644fe8b13') {
+      if (isFocusMax) {
+        return rentPricesMax;
+      }
+      if (!isFocusMax) {
+        return rentPrices;
+      }
+    } else if (isFocusMax) {
+      return sellPricesMax;
+    }
+    return sellPrices;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setPropertyTypes(await getAllPropertyTypes());
@@ -178,16 +192,7 @@ function ListingsSearchHeader({
               MenuList: CustomMenuList,
             }}
             menuIsOpen={isFocused}
-            options={
-              // eslint-disable-next-line no-nested-ternary
-              selectedListingType === 'e7f4803a-8cbc-4028-8c9e-641644fe8b13'
-                ? isFocusMax
-                  ? rentPricesMax
-                  : rentPrices
-                : isFocusMax
-                ? sellPricesMax
-                : sellPrices
-            }
+            options={renderPriceData()}
           />
 
           <Select
