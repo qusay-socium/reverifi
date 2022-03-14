@@ -5,9 +5,9 @@ import { transactionStepsNames } from 'utils/constants';
  * Objects of routes to determine correct component to load based on URL.
  *
  * @property {JSX.Element} component React component to render.
- * @property {boolean} exact When true, will only match if the path matches the location.pathname exactly.
  * @property {string} label A name used for react `key` prop.
  * @property {string} path Any valid URL path.
+ * @property {string} title route title
  */
 const routes = [
   {
@@ -21,6 +21,12 @@ const routes = [
     label: 'transaction-assign-tasks',
     path: `/${transactionStepsNames.assignTasks}`,
     title: 'Transaction Assign Tasks',
+  },
+  {
+    component: lazy(() => import('pages/Transaction/UploadDocuments')),
+    label: 'transaction-upload-documents',
+    path: `/${transactionStepsNames.uploadDocuments}`,
+    title: 'Transaction Upload Documents',
   },
 ];
 

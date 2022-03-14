@@ -73,4 +73,10 @@ export const IconContainer = styled.button`
     background: ${({ hover }) => hover && colors.mercury};
     border-radius: ${({ hover }) => hover && '50%'};
   }
+
+  &:hover {
+    > span {
+      display: block;
+    }
+  }
 `;
