@@ -1,51 +1,31 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as BuyerAgent } from 'assets/icons/gray-buyer-agent.svg';
-import { ReactComponent as BuyerGroup } from 'assets/icons/gray-buyer-group.svg';
+import { ReactComponent as Buyer } from 'assets/icons/gray-buyer-group.svg';
 import { ReactComponent as SellerAddress } from 'assets/icons/gray-seller-address.svg';
-import { ReactComponent as SellerName } from 'assets/icons/gray-seller-name.svg';
-import { ReactComponent as Seller } from 'assets/icons/gray-seller.svg';
+import { ReactComponent as Seller } from 'assets/icons/gray-seller-name.svg';
+import { ReactComponent as SellerAgent } from 'assets/icons/gray-seller.svg';
 import { ReactComponent as NoteIcon } from 'assets/icons/profile-about.svg';
-import { InputLabel } from 'components/my-profile/MyProfileWrapper/my-profile-wrapper.styles';
 import Button from 'components/shared/Button';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import TextAreaInput from 'components/shared/FormTextArea';
+import TransactionSelectInput from 'components/shared/TransactionSelectInput';
 import addPartiesSchema from 'components/transaction/AddPartiesWrapper/add-parties-wrapper-schema';
 import {
   ButtonText,
   CheckBoxContainer,
-  LabelText,
   RowContainer,
-  SelectContainer,
   SellerTeamFromContainer,
   SideContainer,
   TextAreaContainer,
   TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
-import React, { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import Select from 'react-select';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { addInvitation } from 'services/invitations';
 import { getUsersWithLimit } from 'services/user';
-import colors from 'styles/colors';
-import MenuInviteMessage from '../MenuInviteMessage';
-
-/**
- * custom select theme function to change select default colors
- *
- * @param {Object} theme theme object from the select component
- * @param {Object} error input useForm error
- *
- */
-const customSelectTheme = (theme, error) => ({
-  ...theme,
-  colors: {
-    ...theme.colors,
-    dangerLight: colors.alabaster,
-    primary: error ? colors.red : colors.green,
-    primary25: colors.midGray,
-  },
-});
 
 /**
  * Add Parties Wrapper component
@@ -53,12 +33,13 @@ const customSelectTheme = (theme, error) => ({
  * @return {JSX.Element}
  */
 export default function AddPartiesWrapper() {
-  const { setModalData } = useShowModal();
+  const { modalData, setModalData } = useShowModal();
+  const [sellerAgentList, setSellerAgentList] = useState([]);
+  const [buyerAgentList, setBuyerAgentList] = useState([]);
   const [sellerList, setSellerList] = useState([]);
   const [buyerList, setBuyerList] = useState([]);
   const [isSellerRepresented, setIsSellerRepresented] = useState(false);
-  const [sellerName, setSellerName] = useState('');
-  const [buyerName, setBuyerName] = useState('');
+  const { listingId } = useParams();
 
   const {
     register,
@@ -71,96 +52,81 @@ export default function AddPartiesWrapper() {
   });
 
   /**
-   * fetch Seller Data function
+   * handle Input Change function
    */
-  const fetchSellerData = async () => {
-    if (sellerName?.length > 2) {
-      const data = await getUsersWithLimit(10, sellerName);
-      setSellerList(data);
-    } else {
-      setSellerList([]);
-    }
-  };
+  const handleInputChange = async (name, type) => {
+    if (name?.length > 2) {
+      const data = await getUsersWithLimit(10, name);
 
-  /**
-   * fetch Buyer Data function
-   */
-  const fetchBuyerData = async () => {
-    if (buyerName?.length > 2) {
-      const data = await getUsersWithLimit(10, buyerName);
-      setBuyerList(data);
+      if (type === 'sellerAgent') {
+        setSellerAgentList(data);
+      } else if (type === 'buyerAgent') {
+        setBuyerAgentList(data);
+      } else if (type === 'seller') {
+        setSellerList(data);
+      } else if (type === 'buyer') {
+        setBuyerList(data);
+      }
     } else {
+      setSellerAgentList([]);
+      setBuyerAgentList([]);
+      setSellerList([]);
       setBuyerList([]);
     }
   };
 
   /**
-   * handle Input Change function
+   * filter Invited Users function (when id === name the user is invited -not exist-)
    */
-  const handleInputChange = (val, action, type) => {
-    if (type === 'sellerAgent') {
-      setSellerName(val);
-    } else if (type === 'buyerAgent') {
-      setBuyerName(val);
+  const filterInvitedUsers = (idsAndRolesArray, user, role) => {
+    if (user?.name !== user?.id) {
+      idsAndRolesArray.push({
+        invitedUserId: user?.id,
+        role,
+      });
     }
-
-    // prevent clear input when not focused
-    if (action !== 'set-value' && val) {
-      setValue(type, { label: val, value: val });
-    }
-    setModalData(val);
   };
 
-  useEffect(() => {
-    fetchSellerData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sellerName]);
+  /**
+   * form submit function
+   */
+  const submit = async ({ sellerAgent, buyerAgent, seller, buyer }) => {
+    // filter the non exist and send invitations
+    const userIdsAndRoles = [];
 
-  useEffect(() => {
-    fetchBuyerData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [buyerName]);
+    filterInvitedUsers(userIdsAndRoles, sellerAgent, 'Seller Agent');
+    filterInvitedUsers(userIdsAndRoles, buyerAgent, 'Buyer Agent');
+    filterInvitedUsers(userIdsAndRoles, seller, 'Seller');
+    filterInvitedUsers(userIdsAndRoles, buyer, 'Buyer');
+
+    await addInvitation({
+      listingId,
+      userIdsAndRoles: modalData?.invitedUsers?.length
+        ? [...userIdsAndRoles, ...modalData?.invitedUsers]
+        : userIdsAndRoles,
+    });
+  };
 
   return (
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={handleSubmit(submit)}>
       <div>
         <SellerTeamFromContainer>
           <SideContainer>
             <TitleText>Seller Team</TitleText>
 
             <RowContainer>
-              <SelectContainer noOptions={sellerList.length > 0}>
-                <InputLabel>
-                  <Seller />
-                  <LabelText>Seller Agent:</LabelText>
-                </InputLabel>
-                <Controller
-                  name="sellerAgent"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <Select
-                      components={{ NoOptionsMessage: MenuInviteMessage }}
-                      hideSelectedOptions={false}
-                      options={sellerList}
-                      placeholder="Seller"
-                      value={value}
-                      onChange={onChange}
-                      onInputChange={(val, { action }) =>
-                        handleInputChange(val, action, 'sellerAgent')
-                      }
-                      className="transaction_s1-select"
-                      classNamePrefix="transaction_s1"
-                      theme={(theme) =>
-                        customSelectTheme(theme, errors.sellerAgent?.message)
-                      }
-                      isClearable
-                      isSearchable
-                      getOptionLabel={(option) => option.name}
-                      getOptionValue={(option) => option.id}
-                    />
-                  )}
-                />
-              </SelectContainer>
+              <TransactionSelectInput
+                options={sellerAgentList}
+                control={control}
+                label="Seller Agent"
+                labelIcon={<SellerAgent />}
+                name="sellerAgent"
+                placeholder="Select seller agent"
+                handleInputChange={handleInputChange}
+                setValue={setValue}
+                setModalData={setModalData}
+                error={errors.sellerAgent?.message}
+              />
               <CheckBoxContainer>
                 <FormCheckbox
                   label="Represent Seller"
@@ -172,29 +138,26 @@ export default function AddPartiesWrapper() {
             </RowContainer>
             {!isSellerRepresented && (
               <RowContainer>
-                <SelectContainer>
-                  <InputLabel>
-                    <SellerAddress />
-                    <LabelText>Seller Address:</LabelText>
-                  </InputLabel>
-                  <FormInput
-                    name="address"
-                    placeholder="New York"
-                    register={register}
-                  />
-                </SelectContainer>
+                <FormInput
+                  label="Seller Address:"
+                  labelIconElement={<SellerAddress />}
+                  name="address"
+                  placeholder="Seller Address"
+                  register={register}
+                />
 
-                <SelectContainer>
-                  <InputLabel>
-                    <SellerName />
-                    <LabelText>Seller Name:</LabelText>
-                  </InputLabel>
-                  <FormInput
-                    name="seller"
-                    placeholder="John Doe"
-                    register={register}
-                  />
-                </SelectContainer>
+                <TransactionSelectInput
+                  options={sellerList}
+                  control={control}
+                  label="Seller"
+                  labelIcon={<Seller />}
+                  name="seller"
+                  placeholder="Select seller"
+                  handleInputChange={handleInputChange}
+                  setValue={setValue}
+                  setModalData={setModalData}
+                  error={errors.seller?.message}
+                />
               </RowContainer>
             )}
           </SideContainer>
@@ -204,49 +167,31 @@ export default function AddPartiesWrapper() {
           <TitleText>Buyer Team</TitleText>
 
           <RowContainer>
-            <SelectContainer noOptions={buyerList.length > 0}>
-              <InputLabel>
-                <BuyerAgent />
-                <LabelText>Buyer Agent:</LabelText>
-              </InputLabel>
-              <Controller
-                name="buyerAgent"
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                  <Select
-                    components={{ NoOptionsMessage: MenuInviteMessage }}
-                    hideSelectedOptions={false}
-                    options={buyerList}
-                    placeholder="Buyer"
-                    value={value}
-                    onChange={onChange}
-                    onInputChange={(val, { action }) =>
-                      handleInputChange(val, action, 'buyerAgent')
-                    }
-                    className="transaction_s1-select"
-                    classNamePrefix="transaction_s1"
-                    theme={(theme) =>
-                      customSelectTheme(theme, errors.buyerAgent?.message)
-                    }
-                    isClearable
-                    isSearchable
-                    getOptionLabel={(option) => option.name}
-                    getOptionValue={(option) => option.id}
-                  />
-                )}
-              />
-            </SelectContainer>
-            <SelectContainer>
-              <InputLabel>
-                <BuyerGroup />
-                <LabelText>Buyer:</LabelText>
-              </InputLabel>
-              <FormInput
-                name="buyer"
-                placeholder="Sarah M"
-                register={register}
-              />
-            </SelectContainer>
+            <TransactionSelectInput
+              options={buyerAgentList}
+              control={control}
+              label="Buyer Agent"
+              labelIcon={<BuyerAgent />}
+              name="buyerAgent"
+              placeholder="Select buyer agent"
+              handleInputChange={handleInputChange}
+              setValue={setValue}
+              setModalData={setModalData}
+              error={errors.buyerAgent?.message}
+            />
+
+            <TransactionSelectInput
+              options={buyerList}
+              control={control}
+              label="Buyer"
+              labelIcon={<Buyer />}
+              name="buyer"
+              placeholder="Select buyer"
+              handleInputChange={handleInputChange}
+              setValue={setValue}
+              setModalData={setModalData}
+              error={errors.buyer?.message}
+            />
           </RowContainer>
           <RowContainer>
             <TextAreaContainer>

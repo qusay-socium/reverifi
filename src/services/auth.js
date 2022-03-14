@@ -27,11 +27,10 @@ const login = async (email, password) => {
  *
  * @return {Promise<Object>} The sign up response
  */
-const signUp = async (name, email, password, phone, active = true) => {
+const signUp = async (name, email, password, phone) => {
   const {
     data: { data },
   } = await http.post(`${apiUrl}/auth/signup`, {
-    active,
     email,
     name,
     password,

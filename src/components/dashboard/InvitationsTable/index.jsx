@@ -1,50 +1,117 @@
+/* eslint-disable no-nested-ternary */
 import { ReactComponent as AcceptIcon } from 'assets/icons/dashboard-offers-accept.svg';
 import { ReactComponent as DeclineIcon } from 'assets/icons/dashboard-offers-decline.svg';
+import agentImage from 'assets/listing-agent-image.png';
 import Table from 'components/shared/Table';
 import {
   IconContainer,
   TableCell,
   TableRow,
 } from 'components/shared/Table/table-styles';
-import propTypes from 'prop-types';
-import React from 'react';
-import { InvitedByImage } from './invitations-table.styles';
+import useEffectOnce from 'hooks/use-effect-once';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { getInvitations, updateInvitation } from 'services/invitations';
+import { invitationStatus } from 'utils/constants';
+import { InvitedUserImage, StatusText } from './invitations-table.styles';
 
 /**
- * Invitations Table component
+ * invitations Table component
  *
- * @param {Array(Object)} data invitations data array
+ * @param {String} type type of invitations (sent or incoming)
  *
  * @return {JSX.Element}
  */
-function InvitationsTable({ data }) {
+function InvitationsTable({ type }) {
+  const [invitations, setInvitations] = useState([]);
+
+  /**
+   * fetch Invitations function
+   */
+  const fetchInvitations = async () => {
+    const data = await getInvitations(type);
+    setInvitations(data);
+  };
+
+  const handleInvitationStatus = async (id, status) => {
+    await updateInvitation(id, { status });
+    fetchInvitations();
+  };
+
+  useEffectOnce(() => fetchInvitations());
+
   return (
-    <Table headers={['PROPERTY', 'INVITED BY', 'DATE', 'INVITED AS', null]}>
-      {data?.map(({ property, invitedBy, invitedAs, date, img }, index) => (
-        <TableRow key={index.toString()}>
-          <TableCell>{property}</TableCell>
-          <TableCell>
-            <InvitedByImage src={img} alt="person" />
-            <span>{invitedBy}</span>
-          </TableCell>
-          <TableCell>{date}</TableCell>
-          <TableCell>{invitedAs}</TableCell>
-          <TableCell iconsCell>
-            <IconContainer>
-              <AcceptIcon />
-            </IconContainer>
-            <IconContainer>
-              <DeclineIcon />
-            </IconContainer>
-          </TableCell>
-        </TableRow>
-      ))}
+    <Table
+      headers={[
+        'PROPERTY',
+        type === 'sent' ? 'INVITED USER' : 'INVITED BY',
+        'DATE',
+        'INVITED AS',
+        type === 'sent' ? 'STATUS' : null,
+      ]}
+    >
+      {invitations?.map(
+        ({
+          id,
+          invitedListing,
+          invitedUser,
+          role,
+          status,
+          createdAt,
+          inviter,
+        }) => (
+          <TableRow key={id}>
+            <TableCell>{invitedListing?.address}</TableCell>
+            <TableCell>
+              <InvitedUserImage
+                src={
+                  (type === 'sent'
+                    ? invitedUser?.userInfo?.image
+                    : inviter?.userInfo?.image) || agentImage
+                }
+                alt="person"
+              />
+              <span>{type === 'sent' ? invitedUser?.name : inviter?.name}</span>
+            </TableCell>
+            <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>
+            <TableCell>{role}</TableCell>
+            {type === 'sent' ? (
+              <TableCell>
+                <StatusText status={status}>
+                  {status || invitationStatus.waiting}
+                </StatusText>
+              </TableCell>
+            ) : status ? (
+              <TableCell>
+                <StatusText status={status}>{status}</StatusText>
+              </TableCell>
+            ) : (
+              <TableCell iconsCell>
+                <IconContainer
+                  onClick={() =>
+                    handleInvitationStatus(id, invitationStatus.accepted)
+                  }
+                >
+                  <AcceptIcon />
+                </IconContainer>
+                <IconContainer
+                  onClick={() =>
+                    handleInvitationStatus(id, invitationStatus.declined)
+                  }
+                >
+                  <DeclineIcon />
+                </IconContainer>
+              </TableCell>
+            )}
+          </TableRow>
+        )
+      )}
     </Table>
   );
 }
 
 InvitationsTable.propTypes = {
-  data: propTypes.arrayOf(propTypes.object).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default InvitationsTable;

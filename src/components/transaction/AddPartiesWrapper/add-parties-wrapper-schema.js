@@ -2,14 +2,14 @@ import * as yup from 'yup';
 
 const addPartiesSchema = yup
   .object({
-    address: yup.object().required(),
-    sellerAgent: yup.object().required(),
-    buyer: yup.object().required(),
-    buyerAgent: yup.object().required(),
+    address: yup.string(),
+    buyer: yup.object(),
+    buyerAgent: yup.object(),
     confirmation: yup.boolean(),
     notes: yup.string(),
     representSeller: yup.boolean(),
-    seller: yup.object().required(),
+    seller: yup.object(),
+    sellerAgent: yup.object(),
   })
   .required();
 
