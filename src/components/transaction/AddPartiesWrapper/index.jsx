@@ -100,8 +100,8 @@ export default function AddPartiesWrapper() {
     filterInvitedUsers(userIdsAndRoles, buyer, 'Buyer');
 
     await addInvitation({
+      listingId,
       model: 'listings',
-      modelId: listingId,
       name: 'transaction',
       userIdsAndRoles: modalData?.invitedUsers?.length
         ? [...userIdsAndRoles, ...modalData?.invitedUsers]
