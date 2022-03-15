@@ -17,6 +17,7 @@ const colors = {
   white: '#ffffff',
   whiteSand: '#f5f5f5',
   wildSand: '#f4f4f4',
+  skyBlue:'#A6DAE8',
 };
 
 export default colors;
