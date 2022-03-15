@@ -29,6 +29,8 @@ export const TableRow = styled.tr`
   position: relative;
   text-align: left;
 
+  display: ${({ show }) => show && 'none'};
+
   th:first-child {
     border-top-left-radius: 0.37rem;
   }

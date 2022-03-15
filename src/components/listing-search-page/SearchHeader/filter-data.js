@@ -8,6 +8,7 @@ export const numberOfRooms = [
 ];
 
 export const rentPrices = [
+  { label: '$0+', tag: 'min', value: '0' },
   { label: '$200+', tag: 'min', value: '200' },
   { label: '$400+', tag: 'min', value: '400' },
   { label: '$600+', tag: 'min', value: '600' },
