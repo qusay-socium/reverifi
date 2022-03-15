@@ -48,17 +48,17 @@ export const transactionsData = [
   {
     property: '8829 183rd St, Jamaica, NY 11423',
     role: 'Seller Agent',
-    status: 'Pending Certificate of Occupancy',
+    status: 'in progress',
   },
   {
     property: '885-15 Main St #7D, Jamaica, NY 11435',
     role: 'Seller Agent',
-    status: 'Pending Pay for appraisal',
+    status: 'canceled',
   },
   {
     property: '116-46 230th St, Cambria Heights, NY',
     role: 'Seller Agent',
-    status: 'Pending Deal Closure',
+    status: 'closed',
   },
 ];
 

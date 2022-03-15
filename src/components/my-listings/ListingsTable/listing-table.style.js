@@ -21,7 +21,6 @@ export const ListingImage = styled.img`
 
 export const AgentContainer = styled.div`
   display: flex;
-  position: relative;
 
   &:hover {
     span {

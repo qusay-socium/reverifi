@@ -1,3 +1,4 @@
+import { AgentToolTip } from 'components/my-listings/ListingsTable/listing-table.style';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'styles/colors';
@@ -15,12 +16,12 @@ export const ListingsTableContainer = styled.div`
       padding-right: 6rem;
     }
   }
-
-  table {
-    table-layout: fixed;
-  }
 `;
 
 export const LinkText = styled(Link)`
   color: ${colors.blue};
+`;
+
+export const RolesText = styled(AgentToolTip)`
+  max-width: 30rem;
 `;

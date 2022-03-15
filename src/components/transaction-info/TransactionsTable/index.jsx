@@ -31,7 +31,8 @@ function TransactionsTable({ data }) {
                 text="Transaction Summary
                   Report "
                 arrowPosition="top"
-                position={[3, -2.8]}
+                position={[3, -2]}
+                lineBreak
               />
             </IconContainer>
           </TableCell>
