@@ -18,7 +18,7 @@ export const ImageContainer = styled.div`
   padding: 0 2rem;
 
   ${mq.desktopWide`
-    background-color: ${colors.alabaster};
+    background-color: ${colors.skyBlue};
     display: flex;
     justify-content: center;
 
