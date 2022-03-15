@@ -3,6 +3,7 @@ import React from 'react';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
 import colors from 'styles/colors';
+import { ErrorMessage } from '../DropdownMenu/dropdown-menu.styles';
 import MenuInviteMessage from '../MenuInviteMessage';
 import {
   InputLabel,
@@ -40,6 +41,8 @@ const customSelectTheme = (theme, error) => ({
  * @param {Function} setValue useForm set value function
  * @param {Function} setModalData modal context function
  * @param {String} error useForm error message
+ * @param {Boolean} forInvite is the select have invitation
+ * @param {Boolean} rounded is the select input rounded
  *
  * @return {JSX.Element}
  */
@@ -54,69 +57,87 @@ function TransactionSelectInput({
   setValue,
   setModalData,
   error,
+  forInvite,
+  rounded,
 }) {
   return (
-    <SelectContainer noOptions={options.length > 0}>
-      <InputLabel>
-        {labelIcon}
-        <LabelText>{label}:</LabelText>
-      </InputLabel>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <Select
-            components={{ NoOptionsMessage: MenuInviteMessage }}
-            hideSelectedOptions={false}
-            options={options}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onInputChange={(val, { action }) => {
-              handleInputChange(val, name);
-              // prevent clear input when not focused
-              if (action !== 'set-value' && val) {
-                setValue(name, { id: val, name: val });
-                setModalData((prev) => ({
-                  ...prev,
-                  type: label,
-                  val,
-                }));
-              }
-            }}
-            className="transaction-select"
-            classNamePrefix="transaction"
-            theme={(theme) => customSelectTheme(theme, error)}
-            isClearable
-            isSearchable
-            getOptionLabel={(option) => option.name}
-            getOptionValue={(option) => option.id}
-            type={label}
-          />
+    <div>
+      <SelectContainer noOptions={options.length > 0} rounded={rounded}>
+        {label && (
+          <InputLabel>
+            {labelIcon}
+            <LabelText>{label}:</LabelText>
+          </InputLabel>
         )}
-      />
-    </SelectContainer>
+        <Controller
+          name={name}
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <Select
+              components={
+                forInvite ? { NoOptionsMessage: MenuInviteMessage } : {}
+              }
+              hideSelectedOptions={false}
+              options={options}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              onInputChange={(val, { action }) => {
+                if (forInvite) {
+                  handleInputChange(val, name);
+                  // prevent clear input when not focused
+                  if (action !== 'set-value' && val) {
+                    setValue(name, { id: val, name: val });
+                    setModalData((prev) => ({
+                      ...prev,
+                      type: label,
+                      val,
+                    }));
+                  }
+                }
+              }}
+              className="transaction-select"
+              classNamePrefix="transaction"
+              theme={(theme) => customSelectTheme(theme, error)}
+              isClearable
+              isSearchable
+              getOptionLabel={(option) => option.name}
+              getOptionValue={(option) => option.id}
+              type={label}
+            />
+          )}
+        />
+      </SelectContainer>
+      {control && <ErrorMessage>{error || ''}</ErrorMessage>}
+    </div>
   );
 }
 
 TransactionSelectInput.defaultProps = {
   error: null,
+  forInvite: true,
+  handleInputChange: () => {},
   label: null,
   labelIcon: null,
   placeholder: null,
+  rounded: true,
+  setModalData: () => {},
+  setValue: () => {},
 };
 
 TransactionSelectInput.propTypes = {
   control: PropTypes.objectOf(PropTypes.any).isRequired,
   error: PropTypes.string,
-  handleInputChange: PropTypes.func.isRequired,
+  forInvite: PropTypes.bool,
+  handleInputChange: PropTypes.func,
   label: PropTypes.string,
   labelIcon: PropTypes.node,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
-  setModalData: PropTypes.func.isRequired,
-  setValue: PropTypes.func.isRequired,
+  rounded: PropTypes.bool,
+  setModalData: PropTypes.func,
+  setValue: PropTypes.func,
 };
 
 export default TransactionSelectInput;

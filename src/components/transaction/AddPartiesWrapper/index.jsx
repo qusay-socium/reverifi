@@ -21,11 +21,21 @@ import {
   TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addInvitation } from 'services/invitations';
+import {
+  addOrUpdateTransaction,
+  addTransactionAssignees,
+  addTransactionNote,
+  getAssignees,
+  getNotes,
+  getWorkflowStep,
+} from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
+import { transactionStepsNames } from 'utils/constants';
 
 /**
  * Add Parties Wrapper component
@@ -41,12 +51,17 @@ export default function AddPartiesWrapper() {
   const [isSellerRepresented, setIsSellerRepresented] = useState(false);
   const { listingId } = useParams();
 
+  const [transactionData, setTransactionData] = useState({});
+  const [workflowStep, setWorkflowStep] = useState({});
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     control,
     setValue,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(addPartiesSchema),
   });
@@ -90,7 +105,7 @@ export default function AddPartiesWrapper() {
   /**
    * form submit function
    */
-  const submit = async ({ sellerAgent, buyerAgent, seller, buyer }) => {
+  const submit = async ({ sellerAgent, buyerAgent, seller, buyer, notes }) => {
     // filter the non exist and send invitations
     const userIdsAndRoles = [];
 
@@ -105,7 +120,72 @@ export default function AddPartiesWrapper() {
         ? [...userIdsAndRoles, ...modalData?.invitedUsers]
         : userIdsAndRoles,
     });
+
+    // add transaction assignees
+    await addTransactionAssignees({
+      transactionId: transactionData.id,
+      userIdsAndRoles: modalData?.invitedUsers?.length
+        ? [...userIdsAndRoles, ...modalData?.invitedUsers]
+        : userIdsAndRoles,
+    });
+
+    // add the note
+    await addTransactionNote({
+      notes,
+      transactionId: transactionData.id,
+      workflowStepId: workflowStep.id,
+    });
+
+    // navigate to step 2
+    navigate(`/transaction/${listingId}/${transactionStepsNames.assignTasks}`);
   };
+
+  const fetchTransactionData = async () => {
+    // get step info
+    const step = await getWorkflowStep(1);
+    setWorkflowStep(step);
+
+    // create transaction record
+    const transactionRecord = await addOrUpdateTransaction({
+      listingId,
+      workflowStepId: step.id,
+    });
+    setTransactionData(transactionRecord);
+
+    // fill inputs if data exist
+    const assignees = await getAssignees(transactionRecord.id);
+
+    if (assignees.length) {
+      const buyer = assignees.find((item) => item?.role === 'Buyer');
+      const buyerAgent = assignees.find((item) => item?.role === 'Buyer Agent');
+      const seller = assignees.find((item) => item?.role === 'Seller');
+      const sellerAgent = assignees.find(
+        (item) => item?.role === 'Seller Agent'
+      );
+
+      reset({
+        buyer: { id: buyer?.assignedUser?.id, name: buyer?.assignedUser?.name },
+        buyerAgent: {
+          id: buyerAgent?.assignedUser?.id,
+          name: buyerAgent?.assignedUser?.name,
+        },
+        seller: {
+          id: seller?.assignedUser?.id,
+          name: seller?.assignedUser?.name,
+        },
+        sellerAgent: {
+          id: sellerAgent?.assignedUser?.id,
+          name: sellerAgent?.assignedUser?.name,
+        },
+      });
+    }
+
+    const note = await getNotes(transactionRecord.id, step.id);
+
+    if (note?.notes) setValue('notes', note?.notes);
+  };
+
+  useEffectOnce(fetchTransactionData);
 
   return (
     <form onSubmit={handleSubmit(submit)}>

@@ -74,8 +74,8 @@ function DropdownMenu({
             {placeholder}
           </Placeholder>
 
-          {options?.map(({ value, option }) => (
-            <option value={value} key={value}>
+          {options?.map(({ value, option }, index) => (
+            <option value={value} key={index.toString()}>
               {option}
             </option>
           ))}

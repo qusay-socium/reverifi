@@ -8,10 +8,16 @@ export const SelectContainer = styled.div`
   .transaction-select {
     .transaction__control {
       border-radius: 1.12rem;
-      border: 0.06rem solid ${colors.mercury};
+      border: 0.06rem solid ${colors.midGray};
       box-shadow: 0;
       padding: 0.08rem;
       font-size: 0.875rem;
+
+      ${({ rounded }) =>
+        !rounded &&
+        `
+         border-radius: 0.5rem;
+      `}
     }
 
     .transaction__multi-value {
@@ -29,6 +35,8 @@ export const SelectContainer = styled.div`
     }
 
     .transaction__menu {
+      z-index: 2;
+
       ${({ noOptions }) =>
         !noOptions &&
         `
@@ -51,7 +59,11 @@ export const SelectContainer = styled.div`
     }
   }
 
-  svg,
+  svg {
+    display: ${({ rounded }) => (rounded ? 'none' : 'block')};
+    color: ${colors.gray};
+  }
+
   span {
     display: none;
   }
