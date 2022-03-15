@@ -48,7 +48,7 @@ export const IconContainer = styled.button`
     width: 1rem;
   }
 
-  &:hoverable {
+  &:hover {
     > span {
       display: block;
     }
