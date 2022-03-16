@@ -12,18 +12,20 @@ import { SummaryIcon } from './transactions-table.styles';
 /**
  * Transactions Table component
  *
- * @param {Array(Object)} data transactions data array
+ * @param {Array(Object)} processes transactions data
  *
  * @return {JSX.Element}
  */
-function TransactionsTable({ data }) {
+function TransactionsTable({ processes }) {
   return (
     <Table headers={['PROPERTY', 'MY ROLE', 'STATUS', null]}>
-      {data.map(({ property, role, status }) => (
-        <TableRow key={property}>
-          <TableCell>{property}</TableCell>
-          <TableCell>{role}</TableCell>
-          <TableCell>{status}</TableCell>
+      {processes?.map(({ id, assignedTransaction }) => (
+        <TableRow key={id}>
+          <TableCell>
+            {assignedTransaction?.transactionListing?.address}
+          </TableCell>
+          <TableCell>N/A</TableCell>
+          <TableCell>{assignedTransaction?.status}</TableCell>
           <TableCell iconsCell>
             <IconContainer hover>
               <SummaryIcon />
@@ -42,8 +44,12 @@ function TransactionsTable({ data }) {
   );
 }
 
+TransactionsTable.defaultProps = {
+  processes: [],
+};
+
 TransactionsTable.propTypes = {
-  data: propTypes.arrayOf(propTypes.object).isRequired,
+  processes: propTypes.arrayOf(propTypes.object),
 };
 
 export default TransactionsTable;

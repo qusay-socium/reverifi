@@ -28,6 +28,12 @@ const routes = [
     path: `/${transactionStepsNames.uploadDocuments}`,
     title: 'Transaction Upload Documents',
   },
+  {
+    component: lazy(() => import('pages/Transaction/CloseDeal')),
+    label: 'transaction-close-deal',
+    path: `/${transactionStepsNames.closeDeal}`,
+    title: 'Transaction Close Deal',
+  },
 ];
 
 export default routes;

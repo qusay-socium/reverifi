@@ -88,3 +88,17 @@ export const deleteListingById = async (id) => {
 
   return data;
 };
+
+/**
+ * Service that get all transactions.
+ * @param {object} values transaction update data
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const updateTransactionListing = async (values) => {
+  const {
+    data: { data },
+  } = await http.patch(`${apiUrl}/listings/transaction/close`, values);
+
+  return data;
+};
