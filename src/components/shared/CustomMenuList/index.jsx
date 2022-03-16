@@ -1,48 +1,48 @@
-import React from 'react';
 import FormInput from 'components/shared/FormInput';
-import { components } from 'react-select';
 import PropTypes from 'prop-types';
-import DoneButton, { Wrapper, Heading } from './custom-menu-list-styles';
+import React, { useEffect } from 'react';
+import { components } from 'react-select';
+import DoneButton, { Heading, Wrapper } from './custom-menu-list-styles';
 
 const { MenuList } = components;
 
 function CustomMenuList({ selectProps, ...props }) {
-  // eslint-disable-next-line react/prop-types
   const {
-    setPrice,
-    onMenuInputFocus,
-    setMenuIsOpen,
     horizontal,
     placeholder,
     min,
     max,
     setMax,
     setMin,
+    isPriceMenuOpen,
+    priceTag,
+    setIsFocusMax,
+    setIsFocused,
   } = selectProps;
 
+  const minPriceInput = document.getElementById('minPrice');
+  const maxPriceInput = document.getElementById('maxPrice');
+
+  const { tag, value } = priceTag;
+
   const setPriceTag = () => {
-    if (min && min === max && max) {
-      setPrice({
-        label: `$${min}`,
-        value: `${min}`,
-      });
-    } else if (min && max) {
-      setPrice({
-        label: `$${min} - $${max}`,
-        value: `${min} - ${max}`,
-      });
-    } else if (min) {
-      setPrice({
-        label: `$${min}+`,
-        value: `${min}`,
-      });
-    } else if (max) {
-      setPrice({
-        label: `up to $${max}`,
-        value: `${max}`,
-      });
-    } else setPrice(null);
+    if (tag === 'min') {
+      setMin(value);
+      setIsFocusMax(true);
+    }
+    if (tag === 'max') {
+      setMax(value);
+    }
   };
+
+  useEffect(() => {
+    if (isPriceMenuOpen) {
+      minPriceInput?.focus();
+      setIsFocusMax(false);
+    }
+
+    setPriceTag();
+  }, [minPriceInput, priceTag]);
 
   return (
     <div>
@@ -50,52 +50,44 @@ function CustomMenuList({ selectProps, ...props }) {
         <Wrapper>
           <FormInput
             name="min"
+            id="minPrice"
+            placeholder="Min"
+            value={min}
+            onChange={(e) => {
+              setMin(e.target.value);
+            }}
             onMouseDown={(e) => {
               e.stopPropagation();
               e.target.focus();
+              setIsFocusMax(false);
             }}
-            onFocus={() => {
-              setPriceTag();
-              onMenuInputFocus();
-            }}
-            placeholder="Min"
-            value={min}
             onBlur={() => {
-              setPriceTag();
-              setMenuIsOpen(false);
+              maxPriceInput?.focus();
             }}
             onKeyDown={(e) => {
               if (e.keyCode === 8) {
                 setMin(min.slice(0, -1));
               }
             }}
-            onChange={(e) => {
-              setMin(e.currentTarget.value);
-            }}
           />
+
           <FormInput
+            id="maxPrice"
             name="max"
+            placeholder="Max"
+            value={max}
+            onChange={(e) => {
+              setMax(e.target.value);
+            }}
             onMouseDown={(e) => {
               e.stopPropagation();
               e.target.focus();
+              setIsFocusMax(true);
             }}
             onKeyDown={(e) => {
               if (e.keyCode === 8) {
                 setMax(max.slice(0, -1));
               }
-            }}
-            onBlur={() => {
-              setPriceTag();
-              setMenuIsOpen(false);
-            }}
-            onFocus={() => {
-              setPriceTag();
-              onMenuInputFocus();
-            }}
-            placeholder="Max"
-            value={max}
-            onChange={(e) => {
-              setMax(e.currentTarget.value);
             }}
           />
         </Wrapper>
@@ -106,10 +98,8 @@ function CustomMenuList({ selectProps, ...props }) {
       {!horizontal && (
         <DoneButton
           type="button"
-          onClick={(e) => {
-            e.target.focus();
-            setPriceTag();
-            setMenuIsOpen(false);
+          onClick={() => {
+            setIsFocused(false);
           }}
         >
           Done
@@ -122,14 +112,16 @@ function CustomMenuList({ selectProps, ...props }) {
 CustomMenuList.propTypes = {
   selectProps: PropTypes.shape({
     horizontal: PropTypes.bool,
+    isPriceMenuOpen: PropTypes.func,
     max: PropTypes.string,
     min: PropTypes.string,
     onMenuInputFocus: PropTypes.func,
     placeholder: PropTypes.string,
+    priceTag: PropTypes.objectOf(PropTypes.object),
+    setIsFocusMax: PropTypes.func,
+    setIsFocused: PropTypes.func,
     setMax: PropTypes.func,
-    setMenuIsOpen: PropTypes.func,
     setMin: PropTypes.func,
-    setPrice: PropTypes.func,
   }),
 };
 

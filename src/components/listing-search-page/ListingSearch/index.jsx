@@ -35,15 +35,17 @@ function ListingSearchPage() {
   const [cardData, setCardData] = useState([]);
   const navigate = useNavigate();
 
-  const fetchListingDataBySearchKey = async (searchWord) => {
-    const listingData = await getListingsBySearchKey(searchWord || null);
+  const fetchListingDataBySearchKey = async (searchWord, filter) => {
+    const listingData = await getListingsBySearchKey(
+      searchWord || null,
+      filter
+    );
     setCardData(listingData);
     navigate(`${listingPaths?.search}?key=${searchWord}`);
   };
 
   useEffect(() => {
     if (keyWord) fetchListingDataBySearchKey(decodeURI(keyWord));
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyWord]);
   return (

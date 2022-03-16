@@ -91,3 +91,46 @@ export const InputWrapper = styled.div`
     }
   }
 `;
+
+export const style = (horizontal = false, isFocusMax = false) => ({
+  control: (base) => ({
+    ...base,
+    border: 1,
+    borderRadius: '1.9rem',
+    boxShadow: `0rem 0.06rem 0.3rem ${colors.mineShaft}26`,
+  }),
+
+  menu: (provided) => ({
+    ...provided,
+    display: 'table',
+    padding: horizontal ? '1rem 1rem 1rem 1rem' : '',
+  }),
+
+  menuList: (provided) => ({
+    ...provided,
+    display: 'flex',
+    flexDirection: horizontal ? 'row' : 'column',
+    maxHeight: '30rem',
+    overflowX: 'hidden',
+    paddingLeft: isFocusMax && '50%',
+  }),
+
+  option: (provided, state) => ({
+    '&:hover': {
+      backgroundColor: `${colors.green}50`,
+      borderColor: colors.green,
+      borderRadius: '0.4rem',
+      color: colors.black,
+    },
+    ...provided,
+    backgroundColor: state.isSelected && `${colors.white}99`,
+    color: colors.mineShaft,
+  }),
+
+  valueContainer: (provided) => ({
+    ...provided,
+    flexWrap: 'nowrap',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+  }),
+});

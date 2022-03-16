@@ -20,10 +20,24 @@ export const getFeaturedListings = async () => {
  *
  * @return {Promise<Object>} listing data response.
  */
-export const getListingsBySearchKey = async (keyWord) => {
+export const getListingsBySearchKey = async (
+  keyWord,
+  filter = {
+    bedrooms: '',
+    fullBathrooms: '',
+    listingTypeId: '',
+    max: '',
+    min: '',
+    propertyTypeId: '',
+  }
+) => {
+  const { min, max, propertyTypeId, bedrooms, fullBathrooms, listingTypeId } =
+    filter;
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/listings/search?key=${keyWord}`);
+  } = await http.get(
+    `${apiUrl}/listings/search?key=${keyWord}&propertyTypeId=${propertyTypeId}&bedrooms=${bedrooms}&fullBathrooms=${fullBathrooms}&listingTypeId=${listingTypeId}&min=${min}&max=${max}`
+  );
 
   return data;
 };
