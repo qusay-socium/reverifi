@@ -4,9 +4,13 @@ import DropdownMenu from 'components/shared/DropdownMenu';
 import ListingsTable from 'components/transaction-info/ListingsTable';
 import TransactionsTable from 'components/transaction-info/TransactionsTable';
 import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import React, { useEffect, useState } from 'react';
 import { getUserListings } from 'services/listing';
-import { getTransactions } from 'services/transactions';
+import {
+  getAssignedTransactions,
+  getCreatedTransactions,
+} from 'services/transactions';
 import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import {
   DropdownMenusContainer,
@@ -21,16 +25,21 @@ import {
  * @return {JSX.Element}
  */
 function TransactionInfoWrapper() {
-  const [processes, setProcesses] = useState([]);
-
-  const getProcesses = async () => {
-    const processesData = await getTransactions();
-    setProcesses(processesData);
-  };
-
+  const [assignedTransactions, setAssignedTransactions] = useState([]);
+  const [createdTransactions, setCreatedTransactions] = useState([]);
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { userInfo } = useUser();
+
+  const fetchTransactions = async () => {
+    const assigned = await getAssignedTransactions();
+    setAssignedTransactions(assigned);
+
+    console.log(assigned);
+
+    const created = await getCreatedTransactions();
+    setCreatedTransactions(created);
+  };
 
   const fetchAllListingsForUser = async (page) => {
     if (userInfo?.id) {
@@ -48,9 +57,7 @@ function TransactionInfoWrapper() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, userInfo]);
 
-  useEffect(() => {
-    getProcesses();
-  }, []);
+  useEffectOnce(() => fetchTransactions());
 
   return (
     <TransactionInfoContainer>
@@ -77,7 +84,10 @@ function TransactionInfoWrapper() {
           />
         </DropdownMenusContainer>
       </TransactionsContainer>
-      <TransactionsTable processes={processes} />
+      <TransactionsTable
+        assignedTransactions={assignedTransactions}
+        createdTransactions={createdTransactions}
+      />
     </TransactionInfoContainer>
   );
 }

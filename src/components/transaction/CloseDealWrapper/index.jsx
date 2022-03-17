@@ -3,12 +3,18 @@ import Button from 'components/shared/Button';
 import TextAreaInput from 'components/shared/FormTextArea';
 import Table from 'components/shared/Table';
 import { TableCell } from 'components/shared/Table/table-styles';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import useEffectOnce from 'hooks/use-effect-once';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
 import { updateTransactionListing } from 'services/listing';
 import {
+  addOrUpdateTransaction,
+  addTransactionNote,
   getAssignees,
+  getNotes,
   getTransactionsProcesses,
+  getWorkflowStep,
   updateProcessesStatus,
   updateTransaction,
 } from 'services/transactions';
@@ -26,29 +32,45 @@ import {
  */
 function CloseDealWrapper() {
   const [processes, setProcesses] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
-
   const { listingId } = useParams();
-  const transactionId = 'da26c3c7-9bb4-453c-9f5a-65735d52449f';
+  const [transactionData, setTransactionData] = useState({});
+  const [workflowStep, setWorkflowStep] = useState({});
+  const navigate = useNavigate();
 
-  const getProcesses = async () => {
-    const processesData = await getTransactionsProcesses(transactionId);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+
+  const getProcesses = async (id) => {
+    const processesData = await getTransactionsProcesses(id);
     setProcesses(processesData);
   };
 
   const handleChange = async (id, value) => {
     const values = { id, value };
-    setIsChecked((current) => !current);
+    // setIsChecked(id);
     await updateProcessesStatus(values);
   };
 
-  const handleClick = async () => {
+  const submit = async ({ notes }) => {
+    // save note
+    await addTransactionNote({
+      notes,
+      transactionId: transactionData.id,
+      workflowStepId: workflowStep.id,
+    });
+
+    // update transaction status
     await updateTransaction({
       status: 'closed',
-      transactionId,
+      transactionId: transactionData?.id,
     });
-    const assignees = await getAssignees(transactionId);
 
+    // update listing owner and agent ids
+    const assignees = await getAssignees(transactionData?.id);
     const buyer = assignees.find((item) => item.role === 'Buyer');
     const buyerAgent = assignees.find((item) => item.role === 'Buyer Agent');
 
@@ -57,15 +79,39 @@ function CloseDealWrapper() {
       id: listingId,
       ownerId: buyer?.assignees?.assignedUser?.id,
     });
+
+    // redirect to transaction page
+    navigate(`/transaction`);
   };
 
-  useEffect(() => {
-    getProcesses();
-  }, [isChecked]);
+  /**
+   * fetch Transaction Data function
+   */
+  const fetchTransactionData = async () => {
+    // get step info
+    const step = await getWorkflowStep(4);
+    setWorkflowStep(step);
+
+    // create transaction record
+    const transactionRecord = await addOrUpdateTransaction({
+      listingId,
+      workflowStepId: step.id,
+    });
+    setTransactionData(transactionRecord);
+
+    // get processes
+    getProcesses(transactionRecord?.id);
+
+    // get notes and fill notes textarea
+    const note = await getNotes(transactionRecord.id, step.id);
+    if (note?.notes) setValue('notes', note?.notes);
+  };
+
+  useEffectOnce(fetchTransactionData);
 
   return (
     processes.length > 0 && (
-      <SectionContainer>
+      <SectionContainer onSubmit={handleSubmit(submit)}>
         <Table headers={['Process', '', 'Assignee']} fixedLayout>
           {processes?.map(({ process, assignee, id, isCompleted }) => (
             <TableRowContainer key={id}>
@@ -74,12 +120,11 @@ function CloseDealWrapper() {
                   <input
                     type="checkbox"
                     onChange={(e) => handleChange(id, e.target.checked)}
-                    checked={isCompleted}
+                    defaultChecked={isCompleted}
                   />
                   {process?.name}
                 </CheckboxContainer>
               </TableCell>
-
               <TableCell />
               <TableCell>{assignee?.assignedUser?.name}</TableCell>
             </TableRowContainer>
@@ -87,20 +132,20 @@ function CloseDealWrapper() {
         </Table>
 
         <TextAreaInput
+          register={register}
+          error={errors?.notes?.message}
           name="notes"
           label="Notes"
           rounded={false}
           labelIconElement={<NotesIcon />}
-          limit={140}
+          limit={250}
         />
 
         <ButtonsContainer>
           <Button type="button" light>
             Cancel
           </Button>
-          <Button onClick={handleClick} type="button">
-            Close Deal
-          </Button>
+          <Button type="submit">Close Deal</Button>
         </ButtonsContainer>
       </SectionContainer>
     )

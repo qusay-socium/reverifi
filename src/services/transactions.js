@@ -108,7 +108,7 @@ export const getAssignees = async (id) => {
  *
  * @return {Object[]} Array of processes.
  */
-export const getTransactions = async () => {
+export const getAssignedTransactions = async () => {
   const {
     data: { data },
   } = await http.get(`${apiUrl}/transactions/assignees`);
@@ -151,6 +151,19 @@ export const updateTransaction = async (values) => {
   const {
     data: { data },
   } = await http.patch(`${apiUrl}/transactions/`, values);
+
+  return data;
+};
+
+/**
+ * Service that get all transactions.
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const getCreatedTransactions = async () => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/transactions`);
 
   return data;
 };

@@ -319,6 +319,9 @@ function AssignTasksWrapper() {
     );
   };
 
+  /**
+   * fetch Transaction Data function
+   */
   const fetchTransactionData = async () => {
     // reset modal data
     setModalData(null);

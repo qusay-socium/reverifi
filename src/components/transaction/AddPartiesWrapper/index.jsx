@@ -50,7 +50,6 @@ export default function AddPartiesWrapper() {
   const [buyerList, setBuyerList] = useState([]);
   const [isSellerRepresented, setIsSellerRepresented] = useState(false);
   const { listingId } = useParams();
-
   const [transactionData, setTransactionData] = useState({});
   const [workflowStep, setWorkflowStep] = useState({});
   const navigate = useNavigate();
@@ -69,9 +68,9 @@ export default function AddPartiesWrapper() {
   /**
    * handle Input Change function
    */
-  const handleInputChange = async (name, type) => {
-    if (name?.length > 2) {
-      const data = await getUsersWithLimit(10, name);
+  const handleInputChange = async (userName, type) => {
+    if (userName?.length > 2) {
+      const data = await getUsersWithLimit(10, userName);
 
       if (type === 'sellerAgent') {
         setSellerAgentList(data);
@@ -140,7 +139,13 @@ export default function AddPartiesWrapper() {
     navigate(`/transaction/${listingId}/${transactionStepsNames.assignTasks}`);
   };
 
+  /**
+   * fetch Transaction Data function
+   */
   const fetchTransactionData = async () => {
+    // reset modal data
+    setModalData(null);
+
     // get step info
     const step = await getWorkflowStep(1);
     setWorkflowStep(step);
@@ -225,7 +230,6 @@ export default function AddPartiesWrapper() {
                   placeholder="Seller Address"
                   register={register}
                 />
-
                 <TransactionSelectInput
                   options={sellerList}
                   control={control}
