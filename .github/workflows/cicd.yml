@@ -17,8 +17,7 @@ jobs:
           key: ${{ secrets.FRONT_END_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
+            export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh
             export REACT_APP_API_URL=https://reverifi.sociumtech.com
             cd /home/reverifi-frontend/reverifi && git checkout package-lock.json && git pull origin main
             cd /home/reverifi-frontend/reverifi
