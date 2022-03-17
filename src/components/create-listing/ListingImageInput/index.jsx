@@ -1,5 +1,5 @@
 import FilesList from 'components/shared/FilesList';
-import FormFileInput from 'components/shared/FormFileInput';
+import UploadInput from 'components/shared/UploadInput';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -25,18 +25,18 @@ function ListingImageInput({ images, onAddImages, onDeleteImage }) {
       <h2>Upload Images and Videos</h2>
       <Wrapper>
         <ImageInputSection>
-          <FormFileInput
+          <UploadInput
             acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
             multiple
             onAddFiles={onAddImages}
           >
             <InputInterface>
+              <span>or</span>
               <UploadIcon />
               <span>Drag and drop here</span>
-              <span>or</span>
               <span>browse</span>
             </InputInterface>
-          </FormFileInput>
+          </UploadInput>
         </ImageInputSection>
 
         <ImageInputSection>

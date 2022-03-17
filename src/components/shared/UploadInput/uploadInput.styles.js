@@ -12,7 +12,6 @@ export const Input = styled.input`
   opacity: 0;
   position: absolute;
   width: 100%;
-
   ::file-selector-button {
     cursor: pointer;
   }

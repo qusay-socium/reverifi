@@ -9,7 +9,7 @@ services:
     environment:
       - PORT=80
       - VIRTUAL_HOST=reverifi.docker
-      - REACT_APP_API_URL=http://reverifi-api.docker
+      - REACT_APP_API_URL=http://localhost:61435
     volumes:
       - ${PWD}:/app
     ports:
