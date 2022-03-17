@@ -11,8 +11,11 @@ export const ResultContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
-  color: ${colors.dustyGray};
+  color: ${colors.mineShaft};
   padding: 2rem 2rem 4rem 2rem;
   text-align: center;
-  width: 100%;
+  width: 80%;
+  font-style:Montserrat;
+  font-size:32px;
+  font-weight:600;
 `;

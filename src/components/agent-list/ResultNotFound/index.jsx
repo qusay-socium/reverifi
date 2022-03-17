@@ -6,9 +6,10 @@ export default function ResultNotFound() {
   const resultText =
     "We couldn't find anyone matching your search. Please adjust your filters and try again.";
   return (
-    <ResultContainer>
+    <ResultContainer> 
+           <ResultImage />
+
       <TextContainer>{resultText}</TextContainer>
-      <ResultImage />
     </ResultContainer>
   );
 }
