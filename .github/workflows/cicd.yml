@@ -21,7 +21,7 @@ jobs:
             export REACT_APP_API_URL=https://reverifi.sociumtech.com
             cd /home/reverifi-frontend/reverifi && git checkout package-lock.json && git pull origin main
             cd /home/reverifi-frontend/reverifi
-            /usr/bin/rm -rf node_modules
-            /usr/bin/npm install && npm cache clean --force
-            /usr/bin/npm cache verify
-            /usr/bin/npm run build
+            rm -rf node_modules
+            npm install && npm cache clean --force
+            npm cache verify
+            npm run build
