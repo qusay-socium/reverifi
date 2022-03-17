@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { useNavigate } from 'react-router-dom';
 import { listingPaths } from 'utils/appPaths';
+import { searchOptions } from 'utils/constants';
 import {
   ClearInputButton,
   LocationPin,
@@ -28,15 +29,17 @@ import {
 function Storyboard() {
   const navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
+  const [suggestedAddress, setSuggestedAddress] = useState('New Jersey, USA');
   const inputValue = useRef();
 
-  const handleSearch = async (address, placeId) => {
-    if (selectedAddress) setSelectedAddress(address);
-
-    if (!placeId) {
-      // This code runs when you press enter without having a suggestion selected
-      if (inputValue.current.value) {
-        navigate(`${listingPaths.search}?key=${inputValue.current.value}`);
+  const handleSearch = async (address) => {
+    if (inputValue?.current?.value) {
+      if (inputValue?.current?.value === address) {
+        setSelectedAddress(suggestedAddress);
+        navigate(`${listingPaths.search}?key=${suggestedAddress}`);
+      } else {
+        setSelectedAddress(address);
+        navigate(`${listingPaths.search}?key=${address}`);
       }
     }
   };
@@ -65,9 +68,12 @@ function Storyboard() {
                   value={selectedAddress}
                   onChange={setSelectedAddress}
                   onSelect={handleSearch}
+                  searchOptions={searchOptions}
                 >
                   {({ getInputProps, suggestions, getSuggestionItemProps }) => (
                     <>
+                      {suggestions?.[0]?.description &&
+                        setSuggestedAddress(suggestions?.[0]?.description)}
                       <StyledInput
                         ref={inputValue}
                         type="text"

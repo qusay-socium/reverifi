@@ -12,3 +12,7 @@ export const invitationStatus = {
   declined: 'Declined',
   waiting: 'Waiting',
 };
+
+export const searchOptions = {
+  componentRestrictions: { country: ['us'] },
+};

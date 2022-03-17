@@ -15,6 +15,7 @@ import {
 } from 'services/listing-create-service';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { searchOptions } from 'utils/constants';
 import {
   numberOfRooms,
   rentPrices,
@@ -44,6 +45,8 @@ function ListingsSearchHeader({
   setKeyWord,
   fetchListingDataBySearchKey,
 }) {
+  const rent = 'e7f4803a-8cbc-4028-8c9e-641644fe8b13';
+
   const inputValue = useRef();
 
   const [selectedBathrooms, setSelectedBathrooms] = useState(null);
@@ -58,6 +61,7 @@ function ListingsSearchHeader({
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [isFocusMax, setIsFocusMax] = useState(false);
+  const [suggestedAddress, setSuggestedAddress] = useState('New Jersey, USA');
   const [selectedAddress, setSelectedAddress] = useState(
     decodeURI(keyWord) || ''
   );
@@ -81,11 +85,9 @@ function ListingsSearchHeader({
   };
 
   /**
-   * handle search clear function
+   * handle search function
    */
-  const handleSearch = async (address, placeId) => {
-    if (selectedAddress) setSelectedAddress(address);
-
+  const handleSearch = async () => {
     if (isFocused === true) {
       setIsFocused(false);
     }
@@ -94,18 +96,21 @@ function ListingsSearchHeader({
       setMax(min);
     }
 
-    if (!placeId) {
-      // This code runs when you press enter without having a suggestion selected
-      if (inputValue.current.value) {
-        setSelectedAddress(inputValue?.current?.value);
-        setKeyWord(inputValue?.current?.value);
-        fetchListingDataBySearchKey(keyWord, filter);
+    if (inputValue?.current?.value) {
+      if (inputValue?.current?.value === selectedAddress) {
+        setSelectedAddress(suggestedAddress);
+        setKeyWord(suggestedAddress);
+        fetchListingDataBySearchKey(suggestedAddress, filter);
+      } else {
+        setSelectedAddress(selectedAddress);
+        setKeyWord(selectedAddress);
+        fetchListingDataBySearchKey(selectedAddress, filter);
       }
     }
   };
 
   const renderPriceData = () => {
-    if (selectedListingType === 'e7f4803a-8cbc-4028-8c9e-641644fe8b13') {
+    if (selectedListingType === rent) {
       if (isFocusMax) {
         return rentPricesMax;
       }
@@ -123,6 +128,7 @@ function ListingsSearchHeader({
       setPropertyTypes(await getAllPropertyTypes());
       setListingTypes(await getAllListingTypes());
     };
+    setSuggestedAddress(selectedAddress);
 
     fetchData();
   }, []);
@@ -135,19 +141,16 @@ function ListingsSearchHeader({
             value={selectedAddress}
             onChange={setSelectedAddress}
             onSelect={handleSearch}
+            searchOptions={searchOptions}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <>
+                {suggestions?.[0]?.description &&
+                  setSuggestedAddress(suggestions?.[0]?.description)}
                 <input
                   ref={inputValue}
                   type="text"
                   defaultValue={decodeURI(keyWord)}
-                  onKeyDown={(e) => {
-                    if (e.keyCode === 13) {
-                      setKeyWord(e.target.value);
-                      fetchListingDataBySearchKey(e.target.value, filter);
-                    }
-                  }}
                   {...getInputProps()}
                 />
                 <AutocompleteMenuContainer>

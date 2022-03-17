@@ -16,6 +16,7 @@ export const DateInput = styled(DatePicker)`
   width: 100%;
   z-index: 2;
   position: relative;
+  cursor: grab;
 `;
 
 export const DateInputContainer = styled.div`

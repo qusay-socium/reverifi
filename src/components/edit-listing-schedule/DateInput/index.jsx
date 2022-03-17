@@ -34,6 +34,7 @@ function DatePickerInputHandler({
       <DateInputContainer>
         <ScheduleIcon />
         <DateInput
+          onChangeRaw={(e) => e.preventDefault()}
           selected={date}
           placeholderText={placeholder}
           onChange={(updatedDate) => {
