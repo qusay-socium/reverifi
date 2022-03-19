@@ -16,34 +16,34 @@ import { ReactComponent as ServiceAreasIcon } from 'assets/icons/profile-service
 import { ReactComponent as YoutubeIcon } from 'assets/icons/profile-youtube.svg';
 import { ReactComponent as ZipCodeIcon } from 'assets/icons/profile-zipcode.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
-import { X, Check } from 'react-feather';
 import avatar from 'assets/images/avatar.svg';
 import myProfileData from 'components/my-profile/data';
+import Button from 'components/shared/Button';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
 import MenuList from 'components/shared/MenuList';
 import Toast from 'components/shared/Toast';
+import UploadInput from 'components/shared/UploadInput';
 import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
+import { Check, X } from 'react-feather';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select, { createFilter } from 'react-select';
-import { actionTypes } from 'utils/constants';
 import { addUserActionType } from 'services/points-service';
+import uploadSingleFile from 'services/upload';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
+import { actionTypes } from 'utils/constants';
 import {
   generateLabelValuePairs,
   handleNumberInput,
   handleTextInput,
 } from 'utils/helpers';
-import UploadInput from 'components/shared/UploadInput';
-import uploadImage from 'services/upload';
-import Button from 'components/shared/Button';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   EditIconContainer,
@@ -282,7 +282,7 @@ function MyProfileWrapper() {
   const handleUploadImage = async () => {
     // if (!selectedFile) show an error message here;
 
-    await uploadImage({
+    await uploadSingleFile({
       file: selectedFile,
       onError: () => {
         setImageEditMode(false);

@@ -1,15 +1,13 @@
+/* eslint-disable no-nested-ternary */
+import { ReactComponent as AcceptIcon } from 'assets/icons/dashboard-offers-accept.svg';
+import { ReactComponent as DeclineIcon } from 'assets/icons/dashboard-offers-decline.svg';
 import { ReactComponent as NotesIcon } from 'assets/icons/overview.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/transaction-step3-delete.svg';
 import { ReactComponent as DownloadIcon } from 'assets/icons/transaction-step3-download.svg';
 import { ReactComponent as EyeIcon } from 'assets/icons/transaction-step3-eye.svg';
 import { ReactComponent as PrintIcon } from 'assets/icons/transaction-step3-print.svg';
-import {
-  InputInterface,
-  UploadIcon,
-} from 'components/create-listing/ListingImageInput/listingImageInput.styles';
+import loadingImage from 'assets/images/loading.gif';
 import Button from 'components/shared/Button';
-import FilesList from 'components/shared/FilesList';
-import UploadInput from 'components/shared/UploadInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import Table from 'components/shared/Table';
 import {
@@ -18,45 +16,30 @@ import {
   TableRow,
 } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
+import UploadInput from 'components/shared/UploadInput';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  addDocument,
   addOrUpdateTransaction,
   addTransactionNote,
+  deleteTransactionDocument,
+  getDocumentsNames,
   getNotes,
+  getTransactionDocuments,
   getWorkflowStep,
 } from 'services/transactions';
+import uploadSingleFile from 'services/upload';
 import { transactionStepsNames } from 'utils/constants';
 import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.styles';
 import {
+  LoadingImage,
   SectionContainer,
-  UploadContainer,
+  UploadFileContainer,
+  UploadText,
 } from './upload-documents-wrapper.styles';
-
-const data = [
-  {
-    by: 'John Doe',
-    date: 'Sep 10, 2021',
-    name: 'Certificate of Occupancy',
-  },
-  {
-    by: 'John Doe',
-    date: 'Sep 10, 2021',
-    name: 'Consumer Information Statement',
-  },
-  {
-    by: 'John Doe',
-    date: 'Sep 10, 2021',
-    name: 'Lead Based Paint Form',
-  },
-  {
-    by: 'John Doe',
-    date: 'Sep 10, 2021',
-    name: 'NJ MLS Residential Listing Agreement',
-  },
-];
 
 /**
  * Upload Documents Wrapper components
@@ -64,7 +47,10 @@ const data = [
  * @return {JSX.Element}
  */
 function UploadDocumentsWrapper() {
-  const [documents /* setDocuments */] = useState([]);
+  const [documents, setDocuments] = useState([]);
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [documentsNames, setDocumentsNames] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { listingId } = useParams();
   const [transactionData, setTransactionData] = useState({});
@@ -78,14 +64,70 @@ function UploadDocumentsWrapper() {
   } = useForm();
 
   /**
-   * on add files function
+   * find documents
    */
-  const onAddFiles = () => {};
+  const findDoc = (docId) =>
+    documents?.find(({ documentNameId }) => documentNameId === docId);
 
   /**
-   * on delete files function
+   *  fetch Documents function
    */
-  const onDeleteFiles = () => {};
+  const fetchDocuments = async () => {
+    const docs = await getTransactionDocuments();
+
+    setDocuments(docs);
+    setUploadedFile(null);
+  };
+
+  /**
+   *  handle Delete Document
+   */
+  const handleDeleteDocument = async (id) => {
+    const docId = findDoc(id);
+
+    await deleteTransactionDocument(docId?.id);
+    fetchDocuments();
+  };
+
+  /**
+   * handle Add File function
+   */
+  const handleAddFile = async (file, id) => {
+    setUploadedFile({ file, id });
+  };
+
+  /**
+   * handle Decline Upload
+   */
+  const handleDeclineUpload = () => {
+    setUploadedFile(null);
+  };
+
+  /**
+   * handle Accept Upload
+   */
+  const handleAcceptUpload = async () => {
+    setLoading(true);
+
+    await uploadSingleFile({
+      file: uploadedFile?.file,
+      onError: () => {
+        setLoading(false);
+      },
+      onSuccess: async ({ data }) => {
+        if (data?.publicUrl) {
+          await addDocument({
+            documentNameId: uploadedFile?.id,
+            documentUrl: data?.publicUrl,
+            transactionId: transactionData?.id,
+          });
+
+          fetchDocuments();
+          setLoading(false);
+        }
+      },
+    });
+  };
 
   /**
    * submit function
@@ -117,6 +159,13 @@ function UploadDocumentsWrapper() {
     });
     setTransactionData(transactionRecord);
 
+    // get the documents names
+    const docNames = await getDocumentsNames();
+    setDocumentsNames(docNames);
+
+    // fetch transaction uploaded documents
+    fetchDocuments();
+
     // get notes and fill notes textarea
     const note = await getNotes(transactionRecord.id, step.id);
     if (note?.notes) setValue('notes', note?.notes);
@@ -126,62 +175,84 @@ function UploadDocumentsWrapper() {
 
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <UploadContainer>
-        <UploadInput
-          acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
-          multiple
-          onAddFiles={onAddFiles}
-        >
-          <InputInterface>
-            <UploadIcon />
-            <span>Drag and drop your documents here</span>
-            <span>or</span>
-            <span>browse</span>
-          </InputInterface>
-        </UploadInput>
-
-        <FilesList files={documents} onDelete={onDeleteFiles} />
-      </UploadContainer>
-
       <SectionContainer>
         <Table
           headers={['Document Name', 'upload date', 'uploaded by', null]}
           fixedLayout
         >
-          {data?.map(({ name, date, by }) => (
-            <TableRow key={name}>
-              <TableCell>{name}</TableCell>
-              <TableCell>{date}</TableCell>
-              <TableCell>{by}</TableCell>
+          {documentsNames?.map(({ id, name }) => (
+            <TableRow key={id}>
+              <TableCell wordBreak>{name}</TableCell>
+              <TableCell>
+                {findDoc(id)?.createdAt
+                  ? new Date(findDoc(id)?.createdAt || '')?.toLocaleDateString()
+                  : null}
+              </TableCell>
+              <TableCell>{findDoc(id)?.documentUser?.name || null}</TableCell>
               <TableCell iconsCell>
-                <IconContainer>
-                  <DownloadIcon />
-                  <Tooltip
-                    text="Download"
-                    arrowPosition="top"
-                    position={[2, -2]}
-                  />
-                </IconContainer>
-                <IconContainer>
-                  <EyeIcon />
-                  <Tooltip text="View" arrowPosition="top" position={[2, -1]} />
-                </IconContainer>
-                <IconContainer>
-                  <PrintIcon />
-                  <Tooltip
-                    text="Print"
-                    arrowPosition="top"
-                    position={[2, -1]}
-                  />
-                </IconContainer>
-                <IconContainer>
-                  <DeleteIcon />
-                  <Tooltip
-                    text="Delete"
-                    arrowPosition="top"
-                    position={[2, -1.6]}
-                  />
-                </IconContainer>
+                {findDoc(id) ? (
+                  <div>
+                    <a
+                      href={findDoc(id)?.documentUrl || '#'}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <IconContainer>
+                        <EyeIcon />
+                        <Tooltip
+                          text="View"
+                          arrowPosition="top"
+                          position={[2, -1]}
+                        />
+                      </IconContainer>
+                    </a>
+                    <IconContainer>
+                      <DownloadIcon />
+                      <Tooltip
+                        text="Download"
+                        arrowPosition="top"
+                        position={[2, -2]}
+                      />
+                    </IconContainer>
+                    <IconContainer>
+                      <PrintIcon />
+                      <Tooltip
+                        text="Print"
+                        arrowPosition="top"
+                        position={[2, -1]}
+                      />
+                    </IconContainer>
+                    <IconContainer onClick={() => handleDeleteDocument(id)}>
+                      <DeleteIcon />
+                      <Tooltip
+                        text="Delete"
+                        arrowPosition="top"
+                        position={[2, -1.6]}
+                      />
+                    </IconContainer>
+                  </div>
+                ) : uploadedFile?.id === id && loading ? (
+                  <IconContainer>
+                    <LoadingImage src={loadingImage} />
+                  </IconContainer>
+                ) : (
+                  <UploadFileContainer>
+                    <UploadInput onAddFiles={(file) => handleAddFile(file, id)}>
+                      <UploadText>Upload</UploadText>
+                    </UploadInput>
+                    {uploadedFile?.id === id && (
+                      <>
+                        <p>{uploadedFile?.file?.[0]?.name}</p>
+                        <IconContainer onClick={handleAcceptUpload}>
+                          <AcceptIcon />
+                        </IconContainer>
+                        <IconContainer onClick={handleDeclineUpload}>
+                          <DeclineIcon />
+                        </IconContainer>
+                      </>
+                    )}
+                  </UploadFileContainer>
+                )}
               </TableCell>
             </TableRow>
           ))}

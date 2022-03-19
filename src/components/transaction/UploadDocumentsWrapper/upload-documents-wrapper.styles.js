@@ -5,15 +5,21 @@ export const SectionContainer = styled.div`
   margin: 2.5rem;
 `;
 
-export const UploadContainer = styled.div`
-  background-color: ${colors.wildSand};
-  padding: 2rem 3rem;
-  margin-top: 2.5rem;
+export const UploadText = styled.span`
+  color: ${colors.cornflowerBlue};
+`;
+
+export const UploadFileContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 15rem;
+  justify-content: flex-end;
 
-  > div {
-    flex: 1;
+  p {
+    margin: 0 0.5rem 0 1rem;
   }
+`;
+
+export const LoadingImage = styled.img`
+  width: 2rem;
+  height: 2rem;
 `;

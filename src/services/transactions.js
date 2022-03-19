@@ -167,3 +167,54 @@ export const getCreatedTransactions = async () => {
 
   return data;
 };
+
+/**
+ * Service that get documents names
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const getDocumentsNames = async () => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/transactions/documents-names`);
+
+  return data;
+};
+
+/**
+ * Service that add document
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const addDocument = async (body) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/transactions/document`, body);
+
+  return data;
+};
+
+/**
+ * Service that get documents
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const getTransactionDocuments = async () => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/transactions/document`);
+
+  return data;
+};
+
+/**
+ * Service that delete document
+ *
+ */
+export const deleteTransactionDocument = async (id) => {
+  const {
+    data: { data },
+  } = await http.delete(`${apiUrl}/transactions/document/${id}`);
+
+  return data;
+};
