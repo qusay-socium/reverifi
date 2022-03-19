@@ -1,5 +1,7 @@
+import Notifications from 'components/notifications/notifications';
 import AdminPanelLayout from 'components/shared/AdminPanelLayout';
 import MainLayout from 'components/shared/MainLayout';
+import { PointsNotificationProvider } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { UserProvider } from 'contexts/UserContext';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -14,42 +16,45 @@ import GlobalStyles from 'styles/global-styles';
 function App() {
   return (
     <UserProvider>
-      <GlobalStyles />
-      <React.Suspense fallback={<span>Loading...</span>}>
-        <Routes>
-          {routes.map(
-            ({
-              label,
-              exact,
-              path,
-              component: Component,
-              adminLayout,
-              disableNavbar,
-              disableFooter,
-            }) => (
-              <Route
-                key={label}
-                path={path}
-                exact={exact}
-                element={
-                  !adminLayout ? (
-                    <MainLayout
-                      disableNavbar={disableNavbar}
-                      disableFooter={disableFooter}
-                    >
-                      <Component />
-                    </MainLayout>
-                  ) : (
-                    <AdminPanelLayout>
-                      <Component />
-                    </AdminPanelLayout>
-                  )
-                }
-              />
-            )
-          )}
-        </Routes>
-      </React.Suspense>
+      <PointsNotificationProvider>
+        <GlobalStyles />
+        <React.Suspense fallback={<span>Loading...</span>}>
+          <Routes>
+            {routes.map(
+              ({
+                label,
+                exact,
+                path,
+                component: Component,
+                adminLayout,
+                disableNavbar,
+                disableFooter,
+              }) => (
+                <Route
+                  key={label}
+                  path={path}
+                  exact={exact}
+                  element={
+                    !adminLayout ? (
+                      <MainLayout
+                        disableNavbar={disableNavbar}
+                        disableFooter={disableFooter}
+                      >
+                        <Component />
+                      </MainLayout>
+                    ) : (
+                      <AdminPanelLayout>
+                        <Component />
+                      </AdminPanelLayout>
+                    )
+                  }
+                />
+              )
+            )}
+          </Routes>
+        </React.Suspense>
+        <Notifications />
+      </PointsNotificationProvider>
     </UserProvider>
   );
 }

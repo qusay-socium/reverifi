@@ -167,6 +167,13 @@ const routes = [
     path: '/transaction',
     title: 'Transaction Info',
   },
+  {
+    adminLayout: true,
+    component: lazy(() => import('pages/Achievements')),
+    label: 'achievements',
+    path: '/achievements',
+    title: 'Achievements Page',
+  },
 ];
 
 export default routes;

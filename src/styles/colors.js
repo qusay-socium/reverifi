@@ -3,9 +3,12 @@ const colors = {
   azure: '#0084fc',
   blue: '#006aff',
   cornflowerBlue: '#3377ff',
+  cyanBlue: '#4d8eff',
   dustyGray: '#979797',
+  darkGray: '#222222',
   gray: '#6f7076',
   green: '#b2d235',
+  lightGray: '#ebebeb',
   liver: '#524d4d',
   matterhorn: '#545454',
   mercury: '#e4e4e4',
@@ -17,7 +20,7 @@ const colors = {
   white: '#ffffff',
   whiteSand: '#f5f5f5',
   wildSand: '#f4f4f4',
-  skyBlue:'#A6DAE8',
+  skyBlue: '#A6DAE8',
 };
 
 export default colors;
