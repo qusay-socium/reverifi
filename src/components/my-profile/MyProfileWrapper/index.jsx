@@ -16,6 +16,7 @@ import { ReactComponent as ServiceAreasIcon } from 'assets/icons/profile-service
 import { ReactComponent as YoutubeIcon } from 'assets/icons/profile-youtube.svg';
 import { ReactComponent as ZipCodeIcon } from 'assets/icons/profile-zipcode.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
+import { X, Check } from 'react-feather';
 import avatar from 'assets/images/avatar.svg';
 import myProfileData from 'components/my-profile/data';
 import FormInput from 'components/shared/FormInput';
@@ -37,6 +38,9 @@ import {
   handleNumberInput,
   handleTextInput,
 } from 'utils/helpers';
+import UploadInput from 'components/shared/UploadInput';
+import uploadImage from 'services/upload';
+import Button from 'components/shared/Button';
 import myProfileSchema from './my-profile-wrapper-schema';
 import {
   EditIconContainer,
@@ -106,7 +110,9 @@ function MyProfileWrapper() {
   const [dataSaved, setDataSaved] = useState(false);
   const [saveDataError, setSaveDataError] = useState(false);
   const [companyEmailError, setCompanyEmailError] = useState(false);
-
+  const [imageEditMode, setImageEditMode] = useState(false);
+  const [profileImg, setProfileImg] = useState(avatar);
+  const [selectedFile, setSelectedFile] = useState();
   const navigate = useNavigate();
 
   const {
@@ -185,6 +191,16 @@ function MyProfileWrapper() {
     }
   };
 
+  const handleOnAddImage = async (file) => {
+    // save the file in a state
+    setSelectedFile(file);
+
+    // preview the image without actually uploading it..
+    const src = URL.createObjectURL(file[0]);
+    setImageEditMode(true);
+
+    setProfileImg(src);
+  };
   /**
    * fetch user info function
    */
@@ -225,6 +241,9 @@ function MyProfileWrapper() {
         setSelectedCity(newCity);
       }
 
+      if (info.image) {
+        setProfileImg(info.image);
+      }
       // get countries and cities
       const fetchedCountries = myProfileData.countries;
 
@@ -242,6 +261,29 @@ function MyProfileWrapper() {
   };
 
   useEffectOnce(fetchUserInfo);
+
+  const handleUploadImage = async () => {
+    // if (!selectedFile) show an error message here;
+
+    await uploadImage({
+      file: selectedFile,
+      onError: () => {
+        setImageEditMode(false);
+        // set error message
+      },
+      onSuccess: async ({ data }) => {
+        try {
+          await setUserInfo({
+            ...userInfo,
+            image: data?.publicUrl,
+          });
+        } catch ({ response: { data: serverData } }) {
+          setSaveDataError(true);
+        }
+        setImageEditMode(false);
+      },
+    });
+  };
 
   useEffect(() => {
     if (count < 3) setCount(count + 1);
@@ -275,10 +317,28 @@ function MyProfileWrapper() {
     <ProfileContainer>
       <UserInfoContainer>
         <ImageContainer>
-          <UserImage src={fetchedUserData?.image || avatar} alt="user-image" />
-          <EditIconContainer>
-            <EditIcon />
-          </EditIconContainer>
+          <UserImage src={profileImg} alt="user-image" />
+          {!imageEditMode ? (
+            <EditIconContainer>
+              <UploadInput onAddFiles={handleOnAddImage}>
+                <EditIcon />
+              </UploadInput>
+            </EditIconContainer>
+          ) : (
+            <>
+              <Button
+                onClick={() => {
+                  setProfileImg(profileImg);
+                  setImageEditMode(false);
+                }}
+              >
+                <X />
+              </Button>
+              <Button onClick={handleUploadImage}>
+                <Check />
+              </Button>
+            </>
+          )}
         </ImageContainer>
 
         <UserName>{fetchedUserData.user?.name}</UserName>

@@ -9,7 +9,7 @@ import {
 } from 'components/create-listing/ListingImageInput/listingImageInput.styles';
 import Button from 'components/shared/Button';
 import FilesList from 'components/shared/FilesList';
-import FormFileInput from 'components/shared/FormFileInput';
+import UploadInput from 'components/shared/UploadInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import Table from 'components/shared/Table';
 import {
@@ -127,7 +127,7 @@ function UploadDocumentsWrapper() {
   return (
     <form onSubmit={handleSubmit(submit)}>
       <UploadContainer>
-        <FormFileInput
+        <UploadInput
           acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
           multiple
           onAddFiles={onAddFiles}
@@ -138,7 +138,7 @@ function UploadDocumentsWrapper() {
             <span>or</span>
             <span>browse</span>
           </InputInterface>
-        </FormFileInput>
+        </UploadInput>
 
         <FilesList files={documents} onDelete={onDeleteFiles} />
       </UploadContainer>

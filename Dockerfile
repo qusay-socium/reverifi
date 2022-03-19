@@ -14,7 +14,7 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
-RUN mv bin/* /bin; 
+RUN mv bin/* /bin;
 
 RUN if [ "$NODE_ENV" != "development" ]; then \
     npm ci \

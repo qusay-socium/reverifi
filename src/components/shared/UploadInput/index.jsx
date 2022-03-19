@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, InputWrapper } from './formFileInput.styles';
+import { Input, InputWrapper } from './uploadInput.styles';
 
 /**
  * Renders a form file input
@@ -12,7 +12,7 @@ import { Input, InputWrapper } from './formFileInput.styles';
  *
  * @return {JSX.Element}
  */
-function FormFileInput({ acceptedTypes, multiple, onAddFiles, children }) {
+function UploadInput({ acceptedTypes, multiple, onAddFiles, children }) {
   const isFileTypeAccepted = (file) =>
     !acceptedTypes || acceptedTypes.includes(file.type);
 
@@ -41,16 +41,16 @@ function FormFileInput({ acceptedTypes, multiple, onAddFiles, children }) {
   );
 }
 
-FormFileInput.propTypes = {
+UploadInput.propTypes = {
   acceptedTypes: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node.isRequired,
   multiple: PropTypes.bool,
   onAddFiles: PropTypes.func.isRequired,
 };
 
-FormFileInput.defaultProps = {
+UploadInput.defaultProps = {
   acceptedTypes: null,
   multiple: false,
 };
 
-export default FormFileInput;
+export default UploadInput;
