@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as AboutIcon } from 'assets/icons/profile-about.svg';
 import { ReactComponent as AddressIcon } from 'assets/icons/profile-address.svg';
@@ -264,14 +263,13 @@ function MyProfileWrapper() {
   useEffectOnce(fetchUserInfo);
 
   const handleUploadImage = async () => {
-    if (!selectedFile) console.log('Please choose a file');
+    // if (!selectedFile) show an error message here;
 
     await uploadImage({
       file: selectedFile,
-      onError: (err) => {
+      onError: () => {
         setImageEditMode(false);
-        console.log('Uploading Failed, Please try again later.');
-        console.log(err);
+        // set error message
       },
       onSuccess: async ({ data }) => {
         try {
