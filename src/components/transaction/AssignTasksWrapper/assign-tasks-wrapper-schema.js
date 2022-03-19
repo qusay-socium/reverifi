@@ -1,15 +1,13 @@
 import * as yup from 'yup';
 
-const stringValidator = yup.string().required('Required field');
+const stringValidator = yup.object();
 
 const dateArrayValidator = yup
   .array()
   .of(
     yup.date().typeError('Required field'),
     yup.date().typeError('Required field')
-  )
-  .required('Required field');
-
+  );
 const assignTasksSchema = yup
   .object({
     attorneyApprovalBuyerSideDate: dateArrayValidator,

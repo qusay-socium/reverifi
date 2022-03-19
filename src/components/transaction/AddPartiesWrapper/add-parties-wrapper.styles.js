@@ -28,7 +28,6 @@ export const RowContainer = styled.div`
   padding-right: 22.25rem;
   justify-content: flex-start;
   gap: 2.25rem;
-  align-items: flex-end;
 
   > div {
     flex: 1;
@@ -37,6 +36,7 @@ export const RowContainer = styled.div`
 
 export const CheckBoxContainer = styled.div`
   flex: 1;
+  align-self: center;
 
   > div {
     margin-bottom: 0.1875rem;

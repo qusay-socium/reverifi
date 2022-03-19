@@ -23,6 +23,8 @@ import {
  * @param {Function} [props.register=null]         The react-hook-form register function.
  * @param {boolean}  [props.rounded=true]          Is input borderers rounded.
  * @param {string}   [props.type='text']           Input type.
+ * @param {string}   [props.readonly=false]        readonly input
+ *
  *
  * @return {JSX.Element}
  */
@@ -46,6 +48,7 @@ function FormInput({
   disabled,
   onClickInputKey,
   withPrefix,
+  readonly,
   ...props
 }) {
   return (
@@ -75,6 +78,7 @@ function FormInput({
           disabled={disabled}
           onKeyDown={onClickInputKey}
           withPrefix={withPrefix}
+          readOnly={readonly}
           {...props}
         />
       </InputWrapper>
@@ -98,6 +102,7 @@ FormInput.propTypes = {
   onChange: PropTypes.func,
   onClickInputKey: PropTypes.func,
   placeholder: PropTypes.string,
+  readonly: PropTypes.bool,
   register: PropTypes.func,
   required: PropTypes.bool,
   rounded: PropTypes.bool,
@@ -119,6 +124,7 @@ FormInput.defaultProps = {
   onChange: () => {},
   onClickInputKey: () => {},
   placeholder: '',
+  readonly: false,
   register: null,
   required: false,
   rounded: true,

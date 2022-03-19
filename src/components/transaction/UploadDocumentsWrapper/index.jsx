@@ -18,7 +18,17 @@ import {
   TableRow,
 } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
+import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  addOrUpdateTransaction,
+  addTransactionNote,
+  getNotes,
+  getWorkflowStep,
+} from 'services/transactions';
+import { transactionStepsNames } from 'utils/constants';
 import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.styles';
 import {
   SectionContainer,
@@ -55,6 +65,17 @@ const data = [
  */
 function UploadDocumentsWrapper() {
   const [documents /* setDocuments */] = useState([]);
+  const navigate = useNavigate();
+  const { listingId } = useParams();
+  const [transactionData, setTransactionData] = useState({});
+  const [workflowStep, setWorkflowStep] = useState({});
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
 
   /**
    * on add files function
@@ -66,8 +87,45 @@ function UploadDocumentsWrapper() {
    */
   const onDeleteFiles = () => {};
 
+  /**
+   * submit function
+   */
+  const submit = async ({ notes }) => {
+    // save note
+    await addTransactionNote({
+      notes,
+      transactionId: transactionData.id,
+      workflowStepId: workflowStep.id,
+    });
+
+    //  redirect to step 4
+    navigate(`/transaction/${listingId}/${transactionStepsNames.closeDeal}`);
+  };
+
+  /**
+   * fetch Transaction Data function
+   */
+  const fetchTransactionData = async () => {
+    // get step info
+    const step = await getWorkflowStep(3);
+    setWorkflowStep(step);
+
+    // create transaction record
+    const transactionRecord = await addOrUpdateTransaction({
+      listingId,
+      workflowStepId: step.id,
+    });
+    setTransactionData(transactionRecord);
+
+    // get notes and fill notes textarea
+    const note = await getNotes(transactionRecord.id, step.id);
+    if (note?.notes) setValue('notes', note?.notes);
+  };
+
+  useEffectOnce(fetchTransactionData);
+
   return (
-    <div>
+    <form onSubmit={handleSubmit(submit)}>
       <UploadContainer>
         <FormFileInput
           acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
@@ -130,6 +188,8 @@ function UploadDocumentsWrapper() {
         </Table>
 
         <TextAreaInput
+          register={register}
+          error={errors?.notes?.message}
           name="notes"
           label="Notes"
           rounded={false}
@@ -138,13 +198,21 @@ function UploadDocumentsWrapper() {
         />
 
         <ButtonsContainer>
-          <Button type="button" light>
+          <Button
+            type="button"
+            light
+            onClick={() =>
+              navigate(
+                `/transaction/${listingId}/${transactionStepsNames.assignTasks}`
+              )
+            }
+          >
             Back
           </Button>
-          <Button type="button">Confirm and Next</Button>
+          <Button type="submit">Confirm and Next</Button>
         </ButtonsContainer>
       </SectionContainer>
-    </div>
+    </form>
   );
 }
 

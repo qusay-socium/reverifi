@@ -1,7 +1,7 @@
 import { TableRow } from 'components/shared/Table/table-styles';
 import styled from 'styled-components';
 
-export const SectionContainer = styled.div`
+export const SectionContainer = styled.form`
   margin: 2.5rem;
   table {
     th:last-child {

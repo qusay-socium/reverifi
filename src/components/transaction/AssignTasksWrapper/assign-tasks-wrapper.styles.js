@@ -12,7 +12,7 @@ export const PartiesInputsContainer = styled.div`
   padding-bottom: 0.5rem;
 
   ${mq.desktopWide`
-    padding: 2rem 20rem;
+    padding: 2rem 15rem;
   `}
 `;
 
@@ -55,4 +55,8 @@ export const ButtonsContainer = styled.div`
 export const ProcessText = styled.p`
   margin: 0;
   margin-bottom: 0.6rem;
+`;
+
+export const HiddenInput = styled.input`
+  visibility: hidden;
 `;
