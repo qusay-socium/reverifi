@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /**
  * formatted date to dd/mm/yyyy
  *
@@ -6,8 +7,6 @@
  * @return {Number} formatted date
  */
 export const formatDate = (date) => {
-  if (date) {
-    const newDate = new Date(date);
-    return `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`;
-  }
+  const newDate = new Date(date);
+  return `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`;
 };

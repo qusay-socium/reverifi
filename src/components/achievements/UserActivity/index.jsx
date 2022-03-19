@@ -2,6 +2,7 @@ import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { getActionTypeById } from 'services/points-service';
 import { formatDate } from 'utils/formatDate';
+import PropTypes from 'prop-types';
 import {
   ActivityDateText,
   ActivityDetailsWrapper,
@@ -35,5 +36,15 @@ function AchievementsSidebar({ id, date }) {
     </ActivityWrapper>
   );
 }
+
+AchievementsSidebar.defaultProps = {
+  date: null,
+  id: null,
+};
+
+AchievementsSidebar.propTypes = {
+  date: PropTypes.string,
+  id: PropTypes.string,
+};
 
 export default AchievementsSidebar;
