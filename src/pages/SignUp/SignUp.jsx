@@ -87,16 +87,22 @@ function SignUp() {
       const addedUserAction = await addUserActionType({
         actionTypeName: actionTypes.completeRegistration,
       });
-
-      setRegistrationPoints(addedUserAction.points);
+      try {
+        setRegistrationPoints(addedUserAction.points);
+      } catch (error) {
+        console.log('user action type error', error);
+      }
 
       if (industryProfessional) {
         navigate('/verify-phone');
       } else {
         navigate('/my-roles');
       }
-    } catch ({ response }) {
-      if (response.status === 400) setDoesEmailExist(response.data?.message);
+      // } catch ({ response }) {
+      //   if (response.status === 400) setDoesEmailExist(response.data?.message);
+      // }
+    } catch (error) {
+      console.log('sign up error', error);
     }
   };
 
