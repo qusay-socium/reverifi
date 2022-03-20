@@ -217,6 +217,7 @@ export const PointsWrapper = styled.div`
   align-items: center;
   border-radius: 0rem;
   box-shadow: 0rem 0.0625rem 0.625rem 0.0625rem rgb(34 34 34 / 6%);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 0.625rem;

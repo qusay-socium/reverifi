@@ -67,19 +67,6 @@ export const PointsText = styled.label`
   line-height: 0.9375rem;
 `;
 
-export const EarnPointsText = styled.label`
-  color: ${colors.cyanBlue};
-  cursor: pointer;
-  font-family: 'Montserrat';
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.25rem;
-  margin-top: 2rem;
-  mix-blend-mode: normal;
-  text-decoration-line: underline;
-`;
-
 export const ActivitiesWrapper = styled.div`
   background: ${colors.white};
   border-radius: 0.5rem;

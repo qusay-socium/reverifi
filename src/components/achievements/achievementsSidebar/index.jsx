@@ -7,12 +7,12 @@ import UserActivity from '../UserActivity';
 import {
   ActivitiesWrapper,
   AvatarWrapper,
-  EarnPointsText,
   NameWrapper,
   PointsText,
   PointsWrapper,
   SinceWrapper,
   Wrapper,
+  YourActivityText,
 } from './achievements-sidebar.styles';
 
 /**
@@ -46,8 +46,8 @@ function AchievementsSidebar() {
         <NotificationIcon />
         <PointsText>{userInfo?.points} Points</PointsText>
       </PointsWrapper>
-      <EarnPointsText>Earn Points</EarnPointsText>
       <ActivitiesWrapper>
+        <YourActivityText>Your Activity</YourActivityText>
         {userActivity?.map(({ actionTypeId, id, date }) => (
           <UserActivity key={id} id={actionTypeId} date={date} />
         ))}
