@@ -58,7 +58,7 @@ export const NavLinksContainer = styled.div`
   `}
 `;
 
-export const NavSpan = styled.span`
+export const NavLink = styled.a`
   font-weight: 600;
   color: ${colors.white};
   text-decoration: none;
