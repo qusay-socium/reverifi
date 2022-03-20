@@ -3,7 +3,7 @@ import Button from 'components/shared/Button';
 import FormInput from 'components/shared/FormInput';
 import Modal from 'components/shared/Modal';
 import { useShowModal } from 'contexts/ShowModalContext';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { addInvitedUser } from 'services/user';
 import { handleTextInput } from 'utils/helpers';
@@ -17,6 +17,7 @@ import { InviteForm } from './invite-modal.styles';
  */
 function InviteModal() {
   const { showModal, setShowModal, modalData, setModalData } = useShowModal();
+  const [DoesEmailExist, setDoesEmailExist] = useState('');
 
   const {
     register,
@@ -32,23 +33,27 @@ function InviteModal() {
    * Handle form submit
    */
   const submit = async ({ name, email }) => {
-    const invitedUser = await addInvitedUser({ email, name });
+    try {
+      const invitedUser = await addInvitedUser({ email, name });
 
-    // add invited user to modal state to send invitations after step 1 submission
-    const invitedUsers = modalData?.invitedUsers?.length
-      ? [
-          ...modalData?.invitedUsers,
-          { invitedUserId: invitedUser.id, role: modalData.type },
-        ]
-      : [{ invitedUserId: invitedUser.id, role: modalData.type }];
+      // add invited user to modal state to send invitations after step 1 submission
+      const invitedUsers = modalData?.invitedUsers?.length
+        ? [
+            ...modalData?.invitedUsers,
+            { invitedUserId: invitedUser.id, role: modalData.type },
+          ]
+        : [{ invitedUserId: invitedUser.id, role: modalData.type }];
 
-    setModalData((prev) => ({
-      ...prev,
-      invitedUsers,
-    }));
+      setModalData((prev) => ({
+        ...prev,
+        invitedUsers,
+      }));
 
-    setShowModal(!showModal);
-    reset();
+      setShowModal(!showModal);
+      reset();
+    } catch ({ response }) {
+      if (response.status === 400) setDoesEmailExist(response.data?.message);
+    }
   };
 
   /**
@@ -79,7 +84,7 @@ function InviteModal() {
           defaultValue={modalData?.val}
         />
         <FormInput
-          error={errors.email?.message}
+          error={errors.email?.message || DoesEmailExist}
           label="E-mail"
           name="email"
           placeholder="eg: Jhon@domain.com"

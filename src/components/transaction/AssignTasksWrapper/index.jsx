@@ -1,3 +1,4 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as NotesIcon } from 'assets/icons/overview.svg';
 import { ReactComponent as BuyerAttorneyIcon } from 'assets/icons/transaction-buyer-attorney.svg';
 import { ReactComponent as CoordinatorIcon } from 'assets/icons/transaction-coordinator2.svg';
@@ -30,6 +31,7 @@ import {
 } from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
 import { transactionStepsNames } from 'utils/constants';
+import assignProcessesSchema from './assign-processes-schema';
 import {
   AssignTasksForm,
   ButtonsContainer,
@@ -39,6 +41,7 @@ import {
   ProcessText,
   SectionContainer,
 } from './assign-tasks-wrapper.styles';
+import assigneesSchema from './assignees-schema';
 
 const tableContent = [
   {
@@ -125,7 +128,9 @@ function AssignTasksWrapper() {
     control,
     setValue,
     reset,
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(assignProcessesSchema),
+  });
 
   const {
     handleSubmit: handleSubmit2,
@@ -133,7 +138,9 @@ function AssignTasksWrapper() {
     control: control2,
     setValue: setValue2,
     reset: reset2,
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(assigneesSchema),
+  });
 
   /**
    * handle Input Change function
@@ -687,6 +694,7 @@ function AssignTasksWrapper() {
                       errors[tableContent[index].dateName]?.message
                     }
                     register={register}
+                    isClearable={false}
                   />
                 </TableCell>
               </TableRow>

@@ -62,7 +62,11 @@ function TransactionSelectInput({
 }) {
   return (
     <div>
-      <SelectContainer noOptions={options.length > 0} rounded={rounded}>
+      <SelectContainer
+        noOptions={options.length > 0}
+        rounded={rounded}
+        error={error}
+      >
         {label && (
           <InputLabel>
             {labelIcon}

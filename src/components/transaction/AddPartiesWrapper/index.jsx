@@ -1,13 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as BuyerAgent } from 'assets/icons/gray-buyer-agent.svg';
 import { ReactComponent as Buyer } from 'assets/icons/gray-buyer-group.svg';
-import { ReactComponent as SellerAddress } from 'assets/icons/gray-seller-address.svg';
 import { ReactComponent as Seller } from 'assets/icons/gray-seller-name.svg';
 import { ReactComponent as SellerAgent } from 'assets/icons/gray-seller.svg';
 import { ReactComponent as NoteIcon } from 'assets/icons/profile-about.svg';
 import Button from 'components/shared/Button';
 import FormCheckbox from 'components/shared/FormCheckbox';
-import FormInput from 'components/shared/FormInput';
 import TextAreaInput from 'components/shared/FormTextArea';
 import TransactionSelectInput from 'components/shared/TransactionSelectInput';
 import addPartiesSchema from 'components/transaction/AddPartiesWrapper/add-parties-wrapper-schema';
@@ -26,6 +24,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addInvitation } from 'services/invitations';
+import { getListingsById } from 'services/listing';
 import {
   addOrUpdateTransaction,
   addTransactionAssignees,
@@ -157,6 +156,21 @@ export default function AddPartiesWrapper() {
     });
     setTransactionData(transactionRecord);
 
+    // get listing agent and owner
+    const listingData = await getListingsById(listingId);
+
+    if (listingData?.agent) {
+      setValue('sellerAgent', {
+        id: listingData?.agent.id,
+        name: listingData?.agent.name,
+      });
+    }
+    if (listingData?.owner) {
+      setValue('seller', {
+        id: listingData?.owner.id,
+        name: listingData?.owner.name,
+      });
+    }
     // fill inputs if data exist
     const assignees = await getAssignees(transactionRecord.id);
 
@@ -169,19 +183,27 @@ export default function AddPartiesWrapper() {
       );
 
       reset({
-        buyer: { id: buyer?.assignedUser?.id, name: buyer?.assignedUser?.name },
-        buyerAgent: {
-          id: buyerAgent?.assignedUser?.id,
-          name: buyerAgent?.assignedUser?.name,
-        },
-        seller: {
-          id: seller?.assignedUser?.id,
-          name: seller?.assignedUser?.name,
-        },
-        sellerAgent: {
-          id: sellerAgent?.assignedUser?.id,
-          name: sellerAgent?.assignedUser?.name,
-        },
+        buyer: buyer?.assignedUser?.id
+          ? { id: buyer?.assignedUser?.id, name: buyer?.assignedUser?.name }
+          : null,
+        buyerAgent: buyerAgent?.assignedUser?.id
+          ? {
+              id: buyerAgent?.assignedUser?.id,
+              name: buyerAgent?.assignedUser?.name,
+            }
+          : null,
+        seller: seller?.assignedUser?.id
+          ? {
+              id: seller?.assignedUser?.id,
+              name: seller?.assignedUser?.name,
+            }
+          : null,
+        sellerAgent: sellerAgent?.assignedUser?.id
+          ? {
+              id: sellerAgent?.assignedUser?.id,
+              name: sellerAgent?.assignedUser?.name,
+            }
+          : null,
       });
     }
 
@@ -217,19 +239,14 @@ export default function AddPartiesWrapper() {
                   label="Represent Seller"
                   name="representSeller"
                   register={register}
-                  onChange={() => setIsSellerRepresented(!isSellerRepresented)}
+                  onChange={({ target: { checked } }) =>
+                    setIsSellerRepresented(checked)
+                  }
                 />
               </CheckBoxContainer>
             </RowContainer>
             {!isSellerRepresented && (
               <RowContainer>
-                <FormInput
-                  label="Seller Address:"
-                  labelIconElement={<SellerAddress />}
-                  name="address"
-                  placeholder="Seller Address"
-                  register={register}
-                />
                 <TransactionSelectInput
                   options={sellerList}
                   control={control}
@@ -242,6 +259,7 @@ export default function AddPartiesWrapper() {
                   setModalData={setModalData}
                   error={errors.seller?.message}
                 />
+                <div />
               </RowContainer>
             )}
           </SideContainer>
