@@ -307,15 +307,17 @@ function AssignTasksWrapper() {
     });
 
     // add the note
-    await addTransactionNote({
-      notes,
-      transactionId: transactionData.id,
-      workflowStepId: workflowStep.id,
-    });
+    if (notes) {
+      await addTransactionNote({
+        notes,
+        transactionId: transactionData.id,
+        workflowStepId: workflowStep.id,
+      });
+    }
 
     // redirect to step 3
     navigate(
-      `/transaction/${listingId}/${transactionStepsNames.uploadDocuments}`
+      `/transaction/${listingId}/${transactionStepsNames.uploadDocuments.route}`
     );
   };
 
@@ -708,7 +710,7 @@ function AssignTasksWrapper() {
               light
               onClick={() =>
                 navigate(
-                  `/transaction/${listingId}/${transactionStepsNames.addParties}`
+                  `/transaction/${listingId}/${transactionStepsNames.addParties.route}`
                 )
               }
             >

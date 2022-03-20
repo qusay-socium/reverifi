@@ -18,6 +18,7 @@ import {
   updateProcessesStatus,
   updateTransaction,
 } from 'services/transactions';
+import { transactionStatus } from 'utils/constants';
 import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.styles';
 import {
   CheckboxContainer,
@@ -44,6 +45,17 @@ function CloseDealWrapper() {
     setValue,
   } = useForm();
 
+  const handleCancel = async () => {
+    // update transaction status
+    await updateTransaction({
+      status: transactionStatus.canceled,
+      transactionId: transactionData?.id,
+    });
+
+    // redirect to transaction page
+    navigate(`/transaction`);
+  };
+
   const getProcesses = async (id) => {
     const processesData = await getTransactionsProcesses(id);
     setProcesses(processesData);
@@ -57,15 +69,17 @@ function CloseDealWrapper() {
 
   const submit = async ({ notes }) => {
     // save note
-    await addTransactionNote({
-      notes,
-      transactionId: transactionData.id,
-      workflowStepId: workflowStep.id,
-    });
+    if (notes) {
+      await addTransactionNote({
+        notes,
+        transactionId: transactionData.id,
+        workflowStepId: workflowStep.id,
+      });
+    }
 
     // update transaction status
     await updateTransaction({
-      status: 'closed',
+      status: transactionStatus.closed,
       transactionId: transactionData?.id,
     });
 
@@ -141,12 +155,14 @@ function CloseDealWrapper() {
           limit={250}
         />
 
-        <ButtonsContainer>
-          <Button type="button" light>
-            Cancel
-          </Button>
-          <Button type="submit">Close Deal</Button>
-        </ButtonsContainer>
+        {transactionData?.status === transactionStatus.inProgress && (
+          <ButtonsContainer>
+            <Button type="button" light onClick={handleCancel}>
+              Cancel
+            </Button>
+            <Button type="submit">Close Deal</Button>
+          </ButtonsContainer>
+        )}
       </SectionContainer>
     )
   );

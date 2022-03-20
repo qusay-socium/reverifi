@@ -13,25 +13,25 @@ const routes = [
   {
     component: lazy(() => import('pages/Transaction/AddParties')),
     label: 'transaction-add-parties',
-    path: `/${transactionStepsNames.addParties}`,
+    path: `/${transactionStepsNames.addParties.route}`,
     title: 'Transaction Add Parties',
   },
   {
     component: lazy(() => import('pages/Transaction/AssignTasks')),
     label: 'transaction-assign-tasks',
-    path: `/${transactionStepsNames.assignTasks}`,
+    path: `/${transactionStepsNames.assignTasks.route}`,
     title: 'Transaction Assign Tasks',
   },
   {
     component: lazy(() => import('pages/Transaction/UploadDocuments')),
     label: 'transaction-upload-documents',
-    path: `/${transactionStepsNames.uploadDocuments}`,
+    path: `/${transactionStepsNames.uploadDocuments.route}`,
     title: 'Transaction Upload Documents',
   },
   {
     component: lazy(() => import('pages/Transaction/CloseDeal')),
     label: 'transaction-close-deal',
-    path: `/${transactionStepsNames.closeDeal}`,
+    path: `/${transactionStepsNames.closeDeal.route}`,
     title: 'Transaction Close Deal',
   },
 ];
