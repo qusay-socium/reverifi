@@ -25,7 +25,10 @@ function AchievementsSidebar() {
   const [userActivity, setUserActivity] = useState([]);
 
   const fetchUserActivityData = async () => {
-    const data = await getUserActionTypes(userInfo?.id);
+    if (userInfo && userInfo.id) {
+      const data = await getUserActionTypes(userInfo.id);
+    }
+
     setUserActivity(data);
   };
 

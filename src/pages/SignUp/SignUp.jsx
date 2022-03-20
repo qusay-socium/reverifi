@@ -12,10 +12,10 @@ import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { OldSocialLogin as SocialLogin } from 'react-social-login';
 import { addUserActionType } from 'services/points-service';
 import { actionTypes } from 'utils/constants';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
-import { OldSocialLogin as SocialLogin } from 'react-social-login';
 import signUpSchema from './sign-up-schema';
 import {
   FacebookButton,
@@ -87,11 +87,12 @@ function SignUp() {
       const addedUserAction = await addUserActionType({
         actionTypeName: actionTypes.completeRegistration,
       });
-      try {
-        setRegistrationPoints(addedUserAction.points);
-      } catch (error) {
-        console.log('user action type error', error);
-      }
+
+      // try {
+      //   setRegistrationPoints(addedUserAction.points);
+      // } catch (error) {
+      //   console.log('user action type error', error);
+      // }
 
       if (industryProfessional) {
         navigate('/verify-phone');
@@ -102,7 +103,7 @@ function SignUp() {
       //   if (response.status === 400) setDoesEmailExist(response.data?.message);
       // }
     } catch (error) {
-      console.log('sign up error', error);
+      console.log('error', error);
     }
   };
 
