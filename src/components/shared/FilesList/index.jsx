@@ -1,6 +1,5 @@
-/* eslint-disable react/no-array-index-key */
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
   DeleteIcon,
   SelectedItem,
@@ -12,19 +11,19 @@ import {
 function FilesList({ files, onDelete }) {
   return (
     <SelectedItemsList>
-      <span>{files.length} Files Selected</span>
-      {files.map((file, i) => (
+      <span>{files?.length} Files Selected</span>
+      {files?.map((file, i) => (
         <SelectedItem key={i}>
           <SelectedItemInnerSection>
             <ThumbnailWrapper>
               <img src={URL.createObjectURL(file)} alt="test" />
             </ThumbnailWrapper>
 
-            {file.name}
+            {file?.name}
           </SelectedItemInnerSection>
 
           <SelectedItemInnerSection>
-            <span>{file.size / 1000}kb</span>
+            <span>{file?.size / 1000}kb</span>
 
             {onDelete && <DeleteIcon onClick={() => onDelete(file)} />}
           </SelectedItemInnerSection>

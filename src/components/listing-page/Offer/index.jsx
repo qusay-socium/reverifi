@@ -13,8 +13,10 @@ import {
 } from 'components/listing-page/Offer/offer.styles';
 import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import { useShowModal } from 'contexts/ShowModalContext';
+import { useUser } from 'contexts/UserContext';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Offer details section.
@@ -26,20 +28,30 @@ import React from 'react';
  * @return {JSX.Element}
  */
 function Offer({ price, address, id }) {
-  const { setShowModal } = useShowModal();
+  const { setShowModal, setModalData } = useShowModal();
+
+  const navigate = useNavigate();
+  const { isLoggedIn } = useUser();
 
   return (
     <Container>
       <OfferDetails>
         <div>
-          <Price> {`$ ${price.toLocaleString()}`} </Price>
+          <Price> {`$ ${price?.toLocaleString() || 0}`} </Price>
           <Location>
             <LocationPinIcon />
             <LocationText> {address}</LocationText>
           </Location>
         </div>
         <SubmitOffer>
-          <SubmitButton aria-label="Submit an Offer" type="button">
+          <SubmitButton
+            aria-label="Submit an Offer"
+            type="button"
+            onClick={() => {
+              if (!isLoggedIn) navigate('/sign-up');
+              setModalData({ address, isShowOffer: true, price });
+            }}
+          >
             Submit an Offer
           </SubmitButton>
         </SubmitOffer>
