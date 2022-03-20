@@ -24,10 +24,6 @@ export const TextContainer = styled.div`
   padding: 1rem;
 `;
 
-export const Title = styled.h2`
-  font-weight: 600;
-`;
-
 export const PriceContainer = styled.div`
   padding-left: 1rem;
 `;

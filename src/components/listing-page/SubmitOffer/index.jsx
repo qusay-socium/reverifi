@@ -8,8 +8,9 @@ import Modal from 'components/shared/Modal';
 import Toast from 'components/shared/Toast';
 import { useShowModal } from 'contexts/ShowModalContext';
 import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { createPurchaseOffer } from 'services/purchase-offer';
@@ -25,7 +26,6 @@ import {
   PriceContainer,
   SubmitOfferImage,
   TextContainer,
-  Title,
 } from './submit-offer.style';
 
 /**
@@ -51,21 +51,27 @@ function SubmitOffer() {
   });
 
   const submit = async ({ price, phone }) => {
-    const body = { createdBy: userInfo?.id, listingId: listing?.id, price };
-    const updateBody = { id: userInfo?.id, phone };
-    await createPurchaseOffer(body);
+    const createOfferData = {
+      createdBy: userInfo?.id,
+      listingId: listing?.id,
+      price,
+    };
+    const updatePhoneData = { id: userInfo?.id, phone };
+    await createPurchaseOffer(createOfferData);
     if (!phoneNumber) {
-      await updatePhoneNumber(updateBody);
+      await updatePhoneNumber(updatePhoneData);
     }
     setIsSubmitted(true);
   };
 
-  useEffect(() => {
+  const checkPhoneNumber = async () => {
     if (userInfo?.phone) {
       setPhoneNumber(userInfo?.phone);
       setValue('showPhoneNumber', false);
     }
-  }, []);
+  };
+
+  useEffectOnce(checkPhoneNumber);
 
   /**
    * hook that hide success toast message after n duration in seconds submitted
@@ -83,7 +89,7 @@ function SubmitOffer() {
         <SubmitOfferImage src={submitOfferImage} />
         <TextContainer>
           <PriceContainer>
-            <Title>Purchase Offer</Title>
+            <h2>Purchase Offer</h2>
             <Price>{modalData?.price.toLocaleString()}</Price>
             <Location>
               <LocationIcon />
@@ -92,7 +98,7 @@ function SubmitOffer() {
           </PriceContainer>
           <FormContainer onSubmit={handleSubmit(submit)}>
             <FormInput
-              error={errors.price?.message}
+              error={errors?.price?.message}
               label="Offer Price"
               name="price"
               register={register}
@@ -107,7 +113,7 @@ function SubmitOffer() {
                 label="Phone Number"
                 name="phone"
                 register={register}
-                error={errors.phone?.message}
+                error={errors?.phone?.message}
                 type="text"
                 maxLength="10"
                 onChange={handleNumberInput}

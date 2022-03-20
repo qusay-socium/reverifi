@@ -1,7 +1,8 @@
 import Accordion from 'components/shared/Accordion';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
-import React, { useEffect, useState } from 'react';
+import useEffectOnce from 'hooks/use-effect-once';
+import React, { useState } from 'react';
 import { getAllPurchaseOffers } from 'services/purchase-offer';
 import { formatPhoneNumber } from 'utils/helpers';
 import {
@@ -25,9 +26,7 @@ function OffersTable() {
     setOffers(offerData);
   };
 
-  useEffect(() => {
-    getAllUserPurchaseOffers();
-  }, []);
+  useEffectOnce(getAllUserPurchaseOffers);
 
   return (
     <Table headers={['PROPERTY']}>
@@ -53,7 +52,7 @@ function OffersTable() {
                             Mortgage Pre-approval Letter
                           </OfferListItemText>
                           <p>
-                            <a href="##">{attachments}</a>
+                            <span>{attachments}</span>
                           </p>
                         </OfferListItem>
                         <OfferListItem>

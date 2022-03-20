@@ -37,13 +37,13 @@ function ListingsTable({ listings, pageNumber, setPageNumber }) {
                 <AgentContainer>
                   <RolesText>
                     {agent?.roles?.map(({ role }, i, array) =>
-                      i + 1 !== array.length ? `, ` : role
+                      i + 1 !== array.length ? `${role}, ` : role
                     )}
                   </RolesText>
                   {agent?.roles.length > 2 && (
                     <Tooltip
                       text={agent?.roles?.map(({ role }, i, array) =>
-                        i + 1 !== array.length ? `, ` : role
+                        i + 1 !== array.length ? `${role}, ` : role
                       )}
                       arrowPosition="top"
                       position={[3, 0, 0, 2]}
