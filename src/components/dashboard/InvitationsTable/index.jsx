@@ -6,6 +6,7 @@ import Table from 'components/shared/Table';
 import {
   IconContainer,
   TableCell,
+  TableCellStatus,
   TableRow,
 } from 'components/shared/Table/table-styles';
 import useEffectOnce from 'hooks/use-effect-once';
@@ -78,25 +79,25 @@ function InvitationsTable({ type }) {
             {type === 'sent' ? (
               <TableCell>
                 <StatusText status={status}>
-                  {status || invitationStatus.waiting}
+                  {status || invitationStatus?.waiting}
                 </StatusText>
               </TableCell>
             ) : status ? (
-              <TableCell>
+              <TableCellStatus>
                 <StatusText status={status}>{status}</StatusText>
-              </TableCell>
+              </TableCellStatus>
             ) : (
               <TableCell iconsCell>
                 <IconContainer
                   onClick={() =>
-                    handleInvitationStatus(id, invitationStatus.accepted)
+                    handleInvitationStatus(id, invitationStatus?.accepted)
                   }
                 >
                   <AcceptIcon />
                 </IconContainer>
                 <IconContainer
                   onClick={() =>
-                    handleInvitationStatus(id, invitationStatus.declined)
+                    handleInvitationStatus(id, invitationStatus?.declined)
                   }
                 >
                   <DeclineIcon />

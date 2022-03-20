@@ -64,6 +64,10 @@ export const TableHead = styled.th`
   padding-left: 1rem;
 `;
 
+export const TableCellStatus = styled(TableCell)`
+  text-align: right;
+`;
+
 export const IconContainer = styled.button.attrs(() => ({
   type: 'button',
 }))`
