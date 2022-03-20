@@ -33,12 +33,12 @@
         "namedComponents": "function-declaration"
       }
     ],
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "react/no-array-index-key": "warn",
     "react/forbid-prop-types": "warn",
     "import/no-extraneous-dependencies": [
-      "error",
+      "warn",
       {
         "devDependencies": [
           "**/*.test.js",
@@ -63,13 +63,13 @@
       }
     ],
     "no-param-reassign": [
-      "error",
+      "warn",
       {
         "props": false
       }
     ],
-    "jsx-a11y/label-has-associated-control": "error",
-    "jsx-a11y/anchor-is-valid": "error",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
     "no-underscore-dangle": [
       "warn",
       {
