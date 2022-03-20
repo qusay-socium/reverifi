@@ -7,8 +7,9 @@ export default function ResultNotFound() {
     "We couldn't find anyone matching your search. Please adjust your filters and try again.";
   return (
     <ResultContainer>
-      <TextContainer>{resultText}</TextContainer>
       <ResultImage />
+
+      <TextContainer>{resultText}</TextContainer>
     </ResultContainer>
   );
 }
