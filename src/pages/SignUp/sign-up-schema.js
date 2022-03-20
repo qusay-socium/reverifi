@@ -3,7 +3,7 @@ import * as yup from 'yup';
 // make sure that the password have 1 uppercase, 1 lowercase, 1 special case and 1 number characters
 const passwordRegex =
   // eslint-disable-next-line no-useless-escape
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|])(?=.{8,})/;
 
 const signUpSchema = yup
   .object({

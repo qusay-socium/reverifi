@@ -1,6 +1,3 @@
-import statusDropdownIcon from 'assets/icons/dashboard-dropdown-icon1.svg';
-import roleDropdownIcon from 'assets/icons/dashboard-dropdown-icon2.svg';
-import DropdownMenu from 'components/shared/DropdownMenu';
 import ListingsTable from 'components/transaction-info/ListingsTable';
 import TransactionsTable from 'components/transaction-info/TransactionsTable';
 import { useUser } from 'contexts/UserContext';
@@ -13,7 +10,6 @@ import {
 } from 'services/transactions';
 import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
 import {
-  DropdownMenusContainer,
   HeadingText,
   TransactionInfoContainer,
   TransactionsContainer,
@@ -70,19 +66,6 @@ function TransactionInfoWrapper() {
 
       <TransactionsContainer>
         <HeadingText>My Transactions</HeadingText>
-
-        <DropdownMenusContainer>
-          <DropdownMenu
-            name="status"
-            placeholder="select status"
-            leftIcon={statusDropdownIcon}
-          />
-          <DropdownMenu
-            name="role"
-            placeholder="select role"
-            leftIcon={roleDropdownIcon}
-          />
-        </DropdownMenusContainer>
       </TransactionsContainer>
       <TransactionsTable
         assignedTransactions={assignedTransactions}
