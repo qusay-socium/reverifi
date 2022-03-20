@@ -93,16 +93,16 @@ export function UserProvider({ children }) {
       try {
         const { user, image } = await getUserInfo();
         setUserInfo({
+          createdAt: user?.createdAt,
           email: user?.email,
           id: user?.id,
+          image,
           name: user?.name,
           phone: user?.phone,
           points: user?.points,
-          createdAt: user?.createdAt,
-          image,
         });
       } catch (err) {
-        setUserInfo({ email, id, name, phone, points, createdAt });
+        setUserInfo({ createdAt, email, id, name, phone, points });
       }
     },
     [logout]
