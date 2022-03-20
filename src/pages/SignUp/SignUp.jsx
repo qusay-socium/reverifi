@@ -87,6 +87,7 @@ function SignUp() {
       const addedUserAction = await addUserActionType({
         actionTypeName: actionTypes.completeRegistration,
       });
+
       // try {
       //   setRegistrationPoints(addedUserAction.points);
       // } catch (error) {
