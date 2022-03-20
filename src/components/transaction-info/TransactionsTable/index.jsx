@@ -5,8 +5,10 @@ import {
   TableRow,
 } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
+import { useUser } from 'contexts/UserContext';
+import useEffectOnce from 'hooks/use-effect-once';
 import propTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { transactionStatus, transactionStepsNames } from 'utils/constants';
 import { StepLink, SummaryIcon } from './transactions-table.styles';
 
@@ -19,6 +21,10 @@ import { StepLink, SummaryIcon } from './transactions-table.styles';
  * @return {JSX.Element}
  */
 function TransactionsTable({ assignedTransactions, createdTransactions }) {
+  const [filteredAssignedTransactions, setFilteredAssignedTransactions] =
+    useState([]);
+  const { userInfo } = useUser();
+
   /**
    * get step route function
    */
@@ -41,31 +47,46 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
     return `/transaction/${listingId}/${transactionStepsNames.closeDeal.route}`;
   };
 
+  /**
+   * filter assigned transactions to exclude current logged in user
+   */
+  const filterAssignedTransactions = () => {
+    const filtered = assignedTransactions.filter(
+      ({ assignedTransaction }) =>
+        assignedTransaction?.transactionListing.agentId === userInfo?.id
+    );
+    setFilteredAssignedTransactions(filtered);
+  };
+
+  useEffectOnce(filterAssignedTransactions);
+
   return (
     <Table headers={['PROPERTY', 'MY ROLE', 'STATUS', null]}>
-      {assignedTransactions?.map(({ id, assignedTransaction, role }) => (
-        <TableRow key={id}>
-          <TableCell>
-            <StepLink to={getStepRoute(assignedTransaction)}>
-              {assignedTransaction?.transactionListing?.address}
-            </StepLink>
-          </TableCell>
-          <TableCell>{role || 'N/A'}</TableCell>
-          <TableCell>{assignedTransaction?.status}</TableCell>
-          <TableCell iconsCell>
-            <IconContainer hover>
-              <SummaryIcon />
-              <Tooltip
-                text="Transaction Summary
+      {filteredAssignedTransactions?.map(
+        ({ id, assignedTransaction, role }) => (
+          <TableRow key={id}>
+            <TableCell>
+              <StepLink to={getStepRoute(assignedTransaction)}>
+                {assignedTransaction?.transactionListing?.address}
+              </StepLink>
+            </TableCell>
+            <TableCell>{role || 'N/A'}</TableCell>
+            <TableCell>{assignedTransaction?.status}</TableCell>
+            <TableCell iconsCell>
+              <IconContainer hover>
+                <SummaryIcon />
+                <Tooltip
+                  text="Transaction Summary
                   Report "
-                arrowPosition="top"
-                position={[3, -2]}
-                lineBreak
-              />
-            </IconContainer>
-          </TableCell>
-        </TableRow>
-      ))}
+                  arrowPosition="top"
+                  position={[3, -2]}
+                  lineBreak
+                />
+              </IconContainer>
+            </TableCell>
+          </TableRow>
+        )
+      )}
 
       {createdTransactions?.map(
         ({ id, status, transactionListing, listingId, workflowStep }) => (
@@ -75,7 +96,9 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
                 {transactionListing?.address}
               </StepLink>
             </TableCell>
-            <TableCell>N/A</TableCell>
+            <TableCell>
+              {transactionListing?.agentId ? 'Seller Agent' : 'Seller'}
+            </TableCell>
             <TableCell>{status}</TableCell>
             <TableCell iconsCell>
               <IconContainer hover>
