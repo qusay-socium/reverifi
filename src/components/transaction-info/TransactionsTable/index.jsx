@@ -24,21 +24,21 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
    */
   const getStepRoute = ({ listingId, status, workflowStep }) => {
     if (status !== transactionStatus.inProgress) {
-      return `/transaction/${listingId}/${transactionStepsNames.closeDeal}`;
+      return `/transaction/${listingId}/${transactionStepsNames.closeDeal.route}`;
     }
 
     // otherwise redirect to the step that in progress
-    if (workflowStep?.name === 'Add Involved Parties') {
-      return `/transaction/${listingId}/${transactionStepsNames.addParties}`;
+    if (workflowStep?.name === transactionStepsNames.addParties.name) {
+      return `/transaction/${listingId}/${transactionStepsNames.addParties.route}`;
     }
-    if (workflowStep?.name === 'Manage & Assign Tasks') {
-      return `/transaction/${listingId}/${transactionStepsNames.assignTasks}`;
+    if (workflowStep?.name === transactionStepsNames.assignTasks.name) {
+      return `/transaction/${listingId}/${transactionStepsNames.assignTasks.route}`;
     }
-    if (workflowStep?.name === 'Upload Documents') {
-      return `/transaction/${listingId}/${transactionStepsNames.uploadDocuments}`;
+    if (workflowStep?.name === transactionStepsNames.uploadDocuments.name) {
+      return `/transaction/${listingId}/${transactionStepsNames.uploadDocuments.route}`;
     }
 
-    return `/transaction/${listingId}/${transactionStepsNames.closeDeal}`;
+    return `/transaction/${listingId}/${transactionStepsNames.closeDeal.route}`;
   };
 
   return (

@@ -129,14 +129,18 @@ export default function AddPartiesWrapper() {
     });
 
     // add the note
-    await addTransactionNote({
-      notes,
-      transactionId: transactionData.id,
-      workflowStepId: workflowStep.id,
-    });
+    if (notes) {
+      await addTransactionNote({
+        notes,
+        transactionId: transactionData.id,
+        workflowStepId: workflowStep.id,
+      });
+    }
 
     // navigate to step 2
-    navigate(`/transaction/${listingId}/${transactionStepsNames.assignTasks}`);
+    navigate(
+      `/transaction/${listingId}/${transactionStepsNames.assignTasks.route}`
+    );
   };
 
   /**

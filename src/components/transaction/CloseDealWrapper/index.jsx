@@ -69,11 +69,13 @@ function CloseDealWrapper() {
 
   const submit = async ({ notes }) => {
     // save note
-    await addTransactionNote({
-      notes,
-      transactionId: transactionData.id,
-      workflowStepId: workflowStep.id,
-    });
+    if (notes) {
+      await addTransactionNote({
+        notes,
+        transactionId: transactionData.id,
+        workflowStepId: workflowStep.id,
+      });
+    }
 
     // update transaction status
     await updateTransaction({

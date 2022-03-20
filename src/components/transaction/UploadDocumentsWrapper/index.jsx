@@ -133,14 +133,18 @@ function UploadDocumentsWrapper() {
    */
   const submit = async ({ notes }) => {
     // save note
-    await addTransactionNote({
-      notes,
-      transactionId: transactionData.id,
-      workflowStepId: workflowStep.id,
-    });
+    if (notes) {
+      await addTransactionNote({
+        notes,
+        transactionId: transactionData.id,
+        workflowStepId: workflowStep.id,
+      });
+    }
 
     //  redirect to step 4
-    navigate(`/transaction/${listingId}/${transactionStepsNames.closeDeal}`);
+    navigate(
+      `/transaction/${listingId}/${transactionStepsNames.closeDeal.route}`
+    );
   };
 
   /**
@@ -277,7 +281,7 @@ function UploadDocumentsWrapper() {
             light
             onClick={() =>
               navigate(
-                `/transaction/${listingId}/${transactionStepsNames.assignTasks}`
+                `/transaction/${listingId}/${transactionStepsNames.assignTasks.route}`
               )
             }
           >

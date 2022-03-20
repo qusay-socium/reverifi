@@ -1,10 +1,10 @@
 export const DEFAULT_PAGE_LIMIT = 8;
 
 export const transactionStepsNames = {
-  addParties: 'add-parties',
-  assignTasks: 'assign-tasks',
-  closeDeal: 'close-deal',
-  uploadDocuments: 'upload-documents',
+  addParties: { name: 'Add Involved Parties', route: 'add-parties' },
+  assignTasks: { name: 'Manage & Assign Tasks', route: 'assign-tasks' },
+  closeDeal: { name: 'Finalize and Close Deal', route: 'close-deal' },
+  uploadDocuments: { name: 'Upload Documents', route: 'upload-documents' },
 };
 
 export const invitationStatus = {

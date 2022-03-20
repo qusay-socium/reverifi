@@ -11,24 +11,24 @@ import { transactionStepsNames } from 'utils/constants';
 
 const steps = [
   {
-    paramString: transactionStepsNames.addParties,
+    paramString: transactionStepsNames.addParties.route,
     stepNum: 1,
-    text: 'Add Involved Parties',
+    text: transactionStepsNames.addParties.name,
   },
   {
-    paramString: transactionStepsNames.assignTasks,
+    paramString: transactionStepsNames.assignTasks.route,
     stepNum: 2,
-    text: 'Manage & Assign Tasks',
+    text: transactionStepsNames.assignTasks.name,
   },
   {
-    paramString: transactionStepsNames.uploadDocuments,
+    paramString: transactionStepsNames.uploadDocuments.route,
     stepNum: 3,
-    text: 'Upload Documents',
+    text: transactionStepsNames.uploadDocuments.name,
   },
   {
-    paramString: transactionStepsNames.closeDeal,
+    paramString: transactionStepsNames.closeDeal.route,
     stepNum: 4,
-    text: 'Finalize and Close Deal',
+    text: transactionStepsNames.closeDeal.name,
   },
 ];
 

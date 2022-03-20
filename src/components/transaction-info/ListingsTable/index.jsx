@@ -62,7 +62,7 @@ function ListingsTable({ listings, pageNumber, setPageNumber }) {
             </TableCell>
             <TableCell iconsCell>
               <LinkText
-                to={`/transaction/${id}/${transactionStepsNames.addParties}`}
+                to={`/transaction/${id}/${transactionStepsNames.addParties.route}`}
               >
                 start the process
               </LinkText>
