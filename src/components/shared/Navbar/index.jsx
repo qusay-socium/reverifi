@@ -7,7 +7,7 @@ import { ReactComponent as SavedListingsIcon } from 'assets/saved-listings.svg';
 import { ReactComponent as SignOut } from 'assets/sign-out.svg';
 import Menu from 'components/shared/Menu';
 import { useUser } from 'contexts/UserContext';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   BroadNavContainer,
@@ -24,7 +24,7 @@ import {
   SignUpButton,
   UserControlSectionWrapper,
   UserNavControlContainer,
-  UserNavRegContainer
+  UserNavRegContainer,
 } from './navbar.styles';
 
 /**
@@ -34,7 +34,7 @@ import {
  */
 function Navbar() {
   const navigate = useNavigate();
-  const { userInfo: { name, points } = {}, isLoggedIn, logout } = useUser();
+  const { setUserInfo, userInfo, isLoggedIn, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef(null);
 
@@ -54,6 +54,15 @@ function Navbar() {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (userInfo?.points === 0) {
+      setUserInfo({
+        ...userInfo,
+        points: userInfo?.points + 30,
+      });
+    }
+  }, [userInfo]);
+
   return (
     <NavContainer>
       <MenuIcon />
@@ -68,7 +77,7 @@ function Navbar() {
           <UserNavControlContainer>
             <UserControlSectionWrapper ref={clickRef} onClick={handleOpenMenu}>
               <Avatar />
-              <span>{name}</span>
+              <span>{userInfo?.name}</span>
               <ChevronDown />
             </UserControlSectionWrapper>
             <Menu
@@ -81,7 +90,7 @@ function Navbar() {
                 <PointsWrapper>
                   <NotificationIcon />
                   <div>
-                    <span>{points}</span> Points
+                    <span>{userInfo?.points}</span> Points
                   </div>
                 </PointsWrapper>
                 <MenuTopWrapper>
