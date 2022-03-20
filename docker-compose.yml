@@ -10,6 +10,8 @@ services:
       - PORT=80
       - VIRTUAL_HOST=reverifi.docker
       - REACT_APP_API_URL=http://reverifi-api.docker
+      - REACT_APP_FACEBOOK_APP_ID=348656156906042
+      - REACT_APP_GOOGLE_CLIENT_ID=136239126169-7ffbg6nhe5uno7p0ng4kvbld4mak9dph.apps.googleusercontent.com
     volumes:
       - ${PWD}:/app
     ports:

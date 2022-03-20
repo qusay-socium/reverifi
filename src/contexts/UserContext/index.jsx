@@ -108,6 +108,32 @@ export function UserProvider({ children }) {
   );
 
   /**
+   * Login or sign up Google user.
+   *
+   * @param {string} idToken Google user id token retrived from `react-social-login`.
+   */
+  const googleLogin = useCallback(
+    async (idToken) => {
+      const { token } = await auth.googleLogin(idToken);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
+
+  /**
+   * Login or sign up Facebook user.
+   *
+   * @param {string} accessToken Facebook user access token retrived from `react-social-login`.
+   */
+  const facebookLogin = useCallback(
+    async (accessToken) => {
+      const { token } = await auth.facebookLogin(accessToken);
+      setTokenData(token);
+    },
+    [setTokenData]
+  );
+
+  /**
    * Login user.
    *
    * @param {string} email User email.
@@ -147,8 +173,17 @@ export function UserProvider({ children }) {
   });
 
   const value = useMemo(
-    () => ({ isLoggedIn, login, logout, setUserInfo, signUp, userInfo }),
-    [isLoggedIn, userInfo, login, logout, signUp]
+    () => ({
+      facebookLogin,
+      googleLogin,
+      isLoggedIn,
+      login,
+      logout,
+      setUserInfo,
+      signUp,
+      userInfo,
+    }),
+    [isLoggedIn, userInfo, login, logout, signUp, googleLogin, facebookLogin]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

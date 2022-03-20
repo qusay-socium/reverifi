@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as EyeIcon } from 'assets/eye-icon.svg';
-import { ReactComponent as AppleIcon } from 'assets/icons/apple.svg';
 import { ReactComponent as FacebookIcon } from 'assets/icons/facebook.svg';
 import { ReactComponent as GoogleIcon } from 'assets/icons/google.svg';
 import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
@@ -16,9 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { addUserActionType } from 'services/points-service';
 import { actionTypes } from 'utils/constants';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
+import { OldSocialLogin as SocialLogin } from 'react-social-login';
 import signUpSchema from './sign-up-schema';
 import {
-  AppleButton,
   FacebookButton,
   Form,
   GoogleButton,
@@ -35,6 +34,8 @@ import {
   Title,
 } from './sign-up.styles';
 
+const { REACT_APP_FACEBOOK_APP_ID, REACT_APP_GOOGLE_CLIENT_ID } = process.env;
+
 /**
  * Render sign up page.
  *
@@ -42,7 +43,7 @@ import {
  */
 function SignUp() {
   const navigate = useNavigate();
-  const { signUp } = useUser();
+  const { signUp, googleLogin, facebookLogin } = useUser();
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
@@ -101,6 +102,21 @@ function SignUp() {
 
   usePointsNotification(registrationPoints, !!registrationPoints);
 
+  /**
+   * Handle social link success.
+   *
+   * @param {Object} linkData link data returned from social APIs.
+   */
+  const handleSocialLogin = async (linkData) => {
+    const { _provider, _token } = linkData;
+    if (_provider === 'google') {
+      await googleLogin(_token.idToken);
+    }
+    if (_provider === 'facebook') {
+      await facebookLogin(_token.accessToken);
+    }
+    navigate('/my-roles');
+  };
   return (
     <SignUpContainer>
       <ImageContainer>
@@ -192,24 +208,31 @@ function SignUp() {
 
         <div>
           <OrText>Or</OrText>
-          <FacebookButton>
-            <div>
-              <FacebookIcon />
-              <span> Continue with Facebook</span>
-            </div>
-          </FacebookButton>
-          <AppleButton>
-            <div>
-              <AppleIcon />
-              <span> Continue with Apple</span>
-            </div>
-          </AppleButton>
-          <GoogleButton>
-            <div>
-              <GoogleIcon />
-              <span>Continue with Google</span>
-            </div>
-          </GoogleButton>
+          <SocialLogin
+            provider="facebook"
+            appId={REACT_APP_FACEBOOK_APP_ID}
+            callback={handleSocialLogin}
+            cookiePolicy="single_host_origin"
+          >
+            <FacebookButton>
+              <div>
+                <FacebookIcon />
+                <span> Continue with Facebook</span>
+              </div>
+            </FacebookButton>
+          </SocialLogin>
+          <SocialLogin
+            provider="google"
+            appId={REACT_APP_GOOGLE_CLIENT_ID}
+            callback={handleSocialLogin}
+          >
+            <GoogleButton>
+              <div>
+                <GoogleIcon />
+                <span>Continue with Google</span>
+              </div>
+            </GoogleButton>
+          </SocialLogin>
           <SocialLinksText>
             Have an account?
             <LinkText onClick={() => navigate('/login')}>Log In</LinkText>
