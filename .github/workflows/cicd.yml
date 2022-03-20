@@ -19,6 +19,8 @@ jobs:
           script: |
             export NVM_DIR=~/.nvm && source ~/.nvm/nvm.sh
             export REACT_APP_API_URL=https://reverifi.sociumtech.com
+            export REACT_APP_GOOGLE_CLIENT_ID=136239126169-7ffbg6nhe5uno7p0ng4kvbld4mak9dph.apps.googleusercontent.com
+            export REACT_APP_FACEBOOK_APP_ID=348656156906042
             cd /home/reverifi-frontend/reverifi && git checkout package-lock.json && git pull origin main
             cd /home/reverifi-frontend/reverifi
             rm -rf node_modules
