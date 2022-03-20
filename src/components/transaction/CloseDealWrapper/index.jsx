@@ -75,9 +75,9 @@ function CloseDealWrapper() {
     const buyerAgent = assignees.find((item) => item.role === 'Buyer Agent');
 
     await updateTransactionListing({
-      agentId: buyerAgent?.assignees?.assignedUser?.id,
+      agentId: buyerAgent?.assignedUser?.id,
       id: listingId,
-      ownerId: buyer?.assignees?.assignedUser?.id,
+      ownerId: buyer?.assignedUser?.id,
     });
 
     // redirect to transaction page
