@@ -48,16 +48,6 @@ export const NavLinksContainer = styled.div`
   display: none;
   font-size: 0.9rem;
 
-  a {
-    font-weight: 600;
-    color: ${colors.white};
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: ${colors.green};
-  }
-
   ${mq.desktopWide`
     align-items: center;
     display: flex;
@@ -66,6 +56,17 @@ export const NavLinksContainer = styled.div`
     text-align: center;
     width: fit-content;
   `}
+`;
+
+export const NavSpan = styled.span`
+  font-weight: 600;
+  color: ${colors.white};
+  text-decoration: none;
+
+  &:hover {
+    color: ${colors.green};
+    cursor: pointer;
+  }
 `;
 
 export const UserNavRegContainer = styled.div`

@@ -19,6 +19,7 @@ import {
   NarrowNavContainer,
   NavItemsContainer,
   NavLinksContainer,
+  NavSpan,
   PointsWrapper,
   SignInButton,
   SignUpButton,
@@ -68,9 +69,13 @@ function Navbar() {
       <Logo onClick={() => navigate('/')} />
       <NavItemsContainer>
         <NavLinksContainer>
-          <a href="/dashboard/how-we-work">How We Work</a>
-          <a href="/agent-list">Find an Agent</a>
-          <a href="/">Knowledge Center</a>
+          <NavSpan onClick={() => navigate('/dashboard/how-we-work')}>
+            How We Work
+          </NavSpan>
+          <NavSpan onClick={() => navigate('/agent-list')}>
+            Find an Agent
+          </NavSpan>
+          <NavSpan onClick={() => navigate('/')}>Knowledge Center</NavSpan>
         </NavLinksContainer>
         {isLoggedIn ? (
           <UserNavControlContainer>
