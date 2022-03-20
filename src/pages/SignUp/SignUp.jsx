@@ -85,7 +85,7 @@ function SignUp() {
 
       setRegistrationPoints(addedUserAction.points);
     } catch (err) {
-      console.log(err);
+      // handle registration points error (will be implemented later on)
     }
 
     try {
