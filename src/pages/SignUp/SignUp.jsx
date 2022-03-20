@@ -6,7 +6,6 @@ import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
-import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useRef, useState } from 'react';
@@ -46,9 +45,7 @@ function SignUp() {
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const [registrationPoints, setRegistrationPoints] = useState(null);
   const continueButton = useRef(null);
-  const { usePointsNotification } = usePointsNotifications();
 
   const {
     register,
@@ -82,29 +79,15 @@ function SignUp() {
 
       await signUp(name, email, password, phone);
 
-      // try {
-      // const addedUserAction = await addUserActionType({
-      //   actionTypeName: actionTypes.completeRegistration,
-      // });
-      //   setRegistrationPoints(addedUserAction.points);
-      // } catch (error) {
-      //   console.log('user action type error', error);
-      // }
-
       if (industryProfessional) {
         navigate('/verify-phone');
       } else {
         navigate('/my-roles');
       }
-      // } catch ({ response }) {
-      //   if (response.status === 400) setDoesEmailExist(response.data?.message);
-      // }
     } catch (error) {
       console.log('error', error);
     }
   };
-
-  usePointsNotification(registrationPoints, !!registrationPoints);
 
   /**
    * Handle social link success.
