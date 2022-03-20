@@ -13,8 +13,8 @@ import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { actionTypes } from 'utils/constants';
 import { addUserActionType } from 'services/points-service';
+import { actionTypes } from 'utils/constants';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
 import signUpSchema from './sign-up-schema';
 import {
@@ -79,15 +79,19 @@ function SignUp() {
     industryProfessional,
   }) => {
     try {
-      const phone = phoneNumber ? `+1${phoneNumber}` : null;
-
-      await signUp(name, email, password, phone);
-
       const addedUserAction = await addUserActionType({
         actionTypeName: actionTypes.completeRegistration,
       });
 
       setRegistrationPoints(addedUserAction.points);
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const phone = phoneNumber ? `+1${phoneNumber}` : null;
+
+      await signUp(name, email, password, phone);
 
       if (industryProfessional) {
         navigate('/verify-phone');

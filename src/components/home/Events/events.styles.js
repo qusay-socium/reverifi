@@ -7,6 +7,7 @@ import mq from 'styles/media-query';
 export const MainContainer = styled.div`
   background: ${colors.alabaster};
   padding: 2.25rem 0.75rem;
+  margin-top: 1.2rem;
 
   ${mq.desktop`
     padding: 2rem 1.75rem;

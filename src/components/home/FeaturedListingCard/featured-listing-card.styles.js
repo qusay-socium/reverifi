@@ -106,6 +106,7 @@ export const Image = styled.img`
   height: 100%;
   margin-right: 1rem;
   width: 100%;
+  object-fit: cover;
 `;
 
 export const CardBody = styled.div`
