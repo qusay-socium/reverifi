@@ -79,19 +79,15 @@ function SignUp() {
     industryProfessional,
   }) => {
     try {
+      const phone = phoneNumber ? `+1${phoneNumber}` : null;
+
+      await signUp(name, email, password, phone);
+
       const addedUserAction = await addUserActionType({
         actionTypeName: actionTypes.completeRegistration,
       });
 
       setRegistrationPoints(addedUserAction.points);
-    } catch (err) {
-      // handle registration points error (will be implemented later on)
-    }
-
-    try {
-      const phone = phoneNumber ? `+1${phoneNumber}` : null;
-
-      await signUp(name, email, password, phone);
 
       if (industryProfessional) {
         navigate('/verify-phone');
