@@ -71,8 +71,8 @@ function UploadDocumentsWrapper() {
   /**
    *  fetch Documents function
    */
-  const fetchDocuments = async () => {
-    const docs = await getTransactionDocuments();
+  const fetchDocuments = async (id) => {
+    const docs = await getTransactionDocuments(id);
 
     setDocuments(docs);
     setUploadedFile(null);
@@ -85,7 +85,7 @@ function UploadDocumentsWrapper() {
     const docId = getDocumentById(id);
 
     await deleteTransactionDocument(docId?.id);
-    fetchDocuments();
+    fetchDocuments(transactionData?.id);
   };
 
   /**
@@ -121,7 +121,7 @@ function UploadDocumentsWrapper() {
             transactionId: transactionData?.id,
           });
 
-          fetchDocuments();
+          fetchDocuments(transactionData?.id);
           setLoading(false);
         }
       },
@@ -167,7 +167,7 @@ function UploadDocumentsWrapper() {
     setDocumentsNames(docNames);
 
     // fetch transaction uploaded documents
-    fetchDocuments();
+    fetchDocuments(transactionRecord?.id);
 
     // get notes and fill notes textarea
     const note = await getNotes(transactionRecord.id, step.id);
