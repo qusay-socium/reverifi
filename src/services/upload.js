@@ -1,7 +1,7 @@
-import http from 'utils/http';
 import { apiUrl } from 'config/config';
+import http from 'utils/http';
 
-const uploadImage = async ({
+const singleFileUpload = async ({
   file,
   onError = () => {},
   onSuccess = () => {},
@@ -10,7 +10,7 @@ const uploadImage = async ({
   formData.append('file', file[0]);
 
   await http
-    .post(`${apiUrl}/upload/image`, formData)
+    .post(`${apiUrl}/upload/file`, formData)
     .then((response) => {
       onSuccess(response);
     })
@@ -19,4 +19,4 @@ const uploadImage = async ({
     });
 };
 
-export default uploadImage;
+export default singleFileUpload;

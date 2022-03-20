@@ -64,7 +64,9 @@ export const TableHead = styled.th`
   padding-left: 1rem;
 `;
 
-export const IconContainer = styled.button`
+export const IconContainer = styled.button.attrs(() => ({
+  type: 'button',
+}))`
   background: none;
   border: none;
   cursor: pointer;
