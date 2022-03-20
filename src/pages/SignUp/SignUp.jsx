@@ -13,8 +13,6 @@ import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { OldSocialLogin as SocialLogin } from 'react-social-login';
-import { addUserActionType } from 'services/points-service';
-import { actionTypes } from 'utils/constants';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
 import signUpSchema from './sign-up-schema';
 import {
@@ -84,11 +82,10 @@ function SignUp() {
 
       await signUp(name, email, password, phone);
 
-      const addedUserAction = await addUserActionType({
-        actionTypeName: actionTypes.completeRegistration,
-      });
-
       // try {
+      // const addedUserAction = await addUserActionType({
+      //   actionTypeName: actionTypes.completeRegistration,
+      // });
       //   setRegistrationPoints(addedUserAction.points);
       // } catch (error) {
       //   console.log('user action type error', error);
