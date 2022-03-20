@@ -110,3 +110,16 @@ export const addInvitedUser = async (body) => {
 
   return data;
 };
+
+/**
+ * Service that add invited user
+ *
+ * @return {Object} invited user
+ */
+export const updatePhoneNumber = async (body) => {
+  const {
+    data: { data },
+  } = await http.patch(`${apiUrl}/users/phone`, body);
+
+  return data;
+};

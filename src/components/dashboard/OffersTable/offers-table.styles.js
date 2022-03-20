@@ -13,10 +13,15 @@ export const OfferListItem = styled.li`
   border-bottom: 0.06rem solid ${colors.midGray};
   display: flex;
   padding: 0.2rem 1.2rem;
+  align-items: center;
 `;
 
 export const OfferListItemText = styled.p`
   min-width: 20rem;
+`;
+
+export const EmailText = styled.a`
+  margin: 0 0.5rem;
 `;
 
 export const IconsContainer = styled.td`

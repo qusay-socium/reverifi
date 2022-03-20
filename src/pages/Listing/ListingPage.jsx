@@ -4,6 +4,7 @@ import Offer from 'components/listing-page/Offer';
 import { Location } from 'components/listing-page/Offer/offer.styles';
 import Overview from 'components/listing-page/Overview';
 import ListingPageSlider from 'components/listing-page/Slider';
+import SubmitOffer from 'components/listing-page/SubmitOffer';
 import ListingShareModal from 'components/ListingShareModal';
 import ShowModalProvider from 'contexts/ShowModalContext/index';
 import React, { useEffect, useState } from 'react';
@@ -50,6 +51,7 @@ function ListingPage() {
       <Features features={listingDetails?.features} />
       <Location />
       <ListingShareModal />
+      <SubmitOffer />
     </ShowModalProvider>
   );
 }

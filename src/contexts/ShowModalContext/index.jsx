@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 export const ModalContext = createContext();
 
@@ -17,7 +17,7 @@ function ShowModalProvider({ children }) {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({ modalData, setModalData, setShowModal, showModal }),
     [showModal, modalData]
   );

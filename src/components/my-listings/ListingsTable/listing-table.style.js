@@ -20,11 +20,10 @@ export const ListingImage = styled.img`
 `;
 
 export const AgentContainer = styled.div`
-  display: flex;
-
   &:hover {
     span {
       display: block;
+      height: fit-content;
     }
   }
 `;
