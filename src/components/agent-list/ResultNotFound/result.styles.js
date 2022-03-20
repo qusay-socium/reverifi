@@ -10,12 +10,12 @@ export const ResultContainer = styled.div`
   width: 100%;
 `;
 
-export const TextContainer = styled.div`
+export const TextContainer = styled.h1`
   color: ${colors.mineShaft};
   padding: 2rem 2rem 4rem 2rem;
   text-align: center;
   width: 80%;
-  font-style:Montserrat;
-  font-size:32px;
-  font-weight:600;
+  font-style: inherit;
+  font-size: 2rem;
+  font-weight: 600;
 `;
