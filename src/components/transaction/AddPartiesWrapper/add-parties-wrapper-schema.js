@@ -1,15 +1,27 @@
 import * as yup from 'yup';
 
+const nameValidator = yup
+  .object()
+  .required('Required field')
+  .typeError('Required field');
+
 const addPartiesSchema = yup
   .object({
-    address: yup.string(),
-    buyer: yup.object(),
-    buyerAgent: yup.object(),
-    confirmation: yup.boolean(),
+    buyer: nameValidator,
+    buyerAgent: nameValidator,
     notes: yup.string(),
     representSeller: yup.boolean(),
-    seller: yup.object(),
-    sellerAgent: yup.object(),
+    seller: yup
+      .object()
+      .nullable()
+      .when('representSeller', {
+        is: false,
+        then: yup
+          .object()
+          .required('Required field')
+          .typeError('Required field'),
+      }),
+    sellerAgent: nameValidator,
   })
   .required();
 

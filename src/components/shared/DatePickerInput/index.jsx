@@ -14,6 +14,7 @@ import { DatePickerContainer, ErrorMessage } from './date-picker-input.styles';
  * @param {String} placeholder menu placeholder
  * @param {String} error validation error
  * @param {Object} control react useForm control object
+ * @param {Boolean} isClearable is input clearable
  *
  * @return {JSX.Element}
  */
@@ -24,6 +25,7 @@ function DatePickerInput({
   control,
   name,
   error,
+  isClearable,
 }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -48,7 +50,7 @@ function DatePickerInput({
                 }}
                 startDate={value?.[0]}
                 endDate={value?.[1]}
-                isClearable
+                isClearable={isClearable}
                 className="date-picker"
                 dateFormat="dd-MM-yyyy"
               />
@@ -77,6 +79,7 @@ function DatePickerInput({
 DatePickerInput.defaultProps = {
   control: null,
   error: null,
+  isClearable: true,
   name: null,
   placeholder: '',
   small: false,
@@ -86,6 +89,7 @@ DatePickerInput.defaultProps = {
 DatePickerInput.propTypes = {
   control: PropTypes.objectOf(PropTypes.string),
   error: PropTypes.string,
+  isClearable: PropTypes.bool,
   name: PropTypes.string,
   placeholder: PropTypes.string,
   small: PropTypes.bool,

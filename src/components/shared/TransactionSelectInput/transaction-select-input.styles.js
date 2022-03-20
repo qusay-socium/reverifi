@@ -8,7 +8,17 @@ export const SelectContainer = styled.div`
   .transaction-select {
     .transaction__control {
       border-radius: 1.12rem;
-      border: 0.06rem solid ${colors.midGray};
+      border: ${({ error }) =>
+        error
+          ? `0.06rem solid ${colors.red}`
+          : `0.06rem solid ${colors.mercury}`};
+
+      &:hover {
+        outline: ${({ error }) =>
+          error
+            ? `0.06rem solid ${colors.red}`
+            : `0.06rem solid ${colors.green}`};
+      }
       box-shadow: 0;
       padding: 0.08rem;
       font-size: 0.875rem;
@@ -56,6 +66,10 @@ export const SelectContainer = styled.div`
 
     .transaction__placeholder {
       font-size: 0.8rem;
+    }
+
+    .transaction__clear-indicator {
+      display: none;
     }
   }
 
