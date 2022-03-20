@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { ReactComponent as AcceptIcon } from 'assets/icons/dashboard-offers-accept.svg';
 import { ReactComponent as DeclineIcon } from 'assets/icons/dashboard-offers-decline.svg';
 import { ReactComponent as NotesIcon } from 'assets/icons/overview.svg';
