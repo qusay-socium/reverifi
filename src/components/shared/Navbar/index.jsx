@@ -37,7 +37,6 @@ function Navbar() {
   const { setUserInfo, userInfo, isLoggedIn, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const clickRef = useRef(null);
-
   const NavContainer = isLoggedIn ? BroadNavContainer : NarrowNavContainer;
 
   /**
@@ -87,7 +86,7 @@ function Navbar() {
               isSticky
             >
               <MenuWrapper>
-                <PointsWrapper>
+                <PointsWrapper onClick={() => navigate('/achievements')}>
                   <NotificationIcon />
                   <div>
                     <span>{userInfo?.points}</span> Points
