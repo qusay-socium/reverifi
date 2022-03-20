@@ -7,7 +7,8 @@ import {
 import Tooltip from 'components/shared/Tooltip';
 import propTypes from 'prop-types';
 import React from 'react';
-import { SummaryIcon } from './transactions-table.styles';
+import { transactionStatus, transactionStepsNames } from 'utils/constants';
+import { StepLink, SummaryIcon } from './transactions-table.styles';
 
 /**
  * Transactions Table component
@@ -18,12 +19,36 @@ import { SummaryIcon } from './transactions-table.styles';
  * @return {JSX.Element}
  */
 function TransactionsTable({ assignedTransactions, createdTransactions }) {
+  /**
+   * get step route function
+   */
+  const getStepRoute = ({ listingId, status, workflowStep }) => {
+    if (status !== transactionStatus.inProgress) {
+      return `/transaction/${listingId}/${transactionStepsNames.closeDeal}`;
+    }
+
+    // otherwise redirect to the step that in progress
+    if (workflowStep?.name === 'Add Involved Parties') {
+      return `/transaction/${listingId}/${transactionStepsNames.addParties}`;
+    }
+    if (workflowStep?.name === 'Manage & Assign Tasks') {
+      return `/transaction/${listingId}/${transactionStepsNames.assignTasks}`;
+    }
+    if (workflowStep?.name === 'Upload Documents') {
+      return `/transaction/${listingId}/${transactionStepsNames.uploadDocuments}`;
+    }
+
+    return `/transaction/${listingId}/${transactionStepsNames.closeDeal}`;
+  };
+
   return (
     <Table headers={['PROPERTY', 'MY ROLE', 'STATUS', null]}>
       {assignedTransactions?.map(({ id, assignedTransaction, role }) => (
         <TableRow key={id}>
           <TableCell>
-            {assignedTransaction?.transactionListing?.address}
+            <StepLink to={getStepRoute(assignedTransaction)}>
+              {assignedTransaction?.transactionListing?.address}
+            </StepLink>
           </TableCell>
           <TableCell>{role || 'N/A'}</TableCell>
           <TableCell>{assignedTransaction?.status}</TableCell>
@@ -42,25 +67,31 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
         </TableRow>
       ))}
 
-      {createdTransactions.map(({ id, status, transactionListing }) => (
-        <TableRow key={id}>
-          <TableCell>{transactionListing?.address}</TableCell>
-          <TableCell>N/A</TableCell>
-          <TableCell>{status}</TableCell>
-          <TableCell iconsCell>
-            <IconContainer hover>
-              <SummaryIcon />
-              <Tooltip
-                text="Transaction Summary
+      {createdTransactions?.map(
+        ({ id, status, transactionListing, listingId, workflowStep }) => (
+          <TableRow key={id}>
+            <TableCell>
+              <StepLink to={getStepRoute({ listingId, status, workflowStep })}>
+                {transactionListing?.address}
+              </StepLink>
+            </TableCell>
+            <TableCell>N/A</TableCell>
+            <TableCell>{status}</TableCell>
+            <TableCell iconsCell>
+              <IconContainer hover>
+                <SummaryIcon />
+                <Tooltip
+                  text="Transaction Summary
                   Report "
-                arrowPosition="top"
-                position={[3, -2]}
-                lineBreak
-              />
-            </IconContainer>
-          </TableCell>
-        </TableRow>
-      ))}
+                  arrowPosition="top"
+                  position={[3, -2]}
+                  lineBreak
+                />
+              </IconContainer>
+            </TableCell>
+          </TableRow>
+        )
+      )}
     </Table>
   );
 }

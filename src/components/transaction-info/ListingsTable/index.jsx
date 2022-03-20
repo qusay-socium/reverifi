@@ -5,7 +5,11 @@ import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
 import propTypes from 'prop-types';
 import React from 'react';
-import { DEFAULT_PAGE_LIMIT, transactionStepsNames } from 'utils/constants';
+import {
+  DEFAULT_PAGE_LIMIT,
+  transactionStatus,
+  transactionStepsNames,
+} from 'utils/constants';
 import {
   LinkText,
   ListingsTableContainer,
@@ -28,7 +32,8 @@ function ListingsTable({ listings, pageNumber, setPageNumber }) {
           <TableRow
             key={id}
             show={transactionListing.find(
-              (transaction) => transaction.status === 'in progress'
+              (transaction) =>
+                transaction.status === transactionStatus.inProgress
             )}
           >
             <TableCell>{address}</TableCell>

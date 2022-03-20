@@ -35,8 +35,6 @@ function TransactionInfoWrapper() {
     const assigned = await getAssignedTransactions();
     setAssignedTransactions(assigned);
 
-    console.log(assigned);
-
     const created = await getCreatedTransactions();
     setCreatedTransactions(created);
   };

@@ -17,6 +17,12 @@ export const searchOptions = {
   componentRestrictions: { country: ['us'] },
 };
 
+export const transactionStatus = {
+  canceled: 'canceled',
+  closed: 'closed',
+  inProgress: 'in progress',
+};
+
 /**
  * Enum for action types.
  */
