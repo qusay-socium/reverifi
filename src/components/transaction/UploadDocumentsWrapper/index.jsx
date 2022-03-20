@@ -31,7 +31,7 @@ import {
   getTransactionDocuments,
   getWorkflowStep,
 } from 'services/transactions';
-import uploadSingleFile from 'services/upload';
+import singleFileUpload from 'services/upload';
 import { transactionStepsNames } from 'utils/constants';
 import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.styles';
 import {
@@ -66,7 +66,7 @@ function UploadDocumentsWrapper() {
   /**
    * find documents
    */
-  const findDoc = (docId) =>
+  const getDocumentById = (docId) =>
     documents?.find(({ documentNameId }) => documentNameId === docId);
 
   /**
@@ -83,7 +83,7 @@ function UploadDocumentsWrapper() {
    *  handle Delete Document
    */
   const handleDeleteDocument = async (id) => {
-    const docId = findDoc(id);
+    const docId = getDocumentById(id);
 
     await deleteTransactionDocument(docId?.id);
     fetchDocuments();
@@ -109,7 +109,7 @@ function UploadDocumentsWrapper() {
   const handleAcceptUpload = async () => {
     setLoading(true);
 
-    await uploadSingleFile({
+    await singleFileUpload({
       file: uploadedFile?.file,
       onError: () => {
         setLoading(false);
@@ -184,16 +184,20 @@ function UploadDocumentsWrapper() {
             <TableRow key={id}>
               <TableCell wordBreak>{name}</TableCell>
               <TableCell>
-                {findDoc(id)?.createdAt
-                  ? new Date(findDoc(id)?.createdAt || '')?.toLocaleDateString()
+                {getDocumentById(id)?.createdAt
+                  ? new Date(
+                      getDocumentById(id)?.createdAt || ''
+                    )?.toLocaleDateString()
                   : null}
               </TableCell>
-              <TableCell>{findDoc(id)?.documentUser?.name || null}</TableCell>
+              <TableCell>
+                {getDocumentById(id)?.documentUser?.name || null}
+              </TableCell>
               <TableCell iconsCell>
-                {findDoc(id) ? (
+                {getDocumentById(id) ? (
                   <div>
                     <a
-                      href={findDoc(id)?.documentUrl || '#'}
+                      href={getDocumentById(id)?.documentUrl || '#'}
                       target="_blank"
                       rel="noreferrer"
                     >

@@ -1,7 +1,7 @@
 import { apiUrl } from 'config/config';
 import http from 'utils/http';
 
-const uploadSingleFile = async ({
+const singleFileUpload = async ({
   file,
   onError = () => {},
   onSuccess = () => {},
@@ -19,4 +19,4 @@ const uploadSingleFile = async ({
     });
 };
 
-export default uploadSingleFile;
+export default singleFileUpload;
