@@ -83,8 +83,7 @@ function InvitationsTable({ type }) {
                   alt="person"
                 />
                 <span>
-                  {type === 'sent' ? invitedUser?.name : inviter?.name}dasdsa
-                  asdas dasd asd asdasd as das dasdasdsad
+                  {type === 'sent' ? invitedUser?.name : inviter?.name}
                 </span>
               </InvitedUserImageContainer>
             </TableCell>
