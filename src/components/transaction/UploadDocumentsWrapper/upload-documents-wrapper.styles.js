@@ -3,6 +3,7 @@ import colors from 'styles/colors';
 
 export const SectionContainer = styled.div`
   margin: 2.5rem;
+  overflow-x: hidden;
 `;
 
 export const UploadText = styled.span`

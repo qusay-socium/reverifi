@@ -1,3 +1,4 @@
+import listingImage from 'assets/images/apartment3.png';
 import AgentCard from 'components/transaction/AgentCard';
 import DataCard from 'components/transaction/DataCard';
 import {
@@ -28,7 +29,11 @@ export default function TransactionListingDataWrapper() {
   }, [listingId]);
 
   return (
-    <ImgContainer image={listingDetails?.images && listingDetails?.images?.[0]}>
+    <ImgContainer
+      image={
+        listingDetails?.images ? listingDetails?.images?.[0] : listingImage
+      }
+    >
       <CardsContainer>
         <DataCard
           address={listingDetails?.address}
@@ -40,11 +45,16 @@ export default function TransactionListingDataWrapper() {
           lotDimensions={listingDetails?.lotDimensions?.sqft}
         />
         <AgentCard
-          agentImg={listingDetails.agent?.userInfo?.image}
-          agentName={listingDetails.agent?.name}
+          agentImg={
+            listingDetails.agent?.userInfo?.image ||
+            listingDetails.owner?.userInfo?.image
+          }
+          agentName={listingDetails.agent?.name || listingDetails.owner?.name}
           companyName="Agent"
-          email={listingDetails.agent?.email}
-          phoneNumber={listingDetails.agent?.phone}
+          email={listingDetails.agent?.email || listingDetails.owner?.email}
+          phoneNumber={
+            listingDetails.agent?.phone || listingDetails.owner?.phone
+          }
         />
       </CardsContainer>
     </ImgContainer>

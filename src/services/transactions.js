@@ -197,12 +197,12 @@ export const addDocument = async (body) => {
 /**
  * Service that get documents
  *
- * @return {Object[]} Array of processes.
+ * @return {Object[]} Array of documents
  */
-export const getTransactionDocuments = async () => {
+export const getTransactionDocuments = async (id) => {
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/transactions/document`);
+  } = await http.get(`${apiUrl}/transactions/document/${id}`);
 
   return data;
 };
