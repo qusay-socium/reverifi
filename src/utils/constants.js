@@ -23,6 +23,19 @@ export const transactionStatus = {
   inProgress: 'in progress',
 };
 
+export const transactionRoles = {
+  buyer: 'Buyer',
+  buyerAgent: 'Buyer Agent',
+  buyerAttorney: 'Buyer Attorney',
+  coordinator: 'Coordinator',
+  homeInsurance: 'Home Insurance',
+  lender: 'Lender',
+  seller: 'Seller',
+  sellerAgent: 'Seller Agent',
+  sellerAttorney: 'Seller Attorney',
+  titleInsurance: 'Title Insurance',
+};
+
 /**
  * Enum for action types.
  */

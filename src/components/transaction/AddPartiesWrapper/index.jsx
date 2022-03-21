@@ -34,7 +34,7 @@ import {
   getWorkflowStep,
 } from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
-import { transactionStepsNames } from 'utils/constants';
+import { transactionRoles, transactionStepsNames } from 'utils/constants';
 
 /**
  * Add Parties Wrapper component
@@ -107,10 +107,18 @@ export default function AddPartiesWrapper() {
     // filter the non exist and send invitations
     const userIdsAndRoles = [];
 
-    filterInvitedUsers(userIdsAndRoles, sellerAgent, 'Seller Agent');
-    filterInvitedUsers(userIdsAndRoles, buyerAgent, 'Buyer Agent');
-    filterInvitedUsers(userIdsAndRoles, seller, 'Seller');
-    filterInvitedUsers(userIdsAndRoles, buyer, 'Buyer');
+    filterInvitedUsers(
+      userIdsAndRoles,
+      sellerAgent,
+      transactionRoles.sellerAgent
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      buyerAgent,
+      transactionRoles.buyerAgent
+    );
+    filterInvitedUsers(userIdsAndRoles, seller, transactionRoles.seller);
+    filterInvitedUsers(userIdsAndRoles, buyer, transactionRoles.buyer);
 
     await addInvitation({
       listingId,
@@ -179,11 +187,17 @@ export default function AddPartiesWrapper() {
     const assignees = await getAssignees(transactionRecord.id);
 
     if (assignees.length) {
-      const buyer = assignees.find((item) => item?.role === 'Buyer');
-      const buyerAgent = assignees.find((item) => item?.role === 'Buyer Agent');
-      const seller = assignees.find((item) => item?.role === 'Seller');
+      const buyer = assignees.find(
+        (item) => item?.role === transactionRoles.buyer
+      );
+      const buyerAgent = assignees.find(
+        (item) => item?.role === transactionRoles.buyerAgent
+      );
+      const seller = assignees.find(
+        (item) => item?.role === transactionRoles.seller
+      );
       const sellerAgent = assignees.find(
-        (item) => item?.role === 'Seller Agent'
+        (item) => item?.role === transactionRoles.sellerAgent
       );
 
       reset({
@@ -222,16 +236,16 @@ export default function AddPartiesWrapper() {
     // to fill the fields of with the pop up invited user data
     if (modalData?.invitedUsers.length) {
       const seller = modalData?.invitedUsers.find(
-        ({ role }) => role === 'Seller'
+        ({ role }) => role === transactionRoles.seller
       );
       const sellerAgent = modalData?.invitedUsers.find(
-        ({ role }) => role === 'Seller Agent'
+        ({ role }) => role === transactionRoles.sellerAgent
       );
       const buyer = modalData?.invitedUsers.find(
-        ({ role }) => role === 'Buyer'
+        ({ role }) => role === transactionRoles.buyer
       );
       const buyerAgent = modalData?.invitedUsers.find(
-        ({ role }) => role === 'Buyer Agent'
+        ({ role }) => role === transactionRoles.buyerAgent
       );
 
       if (seller) {
