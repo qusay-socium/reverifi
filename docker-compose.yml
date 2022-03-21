@@ -15,5 +15,5 @@ services:
     volumes:
       - ${PWD}:/app
     ports:
-      - 3000:80
+      - 8000:80
     command: ['/bin/boot.sh']
