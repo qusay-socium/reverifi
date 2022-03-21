@@ -75,9 +75,10 @@ export const ActivitiesWrapper = styled.div`
   left: 69rem;
   margin: 1.625rem 0;
   max-height: 20rem;
+  overflow-x: hidden;
+  overflow: scroll;
   top: 33.75rem;
   width: 19.5rem;
-  overflow: scroll;
 `;
 
 export const YourActivityText = styled.label`
