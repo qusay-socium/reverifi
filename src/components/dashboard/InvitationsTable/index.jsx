@@ -14,7 +14,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { getInvitations, updateInvitation } from 'services/invitations';
 import { invitationStatus } from 'utils/constants';
-import { InvitedUserImage, StatusText } from './invitations-table.styles';
+import {
+  InvitedUserImage,
+  InvitedUserImageContainer,
+  StatusText,
+} from './invitations-table.styles';
 
 /**
  * invitations Table component
@@ -68,16 +72,21 @@ function InvitationsTable({ type }) {
         }) => (
           <TableRow key={id}>
             <TableCell>{invitedListing?.address}</TableCell>
-            <TableCell>
-              <InvitedUserImage
-                src={
-                  (type === 'sent'
-                    ? invitedUser?.userInfo?.image
-                    : inviter?.userInfo?.image) || agentImage
-                }
-                alt="person"
-              />
-              <span>{type === 'sent' ? invitedUser?.name : inviter?.name}</span>
+            <TableCell wordBreak>
+              <InvitedUserImageContainer>
+                <InvitedUserImage
+                  src={
+                    (type === 'sent'
+                      ? invitedUser?.userInfo?.image
+                      : inviter?.userInfo?.image) || agentImage
+                  }
+                  alt="person"
+                />
+                <span>
+                  {type === 'sent' ? invitedUser?.name : inviter?.name}dasdsa
+                  asdas dasd asd asdasd as das dasdasdsad
+                </span>
+              </InvitedUserImageContainer>
             </TableCell>
             <TableCell>{new Date(createdAt).toLocaleDateString()}</TableCell>
             <TableCell>{role}</TableCell>
