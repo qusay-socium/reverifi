@@ -23,3 +23,8 @@ export const StatusText = styled.span`
       ? 600
       : 500};
 `;
+
+export const InvitedUserImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
