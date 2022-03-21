@@ -31,7 +31,12 @@ function InvitationsTable({ type }) {
    */
   const fetchInvitations = async () => {
     const data = await getInvitations(type);
-    setInvitations(data);
+
+    // exclude the transaction creator
+    const filteredData = data.filter(
+      ({ inviter, invitedUser }) => inviter?.id !== invitedUser?.id
+    );
+    setInvitations(filteredData);
   };
 
   const handleInvitationStatus = async (id, status) => {
