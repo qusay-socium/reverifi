@@ -1,4 +1,4 @@
-import listingImage from 'assets/images/apartment3.png';
+import listingImage from 'assets/images/transaction-apartment.png';
 import AgentCard from 'components/transaction/AgentCard';
 import DataCard from 'components/transaction/DataCard';
 import {
