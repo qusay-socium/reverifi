@@ -1,4 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ReactComponent as AcceptIcon } from 'assets/icons/dashboard-offers-accept.svg';
+import { ReactComponent as DeclineIcon } from 'assets/icons/dashboard-offers-decline.svg';
 import { ReactComponent as AboutIcon } from 'assets/icons/profile-about.svg';
 import { ReactComponent as AddressIcon } from 'assets/icons/profile-address.svg';
 import { ReactComponent as CityIcon } from 'assets/icons/profile-city.svg';
@@ -18,11 +20,11 @@ import { ReactComponent as ZipCodeIcon } from 'assets/icons/profile-zipcode.svg'
 import { ReactComponent as EditIcon } from 'assets/icons/user-image-edit.svg';
 import avatar from 'assets/images/avatar.svg';
 import myProfileData from 'components/my-profile/data';
-import Button from 'components/shared/Button';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
 import TextAreaInput from 'components/shared/FormTextArea';
 import MenuList from 'components/shared/MenuList';
+import { IconContainer } from 'components/shared/Table/table-styles';
 import Toast from 'components/shared/Toast';
 import UploadInput from 'components/shared/UploadInput';
 import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
@@ -30,7 +32,6 @@ import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
-import { Check, X } from 'react-feather';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select, { createFilter } from 'react-select';
@@ -116,7 +117,7 @@ function MyProfileWrapper() {
   const [saveDataError, setSaveDataError] = useState(false);
   const [companyEmailError, setCompanyEmailError] = useState(false);
   const [imageEditMode, setImageEditMode] = useState(false);
-  const [profileImg, setProfileImg] = useState(avatar);
+  const [profileImg, setProfileImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState();
   const navigate = useNavigate();
 
@@ -211,13 +212,33 @@ function MyProfileWrapper() {
   const handleOnAddImage = async (file) => {
     // save the file in a state
     setSelectedFile(file);
+    setImageEditMode(true);
 
     // preview the image without actually uploading it..
     const src = URL.createObjectURL(file[0]);
-    setImageEditMode(true);
-
     setProfileImg(src);
   };
+
+  const handleUploadImage = async () => {
+    await singleFileUpload({
+      file: selectedFile,
+      onError: () => {
+        setImageEditMode(false);
+      },
+      onSuccess: async ({ data }) => {
+        if (data?.publicUrl) {
+          // update userInfo table with new image
+          await updateUserInfo({
+            userInfo: { image: data?.publicUrl },
+          });
+          // set user context image
+          setUserInfo((prev) => ({ ...prev, image: data?.publicUrl }));
+        }
+        setImageEditMode(false);
+      },
+    });
+  };
+
   /**
    * fetch user info function
    */
@@ -227,6 +248,7 @@ function MyProfileWrapper() {
     try {
       // get user info
       const info = await getUserInfo();
+
       if (!info) {
         setFetchedUserData({ user: userInfo });
       } else {
@@ -279,29 +301,6 @@ function MyProfileWrapper() {
 
   useEffectOnce(fetchUserInfo);
 
-  const handleUploadImage = async () => {
-    // if (!selectedFile) show an error message here;
-
-    await singleFileUpload({
-      file: selectedFile,
-      onError: () => {
-        setImageEditMode(false);
-        // set error message
-      },
-      onSuccess: async ({ data }) => {
-        try {
-          await setUserInfo({
-            ...userInfo,
-            image: data?.publicUrl,
-          });
-        } catch ({ response: { data: serverData } }) {
-          setSaveDataError(true);
-        }
-        setImageEditMode(false);
-      },
-    });
-  };
-
   useEffect(() => {
     if (count < 3) setCount(count + 1);
     // get cities of each selected country
@@ -336,7 +335,11 @@ function MyProfileWrapper() {
     <ProfileContainer>
       <UserInfoContainer>
         <ImageContainer>
-          <UserImage src={profileImg} alt="user-image" />
+          <UserImage
+            src={profileImg || avatar}
+            alt="user-image"
+            editMode={imageEditMode}
+          />
           {!imageEditMode ? (
             <EditIconContainer>
               <UploadInput onAddFiles={handleOnAddImage}>
@@ -344,19 +347,19 @@ function MyProfileWrapper() {
               </UploadInput>
             </EditIconContainer>
           ) : (
-            <>
-              <Button
+            <div>
+              <IconContainer
                 onClick={() => {
-                  setProfileImg(profileImg);
+                  setProfileImg(fetchedUserData?.image);
                   setImageEditMode(false);
                 }}
               >
-                <X />
-              </Button>
-              <Button onClick={handleUploadImage}>
-                <Check />
-              </Button>
-            </>
+                <DeclineIcon />
+              </IconContainer>
+              <IconContainer onClick={handleUploadImage}>
+                <AcceptIcon />
+              </IconContainer>
+            </div>
           )}
         </ImageContainer>
 
