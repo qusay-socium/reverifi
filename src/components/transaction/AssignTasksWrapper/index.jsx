@@ -14,7 +14,7 @@ import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import TransactionSelectInput from 'components/shared/TransactionSelectInput';
 import { useShowModal } from 'contexts/ShowModalContext';
 import useEffectOnce from 'hooks/use-effect-once';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addInvitation } from 'services/invitations';
@@ -158,7 +158,7 @@ function AssignTasksWrapper() {
    * filter Invited Users function (when id === name the user is invited -not exist-)
    */
   const filterInvitedUsers = (idsAndRolesArray, user, role) => {
-    if (user?.name !== user?.id) {
+    if (user?.name !== user?.id && user?.id) {
       idsAndRolesArray.push({
         invitedUserId: user?.id,
         role,
@@ -564,6 +564,65 @@ function AssignTasksWrapper() {
   };
 
   useEffectOnce(fetchTransactionData);
+
+  useEffect(() => {
+    // to fill the fields of with the pop up invited user data
+    if (modalData?.invitedUsers.length) {
+      const lender = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Lender'
+      );
+      const buyerAttorney = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Buyer Attorney'
+      );
+      const coordinator = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Coordinator'
+      );
+      const sellerAttorney = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Seller Attorney'
+      );
+      const titleInsurance = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Title Insurance'
+      );
+      const homeInsurance = modalData?.invitedUsers.find(
+        ({ role }) => role === 'Home Insurance'
+      );
+
+      if (lender) {
+        setValue2('lender', { id: lender?.id, name: lender?.name });
+      }
+      if (buyerAttorney) {
+        setValue2('buyerAttorney', {
+          id: buyerAttorney?.id,
+          name: buyerAttorney?.name,
+        });
+      }
+      if (coordinator) {
+        setValue2('coordinator', {
+          id: coordinator?.id,
+          name: coordinator?.name,
+        });
+      }
+      if (sellerAttorney) {
+        setValue2('sellerAttorney', {
+          id: sellerAttorney?.id,
+          name: sellerAttorney?.name,
+        });
+      }
+      if (titleInsurance) {
+        setValue2('titleInsurance', {
+          id: titleInsurance?.id,
+          name: titleInsurance?.name,
+        });
+      }
+      if (homeInsurance) {
+        setValue2('homeInsurance', {
+          id: homeInsurance?.id,
+          name: homeInsurance?.name,
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalData?.invitedUsers]);
 
   return (
     <div>
