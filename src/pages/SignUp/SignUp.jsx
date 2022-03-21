@@ -6,12 +6,15 @@ import { ReactComponent as MainImg } from 'assets/icons/sign-up-main.svg';
 import FormCheckbox from 'components/shared/FormCheckbox';
 import FormInput from 'components/shared/FormInput';
 import { Error } from 'components/shared/FormInput/form-input.styles';
+import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
 import { IconContainer, InputGroup } from 'pages/Login/login.styles';
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { OldSocialLogin as SocialLogin } from 'react-social-login';
+import { addUserActionType } from 'services/points-service';
+import { actionTypes } from 'utils/constants';
 import { handleNumberInput, handleTextInput } from 'utils/helpers';
 import signUpSchema from './sign-up-schema';
 import {
@@ -28,7 +31,7 @@ import {
   SignUpTerms,
   SocialLinksText,
   SubmitButton,
-  Title,
+  Title
 } from './sign-up.styles';
 
 const { REACT_APP_FACEBOOK_APP_ID, REACT_APP_GOOGLE_CLIENT_ID } = process.env;
@@ -46,6 +49,8 @@ function SignUp() {
   const [DoesEmailExist, setDoesEmailExist] = useState('');
   const [isShowPassword, setIsShowPassword] = useState(false);
   const continueButton = useRef(null);
+  const [registrationPoints, setRegistrationPoints] = useState(null);
+  const { usePointsNotification } = usePointsNotifications();
 
   const {
     register,
@@ -79,13 +84,18 @@ function SignUp() {
 
       await signUp(name, email, password, phone);
 
+      const addedUserAction = await addUserActionType({
+        actionTypeName: actionTypes.completeRegistration,
+      });
+      setRegistrationPoints(addedUserAction.points);
+
       if (industryProfessional) {
         navigate('/verify-phone');
       } else {
         navigate('/my-roles');
       }
-    } catch (error) {
-      console.log('error', error);
+    } catch ({ response }) {
+      if (response.status === 400) setDoesEmailExist(response.data?.message);
     }
   };
 
@@ -104,6 +114,9 @@ function SignUp() {
     }
     navigate('/my-roles');
   };
+
+  usePointsNotification(registrationPoints, !!registrationPoints);
+
   return (
     <SignUpContainer>
       <ImageContainer>
