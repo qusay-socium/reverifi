@@ -20,7 +20,7 @@ import {
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
 import useEffectOnce from 'hooks/use-effect-once';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addInvitation } from 'services/invitations';
@@ -34,7 +34,7 @@ import {
   getWorkflowStep,
 } from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
-import { transactionStepsNames } from 'utils/constants';
+import { transactionRoles, transactionStepsNames } from 'utils/constants';
 
 /**
  * Add Parties Wrapper component
@@ -92,7 +92,7 @@ export default function AddPartiesWrapper() {
    * filter Invited Users function (when id === name the user is invited -not exist-)
    */
   const filterInvitedUsers = (idsAndRolesArray, user, role) => {
-    if (user?.name !== user?.id) {
+    if (user?.name !== user?.id && user?.id) {
       idsAndRolesArray.push({
         invitedUserId: user?.id,
         role,
@@ -107,10 +107,18 @@ export default function AddPartiesWrapper() {
     // filter the non exist and send invitations
     const userIdsAndRoles = [];
 
-    filterInvitedUsers(userIdsAndRoles, sellerAgent, 'Seller Agent');
-    filterInvitedUsers(userIdsAndRoles, buyerAgent, 'Buyer Agent');
-    filterInvitedUsers(userIdsAndRoles, seller, 'Seller');
-    filterInvitedUsers(userIdsAndRoles, buyer, 'Buyer');
+    filterInvitedUsers(
+      userIdsAndRoles,
+      sellerAgent,
+      transactionRoles.sellerAgent
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      buyerAgent,
+      transactionRoles.buyerAgent
+    );
+    filterInvitedUsers(userIdsAndRoles, seller, transactionRoles.seller);
+    filterInvitedUsers(userIdsAndRoles, buyer, transactionRoles.buyer);
 
     await addInvitation({
       listingId,
@@ -179,11 +187,17 @@ export default function AddPartiesWrapper() {
     const assignees = await getAssignees(transactionRecord.id);
 
     if (assignees.length) {
-      const buyer = assignees.find((item) => item?.role === 'Buyer');
-      const buyerAgent = assignees.find((item) => item?.role === 'Buyer Agent');
-      const seller = assignees.find((item) => item?.role === 'Seller');
+      const buyer = assignees.find(
+        (item) => item?.role === transactionRoles.buyer
+      );
+      const buyerAgent = assignees.find(
+        (item) => item?.role === transactionRoles.buyerAgent
+      );
+      const seller = assignees.find(
+        (item) => item?.role === transactionRoles.seller
+      );
       const sellerAgent = assignees.find(
-        (item) => item?.role === 'Seller Agent'
+        (item) => item?.role === transactionRoles.sellerAgent
       );
 
       reset({
@@ -217,6 +231,47 @@ export default function AddPartiesWrapper() {
   };
 
   useEffectOnce(fetchTransactionData);
+
+  useEffect(() => {
+    // to fill the fields of with the pop up invited user data
+    if (modalData?.invitedUsers.length) {
+      const seller = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.seller
+      );
+      const sellerAgent = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.sellerAgent
+      );
+      const buyer = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.buyer
+      );
+      const buyerAgent = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.buyerAgent
+      );
+
+      if (seller) {
+        setValue('seller', { id: seller?.id, name: seller?.name });
+      }
+      if (sellerAgent) {
+        setValue('sellerAgent', {
+          id: sellerAgent?.id,
+          name: sellerAgent?.name,
+        });
+      }
+      if (buyer) {
+        setValue('buyer', {
+          id: buyer?.id,
+          name: buyer?.name,
+        });
+      }
+      if (buyerAgent) {
+        setValue('buyerAgent', {
+          id: buyerAgent?.id,
+          name: buyerAgent?.name,
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalData?.invitedUsers]);
 
   return (
     <form onSubmit={handleSubmit(submit)}>

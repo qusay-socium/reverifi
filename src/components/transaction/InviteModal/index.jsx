@@ -40,15 +40,26 @@ function InviteModal() {
       const invitedUsers = modalData?.invitedUsers?.length
         ? [
             ...modalData?.invitedUsers,
-            { invitedUserId: invitedUser.id, role: modalData.type },
+            {
+              invitedUserId: invitedUser?.id,
+              name: invitedUser?.name,
+              role: modalData.type,
+            },
           ]
-        : [{ invitedUserId: invitedUser.id, role: modalData.type }];
+        : [
+            {
+              invitedUserId: invitedUser.id,
+              name: invitedUser?.name,
+              role: modalData.type,
+            },
+          ];
 
       setModalData((prev) => ({
         ...prev,
         invitedUsers,
       }));
 
+      setDoesEmailExist('');
       setShowModal(!showModal);
       reset();
     } catch ({ response }) {

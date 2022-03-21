@@ -14,7 +14,7 @@ import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import TransactionSelectInput from 'components/shared/TransactionSelectInput';
 import { useShowModal } from 'contexts/ShowModalContext';
 import useEffectOnce from 'hooks/use-effect-once';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addInvitation } from 'services/invitations';
@@ -30,7 +30,7 @@ import {
   getWorkflowStep,
 } from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
-import { transactionStepsNames } from 'utils/constants';
+import { transactionRoles, transactionStepsNames } from 'utils/constants';
 import assignProcessesSchema from './assign-processes-schema';
 import {
   AssignTasksForm,
@@ -158,7 +158,7 @@ function AssignTasksWrapper() {
    * filter Invited Users function (when id === name the user is invited -not exist-)
    */
   const filterInvitedUsers = (idsAndRolesArray, user, role) => {
-    if (user?.name !== user?.id) {
+    if (user?.name !== user?.id && user?.id) {
       idsAndRolesArray.push({
         invitedUserId: user?.id,
         role,
@@ -182,12 +182,32 @@ function AssignTasksWrapper() {
     // filter the non exist and send invitations
     const userIdsAndRoles = [];
 
-    filterInvitedUsers(userIdsAndRoles, lender, 'Lender');
-    filterInvitedUsers(userIdsAndRoles, coordinator, 'Coordinator');
-    filterInvitedUsers(userIdsAndRoles, buyerAttorney, 'Buyer Attorney');
-    filterInvitedUsers(userIdsAndRoles, sellerAttorney, 'Seller Attorney');
-    filterInvitedUsers(userIdsAndRoles, titleInsurance, 'Title Insurance');
-    filterInvitedUsers(userIdsAndRoles, homeInsurance, 'Home Insurance');
+    filterInvitedUsers(userIdsAndRoles, lender, transactionRoles.lender);
+    filterInvitedUsers(
+      userIdsAndRoles,
+      coordinator,
+      transactionRoles.coordinator
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      buyerAttorney,
+      transactionRoles.buyerAttorney
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      sellerAttorney,
+      transactionRoles.sellerAttorney
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      titleInsurance,
+      transactionRoles.titleInsurance
+    );
+    filterInvitedUsers(
+      userIdsAndRoles,
+      homeInsurance,
+      transactionRoles.homeInsurance
+    );
 
     await addInvitation({
       listingId,
@@ -364,21 +384,23 @@ function AssignTasksWrapper() {
         }))
       );
 
-      const lender = assignees.find((item) => item?.role === 'Lender');
+      const lender = assignees.find(
+        (item) => item?.role === transactionRoles.lender
+      );
       const buyerAttorney = assignees.find(
-        (item) => item?.role === 'Buyer Attorney'
+        (item) => item?.role === transactionRoles.buyerAttorney
       );
       const coordinator = assignees.find(
-        (item) => item?.role === 'Coordinator'
+        (item) => item?.role === transactionRoles.coordinator
       );
       const sellerAttorney = assignees.find(
-        (item) => item?.role === 'Seller Attorney'
+        (item) => item?.role === transactionRoles.sellerAttorney
       );
       const titleInsurance = assignees.find(
-        (item) => item?.role === 'Title Insurance'
+        (item) => item?.role === transactionRoles.titleInsurance
       );
       const homeInsurance = assignees.find(
-        (item) => item?.role === 'Home Insurance'
+        (item) => item?.role === transactionRoles.homeInsurance
       );
 
       reset2({
@@ -564,6 +586,65 @@ function AssignTasksWrapper() {
   };
 
   useEffectOnce(fetchTransactionData);
+
+  useEffect(() => {
+    // to fill the fields of with the pop up invited user data
+    if (modalData?.invitedUsers.length) {
+      const lender = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.lender
+      );
+      const buyerAttorney = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.buyerAttorney
+      );
+      const coordinator = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.coordinator
+      );
+      const sellerAttorney = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.sellerAttorney
+      );
+      const titleInsurance = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.titleInsurance
+      );
+      const homeInsurance = modalData?.invitedUsers.find(
+        ({ role }) => role === transactionRoles.homeInsurance
+      );
+
+      if (lender) {
+        setValue2('lender', { id: lender?.id, name: lender?.name });
+      }
+      if (buyerAttorney) {
+        setValue2('buyerAttorney', {
+          id: buyerAttorney?.id,
+          name: buyerAttorney?.name,
+        });
+      }
+      if (coordinator) {
+        setValue2('coordinator', {
+          id: coordinator?.id,
+          name: coordinator?.name,
+        });
+      }
+      if (sellerAttorney) {
+        setValue2('sellerAttorney', {
+          id: sellerAttorney?.id,
+          name: sellerAttorney?.name,
+        });
+      }
+      if (titleInsurance) {
+        setValue2('titleInsurance', {
+          id: titleInsurance?.id,
+          name: titleInsurance?.name,
+        });
+      }
+      if (homeInsurance) {
+        setValue2('homeInsurance', {
+          id: homeInsurance?.id,
+          name: homeInsurance?.name,
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modalData?.invitedUsers]);
 
   return (
     <div>
