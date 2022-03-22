@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ReactComponent as FacebookIcon } from 'assets/icons/share-listing-facebook.svg';
-import { ReactComponent as ShareImg } from 'assets/icons/share-listing-main.svg';
+import ShareImgModal from 'assets/icons/share-listing-main.png';
 import { ReactComponent as TwitterIcon } from 'assets/icons/share-listing-twitter.svg';
 import { ReactComponent as WhatsAppIcon } from 'assets/icons/share-listing-whatsapp.svg';
 import Button from 'components/shared/Button';
@@ -15,6 +15,7 @@ import {
   InputWrapper,
   ShareContainer,
   ShareForm,
+  ShareImg,
   ShareWithText,
   SocialIconsContainer,
   Title,
@@ -56,7 +57,7 @@ function ListingShareModal() {
   return (
     <Modal show={showModal} handleClose={handleClose}>
       <ShareContainer>
-        <ShareImg />
+        <ShareImg src={ShareImgModal} />
 
         <InfoContainer>
           <Title>Share Listing by email</Title>

@@ -2,7 +2,7 @@ import { EditIcon } from 'components/agent-details/AgentRating/agent-rating.styl
 import {
   AgentContainer,
   CellContainer,
-  TableIconContainer
+  TableIconContainer,
 } from 'components/my-listings/ListingsTable/listing-table.style';
 import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
