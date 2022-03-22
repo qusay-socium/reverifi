@@ -209,6 +209,9 @@ function MyProfileWrapper() {
     }
   };
 
+  /**
+   * handle On Add Image function
+   */
   const handleOnAddImage = async (file) => {
     // save the file in a state
     setSelectedFile(file);
@@ -219,6 +222,9 @@ function MyProfileWrapper() {
     setProfileImg(src);
   };
 
+  /**
+   * handle Upload Image function
+   */
   const handleUploadImage = async () => {
     await singleFileUpload({
       file: selectedFile,
