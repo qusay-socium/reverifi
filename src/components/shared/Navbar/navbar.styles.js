@@ -252,3 +252,10 @@ export const MenuItem = styled.div`
     }
   }
 `;
+
+export const UserImage = styled.img`
+  border-radius: 50%;
+  height: 3.2rem;
+  width: 3.2rem;
+  object-fit: cover;
+`;

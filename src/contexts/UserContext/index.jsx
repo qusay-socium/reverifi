@@ -91,7 +91,7 @@ export function UserProvider({ children }) {
       setIsLoggedIn(true);
 
       try {
-        const { user } = await getUserInfo();
+        const { user, image } = await getUserInfo();
         setUserInfo({
           email: user?.email,
           id: user?.id,
@@ -99,6 +99,7 @@ export function UserProvider({ children }) {
           phone: user?.phone,
           points: user?.points,
           createdAt: user?.createdAt,
+          image,
         });
       } catch (err) {
         setUserInfo({ email, id, name, phone, points, createdAt });

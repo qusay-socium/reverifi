@@ -1,4 +1,4 @@
-import { ReactComponent as Avatar } from 'assets/images/avatar.svg';
+import avatar from 'assets/images/avatar.svg';
 import { ReactComponent as ChevronDown } from 'assets/images/chevron-down.svg';
 import { ReactComponent as SettingIcon } from 'assets/menu-setting.svg';
 import { ReactComponent as DashboardIcon } from 'assets/my-dashboard.svg';
@@ -24,6 +24,7 @@ import {
   SignInButton,
   SignUpButton,
   UserControlSectionWrapper,
+  UserImage,
   UserNavControlContainer,
   UserNavRegContainer,
 } from './navbar.styles';
@@ -80,7 +81,7 @@ function Navbar() {
         {isLoggedIn ? (
           <UserNavControlContainer>
             <UserControlSectionWrapper ref={clickRef} onClick={handleOpenMenu}>
-              <Avatar />
+              <UserImage src={userInfo?.image || avatar} />
               <span>{userInfo?.name}</span>
               <ChevronDown />
             </UserControlSectionWrapper>
