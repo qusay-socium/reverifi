@@ -35,6 +35,10 @@ export const OverlayAddress = styled.h3`
   padding: 0 1rem;
   margin: 0;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
 `;
 
 export const OverlayPrice = styled.h3`
