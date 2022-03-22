@@ -16,7 +16,8 @@ export const DatePickerContainer = styled.div`
     opacity: 0.7;
   }
 
-  .react-datepicker__day--in-range {
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--selected {
     background-color: ${colors.green};
     &:hover {
       background-color: ${colors.green};

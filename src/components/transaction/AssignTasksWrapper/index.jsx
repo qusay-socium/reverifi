@@ -470,109 +470,81 @@ function AssignTasksWrapper() {
 
       reset({
         attorneyApprovalBuyerSide: attorneyApprovalBuyerSide?.process?.id,
-        attorneyApprovalBuyerSideDate: attorneyApprovalBuyerSide?.dueDate.length
-          ? [
-              new Date(attorneyApprovalBuyerSide?.dueDate[0]),
-              new Date(attorneyApprovalBuyerSide?.dueDate[1]),
-            ]
-          : [],
+        attorneyApprovalBuyerSideDate: attorneyApprovalBuyerSide?.dueDate
+          ? new Date(attorneyApprovalBuyerSide?.dueDate)
+          : null,
         attorneyApprovalBuyerSideName: {
           id: attorneyApprovalBuyerSide?.assignee?.id,
           name: attorneyApprovalBuyerSide?.assignee?.assignedUser?.name,
         },
         attorneyApprovalSellerSide: attorneyApprovalSellerSide?.process?.id,
         attorneyApprovalSellerSideDate: attorneyApprovalSellerSide?.dueDate
-          .length
-          ? [
-              new Date(attorneyApprovalSellerSide?.dueDate[0]),
-              new Date(attorneyApprovalSellerSide?.dueDate[1]),
-            ]
-          : [],
+          ? new Date(attorneyApprovalSellerSide?.dueDate)
+          : null,
         attorneyApprovalSellerSideName: {
           id: attorneyApprovalSellerSide?.assignee?.id,
           name: attorneyApprovalSellerSide?.assignee?.assignedUser?.name,
         },
         attorneyReviewBuyerSide: attorneyReviewBuyerSide?.process?.id,
-        attorneyReviewBuyerSideDate: attorneyReviewBuyerSide?.dueDate.length
-          ? [
-              new Date(attorneyReviewBuyerSide?.dueDate[0]),
-              new Date(attorneyReviewBuyerSide?.dueDate[1]),
-            ]
-          : [],
+        attorneyReviewBuyerSideDate: attorneyReviewBuyerSide?.dueDate
+          ? new Date(attorneyReviewBuyerSide?.dueDate)
+          : null,
         attorneyReviewBuyerSideName: {
           id: attorneyReviewBuyerSide?.assignee?.id,
           name: attorneyReviewBuyerSide?.assignee?.assignedUser?.name,
         },
         attorneyReviewSellerSide: attorneyReviewSellerSide?.process?.id,
-        attorneyReviewSellerSideDate: attorneyReviewSellerSide?.dueDate.length
-          ? [
-              new Date(attorneyReviewSellerSide?.dueDate[0]),
-              new Date(attorneyReviewSellerSide?.dueDate[1]),
-            ]
-          : [],
+        attorneyReviewSellerSideDate: attorneyReviewSellerSide?.dueDate
+          ? new Date(attorneyReviewSellerSide?.dueDate)
+          : null,
         attorneyReviewSellerSideName: {
           id: attorneyReviewSellerSide?.assignee?.id,
           name: attorneyReviewSellerSide?.assignee?.assignedUser?.name,
         },
         confirmInspection: confirmInspection?.process?.id,
-        confirmInspectionDate: confirmInspection?.dueDate.length
-          ? [
-              new Date(confirmInspection?.dueDate[0]),
-              new Date(confirmInspection?.dueDate[1]),
-            ]
-          : [],
+        confirmInspectionDate: confirmInspection?.dueDate
+          ? new Date(confirmInspection?.dueDate)
+          : null,
         confirmInspectionName: {
           id: confirmInspection?.assignee?.id,
           name: confirmInspection?.assignee?.assignedUser?.name,
         },
         initialContract: initialContract?.process?.id,
-        initialContractDate: initialContract?.dueDate.length
-          ? [
-              new Date(initialContract?.dueDate[0]),
-              new Date(initialContract?.dueDate[1]),
-            ]
-          : [],
+        initialContractDate: initialContract?.dueDate
+          ? new Date(initialContract?.dueDate)
+          : null,
         initialContractName: {
           id: initialContract?.assignee?.id,
           name: initialContract?.assignee?.assignedUser?.name,
         },
         inspection: inspection?.process?.id,
-        inspectionDate: inspection?.dueDate.length
-          ? [new Date(inspection?.dueDate[0]), new Date(inspection?.dueDate[1])]
-          : [],
+        inspectionDate: inspection?.dueDate
+          ? new Date(inspection?.dueDate)
+          : null,
         inspectionDateName: {
           id: inspection?.assignee?.id,
           name: inspection?.assignee?.assignedUser?.name,
         },
         inspectionResults: inspectionResults?.process?.id,
-        inspectionResultsDate: inspectionResults?.dueDate.length
-          ? [
-              new Date(inspectionResults?.dueDate[0]),
-              new Date(inspectionResults?.dueDate[1]),
-            ]
-          : [],
+        inspectionResultsDate: inspectionResults?.dueDate
+          ? new Date(inspectionResults?.dueDate)
+          : null,
         inspectionResultsName: {
           id: inspectionResults?.assignee?.id,
           name: inspectionResults?.assignee?.assignedUser?.name,
         },
         signedInitialContract: signedInitialContract?.process?.id,
-        signedInitialContractDate: signedInitialContract?.dueDate.length
-          ? [
-              new Date(signedInitialContract?.dueDate[0]),
-              new Date(signedInitialContract?.dueDate[1]),
-            ]
-          : [],
+        signedInitialContractDate: signedInitialContract?.dueDate
+          ? new Date(signedInitialContract?.dueDate)
+          : null,
         signedInitialContractName: {
           id: signedInitialContract?.assignee?.id,
           name: signedInitialContract?.assignee?.assignedUser?.name,
         },
         suggestAppraisal: suggestAppraisal?.process?.id,
-        suggestAppraisalDate: suggestAppraisal?.dueDate.length
-          ? [
-              new Date(suggestAppraisal?.dueDate[0]),
-              new Date(suggestAppraisal?.dueDate[1]),
-            ]
-          : [],
+        suggestAppraisalDate: suggestAppraisal?.dueDate
+          ? new Date(suggestAppraisal?.dueDate)
+          : null,
         suggestAppraisalName: {
           id: suggestAppraisal?.assignee?.id,
           name: suggestAppraisal?.assignee?.assignedUser?.name,
@@ -771,13 +743,10 @@ function AssignTasksWrapper() {
                     placeholder="Select Date Range"
                     name={tableContent[index].dateName}
                     control={control}
-                    error={
-                      errors[tableContent[index].dateName]?.[0]?.message ||
-                      errors[tableContent[index].dateName]?.[1]?.message ||
-                      errors[tableContent[index].dateName]?.message
-                    }
+                    error={errors[tableContent[index].dateName]?.message}
                     register={register}
                     isClearable={false}
+                    singleDate
                   />
                 </TableCell>
               </TableRow>

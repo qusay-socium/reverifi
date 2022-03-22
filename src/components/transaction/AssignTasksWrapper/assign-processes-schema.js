@@ -5,35 +5,33 @@ const nameValidator = yup
   .required('Required field')
   .typeError('Required field');
 
-const dateArrayValidator = yup
-  .array()
+const dateValidator = yup
+  .date()
   .required('Required field')
-  .of(
-    yup.date().typeError('Required field'),
-    yup.date().typeError('Required field')
-  );
+  .typeError('Required field');
+
 const assignProcessesSchema = yup
   .object({
-    attorneyApprovalBuyerSideDate: dateArrayValidator,
+    attorneyApprovalBuyerSideDate: dateValidator,
     attorneyApprovalBuyerSideName: nameValidator,
-    attorneyApprovalSellerSideDate: dateArrayValidator,
+    attorneyApprovalSellerSideDate: dateValidator,
     attorneyApprovalSellerSideName: nameValidator,
-    attorneyReviewBuyerSideDate: dateArrayValidator,
+    attorneyReviewBuyerSideDate: dateValidator,
     attorneyReviewBuyerSideName: nameValidator,
-    attorneyReviewSellerSideDate: dateArrayValidator,
+    attorneyReviewSellerSideDate: dateValidator,
     attorneyReviewSellerSideName: nameValidator,
-    confirmInspectionDate: dateArrayValidator,
+    confirmInspectionDate: dateValidator,
     confirmInspectionName: nameValidator,
-    initialContractDate: dateArrayValidator,
+    initialContractDate: dateValidator,
     initialContractName: nameValidator,
-    inspectionDate: dateArrayValidator,
+    inspectionDate: dateValidator,
     inspectionDateName: nameValidator,
-    inspectionResultsDate: dateArrayValidator,
+    inspectionResultsDate: dateValidator,
     inspectionResultsName: nameValidator,
     notes: yup.string(),
-    signedInitialContractDate: dateArrayValidator,
+    signedInitialContractDate: dateValidator,
     signedInitialContractName: nameValidator,
-    suggestAppraisalDate: dateArrayValidator,
+    suggestAppraisalDate: dateValidator,
     suggestAppraisalName: nameValidator,
   })
   .required();
