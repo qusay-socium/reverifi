@@ -38,7 +38,7 @@ function Roles() {
           status="success"
           message="My Roles have been successfully saved"
         />
-      )}{' '}
+      )}
       <Wrapper>
         <RolesTable />
       </Wrapper>
