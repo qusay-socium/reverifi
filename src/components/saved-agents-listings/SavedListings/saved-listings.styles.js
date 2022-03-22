@@ -27,7 +27,7 @@ export const AgentImage = styled.img`
 export const AgentName = styled.p`
   height: 100%;
   margin-left: 0.8rem;
-  width: 100%;
+  margin-top: 0rem;
 `;
 
 export const IconContainer = styled.button`
