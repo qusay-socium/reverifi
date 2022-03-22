@@ -28,7 +28,7 @@ import {
   getTransactionDocuments,
   getWorkflowStep,
 } from 'services/transactions';
-import singleFileUpload from 'services/upload';
+import { singleFileUpload } from 'services/upload';
 import { transactionStepsNames } from 'utils/constants';
 import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.styles';
 import {
