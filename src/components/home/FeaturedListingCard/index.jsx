@@ -36,7 +36,7 @@ import {
   TagContainer,
   TextLarge,
   TextMedium,
-  TextSmall,
+  TextSmall
 } from './featured-listing-card.styles';
 
 function Card({ data }) {
@@ -124,7 +124,7 @@ function Card({ data }) {
       </CardContainer>
 
       <OverlayBackground image={images ? images[0] : ''}>
-        <Overlay>
+        <Overlay wordBreak>
           <OverlayBody>
             <OverlayAddress>{address || 'USA'}</OverlayAddress>
             <OverlayProperty>
