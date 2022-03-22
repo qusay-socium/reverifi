@@ -63,7 +63,7 @@ export const FormContainer = styled.form`
       border-radius: 1.1rem;
       box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
       font-size: 0.85rem;
-      margin: 0 0.2rem;
+      margin: 0.2rem 0.2rem;
       padding: 0.2rem;
     }
 
