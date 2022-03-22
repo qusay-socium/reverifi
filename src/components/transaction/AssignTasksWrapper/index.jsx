@@ -142,6 +142,13 @@ function AssignTasksWrapper() {
     resolver: yupResolver(assigneesSchema),
   });
 
+  const filterDuplicates = (array) =>
+    array.filter(
+      ({ assignedUser }, index, self) =>
+        index ===
+        self.findIndex((t) => t.assignedUser.name === assignedUser.name)
+    );
+
   /**
    * handle Input Change function
    */
@@ -227,8 +234,12 @@ function AssignTasksWrapper() {
     // set assignees names list
     const names = await getAssignees(transactionData.id);
 
+    // remove duplicate names
+    const filteredNames = filterDuplicates(names);
+
+    // filter assignedUser.name
     setProcessesNameList(
-      names?.map(({ id, assignedUser }) => ({
+      filteredNames?.map(({ id, assignedUser }) => ({
         id,
         name: assignedUser?.name,
       }))
@@ -377,8 +388,12 @@ function AssignTasksWrapper() {
 
     if (assignees.length > 4) {
       // set process table dropdown names
+
+      // remove duplicate names
+      const filteredAssignees = filterDuplicates(assignees);
+
       setProcessesNameList(
-        assignees?.map(({ id, assignedUser }) => ({
+        filteredAssignees?.map(({ id, assignedUser }) => ({
           id,
           name: assignedUser?.name,
         }))
