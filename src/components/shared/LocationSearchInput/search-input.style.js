@@ -61,7 +61,7 @@ export const AutocompleteMenuContainer = styled.div`
   box-shadow: ${colors.midGray} 0 0.125rem 0.5rem 0;
   position: absolute;
   top: 87%;
-  z-index: 2;
+  z-index: 10;
   width: 100%;
 `;
 
