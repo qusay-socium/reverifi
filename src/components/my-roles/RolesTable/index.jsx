@@ -1,11 +1,13 @@
 import { EditIcon } from 'components/agent-details/AgentRating/agent-rating.style';
 import {
   AgentContainer,
+  AgentToolTip,
   CellContainer,
-  TableIconContainer
+  TableIconContainer,
 } from 'components/my-listings/ListingsTable/listing-table.style';
 import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
+import TableNoData from 'components/shared/TableNoData';
 import Tooltip from 'components/shared/Tooltip';
 import { useUser } from 'contexts/UserContext';
 import React, { useEffect, useState } from 'react';
@@ -45,48 +47,56 @@ function RolesTable() {
 
   return (
     <Container>
-      <Table headers={tableHeaders}>
-        {listings?.data?.map(({ address, agent, id }) => (
-          <TableRow key={id}>
-            <CellContainer>{address}</CellContainer>
-            <CellContainer>
-              <AgentContainer>
-                {agent?.roles?.map(({ role }) => (
-                  <>{role || 'N/A'},</>
-                ))}
+      {listings?.data?.length > 0 ? (
+        <>
+          <Table headers={tableHeaders}>
+            {listings?.data?.map(({ address, agent, id }) => (
+              <TableRow key={id}>
+                <CellContainer>{address}</CellContainer>
+                <CellContainer>
+                  <AgentContainer>
+                    <AgentToolTip>
+                      {agent?.roles?.map(({ role }) => (
+                        <>{role || 'N/A'},</>
+                      ))}
 
-                <Tooltip
-                  text={agent?.roles?.map(({ role }) => `${role} `)}
-                  arrowPosition="top"
-                  position={[3, 6]}
-                  lineBreak
-                />
-              </AgentContainer>
-            </CellContainer>
+                      <Tooltip
+                        text={agent?.roles?.map(({ role }) => `${role}, `)}
+                        arrowPosition="top"
+                        position={[2.5, 2]}
+                        lineBreak
+                      />
+                    </AgentToolTip>
+                  </AgentContainer>
+                </CellContainer>
 
-            <CellContainer iconsCell>
-              <TableIconContainer hover>
-                <EditIcon
-                  onClick={() => {
-                    navigate(`/my-listings/edit/${id}`);
-                  }}
-                />
-                <Tooltip
-                  text="Edit"
-                  arrowPosition="top"
-                  position={[2.5, -0.5]}
-                />
-              </TableIconContainer>
-            </CellContainer>
-          </TableRow>
-        ))}
-      </Table>
-      <Pagination
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        limit={DEFAULT_PAGE_LIMIT}
-        dataCount={listings?.count}
-      />
+                <CellContainer iconsCell>
+                  <TableIconContainer hover>
+                    <EditIcon
+                      onClick={() => {
+                        navigate(`/my-listings/edit/${id}`);
+                      }}
+                    />
+                    <Tooltip
+                      text="Edit"
+                      arrowPosition="top"
+                      position={[2.5, -0.5]}
+                    />
+                  </TableIconContainer>
+                </CellContainer>
+              </TableRow>
+            ))}
+          </Table>
+          <Pagination
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            limit={DEFAULT_PAGE_LIMIT}
+            dataCount={listings?.count}
+          />
+        </>
+      ) : (
+        <TableNoData text="You have no listings yet " />
+      )}
     </Container>
   );
 }

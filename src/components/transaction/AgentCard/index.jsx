@@ -38,7 +38,6 @@ function AgentCard({ agentImg, agentName, companyName, email, phoneNumber }) {
         <CompanyName>
           {toUpperCaseFirstLetter(companyName) || 'Agent'}
         </CompanyName>
-
         <ContactInfoContainer>
           <ContactField>
             <PropertyIconContainer>

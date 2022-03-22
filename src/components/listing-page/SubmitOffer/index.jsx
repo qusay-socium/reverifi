@@ -90,7 +90,7 @@ function SubmitOffer() {
         <TextContainer>
           <PriceContainer>
             <h2>Purchase Offer</h2>
-            <Price>{modalData?.price.toLocaleString()}</Price>
+            <Price>$ {modalData?.price.toLocaleString()}</Price>
             <Location>
               <LocationIcon />
               {modalData?.address}

@@ -1,5 +1,6 @@
 import { ReactComponent as BathroomIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedIcon } from 'assets/icons/bedroom.svg';
+import Tooltip from 'components/shared/Tooltip';
 import {
   Card,
   PrimaryText,
@@ -51,7 +52,15 @@ function DataCard({
 
   return (
     <Card>
-      <PrimaryText>{toUpperCaseFirstLetter(address)}</PrimaryText>
+      <PrimaryText>
+        {toUpperCaseFirstLetter(address)}
+        <Tooltip
+          text={toUpperCaseFirstLetter(address)}
+          arrowPosition="top"
+          position={[2.8, 6]}
+        />
+      </PrimaryText>
+
       <SecondaryText>{propertyType || 'others'}</SecondaryText>
       <Services>
         <SecondaryText>

@@ -1,6 +1,7 @@
 import Accordion from 'components/shared/Accordion';
 import Table from 'components/shared/Table';
 import { TableCell, TableRow } from 'components/shared/Table/table-styles';
+import TableNoData from 'components/shared/TableNoData';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { getAllPurchaseOffers } from 'services/purchase-offer';
@@ -28,7 +29,7 @@ function OffersTable() {
 
   useEffectOnce(getAllUserPurchaseOffers);
 
-  return (
+  return offers.some((offer) => offer.listingOffer.length > 0) ? (
     <Table headers={['PROPERTY']}>
       {offers?.map(
         ({ id, address, listingOffer, price }) =>
@@ -37,8 +38,8 @@ function OffersTable() {
               <TableCell>
                 <Accordion title={address}>
                   {listingOffer?.map(
-                    ({ price: offerPrice, attachments, offeredUser }) => (
-                      <OfferList>
+                    ({ id: listingId, price: offerPrice, offeredUser }) => (
+                      <OfferList key={listingId}>
                         <OfferListItem>
                           <OfferListItemText>Listing Price</OfferListItemText>
                           <p>$ {price.toLocaleString()}</p>
@@ -51,9 +52,7 @@ function OffersTable() {
                           <OfferListItemText>
                             Mortgage Pre-approval Letter
                           </OfferListItemText>
-                          <p>
-                            <span>{attachments}</span>
-                          </p>
+                          <p />
                         </OfferListItem>
                         <OfferListItem>
                           <OfferListItemText>Submitted By</OfferListItemText>
@@ -72,6 +71,8 @@ function OffersTable() {
           )
       )}
     </Table>
+  ) : (
+    <TableNoData text="You have no offers yet " />
   );
 }
 
