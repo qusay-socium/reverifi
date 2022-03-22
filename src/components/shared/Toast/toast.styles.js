@@ -14,6 +14,9 @@ export const ToastContainer = styled.div`
   padding: 0.5rem 0.8rem;
   padding-right: 3rem;
   width: fit-content;
+
+  position: ${({ fixedPosition }) => fixedPosition && 'absolute'};
+  right: ${({ fixedPosition }) => fixedPosition && '2rem'};
 `;
 
 export const ToastMessage = styled.p`

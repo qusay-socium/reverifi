@@ -1,8 +1,11 @@
+import Toast from 'components/shared/Toast';
 import ListingsTable from 'components/transaction-info/ListingsTable';
 import TransactionsTable from 'components/transaction-info/TransactionsTable';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getUserListings } from 'services/listing';
 import {
   getAssignedTransactions,
@@ -26,6 +29,9 @@ function TransactionInfoWrapper() {
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { userInfo } = useUser();
+  const [isDealClosed, setIsDealClosed] = useState(false);
+
+  const [searchParams] = useSearchParams();
 
   const fetchTransactions = async () => {
     const assigned = await getAssignedTransactions();
@@ -46,15 +52,29 @@ function TransactionInfoWrapper() {
     }
   };
 
+  useShowToastBar(isDealClosed, setIsDealClosed);
+
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, userInfo]);
 
-  useEffectOnce(() => fetchTransactions());
+  useEffectOnce(() => {
+    fetchTransactions();
+    if (searchParams.get('close')) {
+      setIsDealClosed(true);
+    }
+  });
 
   return (
     <TransactionInfoContainer>
+      {isDealClosed && (
+        <Toast
+          fixedPosition
+          status="success"
+          message="The transaction has been closed"
+        />
+      )}
       <HeadingText>My Listings</HeadingText>
       <ListingsTable
         listings={listings}
