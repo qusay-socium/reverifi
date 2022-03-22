@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const ListingImageContainer = styled.div`
-  height: 3rem;
-  width: 6rem;
+  height: 3.25rem;
+  width: 6.25rem;
+  radius: 0.375;
 `;
 
 export const CellContainer = styled(TableCell)`
-  padding: 0.8rem 0 0.8rem 1.5rem;
   padding-right: ${({ iconsCell }) => (iconsCell ? '1rem' : 0)};
+  width: 12.625rem;
 `;
 
 export const ListingImage = styled.img`
@@ -33,10 +34,12 @@ export const AgentImage = styled.img`
   height: 2.1rem;
   width: 2.1rem;
   margin-top: 0.1rem;
+  float: left;
+  margin-right: 0.375rem;
 `;
 
 export const AgentName = styled.p`
-  margin-left: 0.5rem;
+  padding-top: 1rem;
 `;
 
 export const TableIconContainer = styled.button`
