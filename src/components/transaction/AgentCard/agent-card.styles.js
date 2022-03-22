@@ -65,11 +65,12 @@ export const PropertyIconContainer = styled.div`
 
 export const ContactEmail = styled.a`
   color: ${colors.osloGray};
+  font-size: 0.8rem;
   font-weight: 400;
-  font-size: 0.875rem;
   overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 0.2rem 0;
   text-decoration: none;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `;
 

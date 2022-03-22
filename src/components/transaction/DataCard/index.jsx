@@ -1,14 +1,14 @@
-import { ReactComponent as BedIcon } from 'assets/icons/bedroom.svg';
 import { ReactComponent as BathroomIcon } from 'assets/icons/bathtub.svg';
+import { ReactComponent as BedIcon } from 'assets/icons/bedroom.svg';
+import {
+  Card,
+  PrimaryText,
+  SecondaryText,
+  Services,
+} from 'components/transaction/DataCard/data-card.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { toUpperCaseFirstLetter } from 'utils/helpers';
-import {
-  Card,
-  Services,
-  PrimaryText,
-  SecondaryText,
-} from 'components/transaction/DataCard/data-card.styles';
 
 /**
  * Agent Card.

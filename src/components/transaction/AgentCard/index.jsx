@@ -1,22 +1,21 @@
 import avatarPlaceholder from 'assets/icons/agent-list-avatar-placeholder.svg';
 import { ReactComponent as MailIcon } from 'assets/icons/profile-email.svg';
 import { ReactComponent as PhoneIcon } from 'assets/icons/profile-phone.svg';
+import {
+  Card,
+  CardContent,
+  CompanyName,
+  ContactEmail,
+  ContactField,
+  ContactInfoContainer,
+  ContactText,
+  ImgContainer,
+  PropertyIconContainer,
+  Username,
+} from 'components/transaction/AgentCard/agent-card.styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { formatPhoneNumber, toUpperCaseFirstLetter } from 'utils/helpers';
-import {
-  // AgentPicture,
-  Card,
-  CompanyName,
-  ContactInfoContainer,
-  ContactField,
-  ContactEmail,
-  ImgContainer,
-  Username,
-  PropertyIconContainer,
-  CardContent,
-  ContactText,
-} from 'components/transaction/AgentCard/agent-card.styles';
 
 /**
  * Agent Card.
