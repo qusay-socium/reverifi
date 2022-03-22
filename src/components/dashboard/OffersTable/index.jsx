@@ -26,10 +26,11 @@ function OffersTable() {
     const offerData = await getAllPurchaseOffers();
     setOffers(offerData);
   };
+  const isTableEmpty = offers?.some((offer) => offer?.listingOffer?.length > 0);
 
   useEffectOnce(getAllUserPurchaseOffers);
 
-  return offers.some((offer) => offer.listingOffer.length > 0) ? (
+  return isTableEmpty ? (
     <Table headers={['PROPERTY']}>
       {offers?.map(
         ({ id, address, listingOffer, price }) =>

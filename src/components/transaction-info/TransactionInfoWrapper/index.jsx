@@ -77,7 +77,7 @@ function TransactionInfoWrapper() {
         />
       )}
       <HeadingText>My Listings</HeadingText>
-      {listings.length > 0 ? (
+      {listings?.data?.length > 0 ? (
         <ListingsTable
           listings={listings}
           pageNumber={pageNumber}
