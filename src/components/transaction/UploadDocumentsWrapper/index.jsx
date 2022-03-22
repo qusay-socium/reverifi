@@ -2,9 +2,7 @@ import { ReactComponent as AcceptIcon } from 'assets/icons/dashboard-offers-acce
 import { ReactComponent as DeclineIcon } from 'assets/icons/dashboard-offers-decline.svg';
 import { ReactComponent as NotesIcon } from 'assets/icons/overview.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/transaction-step3-delete.svg';
-import { ReactComponent as DownloadIcon } from 'assets/icons/transaction-step3-download.svg';
 import { ReactComponent as EyeIcon } from 'assets/icons/transaction-step3-eye.svg';
-import { ReactComponent as PrintIcon } from 'assets/icons/transaction-step3-print.svg';
 import loadingImage from 'assets/images/loading.gif';
 import Button from 'components/shared/Button';
 import TextAreaInput from 'components/shared/FormTextArea';
@@ -213,22 +211,6 @@ function UploadDocumentsWrapper() {
                         />
                       </IconContainer>
                     </a>
-                    <IconContainer>
-                      <DownloadIcon />
-                      <Tooltip
-                        text="Download"
-                        arrowPosition="top"
-                        position={[2, -2]}
-                      />
-                    </IconContainer>
-                    <IconContainer>
-                      <PrintIcon />
-                      <Tooltip
-                        text="Print"
-                        arrowPosition="top"
-                        position={[2, -1]}
-                      />
-                    </IconContainer>
                     <IconContainer onClick={() => handleDeleteDocument(id)}>
                       <DeleteIcon />
                       <Tooltip
@@ -244,9 +226,14 @@ function UploadDocumentsWrapper() {
                   </IconContainer>
                 ) : (
                   <UploadFileContainer>
-                    <UploadInput onAddFiles={(file) => handleAddFile(file, id)}>
-                      <UploadText>Upload</UploadText>
-                    </UploadInput>
+                    {!uploadedFile && (
+                      <UploadInput
+                        onAddFiles={(file) => handleAddFile(file, id)}
+                      >
+                        <UploadText>Upload</UploadText>
+                      </UploadInput>
+                    )}
+
                     {uploadedFile?.id === id && (
                       <>
                         <p>{uploadedFile?.file?.[0]?.name}</p>
