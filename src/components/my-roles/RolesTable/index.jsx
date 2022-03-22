@@ -2,7 +2,7 @@ import { EditIcon } from 'components/agent-details/AgentRating/agent-rating.styl
 import {
   AgentContainer,
   CellContainer,
-  TableIconContainer
+  TableIconContainer,
 } from 'components/my-listings/ListingsTable/listing-table.style';
 import Pagination from 'components/shared/Pagination';
 import Table from 'components/shared/Table';
@@ -51,14 +51,18 @@ function RolesTable() {
             <CellContainer>{address}</CellContainer>
             <CellContainer>
               <AgentContainer>
-                {agent?.roles?.map(({ role }) => (
-                  <>{role || 'N/A'},</>
-                ))}
+                {agent?.roles?.map(({ role }) =>
+                  agent?.roles.length > 1 ? (
+                    <>{role || 'N/A'},</>
+                  ) : (
+                    <>{role || 'N/A'} </>
+                  )
+                )}
 
                 <Tooltip
                   text={agent?.roles?.map(({ role }) => `${role} `)}
                   arrowPosition="top"
-                  position={[3, 6]}
+                  position={['bottom', 'center']}
                   lineBreak
                 />
               </AgentContainer>
