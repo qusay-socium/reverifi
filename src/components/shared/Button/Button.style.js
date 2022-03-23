@@ -7,13 +7,13 @@ const StyledButton = styled.button`
   border: none;
   color: ${colors.white};
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
   height: 2.5rem;
   padding: 0 1.69rem;
   transition: 0.1s;
   cursor: pointer;
-
+  width: 11.438rem;
   &:hover {
     box-shadow: 0rem 0.4rem 1.7rem -1rem ${colors.mineShaft};
   }
