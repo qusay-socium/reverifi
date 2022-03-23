@@ -13,3 +13,9 @@ export const SubmitSection = styled.div`
   text-align: center;
   margin: 1.25rem auto;
 `;
+
+export const LoadingImage = styled.img`
+  margin: 0 auto;
+  width: 3.125rem;
+  height: 3.125rem;
+`;

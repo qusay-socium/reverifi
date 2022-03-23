@@ -45,7 +45,12 @@ function ListingImageInput({ images, setImages }) {
       <Wrapper>
         <ImageInputSection>
           <UploadInput
-            acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
+            acceptedTypes={[
+              'image/png',
+              'image/gif',
+              'image/jpeg',
+              'image/webp',
+            ]}
             multiple
             onAddFiles={handleAddImages}
           >
