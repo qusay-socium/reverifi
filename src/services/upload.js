@@ -1,7 +1,16 @@
 import { apiUrl } from 'config/config';
 import http from 'utils/http';
 
-const singleFileUpload = async ({
+/**
+ * single File Upload service
+ *
+ * @param {Array} file file array
+ * @param {Function} onError on error function
+ * @param {Function} onSuccess on success function
+ *
+ * @returns {String} publicUrl
+ */
+export const singleFileUpload = async ({
   file,
   onError = () => {},
   onSuccess = () => {},
@@ -19,4 +28,32 @@ const singleFileUpload = async ({
     });
 };
 
-export default singleFileUpload;
+/**
+ * single File Upload service
+ *
+ * @param {Array} files files array
+ * @param {Function} onError on error function
+ * @param {Function} onSuccess on success function
+ *
+ * @returns {Array} publicUrls
+ */
+export const multipleFileUpload = async ({
+  files,
+  onError = () => {},
+  onSuccess = () => {},
+}) => {
+  const formData = new FormData();
+
+  files.forEach((file) => {
+    formData.append('files[]', file);
+  });
+
+  await http
+    .post(`${apiUrl}/upload/multiple-files`, formData)
+    .then((response) => {
+      onSuccess(response);
+    })
+    .catch((error) => {
+      onError(error);
+    });
+};

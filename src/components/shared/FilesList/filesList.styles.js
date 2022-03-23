@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { ReactComponent as RowDeleteIcon } from 'assets/icons/delete-icon.svg';
+import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const SelectedItemsList = styled.div`
   display: flex;
@@ -9,11 +10,6 @@ export const SelectedItemsList = styled.div`
   height: 100%;
   overflow-y: auto;
   width: 100%;
-
-  > span {
-    margin: 0 auto;
-    font-size: 1.5rem;
-  }
 `;
 
 export const SelectedItem = styled.div`
@@ -42,4 +38,25 @@ export const ThumbnailWrapper = styled.div`
 export const DeleteIcon = styled(RowDeleteIcon)`
   cursor: pointer;
   width: 1.25rem;
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const NumOfImagesText = styled.span`
+  font-size: 1.3rem;
+`;
+
+export const MaxLengthMessage = styled.span`
+  font-size: 0.75rem;
+
+  ${({ max }) =>
+    max &&
+    `
+    color: ${colors.red}
+    `}
 `;

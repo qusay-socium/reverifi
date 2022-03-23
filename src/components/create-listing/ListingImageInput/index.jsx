@@ -13,13 +13,32 @@ import {
 /**
  * Renders a form listing images input selector with image list
  *
- * @param  {boolean}     images        A list of selected images to display.
- * @param  {Function}    onAddImages   Add images handler.
- * @param  {JSX.Element} onDeleteImage Delete image handler.
+ * @param  {boolean}     images      images array state
+ * @param  {Function}    setImages   set images state function
  *
  * @return {JSX.Element}
  */
-function ListingImageInput({ images, onAddImages, onDeleteImage }) {
+function ListingImageInput({ images, setImages }) {
+  /**
+   * handle Add Images function
+   */
+  const handleAddImages = (acceptedImages) => {
+    if (images.length + acceptedImages.length <= 10) {
+      const updated = [...images, ...acceptedImages];
+      setImages(updated);
+    }
+  };
+
+  /**
+   * handle Delete Image function
+   */
+  const handleDeleteImage = (imageToDelete) => {
+    const updated = [...images];
+    const index = updated.indexOf(imageToDelete);
+    updated.splice(index, 1);
+    setImages(updated);
+  };
+
   return (
     <Container>
       <h2>Upload Images and Videos</h2>
@@ -28,7 +47,7 @@ function ListingImageInput({ images, onAddImages, onDeleteImage }) {
           <UploadInput
             acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
             multiple
-            onAddFiles={onAddImages}
+            onAddFiles={handleAddImages}
           >
             <InputInterface>
               <span>or</span>
@@ -39,9 +58,11 @@ function ListingImageInput({ images, onAddImages, onDeleteImage }) {
           </UploadInput>
         </ImageInputSection>
 
-        <ImageInputSection>
-          <FilesList files={images} onDelete={onDeleteImage} />
-        </ImageInputSection>
+        {images.length > 0 && (
+          <ImageInputSection>
+            <FilesList files={images} onDelete={handleDeleteImage} />
+          </ImageInputSection>
+        )}
       </Wrapper>
     </Container>
   );
@@ -49,8 +70,7 @@ function ListingImageInput({ images, onAddImages, onDeleteImage }) {
 
 ListingImageInput.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  onAddImages: PropTypes.func.isRequired,
-  onDeleteImage: PropTypes.func.isRequired,
+  setImages: PropTypes.func.isRequired,
 };
 
 export default ListingImageInput;

@@ -36,7 +36,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Select, { createFilter } from 'react-select';
 import { addUserActionType } from 'services/points-service';
-import singleFileUpload from 'services/upload';
+import { singleFileUpload } from 'services/upload';
 import { getUserInfo, updateUserInfo } from 'services/user';
 import colors from 'styles/colors';
 import { actionTypes } from 'utils/constants';

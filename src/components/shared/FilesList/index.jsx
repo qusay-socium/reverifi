@@ -2,28 +2,40 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   DeleteIcon,
+  MaxLengthMessage,
+  NumOfImagesText,
   SelectedItem,
   SelectedItemInnerSection,
   SelectedItemsList,
+  TextContainer,
   ThumbnailWrapper,
 } from './filesList.styles';
 
 function FilesList({ files, onDelete }) {
   return (
     <SelectedItemsList>
-      <span>{files?.length} Files Selected</span>
-      {files?.map((file, i) => (
-        <SelectedItem key={i}>
+      <TextContainer>
+        <NumOfImagesText>Uploaded images</NumOfImagesText>
+        <MaxLengthMessage max={files?.length === 10}>
+          ({files?.length} / 10)
+        </MaxLengthMessage>
+      </TextContainer>
+
+      {files?.map((file) => (
+        <SelectedItem key={file?.name}>
           <SelectedItemInnerSection>
             <ThumbnailWrapper>
-              <img src={URL.createObjectURL(file)} alt="test" />
+              <img
+                src={file?.name ? URL.createObjectURL(file) : file}
+                alt="listingImg"
+              />
             </ThumbnailWrapper>
 
             {file?.name}
           </SelectedItemInnerSection>
 
           <SelectedItemInnerSection>
-            <span>{file?.size / 1000}kb</span>
+            <span>{file?.size && `${file?.size / 1000}kb`}</span>
 
             {onDelete && <DeleteIcon onClick={() => onDelete(file)} />}
           </SelectedItemInnerSection>
@@ -34,7 +46,7 @@ function FilesList({ files, onDelete }) {
 }
 
 FilesList.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  files: PropTypes.arrayOf(PropTypes.any).isRequired,
   onDelete: PropTypes.func,
 };
 
