@@ -1,5 +1,6 @@
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
+import { ReactComponent as GarageIcon } from 'assets/icons/garage.svg';
 import agentImage from 'assets/listing-agent-image.png';
 import listingImage from 'assets/listing-image.png';
 import { ReactComponent as LocationIcon } from 'assets/location.svg';
@@ -36,7 +37,7 @@ import {
   TagContainer,
   TextLarge,
   TextMedium,
-  TextSmall
+  TextSmall,
 } from './featured-listing-card.styles';
 
 function Card({ data }) {
@@ -54,11 +55,10 @@ function Card({ data }) {
     listingType,
     createdAt,
     homeArea,
-    lotArea,
+    garages,
     tags,
     id,
   } = data;
-
   const { setShowModal } = useShowModal();
 
   return (
@@ -99,17 +99,15 @@ function Card({ data }) {
                   <BathtubIcon />
                 </FeaturedIconContainer>
               )}
+              {garages && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{garages} </ServiceQuantity> <GarageIcon />
+                </FeaturedIconContainer>
+              )}
               {homeArea && (
                 <FeaturedIconContainer>
                   <ServiceQuantity>{homeArea?.sqft} </ServiceQuantity>
                   <AreaText>sqft</AreaText>
-                </FeaturedIconContainer>
-              )}
-
-              {lotArea && (
-                <FeaturedIconContainer>
-                  <ServiceQuantity>{lotArea?.sqft} </ServiceQuantity>{' '}
-                  <AreaText>sqft lot</AreaText>
                 </FeaturedIconContainer>
               )}
             </BodyIconsContainer>
@@ -146,18 +144,15 @@ function Card({ data }) {
                   <BathtubIcon />
                 </FeaturedIconContainer>
               )}
-
+              {garages && (
+                <FeaturedIconContainer>
+                  <ServiceQuantity>{garages} </ServiceQuantity> <GarageIcon />
+                </FeaturedIconContainer>
+              )}
               {homeArea && (
                 <FeaturedIconContainer>
                   <ServiceQuantity>{homeArea?.sqft} </ServiceQuantity>
                   <AreaText>sqft</AreaText>
-                </FeaturedIconContainer>
-              )}
-
-              {lotArea && (
-                <FeaturedIconContainer>
-                  <ServiceQuantity>{lotArea?.sqft} </ServiceQuantity>{' '}
-                  <AreaText>sqft lot</AreaText>
                 </FeaturedIconContainer>
               )}
             </OverlayFeatures>
@@ -191,15 +186,13 @@ Card.propTypes = {
     bedrooms: PropTypes.number,
     createdAt: PropTypes.string,
     fullBathrooms: PropTypes.number,
+    garages: PropTypes.number,
     homeArea: PropTypes.shape({
       sqft: PropTypes.objectOf(PropTypes.string),
     }),
     id: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
     listingType: PropTypes.objectOf(PropTypes.string),
-    lotArea: PropTypes.shape({
-      sqft: PropTypes.objectOf(PropTypes.string),
-    }),
     overview: PropTypes.string,
     price: PropTypes.number,
     propertyType: PropTypes.objectOf(PropTypes.string),

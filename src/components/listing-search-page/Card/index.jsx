@@ -1,6 +1,7 @@
 import { ReactComponent as Arrow } from 'assets/arrow-right-green.svg';
 import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
+import { ReactComponent as GarageIcon } from 'assets/icons/garage.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
 import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
@@ -39,12 +40,11 @@ function Card({ data }) {
     address,
     bedrooms,
     fullBathrooms,
-    lotArea,
+    garages,
     homeArea,
     tags,
     id,
   } = data;
-
   if (data.length < 0) return null;
 
   return (
@@ -85,7 +85,12 @@ function Card({ data }) {
               <Bathtub />
             </IconsNumber>
           )}
-
+          {garages && (
+            <IconsNumber>
+              <BoldNumber>{garages} </BoldNumber>
+              <GarageIcon />
+            </IconsNumber>
+          )}
           {homeArea && (
             <IconsNumber>
               <BoldNumber>{homeArea?.sqft} </BoldNumber>
@@ -93,12 +98,6 @@ function Card({ data }) {
             </IconsNumber>
           )}
 
-          {lotArea && (
-            <IconsNumber>
-              <BoldNumber>{lotArea?.sqft} </BoldNumber>{' '}
-              <AreaText>Sq.Ft lot</AreaText>
-            </IconsNumber>
-          )}
           <ViewListingLink to={`${listingPaths.listing}/${id}`}>
             View listing
           </ViewListingLink>
@@ -119,11 +118,11 @@ Card.propTypes = {
       })
     ),
     fullBathrooms: PropTypes.number,
+    garages: PropTypes.number,
     homeArea: PropTypes.shape({ sqft: PropTypes.string }),
     id: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
     length: PropTypes.number,
-    lotArea: PropTypes.shape({ sqft: PropTypes.string }),
     price: PropTypes.number,
     tags: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
