@@ -17,12 +17,23 @@ export const UserInfoContainer = styled.div`
 
 export const ImageContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export const UserImage = styled.img`
   border-radius: 50%;
   height: 8rem;
   width: 8rem;
+  object-fit: cover;
+
+  ${({ editMode }) =>
+    editMode &&
+    `
+    border: 0.2rem solid ${colors.green};
+  `}
 `;
 
 export const EditIconContainer = styled.div`
@@ -63,7 +74,7 @@ export const FormContainer = styled.form`
       border-radius: 1.1rem;
       box-shadow: 0 0.06rem 0.4rem ${colors.midGray};
       font-size: 0.85rem;
-      margin: 0 0.2rem;
+      margin: 0.2rem 0.2rem;
       padding: 0.2rem;
     }
 

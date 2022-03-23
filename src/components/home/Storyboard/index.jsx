@@ -32,14 +32,14 @@ function Storyboard() {
   const [suggestedAddress, setSuggestedAddress] = useState('New Jersey, USA');
   const inputValue = useRef();
 
-  const handleSearch = async (address) => {
+  const handleSearch = async () => {
     if (inputValue?.current?.value) {
-      if (inputValue?.current?.value === address) {
+      if (inputValue?.current?.value === selectedAddress) {
         setSelectedAddress(suggestedAddress);
         navigate(`${listingPaths.search}?key=${suggestedAddress}`);
       } else {
-        setSelectedAddress(address);
-        navigate(`${listingPaths.search}?key=${address}`);
+        setSelectedAddress(selectedAddress);
+        navigate(`${listingPaths.search}?key=${selectedAddress}`);
       }
     }
   };

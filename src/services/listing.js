@@ -102,3 +102,18 @@ export const updateTransactionListing = async (values) => {
 
   return data;
 };
+
+/**
+ * Service that add or update listing images
+ *
+ * @param {object} values transaction update data
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const addOrUpdateListingImages = async (id, images) => {
+  const {
+    data: { data },
+  } = await http.patch(`${apiUrl}/listings/images/${id}`, images);
+
+  return data;
+};

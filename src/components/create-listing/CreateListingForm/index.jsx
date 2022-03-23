@@ -3,19 +3,22 @@ import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
+import Toast from 'components/shared/Toast';
 import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { actionTypes } from 'utils/constants';
-import { getListingsById } from 'services/listing';
+import { addOrUpdateListingImages, getListingsById } from 'services/listing';
 import {
   submitListingForm,
   updateListingForm,
 } from 'services/listing-create-service';
 import { addUserActionType } from 'services/points-service';
+import { multipleFileUpload } from 'services/upload';
+import { actionTypes } from 'utils/constants';
 import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
 import {
@@ -32,11 +35,12 @@ import {
 function CreateListingForm({ date }) {
   const navigate = useNavigate();
   const { id: formId } = useParams();
-  const [images, setImages] = useState([]);
   const [featureIds, setFeatureIds] = useState(new Set());
   const { userInfo, setUserInfo, isLoggedIn } = useUser();
   const [registrationPoints, setRegistrationPoints] = useState(null);
   const { usePointsNotification } = usePointsNotifications();
+  const [images, setImages] = useState([]);
+  const [uploadImageError, setUploadImageError] = useState(false);
 
   const {
     register,
@@ -66,6 +70,11 @@ function CreateListingForm({ date }) {
       if (response?.features?.length > 0)
         setFeatureIds(new Set(response?.features?.map(({ id }) => id)));
 
+      // fill images
+      if (response?.images?.length) {
+        setImages(response?.images);
+      }
+
       reset(response);
     }
 
@@ -74,18 +83,6 @@ function CreateListingForm({ date }) {
   }, [formId, reset]);
 
   const values = watch();
-
-  const handleAddImages = (acceptedImages) => {
-    const updated = [...images, ...acceptedImages];
-    setImages(updated);
-  };
-
-  const handleDeleteImage = (imageToDelete) => {
-    const updated = [...images];
-    const index = updated.indexOf(imageToDelete);
-    updated.splice(index, 1);
-    setImages(updated);
-  };
 
   /**
    * Click handling function that will add or remove the feature id from the array.
@@ -122,6 +119,23 @@ function CreateListingForm({ date }) {
       if (!formId) {
         const { id } = await submitListingForm(values);
 
+        // upload images
+        if (images.length) {
+          await multipleFileUpload({
+            files: images,
+            onError: () => {
+              setUploadImageError(true);
+            },
+            onSuccess: async ({ data }) => {
+              if (data?.publicUrls?.length) {
+                await addOrUpdateListingImages(id, {
+                  images: data?.publicUrls,
+                });
+              }
+            },
+          });
+        }
+
         const addedUserAction = await addUserActionType({
           actionTypeName: actionTypes.createNewListing,
         });
@@ -134,13 +148,21 @@ function CreateListingForm({ date }) {
 
         navigate(`/listing/${id}`);
       } else {
-        updateListingForm(values, formId);
+        // update data
+        await updateListingForm(values, formId);
+        // update images
+        await addOrUpdateListingImages(formId, { images });
         navigate(`/listing/${formId}`);
       }
     }
   };
 
   usePointsNotification(registrationPoints, !!registrationPoints);
+
+  /**
+   * hook that hide toast message after n duration in seconds
+   */
+  useShowToastBar(uploadImageError, setUploadImageError);
 
   return (
     <CreateListingContainer>
@@ -155,11 +177,9 @@ function CreateListingForm({ date }) {
             control={control}
           />
         </Wrapper>
-        <ListingImageInput
-          images={images}
-          onAddImages={handleAddImages}
-          onDeleteImage={handleDeleteImage}
-        />
+
+        <ListingImageInput images={images} setImages={setImages} />
+
         <FeatureSelection
           featureIds={featureIds}
           handleFeatureClick={handleFeatureClick}
@@ -167,6 +187,12 @@ function CreateListingForm({ date }) {
         <SubmitSection>
           <Button type="submit">Save</Button>
         </SubmitSection>
+        {uploadImageError && (
+          <Toast
+            status="fail"
+            message="Oops, Failed uploading images, Please try that again."
+          />
+        )}
       </form>
     </CreateListingContainer>
   );

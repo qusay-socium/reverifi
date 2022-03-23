@@ -16,7 +16,8 @@ export const DatePickerContainer = styled.div`
     opacity: 0.7;
   }
 
-  .react-datepicker__day--in-range {
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--selected {
     background-color: ${colors.green};
     &:hover {
       background-color: ${colors.green};
@@ -59,6 +60,12 @@ export const DatePickerContainer = styled.div`
 
   .react-datepicker__input-container {
     width: 100%;
+
+    > input {
+      ::placeholder {
+        font-size: 0.85rem;
+      }
+    }
   }
 
   .react-datepicker__day-name,
@@ -74,15 +81,15 @@ export const DatePickerContainer = styled.div`
     border: ${({ error }) =>
       error
         ? `0.06rem solid ${colors.red}`
-        : `0.06rem solid ${colors.midGray}`};
-    padding: ${({ small }) => (small ? '0.5rem 1.2rem' : '1.1rem 1.8rem')};
+        : `0.06rem solid ${colors.mercury}`};
+    padding: ${({ small }) => (small ? '0.6rem 1.2rem' : '1.1rem 1.8rem')};
     border-radius: ${({ smallBorderRadius }) =>
       smallBorderRadius ? '0.45rem' : '1.9rem'};
     width: 100%;
     background-image: url(${arrow});
     background-repeat: no-repeat;
     background-position-x: 96%;
-    background-position-y: ${({ small }) => (small ? '0.7rem' : '1.4rem')};
+    background-position-y: ${({ small }) => (small ? '0.8rem' : '1.4rem')};
     font-size: ${({ small }) => (small ? '1rem' : '1.2rem')};
     font-family: inherit;
   }

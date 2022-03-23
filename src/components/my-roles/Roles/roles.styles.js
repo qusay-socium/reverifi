@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // TODO: move to global styles
 const fontStyles = {
   pageHeader: {
-    size: '2rem',
+    size: '1.5rem',
     weight: 600,
   },
 };

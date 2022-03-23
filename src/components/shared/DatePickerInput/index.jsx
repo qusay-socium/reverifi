@@ -15,6 +15,7 @@ import { DatePickerContainer, ErrorMessage } from './date-picker-input.styles';
  * @param {String} error validation error
  * @param {Object} control react useForm control object
  * @param {Boolean} isClearable is input clearable
+ * @param {Boolean}  singleDate single date input
  *
  * @return {JSX.Element}
  */
@@ -26,6 +27,7 @@ function DatePickerInput({
   name,
   error,
   isClearable,
+  singleDate,
 }) {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -36,7 +38,7 @@ function DatePickerInput({
       smallBorderRadius={smallBorderRadius}
       error={error}
     >
-      {control ? (
+      {control && !singleDate ? (
         <>
           <Controller
             control={control}
@@ -53,6 +55,24 @@ function DatePickerInput({
                 isClearable={isClearable}
                 className="date-picker"
                 dateFormat="dd-MM-yyyy"
+              />
+            )}
+          />
+          <ErrorMessage>{error || ''}</ErrorMessage>
+        </>
+      ) : control && singleDate ? (
+        <>
+          <Controller
+            control={control}
+            name={name}
+            render={({ field: { onChange, value } }) => (
+              <DatePicker
+                onChange={onChange}
+                selected={value}
+                isClearable={isClearable}
+                className="date-picker"
+                dateFormat="dd-MM-yyyy"
+                placeholderText={placeholder}
               />
             )}
           />
@@ -82,6 +102,7 @@ DatePickerInput.defaultProps = {
   isClearable: true,
   name: null,
   placeholder: '',
+  singleDate: false,
   small: false,
   smallBorderRadius: false,
 };
@@ -92,6 +113,7 @@ DatePickerInput.propTypes = {
   isClearable: PropTypes.bool,
   name: PropTypes.string,
   placeholder: PropTypes.string,
+  singleDate: PropTypes.bool,
   small: PropTypes.bool,
   smallBorderRadius: PropTypes.bool,
 };
