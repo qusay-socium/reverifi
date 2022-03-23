@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import loadingImage from 'assets/images/loading.gif';
 import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
@@ -23,6 +24,7 @@ import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
 import {
   CreateListingContainer,
+  LoadingImage,
   SubmitSection,
   Wrapper,
 } from './create-listing-form.styles';
@@ -41,6 +43,7 @@ function CreateListingForm({ date }) {
   const { usePointsNotification } = usePointsNotifications();
   const [images, setImages] = useState([]);
   const [uploadImageError, setUploadImageError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -121,12 +124,17 @@ function CreateListingForm({ date }) {
 
         // upload images
         if (images.length) {
+          setLoading(true);
+
           await multipleFileUpload({
             files: images,
             onError: () => {
+              setLoading(false);
               setUploadImageError(true);
             },
             onSuccess: async ({ data }) => {
+              setLoading(false);
+
               if (data?.publicUrls?.length) {
                 await addOrUpdateListingImages(id, {
                   images: data?.publicUrls,
@@ -146,13 +154,44 @@ function CreateListingForm({ date }) {
           points: userInfo.points + addedUserAction.points,
         });
 
-        navigate(`/listing/${id}`);
+        if (!uploadImageError) {
+          navigate(`/listing/${id}`);
+        }
       } else {
         // update data
         await updateListingForm(values, formId);
+
         // update images
-        await addOrUpdateListingImages(formId, { images });
-        navigate(`/listing/${formId}`);
+        if (images.length) {
+          setLoading(true);
+
+          // data type is (File)
+          const imagesToUpload = images.filter((image) => image.name);
+
+          // data type is (string)
+          const imagesNotToUpload = images.filter((image) => !image.name);
+
+          await multipleFileUpload({
+            files: imagesToUpload,
+            onError: () => {
+              setUploadImageError(true);
+              setLoading(false);
+            },
+            onSuccess: async ({ data }) => {
+              setLoading(false);
+
+              if (data?.publicUrls?.length) {
+                await addOrUpdateListingImages(formId, {
+                  images: [...data?.publicUrls, ...imagesNotToUpload],
+                });
+              }
+            },
+          });
+        }
+
+        if (!uploadImageError) {
+          navigate(`/listing/${formId}`);
+        }
       }
     }
   };
@@ -185,7 +224,11 @@ function CreateListingForm({ date }) {
           handleFeatureClick={handleFeatureClick}
         />
         <SubmitSection>
-          <Button type="submit">Save</Button>
+          {loading ? (
+            <LoadingImage src={loadingImage} />
+          ) : (
+            <Button type="submit">Save</Button>
+          )}
         </SubmitSection>
         {uploadImageError && (
           <Toast
