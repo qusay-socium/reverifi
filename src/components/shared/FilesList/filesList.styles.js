@@ -50,8 +50,10 @@ export const TextContainer = styled.div`
 export const NumOfImagesText = styled.span`
   font-size: 1.3rem;
 `;
+
 export const MaxLengthMessage = styled.span`
   font-size: 0.75rem;
+
   ${({ max }) =>
     max &&
     `
