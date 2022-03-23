@@ -12,9 +12,9 @@ import { ToastContainer, ToastMessage } from './toast.styles';
  *
  * @return {JSX.Element}
  */
-function Toast({ status, message, fixedPosition }) {
+function Toast({ status, message, isPositionFixed }) {
   return (
-    <ToastContainer status={status} fixedPosition={fixedPosition}>
+    <ToastContainer status={status} isPositionFixed={isPositionFixed}>
       {status === 'success' ? <SuccessIcon /> : <FailIcon />}
       <ToastMessage>{message}</ToastMessage>
     </ToastContainer>
@@ -22,12 +22,13 @@ function Toast({ status, message, fixedPosition }) {
 }
 
 Toast.propTypes = {
-  fixedPosition: propTypes.bool,
+  isPositionFixed: propTypes.bool,
   message: propTypes.string.isRequired,
   status: propTypes.oneOf(['success', 'fail']).isRequired,
 };
 
 Toast.defaultProps = {
-  fixedPosition: false,
+  isPositionFixed: false,
 };
+
 export default Toast;

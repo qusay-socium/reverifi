@@ -57,11 +57,11 @@ function TransactionInfoWrapper() {
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber, userInfo]);
+  }, [pageNumber]);
 
   useEffectOnce(() => {
     fetchTransactions();
-    if (searchParams.get('close')) {
+    if (searchParams.get('closed')) {
       setIsDealClosed(true);
     }
   });
@@ -70,7 +70,7 @@ function TransactionInfoWrapper() {
     <TransactionInfoContainer>
       {isDealClosed && (
         <Toast
-          fixedPosition
+          isPositionFixed
           status="success"
           message="The transaction has been closed"
         />
