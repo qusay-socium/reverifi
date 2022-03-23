@@ -38,13 +38,14 @@ export const ResultCountContainer = styled.div`
 export const ResultNumber = styled(ListingSearchText)`
   padding-right: 0.5rem;
   font-size: 1.38rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 0;
+  width: 30.813rem;
 `;
 
 export const ResultText = styled(ListingSearchText)`
   color: ${colors.dustyGray};
-  font-weight: 700;
+  font-weight: 500;
   margin: 0.5rem 0 0 0;
 `;
 
