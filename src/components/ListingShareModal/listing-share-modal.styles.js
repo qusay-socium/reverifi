@@ -18,7 +18,6 @@ export const ShareContainer = styled.div`
     margin: 0 1rem 0 0;
     `}
 `;
-export const ShareImg = styled.img``;
 
 export const Title = styled.h3`
   font-size: 1.25rem;

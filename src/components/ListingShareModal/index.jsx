@@ -15,7 +15,6 @@ import {
   InputWrapper,
   ShareContainer,
   ShareForm,
-  ShareImg,
   ShareWithText,
   SocialIconsContainer,
   Title,
@@ -57,7 +56,7 @@ function ListingShareModal() {
   return (
     <Modal show={showModal} handleClose={handleClose}>
       <ShareContainer>
-        <ShareImg src={ShareImgModal} />
+        <img src={ShareImgModal} alt="share" />
 
         <InfoContainer>
           <Title>Share Listing by email</Title>
