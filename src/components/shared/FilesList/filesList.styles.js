@@ -42,20 +42,19 @@ export const DeleteIcon = styled(RowDeleteIcon)`
 
 export const TextContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const NumOfImagesText = styled.span`
-  font-size: 1.5rem;
-
+  font-size: 1.3rem;
+`;
+export const MaxLengthMessage = styled.span`
+  font-size: 0.75rem;
   ${({ max }) =>
     max &&
     `
     color: ${colors.red}
     `}
-`;
-export const MaxLengthMessage = styled.span`
-  font-size: 0.75rem;
 `;

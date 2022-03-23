@@ -3,8 +3,10 @@ import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
 import Button from 'components/shared/Button';
+import Toast from 'components/shared/Toast';
 import { usePointsNotifications } from 'contexts/PointsNotificationContext/PointsNotificationContext';
 import { useUser } from 'contexts/UserContext';
+import useShowToastBar from 'hooks/use-show-toast-bar';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -15,7 +17,7 @@ import {
   updateListingForm,
 } from 'services/listing-create-service';
 import { addUserActionType } from 'services/points-service';
-import { multipleFilesUpload } from 'services/upload';
+import { multipleFileUpload } from 'services/upload';
 import { actionTypes } from 'utils/constants';
 import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
@@ -38,6 +40,7 @@ function CreateListingForm({ date }) {
   const [registrationPoints, setRegistrationPoints] = useState(null);
   const { usePointsNotification } = usePointsNotifications();
   const [images, setImages] = useState([]);
+  const [uploadImageError, setUploadImageError] = useState(false);
 
   const {
     register,
@@ -118,10 +121,10 @@ function CreateListingForm({ date }) {
 
         // upload images
         if (images.length) {
-          await multipleFilesUpload({
+          await multipleFileUpload({
             files: images,
             onError: () => {
-              // set error message
+              setUploadImageError(true);
             },
             onSuccess: async ({ data }) => {
               if (data?.publicUrls?.length) {
@@ -156,6 +159,11 @@ function CreateListingForm({ date }) {
 
   usePointsNotification(registrationPoints, !!registrationPoints);
 
+  /**
+   * hook that hide toast message after n duration in seconds
+   */
+  useShowToastBar(uploadImageError, setUploadImageError);
+
   return (
     <CreateListingContainer>
       <form onSubmit={handleSubmit(submit)}>
@@ -179,6 +187,12 @@ function CreateListingForm({ date }) {
         <SubmitSection>
           <Button type="submit">Save</Button>
         </SubmitSection>
+        {uploadImageError && (
+          <Toast
+            status="fail"
+            message="Oops, Failed uploading images, Please try that again."
+          />
+        )}
       </form>
     </CreateListingContainer>
   );

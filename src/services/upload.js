@@ -37,7 +37,7 @@ export const singleFileUpload = async ({
  *
  * @returns {Array} publicUrls
  */
-export const multipleFilesUpload = async ({
+export const multipleFileUpload = async ({
   files,
   onError = () => {},
   onSuccess = () => {},

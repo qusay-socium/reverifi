@@ -15,14 +15,14 @@ function FilesList({ files, onDelete }) {
   return (
     <SelectedItemsList>
       <TextContainer>
-        <NumOfImagesText max={files.length === 10}>
-          {files?.length} Files Selected
-        </NumOfImagesText>
-        <MaxLengthMessage>(maximum of 10)</MaxLengthMessage>
+        <NumOfImagesText>Uploaded images</NumOfImagesText>
+        <MaxLengthMessage max={files?.length === 10}>
+          ({files?.length} / 10)
+        </MaxLengthMessage>
       </TextContainer>
 
-      {files?.map((file, i) => (
-        <SelectedItem key={i.toString()}>
+      {files?.map((file) => (
+        <SelectedItem key={file?.name}>
           <SelectedItemInnerSection>
             <ThumbnailWrapper>
               <img

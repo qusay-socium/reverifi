@@ -23,7 +23,7 @@ function ListingImageInput({ images, setImages }) {
    * handle Add Images function
    */
   const handleAddImages = (acceptedImages) => {
-    if (images.length < 10) {
+    if (images.length + acceptedImages.length <= 10) {
       const updated = [...images, ...acceptedImages];
       setImages(updated);
     }
@@ -58,9 +58,11 @@ function ListingImageInput({ images, setImages }) {
           </UploadInput>
         </ImageInputSection>
 
-        <ImageInputSection>
-          <FilesList files={images} onDelete={handleDeleteImage} />
-        </ImageInputSection>
+        {images.length > 0 && (
+          <ImageInputSection>
+            <FilesList files={images} onDelete={handleDeleteImage} />
+          </ImageInputSection>
+        )}
       </Wrapper>
     </Container>
   );
