@@ -755,7 +755,7 @@ function AssignTasksWrapper() {
                     required
                     small
                     smallBorderRadius
-                    placeholder="Please select date"
+                    placeholder="Please select a date"
                     name={tableContent[index].dateName}
                     control={control}
                     error={errors[tableContent[index].dateName]?.message}
