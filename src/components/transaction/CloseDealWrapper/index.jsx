@@ -2,7 +2,7 @@ import { ReactComponent as NotesIcon } from 'assets/icons/overview.svg';
 import Button from 'components/shared/Button';
 import TextAreaInput from 'components/shared/FormTextArea';
 import Table from 'components/shared/Table';
-import { TableCell } from 'components/shared/Table/table-styles';
+import { TableCell, TableRow } from 'components/shared/Table/table-styles';
 import useEffectOnce from 'hooks/use-effect-once';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -23,7 +23,6 @@ import { ButtonsContainer } from '../AssignTasksWrapper/assign-tasks-wrapper.sty
 import {
   CheckboxContainer,
   SectionContainer,
-  TableRowContainer,
 } from './close-deal-wrapper.styles';
 
 /**
@@ -95,7 +94,7 @@ function CloseDealWrapper() {
     });
 
     // redirect to transaction page
-    navigate(`/transaction`);
+    navigate(`/transaction?close=true`);
   };
 
   /**
@@ -128,7 +127,7 @@ function CloseDealWrapper() {
       <SectionContainer onSubmit={handleSubmit(submit)}>
         <Table headers={['Process', '', 'Assignee']} fixedLayout>
           {processes?.map(({ process, assignee, id, isCompleted }) => (
-            <TableRowContainer key={id}>
+            <TableRow key={id}>
               <TableCell>
                 <CheckboxContainer>
                   <input
@@ -141,7 +140,7 @@ function CloseDealWrapper() {
               </TableCell>
               <TableCell />
               <TableCell>{assignee?.assignedUser?.name}</TableCell>
-            </TableRowContainer>
+            </TableRow>
           ))}
         </Table>
 
