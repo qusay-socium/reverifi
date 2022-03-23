@@ -45,6 +45,7 @@ export const CheckIcon = styled(checkIcon)`
 `;
 
 export const Overview = styled.p`
+  font-weight: 400;
   ${mq.desktop`
      max-width: 20rem; 
   `};

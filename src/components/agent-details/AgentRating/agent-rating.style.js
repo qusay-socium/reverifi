@@ -181,6 +181,7 @@ export const EditIcon = styled(editIcon)`
       display: block;
     }
   }
+  color: ${colors.dustyGray};
 `;
 
 export const CancelButton = styled(Button)`
