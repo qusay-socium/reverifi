@@ -20,7 +20,7 @@ export const SelectContainer = styled.div`
             : `0.06rem solid ${colors.green}`};
       }
       box-shadow: 0;
-      padding: 0.08rem;
+      padding: 0.08rem 0.3rem;
       font-size: 0.875rem;
 
       ${({ rounded }) =>
