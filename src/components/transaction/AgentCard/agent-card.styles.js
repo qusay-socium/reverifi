@@ -8,10 +8,11 @@ export const Card = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   padding: 0.625rem 0.625rem;
   margin: 0 0 0.6rem;
-  max-width: 19.25rem;
+  max-width: 30rem;
+  min-width: 18rem;
   max-height: 8.125rem;
 `;
 
@@ -36,9 +37,11 @@ export const CardContent = styled.div`
 
 export const Username = styled.div`
   color: ${colors.mineShaft};
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin: 0.3125rem 0rem;
+  margin: 0.3rem 0rem;
+  word-break: break-all;
+  max-width: 22rem;
 `;
 
 export const CompanyName = styled.div`
@@ -72,6 +75,7 @@ export const ContactEmail = styled.a`
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 19rem;
 `;
 
 export const ContactText = styled.div`

@@ -1,7 +1,6 @@
 import { ReactComponent as CreateIcon } from 'assets/icons/dashboard-create.svg';
 import { ReactComponent as MoneyIcon } from 'assets/icons/dashboard-money.svg';
 import { ReactComponent as TeamIcon } from 'assets/icons/dashboard-people-team.svg';
-import { offersData } from 'components/dashboard/data';
 import InvitationsTable from 'components/dashboard/InvitationsTable';
 import OffersTable from 'components/dashboard/OffersTable';
 import Tabs from 'components/shared/Tabs';
@@ -59,7 +58,7 @@ function DashboardWrapper() {
       </DashboardCardsContainer>
 
       <DashboardHeading>Offers</DashboardHeading>
-      <OffersTable data={offersData} />
+      <OffersTable />
 
       <DashboardHeading>Invitations</DashboardHeading>
       <Tabs

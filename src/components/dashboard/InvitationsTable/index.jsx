@@ -9,6 +9,7 @@ import {
   TableCellStatus,
   TableRow,
 } from 'components/shared/Table/table-styles';
+import TableNoData from 'components/shared/TableNoData';
 import useEffectOnce from 'hooks/use-effect-once';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -50,7 +51,7 @@ function InvitationsTable({ type }) {
 
   useEffectOnce(() => fetchInvitations());
 
-  return (
+  return invitations.length > 0 ? (
     <Table
       headers={[
         'PROPERTY',
@@ -121,6 +122,8 @@ function InvitationsTable({ type }) {
         )
       )}
     </Table>
+  ) : (
+    <TableNoData text="You have no invitations yet " />
   );
 }
 
