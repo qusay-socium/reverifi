@@ -28,47 +28,57 @@ function ListingsTable({ listings, pageNumber, setPageNumber }) {
   return (
     <ListingsTableContainer>
       <Table headers={['property', 'my Role', 'status']} fixedLayout>
-        {listings?.data?.map(({ id, address, agent, transactionListing }) => (
-          <TableRow
-            key={id}
-            show={transactionListing.find(
-              (transaction) =>
-                transaction.status === transactionStatus.inProgress
-            )}
-          >
-            <TableCell>{address}</TableCell>
-            <TableCell>
-              {agent?.roles.length > 0 ? (
-                <AgentContainer>
-                  <RolesText>
-                    {agent?.roles?.map(({ role }, i, array) =>
-                      i + 1 !== array.length ? `${role}, ` : role
-                    )}
-                  </RolesText>
-                  {agent?.roles.length > 2 && (
-                    <Tooltip
-                      text={agent?.roles?.map(({ role }, i, array) =>
+        {listings?.data?.map(
+          ({ id, address, agent, owner, transactionListing }) => (
+            <TableRow
+              key={id}
+              show={transactionListing.find(
+                (transaction) =>
+                  transaction.status === transactionStatus.inProgress
+              )}
+            >
+              <TableCell>{address}</TableCell>
+              <TableCell>
+                {agent?.roles?.length > 0 || owner?.roles?.length > 0 ? (
+                  <AgentContainer>
+                    <RolesText>
+                      {agent?.roles?.map(({ role }, i, array) =>
                         i + 1 !== array.length ? `${role}, ` : role
                       )}
-                      arrowPosition="top"
-                      position={[3, 0, 0, 2]}
-                      lineBreak
-                    />
-                  )}
-                </AgentContainer>
-              ) : (
-                'N/A'
-              )}
-            </TableCell>
-            <TableCell iconsCell>
-              <LinkText
-                to={`/transaction/${id}/${transactionStepsNames.addParties.route}`}
-              >
-                Start The Process
-              </LinkText>
-            </TableCell>
-          </TableRow>
-        ))}
+                      {owner?.roles?.map(({ role }, i, array) =>
+                        i + 1 !== array.length ? `${role}, ` : role
+                      )}
+                    </RolesText>
+                    {(agent?.roles.length > 2 || owner?.roles.length > 2) && (
+                      <Tooltip
+                        text={
+                          agent?.roles?.map(({ role }, i, array) =>
+                            i + 1 !== array.length ? `${role}, ` : role
+                          ) ||
+                          owner?.roles?.map(({ role }, i, array) =>
+                            i + 1 !== array.length ? `${role}, ` : role
+                          )
+                        }
+                        arrowPosition="top"
+                        position={[3, 0, 0, 2]}
+                        lineBreak
+                      />
+                    )}
+                  </AgentContainer>
+                ) : (
+                  'N/A'
+                )}
+              </TableCell>
+              <TableCell iconsCell>
+                <LinkText
+                  to={`/transaction/${id}/${transactionStepsNames.addParties.route}`}
+                >
+                  Start The Process
+                </LinkText>
+              </TableCell>
+            </TableRow>
+          )
+        )}
       </Table>
       <Pagination
         pageNumber={pageNumber}

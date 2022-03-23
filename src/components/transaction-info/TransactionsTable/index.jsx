@@ -7,8 +7,19 @@ import {
 import Tooltip from 'components/shared/Tooltip';
 import propTypes from 'prop-types';
 import React from 'react';
-import { transactionStatus, transactionStepsNames } from 'utils/constants';
+import {
+  transactionRoles,
+  transactionStatus,
+  transactionStepsNames,
+} from 'utils/constants';
 import { StepLink, SummaryIcon } from './transactions-table.styles';
+
+const allowedRoles = [
+  transactionRoles.seller,
+  transactionRoles.sellerAgent,
+  transactionRoles.buyer,
+  transactionRoles.buyerAgent,
+];
 
 /**
  * Transactions Table component
@@ -48,9 +59,13 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
           userId !== createdTransactions[0]?.createdBy && (
             <TableRow key={id}>
               <TableCell>
-                <StepLink to={getStepRoute(assignedTransaction)}>
-                  {assignedTransaction?.transactionListing?.address}
-                </StepLink>
+                {allowedRoles.some((allowedRole) => allowedRole === role) ? (
+                  <StepLink to={getStepRoute(assignedTransaction)}>
+                    {assignedTransaction?.transactionListing?.address}
+                  </StepLink>
+                ) : (
+                  assignedTransaction?.transactionListing?.address
+                )}
               </TableCell>
               <TableCell>{role || 'N/A'}</TableCell>
               <TableCell>{assignedTransaction?.status}</TableCell>
