@@ -2,6 +2,7 @@ import TableNoData from 'components/shared/TableNoData';
 import Toast from 'components/shared/Toast';
 import ListingsTable from 'components/transaction-info/ListingsTable';
 import TransactionsTable from 'components/transaction-info/TransactionsTable';
+import ShowModalProvider from 'contexts/ShowModalContext';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
@@ -13,6 +14,7 @@ import {
   getCreatedTransactions,
 } from 'services/transactions';
 import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
+import TransactionSummaryModal from '../TransactionSummaryModal';
 import {
   HeadingText,
   TransactionInfoContainer,
@@ -58,7 +60,7 @@ function TransactionInfoWrapper() {
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber]);
+  }, [pageNumber, userInfo]);
 
   useEffectOnce(() => {
     fetchTransactions();
@@ -91,10 +93,14 @@ function TransactionInfoWrapper() {
         <HeadingText>My Transactions</HeadingText>
       </TransactionsContainer>
       {assignedTransactions.length > 0 || createdTransactions.length > 0 ? (
-        <TransactionsTable
-          assignedTransactions={assignedTransactions}
-          createdTransactions={createdTransactions}
-        />
+        <ShowModalProvider>
+          <TransactionsTable
+            assignedTransactions={assignedTransactions}
+            createdTransactions={createdTransactions}
+          />
+
+          <TransactionSummaryModal />
+        </ShowModalProvider>
       ) : (
         <TableNoData text="You have no transactions started yet" />
       )}
