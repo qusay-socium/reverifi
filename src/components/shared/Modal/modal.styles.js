@@ -22,8 +22,9 @@ export const Dialog = styled.div`
   min-height: 6.25rem;
   min-width: 6.25rem;
   position: relative;
-  max-height: 70%;
+  max-height: 80%;
   overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const CloseButton = styled.div`

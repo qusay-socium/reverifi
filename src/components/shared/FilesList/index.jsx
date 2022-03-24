@@ -11,13 +11,13 @@ import {
   ThumbnailWrapper,
 } from './filesList.styles';
 
-function FilesList({ files, onDelete }) {
+function FilesList({ files, onDelete, headerText, filesLimit }) {
   return (
     <SelectedItemsList>
       <TextContainer>
-        <NumOfImagesText>Uploaded images</NumOfImagesText>
-        <MaxLengthMessage max={files?.length === 10}>
-          ({files?.length} / 10)
+        <NumOfImagesText>{headerText}</NumOfImagesText>
+        <MaxLengthMessage max={files?.length === filesLimit}>
+          ({files?.length} / {filesLimit})
         </MaxLengthMessage>
       </TextContainer>
 
@@ -45,13 +45,17 @@ function FilesList({ files, onDelete }) {
   );
 }
 
-FilesList.propTypes = {
-  files: PropTypes.arrayOf(PropTypes.any).isRequired,
-  onDelete: PropTypes.func,
+FilesList.defaultProps = {
+  filesLimit: 10,
+  headerText: 'Uploaded images',
+  onDelete: null,
 };
 
-FilesList.defaultProps = {
-  onDelete: null,
+FilesList.propTypes = {
+  files: PropTypes.arrayOf(PropTypes.any).isRequired,
+  filesLimit: PropTypes.number,
+  headerText: PropTypes.string,
+  onDelete: PropTypes.func,
 };
 
 export default FilesList;

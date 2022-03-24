@@ -65,7 +65,12 @@ function ListingImageInput({ images, setImages }) {
 
         {images.length > 0 && (
           <ImageInputSection>
-            <FilesList files={images} onDelete={handleDeleteImage} />
+            <FilesList
+              files={images}
+              onDelete={handleDeleteImage}
+              headerText="Upload images"
+              filesLimit={10}
+            />
           </ImageInputSection>
         )}
       </Wrapper>

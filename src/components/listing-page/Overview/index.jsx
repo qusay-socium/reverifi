@@ -1,4 +1,5 @@
 import { Title } from 'components/listing-page/Details/details.styles';
+import { useShowModal } from 'contexts/ShowModalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getDatesDifference } from 'utils/helpers';
@@ -24,6 +25,7 @@ import {
  */
 function Overview({ listing }) {
   const { schedule, id } = listing;
+  const { setShowModal } = useShowModal();
 
   return (
     <Container>
@@ -64,7 +66,11 @@ function Overview({ listing }) {
             <Title> Do you own this property? </Title>
             <Paragraph>Claim this property and verify its details</Paragraph>
           </div>
-          <ClaimButton aria-label="Claim This Property" type="button">
+          <ClaimButton
+            aria-label="Claim This Property"
+            type="button"
+            onClick={() => setShowModal(true)}
+          >
             Claim This Property
           </ClaimButton>
         </Claim>
@@ -77,6 +83,7 @@ function Overview({ listing }) {
 
 Overview.propTypes = {
   listing: PropTypes.shape({
+    address: PropTypes.string,
     createdAt: PropTypes.string,
     id: PropTypes.bool,
     listingSocial: PropTypes.objectOf(PropTypes.string),
