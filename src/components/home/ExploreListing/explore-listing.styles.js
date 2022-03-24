@@ -168,7 +168,6 @@ export const ImgContent = styled.div`
   margin-top: 1rem;
 
   ${mq.tablet`
-      top:0;
       left: 1rem;
   `};
 `;
