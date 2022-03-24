@@ -65,3 +65,7 @@ export const ButtonText = styled.div`
 export const TextAreaContainer = styled.div`
   width: 100%;
 `;
+
+export const TextAreaDiv = styled.div`
+  margin-right: 2.5rem;
+`;
