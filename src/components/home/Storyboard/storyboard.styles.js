@@ -4,6 +4,7 @@ import { AutocompleteMenuContainer } from 'components/shared/LocationSearchInput
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
+import { ReactComponent as StoryBoardImage } from 'assets/images/story-board-image.svg';
 
 export const StoryBoardContainer = styled.div`
   color: ${colors.mineShaft};
@@ -135,7 +136,12 @@ export const StyledInput = styled.input`
   outline: none;
 
   ::placeholder {
+    font-size: 0.9rem;
+
+    ${mq.tablet`
     font-size: 1rem;
+    }
+  `}
   }
 
   ${mq.desktopMax`
@@ -148,4 +154,9 @@ export const StyledInput = styled.input`
 
 export const MenuContainer = styled(AutocompleteMenuContainer)`
   top: 98%;
+`;
+
+export const StoryBoard = styled(StoryBoardImage)`
+  width: 100%;
+  height: 100%;
 `;

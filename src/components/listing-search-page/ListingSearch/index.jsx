@@ -1,4 +1,5 @@
 import Map from 'components/shared/Map';
+import ShowModalProvider from 'contexts/ShowModalContext';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getListingsBySearchKey } from 'services/listing';
@@ -8,7 +9,12 @@ import { listingPaths } from 'utils/appPaths';
 import MapCard from '../MapCard';
 import SearchHeader from '../SearchHeader';
 import ListingSearch from '../SearchResults';
-import { ListingPage, MapContainer, SearchBody } from './listing-search.style';
+import {
+  ListingContainer,
+  ListingPage,
+  MapContainer,
+  SearchBody,
+} from './listing-search.style';
 /**
  * renderCards component.
  * @param  {object} data to render card on map.
@@ -44,13 +50,17 @@ function ListingSearchPage() {
   }, [keyWord]);
   return (
     <ListingPage>
-      <SearchHeader
-        keyWord={keyWord}
-        setKeyWord={setKeyWord}
-        fetchListingDataBySearchKey={fetchListingDataBySearchKey}
-      />
+      <ShowModalProvider>
+        <SearchHeader
+          keyWord={keyWord}
+          setKeyWord={setKeyWord}
+          fetchListingDataBySearchKey={fetchListingDataBySearchKey}
+        />
+      </ShowModalProvider>
       <SearchBody>
-        <ListingSearch cardData={cardData} keyWord={keyWord} />
+        <ListingContainer>
+          <ListingSearch cardData={cardData} keyWord={keyWord} />
+        </ListingContainer>
         <MapContainer>
           <Map
             ComponentOnMap={renderCards}

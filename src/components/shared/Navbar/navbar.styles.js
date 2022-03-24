@@ -1,9 +1,11 @@
 import { ReactComponent as RawLogo } from 'assets/logo.svg';
 import { Menu } from 'react-feather';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
 import mq from 'styles/media-query';
+import X from 'react-feather/dist/icons/x';
 import Button from '../Button';
+import { MenuLink } from '../Sidebar/sidebar.styles';
 
 export const BroadNavContainer = styled.div`
   align-items: center;
@@ -13,9 +15,6 @@ export const BroadNavContainer = styled.div`
   font-size: 0.875rem;
   height: 5rem;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 
   ${mq.tablet`
     align-items: stretch;
@@ -29,9 +28,33 @@ export const NarrowNavContainer = styled(BroadNavContainer)`
   `}
 `;
 
-export const NavItemsContainer = styled.div`
-  display: none;
+const fadeOut = keyframes`
+  from {
+    max-height: 0;
+  }
+  
+  to {  
+    max-height: 42rem;
+  }
+`;
 
+const fadeIn = keyframes`
+  from {
+    max-height: 42rem;
+  }
+  
+  to {
+    max-height: 0;
+  }
+`;
+
+export const Nav = styled.nav`
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+`;
+
+export const NavItemsContainer = styled.div`
   ${mq.tablet`
     align-items: center;
     display: flex;
@@ -70,8 +93,6 @@ export const NavLink = styled.a`
 `;
 
 export const UserNavRegContainer = styled.div`
-  display: none;
-
   ${mq.tablet`
     align-items: center;
     display: flex;
@@ -95,6 +116,20 @@ export const MenuIcon = styled(Menu)`
   left: 1.25rem;
   position: absolute;
   width: 3rem;
+  padding-right: 1rem;
+
+  ${mq.tablet`
+    display: none
+  `}
+`;
+
+export const CloseMenuIcon = styled(X)`
+  color: white;
+  height: 2rem;
+  left: 1.25rem;
+  position: absolute;
+  width: 3rem;
+  padding-right: 1rem;
 
   ${mq.tablet`
     display: none
@@ -125,7 +160,7 @@ export const UserControlSectionWrapper = styled(NavControlSection)`
 
 export const Logo = styled(RawLogo)`
   cursor: pointer;
-  margin: 0 2rem;
+  margin: 0 3rem 0 5rem;
   width: 6.25rem;
 
   ${mq.tablet`
@@ -135,22 +170,39 @@ export const Logo = styled(RawLogo)`
 `;
 
 export const SignInButton = styled(Button)`
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  ${mq.tablet`
+  font-weight: 600;
   background-color: transparent;
   font-size: 0.9rem;
   font-weight: 600;
+  `};
 `;
 
 export const SignUpButton = styled(Button)`
-  border: 0.06rem solid ${colors.green};
-  font-size: 0.9rem;
-  font-weight: 600;
+  ${mq.mobile`
+    display: none;
+  `};
 
-  &:hover {
-    background-color: ${colors.mineShaft};
-    color: ${colors.green};
+  ${mq.mobileWide`
+    display: none;
+  `};
+
+  ${mq.tablet`
+    display: block;
     border: 0.06rem solid ${colors.green};
-  }
-  font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    &:hover {
+      background-color: ${colors.mineShaft};
+      color: ${colors.green};
+      border: 0.06rem solid ${colors.green};
+    }
+    font-weight: 600;
+  `};
 `;
 
 export const StyledInputGroup = styled.div`
@@ -184,12 +236,19 @@ export const StyledInput = styled.input`
 
   ::placeholder {
     font-size: 1rem;
-    font-family: 'Montserrat', Helvetica, sans-serif;
+    font-family: inherit;
   }
 
   ${mq.desktopMax`
     font-size: 1.2rem;
   `}
+`;
+
+export const UserImage = styled.img`
+  border-radius: 50%;
+  height: 3.2rem;
+  width: 3.2rem;
+  object-fit: cover;
 `;
 
 export const MenuWrapper = styled.div`
@@ -253,9 +312,50 @@ export const MenuItem = styled.div`
   }
 `;
 
-export const UserImage = styled.img`
-  border-radius: 50%;
-  height: 3.2rem;
-  width: 3.2rem;
-  object-fit: cover;
+export const ExpandableContainer = styled.div`
+  animation: ${({ isExpanded }) => (isExpanded ? fadeOut : fadeIn)} ease-in-out;
+
+  animation-duration: 0.4s;
+  max-height: ${({ isExpanded }) => (isExpanded ? '42rem' : '0')};
+  overscroll-behavior: contain;
+  width: 100%;
+  background-color: ${colors.mineShaft};
+  display: ${({ isExpanded }) => (isExpanded ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 1rem;
+
+  ${mq.tablet`
+    display:none;
+  `}
+`;
+
+export const ExpandableMenuItem = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  margin-top: ${({ padding }) => (padding ? '0.3rem' : '0.7rem')};
+  justify-content: start;
+  align-items: flex-start;
+
+  a {
+    font-weight: 600;
+    color: ${colors.white};
+    text-decoration: none;
+  }
+
+  h4 {
+    color: white;
+    margin-top: 0.15rem;
+    font-weight: 600;
+  }
+`;
+
+export const ExpandableMenuLink = styled(MenuLink)`
+  padding: 0;
+  margin-left: 2rem;
+`;
+
+export const Container = styled.div`
+  padding: 0;
+  margin-left: 2rem;
 `;

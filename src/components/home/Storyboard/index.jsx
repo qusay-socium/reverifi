@@ -1,5 +1,4 @@
 import { ReactComponent as CloseIcon } from 'assets/close-icon.svg';
-import { ReactComponent as StoryBoardImage } from 'assets/images/story-board-image.svg';
 import { AutocompleteMenu } from 'components/shared/LocationSearchInput/search-input.style';
 import React, { useRef, useState } from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
@@ -15,6 +14,7 @@ import {
   SearchListingsHeader,
   SearchListingsItem,
   SearchListingsWrapper,
+  StoryBoard,
   StoryBoardContainer,
   StoryBoardSection,
   StyledInput,
@@ -81,7 +81,7 @@ function Storyboard() {
                           setSelectedAddress(e.target.value);
                         }}
                         value={selectedAddress}
-                        placeholder="Enter city, neighborhood, ZIP code, or an address"
+                        placeholder="Enter city, ZIP code or an address"
                         {...getInputProps()}
                       />
                       <MenuContainer>
@@ -108,7 +108,7 @@ function Storyboard() {
       </StoryBoardSection>
 
       <StoryBoardSection>
-        <StoryBoardImage />
+        <StoryBoard />
       </StoryBoardSection>
     </StoryBoardContainer>
   );
