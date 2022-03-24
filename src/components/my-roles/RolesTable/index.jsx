@@ -51,8 +51,8 @@ function RolesTable() {
             <CellContainer>{address}</CellContainer>
             <CellContainer>
               <AgentContainer>
-                {agent?.roles?.map(({ role }) =>
-                  agent?.roles.length > 1 ? (
+                {agent?.roles?.map(({ role }, index) =>
+                  index < agent?.roles.length - 1 ? (
                     <>{role || 'N/A'},</>
                   ) : (
                     <>{role || 'N/A'} </>
