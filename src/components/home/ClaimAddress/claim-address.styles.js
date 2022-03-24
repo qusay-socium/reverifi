@@ -127,6 +127,10 @@ export const JoinUsText = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  ${mq.tablet`
+     min-width: 31rem;
+  `}
+
   svg {
     margin: 0.4rem 0 0 1rem;
     max-height: 5rem;

@@ -20,6 +20,10 @@ export const MainContainer = styled.div`
   `}
 `;
 
+export const FirstSection = styled.div`
+  max-width: 34rem;
+`;
+
 export const Header = styled.h3`
   font-size: 1.3rem;
   margin: 1rem 0 1rem 0;
@@ -56,6 +60,7 @@ export const SecondSection = styled.div`
   grid-template-columns: repeat(2, 1fr);
 
   ${mq.tablet`
+   grid-template-columns: repeat(3, 1fr);
     gap: 1.75rem;
   `}
 `;
