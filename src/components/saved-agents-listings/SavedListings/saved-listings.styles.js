@@ -21,7 +21,7 @@ export const AgentInfoContainer = styled.div`
 export const AgentImage = styled.img`
   border-radius: 20rem;
   height: 100%;
-  width: 100%;
+  width: 2.3rem;
 `;
 
 export const AgentName = styled.p`
