@@ -15,12 +15,14 @@ export const SelectedItemsList = styled.div`
 export const SelectedItem = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0.2rem;
 `;
 
 export const SelectedItemInnerSection = styled.div`
   align-items: center;
   display: flex;
   gap: 0.625rem;
+  padding: 0 2rem;
 
   > span {
     font-size: 0.75rem;
@@ -33,6 +35,12 @@ export const ThumbnailWrapper = styled.div`
   height: 2.625rem;
   min-width: 2.625rem;
   width: 2.625rem;
+
+  > img {
+    width: 2.8rem;
+    height: 2.8rem;
+    object-fit: cover;
+  }
 `;
 
 export const DeleteIcon = styled(RowDeleteIcon)`
@@ -45,6 +53,7 @@ export const TextContainer = styled.div`
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
+  padding: 0 2rem;
 `;
 
 export const NumOfImagesText = styled.span`

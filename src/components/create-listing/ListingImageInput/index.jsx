@@ -49,6 +49,7 @@ function ListingImageInput({ images, setImages }) {
               'image/png',
               'image/gif',
               'image/jpeg',
+              'image/jpg',
               'image/webp',
             ]}
             multiple
