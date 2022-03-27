@@ -27,8 +27,9 @@ export const VerifyButton = styled(Button)``;
 
 export const CancelButton = styled(Button)`
   background-color: ${colors.white};
-  border: 0.06rem solid ${colors.gray};
+  border: 0.063rem solid ${colors.mineShaft};
   color: ${colors.gray};
+  opacity: 0.5;
 `;
 
 export const CodeContainer = styled.div`

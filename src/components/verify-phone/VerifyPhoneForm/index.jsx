@@ -25,6 +25,7 @@ import {
  */
 function VerifyPhoneForm() {
   const [resendCode, setResendCode] = useState(true);
+  const message = `Didn't receive a code? Send it again`;
 
   const { register, handleSubmit, reset, setFocus } = useForm({
     resolver: yupResolver(verifyPhoneSchema),
@@ -113,7 +114,7 @@ function VerifyPhoneForm() {
           </CountdownCircleTimer>
 
           <ResendButton onClick={() => setResendCode(!resendCode)}>
-            Did not receive code? send again
+            {message}
           </ResendButton>
         </ResendCircleContainer>
       </CodeContainer>
