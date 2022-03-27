@@ -9,6 +9,7 @@ export const Container = styled.div`
   margin-top: 1rem;
   height: 100%;
   padding: 1.5rem 2rem;
+  max-width: 41.602rem;
 
   ${mq.desktop`
     margin-top: 0;
