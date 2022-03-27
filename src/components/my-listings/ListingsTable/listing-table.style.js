@@ -25,6 +25,7 @@ export const AgentContainer = styled.div`
     span {
       display: block;
       height: fit-content;
+      margin-top: 0.5rem;
     }
   }
 `;
