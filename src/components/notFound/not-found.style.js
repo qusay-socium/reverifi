@@ -8,7 +8,6 @@ export const Container = styled.div`
   margin: 10rem 0;
 `;
 
-export const Text = styled.h2`
-  font-size: 2rem;
+export const Text = styled.h1`
   font-weight: 600;
 `;
