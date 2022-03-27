@@ -79,8 +79,9 @@ function ClaimPropertyModal({ listing }) {
         },
         onSuccess: async ({ data }) => {
           if (data?.publicUrl) {
-            await addOrUpdateListingClaim(listing?.id, {
+            await addOrUpdateListingClaim({
               documentUrl: data?.publicUrl,
+              listingId: listing?.id,
             });
 
             setIsUploaded(true);
