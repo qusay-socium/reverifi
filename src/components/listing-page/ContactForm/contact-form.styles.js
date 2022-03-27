@@ -67,7 +67,6 @@ export const Input = styled.input`
     margin: 0;
   }
 
-  /* Remove controls from Firefox */
   -moz-appearance: textfield;
   @-moz-document url-prefix() {
     background: none;
