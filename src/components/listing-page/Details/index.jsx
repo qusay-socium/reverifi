@@ -69,7 +69,7 @@ function Details({ details }) {
         {listingSize.map((key) => (
           <DetailsItem key={Object.keys(key)}>
             <Key>{splitCamelCaseString(Object.keys(key)[0])}:</Key>
-            <Value> {Object.values(key)[0].sqft} </Value>
+            <Value> {Number(Object.values(key)[0].sqft)} </Value>
           </DetailsItem>
         ))}
       </Wrapper>
