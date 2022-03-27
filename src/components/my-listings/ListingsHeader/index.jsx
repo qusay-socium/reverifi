@@ -1,8 +1,4 @@
 import { ReactComponent as AddIcon } from 'assets/add-icon.svg';
-import FilterIcon from 'assets/filter-button.svg';
-import ScheduleIcon from 'assets/icons/schedule.svg';
-import DropdownMenu from 'components/shared/DropdownMenu';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,11 +12,7 @@ import {
  *
  * @return {JSX.Element}
  */
-function MyListingHeader({ setOrder }) {
-  const DateOptions = [
-    { option: 'Newest', value: 'DESC' },
-    { option: 'Oldest', value: 'ASC' },
-  ];
+function MyListingHeader() {
   const navigate = useNavigate();
 
   const handleCreateNewListing = () => {
@@ -32,23 +24,6 @@ function MyListingHeader({ setOrder }) {
       <h2>My Listings</h2>
 
       <ButtonContainer>
-        <DropdownMenu
-          name="Date"
-          placeholder="Date"
-          leftIcon={ScheduleIcon}
-          options={DateOptions}
-          onChange={setOrder}
-          small
-        />
-
-        <DropdownMenu
-          name="Status"
-          placeholder="Status"
-          leftIcon={FilterIcon}
-          onChange={setOrder}
-          small
-        />
-
         <CreateNewListingButton onClick={handleCreateNewListing}>
           <AddIcon />
           Add New Listing
@@ -57,13 +32,5 @@ function MyListingHeader({ setOrder }) {
     </Header>
   );
 }
-
-MyListingHeader.propTypes = {
-  setOrder: PropTypes.func,
-};
-
-MyListingHeader.defaultProps = {
-  setOrder: () => {},
-};
 
 export default MyListingHeader;
