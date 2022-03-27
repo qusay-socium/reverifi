@@ -2,6 +2,7 @@ import { ReactComponent as Comment } from 'assets/comment.svg';
 import { ReactComponent as FilledHeart } from 'assets/filled-heart.svg';
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
+import { ReactComponent as GarageIcon } from 'assets/icons/garage.svg';
 import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
 import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import Button from 'components/shared/Button';
@@ -36,7 +37,7 @@ function CardInformation({
   bedrooms,
   fullBathrooms,
   homeArea,
-  lotArea,
+  garages,
 }) {
   const navigate = useNavigate();
   return (
@@ -76,14 +77,15 @@ function CardInformation({
               <BathtubIcon />
             </IconGroup>
           )}
+          {garages ? (
+            <IconGroup>
+              <span>{garages}</span>
+              <GarageIcon />
+            </IconGroup>
+          ) : null}
           {homeArea ? (
             <IconGroup>
               <span>{homeArea}</span>Sq.Ft
-            </IconGroup>
-          ) : null}
-          {lotArea ? (
-            <IconGroup>
-              <span>{lotArea}</span>Sq.Ft lot
             </IconGroup>
           ) : null}
         </IconsContainers>
@@ -113,7 +115,7 @@ CardInformation.defaultProps = {
   bedrooms: 0,
   fullBathrooms: 0,
   homeArea: 0,
-  lotArea: 0,
+  garages: 0,
   perPeriod: null,
 };
 
@@ -123,7 +125,7 @@ CardInformation.propTypes = {
   fullBathrooms: PropTypes.number,
   homeArea: PropTypes.string,
   id: PropTypes.string.isRequired,
-  lotArea: PropTypes.string,
+  garages: PropTypes.number,
   perPeriod: PropTypes.string,
   price: PropTypes.number.isRequired,
   propertyType: PropTypes.string.isRequired,
