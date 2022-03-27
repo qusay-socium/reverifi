@@ -45,6 +45,7 @@ function AgentListings() {
             homeArea,
             lotArea,
             tags,
+            garages,
           }) => (
             <Card key={listingId}>
               <CardImage
@@ -63,6 +64,7 @@ function AgentListings() {
                 fullBathrooms={fullBathrooms}
                 homeArea={homeArea?.sqft}
                 lotArea={lotArea?.sqft}
+                garages={garages}
               />
             </Card>
           )
