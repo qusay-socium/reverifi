@@ -2,11 +2,10 @@ import { ReactComponent as Comment } from 'assets/comment.svg';
 import { ReactComponent as FilledHeart } from 'assets/filled-heart.svg';
 import { ReactComponent as BathtubIcon } from 'assets/icons/bathtub.svg';
 import { ReactComponent as BedroomIcon } from 'assets/icons/bedroom.svg';
-import { ReactComponent as HeartIcon } from 'assets/icons/heart.svg';
-import { ReactComponent as ShareIcon } from 'assets/icons/share.svg';
 import Button from 'components/shared/Button';
+import SaveAndShareButtons from 'components/shared/SaveAndShareButtons';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getDatesDifference } from 'utils/helpers';
 import {
@@ -17,7 +16,6 @@ import {
   CardPrice,
   FooterIconGroup,
   HeaderIcons,
-  HeaderIconWrapper,
   IconGroup,
   IconsContainers,
 } from './card-information.style';
@@ -39,6 +37,8 @@ function CardInformation({
   lotArea,
 }) {
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <CardInformationContainer>
       <CardHeader>
@@ -53,12 +53,11 @@ function CardInformation({
           </span>
         </CardPrice>
         <HeaderIcons>
-          <HeaderIconWrapper stroke="true">
-            <HeartIcon />
-          </HeaderIconWrapper>
-          <HeaderIconWrapper fill="true">
-            <ShareIcon />
-          </HeaderIconWrapper>
+          <SaveAndShareButtons
+            listingId={id}
+            small="true"
+            changeActiveState={() => setIsActive(!isActive)}
+          />
         </HeaderIcons>
       </CardHeader>
       <CardBody>
