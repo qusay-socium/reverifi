@@ -1,5 +1,6 @@
 import { ReactComponent as Bathtub } from 'assets/bathtub.svg';
 import { ReactComponent as Bed } from 'assets/icons/bedroom.svg';
+import { ReactComponent as GarageIcon } from 'assets/icons/garage.svg';
 import { ReactComponent as PinIcon } from 'assets/icons/location.svg';
 import listingImage from 'assets/listing-image.png';
 import {
@@ -28,7 +29,7 @@ import {
  * @return
  */
 function MapCard({ data }) {
-  const { images, price, address, bedrooms, fullBathrooms, lotArea, homeArea } =
+  const { images, price, address, bedrooms, fullBathrooms, garages, homeArea } =
     data;
   return (
     <CardContainer>
@@ -59,17 +60,16 @@ function MapCard({ data }) {
           </IconsNumber>
         )}
 
+        {garages && (
+          <IconsNumber>
+            <BoldNumber>{garages} </BoldNumber>
+            <GarageIcon />
+          </IconsNumber>
+        )}
         {homeArea && (
           <IconsNumber>
             <BoldNumber>{homeArea?.sqft} </BoldNumber>
             <AreaText>Sq.Ft</AreaText>
-          </IconsNumber>
-        )}
-
-        {lotArea && (
-          <IconsNumber>
-            <BoldNumber>{lotArea?.sqft} </BoldNumber>{' '}
-            <AreaText>Sq.Ft lot</AreaText>
           </IconsNumber>
         )}
       </MapCardIconsContainer>
@@ -83,11 +83,11 @@ MapCard.propTypes = {
     agent: PropTypes.string,
     bedrooms: PropTypes.number,
     fullBathrooms: PropTypes.number,
+    garages: PropTypes.number,
     homeArea: PropTypes.shape({ sqft: PropTypes.string }),
     id: PropTypes.number,
     images: PropTypes.string,
     listingBy: PropTypes.string,
-    lotArea: PropTypes.shape({ sqft: PropTypes.string }),
     price: PropTypes.string,
   }).isRequired,
 };
