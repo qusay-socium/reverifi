@@ -67,6 +67,11 @@ export const Input = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+
+  -moz-appearance: textfield;
+  @-moz-document url-prefix() {
+    background: none;
+  }
 `;
 
 export const Message = styled.div`
