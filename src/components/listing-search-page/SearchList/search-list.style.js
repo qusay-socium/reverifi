@@ -40,7 +40,6 @@ export const ResultNumber = styled(ListingSearchText)`
   font-size: 1.38rem;
   font-weight: 700;
   margin-bottom: 0;
-  width: 30.813rem;
 `;
 
 export const ResultText = styled(ListingSearchText)`
