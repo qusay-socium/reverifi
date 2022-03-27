@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 export const ImageInputSection = styled.div`
