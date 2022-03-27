@@ -7,7 +7,7 @@ import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getUserListings } from 'services/listing';
 import {
   getAssignedTransactions,
@@ -31,8 +31,9 @@ function TransactionInfoWrapper() {
   const [createdTransactions, setCreatedTransactions] = useState([]);
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const { userInfo } = useUser();
+  const { userInfo, isLoggedIn } = useUser();
   const [isDealClosed, setIsDealClosed] = useState(false);
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
 
@@ -63,6 +64,8 @@ function TransactionInfoWrapper() {
   }, [pageNumber, userInfo]);
 
   useEffectOnce(() => {
+    if (!isLoggedIn) navigate('/sign-up');
+
     fetchTransactions();
     if (searchParams.get('closed')) {
       setIsDealClosed(true);

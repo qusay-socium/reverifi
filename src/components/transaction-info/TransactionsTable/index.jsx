@@ -58,8 +58,8 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
   return (
     <Table headers={['PROPERTY', 'MY ROLE', 'STATUS', null]}>
       {assignedTransactions?.map(
-        ({ id, assignedTransaction, role, userId }) =>
-          userId !== createdTransactions[0]?.createdBy && (
+        ({ id, assignedTransaction, role }) =>
+          assignedTransaction?.id !== createdTransactions[0]?.id && (
             <TableRow key={id}>
               <TableCell>
                 {allowedRoles.some((allowedRole) => allowedRole === role) ? (
