@@ -18,6 +18,7 @@ import {
   SellerTeamFromContainer,
   SideContainer,
   TextAreaContainer,
+  TextAreaDiv,
   TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
@@ -391,7 +392,7 @@ export default function AddPartiesWrapper() {
               }}
             />
           </RowContainer>
-          <RowContainer>
+          <TextAreaDiv>
             <TextAreaContainer>
               <TextAreaInput
                 label="Notes"
@@ -402,7 +403,8 @@ export default function AddPartiesWrapper() {
                 register={register}
               />
             </TextAreaContainer>
-          </RowContainer>
+          </TextAreaDiv>
+
           <RowContainer>
             <Button type="submit">
               <ButtonText>Confirm and Next</ButtonText>
