@@ -1,3 +1,4 @@
+import ClaimPropertyModal from 'components/listing-page/ClaimPropertyModal';
 import Details from 'components/listing-page/Details';
 import Features from 'components/listing-page/Features';
 import Offer from 'components/listing-page/Offer';
@@ -46,7 +47,10 @@ function ListingPage() {
         id={listingDetails?.id}
       />
       <ListingPageSlider images={listingDetails?.images} />
-      <Overview listing={listingDetails} />
+      <ShowModalProvider>
+        <Overview listing={listingDetails} />
+        <ClaimPropertyModal listing={listingDetails} />
+      </ShowModalProvider>
       <Details details={listingDetails} />
       <Features features={listingDetails?.features} />
       <Location />

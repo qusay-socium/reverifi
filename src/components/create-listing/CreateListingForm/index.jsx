@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import loadingImage from 'assets/images/loading.gif';
 import FeatureSelection from 'components/create-listing/FeatureSelection';
 import FormInputFields from 'components/create-listing/FormInputFields';
 import ListingImageInput from 'components/create-listing/ListingImageInput';
@@ -23,6 +24,7 @@ import { generateLabelValuePairs } from 'utils/helpers';
 import listingFormSchema from './create-listing-form-schema';
 import {
   CreateListingContainer,
+  LoadingImage,
   SubmitSection,
   Wrapper,
 } from './create-listing-form.styles';
@@ -40,7 +42,8 @@ function CreateListingForm({ date }) {
   const [registrationPoints, setRegistrationPoints] = useState(null);
   const { usePointsNotification } = usePointsNotifications();
   const [images, setImages] = useState([]);
-  const [uploadImageError, setUploadImageError] = useState(false);
+  const [uploadImageError, setUploadImageError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -119,50 +122,105 @@ function CreateListingForm({ date }) {
       if (!formId) {
         const { id } = await submitListingForm(values);
 
+        const addedUserAction = await addUserActionType({
+          actionTypeName: actionTypes?.createNewListing,
+        });
+
+        setRegistrationPoints(addedUserAction?.points);
+        setUserInfo({
+          ...userInfo,
+          points: userInfo?.points + addedUserAction?.points,
+        });
+
         // upload images
-        if (images.length) {
+        if (images?.length) {
+          setLoading(true);
+
           await multipleFileUpload({
             files: images,
             onError: () => {
-              setUploadImageError(true);
+              setLoading(false);
+              setUploadImageError(
+                'Oops, Failed uploading images, Please try that again.'
+              );
             },
             onSuccess: async ({ data }) => {
+              setLoading(false);
+              setUploadImageError(false);
+
               if (data?.publicUrls?.length) {
                 await addOrUpdateListingImages(id, {
                   images: data?.publicUrls,
                 });
+
+                navigate(`/listing/${id}`);
+              } else {
+                setUploadImageError(
+                  'Oops, Failed uploading images, Please try that again.'
+                );
               }
             },
           });
+        } else {
+          setUploadImageError('Please upload images');
         }
-
-        const addedUserAction = await addUserActionType({
-          actionTypeName: actionTypes.createNewListing,
-        });
-
-        setRegistrationPoints(addedUserAction.points);
-        setUserInfo({
-          ...userInfo,
-          points: userInfo.points + addedUserAction.points,
-        });
-
-        navigate(`/listing/${id}`);
       } else {
         // update data
         await updateListingForm(values, formId);
+
         // update images
-        await addOrUpdateListingImages(formId, { images });
-        navigate(`/listing/${formId}`);
+        if (images?.length) {
+          setLoading(true);
+
+          // data type is (File)
+          const imagesToUpload = images.filter((image) => image.name);
+
+          // data type is (string)
+          const imagesNotToUpload = images.filter((image) => !image.name);
+
+          if (imagesToUpload?.length) {
+            await multipleFileUpload({
+              files: imagesToUpload,
+              onError: () => {
+                setUploadImageError(
+                  'Oops, Failed uploading images, Please try that again.'
+                );
+                setLoading(false);
+              },
+              onSuccess: async ({ data }) => {
+                setLoading(false);
+                setUploadImageError(false);
+
+                if (data?.publicUrls?.length) {
+                  await addOrUpdateListingImages(formId, {
+                    images: [...data?.publicUrls, ...imagesNotToUpload],
+                  });
+
+                  navigate(`/listing/${formId}`);
+                } else {
+                  setUploadImageError(
+                    'Oops, Failed uploading images, Please try that again.'
+                  );
+                }
+              },
+            });
+          } else if (imagesNotToUpload?.length) {
+            await addOrUpdateListingImages(formId, {
+              images: imagesNotToUpload,
+            });
+
+            navigate(`/listing/${formId}`);
+          }
+        } else {
+          setUploadImageError('Please upload images');
+        }
       }
     }
   };
 
   usePointsNotification(registrationPoints, !!registrationPoints);
 
-  /**
-   * hook that hide toast message after n duration in seconds
-   */
-  useShowToastBar(uploadImageError, setUploadImageError);
+  useShowToastBar(uploadImageError, setUploadImageError, 3000);
 
   return (
     <CreateListingContainer>
@@ -185,14 +243,13 @@ function CreateListingForm({ date }) {
           handleFeatureClick={handleFeatureClick}
         />
         <SubmitSection>
-          <Button type="submit">Save</Button>
+          {loading ? (
+            <LoadingImage src={loadingImage} />
+          ) : (
+            <Button type="submit">Save</Button>
+          )}
         </SubmitSection>
-        {uploadImageError && (
-          <Toast
-            status="fail"
-            message="Oops, Failed uploading images, Please try that again."
-          />
-        )}
+        {uploadImageError && <Toast status="fail" message={uploadImageError} />}
       </form>
     </CreateListingContainer>
   );

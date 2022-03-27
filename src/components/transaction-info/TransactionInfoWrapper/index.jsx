@@ -2,17 +2,19 @@ import TableNoData from 'components/shared/TableNoData';
 import Toast from 'components/shared/Toast';
 import ListingsTable from 'components/transaction-info/ListingsTable';
 import TransactionsTable from 'components/transaction-info/TransactionsTable';
+import ShowModalProvider from 'contexts/ShowModalContext';
 import { useUser } from 'contexts/UserContext';
 import useEffectOnce from 'hooks/use-effect-once';
 import useShowToastBar from 'hooks/use-show-toast-bar';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getUserListings } from 'services/listing';
 import {
   getAssignedTransactions,
   getCreatedTransactions,
 } from 'services/transactions';
 import { DEFAULT_PAGE_LIMIT } from 'utils/constants';
+import TransactionSummaryModal from '../TransactionSummaryModal';
 import {
   HeadingText,
   TransactionInfoContainer,
@@ -29,8 +31,9 @@ function TransactionInfoWrapper() {
   const [createdTransactions, setCreatedTransactions] = useState([]);
   const [listings, setListings] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const { userInfo } = useUser();
+  const { userInfo, isLoggedIn } = useUser();
   const [isDealClosed, setIsDealClosed] = useState(false);
+  const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
 
@@ -58,9 +61,11 @@ function TransactionInfoWrapper() {
   useEffect(() => {
     fetchAllListingsForUser(pageNumber + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNumber]);
+  }, [pageNumber, userInfo]);
 
   useEffectOnce(() => {
+    if (!isLoggedIn) navigate('/sign-up');
+
     fetchTransactions();
     if (searchParams.get('closed')) {
       setIsDealClosed(true);
@@ -91,10 +96,14 @@ function TransactionInfoWrapper() {
         <HeadingText>My Transactions</HeadingText>
       </TransactionsContainer>
       {assignedTransactions.length > 0 || createdTransactions.length > 0 ? (
-        <TransactionsTable
-          assignedTransactions={assignedTransactions}
-          createdTransactions={createdTransactions}
-        />
+        <ShowModalProvider>
+          <TransactionsTable
+            assignedTransactions={assignedTransactions}
+            createdTransactions={createdTransactions}
+          />
+
+          <TransactionSummaryModal />
+        </ShowModalProvider>
       ) : (
         <TableNoData text="You have no transactions started yet" />
       )}

@@ -4,8 +4,8 @@ const colors = {
   blue: '#006aff',
   cornflowerBlue: '#3377ff',
   cyanBlue: '#4d8eff',
-  dustyGray: '#979797',
   darkGray: '#222222',
+  dustyGray: '#979797',
   gray: '#6f7076',
   green: '#b2d235',
   lightGray: '#ebebeb',
@@ -17,10 +17,10 @@ const colors = {
   orange: '#fe5d26',
   osloGray: '#8c8b8b',
   red: '#ff0000',
+  skyBlue: '#A6DAE8',
   white: '#ffffff',
   whiteSand: '#f5f5f5',
   wildSand: '#f4f4f4',
-  skyBlue: '#A6DAE8',
 };
 
 export default colors;

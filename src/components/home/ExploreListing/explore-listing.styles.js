@@ -164,9 +164,10 @@ export const ImgContent = styled.div`
   color: ${colors.white};
   left: 2.18rem;
   position: absolute;
+  bottom: 0;
+  margin-top: 1rem;
 
   ${mq.tablet`
-      bottom: 0;
       left: 1rem;
   `};
 `;

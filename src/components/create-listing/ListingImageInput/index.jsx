@@ -45,7 +45,13 @@ function ListingImageInput({ images, setImages }) {
       <Wrapper>
         <ImageInputSection>
           <UploadInput
-            acceptedTypes={['image/png', 'image/gif', 'image/jpeg']}
+            acceptedTypes={[
+              'image/png',
+              'image/gif',
+              'image/jpeg',
+              'image/jpg',
+              'image/webp',
+            ]}
             multiple
             onAddFiles={handleAddImages}
           >
@@ -60,7 +66,12 @@ function ListingImageInput({ images, setImages }) {
 
         {images.length > 0 && (
           <ImageInputSection>
-            <FilesList files={images} onDelete={handleDeleteImage} />
+            <FilesList
+              files={images}
+              onDelete={handleDeleteImage}
+              headerText="Upload images"
+              filesLimit={10}
+            />
           </ImageInputSection>
         )}
       </Wrapper>

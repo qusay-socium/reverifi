@@ -5,6 +5,7 @@ import {
   TableRow,
 } from 'components/shared/Table/table-styles';
 import Tooltip from 'components/shared/Tooltip';
+import { useShowModal } from 'contexts/ShowModalContext';
 import propTypes from 'prop-types';
 import React from 'react';
 import {
@@ -30,6 +31,8 @@ const allowedRoles = [
  * @return {JSX.Element}
  */
 function TransactionsTable({ assignedTransactions, createdTransactions }) {
+  const { setShowModal, setModalData } = useShowModal();
+
   /**
    * get step route function
    */
@@ -55,8 +58,8 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
   return (
     <Table headers={['PROPERTY', 'MY ROLE', 'STATUS', null]}>
       {assignedTransactions?.map(
-        ({ id, assignedTransaction, role, userId }) =>
-          userId !== createdTransactions[0]?.createdBy && (
+        ({ id, assignedTransaction, role }) =>
+          assignedTransaction?.id !== createdTransactions[0]?.id && (
             <TableRow key={id}>
               <TableCell>
                 {allowedRoles.some((allowedRole) => allowedRole === role) ? (
@@ -70,7 +73,13 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
               <TableCell>{role || 'N/A'}</TableCell>
               <TableCell>{assignedTransaction?.status}</TableCell>
               <TableCell iconsCell>
-                <IconContainer hover>
+                <IconContainer
+                  hover
+                  onClick={() => {
+                    setModalData({ transactionId: assignedTransaction?.id });
+                    setShowModal(true);
+                  }}
+                >
                   <SummaryIcon />
                   <Tooltip
                     text="Transaction Summary
@@ -98,7 +107,13 @@ function TransactionsTable({ assignedTransactions, createdTransactions }) {
             </TableCell>
             <TableCell>{status}</TableCell>
             <TableCell iconsCell>
-              <IconContainer hover>
+              <IconContainer
+                hover
+                onClick={() => {
+                  setModalData({ transactionId: id });
+                  setShowModal(true);
+                }}
+              >
                 <SummaryIcon />
                 <Tooltip
                   text="Transaction Summary

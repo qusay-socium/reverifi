@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ReactComponent as PriceIcon } from 'assets/icons/dollar-sign.svg';
 import { ReactComponent as BuyerAgent } from 'assets/icons/gray-buyer-agent.svg';
 import { ReactComponent as Buyer } from 'assets/icons/gray-buyer-group.svg';
 import { ReactComponent as Seller } from 'assets/icons/gray-seller-name.svg';
@@ -12,10 +13,12 @@ import addPartiesSchema from 'components/transaction/AddPartiesWrapper/add-parti
 import {
   ButtonText,
   CheckBoxContainer,
+  PriceInput,
   RowContainer,
   SellerTeamFromContainer,
   SideContainer,
   TextAreaContainer,
+  TextAreaDiv,
   TitleText,
 } from 'components/transaction/AddPartiesWrapper/add-parties-wrapper.styles';
 import { useShowModal } from 'contexts/ShowModalContext';
@@ -32,9 +35,11 @@ import {
   getAssignees,
   getNotes,
   getWorkflowStep,
+  updateTransaction,
 } from 'services/transactions';
 import { getUsersWithLimit } from 'services/user';
 import { transactionRoles, transactionStepsNames } from 'utils/constants';
+import { handleNumberInput } from 'utils/helpers';
 
 /**
  * Add Parties Wrapper component
@@ -103,7 +108,14 @@ export default function AddPartiesWrapper() {
   /**
    * form submit function
    */
-  const submit = async ({ sellerAgent, buyerAgent, seller, buyer, notes }) => {
+  const submit = async ({
+    sellerAgent,
+    buyerAgent,
+    seller,
+    buyer,
+    notes,
+    finalSalePrice,
+  }) => {
     // filter the non exist and send invitations
     const userIdsAndRoles = [];
 
@@ -125,6 +137,11 @@ export default function AddPartiesWrapper() {
       userIdsAndRoles: modalData?.invitedUsers?.length
         ? [...userIdsAndRoles, ...modalData?.invitedUsers]
         : userIdsAndRoles,
+    });
+
+    await updateTransaction({
+      finalSalePrice,
+      transactionId: transactionData.id,
     });
 
     // add transaction assignees
@@ -167,6 +184,11 @@ export default function AddPartiesWrapper() {
       workflowStepId: step.id,
     });
     setTransactionData(transactionRecord);
+
+    // fill final sale price input
+    if (transactionRecord?.finalSalePrice) {
+      setValue('finalSalePrice', transactionRecord?.finalSalePrice);
+    }
 
     // get listing agent and owner
     const listingData = await getListingsById(listingId);
@@ -355,6 +377,22 @@ export default function AddPartiesWrapper() {
             />
           </RowContainer>
           <RowContainer>
+            <PriceInput
+              error={errors.finalSalePrice?.message}
+              id="finalSalePrice"
+              label="Final Sale Price"
+              name="finalSalePrice"
+              placeholder="Enter Final Sale Price"
+              register={register}
+              maxLength="7"
+              labelIconElement={<PriceIcon />}
+              onChange={(e) => {
+                handleNumberInput(e);
+                setValue('finalSalePrice', e.target.value);
+              }}
+            />
+          </RowContainer>
+          <TextAreaDiv>
             <TextAreaContainer>
               <TextAreaInput
                 label="Notes"
@@ -365,7 +403,8 @@ export default function AddPartiesWrapper() {
                 register={register}
               />
             </TextAreaContainer>
-          </RowContainer>
+          </TextAreaDiv>
+
           <RowContainer>
             <Button type="submit">
               <ButtonText>Confirm and Next</ButtonText>

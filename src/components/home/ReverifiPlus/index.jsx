@@ -6,7 +6,6 @@ import { ReactComponent as HomeLogo } from 'assets/inspection.svg';
 import { ReactComponent as InsuranceLogo } from 'assets/insurance.svg';
 import React from 'react';
 import {
-  FirstSection,
   Header,
   Item,
   ItemHeader,
@@ -25,7 +24,7 @@ import {
 function ReverifiPlus() {
   return (
     <MainContainer>
-      <FirstSection>
+      <div>
         <Header>
           reverifi<span>+</span>
         </Header>
@@ -34,7 +33,7 @@ function ReverifiPlus() {
           process
         </Paragraph>
         <SeeMoreButton type="button">See More </SeeMoreButton>
-      </FirstSection>
+      </div>
       <SecondSection>
         <Item>
           <ItemIcon>

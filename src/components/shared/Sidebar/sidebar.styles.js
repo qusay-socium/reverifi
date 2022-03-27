@@ -2,6 +2,7 @@ import { ReactComponent as LeftArrow } from 'assets/visit-left-arrow.svg';
 import { NavLink } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import colors from 'styles/colors';
+import mq from 'styles/media-query';
 
 const fadeIn = keyframes`
   from {
@@ -24,11 +25,14 @@ const fadeOut = keyframes`
 `;
 
 export const MenuItemsContainer = styled.div`
-  animation: ${({ isCollapsed }) => {
-      if (isCollapsed === true) return fadeOut;
-      if (isCollapsed === false) return fadeIn;
-      return '';
-    }}
+  display: none;
+
+  ${mq.tablet`
+     animation: ${({ isCollapsed }) => {
+       if (isCollapsed === true) return fadeOut;
+       if (isCollapsed === false) return fadeIn;
+       return '';
+     }}
     ease-in-out forwards;
 
   animation-duration: 0.4s;
@@ -39,6 +43,7 @@ export const MenuItemsContainer = styled.div`
   padding: 5rem 0 0 1rem;
   max-width: 15rem;
   width: 100%;
+  `}
 `;
 
 export const MenuLink = styled(NavLink)`

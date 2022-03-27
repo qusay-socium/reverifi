@@ -106,6 +106,7 @@ export const LogoAndSocialContainer = styled.div`
 export const SubscribeInputWrapper = styled.div`
   input {
     &::placeholder {
+      padding-left: 0.5rem;
       font-size: 0.75rem;
       font-family: inherit;
     }

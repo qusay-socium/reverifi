@@ -59,11 +59,8 @@ export const SecondSection = styled.div`
   gap: 2.5rem;
   grid-template-columns: repeat(2, 1fr);
 
-  ${mq.mobile`
-    grid-template-columns: repeat(3, 1fr);
-  `}
-
   ${mq.tablet`
+   grid-template-columns: repeat(3, 1fr);
     gap: 1.75rem;
   `}
 `;

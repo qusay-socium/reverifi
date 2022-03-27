@@ -1,26 +1,31 @@
+import FormInput from 'components/shared/FormInput';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const SellerTeamFromContainer = styled.div`
   padding-bottom: 0.5rem;
   background-color: ${colors.alabaster};
-  margin: 2.625rem 0 0 0;
+  margin: 2.5rem 0 0 0;
+`;
+
+export const PriceInput = styled(FormInput)`
+  flex: 1;
 `;
 
 export const SideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.3125rem;
-  margin: 2.0625rem 0;
-  padding-top: 2.0625rem;
-  padding-left: 3.375rem;
+  gap: 1.3rem;
+  margin: 2rem 0;
+  padding-top: 2rem;
+  padding-left: 3.3rem;
 `;
 
 export const TitleText = styled.div`
   font-size: 1.5rem;
   color: ${colors.mineShaft};
   font-weight: 600;
-  margin: 0 0 0.6875rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const RowContainer = styled.div`
@@ -30,7 +35,7 @@ export const RowContainer = styled.div`
   gap: 2.25rem;
 
   > div {
-    flex: 1;
+    width: 20rem;
   }
 `;
 
@@ -59,4 +64,8 @@ export const ButtonText = styled.div`
 
 export const TextAreaContainer = styled.div`
   width: 100%;
+`;
+
+export const TextAreaDiv = styled.div`
+  margin-right: 2.5rem;
 `;

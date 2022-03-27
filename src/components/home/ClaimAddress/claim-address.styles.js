@@ -56,7 +56,6 @@ export const ClaimAddressItems = styled.div`
 
 export const AddressInputWrapper = styled.div`
   height: 3.75rem;
-  min-width: 21.4375rem;
   input {
     font-size: 1rem;
   }
@@ -127,7 +126,10 @@ export const JoinUsText = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 31rem;
+
+  ${mq.tablet`
+     min-width: 31rem;
+  `}
 
   svg {
     margin: 0.4rem 0 0 1rem;
