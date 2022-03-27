@@ -125,10 +125,10 @@ export const addOrUpdateListingImages = async (id, images) => {
  *
  * @return {Object[]} Array of processes.
  */
-export const addOrUpdateListingClaim = async (id, body) => {
+export const addOrUpdateListingClaim = async (body) => {
   const {
     data: { data },
-  } = await http.post(`${apiUrl}/listings/claim-address/${id}`, body);
+  } = await http.post(`${apiUrl}/claim-address`, body);
 
   return data;
 };
@@ -143,7 +143,7 @@ export const addOrUpdateListingClaim = async (id, body) => {
 export const getListingClaim = async (id) => {
   const {
     data: { data },
-  } = await http.get(`${apiUrl}/listings/claim-address/${id}`);
+  } = await http.get(`${apiUrl}/claim-address/${id}`);
 
   return data;
 };
