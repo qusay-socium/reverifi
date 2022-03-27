@@ -117,3 +117,33 @@ export const addOrUpdateListingImages = async (id, images) => {
 
   return data;
 };
+
+/**
+ * Service that add or update listing claim
+ *
+ * @param {object} values transaction update data
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const addOrUpdateListingClaim = async (id, body) => {
+  const {
+    data: { data },
+  } = await http.post(`${apiUrl}/listings/claim-address/${id}`, body);
+
+  return data;
+};
+
+/**
+ * Service that get listing claim
+ *
+ * @param {object} values transaction update data
+ *
+ * @return {Object[]} Array of processes.
+ */
+export const getListingClaim = async (id) => {
+  const {
+    data: { data },
+  } = await http.get(`${apiUrl}/listings/claim-address/${id}`);
+
+  return data;
+};
