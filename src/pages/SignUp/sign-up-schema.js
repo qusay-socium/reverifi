@@ -7,6 +7,10 @@ const passwordRegex =
 
 const signUpSchema = yup
   .object({
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Passwords do not match')
+      .required(),
     email: yup.string().label('E-mail').email().required(),
     industryProfessional: yup.boolean(),
     name: yup

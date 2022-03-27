@@ -31,7 +31,7 @@ import {
   SignUpTerms,
   SocialLinksText,
   SubmitButton,
-  Title
+  Title,
 } from './sign-up.styles';
 
 const { REACT_APP_FACEBOOK_APP_ID, REACT_APP_GOOGLE_CLIENT_ID } = process.env;
@@ -47,7 +47,10 @@ function SignUp() {
 
   const [showPhoneNum, setShowPhoneNum] = useState(false);
   const [DoesEmailExist, setDoesEmailExist] = useState('');
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowValue, setIsShowValue] = useState({
+    confirmPassword: false,
+    password: false,
+  });
   const continueButton = useRef(null);
   const [registrationPoints, setRegistrationPoints] = useState(null);
   const { usePointsNotification } = usePointsNotifications();
@@ -160,12 +163,42 @@ function SignUp() {
                 error={errors.password?.message}
                 label="Password"
                 register={register}
-                type={isShowPassword ? 'text' : 'password'}
+                type={isShowValue.password ? 'text' : 'password'}
                 onChange={() => setFocus('password')}
                 onClickInputKey={onClickInputKey}
               />
-              <IconContainer active={isShowPassword}>
-                <EyeIcon onClick={() => setIsShowPassword(!isShowPassword)} />
+              <IconContainer active={isShowValue.password}>
+                <EyeIcon
+                  onClick={() =>
+                    setIsShowValue({
+                      ...isShowValue,
+                      password: !isShowValue.password,
+                    })
+                  }
+                />
+              </IconContainer>
+            </InputGroup>
+          </InputWrapper>
+          <InputWrapper>
+            <InputGroup>
+              <FormInput
+                name="confirmPassword"
+                error={errors.confirmPassword?.message}
+                label="Confirm Password"
+                register={register}
+                type={isShowValue.confirmPassword ? 'text' : 'password'}
+                onChange={() => setFocus('confirmPassword')}
+                onClickInputKey={onClickInputKey}
+              />
+              <IconContainer active={isShowValue.confirmPassword}>
+                <EyeIcon
+                  onClick={() =>
+                    setIsShowValue({
+                      ...isShowValue,
+                      confirmPassword: !isShowValue.confirmPassword,
+                    })
+                  }
+                />
               </IconContainer>
             </InputGroup>
           </InputWrapper>
