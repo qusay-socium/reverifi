@@ -181,7 +181,6 @@ export const Line = styled.hr`
   margin: 0;
   opacity: 0.4;
 
-  /* for firefox */
   @-moz-document url-prefix() {
     opacity: 0.2;
     border-bottom: thin solid ${colors.white};
